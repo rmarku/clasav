@@ -1,0 +1,6 @@
+[	
+
+	{"name": "mapa_tileset", 	      "type":"image",	"src": "data/map/tileset/tilemap.png"},
+
+	{"name": "mapa",   "type": "tmx",  "src": "data/map/test.tmx"}
+]
