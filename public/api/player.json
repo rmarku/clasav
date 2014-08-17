@@ -1,0 +1,13 @@
+{"x": 100,
+	"y":100,
+	"id": 1,
+	"health":100,
+	"data":{
+		"tipo":"man_f",
+		"vestimenta":{
+			"pelo":"man_b",
+			"remera":"4_white",
+			"pantalon":"1_brown"
+		}
+	}
+}

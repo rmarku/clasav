@@ -23,7 +23,7 @@
   <tile id="177" terrain="1,1,1,1"/>
  </tileset>
  <tileset firstgid="257" name="metatiles32x32" tilewidth="32" tileheight="32">
-  <image source="tileset/metatiles32x32.psd" width="192" height="32"/>
+  <image source="tileset/metatiles32x32.png" width="192" height="32"/>
  </tileset>
  <layer name="Terreno" width="30" height="30">
   <data encoding="base64">
