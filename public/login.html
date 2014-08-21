@@ -5,20 +5,31 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>New Web Project</title>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-		<script src="public/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/comun.css" type="text/css">
+		<script src="lib/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<h1>Titulo del Juego</h1>
-		<button type="button" class="btn btn-default"> Home </button>
-        <button type="button" class="btn btn-default">Crear Cuenta</button>
-        <button type="button" class="btn btn-default">Loguin</button>
-		<button type="button" class="btn btn-default">Guia de Misiones</button>
-		<button type="button" class="btn btn-default">Juego	</button>
+        <div class="btn-group">
+	        <a href="index.html"><button type="button" class="btn btn-default">Home</button></a>
+	        <a href="login.html"><button type="button" class="btn btn-default">Crear Cuenta</button></a>
+	        <a href="login.html"><button type="button" class="btn btn-default">Loguin</button></a>
+	        <a href="gmisiones.html"><button type="button" class="btn btn-default">Guia de Misiones</button></a>
+	        <div class="btn-group">
+		        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span class="caret"></span></button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a href="#">Mi Personaje</a></li>
+				    <li><a href="#">Ranking</a></li>
+				  </ul>
+			</div>
+	        <button type="button" class="btn btn-default">Juego</button>
+        </div>
 		<br>
 		<br>
 
 		<div class="container-fluid">
-
+			<div class="div-form">
 			<form role="form">
 				<div class="form-group">
 					<label for="nombre">Nombre: </label>
@@ -28,9 +39,17 @@
 					<label for="nombre">Apellido: </label>
 					<input type="text" class="form-control" id="ejemplo_email_1" placeholder="Introduce tu apellido">
 				</div>
-				<div class="form-group">
-					<label for="ejemplo_email_1">E-mail: </label>
-					<input type="email" class="form-control" id="ejemplo_email_1" placeholder="Introduce tu email">
+				<div class="radio"> Sexo:
+				  <label>
+				    <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+				    Femenino
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="opciones" id="opciones_2" value="opcion_2">
+				    Masculino
+				  </label>
 				</div>
 				<div class="form-group">
 					<label for="nombre">Nombre del Personaje: </label>
@@ -40,10 +59,9 @@
 					<label for="ejemplo_password_1">Password: </label>
 					<input type="password" class="form-control" id="ejemplo_password_1" placeholder="Password">
 				</div>
-				<button type="submit" class="btn btn-default">
-					Crear
-				</button>
+				<button type="submit" class="btn btn-default"> Crear </button>
 			</form>
+		</div>
 		</div>
 
 	</body>

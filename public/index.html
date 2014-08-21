@@ -5,16 +5,49 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>New Web Project</title>
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"> 
-        <script src="public/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/comun.css" type="text/css">
+		<script src="lib/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
     </head>
     <body>
         <h1>Titulo del Juego</h1>
+        <!--BOTONERA-->
         <div class="btn-group">
-        <button type="button" class="btn btn-default">Home</button>
-        <button type="button" class="btn btn-default">Crear Cuenta</button>
-        <button type="button" class="btn btn-default">Loguin</button>
-        <button type="button" class="btn btn-default">Guia de Misiones</button>
-        <button type="button" class="btn btn-default">Juego</button>
+	        <a href="#"><button type="button" class="btn btn-default">Home</button></a>
+	        <a href="login.html"><button type="button" class="btn btn-default">Crear Cuenta</button></a>
+	        <a href="login.html"><button type="button" class="btn btn-default">Loguin</button></a>
+	        <a href="gmisiones.html"><button type="button" class="btn btn-default">Guia de Misiones</button></a>
+	        <div class="btn-group">
+		        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span class="caret"></span></button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a href="#">Mi Personaje</a></li>
+				    <li><a href="#">Ranking</a></li>
+				  </ul>
+			</div>
+	        <button type="button" class="btn btn-default">Juego</button>
         </div>
+        <!--FIN DE BOTONERA-->
+        <div class="div-imagenes">
+        	<img src="img/principal.jpg" />
+        </div>
+
+	    <div class="row">
+		    <div class="span6">
+		    	<p class="p_espacio"> "Clases y Aventuras" es un RPG (Rol Player Game) que plantea una postura donde aprendisaje y diversion son los ejes fundamentales. Es dinámico y Entretenido. Recorre el gran mundo, explora estas tierras y resuleve las misiones.</p>
+		    </div>
+		    <div class="span6">
+		    	<p class="p_espacio">Este juego fue creado por estudiantes de ingenieria en computacion de la "Universidad Católica de Córdoba".</p>
+		    </div>
+	    </div>
+	    
+	    <!--PIE DE PAGINA-->
+	    <footer>
+	    	<div class="container">
+	    		<p class="muted">
+	    			Esto e sun footer
+	    		</p>
+	    	</div>
+	    </footer>
+	    
     </body>
 </html>

@@ -1,1 +1,16 @@
- 
+.div-imagenes img{
+	border-radius: 20px;
+	margin: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.div-form {
+	border: 2px dashed #9c5959;
+	padding: 10px;
+	width: 300px;
+		
+}
+
+.p_espacio{
+	padding: 20px;
+}
