@@ -10,7 +10,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/comun.js"></script>
 	</head>
-	<body>
+	<body class="body-gradient">
 		<header></header>
 		
 		<br>
@@ -22,31 +22,59 @@
 			<form role="form">
 				<div class="form-group">
 					<label for="nombre">Nombre: </label>
-					<input type="text" class="form-control" id="ejemplo_email_1" placeholder="Introduce tu nombre">
+					<input type="text" class="form-control" placeholder="Introduce tu nombre">
 				</div>
 				<div class="form-group">
 					<label for="nombre">Apellido: </label>
-					<input type="text" class="form-control" id="ejemplo_email_1" placeholder="Introduce tu apellido">
+					<input type="text" class="form-control" placeholder="Introduce tu apellido">
 				</div>
-				<div class="radio"> <B>Sexo:</B>
+				
+				
+				<!--div class="form-group col-xs-3">
+					<label for="nombre">Fecha de Nacimiento: </label>
+					<input type="date" class="form-control" placeholder="Dia">
+				</div>
+				<div class="form-group col-xs-6">
+					<label> &nbsp </label>
+					<select class="form-control">
+					  <option>Enero</option>
+					  <option>Febrero</option>
+					  <option>Marzo</option>
+					  <option>Abril</option>
+					  <option>Mayo</option>
+					  <option>Junio</option>
+					  <option>Julio</option>
+					  <option>Agosto</option>
+					  <option>Septiembre</option>
+					  <option>Octubre</option>
+					  <option>Noviembre</option>
+					  <option>Diciembre</option>
+					</select>
+				</div>
+				<div class="form-group col-xs-3">
+					<label for="nombre"> &nbsp </label>
+					<input type="date" class="form-control" placeholder="Año">
+				</div-->
+				
+				<div class="radio"> <B>Sexo:</B> <br>
 				  <label> 
-				    <input type="radio" name="opciones" id="opciones_1" value="opcion_1" checked>
+				    <input type="radio" name="opciones" value="opcion_1" checked>
 				    Femenino
 				  </label>
 				</div>
 				<div class="radio">
 				  <label>
-				    <input type="radio" name="opciones" id="opciones_2" value="opcion_2">
+				    <input type="radio" name="opciones" value="opcion_2">
 				    Masculino
 				  </label>
 				</div>
 				<div class="form-group">
 					<label for="nombre">Nombre del Personaje: </label>
-					<input type="text" class="form-control" id="ejemplo_email_1" placeholder="Introduce el nombre de tu personaje">
+					<input type="text" class="form-control" placeholder="Introduce el nombre de tu personaje">
 				</div>
 				<div class="form-group">
 					<label for="ejemplo_password_1">Password: </label>
-					<input type="password" class="form-control" id="ejemplo_password_1" placeholder="Password">
+					<input type="password" class="form-control" placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-default"> Crear </button>
 			</form>
