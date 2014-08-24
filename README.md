@@ -51,7 +51,8 @@ HTML
 
 ### Ver si en canvas o HTML: Minijuegos,
 
-Juego Canvas:
+#### Juego Canvas:
+
 * Personaje
   * Definir atributos{hombre o mujer}
   * Energía
