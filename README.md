@@ -3,8 +3,8 @@ Herramientas
 
 ### Servidor
 * Node.js
-  * Express
-  * Sails
+* Express
+* Sails
 * Melon.js
 * MySQL/MongoDB
 
@@ -120,7 +120,7 @@ Multiplayer
     1 Ganador
       * gana precio promedio de entrada // (cantidad monedas) actual y siguiente (pago 10, la siguiente es 20, el promedio es 15)
       * Suma estadisticas
-    2 Perdedor {suma muertes},
+    2 Perdedor {suma muertes}
 
 
 Minijuegos
