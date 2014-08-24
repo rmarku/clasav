@@ -1,0 +1,31 @@
+[ {
+	"name" : "tilemap",
+	"type" : "image",
+	"src" : "data/map/tileset/tilemap.png"
+}, {
+	"name" : "mapa",
+	"type" : "tmx",
+	"src" : "data/map/test.tmx"
+}, {
+	"name" : "snow",
+	"type" : "audio",
+	"src" : "data/music/"
+}, {
+	"name" : "man_f",
+	"type" : "image",
+	"src" : "data/sprites/characters/ym/basic/man_f.png"
+}, {
+	"name" : "man_b",
+	"type" : "image",
+	"src" : "data/sprites/characters/ym/basic/man_b.png"
+}, {
+	"name" : "1_brown",
+	"type" : "image",
+	"src" : "data/sprites/characters/ym/pants/1_brown.png"
+}, {
+	"name" : "4_white",
+	"type" : "image",
+	"src" : "data/sprites/characters/ym/shirt/4_white.png"
+}
+
+]
