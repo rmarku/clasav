@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>game</title>
+		<link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="styles/comun.css" type="text/css">
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width; initial-scale=1.0">
@@ -11,15 +13,31 @@
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 	</head>
 
-	<body>
-		<div id="screen"> </div>
-		<div id="jsapp">
-			<script type="text/javascript" src="lib/jquery-2.1.1.js"></script>
-			<script type="text/javascript" src="lib/melonJS-1.1.0.js"></script>
-            <script type="text/javascript" src="lib/plugins/debug/debugPanel.js"></script>
-			<script type="text/javascript" src="js/main.js"></script>
-			<script type="text/javascript" src="js/play.js"></script>
-			<script type="text/javascript" src="js/entities/player.js"></script>
+	<body class="body-gradient">
+		<div class="row">
+			<div class="col-md-3">
+				<a href="index.html"><img src="images/init.png" width="100%" /></a>
+				<ul class="nav nav-tabs nav-justified">
+				  <li class="active"><a href="#">Inventario</a></li>
+				  <li><a href="#">Misiones</a></li>
+				  <li><a href="#">Logros</a></li>
+				  <li><a href="#">Talentos</a></li>
+				  <li><a href="#">Mi personaje</a></li>
+				</ul>
+			</div>
+			<div class="col-md-9">
+				<div id="screen"> </div>
+				<div id="jsapp">
+					<script type="text/javascript" src="lib/jquery-2.1.1.js"></script>
+					<!--script src="js/comun.js"></script-->
+					<script type="text/javascript" src="lib/melonJS-1.1.0.js"></script>
+		            <script type="text/javascript" src="lib/plugins/debug/debugPanel.js"></script>
+					<script type="text/javascript" src="js/main.js"></script>
+					<script type="text/javascript" src="js/play.js"></script>
+					<script type="text/javascript" src="js/entities/player.js"></script>
+				</div>
+			</div>
 		</div>
+		<footer></footer>
 	</body>
 </html>
