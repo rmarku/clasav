@@ -11,74 +11,115 @@
 		<script src="js/comun.js"></script>
 	</head>
 	<body class="body-gradient">
-		<header></header>
-		
+		<div align="center">
+			<header></header>
+		</div>
+
 		<br>
 		<br>
 
-//fecha de nacimiento //Pais //Provincia //Escuela
-		<div class="container-fluid">
-			<div class="div-form">
-			<form role="form">
-				<div class="form-group">
-					<label for="nombre">Nombre: </label>
-					<input type="text" class="form-control" placeholder="Introduce tu nombre">
-				</div>
-				<div class="form-group">
-					<label for="nombre">Apellido: </label>
-					<input type="text" class="form-control" placeholder="Introduce tu apellido">
+		<!--//fecha de nacimiento //Pais //Provincia //Escuela-->
+
+		<div class="container-fluid" align="center">
+			<div class="row">
+			    
+			    <div class="col-md-7">
+			    	<div class="div-form" align="left">
+			    		<font size="20px" color="#b8111f"> Crear Cuenta </font>
+						<form role="form">
+							<div class="form-group">
+								<label for="nombre">Nombre: </label>
+								<input type="text" class="form-control" placeholder="Introduce tu nombre">
+							</div>
+							<div class="form-group">
+								<label for="nombre">Apellido: </label>
+								<input type="text" class="form-control" placeholder="Introduce tu apellido">
+							</div>
+							<div class="form-group">
+								<label for="nombre">E-mail: </label>
+								<input type="text" class="form-control" placeholder="Introduce tu E-mail">
+							</div>
+		
+							<!--div class="form-group col-xs-3">
+							<label for="nombre">Fecha de Nacimiento: </label>
+							<input type="date" class="form-control" placeholder="Dia">
+							</div>
+							<div class="form-group col-xs-6">
+							<label> &nbsp </label>
+							<select class="form-control">
+							<option>Enero</option>
+							<option>Febrero</option>
+							<option>Marzo</option>
+							<option>Abril</option>
+							<option>Mayo</option>
+							<option>Junio</option>
+							<option>Julio</option>
+							<option>Agosto</option>
+							<option>Septiembre</option>
+							<option>Octubre</option>
+							<option>Noviembre</option>
+							<option>Diciembre</option>
+							</select>
+							</div>
+							<div class="form-group col-xs-3">
+							<label for="nombre"> &nbsp </label>
+							<input type="date" class="form-control" placeholder="Año">
+							</div-->
+		
+							<div class="radio">
+								<font color="#b8111f"><B>Sexo:</B> </font>
+								<br>
+								<label>
+									<input type="radio" name="opciones" value="opcion_1" checked>
+									Femenino </label>
+							</div>
+							<div class="radio">
+								<label>
+									<input type="radio" name="opciones" value="opcion_2">
+									Masculino </label>
+							</div>
+							<div class="form-group">
+								<label for="nombre">Nombre del Personaje: </label>
+								<input type="text" class="form-control" placeholder="Introduce el nombre de tu personaje">
+							</div>
+							<div class="form-group">
+								<label for="ejemplo_password_1">Password: </label>
+								<input type="password" class="form-control" placeholder="Password">
+							</div>
+							<div align="right">
+								<button type="submit" class="btn btn-default  btn-align">
+									Crear
+								</button>
+							</div>
+						</form>
+					</div>
 				</div>
 				
-				
-				<!--div class="form-group col-xs-3">
-					<label for="nombre">Fecha de Nacimiento: </label>
-					<input type="date" class="form-control" placeholder="Dia">
-				</div>
-				<div class="form-group col-xs-6">
-					<label> &nbsp </label>
-					<select class="form-control">
-					  <option>Enero</option>
-					  <option>Febrero</option>
-					  <option>Marzo</option>
-					  <option>Abril</option>
-					  <option>Mayo</option>
-					  <option>Junio</option>
-					  <option>Julio</option>
-					  <option>Agosto</option>
-					  <option>Septiembre</option>
-					  <option>Octubre</option>
-					  <option>Noviembre</option>
-					  <option>Diciembre</option>
-					</select>
-				</div>
-				<div class="form-group col-xs-3">
-					<label for="nombre"> &nbsp </label>
-					<input type="date" class="form-control" placeholder="Año">
-				</div-->
-				
-				<div class="radio"> <B>Sexo:</B> <br>
-				  <label> 
-				    <input type="radio" name="opciones" value="opcion_1" checked>
-				    Femenino
-				  </label>
-				</div>
-				<div class="radio">
-				  <label>
-				    <input type="radio" name="opciones" value="opcion_2">
-				    Masculino
-				  </label>
-				</div>
-				<div class="form-group">
-					<label for="nombre">Nombre del Personaje: </label>
-					<input type="text" class="form-control" placeholder="Introduce el nombre de tu personaje">
-				</div>
-				<div class="form-group">
-					<label for="ejemplo_password_1">Password: </label>
-					<input type="password" class="form-control" placeholder="Password">
-				</div>
-				<button type="submit" class="btn btn-default"> Crear </button>
-			</form>
-		</div>
+				<div class="col-md-5">
+					<div class="div-form2" align="left">
+			    		<font size="20px" color="#b8111f"> Loguin </font>
+						<form role="form">
+							<div class="form-group">
+								<label for="nombre">Nombre del Personaje: </label>
+								<input type="text" class="form-control" placeholder="Introduce el nombre de tu personaje">
+							</div>
+							<div class="form-group">
+								<label for="ejemplo_password_1">Password: </label>
+								<input type="password" class="form-control" placeholder="Password">
+							</div>
+							<div align="right">
+								<button type="submit" class="btn btn-default  btn-align">
+									Loguin
+								</button>
+							</div>
+						</form>
+					</div>
+			    	<br>
+			    	<canvas width="128" height="192"></canvas>
+			    </div>
+		 	</div>
+		 	
+		 	
 		</div>
 		<footer></footer>
 	</body>
