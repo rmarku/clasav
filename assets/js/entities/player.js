@@ -41,8 +41,7 @@ game.PlayerEntity = me.Entity.extend({
 		this.lastAnimationUsed = 'run-down';
 		this.animationToUseThisFrame = 'run-down';
 
-		// this.body.addShape(new me.Rect(0, 0, this.body.width,
-		// this.body.height));
+		this.body.addShape(new me.Rect(0, 0, this.body.width,this.body.height));
 
 		// set the renderable position to bottom center
 		this.anchorPoint.set(0.5, 0.5);

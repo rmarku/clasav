@@ -1,9 +1,29 @@
 [ {
+	"name" : "RPGmakerXPMegaTilesetByLmnopguy7",
+	"type" : "image",
+	"src" : "data/map/tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png"
+},{
+	"name" : "metatiles32x32",
+	"type" : "image",
+	"src" : "data/map/tileset/metatiles32x32.png"
+},{
 	"name" : "tilemap",
 	"type" : "image",
 	"src" : "data/map/tileset/tilemap.png"
 }, {
+	"name" : "building_interior_objects_01",
+	"type" : "image",
+	"src" : "data/map/tileset/building_interior_objects_01.png"
+},{
+	"name" : "town",
+	"type" : "image",
+	"src" : "data/map/tileset/town.png"
+}, {
 	"name" : "mapa",
+	"type" : "tmx",
+	"src" : "data/map/Inicio.tmx"
+},  {
+	"name" : "test",
 	"type" : "tmx",
 	"src" : "data/map/test.tmx"
 }, {

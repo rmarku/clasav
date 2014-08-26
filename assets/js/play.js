@@ -15,8 +15,8 @@ game.PlayScreen = me.ScreenObject.extend({
 						image : data.data.tipo,
 						spritewidth : 32,
 						spriteheight : 48,
-						width : 48,
-						height : 48,
+						width : 30,
+						height : 30,
 						id : data.id,
 						data : data.data
 					});
