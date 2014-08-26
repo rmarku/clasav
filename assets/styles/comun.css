@@ -32,6 +32,17 @@
 	color: #b8111f;
 }
 
+.p_espacio {
+	padding: 20px;
+}
+
+.menu-game {
+	width: 344px;
+	height: 384px;
+	background-color: #DEDEDE;
+	border: 2px dashed #9c5959;
+}
+
 .div-form {
 	padding: 30px;
 	width: 600px;
@@ -59,9 +70,7 @@
 	background-image: linear-gradient(top, #F6E3CE, #FFF5F6);
 }
 
-.p_espacio {
-	padding: 20px;
-}
+
 
 .form-control:focus {
 	border-color: #b8111f;
@@ -83,4 +92,14 @@
 
 .nav-tabs {
 	font-size: 12px;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    background-color: #D82C3B;
+    border-color: #b8111f;
+    color: #D8D22C;
+}
+
+.nav > li > a {
+    padding: 4px 9px;
 }
