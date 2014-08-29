@@ -4,6 +4,5 @@
 $(document).ready(function() {
 	// lleno las cabeceras
 	$("header").load("header.html");
-	$("footer").load("footer.html");
 });
 
