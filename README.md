@@ -59,7 +59,7 @@ HTML
     * cada vez que haces un ejercicio se pierde un poco de energia
     * Cada dia se recupera el 100% de la energia
     * Con monedas se puede comprar energia de intentos fallidos,
-  * Talentos{se alcanza con cada ejercicio superado},
+  * Talentos{se alcanza con cada ejercicio superado}
   * Vestimenta
     * se compra con monedas,
     * cada vestimenta tiene atributos que se traspasan al personaje,
