@@ -64,7 +64,7 @@ HTML
     * se compra con monedas
     * cada vestimenta tiene atributos que se traspasan al personaje
     * No se pueden utilizar todos simultaneamente
-  * Monedas,
+  * Monedas
   * Nivel {para cambiar de nivel, ejercicios resueltos y N talentos nuevos},
 
 
