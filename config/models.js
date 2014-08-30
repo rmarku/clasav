@@ -18,5 +18,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  // connection: 'localDiskDb'
+   	connection: 'localDiskDb',
+	schema : true,
+	autoPK : false
 };
