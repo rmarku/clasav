@@ -61,7 +61,7 @@ HTML
     * Con monedas se puede comprar energia de intentos fallidos,
   * Talentos{se alcanza con cada ejercicio superado}
   * Vestimenta
-    * se compra con monedas,
+    * se compra con monedas
     * cada vestimenta tiene atributos que se traspasan al personaje,
     * No se pueden utilizar todos simultaneamente,
   * Monedas,
