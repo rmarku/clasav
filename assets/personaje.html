@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>New Web Project</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="styles/comun.css" type="text/css">
+		<script src="lib/jquery-2.1.1.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="lib/angular.min.js"></script>
+		<script src="js/comun.js"></script>
+		<script src="js/personajes.js"></script>
+		<style>
+			canvas {
+				image-rendering: optimizeSpeed;
+				image-rendering: -moz-crisp-edges;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: optimize-contrast;
+				-ms-interpolation-mode: nearest-neighbor;
+				width: 128px;
+				height: 256px;
+			}
+		</style>
+	</head>
+	<body class="body-gradient">
+		<div align="center">
+			<header></header>
+		</div>
+
+		<br>
+		<br>
+
+		<!--//fecha de nacimiento //Pais //Provincia //Escuela-->
+
+		<div class="container" align="center">
+			<div class="row">
+
+				<div class="col-md-10">
+					<div class="div-form" align="left" ng-controller="Controlador">
+						<font class="titulos">Tu personaje</font>
+						<form role="form" method="post" ng-submit="crearCuenta()">
+							<div class="form-group">
+								<label for="nombre">Nombre: </label>
+								<input type="text" class="form-control" name="nombreUsuario" ng-model="nombre" placeholder="Introduce tu nombre">
+								<span> {{nombre}} </span>
+							</div>
+							<div class="form-group">
+								<label for="nombre">Tipo de pelo: </label>
+								<canvas id="pelo"></canvas>
+								<span> {{tipo_pelo}} </span>
+							</div>
+							<div class="form-group">
+								<label for="nombre">Color de pelo: </label>
+								<input type="text" class="form-control" name="nombreUsuario" ng-model="nombre" placeholder="Introduce tu nombre">
+								<span> {{color_pelo}} </span>
+							</div>
+							<div align="right">
+								<button type="submit" class="btn btn-default  btn-align">
+									Crear
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="col-md-1">
+					<canvas id="pj" width="32" height="64"></canvas>
+				</div>
+
+			</div>
+
+			<footer></footer>
+	</body>
+</html>

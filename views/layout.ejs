@@ -1,34 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title>Juegos y Aventuras</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    
-    <!--  
-        Stylesheets and Preprocessors
-        ==============================
-
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage 
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
-        
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-            
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
-
     <!--STYLES-->
+    <link rel="stylesheet" href="/styles/bootstrap-3.2.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/styles/bootstrap-theme.css">
+    <link rel="stylesheet" href="/styles/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/styles/bootstrap.css">
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/comun.css">
@@ -36,7 +16,30 @@
     <!--STYLES END-->
   </head>
 
-  <body>
+  <body class="body-gradient">
+  <header>
+  	<!--h1>Titulo del Juego</h1-->
+  	<div class="text-center">
+	<img src="images/init.png" align="center"/>
+	<br/>
+        <!--BOTONERA-->
+        <div class="btn-group botonera">
+	        <a href="index.html" type="button" class="btn btn-default">Home</a>
+	        <a href="login.html" class="btn btn-default">Loguin</a>
+	        <a href="gmisiones.html" class="btn btn-default">Guia de Misiones</a>
+	        <a href="" class="btn btn-default">COLISEO</a>
+		        <div class="btn-group">
+			        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span class="caret"></span></a>
+					  <ul class="dropdown-menu" role="menu">
+					    <li><a href="#">Mi Personaje</a></li>
+					    <li><a href="#">Ranking</a></li>
+					  </ul>
+				</div>
+	        <a href="game.html" type="button" class="btn btn-default">Juego</a>
+        </div>
+        <!--FIN DE BOTONERA-->
+        </div>
+</header>
     <%- body %>
 
 
@@ -66,37 +69,20 @@
     
     <!--TEMPLATES END-->
 
-
-    <!--
-
-      Client-side Javascript
-      ========================
-
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can 
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-      
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-          
-          + Change the order of your scripts
-          + Import scripts from other directories
-          + Use a different preprocessor, like TypeScript
-
-    -->
-
+<footer>
+<!--h1>Titulo del Juego</h1-->
+<img src="images/logoUCC.png" /> Universidad Catolica de Cordoba
+</footer>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/comun.js"></script>
     <script src="/js/entities/player.js"></script>
+    <script src="/js/game.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/personajes.js"></script>
+    <script src="/js/personajes.js.js"></script>
     <script src="/js/play.js"></script>
     <script src="/js/ressources.js"></script>
     <!--SCRIPTS END-->
