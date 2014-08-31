@@ -1,5 +1,5 @@
 /**
-* Talento.js
+* Personaje.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -9,25 +9,30 @@ module.exports = {
 
   attributes: {
 
-	id: {
+    id: {
       type: 'string',
       required: true,
       unique: true,
-      primaryKey : true
+      primaryKey : true      
+    },
+   
+    alumnos:{
+      collection: 'alumno',
+      via: 'personajes'
     },
     
-    nombre: {
-      type: 'string',
-      required: false
-    },
-    
-    personajes:{
-      collection: 'personaje',
-      via: 'talentos',
+    talentos:{
+      collection: 'talento',
+      via: 'personajes',
       required: false 	
-    }
+    },
+	
+    personajes_x_items:{
+      collection: 'personaje_x_item',
+      via: 'id',
+      required: false 	
+   }
     
   }
-  
 };
 

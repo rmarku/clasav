@@ -23,20 +23,27 @@ module.exports = {
     },
     
     
-    alumnos:{
+    alumnos: {
     	collection: 'alumno',
     	via: 'mapas',
     	required: false
     },
     
-    profesores:{
-    	model: 'profesor',
-    	required: false	
+    profesores: {
+    	collection: 'profesor', 
+    	via: 'mapas',
+    	required: false
     },
     
     materias:{
     	model: 'materia',
     	required: false	
+    },
+    
+    personajes_x_items: {
+    	collection: 'personaje_x_item',
+    	via: 'mapas',
+    	required: false 	
     }
     
   }

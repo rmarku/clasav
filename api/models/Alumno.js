@@ -75,29 +75,23 @@ module.exports = {
       required: false
     },
             
-    id_personaje: {
-      type: 'string',
-      required: false
-    },
-    
-    escuela:{
-   	  model:'escuela',          
-      required: false
-    	
+    personajes: {
+      collection: 'personaje',
+      via:'alumnos'
     },
      
     mapas:{
    	  collection: 'mapa',
    	  via: 'alumnos',
-	  required: false
-    	
+	  required: false  	
     },
     
-    talentos:{
-      collection: 'talento',
-      via: 'alumnos',
-      required: false 	
+    instituciones:{
+      collection: 'institucion',
+      via: 'alumnos',          
+      required:false  	
     }
+     
 	
   }
   
