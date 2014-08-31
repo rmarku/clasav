@@ -9,7 +9,7 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="lib/angular.min.js"></script>
 		<script src="js/comun.js"></script>
-		<script src="controlador.js"></script>
+		<script src="js/controlador.js"></script>
 	</head>
 	<body class="body-gradient">
 		<div align="center">
@@ -104,14 +104,14 @@
 						<form role="form">
 							<div class="form-group">
 								<label for="nombre">Nombre del Personaje: </label>
-								<input type="text" class="form-control" name="nombrePersonaje" placeholder="Introduce el nombre de tu personaje">
+								<input type="text" class="form-control" name="nombrePersonaje" ng-model="usuario.nombrePersonaje" placeholder="Introduce el nombre de tu personaje" required>
 							</div>
 							<div class="form-group">
 								<label for="ejemplo_password_1">Password: </label>
-								<input type="password" name="password" class="form-control" placeholder="Password">
+								<input type="password" name="password" class="form-control" ng-model="usuario.password" placeholder="Password" required>
 							</div>
 							<div align="right">
-								<button type="submit" class="btn btn-default  btn-align">
+								<button type="submit" ng-disabled="!loginUserForm.$valid" ng-click="login(user)" class="btn btn-default  btn-align">
 									Login
 								</button>
 							</div>
