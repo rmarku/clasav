@@ -41,12 +41,12 @@ module.exports = {
     
     fecha_nacimiento: {
       type: 'date',
-      required: true
+      required: false
     },
     
     pais: {
       type: 'string',
-      required: true
+      required: false
     },
     
     provincia: {
@@ -56,7 +56,7 @@ module.exports = {
     
     ciudad: {
       type: 'string',
-      required: true
+      required: false
     },
     
     calle: {
@@ -77,12 +77,12 @@ module.exports = {
             
     id_personaje: {
       type: 'string',
-      required: true
+      required: false
     },
     
     escuela:{
    	  model:'escuela',          
-      required: true
+      required: false
     	
     },
      

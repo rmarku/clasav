@@ -1,20 +1,15 @@
 //creamos nuestro modulo llamado app
-var app = angular.module("app", []);
+var app = angular.module("juegoapl", ['juegoapl.services',  'juegoapl.controllers']);
 
 //hacemos el ruteo de nuestra aplicacion
-app.config(function($routeProvider){
-	$routeProvider.when("/", {
-		templateUrl : "templates/index.html"
-	})
-	//esta es la forma de decirle a angular que vamos a pasar una variable por la url
-	.when('/info/:id', {
-      templateUrl : "info.html",
-     controller : "infoController"
-    })
-	.when("/login", {
-		title: 'Añadir usuario',
-		templateUrl : "login.html",
-		controller : "addController"
-	})
- 	.otherwise({ redirectTo : "/"})
-})
+/*
+angular.module('ngdemo', ['ngdemo.filters', 'ngdemo.services', 'ngdemo.directives', 'ngdemo.controllers']).
+config(['$routeProvider', function ($routeProvider) {
+    $routeProvider.when('/dummy', {templateUrl: 'partials/dummy.html', controller: 'DummyCtrl'});
+    $routeProvider.when('/user-list', {templateUrl: 'partials/user-list.html', controller: 'UserListCtrl'});
+    $routeProvider.when('/user-detail/:id', {templateUrl: 'partials/user-detail.html', controller: 'UserDetailCtrl'});
+    $routeProvider.when('/user-creation', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
+    $routeProvider.otherwise({redirectTo: '/dummy'});
+}]);
+
+*/

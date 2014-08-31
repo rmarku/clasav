@@ -1,7 +1,11 @@
-var miAplicacion = angular.module('formLogin', []);
-miAplicacion.controller('controlForm', ['$scope', function($scope) {
-      $scope.lista = [
-         {texto: 'Femenino', seleccionado: true},
-         {texto: 'Masculino', seleccionado: false}
-      ];
- }]);
+var app = angular.module('juegoapl.controllers', []);
+
+app.controller('AlumnoCreateCtl', [ '$scope', 'AlumnosFactory', '$location', function($scope, AlumnosFactory, $location) {
+
+	// callback for ng-click 'createNewUser':
+	$scope.createNewAlumno = function() {
+		AlumnosFactory.create($scope.alumno);
+		// $location.path('/');
+	}
+
+} ]);
