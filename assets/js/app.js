@@ -1,13 +1,13 @@
 //creamos nuestro modulo llamado app
 var app = angular.module("juegoapl", ['juegoapl.services',  'juegoapl.controllers']).
 Fconfig(['$routeProvider', function ($routeProvider) {
-    $routeProvider.when('/', {templateUrl: 'partials/dummy.html', controller: 'DummyCtrl'});
-    $routeProvider.when('/crear-cuenta', {templateUrl: 'partials/user-list.html', controller: 'UserListCtrl'});
-    $routeProvider.when('/misiones', {templateUrl: 'partials/user-detail.html', controller: 'UserDetailCtrl'});
-    $routeProvider.when('/coliceo', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
-    $routeProvider.when('/personaje', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
-    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
-    $routeProvider.otherwise({redirectTo: '/dummy'});
+//    $routeProvider.when('/', {templateUrl: 'partials/dummy.html', controller: 'DummyCtrl'});
+//    $routeProvider.when('/crear-cuenta', {templateUrl: 'partials/user-list.html', controller: 'UserListCtrl'});
+//    $routeProvider.when('/misiones', {templateUrl: 'partials/user-detail.html', controller: 'UserDetailCtrl'});
+//    $routeProvider.when('/coliceo', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
+    $routeProvider.when('/personaje', {template: JST["assets/templates/personaje.html"], controller: 'UserCreationCtrl'});
+//    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
+    $routeProvider.otherwise({redirectTo: '/'});
 
 //hacemos el ruteo de nuestra aplicacion
 /*
