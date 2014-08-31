@@ -75,18 +75,21 @@ module.exports = {
       size: 1,
       required: false
     },
-                
-    escuela:{
-   	  collection: 'escuela',
-   	  via: 'profesores',
-   	  required: true
-    },
-      
-    mapas:{
+    
+    
+     mapas:{
    	  collection: 'mapa',
    	  via: 'profesores',
 	  required: false
+    }  ,
+           
+    instituciones:{
+   	  collection: 'institucion',
+   	  via: 'profesores',
+   	  required: true
     }
+      
+   
    
 
   }
