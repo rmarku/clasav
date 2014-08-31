@@ -23,10 +23,10 @@
 
 		<div class="container-fluid" align="center">
 			<div class="row">
-			    
-			    <div class="col-md-8" ng-app="formLogin">
-			    	<div class="div-form" align="left" ng-controller="controlForm">
-			    		<font class="titulos"> Crear Cuenta </font>
+
+				<div class="col-md-8" ng-app="formLogin">
+					<div class="div-form" align="left" ng-controller="controlForm">
+						<font class="titulos"> Crear Cuenta </font>
 						<form role="form" method="post" ng-submit="crearCuenta()">
 							<div class="form-group">
 								<label for="nombre">Nombre: </label>
@@ -37,53 +37,41 @@
 								<input type="text" class="form-control" name="apellido" placeholder="Introduce tu apellido" ng-model="usuario.apellido" required>
 							</div>
 							<div class="form-group">
-								<label for="nombre">E-mail: </label>
+								<label for="email">E-mail: </label>
 								<input type="text" class="form-control" name="email" ng-model="usuario.email" placeholder="Introduce tu E-mail" required>
 							</div>
-		
-							<!--div class="form-group col-xs-3">
-							<label for="nombre">Fecha de Nacimiento: </label>
-							<input type="date" class="form-control" placeholder="Dia">
-							</div>
-							<div class="form-group col-xs-6">
-							<label> &nbsp </label>
-							<select class="form-control">
-							<option>Enero</option>
-							<option>Febrero</option>
-							<option>Marzo</option>
-							<option>Abril</option>
-							<option>Mayo</option>
-							<option>Junio</option>
-							<option>Julio</option>
-							<option>Agosto</option>
-							<option>Septiembre</option>
-							<option>Octubre</option>
-							<option>Noviembre</option>
-							<option>Diciembre</option>
-							</select>
-							</div>
-							<div class="form-group col-xs-3">
-							<label for="nombre"> &nbsp </label>
-							<input type="date" class="form-control" placeholder="Año">
+
+							<!--div class="container">
+								<div class="row">
+									<div class='col-sm-6'> Fecha de Nacimiento:
+										<div class="form-group">
+											<div class='input-group date' id='datetimepicker5'>
+												<input type='text' class="form-control" data-date-format="YYYY/MM/DD"/>
+												<span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span>
+											</div>
+										</div>
+									</div>
+									<script type="text/javascript">
+										$(function() {
+											$('#datetimepicker5').datetimepicker({
+												pickTime : false
+											});
+										});
+									</script>
+								</div>
 							</div-->
-		
+
 							<div class="radio">
 								<font color="#b8111f"><B>Sexo:</B> </font>
 								<br>
 								<label>
 									<input type="radio" name="sexo" value="femenino" >
-									Femenino 
-								</label>
+									Femenino </label>
 							</div>
 							<div class="radio">
 								<label>
 									<input type="radio" name="sexo" value="masculino" checked>
-									Masculino 
-								</label>
-							</div>
-							<div class="form-group">
-								<label for="nombre">Nombre del Personaje: </label>
-								<input type="text" class="form-control" name="nombrePersonaje" ng-model="usuario.nombrePersonaje" placeholder="Introduce el nombre de tu personaje" required>
+									Masculino </label>
 							</div>
 							<div class="form-group">
 								<label for="ejemplo_password_1">Password: </label>
@@ -97,10 +85,10 @@
 						</form>
 					</div>
 				</div>
-				
+
 				<div class="col-md-4" align="left">
 					<div class="div-form2" align="left">
-			    		<font class="titulos"> Login </font>
+						<font class="titulos"> Login </font>
 						<form role="form">
 							<div class="form-group">
 								<label for="nombre">Nombre del Personaje: </label>
@@ -117,12 +105,11 @@
 							</div>
 						</form>
 					</div>
-			    	<br>
-			    	<canvas width="128" height="192"></canvas>
-			    </div>
-		 	</div>
-		 	
-		 	
+					<br>
+					<canvas width="128" height="192"></canvas>
+				</div>
+			</div>
+
 		</div>
 		<footer></footer>
 	</body>
