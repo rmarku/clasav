@@ -48,8 +48,3 @@ var game = {
 	},
 
 }; // game
-
-// bootstrap :)
-window.onReady(function() {
-	game.onload();
-});

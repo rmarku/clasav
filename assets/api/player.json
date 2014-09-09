@@ -3,9 +3,9 @@
 	"id": 1,
 	"health":100,
 	"data":{
-		"tipo":"man_f",
+		"tipo":"pj_f",
 		"vestimenta":{
-			"pelo":"man_b",
+			"pelo":"pj_b",
 			"remera":"4_white",
 			"pantalon":"1_brown"
 		}

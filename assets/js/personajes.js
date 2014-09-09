@@ -15,7 +15,7 @@ var images = {};
 
 var img_h = 0;
 var img_v = 0;
-
+/*
 $(document).ready(function() {
 	// lleno las cabeceras
 	var canvas = document.getElementById('pj');
@@ -55,3 +55,5 @@ $(document).ready(function() {
 		}
 	}, 150);
 });
+
+*/
