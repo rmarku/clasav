@@ -56,15 +56,15 @@ HTML
 * Personaje
   * Definir atributos{hombre o mujer}
   * Energía
-    * cada vez que haces un ejercicio se pierde un poco de energia,
-    * Cada dia se recupera el 100% de la energia,
-    * Con monedas se puede comprar energia de intentos fallidos,
-  * Talentos{se alcanza con cada ejercicio superado},
+    * cada vez que haces un ejercicio se pierde un poco de energia
+    * Cada dia se recupera el 100% de la energia
+    * Con monedas se puede comprar energia de intentos fallidos
+  * Talentos{se alcanza con cada ejercicio superado}
   * Vestimenta
-    * se compra con monedas,
-    * cada vestimenta tiene atributos que se traspasan al personaje,
-    * No se pueden utilizar todos simultaneamente,
-  * Monedas,
+    * se compra con monedas
+    * cada vestimenta tiene atributos que se traspasan al personaje
+    * No se pueden utilizar todos simultaneamente
+  * Monedas
   * Nivel {para cambiar de nivel, ejercicios resueltos y N talentos nuevos},
 
 

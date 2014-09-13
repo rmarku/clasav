@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="es" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" ng-app>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>New Web Project</title>
@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="styles/comun.css" type="text/css">
 		<script src="lib/jquery-2.1.1.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="lib/angular.min.js"></script>
 		<script src="js/comun.js"></script>
 	</head>
 	<body class="body-gradient">
@@ -23,21 +24,24 @@
 		<div class="container-fluid" align="center">
 			<div class="row">
 			    
-			    <div class="col-md-7">
-			    	<div class="div-form" align="left">
-			    		<font size="20px" color="#b8111f"> Crear Cuenta </font>
-						<form role="form">
+			    <div class="col-md-8">
+			    	<div class="div-form" align="left" ng-controller="Controlador">
+			    		<font class="titulos"> Crear Cuenta </font>
+						<form role="form" method="post" ng-submit="crearCuenta()">
 							<div class="form-group">
 								<label for="nombre">Nombre: </label>
-								<input type="text" class="form-control" placeholder="Introduce tu nombre">
+								<input type="text" class="form-control" name="nombreUsuario" ng-model="nombre" placeholder="Introduce tu nombre">
+								<span> {{nombre}} </span>
 							</div>
 							<div class="form-group">
 								<label for="nombre">Apellido: </label>
-								<input type="text" class="form-control" placeholder="Introduce tu apellido">
+								<input type="text" class="form-control" name="apellido" placeholder="Introduce tu apellido">
+								<span> {{apellido}} </span>
 							</div>
 							<div class="form-group">
 								<label for="nombre">E-mail: </label>
-								<input type="text" class="form-control" placeholder="Introduce tu E-mail">
+								<input type="text" class="form-control" name="email" placeholder="Introduce tu E-mail">
+								<span> {{email}} </span>
 							</div>
 		
 							<!--div class="form-group col-xs-3">
@@ -70,21 +74,25 @@
 								<font color="#b8111f"><B>Sexo:</B> </font>
 								<br>
 								<label>
-									<input type="radio" name="opciones" value="opcion_1" checked>
-									Femenino </label>
+									<input type="radio" name="sexo" value="femenino" > <span> {{sexo}} </span>
+									Femenino 
+								</label>
 							</div>
 							<div class="radio">
 								<label>
-									<input type="radio" name="opciones" value="opcion_2">
-									Masculino </label>
+									<input type="radio" name="sexo" value="masculino" checked> <span> {{sexo}} </span>
+									Masculino 
+								</label>
 							</div>
 							<div class="form-group">
 								<label for="nombre">Nombre del Personaje: </label>
-								<input type="text" class="form-control" placeholder="Introduce el nombre de tu personaje">
+								<input type="text" class="form-control" name="nombrePersonaje" placeholder="Introduce el nombre de tu personaje">
+								<span> {{nombrePersonaje}} </span>
 							</div>
 							<div class="form-group">
 								<label for="ejemplo_password_1">Password: </label>
-								<input type="password" class="form-control" placeholder="Password">
+								<input type="password" class="form-control" name="password" placeholder="Password">
+								<span> {{password}} </span>
 							</div>
 							<div align="right">
 								<button type="submit" class="btn btn-default  btn-align">
@@ -95,21 +103,23 @@
 					</div>
 				</div>
 				
-				<div class="col-md-5">
+				<div class="col-md-4" align="left">
 					<div class="div-form2" align="left">
-			    		<font size="20px" color="#b8111f"> Loguin </font>
+			    		<font class="titulos"> Login </font>
 						<form role="form">
 							<div class="form-group">
 								<label for="nombre">Nombre del Personaje: </label>
-								<input type="text" class="form-control" placeholder="Introduce el nombre de tu personaje">
+								<input type="text" class="form-control" name="nombrePersonaje" placeholder="Introduce el nombre de tu personaje">
+								<span> {{nombrePersonaje}} </span>
 							</div>
 							<div class="form-group">
 								<label for="ejemplo_password_1">Password: </label>
-								<input type="password" class="form-control" placeholder="Password">
+								<input type="password" name="password" class="form-control" placeholder="Password">
+								<span> {{password}} </span>
 							</div>
 							<div align="right">
 								<button type="submit" class="btn btn-default  btn-align">
-									Loguin
+									Login
 								</button>
 							</div>
 						</form>
