@@ -23,7 +23,7 @@ module.exports = {
     },
     
     ano: {
-      type: 'string',
+      type: 'integer',
       required: false
     },
     

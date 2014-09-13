@@ -25,5 +25,6 @@
 		<nature>org.eclipse.vjet.core.nature</nature>
 		<nature>com.aptana.projects.webnature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+		<nature>com.aptana.ruby.core.rubynature</nature>
 	</natures>
 </projectDescription>
