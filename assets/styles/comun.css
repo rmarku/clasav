@@ -56,21 +56,7 @@
 	background-image: -webkit-gradient(linear, left top, right top, from(#DEDEDE), to(#FFF5F6));
 	background-image: -webkit-linear-gradient(left, #DEDEDE, #FFF5F6);
 	background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
-	border: 2px dashed #9c5959;
-}
-
-.div-form2 {
-	width: 250px;
-	padding: 4px 20px 8px 20px;
 	border: 5px double #9c5959;
-	border-radius: 25px;
-	box-shadow: 8px 8px 8px;
-	background-image: -moz-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: -ms-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: -o-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: -webkit-gradient(linear, center top, center bottom, from(#F6E3CE), to(#FFF5F6));
-	background-image: -webkit-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: linear-gradient(top, #F6E3CE, #FFF5F6);
 }
 
 .form-control:focus {
@@ -103,4 +89,8 @@
 
 .nav > li > a {
 	padding: 4px 9px;
+}
+
+.navbar{
+	height: 10px;
 }
