@@ -101,3 +101,13 @@
 	font-size: 12px;
 	height: 24px;
 }
+
+.capaSup{
+	position: absolute;
+	z-index: 10;
+}
+
+.capaInf{
+	position: absolute;
+	z-index: 1;
+}
