@@ -1,13 +1,13 @@
+@font-face {
+	font-family: "Gorditas-Regular";
+	font-style: normal;
+	font-weight: normal;
+	src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
+}
+
 .body-gradient {
 	background-color: #9c5959;
-	//background-image: -moz-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: -ms-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: -o-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: -webkit-gradient(linear, left top, right top, from(#C18181), to(#FFF5F6));
-	//background-image: -webkit-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: linear-gradient(left, #C18181, #FFF5F6);//
-	//background-image: -moz-linear-gradient(left center , #F5D0A9, #ECE0F8);
-	background-image: url("../images/fondo.jpg");
+	background-image: url("../images/fondo.png");
 	background-size: cover;
 }
 
@@ -20,13 +20,6 @@
 	border-radius: 20px;
 	margin: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-@font-face {
-	font-family: "Gorditas-Regular";
-	font-style: normal;
-	font-weight: normal;
-	src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
 }
 
 .titulos {
@@ -92,5 +85,15 @@
 }
 
 .navbar{
-	height: 10px;
+	min-height: 31px;
+}
+
+.btn2{
+	font-size: 12px;
+	padding: 4px 4px;
+}
+
+.form-control2{
+	font-size: 12px;
+	height: 24px;
 }

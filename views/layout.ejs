@@ -19,25 +19,26 @@
 		<header class="text-center">
 			<div class="navbar navbar-inverse row">
 				<div class="text-left col-md-3">
-					<a href="#/crear-cuenta" class="btn btn-default">Crear Cuenta</a>
+					<a href="#/crear-cuenta" class="btn btn2 btn-default">Crear Cuenta</a>
 				</div>
 				<div class="text-right col-md-9">
 					<form class="form-inline" role="form">
 						<div class="form-group">
 							<label class="sr-only" for="email">Email address</label>
-							<input type="email" class="form-control" name="email" ng-model="alumno.e_mail" placeholder="Introduce tu E-mail" required>
+							<input type="email" class="form-control2" name="email" size="40" ng-model="alumno.e_mail" placeholder="Introduce tu E-mail" required>
 						</div>
 						<div class="form-group">
 							<label class="sr-only" for="contrasena">Password</label>
-							<input type="password" name="contrasena" class="form-control" id="contrasena" ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
+							<input type="password" class="form-control2" name="contrasena" id="contrasena" ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
 						</div>
-						<a href="#/crear-cuenta" class="btn btn-default">Ingresar</a>
+						<a href="#/crear-cuenta" class="btn btn2 btn-default">Ingresar</a>
 					</form>
 				</div>
 			</div>
 
 			<!--h1>Titulo del Juego</h1-->
-			<img src="images/init.png"/><br />
+			<img src="images/init.png"/>
+			<br />
 			<!--BOTONERA-->
 			<div class="btn-group botonera">
 				<a href="#/" type="button" class="btn btn-default">Home</a>
@@ -59,7 +60,7 @@
 			<!--FIN DE BOTONERA-->
 			</div>
 		</header>
-<div ng-view></div>
+		<div ng-view></div>
 		<!--%- body %-->
 		<!--TEMPLATES-->
 <script type="text/javascript" src="/jst.js"></script>
@@ -89,6 +90,6 @@
 <script src="/js/play.js"></script>
 <script src="/js/servicios.js"></script>
 <!--SCRIPTS END-->
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 	</body>
 </html>

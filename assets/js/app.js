@@ -4,6 +4,7 @@ config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {template: JST["assets/templates/index.html"]});
     $routeProvider.when('/crear-cuenta', {template: JST["assets/templates/crear-cuenta.html"], controller: 'AlumnoCreateCtl'});
     $routeProvider.when('/misiones', {template: JST["assets/templates/gmisiones.html"]});
+    $routeProvider.when('/juego', {template: JST["assets/templates/game.html"]});
 //    $routeProvider.when('/coliseo', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
 //    $routeProvider.when('/personaje', {template: JST["assets/templates/personaje.html"], controller: 'AlumnoCreateCtl'});
 //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
