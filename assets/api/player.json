@@ -1,8 +1,9 @@
-{"x": 100,
-	"y":100,
+{"x": 900,
+	"y":200,
 	"id": 1,
 	"health":100,
 	"data":{
+        "nombre": "Pepe",
 		"tipo":"pj_f",
 		"vestimenta":{
 			"pelo":"pj_b",
