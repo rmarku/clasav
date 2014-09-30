@@ -122,7 +122,7 @@ game.PlayerEntity = me.Entity.extend({
         this.ctx.lineWidth = 3;
         this.ctx.fillStyle = '#fff';
         this.ctx.strokeStyle = "#000";
-        this.ctx.font = '12px "Short Stack" ';
+        this.ctx.font = '11px "Short Stack" ';
         this.ctx.textBaseline = 'top';
 
         var txtw = this.ctx.measureText(this.data.nombre.trimRight()).width;
