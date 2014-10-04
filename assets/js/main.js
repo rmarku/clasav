@@ -7,7 +7,6 @@ var game = {
 	mainPlayer : {},
 	players : {},
 	NPCs : {},
-	players : {},
 
 	/**
 	 * initlization
@@ -43,9 +42,8 @@ var game = {
 		me.pool.register("mainPlayer", game.PlayerEntity);
 		
 		me.state.change(me.state.PLAY);
-
 		
-	},
+	}
 
 }; // game
 
