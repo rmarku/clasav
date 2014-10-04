@@ -1,104 +1,100 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>New Sails App</title>
+<html ng-app="juegoapl">
+	<head>
+		<title>Juegos y Aventuras</title>
+		<link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+		<!-- Viewport mobile tag for sensible mobile support -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
 
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    
-    <!--  
-        Stylesheets and Preprocessors
-        ==============================
-
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage 
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
-        
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-            
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
-
-    <!--STYLES-->
-    <link rel="stylesheet" href="/styles/bootstrap.css">
-    <link rel="stylesheet" href="/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/comun.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <!--STYLES END-->
-  </head>
-
-  <body>
-    <%- body %>
+<link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap-theme.css">
+<link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="/styles/comun.css">
+		<link rel="stylesheet" href="/styles/importer.css">
 
 
+		
+	</head>
 
-    <!--
-        Client-side Templates
-        ========================
+	<body class="body-gradient">
+		<header class="text-center">
+			<div class="navbar navbar-inverse row">
+				<div class="text-left col-md-3">
+					<a href="#/crear-cuenta" class="btn btn2 btn-default">Crear Cuenta</a>
+				</div>
+				<div class="text-right col-md-9">
+					<form class="form-inline" role="form">
+						<div class="form-group">
+							<label class="sr-only" for="email">Email address</label>
+							<input type="email" class="form-control2" name="email" size="40" ng-model="alumno.e_mail" placeholder="Introduce tu E-mail" required>
+						</div>
+						<div class="form-group">
+							<label class="sr-only" for="contrasena">Password</label>
+							<input type="password" class="form-control2" name="contrasena" id="contrasena" ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
+						</div>
+						<a href="#/crear-cuenta" class="btn btn2 btn-default">Ingresar</a>
+					</form>
+				</div>
+			</div>
 
-        HTML templates are important prerequisites of modern, rich client applications.
-        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-        that you load these templates client-side.
+			<!--h1>Titulo del Juego</h1-->
+			<img src="images/init.png"/>
+			<br />
+			<!--BOTONERA-->
+			<div class="btn-group botonera">
+				<a href="#/" type="button" class="btn btn-default">Home</a>
+				<a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
+				<a href="" class="btn btn-default">COLISEO</a>
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="#">Mi Personaje</a>
+						</li>
+						<li>
+							<a href="#">Ranking</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#/game" type="button" class="btn btn-default">Juego</a>
+			</div>
+			<!--FIN DE BOTONERA-->
+			</div>
+		</header>
+		<div ng-view></div>
+		<!--%- body %-->
+		<!--TEMPLATES-->
+		<script type="text/javascript" src="/jst.js"></script>
+		<!--TEMPLATES END-->
 
-        By default, your Gruntfile is configured to automatically load and precompile
-        client-side JST templates in your `assets/templates` folder, then
-        include them here automatically (between TEMPLATES and TEMPLATES END).
-        
-        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Import templates from other directories
-            + Use a different template engine (handlebars, jade, dust, etc.)
-            + Internationalize your client-side templates using a server-side
-              stringfile before they're served.
-    -->
-
-    <!--TEMPLATES-->
-    
-    <!--TEMPLATES END-->
+		<footer>
+			<!--h1>Titulo del Juego</h1-->
+			<img src="images/logoUCC.png" /> Universidad Catolica de Cordoba
+		</footer>
 
 
-    <!--
+		<script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
+		<script src="/js/dependencies/angular/angular.js"></script>
+		<script src="/js/dependencies/jquery/dist/jquery.js"></script>
+		<script src="/js/dependencies/angular-resource/angular-resource.js"></script>
+		<script src="/js/dependencies/angular-route/angular-route.js"></script>
+		<script src="/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js"></script>
+		<script src="/js/dependencies/bootstrap/dist/js/bootstrap.js"></script>
+		<!--script src="/js/dependencies/melonJS/melonJS.js"></script-->
+			<script src="/lib/melonJS.js"></script>
+			<script src="/lib/plugins/debug/debugPanel.js"></script>
+			<script src="/lib/plugins/debug/particleDebugPanel.js"></script>
 
-      Client-side Javascript
-      ========================
+		<script src="/js/main.js"></script>
+		<script src="/js/app.js"></script>
+		<script src="/js/comun.js"></script>
+		<script src="/js/controlador.js"></script>
+		<script src="/js/entities/player.js"></script>
+<script src="/js/hud.js"></script>
+		<script src="/js/personajes.js"></script>
+		<script src="/js/play.js"></script>
+		<script src="/js/servicios.js"></script>
 
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can 
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-      
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-          
-          + Change the order of your scripts
-          + Import scripts from other directories
-          + Use a different preprocessor, like TypeScript
-
-    -->
-
-    <!--SCRIPTS-->
-    <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/bootstrap.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/comun.js"></script>
-    <script src="/js/entities/player.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/play.js"></script>
-    <script src="/js/ressources.js"></script>
-    <!--SCRIPTS END-->
-  </body>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+	</body>
 </html>

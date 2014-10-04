@@ -31,13 +31,13 @@
 	"type" : "audio",
 	"src" : "data/music/"
 }, {
-	"name" : "man_f",
+	"name" : "pj_f",
 	"type" : "image",
-	"src" : "data/sprites/characters/ym/basic/man_f.png"
+	"src" : "data/sprites/characters/ym/basic/pj_f.png"
 }, {
-	"name" : "man_b",
+	"name" : "pj_b",
 	"type" : "image",
-	"src" : "data/sprites/characters/ym/basic/man_b.png"
+	"src" : "data/sprites/characters/ym/basic/pj_b.png"
 }, {
 	"name" : "1_brown",
 	"type" : "image",

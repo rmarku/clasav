@@ -12,7 +12,7 @@ var game = {
 	 * initlization
 	 */
 	onload : function() {
-		me.sys.fps = 60;
+		me.sys.fps = 30;
 		if (!me.video.init('jsapp', me.video.CANVAS, 800,480 )) {
 			alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
 			return;
@@ -46,8 +46,3 @@ var game = {
 	}
 
 }; // game
-
-// bootstrap :)
-window.onReady(function() {
-	game.onload();
-});

@@ -1,32 +1,28 @@
+@font-face {
+	font-family: "Gorditas-Regular";
+	font-style: normal;
+	font-weight: normal;
+	src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
+}
+
 .body-gradient {
-	background-color: #9c5959;
-	//background-image: -moz-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: -ms-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: -o-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: -webkit-gradient(linear, left top, right top, from(#C18181), to(#FFF5F6));
-	//background-image: -webkit-linear-gradient(left, #C18181, #FFF5F6);
-	//background-image: linear-gradient(left, #C18181, #FFF5F6);//
-	//background-image: -moz-linear-gradient(left center , #F5D0A9, #ECE0F8);
-	background-image: url("../images/fondo.jpg");
+	background-color: #A9E2F3;
+	background-image: url("../images/fondo2.png");
 	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 
 .botonera {
 	margin-top: -30px;
-	padding-left: 30px;
+	padding-left: 33px;
 }
 
 .div-imagenes img {
 	border-radius: 20px;
 	margin: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-@font-face {
-	font-family: "Gorditas-Regular";
-	font-style: normal;
-	font-weight: normal;
-	src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
 }
 
 .titulos {
@@ -56,21 +52,7 @@
 	background-image: -webkit-gradient(linear, left top, right top, from(#DEDEDE), to(#FFF5F6));
 	background-image: -webkit-linear-gradient(left, #DEDEDE, #FFF5F6);
 	background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
-	border: 2px dashed #9c5959;
-}
-
-.div-form2 {
-	width: 250px;
-	padding: 4px 20px 8px 20px;
 	border: 5px double #9c5959;
-	border-radius: 25px;
-	box-shadow: 8px 8px 8px;
-	background-image: -moz-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: -ms-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: -o-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: -webkit-gradient(linear, center top, center bottom, from(#F6E3CE), to(#FFF5F6));
-	background-image: -webkit-linear-gradient(top, #F6E3CE, #FFF5F6);
-	background-image: linear-gradient(top, #F6E3CE, #FFF5F6);
 }
 
 .form-control:focus {
@@ -103,4 +85,29 @@
 
 .nav > li > a {
 	padding: 4px 9px;
+}
+
+.navbar{
+	min-height: 31px;
+	width: 100%;
+}
+
+.btn2{
+	font-size: 12px;
+	padding: 4px 4px;
+}
+
+.form-control2{
+	font-size: 12px;
+	height: 24px;
+}
+
+.capaSup{
+	position: absolute;
+	z-index: 10;
+}
+
+.capaInf{
+	position: absolute;
+	z-index: 1;
 }
