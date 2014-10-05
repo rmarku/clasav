@@ -9,30 +9,6 @@ module.exports = {
 
   attributes: {
 
-    id: {
-      type: 'string',
-      required: true,
-      unique: true,
-      primaryKey : true      
-    },
-   
-    alumnos:{
-      collection: 'alumno',
-      via: 'personajes'
-    },
-    
-    talentos:{
-      collection: 'talento',
-      via: 'personajes',
-      required: false 	
-    },
-	
-    personajes_x_items:{
-      collection: 'personaje_x_item',
-      via: 'id',
-      required: false 	
-   }
-    
   }
 };
 
