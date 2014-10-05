@@ -7,19 +7,7 @@
 
 module.exports = {
 
-    attributes: {
-    	
-  	  id: {
-	    type: 'string',
-	    required: true,
-	    unique: true,
-	    primaryKey : true      
-	  },
-	  
-	  items: {
-	  	collection: 'item',
-	  	via: 'sprites' 	  	
-	  }
+  attributes: {
 
   }
 };

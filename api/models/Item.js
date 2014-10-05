@@ -8,42 +8,6 @@
 module.exports = {
 
   attributes: {
-  	
-	id: {
-	  type: 'string',
-	  required: true,
-	  unique: true,
-	  primaryKey : true      
-	},
-     	
-    items_x_personajes:{
-      collection: 'personaje_x_item',
-      via: 'id',
-      required: false 	
-    },
-    
-    nombre: {
-      type: 'string',
-      required: true   	
-    },
-    
-    tipo_item: {
-      type: 'string',
-      //enum: ['',''] //agregar esto cuando se conozcan los tipos
-      required: true 
-    },
-        
-    maximo: {
-      type: 'integer',
-      required: true,	
-    },
-    
-    sprites: {
-      collection: 'sprite',
-      via:'items'  
-    }
-    	
-    
 
   }
 };
