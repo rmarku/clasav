@@ -4,6 +4,8 @@ function noPressBtn() {
 	$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
 	$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
 	$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
+	$("#inv").hide();
+	$("#mis").hide();
 }
 
 // Esto se ejecuta al terminar de cargar la pagina
@@ -30,6 +32,7 @@ $(function() {
 			noPressBtn();
 			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
 
+			$("#inv").show();
 			for ( j = 381; j > 87; ) {
 				for ( i = 0; i < 344; ) {
 					$('#inv').prepend('<img class="capaSup" src="../images/iconos/inventario.png" style="margin-top:' + j + 'px; margin-left:' + i + 'px"/>');
@@ -37,21 +40,10 @@ $(function() {
 				}
 				j -= 49;
 			}
-			$("#inv").show();
+
 		} else {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
 			$("#inv").hide();
-		}
-	});
-
-	//Boton para ver los items que tiene equipados la PERSONA
-	$("#btnPers").click(function() {
-		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
-			noPressBtn();
-			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
-			$("#inv").hide();
-		} else {
-			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
 		}
 	});
 
@@ -60,9 +52,22 @@ $(function() {
 		if ($("#btnMisi").attr("src") != "../images/iconos/btn_misionOVER.png") {
 			noPressBtn();
 			$("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
-			$("#inv").hide();
+			$("#mis").show();
+			$('#mis').prepend('<img class="capaSup" src="../images/iconos/misiones.png" style="margin-top: 136px"/>');
 		} else {
 			$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
+			$("#mis").hide();
+		}
+	});
+
+	//Boton para ver los items que tiene equipados la PERSONA
+	$("#btnPers").click(function() {
+		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
+			noPressBtn();
+			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
+
+		} else {
+			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
 		}
 	});
 
@@ -71,7 +76,6 @@ $(function() {
 		if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
 			noPressBtn();
 			$("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
-			$("#inv").hide();
 		} else {
 			$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
 		}
@@ -82,7 +86,6 @@ $(function() {
 		if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
 			noPressBtn();
 			$("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
-			$("#inv").hide();
 		} else {
 			$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
 		}

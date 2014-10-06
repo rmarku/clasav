@@ -2,7 +2,7 @@
 	<div class="row">
 		<!-- style="margin-top: -290px"-->
 		<div class="col-md-10" align="center">
-			<div style="width: 800px; height: 480px" align="left">
+			<div id="dcanvas" style="width: 800px; height: 480px; position: relative" align="left">
 
 				<img class="capaSup" src="data/sprites/characters/ym/face/pepe.png"/>
 				<div class="progress capaSup" style="margin-left: 100px; margin-top: 10px ;width: 200px">
@@ -19,18 +19,19 @@
 					<b>Experiencia</b>
 				</div>
 
-				<div class="capaSup" style="position: relative">
-					<img class="capaSup" id="btnInve" src="images/iconos/btn_inventario.png" style="margin-top: 430px"/>
-					<img class="capaSup" id="btnMisi" src="images/iconos/btn_mision.png" style="margin-top: 430px; margin-left: 49px"/>
-					<img class="capaSup" id="btnLogr" src="images/iconos/btn_logros.png" style="margin-top: 430px; margin-left: 98px"/>
-					<img class="capaSup" id="btnTale" src="images/iconos/btn_talentos.png" style="margin-top: 430px; margin-left: 147px"/>
-					<img class="capaSup" id="btnPers" src="images/iconos/btn_personaje.png" style="margin-top: 430px; margin-left: 196px"/>
+				<div id="botonera" class="capaSup" style="height: 49px; width: 261px; position: absolute; bottom: 0px">
+					<img id="btnInve" src="images/iconos/btn_inventario.png" />
+					<img id="btnMisi" src="images/iconos/btn_mision.png"/>
+					<img id="btnLogr" src="images/iconos/btn_logros.png"/>
+					<img id="btnTale" src="images/iconos/btn_talentos.png"/>
+					<img id="btnPers" src="images/iconos/btn_personaje.png"/>
 				</div>
 				<img class="capaSup" id="audio" src="images/iconos/audio_on.png" style="margin-top: 460px; margin-left: 780px"/>
 
 				<div id="screen"></div>
 				<div id="jsapp" class="capaInf">
-				<div id="inv"></div>
+				<div id="inv" style="display: none"></div>
+				<div id="mis" style="display: none"></div>
 					<script type="text/javascript" src="../lib/jquery.js"></script>
 					<!--script src="js/comun.js"></script-->
 					<script type="text/javascript" src="../lib/melonJS.js"></script>
