@@ -19,20 +19,18 @@
 					<b>Experiencia</b>
 				</div>
 
-				<img class="capaSup" id="btnInve" src="images/iconos/btn_inventario.png" style="margin-top: 430px"/>
-				<img class="capaSup" id="btnMisi" src="images/iconos/btn_mision.png" style="margin-top: 430px; margin-left: 49px"/>
-				<img class="capaSup" id="btnLogr" src="images/iconos/btn_logros.png" style="margin-top: 430px; margin-left: 98px"/>
-				<img class="capaSup" id="btnTale" src="images/iconos/btn_talentos.png" style="margin-top: 430px; margin-left: 147px"/>
-				<img class="capaSup" id="btnPers" src="images/iconos/btn_personaje.png" style="margin-top: 430px; margin-left: 196px"/>
-				
+				<div class="capaSup" style="position: relative">
+					<img class="capaSup" id="btnInve" src="images/iconos/btn_inventario.png" style="margin-top: 430px"/>
+					<img class="capaSup" id="btnMisi" src="images/iconos/btn_mision.png" style="margin-top: 430px; margin-left: 49px"/>
+					<img class="capaSup" id="btnLogr" src="images/iconos/btn_logros.png" style="margin-top: 430px; margin-left: 98px"/>
+					<img class="capaSup" id="btnTale" src="images/iconos/btn_talentos.png" style="margin-top: 430px; margin-left: 147px"/>
+					<img class="capaSup" id="btnPers" src="images/iconos/btn_personaje.png" style="margin-top: 430px; margin-left: 196px"/>
+				</div>
 				<img class="capaSup" id="audio" src="images/iconos/audio_on.png" style="margin-top: 460px; margin-left: 780px"/>
-				
-				<!--button type='button' class='btn capaSup' style="margin-top: 460px; margin-left: 780px"-->
-					<!--span class="capaSup glyphicon glyphicon glyphicon-volume-up" style="margin-top: 460px; margin-left: 780px"></span-->
-				<!--/button-->
 
 				<div id="screen"></div>
 				<div id="jsapp" class="capaInf">
+				<div id="inv"></div>
 					<script type="text/javascript" src="../lib/jquery.js"></script>
 					<!--script src="js/comun.js"></script-->
 					<script type="text/javascript" src="../lib/melonJS.js"></script>
@@ -45,7 +43,9 @@
 		</div>
 
 		<div class="col-md-2" align="left">
-			<img src="data/map/minimap/Inicio.png" width="80%" />
+			<div style="width: 156px; height: 156px">
+				<img src="data/map/minimap/Inicio.png" width="100%" />
+			</div>
 		</div>
 	</div>
 </div>

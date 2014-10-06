@@ -1,4 +1,4 @@
-function noPressButton() {
+function noPressBtn() {
 	$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
 	$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
 	$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
@@ -8,7 +8,7 @@ function noPressButton() {
 
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
-	
+
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {
 		if (me.audio.getVolume() != 0) {
@@ -20,34 +20,47 @@ $(function() {
 		}
 	});
 
-	/* 	BOTONERA DEL JUEGO	
-	 */
-	
+	/* 	BOTONERA DEL JUEGO
+	*/
+
+	//Boton para ver el inventario de items
+	$("#btnInve").click(function() {
+
+		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
+			noPressBtn();
+			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
+
+			for ( j = 381; j > 87; ) {
+				for ( i = 0; i < 344; ) {
+					$('#inv').prepend('<img class="capaSup" src="../images/iconos/inventario.png" style="margin-top:' + j + 'px; margin-left:' + i + 'px"/>');
+					i += 49;
+				}
+				j -= 49;
+			}
+			$("#inv").show();
+		} else {
+			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
+			$("#inv").hide();
+		}
+	});
+
 	//Boton para ver los items que tiene equipados la PERSONA
 	$("#btnPers").click(function() {
-		noPressButton();
 		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
+			noPressBtn();
 			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
+			$("#inv").hide();
 		} else {
 			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
 		}
 	});
 
-	//Boton para ver el inventario de items
-	$("#btnInve").click(function() {
-		noPressButton();
-		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
-			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
-		} else {
-			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
-		}
-	});
-	
 	//Boton para mostrar el listado de misiones
 	$("#btnMisi").click(function() {
-		noPressButton();
 		if ($("#btnMisi").attr("src") != "../images/iconos/btn_misionOVER.png") {
+			noPressBtn();
 			$("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
+			$("#inv").hide();
 		} else {
 			$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
 		}
@@ -55,19 +68,21 @@ $(function() {
 
 	//Boton para ver el listado de logros obtenidos
 	$("#btnLogr").click(function() {
-		noPressButton();
 		if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
+			noPressBtn();
 			$("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
+			$("#inv").hide();
 		} else {
 			$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
 		}
 	});
-	
-	//Boton para ver los talentos	
+
+	//Boton para ver los talentos
 	$("#btnTale").click(function() {
-		noPressButton();
 		if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
+			noPressBtn();
 			$("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
+			$("#inv").hide();
 		} else {
 			$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
 		}
