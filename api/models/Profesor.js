@@ -7,8 +7,87 @@
 
 module.exports = {
 
-  attributes: {
 
-  }
+    attributes: {
+
+        e_mail: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+
+        },
+
+        contrasena: {
+            type: 'string',
+            minLength: 6,
+            required: true
+        },
+
+        nombre: {
+            type: 'string',
+            required: true
+        },
+
+        apellido: {
+            type: 'string',
+            required: true
+        },
+
+        sexo: {
+            type: 'string',
+            enum:['masculino','femenino'],
+            required: true
+        },
+
+        fecha_nacimiento: {
+            type: 'date',
+            required: true
+        },
+
+        pais: {
+            type: 'string',
+            required: true
+        },
+
+        provincia: {
+            type: 'string',
+            required: false
+        },
+
+        ciudad: {
+            type: 'string',
+            required: true
+        },
+
+        calle: {
+            type: 'string',
+            required: false
+        },
+
+        altura_calle: {
+            type: 'integer',
+            required: false
+        },
+
+        departamento: {
+            type: 'string',
+            size: 1,
+            required: false
+        },
+
+
+         clases:{
+             collection: 'clase',
+             via: 'profesores',
+             required: false
+         }
+
+
+
+
+
+    }
+
+
 };
-

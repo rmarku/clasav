@@ -1,15 +1,15 @@
 {
-        "x": 900,
+    "x": 900,
 	"y":200,
 	"id": 1,
 	"energia":100,
 	"data":{
                 "nombre": "Pepe",
-		"tipo":"pj_f",
-		"vestimenta":{
-			"pelo":"pj_b",
-			"remera":"4_white",
-			"pantalon":"1_brown"
+		        "tipo":"pj_f",
+		        "vestimenta":{
+			    "pelo":"pj_b",
+			    "remera":"4_white",
+			    "pantalon":"1_brown"
 		}
 	}
 }

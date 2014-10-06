@@ -27,7 +27,7 @@ var game = {
 		$.getJSON("api/resources.json", function(data) {
 			me.loader.preload(data);
 			// Cargo todo y muestro pantalla de carga
-			me.state.change(me.state.LOADING);
+			me.state.change(me.state.LOADING);   //Luego de esto se ejectuo play.js->onResetEvent()
 		});
 
 	},

@@ -1,15 +1,13 @@
 /**
-* Sprite.js
+* Jugador_en_vivo.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
-
 module.exports = {
 
     attributes: {
-
         id: {
             type: 'string',
             required: true,
@@ -17,10 +15,16 @@ module.exports = {
             primaryKey : true
         },
 
-        items: {
-            collection: 'item',
-            via: 'sprites'
-        }
-    }
+        mapa_instancia: {
+            model: 'mapa_instancia',
+            required : false
+        },
 
+        alumno: {
+            model: 'alumno',
+            required : true
+        }
+
+    }
 };
+

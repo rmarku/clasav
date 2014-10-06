@@ -7,8 +7,34 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+        },
+
+        nombre: {
+            type: 'string',
+            required: false
+        },
+
+        ano: {
+            type: 'integer',
+            required: false
+        }/*,
+
+
+         mapas: {
+         collection: 'mapa_generico',
+         via: 'materias',
+         required: false
+         }
+         */
+
+    }
 };
 

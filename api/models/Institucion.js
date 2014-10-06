@@ -7,8 +7,52 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+        },
+
+        nombre: {
+            type: 'string',
+            required: true
+        },
+
+        pais: {
+            type: 'string',
+            required: true
+        },
+
+        provincia: {
+            type: 'string',
+            required: false
+        },
+
+        ciudad: {
+            type: 'string',
+            required: true
+        },
+
+        calle: {
+            type: 'string',
+            required: false
+        },
+
+        altura_calle: {
+            type: 'integer',
+            required: false
+        },
+
+         clases:{
+             collection: 'clase',
+             via: 'institucion_instancia',
+             required: false
+         }
+
+    }
 };
 

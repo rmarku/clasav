@@ -46,27 +46,46 @@ game.PlayerEntity = me.Entity.extend({
         this.body.addShape(new me.Rect(0, -this.body.height / 2, this.body.width, this.body.height));
         // set the renderable position to bottom center
 
+        //Declaracion: variables para enviar al servidor el estado de nuestro personaje
+        this.body.state             = 'down';
+        this.body.stateChanged      = false;
+
     },
     update: function (dt) {
 
         if (me.input.isKeyPressed('left')) {
             this.animationToUseThisFrame = 'run-left';
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
+
+            //Seteo variables de mi personaje para enviar al servidor
+            this.body.state             = 'down';
+            this.body.stateChanged      = true;
         }
 
         if (me.input.isKeyPressed('right')) {
             this.animationToUseThisFrame = 'run-right';
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
+            //Seteo variables de mi personaje para enviar al servidor
+            this.body.state             = 'right';
+            this.body.stateChanged      = true;
         }
         if (me.input.isKeyPressed('up')) {
             this.animationToUseThisFrame = 'run-up';
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
+
+            //Seteo variables de mi personaje para enviar al servidor
+            this.body.state             = 'up';
+            this.body.stateChanged      = true;
         }
 
         if (me.input.isKeyPressed('down')) {
             this.animationToUseThisFrame = 'run-down';
             this.body.vel.y += this.body.accel.y * me.timer.tick;
+
+            //Seteo variables de mi personaje para enviar al servidor
+            this.body.state             = 'down';
+            this.body.stateChanged      = true;
         }
         if (this.animationToUseThisFrame != this.lastAnimationUsed) {
             this.lastAnimationUsed = this.animationToUseThisFrame;
@@ -79,6 +98,16 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.scale(this.body.maxVel.x);
         }
         this.body.update();
+
+        //Envio al servidor los cambios en mi personaje la Servidor
+        if (this.stateChanged) {
+
+            //io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'true', pdf_ruta: route});
+            //io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'true', pdf_ruta: route});
+            //game.socket.emit('updatePlayerState', { x: this.pos.x, y: this.pos.y }, this.state);
+            this.stateChanged = false;
+        }
+        //////////////////
 
         if (this.body.vel.x != 0 || this.body.vel.y != 0
             || (this.renderable && this.renderable.isFlickering())) {

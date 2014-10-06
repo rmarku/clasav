@@ -7,8 +7,27 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+        },
+
+        seccion_inventario: {
+            type: 'string',
+            required: 'true'
+            //,enum: ['',''] Completar una vez que se conozcan los posibles valores
+        },
+
+        cantidad: {
+            type: 'integer',
+            required: 'true'
+        }
+
+
+
+    }
 };
-

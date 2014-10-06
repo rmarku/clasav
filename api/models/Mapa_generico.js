@@ -7,8 +7,25 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey: true
+        },
 
-  }
+        nombre: {
+            type: 'string',
+            required: false
+        },
+
+        mapas_instancias: {
+            model: 'mapa_instancia',
+            required : false
+        }
+
+    }
+
 };
 

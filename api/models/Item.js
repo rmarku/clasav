@@ -7,8 +7,44 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+        },
+        nombre: {
+            type: 'string',
+            required: true
+        },
+
+        tipo_item: {
+            type: 'string',
+            //enum: ['',''] //agregar esto cuando se conozcan los tipos
+            required: true
+        },
+
+        maximo: {
+            type: 'integer',
+            required: true
+        },
+
+        items_x_personajes:{
+            collection: 'personaje_x_item',
+            via: 'id',
+            required: false
+        },
+
+        sprites: {
+            collection: 'sprite',
+            via:'items'
+        }
+
+
+
+
+
+    }
 };
-

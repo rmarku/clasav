@@ -7,8 +7,39 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+        },
+
+        institucion_instancia:{
+            model:'institucion',
+            required:true
+        },
+
+        alumnos: {
+            collection: 'alumno',
+            via:'clases',
+            required: false
+        },
+
+        profesores: {
+            collection: 'profesor',
+            via:'clases',
+            required: false
+        },
+
+        mapas_instancias: {
+            collection: 'mapa_instancia',
+            via:'clase_instancia',
+            required: false
+        }
+
+
+    }
 };
 

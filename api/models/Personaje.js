@@ -7,8 +7,19 @@
 
 module.exports = {
 
-  attributes: {
+    attributes: {
 
-  }
+        id: {
+            type: 'string',
+            required: true,
+            unique: true,
+            primaryKey : true
+        },
+
+        alumnos:{
+            collection: 'alumno',
+            via: 'personajes'
+        }
+    }
 };
 

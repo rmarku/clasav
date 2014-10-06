@@ -7,7 +7,29 @@
 
 module.exports = {
 
-  attributes: {
+  attributes:{
+
+      id: {
+          type: 'string',
+          required: true,
+          unique: true,
+          primaryKey : true
+      },
+
+      clase_instancia: {
+          model: 'clase',
+          required: true
+      },
+
+      jugador_en_vivo: {
+          model: 'jugador_en_vivo',
+          required : true
+      },
+
+      mapa_generico: {
+          model: 'mapa_generico',
+          required : true
+      }
 
   }
 };
