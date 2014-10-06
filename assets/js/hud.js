@@ -33,14 +33,6 @@ $(function() {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
 
 			$("#inv").show();
-			for ( j = 381; j > 87; ) {
-				for ( i = 0; i < 344; ) {
-					$('#inv').prepend('<img class="capaSup" src="../images/iconos/inventario.png" style="margin-top:' + j + 'px; margin-left:' + i + 'px"/>');
-					i += 49;
-				}
-				j -= 49;
-			}
-
 		} else {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
 			$("#inv").hide();

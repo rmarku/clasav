@@ -31,6 +31,12 @@
 	color: #b8111f;
 }
 
+.titulo-botonera{
+	z-index: 6;
+	margin: 16px; 
+	font-family: Gorditas-Regular;
+}
+
 .p_espacio {
 	padding: 20px;
 }
@@ -64,6 +70,14 @@
 .form-group {
 	color: #b8111f;
 	margin-bottom: 15px;
+}
+
+.div-panelbtn{
+	display: none; 
+	position: absolute; 
+	bottom: 55px; 
+	width: 312px; 
+	height: 297px
 }
 
 .btn-default {
