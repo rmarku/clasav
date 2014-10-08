@@ -6,6 +6,9 @@ function noPressBtn() {
 	$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
 	$("#inv").hide();
 	$("#mis").hide();
+	$("#log").hide();
+	$("#tal").hide();
+	$("#per").hide();
 }
 
 // Esto se ejecuta al terminar de cargar la pagina
@@ -21,6 +24,8 @@ $(function() {
 			me.audio.unmuteAll();
 		}
 	});
+	
+	
 
 	/* 	BOTONERA DEL JUEGO
 	*/
@@ -31,7 +36,6 @@ $(function() {
 		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
 			noPressBtn();
 			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
-
 			$("#inv").show();
 		} else {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
@@ -45,7 +49,6 @@ $(function() {
 			noPressBtn();
 			$("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
 			$("#mis").show();
-			$('#mis').prepend('<img class="capaSup" src="../images/iconos/misiones.png" style="margin-top: 136px"/>');
 		} else {
 			$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
 			$("#mis").hide();
@@ -57,9 +60,10 @@ $(function() {
 		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
 			noPressBtn();
 			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
-
+			$("#per").show();
 		} else {
 			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
+			$("#per").hide();
 		}
 	});
 
@@ -68,8 +72,10 @@ $(function() {
 		if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
 			noPressBtn();
 			$("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
+			$("#log").show();
 		} else {
 			$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
+			$("#log").hide();
 		}
 	});
 
@@ -78,8 +84,10 @@ $(function() {
 		if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
 			noPressBtn();
 			$("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
+			$("#tal").show();
 		} else {
 			$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
+			$("#tal").hide();
 		}
 	});
 
