@@ -22,9 +22,21 @@ module.exports = {
 
         alumno: {
             model: 'alumno',
-            required : true
-        }
+            required : false //true
+        },
 
+        direccion: {
+            type: "array",
+            required:false
+        },
+        aceleracion: {
+            type: "array",
+            required:false
+        },
+        conectado: {
+            type: "string",
+            required:false
+        }
     }
 };
 

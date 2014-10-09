@@ -47,8 +47,11 @@ game.PlayerEntity = me.Entity.extend({
         // set the renderable position to bottom center
 
         //Declaracion: variables para enviar al servidor el estado de nuestro personaje
-        this.body.state             = 'down';
-        this.body.stateChanged      = false;
+        this.stateChanged   = false;
+        this.state['left']  = false;
+        this.state['right'] = false;
+        this.state['up']    = false;
+        this.state['down']  = false;
 
     },
     update: function (dt) {
@@ -58,9 +61,14 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.body.state             = 'down';
-            this.body.stateChanged      = true;
+            this.stateChanged   = true;
+            this.state['left']  = true;
         }
+        else {
+            //Seteo variable de mi personaje para enviar al servidor
+            this.state['left'] = false;
+        }
+
 
         if (me.input.isKeyPressed('right')) {
             this.animationToUseThisFrame = 'run-right';

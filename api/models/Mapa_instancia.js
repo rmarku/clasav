@@ -18,17 +18,17 @@ module.exports = {
 
       clase_instancia: {
           model: 'clase',
-          required: true
+          required: false
       },
 
       jugador_en_vivo: {
           model: 'jugador_en_vivo',
-          required : true
+          required : false
       },
 
       mapa_generico: {
           model: 'mapa_generico',
-          required : true
+          required : false
       }
 
   }

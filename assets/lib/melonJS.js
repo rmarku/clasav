@@ -2973,7 +2973,7 @@ if (!window.performance.now) {
         
         /**
          * change this vector to be perpendicular to what it was before.<br>
-         * (Effectively rotates it 90 degrees in a clockwise direction)
+         * (Effectively rotates it 90 degrees in a clockwise ace)
          * @name perp
          * @memberOf me.Vector2d
          * @function

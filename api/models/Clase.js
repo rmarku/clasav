@@ -18,7 +18,7 @@ module.exports = {
 
         institucion_instancia:{
             model:'institucion',
-            required:true
+            required:false
         },
 
         alumnos: {

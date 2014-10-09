@@ -20,23 +20,23 @@ module.exports = {
       contrasena: {
           type: 'string',
           minLength: 6,
-          required: true
+          required: false //true
       },
 
       nombre: {
           type: 'string',
-          required: true
+          required: false //true
       },
 
       apellido: {
           type: 'string',
-          required: true
+          required: false //true
       },
 
       sexo: {
           type: 'string',
           enum:['masculino','femenino'],
-          required: true
+          required: false //true
       },
 
       fecha_nacimiento: {

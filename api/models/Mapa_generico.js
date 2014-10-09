@@ -21,7 +21,8 @@ module.exports = {
         },
 
         mapas_instancias: {
-            model: 'mapa_instancia',
+            collection: 'mapa_instancia',
+            via: 'mapa_generico',
             required : false
         }
 

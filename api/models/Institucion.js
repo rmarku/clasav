@@ -24,7 +24,7 @@ module.exports = {
 
         pais: {
             type: 'string',
-            required: true
+            required: false
         },
 
         provincia: {
@@ -34,7 +34,7 @@ module.exports = {
 
         ciudad: {
             type: 'string',
-            required: true
+            required: false
         },
 
         calle: {
