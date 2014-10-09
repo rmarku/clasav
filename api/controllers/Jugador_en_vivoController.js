@@ -44,7 +44,7 @@ module.exports = {
         );
     },
 
-    subscribirse_a_mapa_instancia: function (req, res) {
+    desuscribirse_de_mapa_instancia: function (req, res) {
 
         var id_mapa_instancia = req.param('id_mapa_instancia');
 

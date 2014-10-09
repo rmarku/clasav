@@ -46,12 +46,7 @@ game.PlayerEntity = me.Entity.extend({
         this.body.addShape(new me.Rect(0, -this.body.height / 2, this.body.width, this.body.height));
         // set the renderable position to bottom center
 
-        //Declaracion: variables para enviar al servidor el estado de nuestro personaje
-        this.stateChanged   = false;
-        this.state['left']  = false;
-        this.state['right'] = false;
-        this.state['up']    = false;
-        this.state['down']  = false;
+
 
     },
     update: function (dt) {
@@ -61,12 +56,12 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.stateChanged   = true;
-            this.state['left']  = true;
+            this.sockets.update_mainPlayer_direction({left:'true'});
+            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
         }
         else {
             //Seteo variable de mi personaje para enviar al servidor
-            this.state['left'] = false;
+            this.sockets.update_mainPlayer_direction({left:'false'});
         }
 
 
@@ -75,16 +70,22 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.body.state             = 'right';
-            this.body.stateChanged      = true;
+            this.sockets.update_mainPlayer_direction({right:'true'});
+            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
+        }
+        else{
+            this.sockets.update_mainPlayer_direction({right:'false'});
+
         }
         if (me.input.isKeyPressed('up')) {
             this.animationToUseThisFrame = 'run-up';
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.body.state             = 'up';
-            this.body.stateChanged      = true;
+            this.sockets.update_mainPlayer_direction({up:'true'});
+            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
+        }else{
+            this.sockets.update_mainPlayer_direction({up:'false'});
         }
 
         if (me.input.isKeyPressed('down')) {
@@ -92,13 +93,16 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.y += this.body.accel.y * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.body.state             = 'down';
-            this.body.stateChanged      = true;
+            this.sockets.update_mainPlayer_direction({down:'true'});
+            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
         }
         if (this.animationToUseThisFrame != this.lastAnimationUsed) {
             this.lastAnimationUsed = this.animationToUseThisFrame;
             this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
+        }else{
+            this.sockets.update_mainPlayer_direction({down:'false'});
         }
+
 
         if (this.body.vel.length() > this.body.maxVel.x) {
             // Now calc actual vel to prevent speeding by going diag..
