@@ -47,7 +47,9 @@ game.PlayerEntity = me.Entity.extend({
         // set the renderable position to bottom center
 
 
+        game.sockets_game.subscribe_to_server_mapa_instance();
 
+        this.body_state_changed =  false;
     },
     update: function (dt) {
 
@@ -56,12 +58,13 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.sockets.update_mainPlayer_direction({left:'true'});
-            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
+            game.sockets_game.update_mainPlayer_direction({left:true});
+            game.sockets_game.update_mainPlayer_acceleration({x:this.body.accel.x});
+            this.body_state_changed =  true;
         }
         else {
             //Seteo variable de mi personaje para enviar al servidor
-            this.sockets.update_mainPlayer_direction({left:'false'});
+            game.sockets_game.update_mainPlayer_direction({left:false});
         }
 
 
@@ -70,37 +73,50 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.sockets.update_mainPlayer_direction({right:'true'});
-            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
+            game.sockets_game.update_mainPlayer_direction({right:true});
+            game.sockets_game.update_mainPlayer_acceleration({x:this.body.accel.x});
+            this.body_state_changed =  true;
         }
         else{
-            this.sockets.update_mainPlayer_direction({right:'false'});
-
+            game.sockets_game.update_mainPlayer_direction({right:false});
         }
+
+
+
         if (me.input.isKeyPressed('up')) {
             this.animationToUseThisFrame = 'run-up';
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.sockets.update_mainPlayer_direction({up:'true'});
-            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
+            game.sockets_game.update_mainPlayer_direction({up:true});
+            game.sockets_game.update_mainPlayer_acceleration({y:this.body.accel.y});
+            this.body_state_changed =  true;
         }else{
-            this.sockets.update_mainPlayer_direction({up:'false'});
+            game.sockets_game.update_mainPlayer_direction({up:false});
         }
+
+
 
         if (me.input.isKeyPressed('down')) {
             this.animationToUseThisFrame = 'run-down';
             this.body.vel.y += this.body.accel.y * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            this.sockets.update_mainPlayer_direction({down:'true'});
-            this.sockets.update_mainPlayer_acceleration({x:this.body.accel.x});
+            game.sockets_game.update_mainPlayer_direction({down:true});
+            game.sockets_game.update_mainPlayer_acceleration({y:this.body.accel.y});
+            this.body_state_changed =  true;
         }
+        else{
+            game.sockets_game.update_mainPlayer_direction({down:false});
+        }
+
+
+
+
+
         if (this.animationToUseThisFrame != this.lastAnimationUsed) {
             this.lastAnimationUsed = this.animationToUseThisFrame;
             this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
-        }else{
-            this.sockets.update_mainPlayer_direction({down:'false'});
         }
 
 
@@ -112,13 +128,11 @@ game.PlayerEntity = me.Entity.extend({
         this.body.update();
 
         //Envio al servidor los cambios en mi personaje la Servidor
-        if (this.stateChanged) {
-
-            //io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'true', pdf_ruta: route});
-            //io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'true', pdf_ruta: route});
-            //game.socket.emit('updatePlayerState', { x: this.pos.x, y: this.pos.y }, this.state);
-            this.stateChanged = false;
+        if(this.body_state_changed){
+            game.sockets_game.send_Server_mainPlayer_update();
+            this.body_state_changed =  false;
         }
+
         //////////////////
 
         if (this.body.vel.x != 0 || this.body.vel.y != 0

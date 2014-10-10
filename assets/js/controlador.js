@@ -33,3 +33,4 @@ app.controller('gamePageController', function ($scope) {
     };
     $scope.init();
 })
+

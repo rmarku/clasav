@@ -3,7 +3,7 @@
  * Primeras pruebas
  */
 
-game = {
+var game = {
     mainPlayer: {},
     players: {},
     NPCs: {},
@@ -42,23 +42,25 @@ game = {
         me.pool.register("mainPlayer", game.PlayerEntity);
 
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
-        this.sockets();
+
 
     },
 
-    sockets: {
+    sockets_game : {
 
         //Declaraciones temporales (deberian ser externas luego del loggin)
         id_alumno_cliente: 'fabricio_collino@gmail.com',
-        id_mapa_instacia_cliente: 'mapa_instancia1',
+        id_mapa_instancia_cliente: 'mapa_instancia1',
         conectarse_a_mapa_instancia_cliente: true,
+        id_jugador_en_vivo: 'jugador_vivo_1',
+
         // Fin declaraciones temporales
 
         mainPlayer_direction: {
-            'left': false,
-            'right': false,
-            'up': false,
-            'down': false
+            'left':   false,
+            'right':  false,
+            'up':     false,
+            'down':   false
         },
 
         mainPlayer_acceleration: {
@@ -75,17 +77,20 @@ game = {
             this.mainPlayer_direction.down = false;
         },
 
-        update_mainPlayer_direction: function (data) {
-            if (typeof data.left !== "undefined") {
-                this.mainPlayer_direction.left = data.left;
-            } else  if (typeof data.right !== "undefined") {
-                this.mainPlayer_direction.right = data.right;
-            } else  if (typeof data.up !== "undefined") {
-                this.mainPlayer_direction.up = data.up;
-            } else  if (typeof data.down !== "undefined") {
-                this.mainPlayer_direction.down = data.down;
-            }
-
+        update_mainPlayer_direction: function (localdata) {
+            if (typeof localdata.left !== "undefined") {
+                this.mainPlayer_direction['left'] = localdata.left;
+            }else
+            if (typeof localdata.right !== "undefined") {
+                this.mainPlayer_direction['right']  = localdata.right;
+            }else
+            if (typeof localdata.up !== "undefined") {
+                this.mainPlayer_direction['up']  = localdata.up;
+            }else
+            if (typeof localdata.down !== "undefined") {
+                this.mainPlayer_direction['down']  = localdata.down;
+            }else
+            console.log(localdata);
             //flag_stateChanged = true;
         },
         update_mainPlayer_acceleration: function (data) {
@@ -100,11 +105,13 @@ game = {
         },
 
         send_Server_mainPlayer_update: function () {
+            // if(this.flag_stateChanged){angular.toJson($scope.user);
+            io.socket.put   ('/api/jugador_en_vivo/' + this.id_jugador_en_vivo,   { direccion   :    angular.toJson(this.mainPlayer_direction) ,
+                                                                                    aceleracion :    angular.toJson(this.mainPlayer_acceleration)  }
 
-           // if(this.flag_stateChanged){
-                io.socket.put   ('/api/jugador_en_vivo/' + this.id_alumno_cliente, {    cireccion:         this.mainPlayer_direction,
-                                                                                        aceleracion:    this.mainPlayer_acceleration }
-                );
+
+                ,function (resdata){ console.log(resdata) });
+                //console.log('direction:'+this.mainPlayer_direction+'aceleration'+this.mainPlayer_acceleration);
 
                // this.flag_stateChanged = false;
            // }
@@ -115,9 +122,10 @@ game = {
         // y por lo tanto a todos los alumnos que participan de ese Mapa_intancia
 
         subscribe_to_server_mapa_instance : function () {
-            alert.('suscribing');
+            //alert('suscribing');
+
             io.socket.get(  '/api/jugador_en_vivo/subscribirse_a_mapa_instancia/',
-                            {       id_mapa_instancia:  this.id_mapa_instacia_cliente,   // Valor para saber a que jugadores online suscribirme
+                            {       id_mapa_instancia:  this.id_mapa_instancia_cliente,   // Valor para saber a que jugadores online suscribirme
                                     id_alumno:          this.id_alumno_cliente           // Valor para saber que jugador pasa a conectado (mi jugador)
                             },
 
@@ -126,6 +134,8 @@ game = {
                                 console.log(json_lista_jugadores_mapa_instancia); //Muestro en consola para
                                 while (json_lista_jugadores_mapa_instancia.length) {
                                     var jugador = json_lista_jugadores_mapa_instancia.pop();
+
+
                                     jugador.id;         //  id del jugador como jugador Online(no es el mismo que el id del alumno)
                                     jugador.alumno;     //  id del jugador como alumno
                                     jugador.conectado;  //  true or false)
@@ -137,7 +147,7 @@ game = {
                             }
             );
 
-            // Listen to incoming Updates from Jugador_en_evivo we just suscribed to
+            // Listen to incoming Updates from Jugador_en_vivo we just subscribed to
             io.socket.on('jugador_en_vivo',function messageReceived(jsonObject) {
 
                 switch (jsonObject.verb) {
@@ -151,16 +161,15 @@ game = {
 
         unsubscribe_from_server_mapa_instance : function () {
             io.socket.get(  '/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',
-                            {       id_mapa_instancia:  this.id_mapa_instacia_cliente   // Valor para saber a que jugadores online desuscribirme
+                            {       id_mapa_instancia:  this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
                             },
                             function messageReceived(json_lista_jugadores_mapa_instancia) {
-                                console.log(json_lista_jugadores_mapa_instancia); //Muestro en consola para
-
+                                                        // no hace falta hacer nada
                             }
             );
-        },
+        }
 
-        a: subscribe_to_server_mapa_instance()
+
 
 
 

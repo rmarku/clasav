@@ -26,17 +26,18 @@ module.exports = {
         },
 
         direccion: {
-            type: "array",
+            type: "json",
             required:false
         },
         aceleracion: {
-            type: "array",
+            type: "json",
             required:false
         },
         conectado: {
-            type: "string",
+            type: "boolean",
             required:false
         }
+
     }
 };
 
