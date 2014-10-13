@@ -11,6 +11,8 @@
 
 module.exports.bootstrap = function (cb) {
 
+sails.services.passport.loadStrategies();
+
 	//var materias = [{id:'M987ke',nombre:'ciencias naturales'},{id:'M9234',nombre:'ciencias naturales2'},{id:'M23423',nombre:'ciencias naturales3'}];
 
 	//var materia_callback = function(err,newUsers){
