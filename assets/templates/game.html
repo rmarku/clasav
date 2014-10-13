@@ -31,11 +31,17 @@
 					</div>
 					<img class="capaSup" id="audio" src="images/iconos/audio_on.png" style="position: absolute; bottom: 4px; right: 4px"/>
 
-					<div id="inv" class="div-panel">
+					<div id="inv" class="div-panel" ng-controller="inventarioContr">
 						<p class="capaSup titulo-botonera">
 							Inventario
 						</p>
 						<img src="images/iconos/inventario2.png">
+						<table style="z-index: 10; margin-top: -250px; margin-left: 12px">
+							<tr ng-repeat="x in inventario">
+								<td>{{ x.sprite }}</td>
+								<td>{{ x.sprite }}</td>
+							</tr>
+						</table>
 					</div>
 
 					<div id="mis" class="div-panel">
@@ -73,10 +79,13 @@
 		<div class="col-md-2" align="left">
 			<div style="width: 176px; height: 176px">
 				<img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
-				<img src="data/map/minimap/Inicio.png" width="156px" height="156px"  style="position: absolute;float: left; margin-left: 9px;margin-top: 11px" >
-
 				<img id="btnMas" class="capaSup" style="position: absolute;float: right;" src="images/iconos/btnMas.png">
-				<img id="btnMenos" class="capaSup" style="position: absolute;float: right;bottom: 0px;" src="images/iconos/btnMenos.png">
+				<img id="btnMenos" class="capaSup" style="position: absolute;float: right;bottom: 0px;right: 34px" src="images/iconos/btnMenos.png">
+
+				<div class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
+					<!--img src="data/map/minimap/Inicio.png" width="156px" height="156px" style="position: absolute;float: left; margin-top: 11px"-->
+				</div>
+
 			</div>
 		</div>
 	</div>

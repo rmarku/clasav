@@ -10,7 +10,9 @@ var game = {
 	players : {},
 
 	/**
-	 * initlization
+	 * Inicializa el juego
+	 * @method onload
+	 * @return 
 	 */
 	onload : function() {
 		me.sys.fps = 30;
@@ -35,6 +37,7 @@ var game = {
 
 	/**
 	 * Llamo cuando todos los recursos estan cargado
+	 * @method loaded
 	 */
 	loaded : function() {
 		// set the "Play/Ingame" Screen Object

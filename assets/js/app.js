@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module("juegoapl", ['juegoapl.services', 'juegoapl.controllers']).config(['$routeProvider',
+var app = angular.module("juegoapl", ['juegoapl.services', 'juegoapl.controllers','ngSailsBind']).config(['$routeProvider',
 function($routeProvider) {
 	$routeProvider.when('/', {
 		template : JST["assets/templates/index.html"]

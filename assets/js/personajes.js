@@ -1,10 +1,21 @@
 /**
  * New node file
+ * @method loadCanvas
+ * @param {} context
+ * @param {} dataURL
+ * @param {} x
+ * @param {} y
+ * @return 
  */
 function loadCanvas(context, dataURL, x, y) {
 
 	// load image from data url
 	var imageObj = new Image();
+	/**
+	 * Description
+	 * @method onload
+	 * @return 
+	 */
 	imageObj.onload = function() {
 		context.drawImage(this, x, y);
 	};

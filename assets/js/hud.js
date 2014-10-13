@@ -1,3 +1,31 @@
+//var app = angular.module('juegoapl', ['ngSailsBind']);
+app.controller("inventarioContr", ['$scope', "$sailsBind",
+function inventarioContr($scope, $sailsBind) {
+	//    $sailsBind.bind("api/inventario", $scope);
+
+	$scope.inventario = [{
+		"id" : 3,
+		"nombreItem" : "capa dorada",
+		"cant" : 1,
+		"acumulable" : false,
+		"sprite" : "..\/\/data\/\/sprites\/\/items\/\/ep\/\/3_capaDorada.png"
+	}, {
+		"id" : 8,
+		"nombreItem" : "espada burocratica",
+		"cant" : 1,
+		"acumulable" : false,
+		"sprite" : "..\/\/data\/\/sprites\/\/items\/\/ep\/\/8_espada.png"
+	}];
+
+	/*$http.get("../api/inventario.json").success(function(response) {
+	 $scope.items = response;
+	 });*/
+}]);
+
+/**
+ * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
+ * @method noPressBtn
+ */
 function noPressBtn() {
 	$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
 	$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
@@ -24,8 +52,6 @@ $(function() {
 			me.audio.unmuteAll();
 		}
 	});
-	
-	
 
 	/* 	BOTONERA DEL JUEGO
 	*/
