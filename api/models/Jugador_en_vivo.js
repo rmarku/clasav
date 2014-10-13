@@ -25,11 +25,11 @@ module.exports = {
             required : false //true
         },
 
-        direccion: {
+        estado: {
             type: "json",
             required:false
         },
-        aceleracion: {
+        coordenadas : {
             type: "json",
             required:false
         },
