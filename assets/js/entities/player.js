@@ -49,22 +49,21 @@ game.PlayerEntity = me.Entity.extend({
 
         game.sockets_game.subscribe_to_server_mapa_instance();
 
-        this.body_state_changed =  false;
+
     },
     update: function (dt) {
+
 
         if (me.input.isKeyPressed('left')) {
             this.animationToUseThisFrame = 'run-left';
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_direction({left:true});
-            game.sockets_game.update_mainPlayer_acceleration({x:this.body.accel.x});
-            this.body_state_changed =  true;
+            game.sockets_game.update_mainPlayer_estado({left:true});
         }
         else {
             //Seteo variable de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_direction({left:false});
+            game.sockets_game.update_mainPlayer_estado({left:false});
         }
 
 
@@ -73,12 +72,10 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_direction({right:true});
-            game.sockets_game.update_mainPlayer_acceleration({x:this.body.accel.x});
-            this.body_state_changed =  true;
+            game.sockets_game.update_mainPlayer_estado({right:true});
         }
         else{
-            game.sockets_game.update_mainPlayer_direction({right:false});
+            game.sockets_game.update_mainPlayer_estado({right:false});
         }
 
 
@@ -88,11 +85,9 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_direction({up:true});
-            game.sockets_game.update_mainPlayer_acceleration({y:this.body.accel.y});
-            this.body_state_changed =  true;
+            game.sockets_game.update_mainPlayer_estado({up:true});
         }else{
-            game.sockets_game.update_mainPlayer_direction({up:false});
+            game.sockets_game.update_mainPlayer_estado({up:false});
         }
 
 
@@ -102,16 +97,11 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.y += this.body.accel.y * me.timer.tick;
 
             //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_direction({down:true});
-            game.sockets_game.update_mainPlayer_acceleration({y:this.body.accel.y});
-            this.body_state_changed =  true;
+            game.sockets_game.update_mainPlayer_estado({down:true});
         }
         else{
-            game.sockets_game.update_mainPlayer_direction({down:false});
+            game.sockets_game.update_mainPlayer_estado({down:false});
         }
-
-
-
 
 
         if (this.animationToUseThisFrame != this.lastAnimationUsed) {
@@ -126,20 +116,16 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.scale(this.body.maxVel.x);
         }
         this.body.update();
-
-        //Envio al servidor los cambios en mi personaje la Servidor
-        if(this.body_state_changed){
-            game.sockets_game.send_Server_mainPlayer_update();
-            this.body_state_changed =  false;
-        }
-
-        //////////////////
-
         if (this.body.vel.x != 0 || this.body.vel.y != 0
             || (this.renderable && this.renderable.isFlickering())) {
             this._super(me.Entity, 'update', [ dt ]);
             return true;
         }
+
+        //Envio datos al servidor
+        game.sockets_game.update_mainPlayer_coordenates({x:this.pos.x,y:this.pos.y});
+        game.sockets_game.send_Server_mainPlayer_update();
+
 
         return false;
     },
@@ -157,6 +143,8 @@ game.PlayerEntity = me.Entity.extend({
             ~~(this.pos.y + this.height),
             this.renderable.image.width,
             30);
+
+
 
         // tFrente.draw(renderer,this.data.nombre , this.pos.x + this.width/2, this.pos.y + this.height);
 
