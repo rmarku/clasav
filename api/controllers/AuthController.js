@@ -141,7 +141,7 @@ var AuthController = {
 
       switch (action) {
         case 'register':
-          res.redirect('/register');
+          res.redirect('/#/crear-cuenta');
           break;
         case 'disconnect':
           res.redirect('back');

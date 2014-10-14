@@ -1,67 +1,80 @@
 <br/>
 <br/>
 <div class="container-fluid" align="center">
-	<div class="div-form" align="left" ng-controller="AlumnoCreateCtl">
-		<span  class="titulos"> Crear Cuenta </span>
-		<form novalidate="novalidate" role="form">
-			<div class="form-group">
-				<label for="nombre">Nombre: </label>
-				<input type="text" class="form-control" name="nombre" ng-model="alumno.nombre" placeholder="Introduce tu nombre" required>
-			</div>
-			<div class="form-group">
-				<label for="nombre">Apellido: </label>
-				<input type="text" class="form-control" name="apellido" placeholder="Introduce tu apellido" ng-model="alumno.apellido" required>
-			</div>
-			<div class="form-group">
-				<label for="nombre">E-mail: </label>
-				<input type="text" class="form-control" name="email" ng-model="alumno.e_mail" placeholder="Introduce tu E-mail" required>
-			</div>
+    <div class="div-form" align="left" ng-controller="AlumnoCreateCtl">
+        <span class="titulos"> Crear Cuenta </span>
 
-			<!--div class="form-group col-xs-3">
-			<label for="nombre">Fecha de Nacimiento: </label>
-			<input type="date" class="form-control" placeholder="Dia">
-			</div>
-			<div class="form-group col-xs-6">
-			<label> &nbsp </label>
-			<select class="form-control">
-			<option>Enero</option>
-			<option>Febrero</option>
-			<option>Marzo</option>
-			<option>Abril</option>
-			<option>Mayo</option>
-			<option>Junio</option>
-			<option>Julio</option>
-			<option>Agosto</option>
-			<option>Septiembre</option>
-			<option>Octubre</option>
-			<option>Noviembre</option>
-			<option>Diciembre</option>
-			</select>
-			</div>
-			<div class="form-group col-xs-3">
-			<label for="nombre"> &nbsp </label>
-			<input type="date" class="form-control" placeholder="A�o">
-			</div-->
+        <form novalidate="novalidate" action="/auth/local/register" method="post" role="form">
+            <div class="form-group">
+                <label for="nombre">Nombre: </label>
+                <input type="text" class="form-control" name="nombre" ng-model="alumno.nombre"
+                       placeholder="Introduce tu nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido: </label>
+                <input type="text" class="form-control" name="apellido" placeholder="Introduce tu apellido"
+                       ng-model="alumno.apellido" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail: </label>
+                <input type="text" class="form-control" name="email" ng-model="alumno.e_mail"
+                       placeholder="Introduce tu E-mail" required>
+            </div>
+            <!--div class="form-group col-xs-3">
+            <label for="nombre">Fecha de Nacimiento: </label>
+            <input type="date" class="form-control" placeholder="Dia">
+            </div>
+            <div class="form-group col-xs-6">
+            <label> &nbsp </label>
+            <select class="form-control">
+            <option>Enero</option>
+            <option>Febrero</option>
+            <option>Marzo</option>
+            <option>Abril</option>
+            <option>Mayo</option>
+            <option>Junio</option>
+            <option>Julio</option>
+            <option>Agosto</option>
+            <option>Septiembre</option>
+            <option>Octubre</option>
+            <option>Noviembre</option>
+            <option>Diciembre</option>
+            </select>
+            </div>
+            <div class="form-group col-xs-3">
+            <label for="nombre"> &nbsp </label>
+            <input type="date" class="form-control" placeholder="A�o">
+            </div-->
 
-			<div class="radio">
-				<font color="#b8111f"><B>Sexo:</B> </font>
-				<br>
-				<label>
-					<input type="radio" name="sexo" value="femenino" ng-model="alumno.sexo" >
-					Femenino </label>
-			</div>
-			<div class="radio">
-				<label>
-					<input type="radio" name="sexo" value="masculino" ng-model="alumno.sexo" checked>
-					Masculino </label>
-			</div>
-			<div class="form-group">
-				<label for="contrasena">Contrase&ntilde;a: </label>
-				<input type="password" class="form-control" name="contrasena" ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a" required>
-			</div>
-			<div align="right">
-				<a ng-click="createNewAlumno()" class="btn btn-default btn-align">Crear</a>
-			</div>
-		</form>
-	</div>
+            <div class="form-group">
+                <label>Sexo:</label>
+                <br>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="sexo" value="femenino" ng-model="alumno.sexo">
+                        Femenino </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="sexo" value="masculino" ng-model="alumno.sexo" checked>
+                        Masculino </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contrase&ntilde;a: </label>
+                <input type="password" class="form-control" name="password" ng-model="alumno.contrasena"
+                       placeholder="Contrase&ntilde;a" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena2">Confirme Contrase&ntilde;a: </label>
+                <input type="password" class="form-control" name="password2" ng-model="alumno.contrasena"
+                       placeholder="Contrase&ntilde;a" required>
+            </div>
+            <div align="right">
+
+                <button class="btn btn-default btn-align" type="submit">Crea</button>
+            </div>
+        </form>
+    </div>
 </div>

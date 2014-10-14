@@ -24,8 +24,11 @@ var validator = require('validator');
  */
 exports.register = function (req, res, next) {
   var email    = req.param('email')
-    , username = req.param('username')
-    , password = req.param('password');
+    , username = req.param('email')
+      , nombre = req.param('nombre')
+      , apellido = req.param('apellido')
+      , sexo = req.param('sexo')
+      , password = req.param('password');
 
   if (!email) {
     req.flash('error', 'Error.Passport.Email.Missing');
@@ -44,7 +47,10 @@ exports.register = function (req, res, next) {
 
   User.create({
     username : username
-  , email    : email
+      , email    : email
+      , nombre    : nombre
+      , apellido    : apellido
+      , sexo    : sexo
   }, function (err, user) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
