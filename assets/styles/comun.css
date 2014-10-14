@@ -10,8 +10,7 @@
 	background-image: url("../images/fondo2.png");
 	background-size: cover;
 	background-repeat: no-repeat;
-    background-attachment: fixed;
-
+	background-attachment: fixed;
 }
 
 .botonera {
@@ -29,6 +28,12 @@
 	font-family: Gorditas-Regular;
 	font-size: 30px;
 	color: #b8111f;
+}
+
+.titulo-botonera {
+	z-index: 6;
+	margin: 16px;
+	font-family: Gorditas-Regular;
 }
 
 .p_espacio {
@@ -66,6 +71,19 @@
 	margin-bottom: 15px;
 }
 
+.div-mapa {
+	background-image: url("../data/map/minimap/Inicio.png");
+	background-size: cover;
+}
+
+.div-panel {
+	display: none;
+	position: absolute;
+	bottom: 49px;
+	width: 312px;
+	height: 297px
+}
+
 .btn-default {
 	color: #b8111f;
 	border-color: #b8111f;
@@ -87,27 +105,27 @@
 	padding: 4px 9px;
 }
 
-.navbar{
+.navbar {
 	min-height: 31px;
 	width: 100%;
 }
 
-.btn2{
+.btn2 {
 	font-size: 12px;
 	padding: 4px 4px;
 }
 
-.form-control2{
+.form-control2 {
 	font-size: 12px;
 	height: 24px;
 }
 
-.capaSup{
+.capaSup {
 	position: absolute;
 	z-index: 10;
 }
 
-.capaInf{
+.capaInf {
 	position: absolute;
 	z-index: 1;
 }

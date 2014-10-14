@@ -2,6 +2,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
 	/**
 	 * action to perform on state change
+	 * @method onResetEvent
+	 * @return 
 	 */
 	onResetEvent : function() {
 		// load a level
@@ -31,6 +33,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
 	/**
 	 * action to perform when leaving this screen (state change)
+	 * @method onDestroyEvent
+	 * @return 
 	 */
 	onDestroyEvent : function() {
 		me.audio.stopTrack("snow");

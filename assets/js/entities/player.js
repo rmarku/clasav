@@ -5,6 +5,14 @@
 /** ********************************************************************************* */
 game.PlayerEntity = me.Entity.extend({
 
+    /**
+     * Description
+     * @method init
+     * @param {} x
+     * @param {} y
+     * @param {} settings
+     * @return 
+     */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [ x, y, settings ]);
         this.data = settings.data;
@@ -51,6 +59,12 @@ game.PlayerEntity = me.Entity.extend({
 
 
     },
+    /**
+     * Description
+     * @method update
+     * @param {} dt
+     * @return Literal
+     */
     update: function (dt) {
 
 
@@ -129,6 +143,12 @@ game.PlayerEntity = me.Entity.extend({
 
         return false;
     },
+    /**
+     * Description
+     * @method draw
+     * @param {} renderer
+     * @return 
+     */
     draw: function (renderer) {
         this._super(me.Entity, 'draw', [renderer]);
 
@@ -149,6 +169,11 @@ game.PlayerEntity = me.Entity.extend({
         // tFrente.draw(renderer,this.data.nombre , this.pos.x + this.width/2, this.pos.y + this.height);
 
     },
+    /**
+     * Description
+     * @method vestir
+     * @return 
+     */
     vestir: function () {
         this.canvas = document.createElement('canvas');
         this.canvas.width = this.renderable.image.width;
