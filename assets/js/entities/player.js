@@ -57,7 +57,6 @@ game.PlayerEntity = me.Entity.extend({
 
         game.sockets_game.subscribe_to_server_mapa_instance();
 
-
     },
     /**
      * Description
@@ -72,24 +71,26 @@ game.PlayerEntity = me.Entity.extend({
             this.animationToUseThisFrame = 'run-left';
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
-            //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_estado({left:true});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('left',true);
         }
         else {
-            //Seteo variable de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_estado({left:false});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('left',false);
         }
+
 
 
         if (me.input.isKeyPressed('right')) {
             this.animationToUseThisFrame = 'run-right';
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
-            //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_estado({right:true});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('right',true);
         }
         else{
-            game.sockets_game.update_mainPlayer_estado({right:false});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('right',false);
         }
 
 
@@ -98,10 +99,11 @@ game.PlayerEntity = me.Entity.extend({
             this.animationToUseThisFrame = 'run-up';
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
 
-            //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_estado({up:true});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('up',true);
         }else{
-            game.sockets_game.update_mainPlayer_estado({up:false});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('up',false);
         }
 
 
@@ -110,11 +112,12 @@ game.PlayerEntity = me.Entity.extend({
             this.animationToUseThisFrame = 'run-down';
             this.body.vel.y += this.body.accel.y * me.timer.tick;
 
-            //Seteo variables de mi personaje para enviar al servidor
-            game.sockets_game.update_mainPlayer_estado({down:true});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('down',true);
         }
         else{
-            game.sockets_game.update_mainPlayer_estado({down:false});
+            //Almaceno estado actual de mi Personaje Principal
+            game.sockets_game.update_mainPlayer_estado('down',false);
         }
 
 
@@ -136,11 +139,6 @@ game.PlayerEntity = me.Entity.extend({
             return true;
         }
 
-        //Envio datos al servidor
-        game.sockets_game.update_mainPlayer_coordenates({x:this.pos.x,y:this.pos.y});
-        game.sockets_game.send_Server_mainPlayer_update();
-
-
         return false;
     },
     /**
@@ -150,6 +148,12 @@ game.PlayerEntity = me.Entity.extend({
      * @return 
      */
     draw: function (renderer) {
+
+        // Envio datos de posicion y estado al servidor
+        game.sockets_game.update_mainPlayer_coordenates({'x':this.pos.x,'y':this.pos.y});
+        game.sockets_game.send_Server_mainPlayer_update();
+        //
+
         this._super(me.Entity, 'draw', [renderer]);
 
         var context = renderer.getContext();
@@ -164,9 +168,6 @@ game.PlayerEntity = me.Entity.extend({
             this.renderable.image.width,
             30);
 
-
-
-        // tFrente.draw(renderer,this.data.nombre , this.pos.x + this.width/2, this.pos.y + this.height);
 
     },
     /**
