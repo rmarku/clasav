@@ -8,13 +8,55 @@ function inventarioContr($scope, $sailsBind) {
 		"nombreItem" : "capa dorada",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "..\/\/data\/\/sprites\/\/items\/\/ep\/\/3_capaDorada.png"
+		"sprite" : "../data/sprites/items/ep/3_capaDorada.png"
 	}, {
 		"id" : 8,
 		"nombreItem" : "espada burocratica",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "..\/\/data\/\/sprites\/\/items\/\/ep\/\/8_espada.png"
+		"sprite" : "../data/sprites/items/ep/8_espada.png"
+	},{
+		"id" : 12,
+		"nombreItem" : "anillo magico",
+		"cant" : 1,
+		"acumulable" : false,
+		"sprite" : "../data/sprites/items/ep/12_anilloMagico.png"
+	},{
+		"id" : 15,
+		"nombreItem" : "botas",
+		"cant" : 1,
+		"acumulable" : false,
+		"sprite" : "../data/sprites/items/ep/15_botas.png"
+	},{
+		"id" : 15,
+		"nombreItem" : "libro",
+		"cant" : 1,
+		"acumulable" : false,
+		"sprite" : "../data/sprites/items/nep/15_libro.png"
+	},{
+		"id" : 18,
+		"nombreItem" : "manzana",
+		"cant" : 1,
+		"acumulable" : true,
+		"sprite" : "../data/sprites/items/nep/18_manzana.png"
+	},{
+		"id" : 21,
+		"nombreItem" : "gema",
+		"cant" : 2,
+		"acumulable" : true,
+		"sprite" : "../data/sprites/items/nep/21_gema.png"
+	},{
+		"id" : 101,
+		"nombreItem" : "pota de mana",
+		"cant" : 5,
+		"acumulable" : false,
+		"sprite" : "../data/sprites/items/nep/101_potaMana.png"
+	},{
+		"id" : 102,
+		"nombreItem" : "pota de energia",
+		"cant" : 5,
+		"acumulable" : true,
+		"sprite" : "../data/sprites/items/nep/102_potaEnergia.png"
 	}];
 
 	/*$http.get("../api/inventario.json").success(function(response) {
