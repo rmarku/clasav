@@ -58,7 +58,7 @@ function inventarioContr($scope, $sailsBind) {
 		"acumulable" : true,
 		"sprite" : "../data/sprites/items/nep/102_potaEnergia.png"
 	}];
-
+	
 	/*$http.get("../api/inventario.json").success(function(response) {
 	 $scope.items = response;
 	 });*/
