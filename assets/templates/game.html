@@ -37,11 +37,29 @@
 						</p>
 						<img src="images/iconos/inventario2.png">
 						<table style="z-index: 10; margin-top: -250px; margin-left: 12px">
-							<tr ng-repeat="x in inventario">
-								<td>
-									<img ng-src="{{x.sprite}}" alt="{{x.nombreItem}}" width="45px;" height="45px;">
-								</td>
-							</tr>
+							<colgroup span="6"></colgroup>
+							<tbody>
+								<tr class="colItems">
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+									<th scope="col"></th>
+								</tr>
+								<tr>
+									<div style="-moz-column-count:6;">
+									<td ng-repeat="x in inventario">
+										<img ng-src="{{x.sprite}}" alt="{{x.nombreItem}}" width="45px;" height="45px;">
+									</td>
+									</div>
+								</tr>
+							</tbody>
+							<!--tr ng-repeat="x in inventario">
+							<td>
+							<img ng-src="{{x.sprite}}" alt="{{x.nombreItem}}" width="45px;" height="45px;">
+							</td>
+							</tr-->
 						</table>
 					</div>
 
