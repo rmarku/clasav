@@ -19,8 +19,14 @@ module.exports.bootstrap = function (cb) {
     var fixture_import = function (modelo) {
         var objs = jf.readFileSync('config/fixtures/' + modelo + '.json');
         return Promise.reduce(objs, function (total, obj) {
-            return global[modelo].create(obj).then(function () {
-                return 0;
+            return global[modelo].find(obj).then(function (data) {
+                if (data.length > 0) {
+                    return 0;
+                } else {
+                    return global[modelo].create(obj).then(function () {
+                        return 1;
+                    });
+                }
             });
         }, 0);
     }
@@ -28,7 +34,7 @@ module.exports.bootstrap = function (cb) {
     var fixtures = ['Jugador_en_vivo', 'Mapa_instancia', 'Mapa_generico', 'Clase', 'Alumno'];
 
     Promise.reduce(fixtures, function (total, fix) {
-        return fixture_import(fix).then(function () {
+        return fixture_import(fix).then(function (dat) {
             return 0;
         });
     }).then(cb);
