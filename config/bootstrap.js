@@ -31,12 +31,14 @@ module.exports.bootstrap = function (cb) {
         }, 0);
     }
 
-    var fixtures = ['Jugador_en_vivo', 'Mapa_instancia', 'Mapa_generico', 'Clase', 'Alumno'];
+    var fixtures = [ 'Mapa_instancia','Jugador_en_vivo', 'Mapa_generico', 'Clase', 'Alumno'];
 
-    Promise.reduce(fixtures, function (total, fix) {
-        return fixture_import(fix).then(function (dat) {
+    Promise.reduce(fixtures, function ( total, item) {
+
+        return fixture_import(item).then(function (dat) {
+            console.log(item);
             return 0;
         });
-    }).then(cb);
+    },0).then(cb);
 
 };
