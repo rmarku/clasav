@@ -71,7 +71,7 @@ HTML
 Quest
 =====
 
-* Texto de introducción,
+* Texto de introducción
 * NPC,
 * item de quest,
 * Texto de espera,

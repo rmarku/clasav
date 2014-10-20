@@ -47,11 +47,12 @@ var game = {
     sockets_game : {
 
         //Declaraciones temporales (deberian ser externas luego del loggin)
-        id_alumno_cliente: 'fabricio_collino@gmail.com',
-        id_mapa_instancia_cliente: 'mapa_instancia1',
-        conectarse_a_mapa_instancia_cliente: true,
-        id_jugador_en_vivo: 'jugador_vivo_1',
-        update_counter:0,
+        id_alumno_cliente                   :   'fabricio_collino@gmail.com',
+        id_mapa_instancia_cliente           :   'mapa_instancia1',
+        conectarse_a_mapa_instancia_cliente :   true,
+        id_jugador_en_vivo                  :   'jugador_vivo_1',
+        update_counter                      :   0,
+        update_timeOut                      :   200, // (5)segs aproximadamente
 
         // Fin declaraciones temporales
 
@@ -77,24 +78,24 @@ var game = {
         //flag_stateChanged : false,
 
         reset_mainPlayer_estado: function () {
-            this.mainPlayer_estado['left'] = false;
-            this.mainPlayer_estado['right']= false;
-            this.mainPlayer_estado['up'] = false;
-            this.mainPlayer_estado['down'] = false;
+            this.mainPlayer_estado.left  = false;
+            this.mainPlayer_estado.right= false;
+            this.mainPlayer_estado.up= false;
+            this.mainPlayer_estado.down = false;
         },
 
-        update_mainPlayer_estado: function (localdata) {
-            if (typeof localdata.left !== "undefined") {
-                this.mainPlayer_estado['left'] = localdata.left;
+        update_mainPlayer_estado: function (direction,boolean) {
+            if (direction == 'left') {
+                this.mainPlayer_estado.left     = boolean;
             }else
-            if (typeof localdata.right !== "undefined") {
-                this.mainPlayer_estado['right']  = localdata.right;
+            if (direction == 'right') {
+                this.mainPlayer_estado.right    = boolean;
             }else
-            if (typeof localdata.up !== "undefined") {
-                this.mainPlayer_estado['up']  = localdata.up;
+            if (direction == 'up') {
+                this.mainPlayer_estado.up       = boolean;
             }else
-            if (typeof localdata.down !== "undefined") {
-                this.mainPlayer_estado['down']  = localdata.down;
+            if (direction == 'down') {
+                this.mainPlayer_estado.down     = boolean;
             }
 
         },
@@ -104,41 +105,42 @@ var game = {
             this.mainPlayer_coordenates.y = coordenates_mainPlayer.y;
         },
 
-        send_Server_mainPlayer_update: function () {
+        send_Server_mainPlayer_update: function (local_coordenates) {
 
 
             // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
-            if(this.mainPlayer_estado['left'] || this.mainPlayer_estado['right']|| this.mainPlayer_estado['up']|| this.mainPlayer_estado['down']){
+            if( this.mainPlayer_estado.left || this.mainPlayer_estado.right || this.mainPlayer_estado.up || this.mainPlayer_estado.down){
                 this.update_counter++;
             }
 
             //Envio al servidor solo si: hubieron 500 updates en el mismo estado, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
-            if( (this.update_counter >= 500)    ||      (this.mainPlayer_previous_estado['left']     !=     this.mainPlayer_estado['left'])
+            if( (this.update_counter >= this.update_timeOut)    ||      (this.mainPlayer_previous_estado.left       !=     this.mainPlayer_estado.left  )
 
-                                                ||      (this.mainPlayer_previous_estado['right']    !=     this.mainPlayer_estado['right'])
+                                                ||      (this.mainPlayer_previous_estado.right      !=     this.mainPlayer_estado.right )
 
-                                                ||      (this.mainPlayer_previous_estado['up']       !=     this.mainPlayer_estado['up'])
+                                                ||      (this.mainPlayer_previous_estado.down       !=     this.mainPlayer_estado.down  )
 
-                                                ||      (this.mainPlayer_previous_estado['down']     !=     this.mainPlayer_estado['down'])    ){
+                                                ||      (this.mainPlayer_previous_estado.up         !=     this.mainPlayer_estado.up    )    ){
 
-                io.socket.put   ('/api/jugador_en_vivo/' + this.id_jugador_en_vivo,   { estado   :    angular.toJson(this.mainPlayer_estado) ,
-                                                                                        coordenadas :    angular.toJson(this.mainPlayer_coordenates)  }
+               io.socket.put   ('/api/jugador_en_vivo/' + this.id_jugador_en_vivo,   {  estado      :    angular.toJson(this.mainPlayer_estado) ,
+                                                                                        coordenadas :    angular.toJson(this.mainPlayer_coordenates) }
 
-                        ,function (resdata){    console.log("socket.put:");
-                                                console.log(resdata)            });
+                                ,function (resdata){
+                                    console.log("socket.put:");
+                                    console.log(resdata)
+                                }
+               );
 
 
-
-                //this.mainPlayer_previous_estado = ;
-                //
-                if(!(this.update_counter >= 500)) {
-                    this.mainPlayer_previous_estado['left'] = this.mainPlayer_estado['left'];
-                    this.mainPlayer_previous_estado['right'] = this.mainPlayer_estado['right'];
-                    this.mainPlayer_previous_estado['up'] = this.mainPlayer_estado['up'];
-                    this.mainPlayer_previous_estado['down'] = this.mainPlayer_estado['down'];
+               if(!(this.update_counter >= 250)) {
+                    this.mainPlayer_previous_estado.left = this.mainPlayer_estado.left;
+                    this.mainPlayer_previous_estado.right = this.mainPlayer_estado.right;
+                    this.mainPlayer_previous_estado.up  = this.mainPlayer_estado.up ;
+                    this.mainPlayer_previous_estado.down = this.mainPlayer_estado.down;
                     //this.reset_mainPlayer_estado();
                 }
-                this.update_counter = 0;
+
+               this.update_counter = 0;
             }
 
 
@@ -172,13 +174,13 @@ var game = {
                             }
             );
 
-            // Listen to incoming Updates from Jugador_en_vivo we just subscribed to
+            // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
             io.socket.on('jugador_en_vivo',function messageReceived(jsonObject) {
 
                 switch (jsonObject.verb) {
                     case 'updated':
-                        console.log("socket.on:");
-                        console.log(angular.fromJson(jsonObject));
+                        //console.log("socket.on:");
+                        //console.log(angular.fromJson(jsonObject));
                     default: break;
                 }
             });

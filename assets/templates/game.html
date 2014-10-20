@@ -31,17 +31,16 @@
 					</div>
 					<img class="capaSup" id="audio" src="images/iconos/audio_on.png" style="position: absolute; bottom: 4px; right: 4px"/>
 
-					<div id="inv" class="div-panel" ng-controller="inventarioContr">
+					<div id="inv" class="div-panel" ng-controller="inventarioContr" style="background: url('images/iconos/inventario2.png')">
 						<p class="capaSup titulo-botonera">
 							Inventario
 						</p>
-						<img src="images/iconos/inventario2.png">
-						<table style="z-index: 10; margin-top: -250px; margin-left: 12px">
-							<tr ng-repeat="x in inventario">
-								<td>{{ x.sprite }}</td>
-								<td>{{ x.sprite }}</td>
-							</tr>
-						</table>
+
+						<div id="items" style="padding: 41px 9px 0px 10px">
+							<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; border: 0px 0px 0px 0px; margin: 0px 0px 0px -3px">
+								<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}" width="48px" height="48px">
+							</div>
+						</div>
 					</div>
 
 					<div id="mis" class="div-panel">
