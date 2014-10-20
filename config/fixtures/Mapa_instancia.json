@@ -1,0 +1,12 @@
+[
+    {
+        "id": "mapa_instancia1",
+        "mapa_generico": "mapa_generico1",
+        "clase_instancia": "clase1"
+    },
+    {
+        "id": "mapa_instancia2",
+        "mapa_generico": "mapa_generico1",
+        "clase_instancia": "clase1"
+    }
+]
