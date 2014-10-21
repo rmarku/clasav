@@ -15,7 +15,13 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
-  'styles/**/*.css'
+    "/js/dependencies/bootstrap/dist/css/bootstrap.css",
+    "/js/dependencies/BrandButtons/dist/brand-buttons.min.css",
+    "/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css",
+    "/js/dependencies/font-awesome/css/font-awesome.min.css",
+    "/styles/comun.css",
+    "/styles/importer.css"
+  //'styles/**/*.css'
 ];
 
 
@@ -24,15 +30,32 @@ var cssFilesToInject = [
 var jsFilesToInject = [
   
   // Load this Libs in this order
-  'js/dependencies/sails.io.js',
-  'lib/angular.js',
-  'lib/jquery.js',
-  'lib/**/*.js',
+  'js/dependencies/sails.io.js/dist/sails.io.js',
+    "/js/dependencies/angular/angular.js",
+    "/js/dependencies/jquery/dist/jquery.js",
+    "/js/dependencies/angular-resource/angular-resource.js",
+    "/js/dependencies/angular-route/angular-route.js",
+    "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
+    "/js/dependencies/bootstrap/dist/js/bootstrap.js",
+    "/lib/melonJS.js",
+    //"/js/dependencies/melonJS/melonJS.js",
+    "/lib/plugins/debug/debugPanel.js",
+    "/lib/plugins/debug/particleDebugPanel.js",
+    "/js/main.js",
+    "/js/app.js",
+    "/js/comun.js",
+    "/js/controlador.js",
+    "/js/entities/player.js",
+    "/js/hud.js",
+    "/js/personajes.js",
+    "/js/play.js",
+    "/js/servicios.js"
+  //'lib/**/*.js',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
-  'js/main.js',
-  'js/**/*.js'
+  //'js/main.js',
+  //'js/**/*.js'
 ];
 
 
