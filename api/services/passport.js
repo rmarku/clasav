@@ -68,7 +68,6 @@ passport.connect = function (req, query, profile, next) {
 
   // Get the authentication provider from the query.
   query.provider = req.param('provider');
-
   // Use profile.provider or fallback to the query.provider if it is undefined
   // as is the case for OpenID, for example
   provider = profile.provider || query.provider;
@@ -83,11 +82,16 @@ passport.connect = function (req, query, profile, next) {
   // add it to the user.
   if (profile.hasOwnProperty('emails')) {
     user.email = profile.emails[0].value;
+    user.username = profile.emails[0].value;
   }
-  // If the profile object contains a username, add it to the user.
-  if (profile.hasOwnProperty('username')) {
-    user.username = profile.username;
-  }
+    // If the profile object contains a username, add it to the user.
+    if (profile.hasOwnProperty('name')) {
+        user.nombre = profile.name.givenName;
+    }
+    // If the profile object contains a username, add it to the user.
+    if (profile.hasOwnProperty('name')) {
+        user.apellido = profile.name.familyName;
+    }
 
   // If neither an email or a username was available in the profile, we don't
   // have a way of identifying the user in the future. Throw an error and let
