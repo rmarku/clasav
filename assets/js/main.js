@@ -8,8 +8,10 @@ var game = {
     players: {},
     NPCs: {},
 
-    /*
+    /**
      * initialization
+     * @method onload
+     * @return 
      */
     onload: function () {
         me.sys.fps = 30;
@@ -34,6 +36,8 @@ var game = {
 
     /**
      * Llamo cuando todos los recursos estan cargados
+     * @method loaded
+     * @return 
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -77,6 +81,11 @@ var game = {
 
         //flag_stateChanged : false,
 
+        /**
+         * Description
+         * @method reset_mainPlayer_estado
+         * @return 
+         */
         reset_mainPlayer_estado: function () {
             this.mainPlayer_estado.left  = false;
             this.mainPlayer_estado.right= false;
@@ -84,6 +93,13 @@ var game = {
             this.mainPlayer_estado.down = false;
         },
 
+        /**
+         * Description
+         * @method update_mainPlayer_estado
+         * @param {} direction
+         * @param {} boolean
+         * @return 
+         */
         update_mainPlayer_estado: function (direction,boolean) {
             if (direction == 'left') {
                 this.mainPlayer_estado.left     = boolean;
@@ -100,11 +116,23 @@ var game = {
 
         },
 
+        /**
+         * Description
+         * @method update_mainPlayer_coordenates
+         * @param {} coordenates_mainPlayer
+         * @return 
+         */
         update_mainPlayer_coordenates: function (coordenates_mainPlayer) {
             this.mainPlayer_coordenates.x = coordenates_mainPlayer.x;
             this.mainPlayer_coordenates.y = coordenates_mainPlayer.y;
         },
 
+        /**
+         * Description
+         * @method send_Server_mainPlayer_update
+         * @param {} local_coordenates
+         * @return 
+         */
         send_Server_mainPlayer_update: function (local_coordenates) {
 
 
@@ -148,6 +176,11 @@ var game = {
 
         ///Funcion para suscribirnos al Mapa_instancia (es un Mapa_generico que pertenece a una determinada Clase),
         // y por lo tanto a todos los alumnos que participan de ese Mapa_intancia
+        /**
+         * Description
+         * @method subscribe_to_server_mapa_instance
+         * @return 
+         */
         subscribe_to_server_mapa_instance : function () {
             //alert('suscribing');
 
@@ -187,6 +220,11 @@ var game = {
 
         },
 
+        /**
+         * Description
+         * @method unsubscribe_from_server_mapa_instance
+         * @return 
+         */
         unsubscribe_from_server_mapa_instance : function () {
             io.socket.get(  '/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',
                             {       id_mapa_instancia:  this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme

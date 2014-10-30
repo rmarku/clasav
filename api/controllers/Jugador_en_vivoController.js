@@ -11,6 +11,13 @@ module.exports = {
     // Solo se pasara a Conectado si si se recibe el ID del alumno
 
 
+    /**
+     * Description
+     * @method subscribirse_a_mapa_instancia
+     * @param {} req
+     * @param {} res
+     * @return 
+     */
     subscribirse_a_mapa_instancia: function (req, res) {
 
         var id_mapa_instancia = req.param('id_mapa_instancia');
@@ -39,6 +46,13 @@ module.exports = {
         );
     },
 
+    /**
+     * Description
+     * @method desuscribirse_de_mapa_instancia
+     * @param {} req
+     * @param {} res
+     * @return 
+     */
     desuscribirse_de_mapa_instancia: function (req, res) {
 
         var id_mapa_instancia = req.param('id_mapa_instancia');

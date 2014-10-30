@@ -8,27 +8,23 @@
 var AuthController = {
   /**
    * Render the login page
-   *
    * The login form itself is just a simple HTML form:
-   *
-      <form role="form" action="/auth/local" method="post">
-        <input type="text" name="identifier" placeholder="Username or Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Sign in</button>
-      </form>
-   *
+   * <form role="form" action="/auth/local" method="post">
+   * <input type="text" name="identifier" placeholder="Username or Email">
+   * <input type="password" name="password" placeholder="Password">
+   * <button type="submit">Sign in</button>
+   * </form>
    * You could optionally add CSRF-protection as outlined in the documentation:
    * http://sailsjs.org/#!documentation/config.csrf
-   *
    * A simple example of automatically listing all available providers in a
    * Handlebars template would look like this:
-   *
-      {{#each providers}}
-        <a href="/auth/{{slug}}" role="button">{{name}}</a>
-      {{/each}}
-   *
+   * {{#each providers}}
+   * <a href="/auth/{{slug}}" role="button">{{name}}</a>
+   * {{/each}}
+   * @method login
    * @param {Object} req
    * @param {Object} res
+   * @return 
    */
   login: function (req, res) {
     var strategies = sails.config.passport
@@ -55,17 +51,16 @@ var AuthController = {
 
   /**
    * Log out a user and return them to the homepage
-   *
    * Passport exposes a logout() function on req (also aliased as logOut()) that
    * can be called from any route handler which needs to terminate a login
    * session. Invoking logout() will remove the req.user property and clear the
    * login session (if any).
-   *
    * For more information on logging out users in Passport.js, check out:
    * http://passportjs.org/guide/logout/
-   *
+   * @method logout
    * @param {Object} req
    * @param {Object} res
+   * @return 
    */
   logout: function (req, res) {
     req.logout();
@@ -74,18 +69,17 @@ var AuthController = {
 
   /**
    * Render the registration page
-   *
    * Just like the login form, the registration form is just simple HTML:
-   *
-      <form role="form" action="/auth/local/register" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="text" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Sign up</button>
-      </form>
-   *
+   * <form role="form" action="/auth/local/register" method="post">
+   * <input type="text" name="username" placeholder="Username">
+   * <input type="text" name="email" placeholder="Email">
+   * <input type="password" name="password" placeholder="Password">
+   * <button type="submit">Sign up</button>
+   * </form>
+   * @method register
    * @param {Object} req
    * @param {Object} res
+   * @return 
    */
   register: function (req, res) {
     res.view({
@@ -95,9 +89,10 @@ var AuthController = {
 
   /**
    * Create a third-party authentication endpoint
-   *
+   * @method provider
    * @param {Object} req
    * @param {Object} res
+   * @return 
    */
   provider: function (req, res) {
     passport.endpoint(req, res);
@@ -105,21 +100,25 @@ var AuthController = {
 
   /**
    * Create a authentication callback endpoint
-   *
    * This endpoint handles everything related to creating and verifying Pass-
    * ports and users, both locally and from third-aprty providers.
-   *
    * Passport exposes a login() function on req (also aliased as logIn()) that
    * can be used to establish a login session. When the login operation
    * completes, user will be assigned to req.user.
-   *
    * For more information on logging in users in Passport.js, check out:
    * http://passportjs.org/guide/login/
-   *
+   * @method callback
    * @param {Object} req
    * @param {Object} res
+   * @return 
    */
   callback: function (req, res) {
+    /**
+     * Description
+     * @method tryAgain
+     * @param {} err
+     * @return 
+     */
     function tryAgain (err) {
 
       // Only certain error messages are returned via req.flash('error', someError)
@@ -170,9 +169,10 @@ var AuthController = {
 
   /**
    * Disconnect a passport from a user
-   *
+   * @method disconnect
    * @param {Object} req
    * @param {Object} res
+   * @return 
    */
   disconnect: function (req, res) {
     passport.disconnect(req, res);

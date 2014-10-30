@@ -122,6 +122,7 @@ function inventarioContr($scope, $sailsBind) {
 /**
  * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
  * @method noPressBtn
+ * @return 
  */
 function noPressBtn() {
 	$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
