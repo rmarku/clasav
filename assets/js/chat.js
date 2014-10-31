@@ -4,7 +4,8 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
     $sailsBind.bind('api/chat',$scope, {"dateTime": {">": tiempo}});
     
     $scope.envMsj = function(){
-    	io.socket.put('/api/chat/create/', {nick: 'pepe', mensaje: $scope.mensaje});
+    	if($scope.mensaje!="")
+    		io.socket.put('/api/chat/create/', {nick: 'pepe', mensaje: $scope.mensaje});
     	$scope.mensaje="";
     };
     
