@@ -128,7 +128,11 @@ function enviarMsj(campoText, e) {
 	else
 		return true;
 
-	return false;
+	if (tecla == 13) {
+		envMsj();
+		return false;
+	} else
+		return true;
 }
 
 /**
@@ -151,6 +155,13 @@ function noPressBtn() {
 
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
+	
+	//Enviar Mensaje al Chat al presionar Enter
+	$("#msjChat").keyup(function(event) {
+		if (event.keyCode == 13) {
+			$("#btn_enviar").click();
+		}
+	});
 
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {

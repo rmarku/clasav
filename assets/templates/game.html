@@ -77,12 +77,14 @@
 			</div>
 
 			<!--CHAT-->
+			<!--Se deberian agregar funcion:-->
+			<!--Si el imput tiene onFocus, deshabilitar las teclas para que el personaje no se mueva-->
 			<div ng-controller="ChatController" style="width: 800px">
 				<div class="div-chat">
 					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}} <br></span>
 				</div>
 				<input class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px">
-				<button type="submit" class="btn btn-default" ng-click="envMsj()">Enviar</button>
+				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()">Enviar</button>
 			</div>
 
 		</div>
