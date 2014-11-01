@@ -52,7 +52,7 @@ var game = {
 
         //Declaraciones temporales (deberian ser externas luego del loggin)
         id_alumno_cliente                   :   1,
-        id_mapa_instancia_cliente           :   'mapa_instancia1',
+        id_mapa_instancia_cliente           :   1,
         conectarse_a_mapa_instancia_cliente :   true,
         id_jugador_en_vivo                  :   1,
         update_counter                      :   0,

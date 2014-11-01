@@ -1,10 +1,8 @@
 [
     {
-        "id": "mapa_generico1",
         "nombre": "calabozo siniestro"
     },
     {
-        "id": "mapa_generico2",
-        "nombre": "cala bozo sin iestro"
+        "nombre": "cala bozo sin hiestro"
     }
 ]

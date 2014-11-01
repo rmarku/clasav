@@ -9,11 +9,9 @@ module.exports = {
 
     attributes: {
 
-        id: {
+        nombre: {
             type: 'string',
             required: true,
-            unique: true,
-            primaryKey : true
         }
     }
 };
