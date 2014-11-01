@@ -48,6 +48,7 @@ var jsFilesToInject = [
     "/js/juego/entities/player.js",
     "/js/juego/hud.js",
     "/js/juego/play.js",
+    "/js/juego/chat.js",
     "/js/app.js",
 
     // WEB

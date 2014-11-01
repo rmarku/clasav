@@ -31,36 +31,31 @@ passport.protocols = require('./protocols');
 
 /**
  * Connect a third-party profile to a local user
- *
  * This is where most of the magic happens when a user is authenticating with a
  * third-party provider. What it does, is the following:
- *
  *   1. Given a provider and an identifier, find a mathcing Passport.
  *   2. From here, the logic branches into two paths.
- *
  *     - A user is not currently logged in:
  *       1. If a Passport wassn't found, create a new user as well as a new
  *          Passport that will be assigned to the user.
  *       2. If a Passport was found, get the user associated with the passport.
- *
  *     - A user is currently logged in:
  *       1. If a Passport wasn't found, create a new Passport and associate it
  *          with the already logged in user (ie. "Connect")
  *       2. If a Passport was found, nothing needs to happen.
- *
  * As you can see, this function handles both "authentication" and "authori-
  * zation" at the same time. This is due to the fact that we pass in
  * `passReqToCallback: true` when loading the strategies, allowing us to look
  * for an existing session in the request and taking action based on that.
- *
  * For more information on auth(entication|rization) in Passport.js, check out:
  * http://passportjs.org/guide/authenticate/
  * http://passportjs.org/guide/authorize/
- *
+ * @method connect
  * @param {Object}   req
  * @param {Object}   query
  * @param {Object}   profile
  * @param {Function} next
+ * @return 
  */
 passport.connect = function (req, query, profile, next) {
   var user = {}
@@ -185,12 +180,12 @@ passport.connect = function (req, query, profile, next) {
 
 /**
  * Create an authentication endpoint
- *
  * For more information on authentication in Passport.js, check out:
  * http://passportjs.org/guide/authenticate/
- *
- * @param  {Object} req
- * @param  {Object} res
+ * @method endpoint
+ * @param {Object} req
+ * @param {Object} res
+ * @return 
  */
 passport.endpoint = function (req, res) {
   var strategies = sails.config.passport
@@ -216,13 +211,13 @@ passport.endpoint = function (req, res) {
 
 /**
  * Create an authentication callback endpoint
- *
  * For more information on authentication in Passport.js, check out:
  * http://passportjs.org/guide/authenticate/
- *
+ * @method callback
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
+ * @return 
  */
 passport.callback = function (req, res, next) {
   var provider = req.param('provider', 'local')
@@ -258,25 +253,23 @@ passport.callback = function (req, res, next) {
 
 /**
  * Load all strategies defined in the Passport configuration
- *
  * For example, we could add this to our config to use the GitHub strategy
  * with permission to access a users email address (even if it's marked as
  * private) as well as permission to add and update a user's Gists:
- *
-    github: {
-      name: 'GitHub',
-      protocol: 'oauth2',
-      strategy: require('passport-github').Strategy
-      scope: [ 'user', 'gist' ]
-      options: {
-        clientID: 'CLIENT_ID',
-        clientSecret: 'CLIENT_SECRET'
-      }
-    }
- *
+ * github: {
+ * name: 'GitHub',
+ * protocol: 'oauth2',
+ * strategy: require('passport-github').Strategy
+ * scope: [ 'user', 'gist' ]
+ * options: {
+ * clientID: 'CLIENT_ID',
+ * clientSecret: 'CLIENT_SECRET'
+ * }
+ * }
  * For more information on the providers supported by Passport.js, check out:
  * http://passportjs.org/guide/providers/
- *
+ * @method loadStrategies
+ * @return 
  */
 passport.loadStrategies = function () {
   var self       = this
@@ -333,9 +326,11 @@ passport.loadStrategies = function () {
 
 /**
  * Disconnect a passport from a user
- *
- * @param  {Object} req
- * @param  {Object} res
+ * @method disconnect
+ * @param {Object} req
+ * @param {Object} res
+ * @param {} next
+ * @return 
  */
 passport.disconnect = function (req, res, next) {
   var user     = req.user

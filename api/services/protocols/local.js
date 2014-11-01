@@ -14,13 +14,13 @@ var validator = require('validator');
 
 /**
  * Register a new user
- *
  * This method creates a new user from a specified email, username and password
  * and assign the newly created user a local Passport.
- *
+ * @method register
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
+ * @return 
  */
 exports.register = function (req, res, next) {
   var email    = req.param('email')
@@ -86,14 +86,14 @@ exports.register = function (req, res, next) {
 
 /**
  * Assign local Passport to user
- *
  * This function can be used to assign a local Passport to a user who doens't
  * have one already. This would be the case if the user registered using a
  * third-party service and therefore never set a password.
- *
+ * @method connect
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
+ * @return 
  */
 exports.connect = function (req, res, next) {
   var user     = req.user
@@ -124,15 +124,15 @@ exports.connect = function (req, res, next) {
 
 /**
  * Validate a login request
- *
  * Looks up a user using the supplied identifier (email or username) and then
  * attempts to find a local Passport associated with the user. If a Passport is
  * found, its password is checked against the password supplied in the form.
- *
+ * @method login
  * @param {Object}   req
  * @param {string}   identifier
  * @param {string}   password
  * @param {Function} next
+ * @return 
  */
 exports.login = function (req, identifier, password, next) {
   var isEmail = validator.isEmail(identifier)

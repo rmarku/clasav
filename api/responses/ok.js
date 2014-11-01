@@ -1,16 +1,15 @@
 /**
  * 200 (OK) Response
- *
  * Usage:
  * return res.ok();
  * return res.ok(data);
  * return res.ok(data, 'auth/login');
- *
- * @param  {Object} data
- * @param  {String|Object} options
  *          - pass string to render specified view
+ * @method exports
+ * @param {Object} data
+ * @param {} options
+ * @return 
  */
-
 module.exports = function sendOK (data, options) {
 
   // Get access to `req`, `res`, & `sails`
