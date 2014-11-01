@@ -19,7 +19,7 @@ app.config(['$routeProvider',
         });
         $routeProvider.when('/personaje', {
             template: JST["assets/templates/personaje.html"],
-            controller: 'AlumnoCreateCtl'
+            controller: 'personajeController'
         });
         //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
         $routeProvider.otherwise({

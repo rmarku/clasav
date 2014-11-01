@@ -1,9 +1,9 @@
 /**
-* Personaje_x_item.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Personaje_x_item.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
@@ -13,7 +13,7 @@ module.exports = {
             type: 'string',
             required: true,
             unique: true,
-            primaryKey : true
+            primaryKey: true
         },
 
         seccion_inventario: {
@@ -26,8 +26,5 @@ module.exports = {
             type: 'integer',
             required: 'true'
         }
-
-
-
     }
 };

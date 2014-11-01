@@ -61,4 +61,3 @@ module.exports.passport = {
         }
     }
 };
-console.log(module.exports.passport.google.options.clientSecret)

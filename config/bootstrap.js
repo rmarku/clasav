@@ -31,7 +31,7 @@ module.exports.bootstrap = function (cb) {
         }, 0);
     }
 
-    var fixtures = [ 'Mapa_instancia','Jugador_en_vivo', 'Mapa_generico', 'Clase', 'Alumno'];
+    var fixtures = [ 'Mapa_instancia','Jugador_en_vivo', 'Mapa_generico', 'Clase', 'User'];
 
     Promise.reduce(fixtures, function ( total, item) {
 

@@ -21,14 +21,8 @@ module.exports = {
             required:false
         },
 
-        alumnos: {
-            collection: 'alumno',
-            via:'clases',
-            required: false
-        },
-
-        profesores: {
-            collection: 'profesor',
+        integrantes: {
+            collection: 'user',
             via:'clases',
             required: false
         },

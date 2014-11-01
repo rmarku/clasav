@@ -16,9 +16,8 @@ module.exports = {
             primaryKey : true
         },
 
-        alumnos:{
-            collection: 'alumno',
-            via: 'personajes'
+        duenio:{
+            model: 'user'
         }
     }
 };

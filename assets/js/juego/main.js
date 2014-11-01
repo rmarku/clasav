@@ -51,10 +51,10 @@ var game = {
     sockets_game : {
 
         //Declaraciones temporales (deberian ser externas luego del loggin)
-        id_alumno_cliente                   :   'fabricio_collino@gmail.com',
+        id_alumno_cliente                   :   1,
         id_mapa_instancia_cliente           :   'mapa_instancia1',
         conectarse_a_mapa_instancia_cliente :   true,
-        id_jugador_en_vivo                  :   'jugador_vivo_1',
+        id_jugador_en_vivo                  :   1,
         update_counter                      :   0,
         update_timeOut                      :   200, // (5)segs aproximadamente
 
@@ -154,8 +154,6 @@ var game = {
                                                                                         coordenadas :    angular.toJson(this.mainPlayer_coordenates) }
 
                                 ,function (resdata){
-                                    console.log("socket.put:");
-                                    console.log(resdata)
                                 }
                );
 

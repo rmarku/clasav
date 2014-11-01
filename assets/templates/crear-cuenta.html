@@ -1,7 +1,7 @@
 <br/>
 <br/>
-<div class="container-fluid" align="center">
-    <div class="div-form" align="left" ng-controller="AlumnoCreateCtl">
+<div class="container-fluid" >
+    <div class="div-form text-left" style="margin: auto;" ng-controller="AlumnoCreateCtl">
         <span class="titulos"> Crear Cuenta </span>
 
         <form novalidate="novalidate" action="/auth/local/register" method="post" role="form">
@@ -71,7 +71,7 @@
                 <input type="password" class="form-control" name="password2" ng-model="alumno.contrasena"
                        placeholder="Contrase&ntilde;a" required>
             </div>
-            <div align="right">
+            <div>
 
                 <button class="btn btn-default btn-align" type="submit">Crea</button>
             </div>

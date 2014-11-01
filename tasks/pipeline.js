@@ -49,11 +49,11 @@ var jsFilesToInject = [
     "/js/juego/hud.js",
     "/js/juego/play.js",
     "/js/juego/chat.js",
-    "/js/app.js",
 
     // WEB
-    "/js/controlador.js",
-    "/js/personajes.js"
+    "/js/app.js",
+    "/js/controladores/controlador.js",
+    "/js/controladores/personajes.js"
   //'lib/**/*.js',
 
   // All of the rest of your client-side js files
