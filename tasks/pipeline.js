@@ -29,27 +29,30 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
   
-  // Load this Libs in this order
-  'js/dependencies/sails.io.js/dist/sails.io.js',
+  // Dependencias
+    "/js/dependencies/sails.io.js/dist/sails.io.js",
     "/js/dependencies/angular/angular.js",
     "/js/dependencies/jquery/dist/jquery.js",
     "/js/dependencies/angular-resource/angular-resource.js",
     "/js/dependencies/angular-route/angular-route.js",
     "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
     "/js/dependencies/bootstrap/dist/js/bootstrap.js",
+    "/js/dependencies/angular-toastr/dist/angular-toastr.js",
     "/lib/melonJS.js",
-    //"/js/dependencies/melonJS/melonJS.js",
     "/lib/plugins/debug/debugPanel.js",
     "/lib/plugins/debug/particleDebugPanel.js",
-    "/js/main.js",
+    //"/js/dependencies/melonJS/melonJS.js",
+
+    // Juego
+    "/js/juego/main.js",
+    "/js/juego/entities/player.js",
+    "/js/juego/hud.js",
+    "/js/juego/play.js",
     "/js/app.js",
-    "/js/comun.js",
+
+    // WEB
     "/js/controlador.js",
-    "/js/entities/player.js",
-    "/js/hud.js",
-    "/js/personajes.js",
-    "/js/play.js",
-    "/js/servicios.js"
+    "/js/personajes.js"
   //'lib/**/*.js',
 
   // All of the rest of your client-side js files

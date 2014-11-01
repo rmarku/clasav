@@ -68,3 +68,17 @@ $(document).ready(function() {
 });
 
 */
+
+app.controller('gamePageController', function ($scope) {
+    /**
+     * Description
+     * @method init
+     * @return
+     */
+    $scope.init = function () {
+        setTimeout(function (){
+            game.onload();
+        },1000);
+    };
+    $scope.init();
+})

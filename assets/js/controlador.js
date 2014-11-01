@@ -1,20 +1,3 @@
-var app = angular.module('juegoapl.controllers', ['ngRoute']);
-
-app.controller('AlumnoCreateCtl', [ '$scope', 'AlumnosFactory', '$location', '$location', function ($scope, AlumnosFactory, $location, $location) {
-
-    // callback for ng-click 'createNewUser':
-    /**
-     * Description
-     * @method createNewAlumno
-     * @return 
-     */
-    $scope.createNewAlumno = function () {
-        AlumnosFactory.create($scope.alumno);
-        $location.path('/personaje');
-    }
-
-} ]);
-
 app.controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
     $scope.credentials = {
         email: '',
