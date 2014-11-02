@@ -7,7 +7,7 @@ game.PlayScreen = me.ScreenObject.extend({
      */
     onResetEvent: function () {
         // load a level
-        me.levelDirector.loadLevel("mapa");
+        me.levelDirector.loadLevel("Inicio");
         // subscribe to key down event
         me.audio.playTrack("snow", 0.7);
         me.audio.muteAll();
