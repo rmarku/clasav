@@ -26,14 +26,14 @@ module.exports = {
         //Registramos al alumno como conectado
         if (id_alumno) { // Si recibimos el ID del cliente, es porque el mismo desea pasar su estado a 'Conectado'
 
-            Jugador_en_vivo.findOne({alumno: id_alumno, mapa_instancia: id_mapa_instancia}). // encontramos el ID de jugador Online que se corresponde al estudiante que envia la solicitud
+            Jugador_en_vivo.findOne({user: id_alumno, mapa_instancia: id_mapa_instancia}). // encontramos el ID de jugador Online que se corresponde al estudiante que envia la solicitud
                 exec(function update(err, jugador_en_vivo_encontrado) {
 
                     Jugador_en_vivo.update({id: jugador_en_vivo_encontrado.id}, //Jugador a actualizar
                         {conectado: 'true'}).exec(function publish(err, updated) {
 
                             Jugador_en_vivo.publishUpdate(updated[0].id, { conectado: updated[0].conectado }); //Publicamos actualizacion a todos los sockets suscriptos a mi jugador
-                        })
+                        });
                 });
         }
 

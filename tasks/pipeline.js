@@ -19,30 +19,41 @@ var cssFilesToInject = [
     "/js/dependencies/BrandButtons/dist/brand-buttons.min.css",
     "/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css",
     "/js/dependencies/font-awesome/css/font-awesome.min.css",
-    "/styles/comun.css",
-    "/styles/importer.css"
-  //'styles/**/*.css'
+    "/js/dependencies/angular-animate/angular-animate.css",
+    "/js/dependencies/angular-toastr/dist/angular-toastr.css",
+    'styles/**/*.css'
 ];
 
 
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  
-  // Load this Libs in this order
-  'js/dependencies/sails.io.js/dist/sails.io.js',
+
+    // Dependencias
+    "/js/dependencies/sails.io.js/dist/sails.io.js",
     "/js/dependencies/angular/angular.js",
     "/js/dependencies/jquery/dist/jquery.js",
+    "/js/dependencies/bootstrap/dist/js/bootstrap.js",
     "/js/dependencies/angular-resource/angular-resource.js",
     "/js/dependencies/angular-route/angular-route.js",
     "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
-    "/js/dependencies/bootstrap/dist/js/bootstrap.js",
+    "/js/dependencies/angular-toastr/dist/angular-toastr.js",
     "/lib/melonJS.js",
-    //"/js/dependencies/melonJS/melonJS.js",
     "/lib/plugins/debug/debugPanel.js",
     "/lib/plugins/debug/particleDebugPanel.js",
-    "/js/main.js",
+    //"/js/dependencies/melonJS/melonJS.js",
+
     "/js/app.js",
+    // Juego
+    "/js/juego/main.js",
+    "/js/juego/entities/player.js",
+    "/js/juego/hud.js",
+    "/js/juego/play.js",
+    "/js/juego/chat.js",
+
+    // WEB
+    "/js/app.js",
+<<<<<<< HEAD
     "/js/comun.js",
     "/js/controlador.js",
     "/js/entities/player.js",
@@ -52,11 +63,19 @@ var jsFilesToInject = [
     "/js/play.js",
     "/js/servicios.js"
   //'lib/**/*.js',
+=======
+    "/js/controladores/navVar.js",
+    "/js/controladores/controlador.js",
+    "/js/helpers.js",
+    "/js/controladores/personajes.js",
+    "/js/controladores/editUsuario.js"
+    //'lib/**/*.js',
+>>>>>>> master
 
-  // All of the rest of your client-side js files
-  // will be injected here in no particular order.
-  //'js/main.js',
-  //'js/**/*.js'
+    // All of the rest of your client-side js files
+    // will be injected here in no particular order.
+    //'js/main.js',
+    //'js/**/*.js'
 ];
 
 
@@ -70,20 +89,19 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
-  'templates/**/*.html'
+    'templates/**/*.html'
 ];
-
 
 
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
-module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
-  return '.tmp/public/' + path;
+module.exports.cssFilesToInject = cssFilesToInject.map(function (path) {
+    return '.tmp/public/' + path;
 });
-module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
-  return '.tmp/public/' + path;
+module.exports.jsFilesToInject = jsFilesToInject.map(function (path) {
+    return '.tmp/public/' + path;
 });
-module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
-  return 'assets/' + path;
+module.exports.templateFilesToInject = templateFilesToInject.map(function (path) {
+    return 'assets/' + path;
 });

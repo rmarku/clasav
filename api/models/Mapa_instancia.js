@@ -9,13 +9,6 @@ module.exports = {
 
   attributes:{
 
-      id: {
-          type: 'string',
-          required: true,
-          unique: true,
-          primaryKey : true
-      },
-
       clase_instancia: {
           model: 'clase',
           required: false

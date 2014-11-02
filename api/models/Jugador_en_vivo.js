@@ -8,23 +8,20 @@
 module.exports = {
 
     attributes: {
-        id: {
-            type: 'string',
-            required: true,
-            unique: true,
-            primaryKey : true
-        },
-
         mapa_instancia: {
             model: 'mapa_instancia',
             required : false
         },
 
-        alumno: {
-            model: 'alumno',
+        user: {
+            model: 'user',
             required : false //true
         },
 
+        personaje: {
+            model: 'personaje',
+            required : false //true
+        },
         estado: {
             type: "json",
             required:false

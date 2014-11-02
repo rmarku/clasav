@@ -8,27 +8,13 @@
 module.exports = {
 
     attributes: {
-
-        id: {
-            type: 'string',
-            required: true,
-            unique: true,
-            primaryKey : true
-        },
-
         institucion_instancia:{
             model:'institucion',
             required:false
         },
 
-        alumnos: {
-            collection: 'alumno',
-            via:'clases',
-            required: false
-        },
-
-        profesores: {
-            collection: 'profesor',
+        integrantes: {
+            collection: 'user',
             via:'clases',
             required: false
         },
@@ -37,9 +23,10 @@ module.exports = {
             collection: 'mapa_instancia',
             via:'clase_instancia',
             required: false
+        },
+        nombre:{
+            type: "string"
         }
-
-
     }
 };
 

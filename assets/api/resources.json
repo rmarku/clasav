@@ -1,51 +1,124 @@
-[ {
-	"name" : "RPGmakerXPMegaTilesetByLmnopguy7",
-	"type" : "image",
-	"src" : "data/map/tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png"
-},{
-	"name" : "metatiles32x32",
-	"type" : "image",
-	"src" : "data/map/tileset/metatiles32x32.png"
-},{
-	"name" : "tilemap",
-	"type" : "image",
-	"src" : "data/map/tileset/tilemap.png"
-}, {
-	"name" : "building_interior_objects_01",
-	"type" : "image",
-	"src" : "data/map/tileset/building_interior_objects_01.png"
-},{
-	"name" : "town",
-	"type" : "image",
-	"src" : "data/map/tileset/town.png"
-}, {
-	"name" : "mapa",
-	"type" : "tmx",
-	"src" : "data/map/Inicio.tmx"
-},  {
-	"name" : "test",
-	"type" : "tmx",
-	"src" : "data/map/test.tmx"
-}, {
-	"name" : "snow",
-	"type" : "audio",
-	"src" : "data/music/"
-}, {
-	"name" : "pj_f",
-	"type" : "image",
-	"src" : "data/sprites/characters/ym/basic/pj_f.png"
-}, {
-	"name" : "pj_b",
-	"type" : "image",
-	"src" : "data/sprites/characters/ym/basic/pj_b.png"
-}, {
-	"name" : "1_brown",
-	"type" : "image",
-	"src" : "data/sprites/characters/ym/pants/1_brown.png"
-}, {
-	"name" : "4_white",
-	"type" : "image",
-	"src" : "data/sprites/characters/ym/shirt/4_white.png"
-}
+[
+    {
+        "name": "RPGmakerXPMegaTilesetByLmnopguy7",
+        "type": "image",
+        "src": "data/map/tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png"
+    },
+    {
+        "name": "metatiles32x32",
+        "type": "image",
+        "src": "data/map/tileset/metatiles32x32.png"
+    },
+    {
+        "name": "tilemap",
+        "type": "image",
+        "src": "data/map/tileset/tilemap.png"
+    },
+    {
+        "name": "building_interior_objects_01",
+        "type": "image",
+        "src": "data/map/tileset/building_interior_objects_01.png"
+    },
+    {
+        "name": "town",
+        "type": "image",
+        "src": "data/map/tileset/town.png"
+    },
+    {
+        "name": "mapa",
+        "type": "tmx",
+        "src": "data/map/Inicio.tmx"
+    },
+    {
+        "name": "test",
+        "type": "tmx",
+        "src": "data/map/test.tmx"
+    },
+    {
+        "name": "snow",
+        "type": "audio",
+        "src": "data/music/"
+    },
+
+    {
+        "name": "masculino/basic/1f.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/basic/1f.png"
+    },
+    {
+        "name": "masculino/basic/1b.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/basic/1b.png"
+    },
+    {
+        "name": "femenino/basic/1f.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/basic/1f.png"
+    },
+    {
+        "name": "femenino/basic/1b.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/basic/1b.png"
+    },
+
+    {
+        "name": "femenino/hair/front/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/hair/front/1.png"
+    },
+    {
+        "name": "femenino/hair/front/1hair.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/hair/front/1hair.png"
+    },
+    {
+        "name": "femenino/hair/back/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/hair/back/1.png"
+    },
+
+    {
+        "name": "masculino/hair/front/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/hair/front/1.png"
+    },
+    {
+        "name": "masculino/hair/front/1hair.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/hair/front/1hair.png"
+    },
+
+    {
+        "name": "femenino/pants/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/pants/1.png"
+    },
+    {
+        "name": "masculino/pants/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/pants/1.png"
+    },
+
+    {
+        "name": "femenino/shirt/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/pants/1.png"
+    },
+    {
+        "name": "masculino/shirt/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/pants/1.png"
+    },
+
+    {
+        "name": "femenino/foot/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/femenino/pants/1.png"
+    },
+    {
+        "name": "masculino/foot/1.png",
+        "type": "image",
+        "src": "data/sprites/characters/masculino/pants/1.png"
+    }
 
 ]

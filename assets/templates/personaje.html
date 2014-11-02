@@ -1,35 +1,37 @@
-<div class="row">
+<div class="container-fluid">
+    <div class="col-md-7">
+        <div class="div-form  text-left" style="margin: 0px 0px 0px auto;">
+            <span class="titulos">Tu personaje</span>
 
-	<div class="col-md-10">
-		<div class="div-form" align="left" ng-controller="Controlador">
-			<font class="titulos">Tu personaje</font>
-			<form role="form" method="post" ng-submit="crearCuenta()">
-				<div class="form-group">
-					<label for="nombre">Nombre: </label>
-					<input type="text" class="form-control" name="nombreUsuario" ng-model="nombre" placeholder="Introduce tu nombre">
-					<span> {{nombre}} </span>
-				</div>
-				<div class="form-group">
-					<label for="nombre">Tipo de pelo: </label>
-					<canvas id="pelo"></canvas>
-					<span> {{tipo_pelo}} </span>
-				</div>
-				<div class="form-group">
-					<label for="nombre">Color de pelo: </label>
-					<input type="text" class="form-control" name="nombreUsuario" ng-model="nombre" placeholder="Introduce tu nombre">
-					<span> {{color_pelo}} </span>
-				</div>
-				<div align="right">
-					<button type="submit" class="btn btn-default  btn-align">
-						Crear
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
+            <form role="form" method="post" ng-submit="crearCuenta()">
+                <div class="form-group">
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" class="form-control" name="nombreUsuario" ng-model="pj.nombre"
+                           placeholder="Introduce tu nombre">
+                    <span> {{nombre}} </span>
+                </div>
+                <div class="form-group">
+                    <label for="pelo">Pelo: </label>
+                    <i class="fa fa-lg fa-arrow-circle-left" ng-click="peloAnterior()"></i>
+                    <canvas id="pelo" type="numeric" width="31" height="31" ></canvas>
+                    <i class="fa fa-lg fa-arrow-circle-right" ng-click="peloSiguiente()"></i>
+                    <br>
 
-	<div class="col-md-1">
-		<canvas id="pj" width="32" height="64"></canvas>
-	</div>
+                    <label for="pelo">color: </label>
+                    <input id="pelo_color" type="color" name="pelo_color" ng-model="pj.pelo_color">
+                </div>
 
+                <div class="form-group">
+                    <button ng-click="crearPj()" class="btn btn-default  btn-align">
+                        Crear
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <canvas id="pj" width="32" height="48"></canvas>
+        <div id="imagenes"></div>
+    </div>
 </div>
