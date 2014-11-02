@@ -9,10 +9,15 @@
 module.exports = {
 
     attributes: {
-
         items: {
             collection: 'item',
-            via: 'sprites'
+            via: 'sprite'
+        },
+        imagen:{
+            type: 'string'
+        },
+        icono:{
+            type: 'string'
         }
     }
 };

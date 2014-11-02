@@ -11,7 +11,7 @@ game.PlayerEntity = me.Entity.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return 
+     * @return
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [ x, y, settings ]);
@@ -72,13 +72,12 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('left',true);
+            game.sockets_game.update_mainPlayer_estado('left', true);
         }
         else {
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('left',false);
+            game.sockets_game.update_mainPlayer_estado('left', false);
         }
-
 
 
         if (me.input.isKeyPressed('right')) {
@@ -86,13 +85,12 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.x += this.body.accel.x * me.timer.tick;
 
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('right',true);
+            game.sockets_game.update_mainPlayer_estado('right', true);
         }
-        else{
+        else {
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('right',false);
+            game.sockets_game.update_mainPlayer_estado('right', false);
         }
-
 
 
         if (me.input.isKeyPressed('up')) {
@@ -100,12 +98,11 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.y -= this.body.accel.y * me.timer.tick;
 
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('up',true);
-        }else{
+            game.sockets_game.update_mainPlayer_estado('up', true);
+        } else {
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('up',false);
+            game.sockets_game.update_mainPlayer_estado('up', false);
         }
-
 
 
         if (me.input.isKeyPressed('down')) {
@@ -113,11 +110,11 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.y += this.body.accel.y * me.timer.tick;
 
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('down',true);
+            game.sockets_game.update_mainPlayer_estado('down', true);
         }
-        else{
+        else {
             //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('down',false);
+            game.sockets_game.update_mainPlayer_estado('down', false);
         }
 
 
@@ -145,12 +142,12 @@ game.PlayerEntity = me.Entity.extend({
      * Description
      * @method draw
      * @param {} renderer
-     * @return 
+     * @return
      */
     draw: function (renderer) {
 
         // Envio datos de posicion y estado al servidor
-        game.sockets_game.update_mainPlayer_coordenates({'x':this.pos.x,'y':this.pos.y});
+        game.sockets_game.update_mainPlayer_coordenates({'x': this.pos.x, 'y': this.pos.y});
         game.sockets_game.send_Server_mainPlayer_update();
         //
 
@@ -170,10 +167,17 @@ game.PlayerEntity = me.Entity.extend({
 
 
     },
+
+
+    getItemImg: function (itemId) {
+        var dir = this.data.duenio.sexo + '/'
+        return null;
+    },
+
     /**
      * Description
      * @method vestir
-     * @return 
+     * @return
      */
     vestir: function () {
         this.canvas = document.createElement('canvas');
@@ -183,8 +187,8 @@ game.PlayerEntity = me.Entity.extend({
         body.appendChild(this.canvas);
 
         this.ctx = this.canvas.getContext("2d");
-        this.ctx.drawImage(this.renderable.image, 0, 0);
 
+        //Dibjo el nombre
 
         this.ctx.lineCap = "round";
         this.ctx.lineJoin = "round";
@@ -199,17 +203,46 @@ game.PlayerEntity = me.Entity.extend({
         this.ctx.strokeText(this.data.nombre, this.renderable.image.width / 2 - txtw / 2, this.renderable.image.height + 2);
         this.ctx.fillText(this.data.nombre, this.renderable.image.width / 2 - txtw / 2, this.renderable.image.height + 2);
 
-        if (this.data.vestimenta.pelo != "") {
-            img = me.loader.getImage(this.data.vestimenta.pelo);
+
+        // Dibujo el personaje
+
+        var dir = this.data.duenio.sexo + '/'
+        // 1 el cuerpo de fondo
+        img = me.loader.getImage(dir + 'basic/1b.png');
+        this.ctx.drawImage(img, 0, 0);
+
+        // 2 el pelo de fondo
+        img = me.loader.getImage(dir + 'hair/back/' + this.data.pelo + '.png');
+        if (img) {
+            this.ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
+        }
+
+        // 3 el cuerpo normal
+        img = me.loader.getImage(dir + 'basic/1f.png');
+        this.ctx.drawImage(img, 0, 0);
+
+        // 4 zapato No andando :S
+        img = this.getItemImg(this.data.zapatos);
+        if (img) {
             this.ctx.drawImage(img, 0, 0);
         }
-        if (this.data.vestimenta.pantalon != "") {
-            img = me.loader.getImage(this.data.vestimenta.pantalon);
+        // 5 Pantalon
+        img = this.getItemImg(this.data.pantalon);
+        if (img) {
             this.ctx.drawImage(img, 0, 0);
         }
-        if (this.data.vestimenta.remera != "") {
-            img = me.loader.getImage(this.data.vestimenta.remera);
+
+        img = this.getItemImg(this.data.remera);
+        if (img) {
             this.ctx.drawImage(img, 0, 0);
+        }
+
+
+        if (this.data.pelo != "") {
+            img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + '.png');
+            this.ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
+            img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + 'hair.png');
+            this.ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
         }
 
         this.renderable.image.src = this.canvas.toDataURL();

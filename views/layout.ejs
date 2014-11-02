@@ -12,15 +12,17 @@
     <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons.min.css">
     <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css">
     <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/js/dependencies/angular-animate/angular-animate.js">
+    <link rel="stylesheet" href="/js/dependencies/angular-toastr/dist/angular-toastr.css">
     <link rel="stylesheet" href="/styles/comun.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
 
 </head>
-<body class="body-gradient">
+<body class="body-gradient" ng-controller="bodyController">
 
 <header class="text-center">
-    <div class="navbar navbar-inverse row">
+    <div class="navbar navbar-inverse row" >
         <% if (!user) { %>
         <div class="text-left col-md-2">
             <a href="#/crear-cuenta" class="btn btn2 btn-default">Crear Cuenta</a>
@@ -60,6 +62,7 @@
         <div class="text-right">
             <p style="color: white;">Bienvenido
                 <%- user.nombre %> <%- user.apellido %>
+                <a class="btn btn2 btn-default" ng-click="verCuenta()">Cuenta</a>
                 <a class="btn btn2 btn-default" href="/logout">Cerrar Sesi&oacute;n</a>
             </p>
         </div>
@@ -128,7 +131,10 @@
 <script src="/js/juego/chat.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/controladores/controlador.js"></script>
+<script src="/js/helpers.js"></script>
 <script src="/js/controladores/personajes.js"></script>
+<script src="/js/controladores/editUsuario.js"></script>
+<script src="/js/controladores/navVar.js"></script>
 <!--SCRIPTS END-->
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>

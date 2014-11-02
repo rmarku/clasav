@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module('juegoapl', ['ngSailsBind','ngRoute','toastr']);
+var app = angular.module('juegoapl', ['ngSailsBind', 'ngRoute', 'toastr']);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
@@ -7,8 +7,12 @@ app.config(['$routeProvider',
             template: JST["assets/templates/index.html"]
         });
         $routeProvider.when('/crear-cuenta', {
-            template: JST["assets/templates/crear-cuenta.html"],
-            controller: 'AlumnoCreateCtl'
+            template: JST["assets/templates/cuenta.html"],
+            controller: 'editUsuario'
+        });
+        $routeProvider.when('/cuenta', {
+            template: JST["assets/templates/cuenta.html"],
+            controller: 'editUsuario'
         });
         $routeProvider.when('/misiones', {
             template: JST["assets/templates/gmisiones.html"]
@@ -25,4 +29,27 @@ app.config(['$routeProvider',
         $routeProvider.otherwise({
             template: JST["assets/templates/index.html"]
         });
-    }]);
+    }
+]);
+
+app.config(function(toastrConfig) {
+    angular.extend(toastrConfig, {
+        allowHtml: true,
+        closeButton: false,
+        closeHtml: '<button>&times;</button>',
+        containerId: 'toast-container',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        messageClass: 'toast-message',
+        positionClass: 'toast-bottom-right',
+        tapToDismiss: true,
+        timeOut: 7000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
+});

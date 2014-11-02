@@ -6,177 +6,182 @@
  * the basics of Passport.js to work.
  */
 var AuthController = {
-  /**
-   * Render the login page
-   * The login form itself is just a simple HTML form:
-   * <form role="form" action="/auth/local" method="post">
-   * <input type="text" name="identifier" placeholder="Username or Email">
-   * <input type="password" name="password" placeholder="Password">
-   * <button type="submit">Sign in</button>
-   * </form>
-   * You could optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!documentation/config.csrf
-   * A simple example of automatically listing all available providers in a
-   * Handlebars template would look like this:
-   * {{#each providers}}
-   * <a href="/auth/{{slug}}" role="button">{{name}}</a>
-   * {{/each}}
-   * @method login
-   * @param {Object} req
-   * @param {Object} res
-   * @return 
-   */
-  login: function (req, res) {
-    var strategies = sails.config.passport
-      , providers  = {};
-
-    // Get a list of available providers for use in your templates.
-    Object.keys(strategies).forEach(function (key) {
-      if (key === 'local') {
-        return;
-      }
-
-      providers[key] = {
-        name: strategies[key].name
-      , slug: key
-      };
-    });
-
-    // Render the `auth/login.ext` view
-    res.view({
-      providers : providers
-    , errors    : req.flash('error')
-    });
-  },
-
-  /**
-   * Log out a user and return them to the homepage
-   * Passport exposes a logout() function on req (also aliased as logOut()) that
-   * can be called from any route handler which needs to terminate a login
-   * session. Invoking logout() will remove the req.user property and clear the
-   * login session (if any).
-   * For more information on logging out users in Passport.js, check out:
-   * http://passportjs.org/guide/logout/
-   * @method logout
-   * @param {Object} req
-   * @param {Object} res
-   * @return 
-   */
-  logout: function (req, res) {
-    req.logout();
-    res.redirect('/');
-  },
-
-  /**
-   * Render the registration page
-   * Just like the login form, the registration form is just simple HTML:
-   * <form role="form" action="/auth/local/register" method="post">
-   * <input type="text" name="username" placeholder="Username">
-   * <input type="text" name="email" placeholder="Email">
-   * <input type="password" name="password" placeholder="Password">
-   * <button type="submit">Sign up</button>
-   * </form>
-   * @method register
-   * @param {Object} req
-   * @param {Object} res
-   * @return 
-   */
-  register: function (req, res) {
-    res.view({
-      errors: req.flash('error')
-    });
-  },
-
-  /**
-   * Create a third-party authentication endpoint
-   * @method provider
-   * @param {Object} req
-   * @param {Object} res
-   * @return 
-   */
-  provider: function (req, res) {
-    passport.endpoint(req, res);
-  },
-
-  /**
-   * Create a authentication callback endpoint
-   * This endpoint handles everything related to creating and verifying Pass-
-   * ports and users, both locally and from third-aprty providers.
-   * Passport exposes a login() function on req (also aliased as logIn()) that
-   * can be used to establish a login session. When the login operation
-   * completes, user will be assigned to req.user.
-   * For more information on logging in users in Passport.js, check out:
-   * http://passportjs.org/guide/login/
-   * @method callback
-   * @param {Object} req
-   * @param {Object} res
-   * @return 
-   */
-  callback: function (req, res) {
     /**
-     * Description
-     * @method tryAgain
-     * @param {} err
-     * @return 
+     * Render the login page
+     * The login form itself is just a simple HTML form:
+     * <form role="form" action="/auth/local" method="post">
+     * <input type="text" name="identifier" placeholder="Username or Email">
+     * <input type="password" name="password" placeholder="Password">
+     * <button type="submit">Sign in</button>
+     * </form>
+     * You could optionally add CSRF-protection as outlined in the documentation:
+     * http://sailsjs.org/#!documentation/config.csrf
+     * A simple example of automatically listing all available providers in a
+     * Handlebars template would look like this:
+     * {{#each providers}}
+     * <a href="/auth/{{slug}}" role="button">{{name}}</a>
+     * {{/each}}
+     * @method login
+     * @param {Object} req
+     * @param {Object} res
+     * @return
      */
-    function tryAgain (err) {
+    login: function (req, res) {
+        var strategies = sails.config.passport
+            , providers = {};
 
-      // Only certain error messages are returned via req.flash('error', someError)
-      // because we shouldn't expose internal authorization errors to the user.
-      // We do return a generic error and the original request body.
-      var flashError = req.flash('error')[0];
+        // Get a list of available providers for use in your templates.
+        Object.keys(strategies).forEach(function (key) {
+            if (key === 'local') {
+                return;
+            }
 
-      if (err && !flashError ) {
-        req.flash('error', 'Error.Passport.Generic');
-      } else if (flashError) {
-        req.flash('error', flashError);
-      }
-      req.flash('form', req.body);
+            providers[key] = {
+                name: strategies[key].name, slug: key
+            };
+        });
 
-      // If an error was thrown, redirect the user to the
-      // login, register or disconnect action initiator view.
-      // These views should take care of rendering the error messages.
-      var action = req.param('action');
+        // Render the `auth/login.ext` view
+        res.view({
+            providers: providers, errors: req.flash('error')
+        });
+    },
 
-      switch (action) {
-        case 'register':
-          res.redirect('/#/crear-cuenta');
-          break;
-        case 'disconnect':
-          res.redirect('back');
-          break;
-        default:
-          res.redirect('/');
-      }
-    }
+    /**
+     * Log out a user and return them to the homepage
+     * Passport exposes a logout() function on req (also aliased as logOut()) that
+     * can be called from any route handler which needs to terminate a login
+     * session. Invoking logout() will remove the req.user property and clear the
+     * login session (if any).
+     * For more information on logging out users in Passport.js, check out:
+     * http://passportjs.org/guide/logout/
+     * @method logout
+     * @param {Object} req
+     * @param {Object} res
+     * @return
+     */
+    logout: function (req, res) {
+        req.logout();
+        res.redirect('/');
+    },
 
-    passport.callback(req, res, function (err, user) {
-      if (err) {
-        return tryAgain();
-      }
+    /**
+     * Render the registration page
+     * Just like the login form, the registration form is just simple HTML:
+     * <form role="form" action="/auth/local/register" method="post">
+     * <input type="text" name="username" placeholder="Username">
+     * <input type="text" name="email" placeholder="Email">
+     * <input type="password" name="password" placeholder="Password">
+     * <button type="submit">Sign up</button>
+     * </form>
+     * @method register
+     * @param {Object} req
+     * @param {Object} res
+     * @return
+     */
+    register: function (req, res) {
+        res.send({
+            errors: req.flash('error')
+        });
+    },
 
-      req.login(user, function (err) {
-        if (err) {
-          return tryAgain();
+    /**
+     * Create a third-party authentication endpoint
+     * @method provider
+     * @param {Object} req
+     * @param {Object} res
+     * @return
+     */
+    provider: function (req, res) {
+        passport.endpoint(req, res);
+    },
+
+    /**
+     * Create a authentication callback endpoint
+     * This endpoint handles everything related to creating and verifying Pass-
+     * ports and users, both locally and from third-aprty providers.
+     * Passport exposes a login() function on req (also aliased as logIn()) that
+     * can be used to establish a login session. When the login operation
+     * completes, user will be assigned to req.user.
+     * For more information on logging in users in Passport.js, check out:
+     * http://passportjs.org/guide/login/
+     * @method callback
+     * @param {Object} req
+     * @param {Object} res
+     * @return
+     */
+    callback: function (req, res) {
+        /**
+         * Description
+         * @method tryAgain
+         * @param {} err
+         * @return
+         */
+        function tryAgain(err) {
+
+            // Only certain error messages are returned via req.flash('error', someError)
+            // because we shouldn't expose internal authorization errors to the user.
+            // We do return a generic error and the original request body.
+            var flashError = req.flash('error')[0];
+
+            if (err && !flashError) {
+                req.flash('error', 'Error.Passport.Generic');
+            } else if (flashError) {
+                req.flash('error', flashError);
+            }
+            req.flash('form', req.body);
+
+            // If an error was thrown, redirect the user to the
+            // login, register or disconnect action initiator view.
+            // These views should take care of rendering the error messages.
+            var action = req.param('action');
+
+            switch (action) {
+                case 'register':
+                    res.send({
+                        errors: req.flash('error')
+                    });
+                    break;
+                case 'disconnect':
+                    res.redirect('back');
+                    break;
+                default:
+                    res.redirect('/');
+            }
         }
 
-        // Upon successful login, send the user to the homepage were req.user
-        // will available.
-        res.redirect('/');
-      });
-    });
-  },
+        passport.callback(req, res, function (err, user) {
+            if (err) {
+                return tryAgain();
+            }
+            req.login(user, function (err) {
+                if (err) {
+                    return tryAgain();
+                }
+                if (typeof req.body.local != 'undefined') {
+                    res.send({
+                        loguedin: 'true'
+                    });
+                    return;
+                }
 
-  /**
-   * Disconnect a passport from a user
-   * @method disconnect
-   * @param {Object} req
-   * @param {Object} res
-   * @return 
-   */
-  disconnect: function (req, res) {
-    passport.disconnect(req, res);
-  }
+                // Upon successful login, send the user to the homepage were req.user
+                // will available.
+                res.redirect('/');
+            });
+        });
+    },
+
+    /**
+     * Disconnect a passport from a user
+     * @method disconnect
+     * @param {Object} req
+     * @param {Object} res
+     * @return
+     */
+    disconnect: function (req, res) {
+        passport.disconnect(req, res);
+    }
 };
 
 module.exports = AuthController;

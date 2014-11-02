@@ -19,17 +19,19 @@ var cssFilesToInject = [
     "/js/dependencies/BrandButtons/dist/brand-buttons.min.css",
     "/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css",
     "/js/dependencies/font-awesome/css/font-awesome.min.css",
+    "/js/dependencies/angular-animate/angular-animate.js",
+    "/js/dependencies/angular-toastr/dist/angular-toastr.css",
     "/styles/comun.css",
     "/styles/importer.css"
-  //'styles/**/*.css'
+    //'styles/**/*.css'
 ];
 
 
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-  
-  // Dependencias
+
+    // Dependencias
     "/js/dependencies/sails.io.js/dist/sails.io.js",
     "/js/dependencies/angular/angular.js",
     "/js/dependencies/jquery/dist/jquery.js",
@@ -53,13 +55,16 @@ var jsFilesToInject = [
     // WEB
     "/js/app.js",
     "/js/controladores/controlador.js",
-    "/js/controladores/personajes.js"
-  //'lib/**/*.js',
+    "/js/helpers.js",
+    "/js/controladores/personajes.js",
+    "/js/controladores/editUsuario.js",
+    "/js/controladores/navVar.js"
+    //'lib/**/*.js',
 
-  // All of the rest of your client-side js files
-  // will be injected here in no particular order.
-  //'js/main.js',
-  //'js/**/*.js'
+    // All of the rest of your client-side js files
+    // will be injected here in no particular order.
+    //'js/main.js',
+    //'js/**/*.js'
 ];
 
 
@@ -73,20 +78,19 @@ var jsFilesToInject = [
 // templates get spit out to the same file.  Be sure and check out `tasks/README.md`
 // for information on customizing and installing new tasks.
 var templateFilesToInject = [
-  'templates/**/*.html'
+    'templates/**/*.html'
 ];
-
 
 
 // Prefix relative paths to source files so they point to the proper locations
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
-module.exports.cssFilesToInject = cssFilesToInject.map(function(path) {
-  return '.tmp/public/' + path;
+module.exports.cssFilesToInject = cssFilesToInject.map(function (path) {
+    return '.tmp/public/' + path;
 });
-module.exports.jsFilesToInject = jsFilesToInject.map(function(path) {
-  return '.tmp/public/' + path;
+module.exports.jsFilesToInject = jsFilesToInject.map(function (path) {
+    return '.tmp/public/' + path;
 });
-module.exports.templateFilesToInject = templateFilesToInject.map(function(path) {
-  return 'assets/' + path;
+module.exports.templateFilesToInject = templateFilesToInject.map(function (path) {
+    return 'assets/' + path;
 });

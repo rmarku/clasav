@@ -1,4 +1,4 @@
-app.controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, AuthService) {
+app.controller('LoginController', function ($scope) {
     $scope.credentials = {
         email: '',
         contrasena: ''
@@ -7,9 +7,9 @@ app.controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, Aut
      * Description
      * @method login
      * @param {} credentials
-     * @return 
-     */
-    $scope.login = function (credentials) {
+     * @return
+     *
+     $scope.login = function (credentials) {
         AuthService.login(credentials).then(function (user) {
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
             $scope.setCurrentUser(user);
@@ -17,19 +17,28 @@ app.controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, Aut
             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
         });
     };
+     */
 })
 
-app.controller('gamePageController', function ($scope) {
+app.controller('gamePageController', ['$scope', '$location', function ($scope, $location) {
     /**
      * Description
      * @method init
-     * @return 
+     * @return
      */
+    $scope.$parent.getUser().then(function (data) {
+            if (angular.isUndefined(data.id))
+                $location.path('/');
+            else
+                $scope.init();
+        }
+    );
+
     $scope.init = function () {
-        setTimeout(function (){
+        setTimeout(function () {
             game.onload();
-        },1000);
+        }, 1000);
     };
-    $scope.init();
-})
+}
+])
 

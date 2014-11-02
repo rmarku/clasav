@@ -24,20 +24,18 @@ module.exports = {
             required: true
         },
 
-        items_x_personajes:{
-            collection: 'personaje_x_item',
-            via: 'id',
+        instancias:{
+            collection: 'item_instancia',
+            via: 'item',
             required: false
         },
-
-        sprites: {
-            collection: 'sprite',
-            via:'items'
+        sprite: {
+            model: 'sprite'
+        },
+        // si empieza con # es un color, sino no se aplica tinte.
+        color:{
+            type: 'string',
+            required: true
         }
-
-
-
-
-
     }
 };
