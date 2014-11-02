@@ -130,8 +130,7 @@ game.PlayerEntity = me.Entity.extend({
             this.body.vel.scale(this.body.maxVel.x);
         }
         this.body.update();
-        if (this.body.vel.x != 0 || this.body.vel.y != 0
-            || (this.renderable && this.renderable.isFlickering())) {
+        if (this.body.vel.x !== 0 || this.body.vel.y !== 0 || (this.renderable && this.renderable.isFlickering())) {
             this._super(me.Entity, 'update', [ dt ]);
             return true;
         }
@@ -170,7 +169,7 @@ game.PlayerEntity = me.Entity.extend({
 
 
     getItemImg: function (itemId) {
-        var dir = this.data.duenio.sexo + '/'
+        var dir = this.data.duenio.sexo + '/';
         return null;
     },
 
@@ -206,7 +205,7 @@ game.PlayerEntity = me.Entity.extend({
 
         // Dibujo el personaje
 
-        var dir = this.data.duenio.sexo + '/'
+        var dir = this.data.duenio.sexo + '/';
         // 1 el cuerpo de fondo
         img = me.loader.getImage(dir + 'basic/1b.png');
         this.ctx.drawImage(img, 0, 0);
@@ -238,7 +237,7 @@ game.PlayerEntity = me.Entity.extend({
         }
 
 
-        if (this.data.pelo != "") {
+        if (this.data.pelo !== "") {
             img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + '.png');
             this.ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
             img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + 'hair.png');

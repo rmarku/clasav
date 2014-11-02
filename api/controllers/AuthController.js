@@ -27,8 +27,8 @@ var AuthController = {
      * @return
      */
     login: function (req, res) {
-        var strategies = sails.config.passport
-            , providers = {};
+        var strategies = sails.config.passport;
+        var providers = {};
 
         // Get a list of available providers for use in your templates.
         Object.keys(strategies).forEach(function (key) {

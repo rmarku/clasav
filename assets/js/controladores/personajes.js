@@ -23,7 +23,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
             c1: new Image(),
             c2: new Image()
         }
-    }
+    };
     var img_h = 0;
     var img_v = 0;
 
@@ -117,7 +117,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
                 img_v = 0;
             }
         }
-    }
+    };
     var int = $interval(animacion, 200);
     $scope.$on('$destroy', function () {
         // Make sure that the interval is destroyed too
@@ -144,7 +144,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
             return;
         }
         $scope.pj.duenio = data.userId;
-        $scope.$apply;
+        $scope.$apply();
     });
 
 
@@ -175,7 +175,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
                 toastr.error('El nombre del personaje ya existe');
                 return;
             }
-            if($scope.pj.nombre == ""){
+            if($scope.pj.nombre === ""){
                 toastr.error('Por favor introduce un nombre');
                 return;
             }
@@ -188,5 +188,5 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
                 }, 1000);
             });
         });
-    }
+    };
 }]);

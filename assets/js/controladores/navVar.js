@@ -19,7 +19,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
                 io.socket.get("/api/user/" + data.userId, function (data) {
                     $scope.user = data;
-                    $scope.$apply;
+                    $scope.$apply();
                     if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta') {
                         toastr.info('Completa tu información para poder jugar.');
                     }
@@ -30,7 +30,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
             deferred.resolve($scope.user);
         }
         return deferred.promise;
-    }
+    };
 
     $scope.getUser();
 

@@ -1,25 +1,3 @@
-app.controller('LoginController', function ($scope) {
-    $scope.credentials = {
-        email: '',
-        contrasena: ''
-    };
-    /**
-     * Description
-     * @method login
-     * @param {} credentials
-     * @return
-     *
-     $scope.login = function (credentials) {
-        AuthService.login(credentials).then(function (user) {
-            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-            $scope.setCurrentUser(user);
-        }, function () {
-            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-        });
-    };
-     */
-})
-
 app.controller('gamePageController', ['$scope', '$location', function ($scope, $location) {
     /**
      * Description
@@ -40,5 +18,5 @@ app.controller('gamePageController', ['$scope', '$location', function ($scope, $
         }, 1000);
     };
 }
-])
+]);
 

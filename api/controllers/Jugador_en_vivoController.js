@@ -33,7 +33,7 @@ module.exports = {
                         {conectado: 'true'}).exec(function publish(err, updated) {
 
                             Jugador_en_vivo.publishUpdate(updated[0].id, { conectado: updated[0].conectado }); //Publicamos actualizacion a todos los sockets suscriptos a mi jugador
-                        })
+                        });
                 });
         }
 

@@ -11,27 +11,20 @@ function tintImage(img, color) {
     var green = parseInt(RGB[2], 16);
     var blue = parseInt(RGB[3], 16);
 
-    var rgbks = [];
-
     var canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
-
-    var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0);
+    var to = ctx.getImageData(0, 0, w, h);
+    var rgbks = [];
 
     var pixels = ctx.getImageData(0, 0, w, h).data;
 
     // 4 is used to ask for 3 images: red, green, blue and
     // black in that order.
     for (var rgbI = 0; rgbI < 4; rgbI++) {
-        var canvas = document.createElement("canvas");
-        canvas.width = w;
-        canvas.height = h;
 
-        var ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0);
-        var to = ctx.getImageData(0, 0, w, h);
 
         for (
             var i = 0;
@@ -58,56 +51,25 @@ function tintImage(img, color) {
     buff.width = img.width;
     buff.height = img.height;
 
-    var ctx = buff.getContext("2d");
+    var context = buff.getContext("2d");
 
-    ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = 'copy';
-    ctx.drawImage(rgbks[3], 0, 0);
+    context.globalAlpha = 1;
+    context.globalCompositeOperation = 'copy';
+    context.drawImage(rgbks[3], 0, 0);
 
-    ctx.globalCompositeOperation = 'lighter';
+    context.globalCompositeOperation = 'lighter';
     if (red > 0) {
-        ctx.globalAlpha = red / 255.0;
-        ctx.drawImage(rgbks[0], 0, 0);
+        context.globalAlpha = red / 255.0;
+        context.drawImage(rgbks[0], 0, 0);
     }
     if (green > 0) {
-        ctx.globalAlpha = green / 255.0;
-        ctx.drawImage(rgbks[1], 0, 0);
+        context.globalAlpha = green / 255.0;
+        context.drawImage(rgbks[1], 0, 0);
     }
     if (blue > 0) {
-        ctx.globalAlpha = blue / 255.0;
-        ctx.drawImage(rgbks[2], 0, 0);
+        context.globalAlpha = blue / 255.0;
+        context.drawImage(rgbks[2], 0, 0);
     }
 
     return buff;
-}
-
-
-function preloadimages(arr) {
-    var newimages = [], loadedimages = 0
-    var postaction = function () {
-    }
-    var arr = (typeof arr != "object") ? [arr] : arr
-
-    function imageloadpost() {
-        loadedimages++
-        if (loadedimages == arr.length) {
-            postaction(newimages) //call postaction and pass in newimages array as parameter
-        }
-    }
-
-    for (var i = 0; i < arr.length; i++) {
-        newimages[i] = new Image()
-        newimages[i].src = arr[i]
-        newimages[i].onload = function () {
-            imageloadpost()
-        }
-        newimages[i].onerror = function () {
-            imageloadpost()
-        }
-    }
-    return { //return blank object with done() method
-        done: function (f) {
-            postaction = f || postaction //remember user defined callback functions to be called when images load
-        }
-    }
 }

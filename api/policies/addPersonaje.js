@@ -51,4 +51,4 @@ module.exports = function addPersonaje(req, res, next) {
         }
     }
     return next();
-}
+};

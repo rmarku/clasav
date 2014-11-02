@@ -11,9 +11,10 @@ module.exports = {
             var user = req.session.passport.user;
             return res.json({
                 'userId': user});
-
         }
-        return res.view('index');
+        return res.json({
+            error:'Sesión no iniciada'
+        });
     }
 };
 

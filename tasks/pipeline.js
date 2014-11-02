@@ -19,11 +19,9 @@ var cssFilesToInject = [
     "/js/dependencies/BrandButtons/dist/brand-buttons.min.css",
     "/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css",
     "/js/dependencies/font-awesome/css/font-awesome.min.css",
-    "/js/dependencies/angular-animate/angular-animate.js",
+    "/js/dependencies/angular-animate/angular-animate.css",
     "/js/dependencies/angular-toastr/dist/angular-toastr.css",
-    "/styles/comun.css",
-    "/styles/importer.css"
-    //'styles/**/*.css'
+    'styles/**/*.css'
 ];
 
 
@@ -35,16 +33,17 @@ var jsFilesToInject = [
     "/js/dependencies/sails.io.js/dist/sails.io.js",
     "/js/dependencies/angular/angular.js",
     "/js/dependencies/jquery/dist/jquery.js",
+    "/js/dependencies/bootstrap/dist/js/bootstrap.js",
     "/js/dependencies/angular-resource/angular-resource.js",
     "/js/dependencies/angular-route/angular-route.js",
     "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
-    "/js/dependencies/bootstrap/dist/js/bootstrap.js",
     "/js/dependencies/angular-toastr/dist/angular-toastr.js",
     "/lib/melonJS.js",
     "/lib/plugins/debug/debugPanel.js",
     "/lib/plugins/debug/particleDebugPanel.js",
     //"/js/dependencies/melonJS/melonJS.js",
 
+    "/js/app.js",
     // Juego
     "/js/juego/main.js",
     "/js/juego/entities/player.js",
@@ -54,11 +53,11 @@ var jsFilesToInject = [
 
     // WEB
     "/js/app.js",
+    "/js/controladores/navVar.js",
     "/js/controladores/controlador.js",
     "/js/helpers.js",
     "/js/controladores/personajes.js",
-    "/js/controladores/editUsuario.js",
-    "/js/controladores/navVar.js"
+    "/js/controladores/editUsuario.js"
     //'lib/**/*.js',
 
     // All of the rest of your client-side js files

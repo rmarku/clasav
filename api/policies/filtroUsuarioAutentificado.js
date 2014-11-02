@@ -9,9 +9,8 @@ module.exports = function filtroUsuarioAutentificado(req, res, next) {
     var userID = req.session.passport.user;
 
     if(!userID){
-        console.log('No existe un usuario Logueado');
-        res.redirect('/');
+        res.send('No existe un usuario Logueado');
         return;
     }
     return next();
-}
+};

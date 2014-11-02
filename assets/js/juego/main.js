@@ -11,7 +11,7 @@ var game = {
     /**
      * initialization
      * @method onload
-     * @return 
+     * @return
      */
     onload: function () {
         me.sys.fps = 30;
@@ -37,7 +37,7 @@ var game = {
     /**
      * Llamo cuando todos los recursos estan cargados
      * @method loaded
-     * @return 
+     * @return
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -48,30 +48,30 @@ var game = {
         this.sockets_game.subscribe_to_server_mapa_instance();
     },
 
-    sockets_game : {
+    sockets_game: {
 
         //Declaraciones temporales (deberian ser externas luego del loggin)
-        id_alumno_cliente                   :   1,
-        id_mapa_instancia_cliente           :   1,
-        conectarse_a_mapa_instancia_cliente :   true,
-        id_jugador_en_vivo                  :   1,
-        update_counter                      :   0,
-        update_timeOut                      :   200, // (5)segs aproximadamente
+        id_alumno_cliente: 1,
+        id_mapa_instancia_cliente: 1,
+        conectarse_a_mapa_instancia_cliente: true,
+        id_jugador_en_vivo: 1,
+        update_counter: 0,
+        update_timeOut: 200, // (5)segs aproximadamente
 
         // Fin declaraciones temporales
 
         mainPlayer_estado: {
-            'left':   false,
-            'right':  false,
-            'up':     false,
-            'down':   false
+            'left': false,
+            'right': false,
+            'up': false,
+            'down': false
         },
 
         mainPlayer_previous_estado: {
-            'left':   false,
-            'right':  false,
-            'up':     false,
-            'down':   false
+            'left': false,
+            'right': false,
+            'up': false,
+            'down': false
         },
 
         mainPlayer_coordenates: {
@@ -84,12 +84,12 @@ var game = {
         /**
          * Description
          * @method reset_mainPlayer_estado
-         * @return 
+         * @return
          */
         reset_mainPlayer_estado: function () {
-            this.mainPlayer_estado.left  = false;
-            this.mainPlayer_estado.right= false;
-            this.mainPlayer_estado.up= false;
+            this.mainPlayer_estado.left = false;
+            this.mainPlayer_estado.right = false;
+            this.mainPlayer_estado.up = false;
             this.mainPlayer_estado.down = false;
         },
 
@@ -98,20 +98,17 @@ var game = {
          * @method update_mainPlayer_estado
          * @param {} direction
          * @param {} boolean
-         * @return 
+         * @return
          */
-        update_mainPlayer_estado: function (direction,boolean) {
+        update_mainPlayer_estado: function (direction, boolean) {
             if (direction == 'left') {
-                this.mainPlayer_estado.left     = boolean;
-            }else
-            if (direction == 'right') {
-                this.mainPlayer_estado.right    = boolean;
-            }else
-            if (direction == 'up') {
-                this.mainPlayer_estado.up       = boolean;
-            }else
-            if (direction == 'down') {
-                this.mainPlayer_estado.down     = boolean;
+                this.mainPlayer_estado.left = boolean;
+            } else if (direction == 'right') {
+                this.mainPlayer_estado.right = boolean;
+            } else if (direction == 'up') {
+                this.mainPlayer_estado.up = boolean;
+            } else if (direction == 'down') {
+                this.mainPlayer_estado.down = boolean;
             }
 
         },
@@ -120,7 +117,7 @@ var game = {
          * Description
          * @method update_mainPlayer_coordenates
          * @param {} coordenates_mainPlayer
-         * @return 
+         * @return
          */
         update_mainPlayer_coordenates: function (coordenates_mainPlayer) {
             this.mainPlayer_coordenates.x = coordenates_mainPlayer.x;
@@ -131,45 +128,36 @@ var game = {
          * Description
          * @method send_Server_mainPlayer_update
          * @param {} local_coordenates
-         * @return 
+         * @return
          */
         send_Server_mainPlayer_update: function (local_coordenates) {
 
 
             // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
-            if( this.mainPlayer_estado.left || this.mainPlayer_estado.right || this.mainPlayer_estado.up || this.mainPlayer_estado.down){
+            if (this.mainPlayer_estado.left || this.mainPlayer_estado.right || this.mainPlayer_estado.up || this.mainPlayer_estado.down) {
                 this.update_counter++;
             }
 
             //Envio al servidor solo si: hubieron 500 updates en el mismo estado, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
-            if( (this.update_counter >= this.update_timeOut)    ||      (this.mainPlayer_previous_estado.left       !=     this.mainPlayer_estado.left  )
+            var ant = this.mainPlayer_previous_estado;
+            var act = this.mainPlayer_estado;
+            if ((this.update_counter >= this.update_timeOut) || (act.left != ant.left) || (act.right != ant.right) || (act.down != ant.down) || (act.up != ant.up )) {
 
-                                                ||      (this.mainPlayer_previous_estado.right      !=     this.mainPlayer_estado.right )
+                io.socket.put('/api/jugador_en_vivo/' + this.id_jugador_en_vivo, {  estado: angular.toJson(this.mainPlayer_estado),
+                        coordenadas: angular.toJson(this.mainPlayer_coordenates) }
 
-                                                ||      (this.mainPlayer_previous_estado.down       !=     this.mainPlayer_estado.down  )
+                    , function (resdata) {
+                    }
+                );
+                //if (!(this.update_counter >= 250)) {
+                this.mainPlayer_previous_estado.left = this.mainPlayer_estado.left;
+                this.mainPlayer_previous_estado.right = this.mainPlayer_estado.right;
+                this.mainPlayer_previous_estado.up = this.mainPlayer_estado.up;
+                this.mainPlayer_previous_estado.down = this.mainPlayer_estado.down;
+                //}
 
-                                                ||      (this.mainPlayer_previous_estado.up         !=     this.mainPlayer_estado.up    )    ){
-
-               io.socket.put   ('/api/jugador_en_vivo/' + this.id_jugador_en_vivo,   {  estado      :    angular.toJson(this.mainPlayer_estado) ,
-                                                                                        coordenadas :    angular.toJson(this.mainPlayer_coordenates) }
-
-                                ,function (resdata){
-                                }
-               );
-
-
-               if(!(this.update_counter >= 250)) {
-                    this.mainPlayer_previous_estado.left = this.mainPlayer_estado.left;
-                    this.mainPlayer_previous_estado.right = this.mainPlayer_estado.right;
-                    this.mainPlayer_previous_estado.up  = this.mainPlayer_estado.up ;
-                    this.mainPlayer_previous_estado.down = this.mainPlayer_estado.down;
-                    //this.reset_mainPlayer_estado();
-                }
-
-               this.update_counter = 0;
+                this.update_counter = 0;
             }
-
-
         },
 
         ///Funcion para suscribirnos al Mapa_instancia (es un Mapa_generico que pertenece a una determinada Clase),
@@ -177,42 +165,36 @@ var game = {
         /**
          * Description
          * @method subscribe_to_server_mapa_instance
-         * @return 
+         * @return
          */
-        subscribe_to_server_mapa_instance : function () {
+        subscribe_to_server_mapa_instance: function () {
             //alert('suscribing');
 
-            io.socket.get(  '/api/jugador_en_vivo/subscribirse_a_mapa_instancia/',
-                            {       id_mapa_instancia:  this.id_mapa_instancia_cliente,   // Valor para saber a que jugadores online suscribirme
-                                    id_alumno:          this.id_alumno_cliente           // Valor para saber que jugador pasa a conectado (mi jugador)
-                            },
+            io.socket.get('/api/jugador_en_vivo/subscribirse_a_mapa_instancia/',
+                {       id_mapa_instancia: this.id_mapa_instancia_cliente,   // Valor para saber a que jugadores online suscribirme
+                    id_alumno: this.id_alumno_cliente           // Valor para saber que jugador pasa a conectado (mi jugador)
+                },
 
-                            function messageReceived(json_lista_jugadores_mapa_instancia) {
+                function messageReceived(json_lista_jugadores_mapa_instancia) {
 
-                                //console.log(json_lista_jugadores_mapa_instancia); //Muestro en consola para
-                                while (json_lista_jugadores_mapa_instancia.length) {
-                                    var jugador = json_lista_jugadores_mapa_instancia.pop();
+                    //console.log(json_lista_jugadores_mapa_instancia); //Muestro en consola para
+                    while (json_lista_jugadores_mapa_instancia.length) {
+                        var jugador = json_lista_jugadores_mapa_instancia.pop();
 
-
-                                    jugador.id;         //  id del jugador como jugador Online(no es el mismo que el id del alumno)
-                                    jugador.alumno;     //  id del jugador como alumno
-                                    jugador.conectado;  //  true or false)
-                                    jugador.estado;  //  array del tipo this.mainPlayer_estado
-                                    jugador.estad;//  array del tipo this.mainPlayer_coordenates
-
-                                }
-
-                            }
+                    }
+                }
             );
 
             // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
-            io.socket.on('jugador_en_vivo',function messageReceived(jsonObject) {
+            io.socket.on('jugador_en_vivo', function messageReceived(jsonObject) {
 
                 switch (jsonObject.verb) {
                     case 'updated':
-                        //console.log("socket.on:");
-                        //console.log(angular.fromJson(jsonObject));
-                    default: break;
+                        break;
+                    //console.log("socket.on:");
+                    //console.log(angular.fromJson(jsonObject));
+                    default:
+                        break;
                 }
             });
 
@@ -221,15 +203,15 @@ var game = {
         /**
          * Description
          * @method unsubscribe_from_server_mapa_instance
-         * @return 
+         * @return
          */
-        unsubscribe_from_server_mapa_instance : function () {
-            io.socket.get(  '/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',
-                            {       id_mapa_instancia:  this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
-                            },
-                            function messageReceived(json_lista_jugadores_mapa_instancia) {
-                                                        // no hace falta hacer nada
-                            }
+        unsubscribe_from_server_mapa_instance: function () {
+            io.socket.get('/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',
+                {       id_mapa_instancia: this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
+                },
+                function messageReceived(json_lista_jugadores_mapa_instancia) {
+                    // no hace falta hacer nada
+                }
             );
         }
 

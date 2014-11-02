@@ -19,7 +19,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         password: '',
         password2: '',
         local: true
-    }
+    };
 
     var lang = {
         "Welcome": "Bienvenido",
@@ -40,14 +40,14 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
     if ($location.path() == '/cuenta') {
         $scope.editar = true;
-        $scope.Titulo = 'Editar Cuenta'
+        $scope.Titulo = 'Editar Cuenta';
         $scope.$parent.getUser().then(function (data) {
             $scope.alumno = data;
         });
     } else {
 
         $scope.editar = false;
-        $scope.Titulo = 'Cuenta Nueva'
+        $scope.Titulo = 'Cuenta Nueva';
     }
 
 
@@ -84,7 +84,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
             });
         } else {
 
-            if ($scope.alumno.password == '') {
+            if ($scope.alumno.password === '') {
                 toastr.error('Contraseña no valida');
             }
 
@@ -101,7 +101,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                 if (typeof data.errors != "undefined") {
                     data.errors.forEach(function (e) {
                         toastr.error(lang[e]);
-                    })
+                    });
                 }
 
                 if (typeof data.loguedin != "undefined") {
@@ -113,5 +113,5 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                 }
             });
         }
-    }
+    };
 }]);
