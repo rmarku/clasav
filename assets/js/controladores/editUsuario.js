@@ -75,7 +75,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                             $location.path('/');
                         }, 1000);
                     } else {
-                        toastr.info('CDatos actualizados, ahora crea tu personaje');
+                        toastr.info('Datos actualizados, ahora crea tu personaje');
                         setTimeout(function () {
                             window.location.href = '#/personaje';
                         }, 1000);

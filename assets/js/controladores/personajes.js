@@ -175,9 +175,13 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
                 toastr.error('El nombre del personaje ya existe');
                 return;
             }
+            if($scope.pj.nombre == ""){
+                toastr.error('Por favor introduce un nombre');
+                return;
+            }
 
             io.socket.post("/api/personaje", $scope.pj, function (data) {
-                toastr.info('Personaje Creado, ahora a Jugar!!!!');
+                toastr.info('Personaje creado, ahora a Jugar!!!!');
                 setTimeout(function () {
 
                     $location.path('/game');
