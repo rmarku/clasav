@@ -24,14 +24,15 @@ game.PlayerEntity = me.Entity.extend({
         this.body.gravity = 0;
 
         this.vestir();
-        me.input.bindKey(me.input.KEY.LEFT, 'left');
-        me.input.bindKey(me.input.KEY.A, 'left');
-        me.input.bindKey(me.input.KEY.RIGHT, 'right');
-        me.input.bindKey(me.input.KEY.D, 'right');
-        me.input.bindKey(me.input.KEY.UP, 'up');
-        me.input.bindKey(me.input.KEY.W, 'up');
-        me.input.bindKey(me.input.KEY.DOWN, 'down');
-        me.input.bindKey(me.input.KEY.S, 'down');
+        me.input.preventDefault;
+        me.input.bindKey(me.input.KEY.LEFT, 'left', false,false);
+        me.input.bindKey(me.input.KEY.A, 'left', false,false);
+        me.input.bindKey(me.input.KEY.RIGHT, 'right', false,false);
+        me.input.bindKey(me.input.KEY.D, 'right', false,false);
+        me.input.bindKey(me.input.KEY.UP, 'up', false,false);
+        me.input.bindKey(me.input.KEY.W, 'up', false,false);
+        me.input.bindKey(me.input.KEY.DOWN, 'down', false,false);
+        me.input.bindKey(me.input.KEY.S, 'down', false,false);
 
         me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
 

@@ -47,7 +47,6 @@ var jsFilesToInject = [
     "/js/controlador.js",
     "/js/entities/player.js",
     "/js/hud.js",
-    "/js/chat.js",
     "/js/personajes.js",
     "/js/play.js",
     "/js/servicios.js"

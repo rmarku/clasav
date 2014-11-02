@@ -136,7 +136,7 @@
 	background: #F5ECCE;
 	border: solid #FE9A2E;
 	border-radius: 15px;
-	overflow: auto;
+	overflow-y: auto;
 	text-align: left;
 	padding-left: 10px
 }

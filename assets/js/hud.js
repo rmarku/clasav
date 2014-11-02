@@ -119,20 +119,8 @@ function inventarioContr($scope, $sailsBind) {
 	 });*/
 }]);
 
-function enviarMsj(campoText, e) {
-	var tecla;
-	if (window.event)
-		tecla = window.event.keyCode;
-	else if (e)
-		tecla = e.which;
-	else
-		return true;
-
-	if (tecla == 13) {
-		envMsj();
-		return false;
-	} else
-		return true;
+function deshabilitarBtn(event) {
+	event.stopPropagation();
 }
 
 /**
@@ -153,9 +141,28 @@ function noPressBtn() {
 	$("#per").hide();
 }
 
-// Esto se ejecuta al terminar de cargar la pagina
+/*$timeout(function() {
+var divC = document.getElementById('div-chat');
+divC.scrollTop = divC.scrollHeight;
+}, 0);*/
+
+// JQUERY Esto se ejecuta al terminar de cargar la pagina
 $(function() {
-	
+
+	//$('#div-chat').scrollTop($('#div-chat').prop("scrollHeight")); //No funciona
+
+	//$('#div-chat').scrollTop($('#div-chat')[0].scrollHeight); //No funciona: Error
+
+	/*var d = $('#div-chat');
+	d.scrollTop(d.prop("scrollHeight")); //No funciona*/
+
+	//$('#div-chat').scrollTop($('#div1').height()); //No funciona: Error Script
+
+	/*window.setInterval(function() {
+		var elem = document.getElementById('div-chat');
+		elem.scrollTop = elem.scrollHeight;
+	}, 5000);*/
+
 	//Enviar Mensaje al Chat al presionar Enter
 	$("#msjChat").keyup(function(event) {
 		if (event.keyCode == 13) {
