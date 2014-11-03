@@ -19,7 +19,20 @@ module.exports = function (grunt) {
     var tileImages = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/**/*.png']);
     var music = grunt.file.expand({filter: 'isFile'}, ['assets/data/music/**/*.ogg']);
 //    var sfx = grunt.file.expand({filter: 'isFile'}, ['assets/data/sfx/**/*.ogg', 'assets/data/sfx/**/*.mp3']);
-    var sprites = grunt.file.expand({filter: 'isFile'}, ['assets/data/sprites/characters/**/*.png']);
+    //var sprites = grunt.file.expand({filter: 'isFile'}, ['assets/data/sprites/characters/**/*.png']);
+    var sprites = grunt.file.expand({filter: 'isFile'},
+      [
+        'assets/data/sprites/characters/masculino/basic/**/*.png',
+        'assets/data/sprites/characters/femenino/basic/**/*.png',
+        'assets/data/sprites/characters/masculino/foot/**/?.png',
+        'assets/data/sprites/characters/femenino/foot/**/?.png',
+        'assets/data/sprites/characters/masculino/hair/**/*.png',
+        'assets/data/sprites/characters/femenino/hair/**/*.png',
+        'assets/data/sprites/characters/masculino/shirt/**/?.png',
+        'assets/data/sprites/characters/femenino/shirt/**/?.png',
+        'assets/data/sprites/characters/masculino/pants/**/?.png',
+        'assets/data/sprites/characters/femenino/pants/**/?.png'
+      ]);
 
     tmxMaps.forEach(function (tmx) {
       var data = {};
@@ -52,6 +65,10 @@ module.exports = function (grunt) {
       data['src'] = sp.replace('assets/', '');
       Resources.push(data);
     });
+    grunt.log.writeln("Mapas:  \t" + tmxMaps.length);
+    grunt.log.writeln("Tiles:  \t" + tileImages.length);
+    grunt.log.writeln("Musica: \t" + music.length);
+    grunt.log.writeln("Sprites:\t" + sprites.length);
 
     grunt.file.write('assets/api/resources.json', JSON.stringify(Resources));
   });
