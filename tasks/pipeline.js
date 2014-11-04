@@ -48,6 +48,7 @@ var jsFilesToInject = [
     "/js/juego/main.js",
     "/js/juego/entities/player.js",
     "/js/juego/hud.js",
+    "/js/juego/minimap.js",
     "/js/juego/play.js",
     "/js/juego/chat.js",
 
