@@ -2,9 +2,10 @@ var bcrypt = require('bcryptjs');
 
 /**
  * Hash a passport password.
- *
- * @param {Object}   password
+ * @method hashPassword
+ * @param {} passport
  * @param {Function} next
+ * @return 
  */
 function hashPassword (passport, next) {
   if (passport.password) {
@@ -73,9 +74,10 @@ var Passport = {
 
     /**
      * Validate password used by the local strategy.
-     *
+     * @method validatePassword
      * @param {string}   password The password to validate
      * @param {Function} next
+     * @return 
      */
     validatePassword: function (password, next) {
       bcrypt.compare(password, this.password, next);
@@ -85,9 +87,10 @@ var Passport = {
 
   /**
    * Callback to be run before creating a Passport.
-   *
+   * @method beforeCreate
    * @param {Object}   passport The soon-to-be-created Passport
    * @param {Function} next
+   * @return 
    */
   beforeCreate: function (passport, next) {
     hashPassword(passport, next);
@@ -95,9 +98,10 @@ var Passport = {
 
   /**
    * Callback to be run before updating a Passport.
-   *
+   * @method beforeUpdate
    * @param {Object}   passport Values to be updated
    * @param {Function} next
+   * @return 
    */
   beforeUpdate: function (passport, next) {
     hashPassword(passport, next);

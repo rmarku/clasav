@@ -1,11 +1,9 @@
 /**
  * 400 (Bad Request) Handler
- *
  * Usage:
  * return res.badRequest();
  * return res.badRequest(data);
  * return res.badRequest(data, 'some/specific/badRequest/view');
- *
  * e.g.:
  * ```
  * return res.badRequest(
@@ -13,8 +11,11 @@
  *   'trial/signup'
  * );
  * ```
+ * @method exports
+ * @param {} data
+ * @param {} options
+ * @return 
  */
-
 module.exports = function badRequest(data, options) {
 
   // Get access to `req`, `res`, & `sails`

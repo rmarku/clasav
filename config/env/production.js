@@ -34,5 +34,7 @@ module.exports = {
   // log: {
   //   level: "silent"
   // }
+  proxyHost: "clases-y-aventuras.herokuapp.com",
+  proxyPort: "80"
 
 };

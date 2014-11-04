@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html ng-app="juegoapl">
 <head>
-    <title>Juegos y Aventuras</title>
+    <title>Clases y Aventuras</title>
     <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap-theme.css">
+    <!--STYLES-->
     <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons.min.css">
+    <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css">
+    <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/js/dependencies/angular-toastr/dist/angular-toastr.css">
     <link rel="stylesheet" href="/styles/comun.css">
     <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
 
 
 </head>
-<body class="body-gradient">
+<body class="body-gradient" ng-controller="bodyController">
 
 <header class="text-center">
     <!---login/logout--->
     <div class="navbar navbar-inverse row">
         <% if (!user) { %>
-        <div class="text-left col-md-4">
+        <div class="text-left col-md-2">
             <a href="#/crear-cuenta" class="btn btn2 btn-default">Crear Cuenta</a>
         </div>
         <div class="text-center col-md-4">
@@ -32,7 +37,7 @@
             </div>
             <% } %>
         </div>
-        <div class="text-right col-md-4">
+        <div class="text-right col-md-6">
             <form class="form-inline" role="form" action="/auth/local" method="post">
                 <div class="form-group">
                     <label class="sr-only" for="email">Email address</label>
@@ -44,14 +49,21 @@
                     <input type="password" class="form-control2" name="password" id="contrasena"
                            ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
                 </div>
+                <div class="form-group" style="display: inline">
                 <button type="submit" class="btn btn2 btn-default">Sign in</button>
+                </div>
+                <div class="form-group" style="display: inline">
+                    <a href="/auth/facebook" class="btn btn-facebook-inversed"><i class="fa fa-facebook"></i></a>
+                    <a href="/auth/google" class="btn btn-googleplus-inversed"><i class="fa fa-google-plus"></i></a>
+                </div>
             </form>
-        </div>
+        </div> <%- user %>
         <% } else { %>
 
         <div class="text-right">
             <p style="color: white;">Bienvenido
                 <%- user.nombre %> <%- user.apellido %>
+                <a class="btn btn2 btn-default" ng-click="verCuenta()">Cuenta</a>
                 <a class="btn btn2 btn-default" href="/logout">Cerrar Sesi&oacute;n</a>
             </p>
         </div>
@@ -101,29 +113,30 @@
 </footer>
 
 
+<!--SCRIPTS-->
 <script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
 <script src="/js/dependencies/angular/angular.js"></script>
 <script src="/js/dependencies/jquery/dist/jquery.js"></script>
+<script src="/js/dependencies/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/js/dependencies/angular-resource/angular-resource.js"></script>
 <script src="/js/dependencies/angular-route/angular-route.js"></script>
 <script src="/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js"></script>
-<script src="/js/dependencies/bootstrap/dist/js/bootstrap.js"></script>
-
-<!--script src="/js/dependencies/melonJS/melonJS.js"></script-->
-
+<script src="/js/dependencies/angular-toastr/dist/angular-toastr.js"></script>
 <script src="/lib/melonJS.js"></script>
 <script src="/lib/plugins/debug/debugPanel.js"></script>
 <script src="/lib/plugins/debug/particleDebugPanel.js"></script>
-
-<script src="/js/main.js"></script>
 <script src="/js/app.js"></script>
-<script src="/js/comun.js"></script>
-<script src="/js/controlador.js"></script>
-<script src="/js/entities/player.js"></script>
-<script src="/js/hud.js"></script>
-<script src="/js/personajes.js"></script>
-<script src="/js/play.js"></script>
-<script src="/js/servicios.js"></script>
+<script src="/js/juego/main.js"></script>
+<script src="/js/juego/entities/player.js"></script>
+<script src="/js/juego/hud.js"></script>
+<script src="/js/juego/play.js"></script>
+<script src="/js/juego/chat.js"></script>
+<script src="/js/controladores/navVar.js"></script>
+<script src="/js/controladores/controlador.js"></script>
+<script src="/js/helpers.js"></script>
+<script src="/js/controladores/personajes.js"></script>
+<script src="/js/controladores/editUsuario.js"></script>
+<!--SCRIPTS END-->
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
 </body>

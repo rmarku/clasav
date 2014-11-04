@@ -1,131 +1,153 @@
 @font-face {
-	font-family: "Gorditas-Regular";
-	font-style: normal;
-	font-weight: normal;
-	src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
+    font-family: "Gorditas-Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
 }
 
 .body-gradient {
-	background-color: #A9E2F3;
-	background-image: url("../images/fondo2.png");
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
+    background-color: #A9E2F3;
+    background-image: url("../images/fondo2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .botonera {
-	margin-top: -30px;
-	padding-left: 33px;
+    margin-top: -30px;
+    padding-left: 33px;
 }
 
 .div-imagenes img {
-	border-radius: 20px;
-	margin: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .titulos {
-	font-family: Gorditas-Regular;
-	font-size: 30px;
-	color: #b8111f;
+    font-family: Gorditas-Regular;
+    font-size: 30px;
+    color: #b8111f;
 }
 
 .titulo-botonera {
-	z-index: 6;
-	margin: 16px;
-	font-family: Gorditas-Regular;
+    z-index: 6;
+    margin: 16px;
+    font-family: Gorditas-Regular;
 }
 
 .p_espacio {
-	padding: 20px;
+    padding: 20px;
 }
 
 .menu-game {
-	width: 344px;
-	height: 384px;
-	background-color: #DEDEDE;
-	border: 2px dashed #9c5959;
+    width: 344px;
+    height: 384px;
+    background-color: #DEDEDE;
+    border: 2px dashed #9c5959;
 }
 
 .div-form {
-	padding: 30px;
-	width: 600px;
-	border-radius: 25px;
-	background-image: -moz-linear-gradient(left, #DEDEDE, #FFF5F6);
-	background-image: -ms-linear-gradient(left, #DEDEDE, #FFF5F6);
-	background-image: -o-linear-gradient(left, #DEDEDE, #FFF5F6);
-	background-image: -webkit-gradient(linear, left top, right top, from(#DEDEDE), to(#FFF5F6));
-	background-image: -webkit-linear-gradient(left, #DEDEDE, #FFF5F6);
-	background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
-	border: 5px double #9c5959;
+    padding: 30px;
+    width: 600px;
+    border-radius: 25px;
+    background-image: -moz-linear-gradient(left, #DEDEDE, #FFF5F6);
+    background-image: -ms-linear-gradient(left, #DEDEDE, #FFF5F6);
+    background-image: -o-linear-gradient(left, #DEDEDE, #FFF5F6);
+    background-image: -webkit-gradient(linear, left top, right top, from(#DEDEDE), to(#FFF5F6));
+    background-image: -webkit-linear-gradient(left, #DEDEDE, #FFF5F6);
+    background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
+    border: 5px double #9c5959;
 }
 
 .form-control:focus {
-	border-color: #b8111f;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(184,17,31,.6);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(184,17,31,.6)
+    border-color: #b8111f;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(184, 17, 31, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(184, 17, 31, .6)
 }
 
 .form-group {
-	color: #b8111f;
-	margin-bottom: 15px;
+    color: #b8111f;
+    margin-bottom: 15px;
 }
 
 .div-mapa {
-	background-image: url("../data/map/minimap/Inicio.png");
-	background-size: cover;
+    background-image: url("../data/map/minimap/Inicio.png");
+    background-size: cover;
 }
 
 .div-panel {
-	display: none;
-	position: absolute;
-	bottom: 49px;
-	width: 312px;
-	height: 297px
+    display: none;
+    position: absolute;
+    bottom: 49px;
+    width: 312px;
+    height: 297px
 }
 
 .btn-default {
-	color: #b8111f;
-	border-color: #b8111f;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(184,17,31,.6);
-	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(184,17,31,.6)
+    color: #b8111f;
+    border-color: #b8111f;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(184, 17, 31, .6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(184, 17, 31, .6)
 }
 
 .nav-tabs {
-	font-size: 12px;
+    font-size: 12px;
 }
 
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
-	background-color: #D82C3B;
-	border-color: #b8111f;
-	color: #D8D22C;
+    background-color: #D82C3B;
+    border-color: #b8111f;
+    color: #D8D22C;
 }
 
 .nav > li > a {
-	padding: 4px 9px;
+    padding: 4px 9px;
 }
 
 .navbar {
-	min-height: 31px;
-	width: 100%;
+    min-height: 31px;
+    width: 100%;
 }
 
 .btn2 {
-	font-size: 12px;
-	padding: 4px 4px;
+    font-size: 12px;
+    padding: 4px 4px;
 }
 
 .form-control2 {
-	font-size: 12px;
-	height: 24px;
+    font-size: 12px;
+    height: 24px;
 }
 
 .capaSup {
-	position: absolute;
-	z-index: 10;
+    position: absolute;
+    z-index: 10;
 }
 
 .capaInf {
-	position: absolute;
-	z-index: 1;
+    position: absolute;
+    z-index: 1;
+}
+
+.div-chat {
+    width: 800px;
+    height: 100px;
+    background: #F5ECCE;
+    border: solid #FE9A2E;
+    border-radius: 15px;
+    overflow: auto;
+    text-align: left;
+    padding-left: 10px
+}
+
+#pj {
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+    width:96px;
+    height:192px;
 }

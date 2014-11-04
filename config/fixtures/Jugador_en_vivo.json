@@ -1,7 +1,6 @@
 [
     {
-        "id": "jugador_vivo_1",
-        "mapa_instancia": "mapa_instancia1",
-        "alumno": "fabricio_collino@gmail.com"
+        "mapa_instancia": "1",
+        "user": "1"
     }
 ]
