@@ -119,6 +119,38 @@ function inventarioContr($scope, $sailsBind) {
 	 });*/
 }]);
 
+
+
+app.controller("personajeInvContr", ['$scope', "$sailsBind",
+function personajeInvContr($scope, $sailsBind) {
+	//    $sailsBind.bind("api/inventario", $scope);
+
+	$scope.personajeInv = [{
+		"id" : 3,
+		"nombreItem" : "capa dorada",
+		"parte": "capa",
+		"sprite" : "../data/sprites/items/ep/3_capaDorada.png"
+	}, {
+		"id" : 8,
+		"nombreItem" : "espada burocratica",
+		"parte": "arma",
+		"sprite" : "../data/sprites/items/ep/8_espada.png"
+	}, {
+		"id" : 12,
+		"nombreItem" : "anillo magico",
+		"parte": "anillo",
+		"sprite" : "../data/sprites/items/ep/12_anilloMagico.png"
+	}, {
+		"id" : 15,
+		"nombreItem" : "botas",
+		"parte": "pies",
+		"sprite" : "../data/sprites/items/ep/15_botas.png"
+	}];
+}]);
+
+
+
+
 function deshabilitarTecl() {
 	/*	var valorInput = $("#msjChat").val();
 	 $("#msjChat").keyup(function(event) {
