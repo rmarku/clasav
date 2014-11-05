@@ -44,35 +44,50 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<!--MISIONES-->
 					<div id="mis" class="div-panel" style="background: url('images/iconos/misiones2.png')">
 						<p class="capaSup titulo-botonera">
 							Misiones
 						</p>
 					</div>
-					
+
 					<!--LOGROS-->
 					<div id="log" class="div-panel" style="background: url('images/iconos/logros2.png')">
 						<p class="capaSup titulo-botonera">
 							Logros
 						</p>
 					</div>
-					
+
 					<!--TALENTOS-->
 					<div id="tal" class="div-panel" style="background: url('images/iconos/talentos2.png')">
 						<p class="capaSup titulo-botonera">
 							Talentos
 						</p>
 					</div>
-					
+
 					<!--PERSONAJE-->
-					<div id="per" class="div-panel" style="background: url('images/iconos/personaje2.png')">
+					<div id="per" class="div-panel" ng-controller="personajeInvContr" style="background: url('images/iconos/personaje2.png')">
 						<p class="capaSup titulo-botonera">
 							Personaje
 						</p>
+						<!--div ng-repeat="x in personajeInv" style="display: inline; width: 49px; height: 49px; border: 0px 0px 0px 0px; margin: 0px 0px 0px -3px">
+						<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
+						</div-->
+
+						<!--div>
+						<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}" ng-if="x.parte == capa">
+						</div-->
+						<div align="left" style="width: 49px; position: absolute">
+							<img src="../data/sprites/items/ep/15_botas.png" style="margin-top: 186px; margin-left: 11px;">
+						</div>
+						<div align="right" style="width: 49px; right: 8px; position: absolute">
+							<img src="../data/sprites/items/ep/3_capaDorada.png" style="margin-top: 140px">
+							<img src="../data/sprites/items/ep/12_anilloMagico.png">
+							<img src="../data/sprites/items/ep/8_espada.png">
+						</div>	
 					</div>
-					
+
 					<!--FIN HUD INFERIOR-->
 				</div>
 				<div id="screen"></div>
@@ -85,14 +100,18 @@
 			<!--Scroll abajo del todo-->
 			<div ng-controller="ChatController" style="width: 800px">
 				<div class="divChat" id="divChat">
-					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}} <br></span>
+					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}}
+						<br>
+					</span>
 				</div>
 				<input class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px" onfocus="deshabilitarTecl()">
-				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()">Enviar</button>
+				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()">
+					Enviar
+				</button>
 			</div>
 
 		</div>
-		
+
 		<!--MAPA-->
 		<div class="col-md-2" align="left">
 			<div style="width: 176px; height: 176px">
