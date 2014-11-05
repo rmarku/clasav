@@ -82,10 +82,10 @@
 			<!--Que el nick sea  el user.nombre-->
 			<!--Scroll abajo del todo-->
 			<div ng-controller="ChatController" style="width: 800px">
-				<div class="div-chat">
+				<div class="divChat" id="divChat">
 					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}} <br></span>
 				</div>
-				<input class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px">
+				<input class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px" onfocus="deshabilitarTecl()">
 				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()">Enviar</button>
 			</div>
 

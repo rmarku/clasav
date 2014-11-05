@@ -53,24 +53,12 @@ var jsFilesToInject = [
 
     // WEB
     "/js/app.js",
-<<<<<<< HEAD
-    "/js/comun.js",
-    "/js/controlador.js",
-    "/js/entities/player.js",
-    "/js/hud.js",
-    "/js/chat.js",
-    "/js/personajes.js",
-    "/js/play.js",
-    "/js/servicios.js"
-  //'lib/**/*.js',
-=======
     "/js/controladores/navVar.js",
     "/js/controladores/controlador.js",
     "/js/helpers.js",
     "/js/controladores/personajes.js",
     "/js/controladores/editUsuario.js"
     //'lib/**/*.js',
->>>>>>> master
 
     // All of the rest of your client-side js files
     // will be injected here in no particular order.
