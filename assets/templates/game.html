@@ -78,14 +78,31 @@
 						<!--div>
 						<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}" ng-if="x.parte == capa">
 						</div-->
-						<div align="left" style="width: 49px; position: absolute">
-							<img src="../data/sprites/items/ep/15_botas.png" style="margin-top: 186px; margin-left: 11px;">
+						<div align="left" style="width: 49px; position: absolute; margin-top: 42px; margin-left: 12px">
+							<div id="itemCabeza" style="width: 48px; height: 48px;"></div>
+							<div id="itemPechera" style="width: 48px; height: 48px;"></div>
+							<div id="itemPantalon" style="width: 48px; height: 48px;"></div>
+							<div id="itemPie" style="width: 48px; height: 48px;">
+								<img src="../data/sprites/items/ep/15_botas.png">
+							</div>
+							<div id="itemMano" style="width: 48px; height: 48px;"></div>
+
 						</div>
-						<div align="right" style="width: 49px; right: 8px; position: absolute">
-							<img src="../data/sprites/items/ep/3_capaDorada.png" style="margin-top: 140px">
-							<img src="../data/sprites/items/ep/12_anilloMagico.png">
-							<img src="../data/sprites/items/ep/8_espada.png">
-						</div>	
+						<!--canvas id="pj" width="32" height="48" style="position: absolute"></canvas-->
+						<!--div id="imagenes" style="position: absolute"></div-->
+						<div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
+							<div id="itemEspec1" style="width: 48px; height: 48px;"></div>
+							<div id="itemEspec2" style="width: 48px; height: 48px;"></div>
+							<div id="itemCapa" style="width: 48px; height: 48px;">
+								<img src="../data/sprites/items/ep/3_capaDorada.png">
+							</div>
+							<div id="itemAnillo" style="width: 48px; height: 48px;">
+								<img src="../data/sprites/items/ep/12_anilloMagico.png">
+							</div>
+							<div id="itemArma" style="width: 48px; height: 48px;">
+								<img src="../data/sprites/items/ep/8_espada.png">
+							</div>
+						</div>
 					</div>
 
 					<!--FIN HUD INFERIOR-->
