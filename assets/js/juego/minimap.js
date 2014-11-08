@@ -7,11 +7,13 @@
             var ctxMinimap = canvasMinimap.getContext("2d");
             ctxMinimap.beginPath();
             canvasMinimap.width=canvasMinimap.width;
-            ctxMinimap.fillStyle = "rgba(999,999,999,1)";
-            ctxMinimap.arc(x*156/1344, y*156/1344, 2, 0, 2 * Math.PI, true);
+            ctxMinimap.fillStyle = '#FFFFFF';
+            ctxMinimap.arc(~~(x*156/1344), ~~(y*156/1344),2, 0, 2 * Math.PI, true); ctxMinimap.fill();
+            ctxMinimap.lineWidth = 1;
+            ctxMinimap.strokeStyle = '#000000';
+            ctxMinimap.stroke();
             //seria util guardar tamaño del mapa en scope
             //y que si es muy grande que se vaya moviendo
-            ctxMinimap.fill();
         }
     }
     function toogleName(){
