@@ -34,6 +34,9 @@ app.directive('chat', function () {
           e.stopImmediatePropagation();
       });
       elem.bind('keyup', function (e) {
+          if(e.keyCode == 13) {
+            scope[attrs.chat]();
+          }
           e.stopImmediatePropagation();
       });
     }
