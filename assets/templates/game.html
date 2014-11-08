@@ -5,7 +5,7 @@
 
 				<!--HUD SUPERIOR-->
 				<div id="hudSuperior" class="capaSup">
-					<img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
+					<img src="data/sprites/characters/ym/face/pepe.png" style="float: left;">
 					<div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
 						<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 
@@ -15,6 +15,7 @@
 					</div>
 					<div class="progress" style="margin-left: 100px; margin-top: -10px ;width: 200px">
 						<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+
 						<div style="position: absolute; float:left;">
 							<b>Experiencia</b>
 						</div>
@@ -73,6 +74,7 @@
 						<img src="images/iconos/personaje2.png">
 					</div>
 				</div>
+                <!--pantalla-->
 				<div id="screen"></div>
 			</div>
 
@@ -96,12 +98,13 @@
 				<img id="btnMas" class="capaSup" style="position: absolute;float: right;" src="images/iconos/btnMas.png">
 				<img id="btnMenos" class="capaSup" style="position: absolute;float: right;bottom: 0px;right: 34px" src="images/iconos/btnMenos.png">
 
-				<div class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
-					<!--img src="data/map/minimap/Inicio.png" width="156px" height="156px" style="position: absolute;float: left; margin-top: 11px"-->
+				<div id=divMinimapa class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
+                    <canvas id="canvasMinimap" width="156" height="156"></canvas>
+                    <!--img src="data/map/minimap/Inicio.png" width="156px" height="156px" style="position: absolute;float: left; margin-top: 11px"-->
 				</div>
+
 
 			</div>
 		</div>
-
 	</div>
 </div>
