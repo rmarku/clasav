@@ -28,7 +28,7 @@ game.PlayScreen = me.ScreenObject.extend({
                                 height: 28,
                                 data: data
                             });
-                        me.game.world.addChild(game.mainPlayer, 10);
+                        me.game.world.addChild(game.mainPlayer, 9);
                         game.players[data.id] = game.mainPlayer;         //Se agrega a ala bolsa donde se van update
                         me.game.world.sort();
 
