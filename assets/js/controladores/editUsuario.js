@@ -1,6 +1,7 @@
 app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', function ($scope, $http, toastr, $location) {
     /**
-     * Description
+     * Contiene datos del alumno
+     * 
      * @method init
      * @return
      */
@@ -23,7 +24,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
     var lang = {
         "Welcome": "Bienvenido",
-        "A brand new app.": "Una aplicación de la nueva marca.",
+        "A brand new app.": "Una aplicacion de la nueva marca.",
 
         "Error.Passport.Password.Invalid": "Contraseña invalida",
         "Error.Passport.Password.Wrong": "Esa contraseña no esta muy bien...",
@@ -52,7 +53,8 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
 
     /**
-     * Description
+     * Envia el formulario 
+     * 
      * @method subirForm
      * @return 
      */

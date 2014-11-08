@@ -1,6 +1,7 @@
 app.controller('gamePageController', ['$scope', '$location', function ($scope, $location) {
     /**
      * Description
+     * 
      * @method init
      * @return
      */
@@ -14,6 +15,7 @@ app.controller('gamePageController', ['$scope', '$location', function ($scope, $
 
     /**
      * Description
+     * 
      * @method init
      * @return 
      */

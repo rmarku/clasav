@@ -168,7 +168,6 @@ function deshabilitarTecl() {
 
 /**
  * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
- * @return
  * @method noPressBtn
  * @return 
  */
