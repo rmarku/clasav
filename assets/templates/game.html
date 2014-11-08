@@ -3,7 +3,7 @@
 		<div class="col-md-10" align="center">
 			<div id="dcanvas" style="width: 800px; height: 480px; position: relative" align="left">
 
-				<!--HUD SUPERIOR-->
+				<!--HUD SUPERIOR- ->
 				<div id="hudSuperior" class="capaSup">
 					<img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
 					<div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
@@ -20,7 +20,7 @@
 							<b>Experiencia</b>
 						</div>
 					</div>
-				</div>
+				</div><!-- -->
 
 				<!--HUD INFERIOR-->
 				<div id="jsapp" class="capaInf" style="width: 800px; height: 480px; position: relative">
@@ -124,7 +124,7 @@
 					</span>
 				</div>
 
-				<input chat class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px">
+				<input chat="envMsg" class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px">
 				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()">
 					Enviar
 				</button>
