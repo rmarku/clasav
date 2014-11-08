@@ -9,7 +9,6 @@ module.exports = function addPersonaje(req, res, next) {
         // Si hay create agregar el UserId
 
         if (req.options.action == 'create') {
-            console.log(req.body);
             var pantalon = function () {
                 Item_instancia.create(
                     {

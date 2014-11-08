@@ -1,4 +1,4 @@
-{
+[{
     "x": 900,
 	"y":200,
 	"id": 1,
@@ -12,4 +12,19 @@
 			    "pantalon":"1_brown"
 		}
 	}
-}
+},
+{
+    "x": 920,
+    "y":200,
+    "id": 2,
+    "energia":100,
+    "data":{
+        "nombre": "Jose",
+        "tipo":"pj_f",
+        "vestimenta":{
+            "pelo":"pj_b",
+            "remera":"4_white",
+            "pantalon":"1_brown"
+        }
+    }
+}]

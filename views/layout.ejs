@@ -17,11 +17,13 @@
     <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
 
+
 </head>
 <body class="body-gradient" ng-controller="bodyController">
 
 <header class="text-center">
-    <div class="navbar navbar-inverse row" >
+    <!---login/logout--->
+    <div class="navbar navbar-inverse row">
         <% if (!user) { %>
         <div class="text-left col-md-2">
             <a href="#/crear-cuenta" class="btn btn2 btn-default" style="margin-top: 4px;">Crear Cuenta</a>
@@ -67,7 +69,7 @@
         </div>
         <% } %>
     </div>
-
+    <!---final login/logout--->
     <!--h1>Titulo del Juego</h1-->
     <img src="images/init.png"/>
     <br/>
@@ -127,6 +129,7 @@
 <script src="/js/juego/main.js"></script>
 <script src="/js/juego/entities/player.js"></script>
 <script src="/js/juego/hud.js"></script>
+<script src="/js/juego/minimap.js"></script>
 <script src="/js/juego/play.js"></script>
 <script src="/js/juego/chat.js"></script>
 <script src="/js/controladores/navVar.js"></script>

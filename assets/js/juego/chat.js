@@ -4,17 +4,9 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
     $sailsBind.bind('api/chat', $scope, {"dateTime": {">": tiempo}});
     
     
-    /*PRUEBA
-    
-            io.socket.get('/api/personaje?where={"nombre":"' + $scope.pj.nombre + '"}', function (data) {
-            var nombrePj = $scope.pj.nombre;
-        });
-    PRUEBA*/
-    
-    
-
     $scope.envMsj = function () {
         if ($scope.mensaje !== "") {
+            
             io.socket.put('/api/chat/create/', {nick: 'Lizz', mensaje: $scope.mensaje});
 
         }
@@ -22,3 +14,17 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
     };
 
 }]);
+
+app.directive('chat', function () {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      elem.bind('keydown', function (e) {
+          e.stopImmediatePropagation();
+      });
+      elem.bind('keyup', function (e) {
+          e.stopImmediatePropagation();
+      });
+    }
+  };
+});

@@ -7,7 +7,7 @@ game.PlayScreen = me.ScreenObject.extend({
      */
     onResetEvent: function () {
         // load a level
-        me.levelDirector.loadLevel("mapa");
+        me.levelDirector.loadLevel("Inicio");
         // subscribe to key down event
         me.audio.playTrack("snow", 0.7);
         me.audio.muteAll();
@@ -29,8 +29,8 @@ game.PlayScreen = me.ScreenObject.extend({
                                 data: data
                             });
                         me.game.world.addChild(game.mainPlayer, 10);
-                        game.players[data.id] = game.mainPlayer;         //Se agrega a ala bolsa donde se van update
-                        me.game.world.sort();
+//                        game.players[data.id] = game.mainPlayer;         //Se agrega a a la bolsa donde se van update
+//                        me.game.world.sort();
 
                     }
                     // start the game
