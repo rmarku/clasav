@@ -49,9 +49,9 @@ game.PlayerEntity = me.Entity.extend({
         this.lastAnimationUsed = 'run-down';
         this.animationToUseThisFrame = 'run-down';
 
-        this.anchorPoint.set(1, 0.5);
+        this.anchorPoint.set(0.5, 1);
 
-        this.body.addShape(new me.Rect(0, -this.body.height / 2, this.body.width, this.body.height));
+        this.body.addShape(new me.Rect(0, 0, this.body.width-3, this.body.height/2));
         // set the renderable position to bottom center
 
 
@@ -154,15 +154,18 @@ game.PlayerEntity = me.Entity.extend({
 
         var context = renderer.getContext();
 
+      // Dibujo el nombre
         context.drawImage(this.canvas,
             0,
             ~~(this.canvas.height - 29),
             ~~(this.canvas.width),
             30,
             ~~(this.pos.x + this.width / 2 - this.canvas.width / 2),
-            ~~(this.pos.y + this.height),
+            ~~(this.pos.y + this.height/2),
             this.renderable.image.width,
             30);
+
+      // Dibujo en el minimapa
             drawCanvasMinimap(this.pos.x,this.pos.y);
 
 
@@ -198,10 +201,10 @@ game.PlayerEntity = me.Entity.extend({
         this.ctx.font = '11px "Short Stack" ';
         this.ctx.textBaseline = 'top';
 
-        var txtw = this.ctx.measureText(this.data.nombre.trimRight()).width;
+      var txtw = this.ctx.measureText(this.data.nombre.trimRight()).width;
 
-        this.ctx.strokeText(this.data.nombre, this.renderable.image.width / 2 - txtw / 2, this.renderable.image.height + 2);
-        this.ctx.fillText(this.data.nombre, this.renderable.image.width / 2 - txtw / 2, this.renderable.image.height + 2);
+        this.ctx.strokeText(this.data.nombre, this.renderable.image.width / 2 - txtw / 2, this.renderable.image.height+ 7);
+        this.ctx.fillText(this.data.nombre, this.renderable.image.width / 2 - txtw / 2, this.renderable.image.height+ 7) ;
 
 
         // Dibujo el personaje
