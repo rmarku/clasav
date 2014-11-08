@@ -24,7 +24,7 @@ game.PlayerEntity = me.Entity.extend({
         this.body.gravity = 0;
 
         this.vestir();
-        me.input.preventDefault;
+        me.input.preventDefault();
         me.input.bindKey(me.input.KEY.LEFT, 'left', false,false);
         me.input.bindKey(me.input.KEY.A, 'left', false,false);
         me.input.bindKey(me.input.KEY.RIGHT, 'right', false,false);
