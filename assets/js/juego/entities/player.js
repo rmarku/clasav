@@ -163,6 +163,7 @@ game.PlayerEntity = me.Entity.extend({
             ~~(this.pos.y + this.height),
             this.renderable.image.width,
             30);
+            drawCanvasMinimap(this.pos.x,this.pos.y);
 
 
     },
