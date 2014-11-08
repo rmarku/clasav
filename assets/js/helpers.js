@@ -1,7 +1,10 @@
 /**
  * Created by martin on 01/11/14.
+ * @method tintImage
+ * @param {} img
+ * @param {} color
+ * @return buff
  */
-
 function tintImage(img, color) {
     var w = img.width;
     var h = img.height;

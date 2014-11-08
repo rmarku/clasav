@@ -4,6 +4,11 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
     $sailsBind.bind('api/chat', $scope, {"dateTime": {">": tiempo}});
     
     
+    /**
+     * Description
+     * @method envMsj
+     * @return 
+     */
     $scope.envMsj = function () {
         if ($scope.mensaje !== "") {
             
@@ -18,6 +23,14 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
 app.directive('chat', function () {
   return {
     restrict: 'A',
+    /**
+     * Description
+     * @method link
+     * @param {} scope
+     * @param {} elem
+     * @param {} attrs
+     * @return 
+     */
     link: function (scope, elem, attrs) {
       elem.bind('keydown', function (e) {
           e.stopImmediatePropagation();

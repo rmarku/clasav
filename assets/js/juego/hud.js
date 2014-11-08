@@ -151,6 +151,11 @@ function personajeInvContr($scope, $sailsBind) {
 
 
 
+/**
+ * Description
+ * @method deshabilitarTecl
+ * @return 
+ */
 function deshabilitarTecl() {
 	/*	var valorInput = $("#msjChat").val();
 	 $("#msjChat").keyup(function(event) {
@@ -163,8 +168,9 @@ function deshabilitarTecl() {
 
 /**
  * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
- * @method noPressBtn
  * @return
+ * @method noPressBtn
+ * @return 
  */
 function noPressBtn() {
 	$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");

@@ -10,8 +10,9 @@ var game = {
 
     /**
      * initialization
-     * @method onload
      * @return
+     * @method onload
+     * @return 
      */
     onload: function () {
         me.sys.fps = 30;
@@ -36,8 +37,9 @@ var game = {
 
     /**
      * Llamo cuando todos los recursos estan cargados
-     * @method loaded
      * @return
+     * @method loaded
+     * @return 
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -83,8 +85,9 @@ var game = {
 
         /**
          * Description
-         * @method reset_mainPlayer_estado
          * @return
+         * @method reset_mainPlayer_estado
+         * @return 
          */
         reset_mainPlayer_estado: function () {
             this.mainPlayer_estado.left = false;
@@ -95,10 +98,11 @@ var game = {
 
         /**
          * Description
+         * @return
          * @method update_mainPlayer_estado
          * @param {} direction
          * @param {} boolean
-         * @return
+         * @return 
          */
         update_mainPlayer_estado: function (direction, boolean) {
             if (direction == 'left') {
@@ -115,9 +119,10 @@ var game = {
 
         /**
          * Description
+         * @return
          * @method update_mainPlayer_coordenates
          * @param {} coordenates_mainPlayer
-         * @return
+         * @return 
          */
         update_mainPlayer_coordenates: function (coordenates_mainPlayer) {
             this.mainPlayer_coordenates.x = coordenates_mainPlayer.x;
@@ -126,9 +131,10 @@ var game = {
 
         /**
          * Description
+         * @return
          * @method send_Server_mainPlayer_update
          * @param {} local_coordenates
-         * @return
+         * @return 
          */
         send_Server_mainPlayer_update: function (local_coordenates) {
 
@@ -164,8 +170,9 @@ var game = {
         // y por lo tanto a todos los alumnos que participan de ese Mapa_intancia
         /**
          * Description
-         * @method subscribe_to_server_mapa_instance
          * @return
+         * @method subscribe_to_server_mapa_instance
+         * @return 
          */
         subscribe_to_server_mapa_instance: function () {
             //alert('suscribing');
@@ -202,8 +209,9 @@ var game = {
 
         /**
          * Description
-         * @method unsubscribe_from_server_mapa_instance
          * @return
+         * @method unsubscribe_from_server_mapa_instance
+         * @return 
          */
         unsubscribe_from_server_mapa_instance: function () {
             io.socket.get('/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',

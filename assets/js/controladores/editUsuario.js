@@ -51,6 +51,11 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
     }
 
 
+    /**
+     * Description
+     * @method subirForm
+     * @return 
+     */
     $scope.subirForm = function () {
 
         if ($scope.alumno.password != $scope.alumno.password2) {

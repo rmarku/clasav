@@ -12,6 +12,11 @@ app.controller('gamePageController', ['$scope', '$location', function ($scope, $
         }
     );
 
+    /**
+     * Description
+     * @method init
+     * @return 
+     */
     $scope.init = function () {
         setTimeout(function () {
             game.onload();

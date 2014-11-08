@@ -1,6 +1,10 @@
 /**
- * Created by guille on 04/11/14.
- */
+     * Created by guille on 04/11/14.
+     * @method drawCanvasMinimap
+     * @param {} x
+     * @param {} y
+     * @return 
+     */
     function drawCanvasMinimap(x, y) {
         var canvasMinimap = document.getElementById("canvasMinimap");
         if (canvasMinimap.getContext) {
@@ -16,6 +20,11 @@
             //y que si es muy grande que se vaya moviendo
         }
     }
+    /**
+     * Description
+     * @method toogleName
+     * @return 
+     */
     function toogleName(){
 
     }

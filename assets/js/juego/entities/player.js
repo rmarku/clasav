@@ -7,11 +7,12 @@ game.PlayerEntity = me.Entity.extend({
 
     /**
      * Description
+     * @return
      * @method init
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return
+     * @return 
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [ x, y, settings ]);
@@ -25,14 +26,22 @@ game.PlayerEntity = me.Entity.extend({
 
         this.vestir();
         //me.input.preventDefault();
-        me.input.bindKey(me.input.KEY.LEFT, 'left', false,false);
+        /*me.input.bindKey(me.input.KEY.LEFT, 'left', false,false);
         me.input.bindKey(me.input.KEY.A, 'left', false,false);
         me.input.bindKey(me.input.KEY.RIGHT, 'right', false,false);
         me.input.bindKey(me.input.KEY.D, 'right', false,false);
         me.input.bindKey(me.input.KEY.UP, 'up', false,false);
         me.input.bindKey(me.input.KEY.W, 'up', false,false);
         me.input.bindKey(me.input.KEY.DOWN, 'down', false,false);
-        me.input.bindKey(me.input.KEY.S, 'down', false,false);
+        me.input.bindKey(me.input.KEY.S, 'down', false,false);*/
+        me.input.bindKey(me.input.KEY.LEFT, 'left');
+        me.input.bindKey(me.input.KEY.A, 'left');
+        me.input.bindKey(me.input.KEY.RIGHT, 'right');
+        me.input.bindKey(me.input.KEY.D, 'right');
+        me.input.bindKey(me.input.KEY.UP, 'up');
+        me.input.bindKey(me.input.KEY.W, 'up');
+        me.input.bindKey(me.input.KEY.DOWN, 'down');
+        me.input.bindKey(me.input.KEY.S, 'down');
 
         me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
 
@@ -140,9 +149,10 @@ game.PlayerEntity = me.Entity.extend({
     },
     /**
      * Description
+     * @return
      * @method draw
      * @param {} renderer
-     * @return
+     * @return 
      */
     draw: function (renderer) {
 
@@ -170,6 +180,12 @@ game.PlayerEntity = me.Entity.extend({
     },
 
 
+    /**
+     * Description
+     * @method getItemImg
+     * @param {} itemId
+     * @return Literal
+     */
     getItemImg: function (itemId) {
         var dir = this.data.duenio.sexo + '/';
         return null;
@@ -177,8 +193,9 @@ game.PlayerEntity = me.Entity.extend({
 
     /**
      * Description
-     * @method vestir
      * @return
+     * @method vestir
+     * @return 
      */
     vestir: function () {
         this.canvas = document.createElement('canvas');

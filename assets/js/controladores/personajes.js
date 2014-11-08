@@ -47,6 +47,11 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     });
 
 
+    /**
+     * Description
+     * @method animacion
+     * @return 
+     */
     var animacion = function () {
 
         var cnv = document.getElementById('pj');
@@ -148,6 +153,11 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     });
 
 
+    /**
+     * Description
+     * @method peloSiguiente
+     * @return 
+     */
     $scope.peloSiguiente = function () {
         if (pelo < 15)
             pelo++;
@@ -158,6 +168,11 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         img.pelo.backColored = new Image();
     };
 
+    /**
+     * Description
+     * @method peloAnterior
+     * @return 
+     */
     $scope.peloAnterior = function () {
         if (pelo > 1)
             pelo--;
@@ -168,6 +183,11 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         img.pelo.backColored = new Image();
     };
 
+    /**
+     * Description
+     * @method crearPj
+     * @return 
+     */
     $scope.crearPj = function () {
 
         io.socket.get('/api/personaje?where={"nombre":"' + $scope.pj.nombre + '"}', function (data) {
