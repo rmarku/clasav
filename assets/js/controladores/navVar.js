@@ -7,6 +7,11 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     $scope.user = {};
 
+    /**
+     * Description
+     * @method getUser
+     * @return MemberExpression
+     */
     $scope.getUser = function () {
         var deferred = $q.defer();
         if (angular.isUndefined($scope.user.id)) {
@@ -34,6 +39,11 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     $scope.getUser();
 
+    /**
+     * Description
+     * @method verCuenta
+     * @return 
+     */
     $scope.verCuenta = function () {
         $location.path('/cuenta');
     };

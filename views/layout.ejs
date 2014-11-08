@@ -26,7 +26,7 @@
     <div class="navbar navbar-inverse row">
         <% if (!user) { %>
         <div class="text-left col-md-2">
-            <a href="#/crear-cuenta" class="btn btn2 btn-default">Crear Cuenta</a>
+            <a href="#/crear-cuenta" class="btn btn2 btn-default" style="margin-top: 4px;">Crear Cuenta</a>
         </div>
         <div class="text-center col-md-4">
             <% if (errors.length > 0) { %>
@@ -41,7 +41,7 @@
             <form class="form-inline" role="form" action="/auth/local" method="post">
                 <div class="form-group">
                     <label class="sr-only" for="email">Email address</label>
-                    <input type="email" class="form-control2" name="identifier" size="20" ng-model="alumno.e_mail"
+                    <input type="email" class="form-control2" name="identifier" size="35" ng-model="alumno.e_mail"
                            placeholder="Introduce tu E-mail" required>
                 </div>
                 <div class="form-group">

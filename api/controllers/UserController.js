@@ -6,6 +6,13 @@
  */
 
 module.exports = {
+    /**
+     * Description
+     * @method getUser
+     * @param {} req
+     * @param {} res
+     * @return CallExpression
+     */
     getUser: function (req, res) {
         if (typeof req.session.passport != 'undefined') {
             var user = req.session.passport.user;

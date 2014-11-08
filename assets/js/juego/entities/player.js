@@ -7,11 +7,12 @@ game.PlayerEntity = me.Entity.extend({
 
     /**
      * Description
+     * @return
      * @method init
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return
+     * @return 
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [ x, y, settings ]);
@@ -24,6 +25,7 @@ game.PlayerEntity = me.Entity.extend({
         this.body.gravity = 0;
 
         this.vestir();
+        //me.input.preventDefault();
         me.input.bindKey(me.input.KEY.LEFT, 'left');
         me.input.bindKey(me.input.KEY.A, 'left');
         me.input.bindKey(me.input.KEY.RIGHT, 'right');
@@ -139,9 +141,10 @@ game.PlayerEntity = me.Entity.extend({
     },
     /**
      * Description
+     * @return
      * @method draw
      * @param {} renderer
-     * @return
+     * @return 
      */
     draw: function (renderer) {
 
@@ -172,6 +175,12 @@ game.PlayerEntity = me.Entity.extend({
     },
 
 
+    /**
+     * Description
+     * @method getItemImg
+     * @param {} itemId
+     * @return Literal
+     */
     getItemImg: function (itemId) {
         var dir = this.data.duenio.sexo + '/';
         return null;
@@ -179,8 +188,9 @@ game.PlayerEntity = me.Entity.extend({
 
     /**
      * Description
-     * @method vestir
      * @return
+     * @method vestir
+     * @return 
      */
     vestir: function () {
         this.canvas = document.createElement('canvas');
