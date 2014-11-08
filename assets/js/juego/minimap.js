@@ -14,8 +14,7 @@
             ctxMinimap.stroke();
             //seria util guardar tamaño del mapa en scope
             //y que si es muy grande que se vaya moviendo
-            /*game.Players.foreach(drawPlayers);
-             */
+            //game.Players.foreach(drawPlayers);
         }
     }
 /*
