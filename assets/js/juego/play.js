@@ -54,14 +54,13 @@ game.PlayScreen = me.ScreenObject.extend({
                       me.game.world.addChild(game.players[8], 9);
 
                         me.game.world.sort();
-
-
-
+                    }else{
+                      console.log("No existe el personaje");
                     }
                     // start the game
                 });
             } else {
-
+              console.log("No existe el usuario");
             }
         });
     },

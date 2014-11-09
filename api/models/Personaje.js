@@ -20,6 +20,15 @@ module.exports = {
         y:{
             type: "integer"
         },
+        direccion:{
+            type: "integer"
+        },
+        mapa_instancia: {
+            model: 'mapa_instancia'
+        },
+        conectado: {
+            type: "boolean"
+        },
         pelo:{
             type: "string"
         },

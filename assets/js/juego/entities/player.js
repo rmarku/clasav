@@ -34,16 +34,13 @@ game.Player = me.Entity.extend({
         this.renderable.addAnimation('run-up', [ 12, 13, 14, 15 ], 100);
 
         this.renderable.setCurrentAnimation('run-down');
-      this.animationToUseThisFrame = 'run-down';
-      this.lastAnimationUsed = 'run-down';
+        this.animationToUseThisFrame = 'run-down';
+        this.lastAnimationUsed = 'run-down';
 
         this.anchorPoint.set(0.5, 1);
 
         this.body.addShape(new me.Rect(0, 0, this.body.width-3, this.body.height/2));
         // set the renderable position to bottom center
-
-
-        game.sockets_game.subscribe_to_server_mapa_instance();
 
     },
     /**
@@ -53,31 +50,34 @@ game.Player = me.Entity.extend({
      * @return Literal
      */
     update: function (dt) {
-
-
-
         return this.updateAnimation(dt);
-
     },
 
 
-    updateAnimation: function(dt){
+    updateAnimation: function(dt) {
       if (this.body.vel.length() > this.body.maxVel.x) {
         // Now calc actual vel to prevent speeding by going diag..
         this.body.vel.normalize();
         this.body.vel.scale(this.body.maxVel.x);
       }
-      if ( this.body.vel.y > 0.0 )
-        this.animationToUseThisFrame = "run-down";
-      if ( this.body.vel.y < 0.0 )
-        this.animationToUseThisFrame = "run-up";
 
-      if(Math.abs(this.body.vel.x) > Math.abs(this.body.vel.y)) {
-        if (this.body.vel.x > 0.0)
-          this.animationToUseThisFrame = "run-right";
-        if (this.body.vel.x < 0.0)
-          this.animationToUseThisFrame = "run-left";
+      if (this.direccion & 1) {
+        this.animationToUseThisFrame = "run-down";
+        this.body.vel.y += this.body.accel.y * me.timer.tick;
       }
+      if ( this.direccion & 2 ){
+        this.animationToUseThisFrame = "run-up";
+        this.body.vel.y -= this.body.accel.y * me.timer.tick;
+      }
+      if (this.direccion & 4) {
+        this.animationToUseThisFrame = "run-right";
+        this.body.vel.x += this.body.accel.x * me.timer.tick;
+      }
+      if (this.direccion & 8) {
+        this.animationToUseThisFrame = "run-left";
+        this.body.vel.x -= this.body.accel.x * me.timer.tick;
+      }
+
 
       if(this.lastAnimationUsed != this.animationToUseThisFrame) {
         this.lastAnimationUsed = this.animationToUseThisFrame;
@@ -103,8 +103,6 @@ game.Player = me.Entity.extend({
     draw: function (renderer) {
 
         // Envio datos de posicion y estado al servidor
-        game.sockets_game.update_mainPlayer_coordenates({'x': this.pos.x, 'y': this.pos.y});
-        game.sockets_game.send_Server_mainPlayer_update();
 
         // Dibujo el personaje
         this._super(me.Entity, 'draw', [renderer]);
