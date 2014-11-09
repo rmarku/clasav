@@ -12,7 +12,7 @@ var game = {
      * initialization
      * @return
      * @method onload
-     * @return 
+     * @return
      */
     onload: function () {
         me.sys.fps = 30;
@@ -39,12 +39,13 @@ var game = {
      * Llamo cuando todos los recursos estan cargados
      * @return
      * @method loaded
-     * @return 
+     * @return
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.pool.register("mainPlayer", game.PlayerEntity);
+        me.pool.register("NPCPlayer", game.NPCPlayer);
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
 
         this.sockets_game.subscribe_to_server_mapa_instance();
@@ -87,7 +88,7 @@ var game = {
          * Description
          * @return
          * @method reset_mainPlayer_estado
-         * @return 
+         * @return
          */
         reset_mainPlayer_estado: function () {
             this.mainPlayer_estado.left = false;
@@ -102,7 +103,7 @@ var game = {
          * @method update_mainPlayer_estado
          * @param {} direction
          * @param {} boolean
-         * @return 
+         * @return
          */
         update_mainPlayer_estado: function (direction, boolean) {
             if (direction == 'left') {
@@ -122,7 +123,7 @@ var game = {
          * @return
          * @method update_mainPlayer_coordenates
          * @param {} coordenates_mainPlayer
-         * @return 
+         * @return
          */
         update_mainPlayer_coordenates: function (coordenates_mainPlayer) {
             this.mainPlayer_coordenates.x = coordenates_mainPlayer.x;
@@ -134,7 +135,7 @@ var game = {
          * @return
          * @method send_Server_mainPlayer_update
          * @param {} local_coordenates
-         * @return 
+         * @return
          */
         send_Server_mainPlayer_update: function (local_coordenates) {
 
@@ -172,7 +173,7 @@ var game = {
          * Description
          * @return
          * @method subscribe_to_server_mapa_instance
-         * @return 
+         * @return
          */
         subscribe_to_server_mapa_instance: function () {
             //alert('suscribing');
@@ -211,7 +212,7 @@ var game = {
          * Description
          * @return
          * @method unsubscribe_from_server_mapa_instance
-         * @return 
+         * @return
          */
         unsubscribe_from_server_mapa_instance: function () {
             io.socket.get('/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',

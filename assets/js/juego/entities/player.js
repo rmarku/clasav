@@ -2,8 +2,8 @@
 /*                                                                                  */
 /*        a player entity                                                           */
 /*                                                                                  */
-/** ********************************************************************************* */
-game.PlayerEntity = me.Entity.extend({
+/** ******************************************************************************* */
+game.Player = me.Entity.extend({
 
     /**
      * Description
@@ -12,7 +12,7 @@ game.PlayerEntity = me.Entity.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return 
+     * @return
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [ x, y, settings ]);
@@ -21,35 +21,21 @@ game.PlayerEntity = me.Entity.extend({
 
         this.body.setVelocity(5, 5);
         this.body.setFriction(0.3, 0.3);
-        // this.body.setMaxVelocity(4, 4);
+
         this.body.gravity = 0;
 
         this.vestir();
-        //me.input.preventDefault();
-        me.input.bindKey(me.input.KEY.LEFT, 'left');
-        me.input.bindKey(me.input.KEY.A, 'left');
-        me.input.bindKey(me.input.KEY.RIGHT, 'right');
-        me.input.bindKey(me.input.KEY.D, 'right');
-        me.input.bindKey(me.input.KEY.UP, 'up');
-        me.input.bindKey(me.input.KEY.W, 'up');
-        me.input.bindKey(me.input.KEY.DOWN, 'down');
-        me.input.bindKey(me.input.KEY.S, 'down');
-
-        me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
-
-        // bounding
-        // this.addShape(new me.Rect(new me.Vector2d(7,10), 32, 32));
 
         this.isCollidable = true;
-        this.type = game.MAIN_PLAYER_OBJECT;
 
         this.renderable.addAnimation('run-down', [ 0, 1, 2, 3 ], 100);
         this.renderable.addAnimation('run-left', [ 4, 5, 6, 7 ], 100);
         this.renderable.addAnimation('run-right', [ 8, 9, 10, 11 ], 100);
         this.renderable.addAnimation('run-up', [ 12, 13, 14, 15 ], 100);
+
         this.renderable.setCurrentAnimation('run-down');
-        this.lastAnimationUsed = 'run-down';
-        this.animationToUseThisFrame = 'run-down';
+      this.animationToUseThisFrame = 'run-down';
+      this.lastAnimationUsed = 'run-down';
 
         this.anchorPoint.set(0.5, 1);
 
@@ -69,95 +55,63 @@ game.PlayerEntity = me.Entity.extend({
     update: function (dt) {
 
 
-        if (me.input.isKeyPressed('left')) {
-            this.animationToUseThisFrame = 'run-left';
-            this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('left', true);
-        }
-        else {
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('left', false);
-        }
+        return this.updateAnimation(dt);
 
-
-        if (me.input.isKeyPressed('right')) {
-            this.animationToUseThisFrame = 'run-right';
-            this.body.vel.x += this.body.accel.x * me.timer.tick;
-
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('right', true);
-        }
-        else {
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('right', false);
-        }
-
-
-        if (me.input.isKeyPressed('up')) {
-            this.animationToUseThisFrame = 'run-up';
-            this.body.vel.y -= this.body.accel.y * me.timer.tick;
-
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('up', true);
-        } else {
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('up', false);
-        }
-
-
-        if (me.input.isKeyPressed('down')) {
-            this.animationToUseThisFrame = 'run-down';
-            this.body.vel.y += this.body.accel.y * me.timer.tick;
-
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('down', true);
-        }
-        else {
-            //Almaceno estado actual de mi Personaje Principal
-            game.sockets_game.update_mainPlayer_estado('down', false);
-        }
-
-
-        if (this.animationToUseThisFrame != this.lastAnimationUsed) {
-            this.lastAnimationUsed = this.animationToUseThisFrame;
-            this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
-        }
-
-
-        if (this.body.vel.length() > this.body.maxVel.x) {
-            // Now calc actual vel to prevent speeding by going diag..
-            this.body.vel.normalize();
-            this.body.vel.scale(this.body.maxVel.x);
-        }
-        this.body.update();
-        if (this.body.vel.x !== 0 || this.body.vel.y !== 0 || (this.renderable && this.renderable.isFlickering())) {
-            this._super(me.Entity, 'update', [ dt ]);
-            return true;
-        }
-
-        return false;
     },
+
+
+    updateAnimation: function(dt){
+      if (this.body.vel.length() > this.body.maxVel.x) {
+        // Now calc actual vel to prevent speeding by going diag..
+        this.body.vel.normalize();
+        this.body.vel.scale(this.body.maxVel.x);
+      }
+      if ( this.body.vel.y > 0.0 )
+        this.animationToUseThisFrame = "run-down";
+      if ( this.body.vel.y < 0.0 )
+        this.animationToUseThisFrame = "run-up";
+
+      if(Math.abs(this.body.vel.x) > Math.abs(this.body.vel.y)) {
+        if (this.body.vel.x > 0.0)
+          this.animationToUseThisFrame = "run-right";
+        if (this.body.vel.x < 0.0)
+          this.animationToUseThisFrame = "run-left";
+      }
+
+      if(this.lastAnimationUsed != this.animationToUseThisFrame) {
+        this.lastAnimationUsed = this.animationToUseThisFrame;
+        this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
+      }
+      this.body.update();
+
+      if (this.body.vel.x !== 0 || this.body.vel.y !== 0 || (this.renderable && this.renderable.isFlickering())) {
+        this._super(me.Entity, 'update', [ dt ]);
+        return true;
+      }
+      return false;
+    },
+
+
     /**
      * Description
      * @return
      * @method draw
      * @param {} renderer
-     * @return 
+     * @return
      */
     draw: function (renderer) {
 
         // Envio datos de posicion y estado al servidor
         game.sockets_game.update_mainPlayer_coordenates({'x': this.pos.x, 'y': this.pos.y});
         game.sockets_game.send_Server_mainPlayer_update();
-        //
 
+        // Dibujo el personaje
         this._super(me.Entity, 'draw', [renderer]);
 
         var context = renderer.getContext();
 
-      // Dibujo el nombre
+         // Dibujo el nombre
         context.drawImage(this.canvas,
             0,
             ~~(this.canvas.height - 29),
@@ -170,8 +124,6 @@ game.PlayerEntity = me.Entity.extend({
 
       // Dibujo en el minimapa
             drawCanvasMinimap(this.pos.x,this.pos.y);
-
-
     },
 
 
@@ -190,7 +142,7 @@ game.PlayerEntity = me.Entity.extend({
      * Description
      * @return
      * @method vestir
-     * @return 
+     * @return
      */
     vestir: function () {
         this.canvas = document.createElement('canvas');
@@ -201,7 +153,7 @@ game.PlayerEntity = me.Entity.extend({
 
         this.ctx = this.canvas.getContext("2d");
 
-        //Dibjo el nombre
+        //Dibujo el nombre
 
         this.ctx.lineCap = "round";
         this.ctx.lineJoin = "round";
@@ -253,7 +205,7 @@ game.PlayerEntity = me.Entity.extend({
 
         if (this.data.pelo !== "") {
             img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + '.png');
-            this.ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
+            this.ctx.drawImage(img, 0, 0);
             img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + 'hair.png');
             this.ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
         }
