@@ -34,16 +34,13 @@ game.Player = me.Entity.extend({
         this.renderable.addAnimation('run-up', [ 12, 13, 14, 15 ], 100);
 
         this.renderable.setCurrentAnimation('run-down');
-      this.animationToUseThisFrame = 'run-down';
-      this.lastAnimationUsed = 'run-down';
+        this.animationToUseThisFrame = 'run-down';
+        this.lastAnimationUsed = 'run-down';
 
         this.anchorPoint.set(0.5, 1);
 
         this.body.addShape(new me.Rect(0, 0, this.body.width-3, this.body.height/2));
         // set the renderable position to bottom center
-
-
-        game.sockets_game.subscribe_to_server_mapa_instance();
 
     },
     /**
@@ -53,11 +50,7 @@ game.Player = me.Entity.extend({
      * @return Literal
      */
     update: function (dt) {
-
-
-
         return this.updateAnimation(dt);
-
     },
 
 
@@ -103,8 +96,6 @@ game.Player = me.Entity.extend({
     draw: function (renderer) {
 
         // Envio datos de posicion y estado al servidor
-        game.sockets_game.update_mainPlayer_coordenates({'x': this.pos.x, 'y': this.pos.y});
-        game.sockets_game.send_Server_mainPlayer_update();
 
         // Dibujo el personaje
         this._super(me.Entity, 'draw', [renderer]);

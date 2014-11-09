@@ -50,7 +50,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     /**
      * Description
      * @method animacion
-     * @return 
+     * @return
      */
     var animacion = function () {
 
@@ -140,7 +140,10 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         torso: 1,
         zapato: 1,
         "x": 900,
-        "y": 200
+        "y": 200,
+        "estado": 0,
+        "mapa_instancia":1,
+        "conectado": false
     };
 
     io.socket.get("/api/user/getUser", function (data) {
@@ -156,7 +159,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     /**
      * Description
      * @method peloSiguiente
-     * @return 
+     * @return
      */
     $scope.peloSiguiente = function () {
         if (pelo < 15)
@@ -171,7 +174,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     /**
      * Description
      * @method peloAnterior
-     * @return 
+     * @return
      */
     $scope.peloAnterior = function () {
         if (pelo > 1)
@@ -186,7 +189,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     /**
      * Description
      * @method crearPj
-     * @return 
+     * @return
      */
     $scope.crearPj = function () {
 

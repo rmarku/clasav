@@ -3,28 +3,35 @@
 game.PlayerEntity = game.Player.extend({
   init: function (x, y, settings) {
     this._super(game.Player, 'init', [ x, y, settings ]);
-
+    this.id = settings.data.id;
     // Camara sigue al main player
     me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
+    game.server.subscribe_to_mapa_instance();
   },
 
   update: function(dt){
 
     // Interpretacion de teclas
-    [{dire: 'left',eje:'x',dir:-1},
-      {dire: 'right',eje:'x',dir:1},
-      {dire: 'down',eje:'y',dir:1},
-      {dire: 'up',eje:'y',dir:-1}].forEach(function(mov){
-        if (me.input.isKeyPressed(mov.dire)) {
-          this.body.vel[mov.eje] = mov.dir * this.body.accel[mov.eje] * me.timer.tick;
+    this.direccion = 0;
+    if (me.input.isKeyPressed('left')) {
+      this.body.vel.x -= this.body.accel.x * me.timer.tick;
+      this.direccion |= 8;
+    }
+    if (me.input.isKeyPressed('right')) {
+      this.body.vel.x += this.body.accel.x * me.timer.tick;
+      this.direccion |= 4;
+    }
+    if (me.input.isKeyPressed('up')) {
+      this.body.vel.y -= this.body.accel.y * me.timer.tick;
+      this.direccion |= 2;
+    }
+    if (me.input.isKeyPressed('down')) {
+      this.body.vel.y += this.body.accel.y * me.timer.tick;
+      this.direccion |= 1;
+    }
 
-          // Almaceno estado actual de mi Personaje Principal
-          game.sockets_game.update_mainPlayer_estado(mov.dire, true);
-        } else {
-          // Almaceno estado actual de mi Personaje Principal
-          game.sockets_game.update_mainPlayer_estado(mov.dire, false);
-        }
-      },this);
     this._super(game.Player, 'update', [ dt ]);
+
+    game.server.update_mainplayer();
   }
 });
