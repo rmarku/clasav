@@ -121,10 +121,10 @@ function inventarioContr($scope, $sailsBind) {
 
 
 
-app.controller("personajeInvContr", ['$scope', "$sailsBind",
-function personajeInvContr($scope, $sailsBind) {
+app.controller("personajeInvContr", ['$scope', "$sailsBind","$interval",
+function personajeInvContr($scope, $sailsBind, $interval) {
 	//    $sailsBind.bind("api/inventario", $scope);
-
+	
 	$scope.personajeInv = [{
 		"id" : 3,
 		"nombreItem" : "capa dorada",
@@ -149,23 +149,6 @@ function personajeInvContr($scope, $sailsBind) {
 }]);
 
 
-
-
-/**
- * Description
- * @method deshabilitarTecl
- * @return 
- */
-function deshabilitarTecl() {
-	/*	var valorInput = $("#msjChat").val();
-	 $("#msjChat").keyup(function(event) {
-	 if (event.keyCode == 33 || event.keyCode == 83 || event.keyCode == 87 || event.keyCode == 68 || event.keyCode == 97 || event.keyCode == 115 || event.keyCode == 119 || event.keyCode == 100) {
-	 $("#msjChat").val(valorInput + event.keyCode);
-	 event.stopPropagation();
-	 }
-	 });*/
-}
-
 /**
  * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
  * @method noPressBtn
@@ -187,10 +170,10 @@ function noPressBtn() {
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
 
-	//$("#div-chat").scrollTop($("#div-chat")[0].scrollHeight);
+	//$("#msjChat").scrollTop($("#msjChat")[0].scrollHeight);
 	
-	var objDiv = document.getElementById("divChat");
-	objDiv.scrollTop = objDiv.scrollHeight;
+	//var objDiv = document.getElementById("divChat");
+	//objDiv.scrollTop = objDiv.scrollHeight;
 
 	//Enviar Mensaje al Chat al presionar Enter
 	$("#msjChat").keyup(function(event) {

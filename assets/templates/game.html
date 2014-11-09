@@ -39,9 +39,11 @@
 							Inventario
 						</p>
 
-						<div id="items" style="padding: 41px 9px 0px 10px">
-							<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; border: 0px 0px 0px 0px; margin: 0px 0px 0px -3px">
-								<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}" width="48px" height="48px">
+						<div id="items" style="padding: 41px 7px 0px 9px">
+							<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; margin: 0px 0px 0px -3px; border: 0px 0px 0px 0px">
+								<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
+								<span style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
+								<!--p style="position: absolute">{{x.cant | filter: { acumulable: true }}}</p-->
 							</div>
 						</div>
 					</div>
@@ -89,8 +91,10 @@
 							<div id="itemMano" class="itemP"></div>
 
 						</div>
-						<!--canvas id="pj" width="32" height="48" style="position: absolute"></canvas>
-						<div id="imagenes" style="position: absolute"></div-->
+						<!--CANVAS PERSONAJE-->
+						<canvas id="pj" width="32" height="48" style="position: absolute"></canvas>
+						<div id="imagenes" style="position: absolute"></div>
+						<!--FIN CANVAS PERSONAJE-->
 						<div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
 							<div id="itemEspec1" class="itemP"></div>
 							<div id="itemEspec2" class="itemP"></div>
