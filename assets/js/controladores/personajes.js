@@ -141,7 +141,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         zapato: 1,
         "x": 900,
         "y": 200,
-        "estado": 0,
+        "direccion": 0,
         "mapa_instancia":1,
         "conectado": false
     };

@@ -76,7 +76,7 @@ var game = {
             if ((this.update_counter >= this.update_timeOut) || (game.mainPlayer.direccion != game.mainPlayer.direccion_anterior)) {
 
                 io.socket.put('/api/personaje/' + game.mainPlayer.id, {  estado: game.mainPlayer.direccion,
-                        x: game.mainPlayer.pos.x, y: game.mainPlayer.pos.y }
+                        x: ~~game.mainPlayer.pos.x, y: ~~game.mainPlayer.pos.y }
 
                     , function (resdata) {
                     }
@@ -99,19 +99,28 @@ var game = {
         subscribe_to_mapa_instance: function () {
 
             // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
-            io.socket.get('/api/personaje/' + game.mainPlayer.id, function messageReceived(jsonObject) {
-                io.socket.on('/api/personaje/' + game.mainPlayer.id, function messageReceived(jsonObject) {
+            //  io.socket.get('/api/personaje/' + game.mainPlayer.id, function messageReceived() {
+                io.socket.on('personaje', function messageReceived(obj) {
+                    if(obj.id != game.mainPlayer.id)
+                        switch (obj.verb) {
+                            case 'updated':
 
-                    switch (jsonObject.verb) {
-                        case 'updated':
-                            break;
-                        //console.log("socket.on:");
-                        //console.log(angular.fromJson(jsonObject));
-                        default:
-                            break;
-                    }
+                              if(typeof obj.data.direccion != 'undefined' && obj.data.direccion != game.players[obj.id].direccion){
+                                game.players[obj.id].direccion =  obj.data.estado;
+                                game.mainPlayer.direccion_anterior = game.mainPlayer.direccion;
+                              }
+                              if(typeof obj.data.x != 'undefined' && obj.data.x != ~~game.players[obj.id].x){
+                                game.players[obj.id].pos.x =  obj.data.x;
+                              }
+                              if(typeof obj.data.y != 'undefined' && obj.data.y != ~~game.players[obj.id].y){
+                                game.players[obj.id].pos.y =  obj.data.y;
+                              }
+                                break;
+                            default:
+                                break;
+                        }
                 });
-            });
+        //    });
         },
 
         /**

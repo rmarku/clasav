@@ -54,23 +54,30 @@ game.Player = me.Entity.extend({
     },
 
 
-    updateAnimation: function(dt){
+    updateAnimation: function(dt) {
       if (this.body.vel.length() > this.body.maxVel.x) {
         // Now calc actual vel to prevent speeding by going diag..
         this.body.vel.normalize();
         this.body.vel.scale(this.body.maxVel.x);
       }
-      if ( this.body.vel.y > 0.0 )
-        this.animationToUseThisFrame = "run-down";
-      if ( this.body.vel.y < 0.0 )
-        this.animationToUseThisFrame = "run-up";
 
-      if(Math.abs(this.body.vel.x) > Math.abs(this.body.vel.y)) {
-        if (this.body.vel.x > 0.0)
-          this.animationToUseThisFrame = "run-right";
-        if (this.body.vel.x < 0.0)
-          this.animationToUseThisFrame = "run-left";
+      if (this.direccion & 1) {
+        this.animationToUseThisFrame = "run-down";
+        this.body.vel.y += this.body.accel.y * me.timer.tick;
       }
+      if ( this.direccion & 2 ){
+        this.animationToUseThisFrame = "run-up";
+        this.body.vel.y -= this.body.accel.y * me.timer.tick;
+      }
+      if (this.direccion & 4) {
+        this.animationToUseThisFrame = "run-right";
+        this.body.vel.x += this.body.accel.x * me.timer.tick;
+      }
+      if (this.direccion & 8) {
+        this.animationToUseThisFrame = "run-left";
+        this.body.vel.x -= this.body.accel.x * me.timer.tick;
+      }
+
 
       if(this.lastAnimationUsed != this.animationToUseThisFrame) {
         this.lastAnimationUsed = this.animationToUseThisFrame;

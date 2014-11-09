@@ -20,7 +20,7 @@ module.exports = {
         y:{
             type: "integer"
         },
-        estado:{
+        direccion:{
             type: "integer"
         },
         mapa_instancia: {
