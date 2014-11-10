@@ -5,21 +5,21 @@
 
 				<!--HUD SUPERIOR- ->
 				<div id="hudSuperior" class="capaSup">
-					<img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
-					<div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
-						<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+				<img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
+				<div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
+				<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 
-						<div style="position: absolute; float: left">
-							<b>Energia</b>
-						</div>
-					</div>
-					<div class="progress" style="margin-left: 100px; margin-top: -10px ;width: 200px">
-						<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+				<div style="position: absolute; float: left">
+				<b>Energia</b>
+				</div>
+				</div>
+				<div class="progress" style="margin-left: 100px; margin-top: -10px ;width: 200px">
+				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 
-						<div style="position: absolute; float:left;">
-							<b>Experiencia</b>
-						</div>
-					</div>
+				<div style="position: absolute; float:left;">
+				<b>Experiencia</b>
+				</div>
+				</div>
 				</div><!-- -->
 
 				<!--HUD INFERIOR-->
@@ -42,7 +42,7 @@
 						<div id="items" style="padding: 41px 7px 0px 9px">
 							<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; margin: 0px 0px 0px -3px; border: 0px 0px 0px 0px">
 								<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
-								<span style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
+								<span ng-class="{hidden: x.acumulable==false}" style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
 								<!--p style="position: absolute">{{x.cant | filter: { acumulable: true }}}</p-->
 							</div>
 						</div>
@@ -74,13 +74,6 @@
 						<p class="capaSup titulo-botonera">
 							Personaje
 						</p>
-						<!--div ng-repeat="x in personajeInv" style="display: inline; width: 49px; height: 49px; border: 0px 0px 0px 0px; margin: 0px 0px 0px -3px">
-						<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
-						</div-->
-
-						<!--div>
-						<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}" ng-if="x.parte == capa">
-						</div-->
 						<div align="left" style="width: 49px; position: absolute; margin-top: 42px; margin-left: 12px">
 							<div id="itemCabeza" class="itemP"></div>
 							<div id="itemPechera" class="itemP"></div>
@@ -92,8 +85,8 @@
 
 						</div>
 						<!--CANVAS PERSONAJE-->
-						<canvas id="pj" width="32" height="48" style="position: absolute"></canvas>
-						<div id="imagenes" style="position: absolute"></div>
+						<!--canvas id="pj" width="32" height="48" style="position: absolute"></canvas>
+						<div id="imagenes" style="position: absolute"></div-->
 						<!--FIN CANVAS PERSONAJE-->
 						<div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
 							<div id="itemEspec1" class="itemP"></div>
@@ -118,7 +111,6 @@
 
 			<!--CHAT-->
 			<!--Se deberian agregar 2 funciones:-->
-			<!--Si el imput tiene onFocus, deshabilitar las teclas para que el personaje no se mueva-->
 			<!--Que el nick sea  el user.nombre-->
 			<!--Scroll abajo del todo-->
 			<div ng-controller="ChatController" style="width: 800px">
@@ -146,7 +138,6 @@
 
 				<div id=divMinimapa class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
 					<canvas id="canvasMinimap" width="156" height="156"></canvas>
-					<!--img src="data/map/minimap/Inicio.png" width="156px" height="156px" style="position: absolute;float: left; margin-top: 11px"-->
 				</div>
 
 			</div>
