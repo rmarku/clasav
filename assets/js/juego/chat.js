@@ -19,26 +19,26 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
 }]);
 
 app.directive('chat', function () {
-  return {
-    restrict: 'A',
-    /**
-     * Para la propagacion del evento para poder escribir en el campo de "input", y que no se mueva el personaje
-     * @method link
-     * @param {} scope
-     * @param {} elem
-     * @param {} attrs
-     * @return
-     */
-    link: function (scope, elem, attrs) {
-      elem.bind('keydown', function (e) {
-          e.stopImmediatePropagation();
-      });
-      elem.bind('keyup', function (e) {
-          if(e.keyCode == 13) {
-            scope[attrs.chat]();
-          }
-          e.stopImmediatePropagation();
-      });
-    }
-  };
+    return {
+        restrict: 'A',
+        /**
+         * Para la propagacion del evento para poder escribir en el campo de "input", y que no se mueva el personaje
+         * @method link
+         * @param {} scope
+         * @param {} elem
+         * @param {} attrs
+         * @return
+         */
+        link: function (scope, elem, attrs) {
+            elem.bind('keydown', function (e) {
+                e.stopImmediatePropagation();
+            });
+            elem.bind('keyup', function (e) {
+                if (e.keyCode == 13) {
+                    scope[attrs.chat]();
+                }
+                e.stopImmediatePropagation();
+            });
+        }
+    };
 });

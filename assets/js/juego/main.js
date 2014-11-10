@@ -7,12 +7,14 @@ var game = {
     mainPlayer: {},
     players: {},
     NPCs: {},
+    items: {},
+    sprites: {},
 
     /**
      * initialization
      * @return
      * @method onload
-     * @return 
+     * @return
      */
     onload: function () {
         me.sys.fps = 30;
@@ -23,7 +25,8 @@ var game = {
 
         me.plugin.register(debugPanel, "debug");
         me.audio.init('ogg,mp3');
-        // set all ressources to be loaded
+
+        // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
 
         // Cargo los recursos desde la API
@@ -33,134 +36,71 @@ var game = {
             me.state.change(me.state.LOADING);
         });
 
+        // Traigo todos los items
+        io.socket.get('/api/item/getItems', function (data) {
+            data.forEach(function (item) {
+                game.items[item.id] = item;
+            });
+        });
+
+        // Traigo todos los sprites.
+        io.socket.get('/api/sprite/getSprites', function (data) {
+            data.forEach(function (sprite) {
+                game.sprites[sprite.id] = sprite;
+            });
+        });
+
     },
 
     /**
      * Llamo cuando todos los recursos estan cargados
      * @return
      * @method loaded
-     * @return 
+     * @return
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
-        me.state.set(me.state.PLAY, new game.PlayScreen());
         me.pool.register("mainPlayer", game.PlayerEntity);
-        me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
+        me.pool.register("NPCPlayer", game.NPCPlayer);
 
-        this.sockets_game.subscribe_to_server_mapa_instance();
+        me.state.set(me.state.PLAY, new game.PlayScreen());
+        me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
     },
 
-    sockets_game: {
+    server: {
 
         //Declaraciones temporales (deberian ser externas luego del loggin)
-        id_alumno_cliente: 1,
-        id_mapa_instancia_cliente: 1,
-        conectarse_a_mapa_instancia_cliente: true,
-        id_jugador_en_vivo: 1,
         update_counter: 0,
         update_timeOut: 200, // (5)segs aproximadamente
-
-        // Fin declaraciones temporales
-
-        mainPlayer_estado: {
-            'left': false,
-            'right': false,
-            'up': false,
-            'down': false
-        },
-
-        mainPlayer_previous_estado: {
-            'left': false,
-            'right': false,
-            'up': false,
-            'down': false
-        },
-
-        mainPlayer_coordenates: {
-            'x': 0,
-            'y': 0
-        },
-
-        //flag_stateChanged : false,
-
-        /**
-         * Description
-         * @return
-         * @method reset_mainPlayer_estado
-         * @return 
-         */
-        reset_mainPlayer_estado: function () {
-            this.mainPlayer_estado.left = false;
-            this.mainPlayer_estado.right = false;
-            this.mainPlayer_estado.up = false;
-            this.mainPlayer_estado.down = false;
-        },
-
-        /**
-         * Description
-         * @return
-         * @method update_mainPlayer_estado
-         * @param {} direction
-         * @param {} boolean
-         * @return 
-         */
-        update_mainPlayer_estado: function (direction, boolean) {
-            if (direction == 'left') {
-                this.mainPlayer_estado.left = boolean;
-            } else if (direction == 'right') {
-                this.mainPlayer_estado.right = boolean;
-            } else if (direction == 'up') {
-                this.mainPlayer_estado.up = boolean;
-            } else if (direction == 'down') {
-                this.mainPlayer_estado.down = boolean;
-            }
-
-        },
-
-        /**
-         * Description
-         * @return
-         * @method update_mainPlayer_coordenates
-         * @param {} coordenates_mainPlayer
-         * @return 
-         */
-        update_mainPlayer_coordenates: function (coordenates_mainPlayer) {
-            this.mainPlayer_coordenates.x = coordenates_mainPlayer.x;
-            this.mainPlayer_coordenates.y = coordenates_mainPlayer.y;
-        },
 
         /**
          * Description
          * @return
          * @method send_Server_mainPlayer_update
          * @param {} local_coordenates
-         * @return 
+         * @return
          */
-        send_Server_mainPlayer_update: function (local_coordenates) {
-
-
+        update_mainplayer: function (local_coordenates) {
             // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
-            if (this.mainPlayer_estado.left || this.mainPlayer_estado.right || this.mainPlayer_estado.up || this.mainPlayer_estado.down) {
-                this.update_counter++;
+            if (game.mainPlayer.direccion !== 0) {
+                game.update_counter++;
             }
 
             //Envio al servidor solo si: hubieron 500 updates en el mismo estado, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
             var ant = this.mainPlayer_previous_estado;
             var act = this.mainPlayer_estado;
-            if ((this.update_counter >= this.update_timeOut) || (act.left != ant.left) || (act.right != ant.right) || (act.down != ant.down) || (act.up != ant.up )) {
+            if ((this.update_counter >= this.update_timeOut) || (game.mainPlayer.direccion != game.mainPlayer.direccion_anterior)) {
 
-                io.socket.put('/api/jugador_en_vivo/' + this.id_jugador_en_vivo, {  estado: angular.toJson(this.mainPlayer_estado),
-                        coordenadas: angular.toJson(this.mainPlayer_coordenates) }
+                io.socket.put('/api/personaje/' + game.mainPlayer.id, {
+                        estado: game.mainPlayer.direccion,
+                        x: ~~game.mainPlayer.pos.x, y: ~~game.mainPlayer.pos.y
+                    }
 
                     , function (resdata) {
                     }
                 );
-                //if (!(this.update_counter >= 250)) {
-                this.mainPlayer_previous_estado.left = this.mainPlayer_estado.left;
-                this.mainPlayer_previous_estado.right = this.mainPlayer_estado.right;
-                this.mainPlayer_previous_estado.up = this.mainPlayer_estado.up;
-                this.mainPlayer_previous_estado.down = this.mainPlayer_estado.down;
-                //}
+
+                game.mainPlayer.direccion_anterior = game.mainPlayer.direccion;
 
                 this.update_counter = 0;
             }
@@ -172,67 +112,50 @@ var game = {
          * Description
          * @return
          * @method subscribe_to_server_mapa_instance
-         * @return 
+         * @return
          */
-        subscribe_to_server_mapa_instance: function () {
-            //alert('suscribing');
-
-            io.socket.get('/api/jugador_en_vivo/subscribirse_a_mapa_instancia/',
-                {       id_mapa_instancia: this.id_mapa_instancia_cliente,   // Valor para saber a que jugadores online suscribirme
-                    id_alumno: this.id_alumno_cliente           // Valor para saber que jugador pasa a conectado (mi jugador)
-                },
-
-                function messageReceived(json_lista_jugadores_mapa_instancia) {
-
-                    //console.log(json_lista_jugadores_mapa_instancia); //Muestro en consola para
-                    while (json_lista_jugadores_mapa_instancia.length) {
-                        var jugador = json_lista_jugadores_mapa_instancia.pop();
-
-                    }
-                }
-            );
+        subscribe_to_mapa_instance: function () {
 
             // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
-            io.socket.on('jugador_en_vivo', function messageReceived(jsonObject) {
+            //  io.socket.get('/api/personaje/' + game.mainPlayer.id, function messageReceived() {
+            io.socket.on('personaje', function messageReceived(obj) {
+                if (obj.id != game.mainPlayer.id)
+                    switch (obj.verb) {
+                        case 'updated':
 
-                switch (jsonObject.verb) {
-                    case 'updated':
-                        break;
-                    //console.log("socket.on:");
-                    //console.log(angular.fromJson(jsonObject));
-                    default:
-                        break;
-                }
+                            if (typeof obj.data.direccion != 'undefined' && obj.data.direccion != game.players[obj.id].direccion) {
+                                game.players[obj.id].direccion = obj.data.estado;
+                                game.mainPlayer.direccion_anterior = game.mainPlayer.direccion;
+                            }
+                            if (typeof obj.data.x != 'undefined' && obj.data.x != ~~game.players[obj.id].x) {
+                                game.players[obj.id].pos.x = obj.data.x;
+                            }
+                            if (typeof obj.data.y != 'undefined' && obj.data.y != ~~game.players[obj.id].y) {
+                                game.players[obj.id].pos.y = obj.data.y;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
             });
-
+            //    });
         },
 
         /**
          * Description
          * @return
          * @method unsubscribe_from_server_mapa_instance
-         * @return 
+         * @return
          */
         unsubscribe_from_server_mapa_instance: function () {
             io.socket.get('/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',
-                {       id_mapa_instancia: this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
+                {
+                    id_mapa_instancia: this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
                 },
                 function messageReceived(json_lista_jugadores_mapa_instancia) {
                     // no hace falta hacer nada
                 }
             );
         }
-
-
-
-
-
     }
-
-
-
-
-
-
-
 }; // game

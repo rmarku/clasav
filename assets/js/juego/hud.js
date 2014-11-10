@@ -120,7 +120,6 @@ function inventarioContr($scope, $sailsBind) {
 }]);
 
 
-
 app.controller("personajeInvContr", ['$scope', "$sailsBind","$interval",
 function personajeInvContr($scope, $sailsBind, $interval) {
 	//    $sailsBind.bind("api/inventario", $scope);

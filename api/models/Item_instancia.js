@@ -8,10 +8,10 @@
 module.exports = {
 
     attributes: {
-        item:{
+        item: {
             model: 'item'
         },
-        personaje:{
+        personaje: {
             model: 'Personaje'
         },
         seccion_inventario: {
@@ -23,7 +23,7 @@ module.exports = {
             type: 'integer',
             required: 'true'
         },
-        usando:{
+        usando: {
             type: 'string'
         }
     }

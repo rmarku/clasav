@@ -6,6 +6,10 @@
  */
 
 module.exports = {
-	
+  getSprites: function (req, res) {
+    Sprite.find({}).exec(function(err, data){
+      return res.json(data);
+    });
+  }
 };
 

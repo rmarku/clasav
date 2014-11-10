@@ -1,9 +1,9 @@
 /**
-* Item.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Item.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
@@ -24,7 +24,7 @@ module.exports = {
             required: true
         },
 
-        instancias:{
+        instancias: {
             collection: 'item_instancia',
             via: 'item',
             required: false
@@ -33,7 +33,7 @@ module.exports = {
             model: 'sprite'
         },
         // si empieza con # es un color, sino no se aplica tinte.
-        color:{
+        color: {
             type: 'string',
             required: true
         }
