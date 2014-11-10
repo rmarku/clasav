@@ -4,6 +4,7 @@
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
+var Promesa = require('bluebird');
 
 module.exports = {
 
@@ -107,6 +108,44 @@ module.exports = {
         zapatos:{
             model: "item_instancia"
         }
+    },
+    afterCreate: function (newPJ, next) {
+      // Para procesar todas las promesas que devuelven cada item create.
+      Promesa.all([
+        Item_instancia.create(
+          {
+            item: 1,
+            seccion_inventario: 1,
+            cantidad: 1,
+            usando: 'true',
+            personaje: newPJ.id
+          }),
+        Item_instancia.create(
+          {
+            item: 2,
+            seccion_inventario: 2,
+            cantidad: 1,
+            usando: 'true',
+            personaje: newPJ.id
+          }),
+        Item_instancia.create(
+          {
+            item: 3,
+            seccion_inventario: 3,
+            cantidad: 1,
+            usando: 'true',
+            personaje: newPJ.id
+          })
+      ]).then(function (items) {
+
+        // items es un array con el resultado de cada promesa en orden.
+        Personaje.update({id: newPJ.id},
+          {
+            pantalon: items[0],
+            torso: items[1],
+            zapatos: items[2]
+          }).exec(next);
+      });
     }
 };
 

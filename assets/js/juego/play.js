@@ -32,9 +32,6 @@ game.PlayScreen = me.ScreenObject.extend({
                         data = datos[0];
                       game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
                         Number(data.y), {
-                          image: data.duenio.sexo + '/basic/1f.png',
-                          spritewidth: 32,
-                          spriteheight: 48,
                           width: 28,
                           height: 28,
                           data: data
@@ -44,9 +41,6 @@ game.PlayScreen = me.ScreenObject.extend({
 
                       game.players[8] = me.pool.pull('NPCPlayer', Number(35*32),
                         Number(32*13), {
-                          image: data.duenio.sexo + '/basic/1b.png',
-                          spritewidth: 32,
-                          spriteheight: 48,
                           width: 28,
                           height: 28,
                           data: data

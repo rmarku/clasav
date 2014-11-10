@@ -14,8 +14,8 @@ module.exports = {
           required: false
       },
 
-      jugador_en_vivo: {
-          model: 'jugador_en_vivo',
+      personajes: {
+          model: 'personaje',
           required : false
       },
 
@@ -23,7 +23,6 @@ module.exports = {
           model: 'mapa_generico',
           required : false
       }
-
   }
 };
 

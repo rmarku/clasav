@@ -7,6 +7,8 @@ var game = {
     mainPlayer: {},
     players: {},
     NPCs: {},
+    items:{},
+    sprites:{},
 
     /**
      * initialization
@@ -28,11 +30,25 @@ var game = {
         me.loader.onload = this.loaded.bind(this);
 
         // Cargo los recursos desde la API
-        $.getJSON("api/resources.json", function (data) {
-            me.loader.preload(data);
-            // Cargo todo y muestro pantalla de carga
-            me.state.change(me.state.LOADING);
+      $.getJSON("api/resources.json", function (data) {
+        me.loader.preload(data);
+        // Cargo todo y muestro pantalla de carga
+        me.state.change(me.state.LOADING);
+      });
+
+      // Traigo todos los items
+      io.socket.get('/api/item/getItems',function(data){
+        data.forEach(function(item){
+          game.items[item.id] = item;
         });
+      });
+
+      // Traigo todos los sprites.
+      io.socket.get('/api/sprite/getSprites',function(data){
+        data.forEach(function(sprite){
+          game.sprites[sprite.id] = sprite;
+        });
+      });
 
     },
 
