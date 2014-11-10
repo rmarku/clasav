@@ -49,7 +49,7 @@ function inventarioContr($scope, $sailsBind) {
 		"id" : 101,
 		"nombreItem" : "pota de mana",
 		"cant" : 5,
-		"acumulable" : false,
+		"acumulable" : true,
 		"sprite" : "../data/sprites/items/nep/101_potaMana.png"
 	}, {
 		"id" : 102,
@@ -104,7 +104,7 @@ function inventarioContr($scope, $sailsBind) {
 		"id" : 101,
 		"nombreItem" : "pota de mana",
 		"cant" : 5,
-		"acumulable" : false,
+		"acumulable" : true,
 		"sprite" : "../data/sprites/items/nep/101_potaMana.png"
 	}, {
 		"id" : 102,
@@ -118,7 +118,6 @@ function inventarioContr($scope, $sailsBind) {
 	 $scope.items = response;
 	 });*/
 }]);
-
 
 
 app.controller("personajeInvContr", ['$scope', "$sailsBind","$interval",

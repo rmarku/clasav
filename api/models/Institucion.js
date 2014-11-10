@@ -1,9 +1,9 @@
 /**
-* Institucion.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Institucion.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
@@ -38,11 +38,11 @@ module.exports = {
             required: false
         },
 
-         clases:{
-             collection: 'clase',
-             via: 'institucion_instancia',
-             required: false
-         }
+        clases: {
+            collection: 'clase',
+            via: 'institucion_instancia',
+            required: false
+        }
 
     }
 };

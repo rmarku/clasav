@@ -1,9 +1,9 @@
 /**
-* Sprite.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Sprite.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 
 module.exports = {
@@ -13,10 +13,10 @@ module.exports = {
             collection: 'item',
             via: 'sprite'
         },
-        imagen:{
+        imagen: {
             type: 'string'
         },
-        icono:{
+        icono: {
             type: 'string'
         }
     }

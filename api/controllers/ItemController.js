@@ -6,6 +6,10 @@
  */
 
 module.exports = {
-	
+  getItems: function (req, res) {
+      Item.find({}).exec(function(err, data){
+        return res.json(data);
+      });
+  }
 };
 

@@ -7,6 +7,10 @@ var game = {
     mainPlayer: {},
     players: [],
     NPCPlayer: [],
+    players: {},
+    NPCs: {},
+    items: {},
+    sprites: {},
 
     /**
      * initialization
@@ -32,6 +36,20 @@ var game = {
             me.loader.preload(data);
             // Cargo todo y muestro pantalla de carga
             me.state.change(me.state.LOADING);
+        });
+
+        // Traigo todos los items
+        io.socket.get('/api/item/getItems', function (data) {
+            data.forEach(function (item) {
+                game.items[item.id] = item;
+            });
+        });
+
+        // Traigo todos los sprites.
+        io.socket.get('/api/sprite/getSprites', function (data) {
+            data.forEach(function (sprite) {
+                game.sprites[sprite.id] = sprite;
+            });
         });
 
     },
@@ -75,8 +93,10 @@ var game = {
             var act = this.mainPlayer_estado;
             if ((this.update_counter >= this.update_timeOut) || (game.mainPlayer.direccion != game.mainPlayer.direccion_anterior)) {
 
-                io.socket.put('/api/personaje/' + game.mainPlayer.id, {  estado: game.mainPlayer.direccion,
-                        x: ~~game.mainPlayer.pos.x, y: ~~game.mainPlayer.pos.y }
+                io.socket.put('/api/personaje/' + game.mainPlayer.id, {
+                        estado: game.mainPlayer.direccion,
+                        x: ~~game.mainPlayer.pos.x, y: ~~game.mainPlayer.pos.y
+                    }
 
                     , function (resdata) {
                     }
@@ -100,27 +120,27 @@ var game = {
 
             // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
             //  io.socket.get('/api/personaje/' + game.mainPlayer.id, function messageReceived() {
-                io.socket.on('personaje', function messageReceived(obj) {
-                    if(obj.id != game.mainPlayer.id)
-                        switch (obj.verb) {
-                            case 'updated':
+            io.socket.on('personaje', function messageReceived(obj) {
+                if (obj.id != game.mainPlayer.id)
+                    switch (obj.verb) {
+                        case 'updated':
 
-                              if(typeof obj.data.direccion != 'undefined' && obj.data.direccion != game.players[obj.id].direccion){
-                                game.players[obj.id].direccion =  obj.data.estado;
+                            if (typeof obj.data.direccion != 'undefined' && obj.data.direccion != game.players[obj.id].direccion) {
+                                game.players[obj.id].direccion = obj.data.estado;
                                 game.mainPlayer.direccion_anterior = game.mainPlayer.direccion;
-                              }
-                              if(typeof obj.data.x != 'undefined' && obj.data.x != ~~game.players[obj.id].x){
-                                game.players[obj.id].pos.x =  obj.data.x;
-                              }
-                              if(typeof obj.data.y != 'undefined' && obj.data.y != ~~game.players[obj.id].y){
-                                game.players[obj.id].pos.y =  obj.data.y;
-                              }
-                                break;
-                            default:
-                                break;
-                        }
-                });
-        //    });
+                            }
+                            if (typeof obj.data.x != 'undefined' && obj.data.x != ~~game.players[obj.id].x) {
+                                game.players[obj.id].pos.x = obj.data.x;
+                            }
+                            if (typeof obj.data.y != 'undefined' && obj.data.y != ~~game.players[obj.id].y) {
+                                game.players[obj.id].pos.y = obj.data.y;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+            });
+            //    });
         },
 
         /**
@@ -131,7 +151,8 @@ var game = {
          */
         unsubscribe_from_server_mapa_instance: function () {
             io.socket.get('/api/jugador_en_vivo/desubscribirse_de_mapa_instancia/',
-                {       id_mapa_instancia: this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
+                {
+                    id_mapa_instancia: this.id_mapa_instancia_cliente   // Valor para saber a que jugadores online desuscribirme
                 },
                 function messageReceived(json_lista_jugadores_mapa_instancia) {
                     // no hace falta hacer nada

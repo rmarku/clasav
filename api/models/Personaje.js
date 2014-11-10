@@ -1,26 +1,27 @@
 /**
-* Personaje.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Personaje.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
+var Promesa = require('bluebird');
 
 module.exports = {
 
     attributes: {
-        duenio:{
+        duenio: {
             model: 'user'
         },
-        nombre:{
-            type:"string"
+        nombre: {
+            type: "string"
         },
-        x:{
+        x: {
             type: "integer"
         },
-        y:{
+        y: {
             type: "integer"
         },
-        direccion:{
+        direccion: {
             type: "integer"
         },
         mapa_instancia: {
@@ -29,84 +30,122 @@ module.exports = {
         conectado: {
             type: "boolean"
         },
-        pelo:{
+        pelo: {
             type: "string"
         },
-        pelo_color:{
+        pelo_color: {
             type: "string"
         },
-        pelo1:{
+        pelo1: {
             type: "integer"
         },
-        pelo1_color:{
+        pelo1_color: {
             type: "string"
         },
-        pelo2:{
+        pelo2: {
             type: "integer"
         },
-        pelo2_color:{
+        pelo2_color: {
             type: "string"
         },
-        barba:{
+        barba: {
             type: "integer"
         },
-        barba_color:{
+        barba_color: {
             type: "string"
         },
-        oreja:{
+        oreja: {
             model: "item_instancia"
         },
-        sombrero:{
+        sombrero: {
             model: "item_instancia"
         },
-        anteojo:{
+        anteojo: {
             model: "item_instancia"
         },
-        aros:{
+        aros: {
             model: "item_instancia"
         },
-        colgante:{
+        colgante: {
             model: "item_instancia"
         },
-        torso:{
+        torso: {
             model: "item_instancia"
         },
-        torso1:{
+        torso1: {
             model: "item_instancia"
         },
-        capa:{
+        capa: {
             model: "item_instancia"
         },
-        ala:{
+        ala: {
             model: "item_instancia"
         },
-        espalda:{
+        espalda: {
             model: "item_instancia"
         },
-        decoracion1:{
+        decoracion1: {
             model: "item_instancia"
         },
-        decoracion2:{
+        decoracion2: {
             model: "item_instancia"
         },
-        decoracion3:{
+        decoracion3: {
             model: "item_instancia"
         },
-        hombro:{
+        hombro: {
             model: "item_instancia"
         },
-        brazo:{
+        brazo: {
             model: "item_instancia"
         },
-        cintura:{
+        cintura: {
             model: "item_instancia"
         },
-        pantalon:{
+        pantalon: {
             model: "item_instancia"
         },
-        zapatos:{
+        zapatos: {
             model: "item_instancia"
         }
+    },
+    afterCreate: function (newPJ, next) {
+        // Para procesar todas las promesas que devuelven cada item create.
+        Promesa.all([
+            Item_instancia.create(
+                {
+                    item: 1,
+                    seccion_inventario: 1,
+                    cantidad: 1,
+                    usando: 'true',
+                    personaje: newPJ.id
+                }),
+            Item_instancia.create(
+                {
+                    item: 2,
+                    seccion_inventario: 2,
+                    cantidad: 1,
+                    usando: 'true',
+                    personaje: newPJ.id
+                }),
+            Item_instancia.create(
+                {
+                    item: 3,
+                    seccion_inventario: 3,
+                    cantidad: 1,
+                    usando: 'true',
+                    personaje: newPJ.id
+                })
+        ]).then(function (items) {
+
+            // items es un array con el resultado de cada promesa en orden.
+            Personaje.update({id: newPJ.id},
+                {
+                    pantalon: items[0],
+                    torso: items[1],
+                    zapatos: items[2]
+                }).exec(next);
+        });
     }
 };
 

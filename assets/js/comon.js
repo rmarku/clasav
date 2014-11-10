@@ -1,5 +1,5 @@
- $(function() {
+$(function () {
     $('#datetimepicker4').datetimepicker({
-      pickTime: false
+        pickTime: false
     });
-  });
+});

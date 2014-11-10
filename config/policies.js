@@ -27,7 +27,7 @@ module.exports.policies = {
      ***************************************************************************/
 
     // '*': true,
-    '*': [ 'passport' ],
+    '*': ['passport'],
 
     'user': ['passport', 'filtroEditUsuario', 'filtroUsuarioAutentificado'], //, 'filterOwnUserEdit']
     'personaje': ['passport', 'addPersonaje']
