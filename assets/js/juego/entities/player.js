@@ -129,9 +129,6 @@ game.Player = me.Entity.extend({
             ~~(this.pos.y + this.height / 2),
             32 * 4,
             30);
-
-        // Dibujo en el minimapa
-        drawCanvasMinimap(this.pos.x, this.pos.y);
     },
 
 
