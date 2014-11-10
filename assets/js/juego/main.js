@@ -5,8 +5,8 @@
 
 var game = {
     mainPlayer: {},
-    players: {},
-    NPCs: {},
+    players: [],
+    NPCPlayer: [],
 
     /**
      * initialization

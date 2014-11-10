@@ -42,7 +42,7 @@ game.PlayScreen = me.ScreenObject.extend({
                       me.game.world.addChild(game.mainPlayer, 9);
                       game.players[data.id] = game.mainPlayer;         //Se agrega a ala bolsa donde se van update
 
-                      game.players[8] = me.pool.pull('NPCPlayer', Number(35*32),
+                      game.NPCPlayer[1] = me.pool.pull('NPCPlayer', Number(35*32),
                         Number(32*13), {
                           image: data.duenio.sexo + '/basic/1b.png',
                           spritewidth: 32,
@@ -51,7 +51,7 @@ game.PlayScreen = me.ScreenObject.extend({
                           height: 28,
                           data: data
                         });
-                      me.game.world.addChild(game.players[8], 9);
+                      me.game.world.addChild(game.NPCPlayer[1], 9);
 
                         me.game.world.sort();
                     }else{

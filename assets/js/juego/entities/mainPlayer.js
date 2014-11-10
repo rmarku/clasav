@@ -47,6 +47,6 @@ game.PlayerEntity = game.Player.extend({
 
     game.server.update_mainplayer();
     // Dibujo en el minimapa
-    drawCanvasMinimap();
+    drawPointsMinimap();
   }
 });
