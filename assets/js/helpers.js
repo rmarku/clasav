@@ -33,8 +33,8 @@ function tintImage(img, color) {
             var i = 0;
             i < pixels.length;
             i += 4
-            ) {
-            to.data[i  ] = (rgbI === 0) ? pixels[i  ] : 0;
+        ) {
+            to.data[i] = (rgbI === 0) ? pixels[i] : 0;
             to.data[i + 1] = (rgbI === 1) ? pixels[i + 1] : 0;
             to.data[i + 2] = (rgbI === 2) ? pixels[i + 2] : 0;
             to.data[i + 3] = pixels[i + 3];

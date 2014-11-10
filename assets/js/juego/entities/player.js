@@ -15,7 +15,7 @@ game.Player = me.Entity.extend({
      * @return
      */
     init: function (x, y, settings) {
-        this._super(me.Entity, 'init', [ x, y, settings ]);
+        this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
         this.alwaysUpdate = true;
 
@@ -28,17 +28,17 @@ game.Player = me.Entity.extend({
         this.nombre();
         // lo visto.
         this.renderable = new me.AnimationSheet(0, 0, {
-          "image" : this.vestir(),
-          "spritewidth" : 32,
-          "spriteheight" : 48
+            "image": this.vestir(),
+            "spritewidth": 32,
+            "spriteheight": 48
         });
 
 
         this.isCollidable = true;
-        this.renderable.addAnimation('run-down', [ 0, 1, 2, 3 ], 100);
-        this.renderable.addAnimation('run-left', [ 4, 5, 6, 7 ], 100);
-        this.renderable.addAnimation('run-right', [ 8, 9, 10, 11 ], 100);
-        this.renderable.addAnimation('run-up', [ 12, 13, 14, 15 ], 100);
+        this.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
+        this.renderable.addAnimation('run-left', [4, 5, 6, 7], 100);
+        this.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
+        this.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
 
         this.renderable.setCurrentAnimation('run-down');
         this.animationToUseThisFrame = 'run-down';
@@ -46,7 +46,7 @@ game.Player = me.Entity.extend({
 
         this.anchorPoint.set(0.5, 1);
 
-        this.body.addShape(new me.Rect(0, 0, this.body.width-3, this.body.height/2));
+        this.body.addShape(new me.Rect(0, 0, this.body.width - 3, this.body.height / 2));
         // set the renderable position to bottom center
 
     },
@@ -61,49 +61,49 @@ game.Player = me.Entity.extend({
     },
 
 
-    updateAnimation: function(dt) {
-      if (this.direccion & 1) {
-        this.body.vel.y += this.body.accel.y * dt/200;
-      }
-      if ( this.direccion & 2 ){
-        this.body.vel.y -= this.body.accel.y * dt/200;
-      }
-      if (this.direccion & 4) {
-        this.body.vel.x += this.body.accel.x * dt/200;
-      }
-      if (this.direccion & 8) {
-        this.body.vel.x -= this.body.accel.x * dt/200;
-      }
+    updateAnimation: function (dt) {
+        if (this.direccion & 1) {
+            this.body.vel.y += this.body.accel.y * dt / 200;
+        }
+        if (this.direccion & 2) {
+            this.body.vel.y -= this.body.accel.y * dt / 200;
+        }
+        if (this.direccion & 4) {
+            this.body.vel.x += this.body.accel.x * dt / 200;
+        }
+        if (this.direccion & 8) {
+            this.body.vel.x -= this.body.accel.x * dt / 200;
+        }
 
-      if (this.body.vel.length() > this.body.maxVel.x) {
-        // Now calc actual vel to prevent speeding by going diag..
-        this.body.vel.normalize();
-        this.body.vel.scale(this.body.maxVel.x);
-      }
+        if (this.body.vel.length() > this.body.maxVel.x) {
+            // Now calc actual vel to prevent speeding by going diag..
+            this.body.vel.normalize();
+            this.body.vel.scale(this.body.maxVel.x);
+        }
 
-      if(Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
-        if (this.body.vel.y > 0.0)
-          this.animationToUseThisFrame = "run-down";
-        if (this.body.vel.y < 0.0)
-          this.animationToUseThisFrame = "run-up";
-      }else{
-        if (this.body.vel.x > 0.0)
-          this.animationToUseThisFrame = "run-right";
-        if (this.body.vel.x < 0.0)
-          this.animationToUseThisFrame = "run-left";
-      }
+        if (Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
+            if (this.body.vel.y > 0.0)
+                this.animationToUseThisFrame = "run-down";
+            if (this.body.vel.y < 0.0)
+                this.animationToUseThisFrame = "run-up";
+        } else {
+            if (this.body.vel.x > 0.0)
+                this.animationToUseThisFrame = "run-right";
+            if (this.body.vel.x < 0.0)
+                this.animationToUseThisFrame = "run-left";
+        }
 
-      if(this.lastAnimationUsed != this.animationToUseThisFrame) {
-        this.lastAnimationUsed = this.animationToUseThisFrame;
-        this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
-      }
-      this.body.update();
+        if (this.lastAnimationUsed != this.animationToUseThisFrame) {
+            this.lastAnimationUsed = this.animationToUseThisFrame;
+            this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
+        }
+        this.body.update();
 
-      if (this.body.vel.x !== 0 || this.body.vel.y !== 0 || (this.renderable && this.renderable.isFlickering())) {
-        this._super(me.Entity, 'update', [ dt ]);
-        return true;
-      }
-      return false;
+        if (this.body.vel.x !== 0 || this.body.vel.y !== 0 || (this.renderable && this.renderable.isFlickering())) {
+            this._super(me.Entity, 'update', [dt]);
+            return true;
+        }
+        return false;
     },
 
 
@@ -123,15 +123,15 @@ game.Player = me.Entity.extend({
 
         var context = renderer.getContext();
 
-         // Dibujo el nombre
+        // Dibujo el nombre
         context.drawImage(this.canvasNombre,
             ~~(this.pos.x + this.width / 2 - this.canvasNombre.width / 2),
-            ~~(this.pos.y + this.height/2),
+            ~~(this.pos.y + this.height / 2),
             32 * 4,
             30);
 
-      // Dibujo en el minimapa
-            drawCanvasMinimap(this.pos.x,this.pos.y);
+        // Dibujo en el minimapa
+        drawCanvasMinimap(this.pos.x, this.pos.y);
     },
 
 
@@ -143,20 +143,20 @@ game.Player = me.Entity.extend({
      */
     getItemImg: function (itemId) {
         var dir = this.data.duenio.sexo + '/';
-        if(typeof itemId != 'undefined') {
+        if (typeof itemId != 'undefined') {
             return me.loader.getImage(dir + game.sprites[game.items[itemId.item].sprite].imagen);
-        }else
+        } else
             return null;
 
     },
 
-    nombre:function (){
-      var width = 32 * 4;
-      var height = 30;
+    nombre: function () {
+        var width = 32 * 4;
+        var height = 30;
         this.canvasNombre = document.createElement('canvas');
         this.canvasNombre.width = width;
         this.canvasNombre.height = height;
-        var ctx =  this.canvasNombre.getContext("2d");
+        var ctx = this.canvasNombre.getContext("2d");
 
         //Dibujo el nombre
 
@@ -171,7 +171,7 @@ game.Player = me.Entity.extend({
         var txtw = ctx.measureText(this.data.nombre.trimRight()).width;
 
         ctx.strokeText(this.data.nombre, width / 2 - txtw / 2, 3);
-        ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3) ;
+        ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3);
     },
 
     /**
@@ -209,8 +209,8 @@ game.Player = me.Entity.extend({
         img = this.getItemImg(this.data.zapatos);
         if (img) {
             ctx.drawImage(tintImage(img, game.items[this.data.zapatos.item].color), 0, 0);
-        }else{
-          console.log('no img' + img);
+        } else {
+            console.log('no img' + img);
         }
         // 5 Pantalon
         img = this.getItemImg(this.data.pantalon);
@@ -231,8 +231,8 @@ game.Player = me.Entity.extend({
             ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
         }
 
-        var i = new Image(width,height);
+        var i = new Image(width, height);
         i.src = canvas.toDataURL();
-      return i;
+        return i;
     }
 });

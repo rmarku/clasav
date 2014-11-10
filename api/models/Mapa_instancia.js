@@ -1,28 +1,28 @@
 /**
-* Mapa_instancia.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Mapa_instancia.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-  attributes:{
+    attributes: {
 
-      clase_instancia: {
-          model: 'clase',
-          required: false
-      },
+        clase_instancia: {
+            model: 'clase',
+            required: false
+        },
 
-      personajes: {
-          model: 'personaje',
-          required : false
-      },
+        personajes: {
+            model: 'personaje',
+            required: false
+        },
 
-      mapa_generico: {
-          model: 'mapa_generico',
-          required : false
-      }
-  }
+        mapa_generico: {
+            model: 'mapa_generico',
+            required: false
+        }
+    }
 };
 

@@ -7,22 +7,22 @@
 
 module.exports = {
 
-	attributes : {
-		autor : {
-			model : 'personaje'
-		},
+    attributes: {
+        autor: {
+            model: 'personaje'
+        },
 
-		nick : {
-			type : 'string'
-		},
+        nick: {
+            type: 'string'
+        },
 
-		mensaje : {
-			type : 'string'
-		},
+        mensaje: {
+            type: 'string'
+        },
 
-		mapas : {
-			model : 'mapa_instancia'
-		}
-	}
+        mapas: {
+            model: 'mapa_instancia'
+        }
+    }
 };
 

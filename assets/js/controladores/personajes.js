@@ -142,7 +142,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         "x": 900,
         "y": 200,
         "direccion": 0,
-        "mapa_instancia":1,
+        "mapa_instancia": 1,
         "conectado": false
     };
 
@@ -198,7 +198,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
                 toastr.error('El nombre del personaje ya existe');
                 return;
             }
-            if($scope.pj.nombre === ""){
+            if ($scope.pj.nombre === "") {
                 toastr.error('Por favor introduce un nombre');
                 return;
             }

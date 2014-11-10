@@ -1,6 +1,6 @@
 module.exports = {
     // Enforce model schema in the case of schemaless databases
-  //  schema: true,
+    //  schema: true,
 
     attributes: {
         nombre: {
@@ -57,10 +57,10 @@ module.exports = {
 
         personajes: {
             collection: 'personaje',
-            via:'duenio'
+            via: 'duenio'
         },
 
-        clases:{
+        clases: {
             collection: 'clase',
             via: 'integrantes',
             required: false
@@ -72,8 +72,8 @@ module.exports = {
         },
 
         // passport
-        username: { type: 'string', unique: true },
-        email: { type: 'email', unique: true},
-        passports: { collection: 'Passport', via: 'user' }
+        username: {type: 'string', unique: true},
+        email: {type: 'email', unique: true},
+        passports: {collection: 'Passport', via: 'user'}
     }
 };

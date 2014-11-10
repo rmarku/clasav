@@ -1,7 +1,7 @@
 app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', function ($scope, $http, toastr, $location) {
     /**
      * Contiene datos del alumno
-     * 
+     *
      * @method init
      * @return
      */
@@ -53,10 +53,10 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
 
     /**
-     * Envia el formulario 
-     * 
+     * Envia el formulario
+     *
      * @method subirForm
-     * @return 
+     * @return
      */
     $scope.subirForm = function () {
 
