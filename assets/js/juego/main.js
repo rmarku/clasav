@@ -5,10 +5,11 @@
 
 var game = {
     mainPlayer: {},
-    players: {},
-    NPCs: {},
-    items: {},
-    sprites: {},
+    players: [],
+    playersOffline:[],
+    NPCs: [],
+    items: [],
+    sprites: [],
 
     /**
      * initialization
@@ -25,7 +26,7 @@ var game = {
 
         me.plugin.register(debugPanel, "debug");
         me.audio.init('ogg,mp3');
-
+        me.sys.pauseOnBlur = false;
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
 
@@ -62,9 +63,46 @@ var game = {
         // set the "Play/Ingame" Screen Object
         me.pool.register("mainPlayer", game.PlayerEntity);
         me.pool.register("NPCPlayer", game.NPCPlayer);
+        me.pool.register("otherPlayer", game.NPCPlayer);
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
+    },
+
+    saveOnlineOtherPlayer: function (data){
+        game.players[data.id] = me.pool.pull('otherPlayer',
+            Number(data.x),
+            Number(data.y),
+            {
+                width: 28,
+                height: 28,
+                data: data
+            }
+        );
+    },
+
+    saveOfflineOtherPlayer: function (data){
+        game.playersOffline[data.id] = me.pool.pull('otherPlayer',
+            Number(data.x),
+            Number(data.y),
+            {
+                width: 28,
+                height: 28,
+                data: data
+            }
+        );
+    },
+    removeOtherPlayer: function(id){
+        console.log('Removing player: ', data.id);
+        var player = game.players[id];
+        me.game.world.removeChild(player);
+        delete game.players[id];
+    },
+
+    removeOfflineOtherPlayer: function(id){
+        console.log('Removing player: ', data.id);
+        var player = game.playersOffline[id];
+        delete game.playersOffline[id];
     },
 
     server: {
@@ -114,31 +152,59 @@ var game = {
          * @method subscribe_to_server_mapa_instance
          * @return
          */
-        subscribe_to_mapa_instance: function () {
+
+        subscribeTo_personajes_from_mapa_instance: function () {
+
+            io.socket.get('/api/personaje?where={"mapa_instancia":"' + game.mainPlayer.mapa_instancia+'"', function messageReceived(personajes) {
+                while(personajes.length){
+
+                    var personaje = personajes.pop();
+                    if (personaje.id != game.mainPlayer.id) {
+                        if (personaje.conectado === true) {
+                            game.saveOnlineOtherPlayer(personaje);
+                            me.game.world.addChild(game.players[personaje.id], 9);
+                        }
+                        else {
+                            game.saveOfflineOtherPlayer(personaje);
+                        }
+                    }
+                }
+            });
+
 
             // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
-            //  io.socket.get('/api/personaje/' + game.mainPlayer.id, function messageReceived() {
             io.socket.on('personaje', function messageReceived(obj) {
                 if (obj.id != game.mainPlayer.id)
                     switch (obj.verb) {
                         case 'updated':
-
-                            if (typeof obj.data.direccion != 'undefined' && obj.data.direccion != game.players[obj.id].direccion) {
-                                game.players[obj.id].direccion = obj.data.estado;
-                                game.mainPlayer.direccion_anterior = game.mainPlayer.direccion;
+                            if ((obj.data.conectado == 'conectado') && (typeof game.playersOffline[obj.data.id] != 'undefined') ){
+                                game.saveOnlineOtherPlayer(game.playersOffline[id]);
+                                game.removeOfflineOtherPlayer(obj.data.id);
+                                me.game.world.addChild(game.players[obj.data.id], 9);
+                            }else
+                            if ((obj.data.conectado == 'desconectado') && (typeof game.players[obj.data.id] != 'undefined') ){
+                                game.saveOfflineOtherPlayer(game.players[id]);
+                                game.removeOtherPlayer(obj.data.id);
                             }
-                            if (typeof obj.data.x != 'undefined' && obj.data.x != ~~game.players[obj.id].x) {
+                            if (typeof obj.data.estado != 'undefined'){ //&& obj.data.estado != game.players[obj.id].direccion) {
+                                game.players[obj.id].direccion = obj.data.estado;
+                                //game.players[obj.id].direccion_anterior = game.players[obj.id].direccion;
+                            }
+                            if (typeof obj.data.x != 'undefined'){// && obj.data.x != ~~game.players[obj.id].x) {
                                 game.players[obj.id].pos.x = obj.data.x;
                             }
-                            if (typeof obj.data.y != 'undefined' && obj.data.y != ~~game.players[obj.id].y) {
+                            if (typeof obj.data.y != 'undefined'){// && obj.data.y != ~~game.players[obj.id].y) {
                                 game.players[obj.id].pos.y = obj.data.y;
                             }
+                            game.players[obj.id].updateBounds();
+                            break;
+
+                        case 'created':
                             break;
                         default:
                             break;
                     }
             });
-            //    });
         },
 
         /**

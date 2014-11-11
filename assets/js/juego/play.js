@@ -27,7 +27,7 @@ game.PlayScreen = me.ScreenObject.extend({
         io.socket.get('/api/user/getUser', function (user) {
             if (typeof user.userId != 'undefined') {
 
-                io.socket.get('/api/personaje?where={"duenio":"' + user.userId + '"}', function (datos) {
+                io.socket.get('/api/personaje?where={"duenio":"' + user.userId + '","masRecientementeUtilizado":true}', function (datos) {
                     if (datos.length == 1) {
                         data = datos[0];
                         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
@@ -39,15 +39,47 @@ game.PlayScreen = me.ScreenObject.extend({
                         me.game.world.addChild(game.mainPlayer, 9);
                         game.players[data.id] = game.mainPlayer;         //Se agrega a ala bolsa donde se van update
 
-                        game.players[8] = me.pool.pull('NPCPlayer', Number(35 * 32),
-                            Number(32 * 13), {
+/*
+                      game.NPCs[1] = me.pool.pull('NPCPlayer', Number(36*32),
+                        Number(12*32), {
+                          width: 28,
+                          height: 28,
+                          data: data
+                        });
+                      me.game.world.addChild(game.NPCs[1], 9);
+                        game.NPCs[2] = me.pool.pull('NPCPlayer', Number(35*32),
+                            Number(21*32), {
                                 width: 28,
                                 height: 28,
                                 data: data
                             });
-                        me.game.world.addChild(game.players[8], 9);
-
+                        me.game.world.addChild(game.NPCs[2], 9);
+                      game.players[1] = me.pool.pull('otherPlayer', Number(8*32),
+                            Number(15*32), {
+                                width: 28,
+                                height: 28,
+                                data: data
+                            });
+                      me.game.world.addChild(game.players[1], 9);
+                        game.players[2] = me.pool.pull('otherPlayer', Number(17*32),
+                            Number(29*32), {
+                                width: 28,
+                                height: 28,
+                                data: data
+                            });
+                        me.game.world.addChild(game.players[2], 9);
+*/
                         me.game.world.sort();
+
+                        //Pasamos el MainPlayer a Conectado:true
+                        io.socket.put('/api/personaje/' + game.mainPlayer.id,
+                            {conectado: true}
+                            , function (resdata) {
+                            }
+                        );
+                        game.server.subscribeTo_personajes_from_mapa_instance();
+
+
                     } else {
                         console.log("No existe el personaje");
                     }

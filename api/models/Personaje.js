@@ -30,6 +30,9 @@ module.exports = {
         conectado: {
             type: "boolean"
         },
+        masRecientementeUtilizado: {
+            type: "boolean"
+        },
         pelo: {
             type: "string"
         },
