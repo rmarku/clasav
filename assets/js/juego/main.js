@@ -7,7 +7,7 @@ var game = {
     mainPlayer: {},
     players: [],
     playersOffline:[],
-    NPCs: [], 
+    NPCs: [],
     items: [],
     sprites: [],
 
@@ -26,7 +26,7 @@ var game = {
 
         me.plugin.register(debugPanel, "debug");
         me.audio.init('ogg,mp3');
-
+        me.sys.pauseOnBlur = false;
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
 
@@ -196,7 +196,7 @@ var game = {
                             if (typeof obj.data.y != 'undefined'){// && obj.data.y != ~~game.players[obj.id].y) {
                                 game.players[obj.id].pos.y = obj.data.y;
                             }
-
+                            game.players[obj.id].updateBounds();
                             break;
 
                         case 'created':
