@@ -8,25 +8,25 @@ function inventarioContr($scope, $sailsBind) {
 		"nombreItem" : "capa dorada",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/3_capaDorada.png"
+		"sprite" : "../data/sprites/items/capa/1.png"
 	}, {
 		"id" : 8,
 		"nombreItem" : "espada burocratica",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/8_espada.png"
+		"sprite" : "../data/sprites/items/arma/1.png"
 	}, {
 		"id" : 12,
 		"nombreItem" : "anillo magico",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/12_anilloMagico.png"
+		"sprite" : "../data/sprites/items/anillo/1.png"
 	}, {
 		"id" : 15,
 		"nombreItem" : "botas",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/15_botas.png"
+		"sprite" : "../data/sprites/items/pies/1.png"
 	}, {
 		"id" : 15,
 		"nombreItem" : "libro",
@@ -63,25 +63,25 @@ function inventarioContr($scope, $sailsBind) {
 		"nombreItem" : "capa dorada",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/3_capaDorada.png"
+		"sprite" : "../data/sprites/items/capa/1.png"
 	}, {
 		"id" : 8,
 		"nombreItem" : "espada burocratica",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/8_espada.png"
+		"sprite" : "../data/sprites/items/arma/1.png"
 	}, {
 		"id" : 12,
 		"nombreItem" : "anillo magico",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/12_anilloMagico.png"
+		"sprite" : "../data/sprites/items/anillo/2.png"
 	}, {
 		"id" : 15,
 		"nombreItem" : "botas",
 		"cant" : 1,
 		"acumulable" : false,
-		"sprite" : "../data/sprites/items/ep/15_botas.png"
+		"sprite" : "../data/sprites/items/pies/1.png"
 	}, {
 		"id" : 15,
 		"nombreItem" : "libro",
@@ -128,22 +128,22 @@ function personajeInvContr($scope, $sailsBind, $interval) {
 		"id" : 3,
 		"nombreItem" : "capa dorada",
 		"parte": "capa",
-		"sprite" : "../data/sprites/items/ep/3_capaDorada.png"
+		"sprite" : "../data/sprites/items/capa/1.png"
 	}, {
 		"id" : 8,
 		"nombreItem" : "espada burocratica",
 		"parte": "arma",
-		"sprite" : "../data/sprites/items/ep/8_espada.png"
+		"sprite" : "../data/sprites/items/arma/1.png"
 	}, {
 		"id" : 12,
 		"nombreItem" : "anillo magico",
 		"parte": "anillo",
-		"sprite" : "../data/sprites/items/ep/12_anilloMagico.png"
+		"sprite" : "../data/sprites/items/anillo/3.png"
 	}, {
 		"id" : 15,
 		"nombreItem" : "botas",
 		"parte": "pies",
-		"sprite" : "../data/sprites/items/ep/15_botas.png"
+		"sprite" : "../data/sprites/items/pies/1.png"
 	}];
 }]);
 
