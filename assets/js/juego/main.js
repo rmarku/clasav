@@ -6,11 +6,9 @@
 var game = {
     mainPlayer: {},
     players: [],
-    NPCPlayer: [],
-    players: {},
-    NPCs: {},
-    items: {},
-    sprites: {},
+    NPCs: [], 
+    items: [],
+    sprites: [],
 
     /**
      * initialization
@@ -64,6 +62,7 @@ var game = {
         // set the "Play/Ingame" Screen Object
         me.pool.register("mainPlayer", game.PlayerEntity);
         me.pool.register("NPCPlayer", game.NPCPlayer);
+        me.pool.register("otherPlayer", game.NPCPlayer);
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()

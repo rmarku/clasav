@@ -13,9 +13,18 @@
             ctxMinimap.lineWidth = 1;
             ctxMinimap.strokeStyle = '#000000';
             ctxMinimap.stroke();
-            game.NPCPlayer.forEach(function drawNPC(value){
+            game.NPCs.forEach(function drawNPC(value){
                 ctxMinimap.beginPath();
                 ctxMinimap.fillStyle = '#00FFEF';
+                ctxMinimap.arc(~~(value.pos.x * 156 / 1344), ~~(value.pos.y * 156 / 1344), 2, 0, 2 * Math.PI, true);
+                ctxMinimap.fill();
+                ctxMinimap.lineWidth = 1;
+                ctxMinimap.strokeStyle = '#000000';
+                ctxMinimap.stroke();
+            });
+            game.players.forEach(function drawPlayer(value){
+                ctxMinimap.beginPath();
+                ctxMinimap.fillStyle = '#FF0000';
                 ctxMinimap.arc(~~(value.pos.x * 156 / 1344), ~~(value.pos.y * 156 / 1344), 2, 0, 2 * Math.PI, true);
                 ctxMinimap.fill();
                 ctxMinimap.lineWidth = 1;
@@ -37,5 +46,5 @@
         ctxMinimap.lineWidth = 1;
         ctxMinimap.strokeStyle = '#000000';
         ctxMinimap.stroke();
-    }
+    }//otra opcion (poniendolo en el update del npc en particular (se borra porque el update del main es mas seguido)
 }*/
