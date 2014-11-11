@@ -30,7 +30,7 @@ module.exports.policies = {
     '*': ['passport'],
 
     'user': ['passport', 'filtroEditUsuario', 'filtroUsuarioAutentificado'], //, 'filterOwnUserEdit']
-    'personaje': ['passport', 'addPersonaje']
+    'personaje': ['passport', 'addPersonaje','updateOnlyPersonajeFromUser']
 
     /***************************************************************************
      *                                                                          *
