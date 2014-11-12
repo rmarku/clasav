@@ -26,6 +26,7 @@ var game = {
 
         me.plugin.register(debugPanel, "debug");
         me.audio.init('ogg,mp3');
+        me.sys.pauseOnBlur=false;
 
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);

@@ -22,11 +22,11 @@ module.exports = function updateOnlyPersonajeFromUser(req, res, next) {
             console.log('El personaje no pertenece al Usuario');
             return res.send('El personaje no pertenece al Usuario');
         }
-
+/*
         req.body.user = [
             {id: userID}
         ];
-
+*/
         return next();
     });
 
