@@ -49,17 +49,22 @@ module.exports.routes = {
     //Routes de autentificacion
 
 
-    'get /login': 'AuthController.login',
-    'get /logout': 'AuthController.logout',
-    'get /register': 'AuthController.register',
+    'get /login':       'AuthController.login',
+    'get /logout':      'AuthController.logout',
+    'get /register':    'AuthController.register',
 
-    'post /auth/local': 'AuthController.callback',
+    'post /auth/local':         'AuthController.callback',
     'post /auth/local/:action': 'AuthController.callback',
 
-    'get /auth/:provider': 'AuthController.provider',
+    'get /auth/:provider':          'AuthController.provider',
     'get /auth/:provider/callback': 'AuthController.callback',
-    'get /auth/:provider/:action': 'AuthController.callback',
+    'get /auth/:provider/:action':  'AuthController.callback',
 
-    '/api/user/getUser': 'UserController.getUser'
+    '/api/user/getUser':    'UserController.getUser',
+
+    'post /api/mapa_instancia/join':    'Mapa_instanciaController.join',
+    'post /api/mapa_instancia/leave':   'Mapa_instanciaController.leave',
+
+    'put  /api/personaje/updateStatus':   'PersonajeController.update'
 
 };

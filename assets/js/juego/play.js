@@ -77,7 +77,7 @@ game.PlayScreen = me.ScreenObject.extend({
                             , function (resdata) {
                             }
                         );
-                        game.server.subscribeTo_personajes_from_mapa_instance();
+                        game.init_otherPlayers();
 
 
                     } else {
