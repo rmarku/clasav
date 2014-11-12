@@ -19,6 +19,7 @@ module.exports = function updateOnlyPersonajeFromUser(req, res, next) {
     Personaje.findOne({id:personajeID,duenio:userID}).exec(function findCB(err,personaje) {
         //Si el personaje pertenece al jugador, continuar
         if(!personaje){
+            console.log('El personaje no pertenece al Usuario');
             return res.send('El personaje no pertenece al Usuario');
         }
 

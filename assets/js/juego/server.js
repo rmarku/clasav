@@ -25,7 +25,7 @@ var server = {
 
             io.socket.put('/api/personaje/updateStatus', {
                     mapa_instancia : game.mainPlayer.data.mapa_instancia.id.toString(),
-                    //id      :   game.mainPlayer.id,
+                    id      :   game.mainPlayer.id,
                     estado  :   game.mainPlayer.direccion,
                     x       :   ~~game.mainPlayer.pos.x,
                     y       :   ~~game.mainPlayer.pos.y
@@ -76,6 +76,7 @@ var server = {
             game.players[obj.id].direccion = obj.estado;
             //game.players[obj.id].pos.x = obj.x;
             //game.players[obj.id].pos.y = obj.y;
+            game.players[obj.id].updateBounds();
         });
 
 /*

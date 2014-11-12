@@ -72,8 +72,7 @@ game.PlayScreen = me.ScreenObject.extend({
                         me.game.world.sort();
 
                         //Pasamos el MainPlayer a Conectado:true
-                        io.socket.put('/api/personaje/' + game.mainPlayer.id,
-                            {conectado: true}
+                        $.get('/api/personaje/update/' + game.mainPlayer.id+'?conectado=true'
                             , function (resdata) {
                             }
                         );

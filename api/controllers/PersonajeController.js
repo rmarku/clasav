@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-    update: function (req, res) {
+    updateStatus: function (req, res) {
 
         //Obtenemos el Nombre de la Room que coincide con el ID de mapa_instancia enviado
         //var roomName = req.param('mapa_instancia');

@@ -15,8 +15,8 @@ module.exports = {
         }
 
         sails.sockets.join(req.socket, roomName);
-        console.log('join to mapa_instancia.id:');
-        console.log(roomName);
+        //console.log('join to mapa_instancia.id:');
+        //console.log(roomName);
 
         sails.sockets.broadcast(roomName, 'NuevoJoin_Mapa_Instancia', {userID:user.id});
         return res.send(roomName);
