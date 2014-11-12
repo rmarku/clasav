@@ -11,7 +11,7 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
      */
     $scope.envMsj = function () {
         if ($scope.mensaje !== "") {
-            io.socket.put('/api/chat/create/', {nick: 'Lizz', mensaje: $scope.mensaje});
+            io.socket.put('/api/chat/create/', {nick: game.mainPlayer.data.nombre , mensaje: $scope.mensaje});
         }
         $scope.mensaje = "";
     };
