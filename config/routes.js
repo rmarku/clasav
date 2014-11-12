@@ -62,8 +62,8 @@ module.exports.routes = {
 
     '/api/user/getUser':    'UserController.getUser',
 
-    'post /api/mapa_instancia/join':    'Mapa_instanciaController.join',
-    'post /api/mapa_instancia/leave':   'Mapa_instanciaController.leave',
+    'get /api/mapa_instancia/join':    'Mapa_instanciaController.join',
+    'get /api/mapa_instancia/leave':   'Mapa_instanciaController.leave',
 
     'put  /api/personaje/updateStatus':   'PersonajeController.update'
 

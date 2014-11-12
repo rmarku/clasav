@@ -147,7 +147,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         "conectado": false
     };
 
-    io.socket.get("/api/user/getUser", function (data) {
+    $.get("/api/user/getUser", function (data) {
         if (typeof data.userId == 'undefined') {
             window.location.href = '/';
             return;

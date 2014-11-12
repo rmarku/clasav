@@ -45,7 +45,7 @@ game.PlayerEntity = game.Player.extend({
 
         this._super(game.Player, 'update', [dt]);
 
-    game.server.update_mainplayer();
+    server.update_mainplayer();
     // Dibujo en el minimapa
     drawPointsMinimap();
   }

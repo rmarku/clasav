@@ -71,10 +71,10 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
         if ($scope.editar) {
 
-            io.socket.post("/api/user/" + $scope.alumno.id, $scope.alumno, function (data) {
+            $.post("/api/user/" + $scope.alumno.id, $scope.alumno, function (data) {
 
 
-                io.socket.get('/api/personaje?where={"duenio":"' + $scope.alumno.id + '"}', function (data) {
+                $.get('/api/personaje?where={"duenio":"' + $scope.alumno.id + '"}', function (data) {
                     console.log(data);
                     if (data.lenght > 0) {
                         toastr.info('Datos actualizados!!!!');

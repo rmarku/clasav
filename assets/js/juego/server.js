@@ -2,7 +2,7 @@
  * Created by Fabricio on 12/11/2014.
  */
 
-server = {
+var server = {
 
     update_counter: 0,
     update_timeOut: 100, // (3)segs aproximadamente
@@ -24,7 +24,8 @@ server = {
         if ((this.update_counter >= this.update_timeOut) || (game.mainPlayer.direccion != game.mainPlayer.direccion_anterior)) {
 
             io.socket.put('/api/personaje/updateStatus', {
-                    id      :   game.mainPlayer.id,
+                    mapa_instancia : game.mainPlayer.data.mapa_instancia.id.toString(),
+                    //id      :   game.mainPlayer.id,
                     estado  :   game.mainPlayer.direccion,
                     x       :   ~~game.mainPlayer.pos.x,
                     y       :   ~~game.mainPlayer.pos.y
@@ -50,7 +51,7 @@ server = {
     join_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/join',
             {
-                mapa_instanciaID: game.mainPlayer.mapa_instancia
+                mapa_instancia: game.mainPlayer.data.mapa_instancia.id.toString()
             },
             function joinCB(data) {
                 console.log(data);
@@ -61,7 +62,7 @@ server = {
     leave_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/leave',
             {
-                mapa_instanciaID: game.mainPlayer.mapa_instancia
+                mapa_instancia: game.mainPlayer.data.mapa_instancia.id.toString()
             },
             function joinCB(data) {
                 console.log(data);
@@ -73,9 +74,11 @@ server = {
 
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
             game.players[obj.id].direccion = obj.estado;
+            //game.players[obj.id].pos.x = obj.x;
+            //game.players[obj.id].pos.y = obj.y;
         });
 
-
+/*
         // Listen to incoming Updates from Jugador_en_vivo we've just subscribed to
         io.socket.on('personaje', function messageReceived(obj) {
             if (obj.id != game.mainPlayer.id)
@@ -109,5 +112,6 @@ server = {
                         break;
                 }
         });
+*/
     }
 };

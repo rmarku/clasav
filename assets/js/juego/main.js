@@ -38,14 +38,14 @@ var game = {
         });
 
         // Traigo todos los items
-        io.socket.get('/api/item/getItems', function (data) {
+        $.get('/api/item/getItems', function (data) {
             data.forEach(function (item) {
                 game.items[item.id] = item;
             });
         });
 
         // Traigo todos los sprites.
-        io.socket.get('/api/sprite/getSprites', function (data) {
+        $.get('/api/sprite/getSprites', function (data) {
             data.forEach(function (sprite) {
                 game.sprites[sprite.id] = sprite;
             });
@@ -63,7 +63,7 @@ var game = {
         // set the "Play/Ingame" Screen Object
         me.pool.register("mainPlayer", game.PlayerEntity);
         me.pool.register("NPCPlayer", game.NPCPlayer);
-        me.pool.register("otherPlayer", game.NPCPlayer);
+        me.pool.register("otherPlayer", game.OtherPlayer);
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
@@ -77,7 +77,7 @@ var game = {
 
     create_otherPlayers: function () {
 
-        io.socket.get('/api/personaje?where={"mapa_instancia":"' + game.mainPlayer.mapa_instancia + '"', function messageReceived(personajes) {
+        $.get('/api/personaje?where={"mapa_instancia":"' + game.mainPlayer.data.mapa_instancia + '"',function messageReceived(personajes) {
             while (personajes.length) {
 
                 var personaje = personajes.pop();
