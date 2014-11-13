@@ -187,7 +187,7 @@ $(function() {
 			$("#audio").attr("src", "../images/iconos/audio_OFF.png");
 			me.audio.muteAll();
 		} else {
-			$("#audio").attr("src", "../images/iconos/audio_ON.png");
+			$("#audio").attr("src", "../images/iconos/audio_on.png");
 			me.audio.unmuteAll();
 		}
 	});

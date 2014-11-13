@@ -54,7 +54,9 @@ var jsFilesToInject = [
     "/js/juego/minimap.js",
     "/js/juego/play.js",
     "/js/juego/chat.js",
-    "/js/juego/misiones.js",
+    "/js/juego/misiones.js", //eliminar cuando este la BD
+    "/js/juego/logros.js", //eliminar cuando este la DB
+    
 
     // WEB
     "/js/app.js",
