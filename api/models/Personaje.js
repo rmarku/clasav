@@ -115,31 +115,41 @@ module.exports = {
     afterCreate: function (newPJ, next) {
         // Para procesar todas las promesas que devuelven cada item create.
         Promesa.all([
-            Item_instancia.create(
-                {
-                    item: 1,
-                    seccion_inventario: 1,
-                    cantidad: 1,
-                    usando: 'true',
-                    personaje: newPJ.id
-                }),
-            Item_instancia.create(
-                {
-                    item: 2,
-                    seccion_inventario: 2,
-                    cantidad: 1,
-                    usando: 'true',
-                    personaje: newPJ.id
-                }),
-            Item_instancia.create(
-                {
-                    item: 3,
-                    seccion_inventario: 3,
-                    cantidad: 1,
-                    usando: 'true',
-                    personaje: newPJ.id
-                })
+            Item.findOne({"nombre": "Pantalon Corto"}).then(function (item) {
+                console.log(item);
+                return Item_instancia.create(
+                    {
+                        item: item,
+                        seccion_inventario: 1,
+                        cantidad: 1,
+                        usando: 'true',
+                        personaje: newPJ.id
+                    })
+            }),
+            Item.findOne({"nombre": "Remera Corta"}).then(function (item) {
+                console.log(item);
+                return Item_instancia.create(
+                    {
+                        item: item,
+                        seccion_inventario: 2,
+                        cantidad: 1,
+                        usando: 'true',
+                        personaje: newPJ.id
+                    })
+            }),
+            Item.findOne({"nombre": "Zapato"}).then(function (item) {
+                console.log(item);
+                return Item_instancia.create(
+                    {
+                        item: item,
+                        seccion_inventario: 3,
+                        cantidad: 1,
+                        usando: 'true',
+                        personaje: newPJ.id
+                    })
+            })
         ]).then(function (items) {
+            console.log('ITEMS:'+items);
 
             // items es un array con el resultado de cada promesa en orden.
             Personaje.update({id: newPJ.id},
