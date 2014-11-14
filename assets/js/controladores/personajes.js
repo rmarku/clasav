@@ -136,13 +136,9 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         nombre: '',
         pelo: 1,
         pelo_color: "#ffffff",
-        pantalon: 1,
-        torso: 1,
-        zapato: 1,
         "x": 900,
         "y": 200,
         "direccion": 0,
-        "mapa_instancia": 1,
         "masRecientementeUtilizado":true,
         "conectado": false
     };
@@ -194,7 +190,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
      */
     $scope.crearPj = function () {
 
-        io.socket.get('/api/personaje?where={"nombre":"' + $scope.pj.nombre + '"}', function (data) {
+        $.get('/api/personaje?where={"nombre":"' + $scope.pj.nombre + '"}', function (data) {
             if (data.length > 0) {
                 toastr.error('El nombre del personaje ya existe');
                 return;
@@ -204,7 +200,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
                 return;
             }
 
-            io.socket.post("/api/personaje", $scope.pj, function (data) {
+            $.post("/api/personaje", $scope.pj, function (data) {
                 toastr.info('Personaje creado, ahora a Jugar!!!!');
                 setTimeout(function () {
 
