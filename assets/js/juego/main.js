@@ -8,8 +8,8 @@ var game = {
     players: [],
     playersOffline:[],
     NPCs: [],
-    items: [],
-    sprites: [],
+    items: {},
+    sprites: {},
 
     /**
      * initialization
