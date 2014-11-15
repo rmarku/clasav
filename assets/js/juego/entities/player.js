@@ -203,19 +203,19 @@ game.Player = me.Entity.extend({
         ctx.drawImage(img, 0, 0);
 
         // 4 zapato No andando :S
-        img = this.getItemImg(this.data.zapatos.id);
+        img = this.getItemImg(this.data.zapatos);
         if (img) {
             ctx.drawImage(tintImage(img, game.items[this.data.zapatos.item].color), 0, 0);
         } else {
             console.log('no img' + img);
         }
         // 5 Pantalon
-        img = this.getItemImg(this.data.pantalon.id);
+        img = this.getItemImg(this.data.pantalon);
         if (img) {
             ctx.drawImage(tintImage(img, game.items[this.data.pantalon.item].color), 0, 0);
         }
 
-        img = this.getItemImg(this.data.torso.id);
+        img = this.getItemImg(this.data.torso);
         if (img) {
             ctx.drawImage(tintImage(img, game.items[this.data.torso.item].color), 0, 0);
         }
