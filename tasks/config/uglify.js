@@ -12,10 +12,10 @@
 module.exports = function(grunt) {
 
 	grunt.config.set('uglify', {
-        //options:{
-        //    sourceMapIncludeSources: true,
-        //    sourceMap: true
-        //},
+        options:{
+            sourceMapIncludeSources: true,
+            sourceMap: true
+        },
 		dist: {
             src: ['.tmp/public/concat/production.js'],
             dest: '.tmp/public/min/production.min.js'
