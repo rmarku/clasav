@@ -77,7 +77,7 @@ Quest
 * Texto de espera,
 * minijuego,
 * Tiempo,
-* Texto de conclucion,
+* Texto de conclusion,
 * NPC,
 * Reconpensa,
 * oro,

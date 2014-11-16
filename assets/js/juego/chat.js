@@ -1,7 +1,7 @@
 app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sailsBind) {
     $scope.chats = [];
     var tiempo = new Date();
-    $sailsBind.bind('api/chat', $scope, {"dateTime": {">": tiempo}});
+    $sailsBind.bind('api/chat', $scope, {">": {"createdAt": tiempo}});
 
 
     /**
@@ -35,7 +35,8 @@ app.directive('chat', function () {
             });
             elem.bind('keyup', function (e) {
                 if (e.keyCode == 13) {
-                    scope[attrs.chat]();
+                    //scope[attrs.chat]();
+                    scope.envMsj();
                 }
                 e.stopImmediatePropagation();
             });

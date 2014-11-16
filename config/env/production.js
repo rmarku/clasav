@@ -17,9 +17,9 @@ module.exports = {
    * environment (see config/connections.js and config/models.js )           *
    ***************************************************************************/
 
-  // models: {
-  //   connection: 'someMysqlServer'
-  // },
+   models: {
+     connection: 'MongoLab'
+   },
 
   /***************************************************************************
    * Set the port in the production environment to 80                        *
@@ -35,6 +35,22 @@ module.exports = {
   //   level: "silent"
   // }
   proxyHost: "clases-y-aventuras.herokuapp.com",
-  proxyPort: "80"
+  proxyPort: "80",
+
+    session: {
+        adapter: 'redis',
+        host: 'greeneye.redistogo.com',
+        port: '11588',
+        db: 'redistogo',
+        pass: '***REMOVED***'
+    },
+
+    sockets: {
+        adapter: 'redis',
+        host: 'greeneye.redistogo.com',
+        port: '11588',
+        db: 'redistogo',
+        pass: '***REMOVED***'
+    }
 
 };

@@ -23,7 +23,7 @@ game.OtherPlayer = game.Player.extend({
         }
         this.body.update();
 
-        if (this.direccion != 0) {
+        if (this.direccion !== 0) {
             this._super(me.Entity, 'update', [dt]);
             return true;
         }

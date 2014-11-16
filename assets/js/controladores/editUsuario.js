@@ -44,6 +44,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         $scope.Titulo = 'Editar Cuenta';
         $scope.$parent.getUser().then(function (data) {
             $scope.alumno = data;
+            delete $scope.alumno.passports;
         });
     } else {
 
