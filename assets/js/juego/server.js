@@ -5,7 +5,7 @@
 var server = {
 
     update_counter: 0,
-    update_timeOut: 30, // (1)segs aproximadamente
+    update_timeOut: 15, // (1)segs aproximadamente
 
     /**
      * Description
@@ -17,7 +17,7 @@ var server = {
     update_mainplayer: function (local_coordenates) {
         // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
         if (game.mainPlayer.direccion !== 0) {
-            game.update_counter++;
+            this.update_counter++;
         }
 
         //Envio al servidor solo si: se agoto el counter, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
@@ -73,14 +73,54 @@ var server = {
     listen_events: function () {
 
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
-            game.players[obj.id].direccion = obj.estado;
 
-            if (this.direccion & 0) {
+            /*
+            if (obj.estado & 0){
+                game.players[obj.id].direccion = obj.estado;
                 game.players[obj.id].pos.x = obj.x;
                 game.players[obj.id].pos.y = obj.y;
+                game.players[obj.id].updateBounds();
+            }
+            else{
+               /* game.players[obj.id].direccion = obj.estado;
+                game.players[obj.id].updateBounds();
+                if (this.direccion & 0 ||   game.players[obj.id].pos.x+10 != obj.x ||
+                                            game.players[obj.id].pos.x-10 != obj.x ||
+                                            game.players[obj.id].pos.y+10 != obj.y ||
+                                            game.players[obj.id].pos.y-10 != obj.y) {
+
+                    game.players[obj.id].pos.x = obj.x;
+                    game.players[obj.id].pos.y = obj.y;
+                    game.players[obj.id].updateBounds();
+
+                } */
+/*
+                if (    game.players[obj.id].pos.x+10 != obj.x ||
+                        game.players[obj.id].pos.x-10 != obj.x ||
+                        game.players[obj.id].pos.y+10 != obj.y ||
+                        game.players[obj.id].pos.y-10 != obj.y) {
+                    game.players[obj.id].pos.x = obj.x;
+                    game.players[obj.id].pos.y = obj.y;
+                }
+                game.players[obj.id].direccion = obj.estado;
+                game.players[obj.id].updateBounds();
+            }
+        */
+
+            if ( this.direccion & 0 ||  game.players[obj.id].pos.x+10 < obj.x ||
+                                        game.players[obj.id].pos.x-10 > obj.x ||
+                                        game.players[obj.id].pos.y+10 < obj.y ||
+                                        game.players[obj.id].pos.y-10 > obj.y) {
+                game.players[obj.id].pos.x = obj.x;
+                game.players[obj.id].pos.y = obj.y;
+                game.players[obj.id].direccion = obj.estado;
+                game.players[obj.id].updateBounds();
+                return;
             }
 
+            game.players[obj.id].direccion = obj.estado;
             game.players[obj.id].updateBounds();
+
         });
     }
 };
