@@ -75,8 +75,10 @@ var server = {
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
             game.players[obj.id].direccion = obj.estado;
 
-            //game.players[obj.id].pos.x = obj.x;
-            //game.players[obj.id].pos.y = obj.y;
+            if (this.direccion & 0) {
+                game.players[obj.id].pos.x = obj.x;
+                game.players[obj.id].pos.y = obj.y;
+            }
 
             game.players[obj.id].updateBounds();
         });
