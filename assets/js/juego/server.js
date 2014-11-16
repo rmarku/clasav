@@ -5,7 +5,7 @@
 var server = {
 
     update_counter: 0,
-    update_timeOut: 15, // (1)segs aproximadamente
+    update_timeOut: 5, // (1)segs aproximadamente
 
     /**
      * Description
@@ -107,10 +107,10 @@ var server = {
             }
         */
 
-            if ( this.direccion & 0 ||  game.players[obj.id].pos.x+10 < obj.x ||
-                                        game.players[obj.id].pos.x-10 > obj.x ||
-                                        game.players[obj.id].pos.y+10 < obj.y ||
-                                        game.players[obj.id].pos.y-10 > obj.y) {
+            if ( this.direccion & 0 ||  game.players[obj.id].pos.x+15 < obj.x ||
+                                        game.players[obj.id].pos.x-15 > obj.x ||
+                                        game.players[obj.id].pos.y+15 < obj.y ||
+                                        game.players[obj.id].pos.y-15 > obj.y) {
                 game.players[obj.id].pos.x = obj.x;
                 game.players[obj.id].pos.y = obj.y;
                 game.players[obj.id].direccion = obj.estado;
