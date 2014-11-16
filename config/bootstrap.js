@@ -16,8 +16,8 @@ module.exports.bootstrap = function (cb) {
 
     sails.services.passport.loadStrategies();
 
-    Items.find({}).then(function(err, items){
-        if(items.length == 0) {
+    Item.find({}).then(function (items) {
+        if (items.length == 0) {
             var Barrels = require('barrels');
             var barrels = new Barrels();
             var fixtures = barrels.data;
@@ -26,11 +26,10 @@ module.exports.bootstrap = function (cb) {
                 console.log(err);
                 cb();
             });
-        }else{
+        } else {
             cb();
         }
     });
-
 
 
     /*
@@ -58,5 +57,5 @@ module.exports.bootstrap = function (cb) {
      return 0;
      });
      }, 0).then(cb);
-    */
+     */
 };
