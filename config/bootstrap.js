@@ -16,14 +16,21 @@ module.exports.bootstrap = function (cb) {
 
     sails.services.passport.loadStrategies();
 
-    var Barrels = require('barrels');
-    var barrels = new Barrels();
-    var fixtures = barrels.data;
+    Items.find({}).then(function(err, items){
+        if(items.length == 0) {
+            var Barrels = require('barrels');
+            var barrels = new Barrels();
+            var fixtures = barrels.data;
 
-    barrels.populate(function (err) {
-        console.log(err);
-        cb();
+            barrels.populate(function (err) {
+                console.log(err);
+                cb();
+            });
+        }else{
+            cb();
+        }
     });
+
 
 
     /*
