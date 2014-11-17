@@ -16,29 +16,46 @@ module.exports.bootstrap = function (cb) {
 
     sails.services.passport.loadStrategies();
 
-    var fixture_import = function (modelo) {
-        var objs = jf.readFileSync('config/fixtures/' + modelo + '.json');
-        return Promise.reduce(objs, function (total, obj) {
-            return global[modelo].find(obj).then(function (data) {
-                if (data.length > 0) {
-                    return 0;
-                } else {
-                    return global[modelo].create(obj).then(function () {
-                        return 1;
-                    });
-                }
+    Item.find({}).then(function (items) {
+        if (items.length == 0) {
+            var Barrels = require('barrels');
+            var barrels = new Barrels();
+            var fixtures = barrels.data;
+
+            barrels.populate(function (err) {
+                console.log(err);
+                cb();
             });
-        }, 0);
-    }
+        } else {
+            cb();
+        }
+    });
 
-    var fixtures = ['Mapa_instancia', 'Mapa_generico', 'Clase', 'User', 'Sprite', 'Item'];
 
-    Promise.reduce(fixtures, function (total, item) {
+    /*
+     var fixture_import = function (modelo) {
+     var objs = jf.readFileSync('config/fixtures/' + modelo + '.json');
+     return Promise.reduce(objs, function (total, obj) {
+     return global[modelo].find(obj).then(function (data) {
+     if (data.length > 0) {
+     return 0;
+     } else {
+     return global[modelo].create(obj).then
+     console.log(JSON.stringify(obj) + "  " + data.length);(function () {
+     return 1;
+     });
+     }
+     });
+     }, 0);
+     }
 
-        return fixture_import(item).then(function (dat) {
-            console.log(item);
-            return 0;
-        });
-    }, 0).then(cb);
+     var fixtures = ['Mapa_instancia', 'Mapa_generico', 'Clase', 'User', 'Sprite', 'Item'];
 
+     Promise.reduce(fixtures, function (total, item) {
+
+     return fixture_import(item).then(function (dat) {
+     return 0;
+     });
+     }, 0).then(cb);
+     */
 };

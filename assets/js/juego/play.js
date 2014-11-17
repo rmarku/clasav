@@ -24,10 +24,10 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.DOWN, 'down');
         me.input.bindKey(me.input.KEY.S, 'down');
 
-        io.socket.get('/api/user/getUser', function (user) {
+        $.get('/api/user/getUser', function (user) {
             if (typeof user.userId != 'undefined') {
 
-                io.socket.get('/api/personaje?where={"duenio":"' + user.userId + '","masRecientementeUtilizado":true}', function (datos) {
+                $.get('/api/personaje?where={"duenio":"' + user.userId + '","masRecientementeUtilizado":true}', function (datos) {
                     if (datos.length == 1) {
                         data = datos[0];
                         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
@@ -72,12 +72,11 @@ game.PlayScreen = me.ScreenObject.extend({
                         me.game.world.sort();
 
                         //Pasamos el MainPlayer a Conectado:true
-                        io.socket.put('/api/personaje/' + game.mainPlayer.id,
-                            {conectado: true}
+                        $.get('/api/personaje/update/' + game.mainPlayer.id+'?conectado=true'
                             , function (resdata) {
                             }
                         );
-                        game.server.subscribeTo_personajes_from_mapa_instance();
+                        game.init_otherPlayers();
 
 
                     } else {

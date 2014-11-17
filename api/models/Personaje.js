@@ -115,39 +115,52 @@ module.exports = {
     afterCreate: function (newPJ, next) {
         // Para procesar todas las promesas que devuelven cada item create.
         Promesa.all([
-            Item_instancia.create(
-                {
-                    item: 1,
-                    seccion_inventario: 1,
-                    cantidad: 1,
-                    usando: 'true',
-                    personaje: newPJ.id
-                }),
-            Item_instancia.create(
-                {
-                    item: 2,
-                    seccion_inventario: 2,
-                    cantidad: 1,
-                    usando: 'true',
-                    personaje: newPJ.id
-                }),
-            Item_instancia.create(
-                {
-                    item: 3,
-                    seccion_inventario: 3,
-                    cantidad: 1,
-                    usando: 'true',
-                    personaje: newPJ.id
-                })
+            Item.findOne({"nombre": "Pantalon Corto"}).then(function (item) {
+                return Item_instancia.create(
+                    {
+                        item: item,
+                        seccion_inventario: 1,
+                        cantidad: 1,
+                        usando: 'true',
+                        personaje: newPJ.id
+                    });
+            }),
+            Item.findOne({"nombre": "Remera Corta"}).then(function (item) {
+                return Item_instancia.create(
+                    {
+                        item: item,
+                        seccion_inventario: 2,
+                        cantidad: 1,
+                        usando: 'true',
+                        personaje: newPJ.id
+                    });
+            }),
+            Item.findOne({"nombre": "Zapato"}).then(function (item) {
+                return Item_instancia.create(
+                    {
+                        item: item,
+                        seccion_inventario: 3,
+                        cantidad: 1,
+                        usando: 'true',
+                        personaje: newPJ.id
+                    });
+            })
         ]).then(function (items) {
 
-            // items es un array con el resultado de cada promesa en orden.
-            Personaje.update({id: newPJ.id},
-                {
-                    pantalon: items[0],
-                    torso: items[1],
-                    zapatos: items[2]
-                }).exec(next);
+            Mapa_instancia.find({sort: 'createdAt DESC', limit:1}).then(function (mapa) {
+ //               console.log('Mapa '+mapa[0]);
+                // items es un array con el resultado de cada promesa en orden.
+                Personaje.update({id: newPJ.id},
+                    {
+                        mapa_instancia: mapa[0],
+                        pantalon: items[0],
+                        torso: items[1],
+                        zapatos: items[2]
+                    }).exec(next);
+            }).catch(function(err){
+                console.log(err);
+                next();
+            });
         });
     }
 };

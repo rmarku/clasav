@@ -21,5 +21,5 @@ module.exports.models = {
    	connection: 'localDiskDb',
 	schema : true,
 	//autoPK : true,
-	migrate: 'alter'
+	migrate: 'drop'
 };
