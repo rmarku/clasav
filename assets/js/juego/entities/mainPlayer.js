@@ -11,7 +11,6 @@ game.PlayerEntity = game.Player.extend({
     },
 
     update: function (dt) {
-
         // Interpretacion de teclas
         //this.direccion = 0;
         if (me.input.keyStatus('left') != this.keys.left) {
