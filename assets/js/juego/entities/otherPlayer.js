@@ -9,12 +9,14 @@ game.OtherPlayer = game.Player.extend({
 
         if( ~~this.pos.x <= this.target_pos.x+2 &&
             ~~this.pos.x >= this.target_pos.x+2 &&
-            ~~this.pos.y <= this.target_pos.y+2 &&
+            ~~this.pos.y <= this.target_pos.y-2 &&
             ~~this.pos.y >= this.target_pos.y-2){
             this.direccion &= ~8;
             this.direccion &= ~4;
             this.direccion &= ~2;
             this.direccion &= ~1;
+            this._super(game.Player, 'update', [dt]);
+            return;
         }
 
         //Left
