@@ -75,39 +75,7 @@ var server = {
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
 
             /*
-            if (obj.estado & 0){
-                game.players[obj.id].direccion = obj.estado;
-                game.players[obj.id].pos.x = obj.x;
-                game.players[obj.id].pos.y = obj.y;
-                game.players[obj.id].updateBounds();
-            }
-            else{
-               /* game.players[obj.id].direccion = obj.estado;
-                game.players[obj.id].updateBounds();
-                if (this.direccion & 0 ||   game.players[obj.id].pos.x+10 != obj.x ||
-                                            game.players[obj.id].pos.x-10 != obj.x ||
-                                            game.players[obj.id].pos.y+10 != obj.y ||
-                                            game.players[obj.id].pos.y-10 != obj.y) {
-
-                    game.players[obj.id].pos.x = obj.x;
-                    game.players[obj.id].pos.y = obj.y;
-                    game.players[obj.id].updateBounds();
-
-                } */
-/*
-                if (    game.players[obj.id].pos.x+10 != obj.x ||
-                        game.players[obj.id].pos.x-10 != obj.x ||
-                        game.players[obj.id].pos.y+10 != obj.y ||
-                        game.players[obj.id].pos.y-10 != obj.y) {
-                    game.players[obj.id].pos.x = obj.x;
-                    game.players[obj.id].pos.y = obj.y;
-                }
-                game.players[obj.id].direccion = obj.estado;
-                game.players[obj.id].updateBounds();
-            }
-        */
-
-            if ( this.direccion & 0 ||  game.players[obj.id].pos.x+15 < obj.x ||
+            if ( obj.estado & 0 ||  game.players[obj.id].pos.x+15 < obj.x ||
                                         game.players[obj.id].pos.x-15 > obj.x ||
                                         game.players[obj.id].pos.y+15 < obj.y ||
                                         game.players[obj.id].pos.y-15 > obj.y) {
@@ -117,10 +85,14 @@ var server = {
                 game.players[obj.id].updateBounds();
                 return;
             }
+            */
 
-            game.players[obj.id].direccion = obj.estado;
+            game.players[obj.id].target_pos.x = obj.x;
+            game.players[obj.id].target_pos.y = obj.y;
+
             game.players[obj.id].updateBounds();
 
         });
+
     }
 };
