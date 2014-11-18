@@ -23,31 +23,31 @@ game.OtherPlayer = game.Player.extend({
 
             //Left
             if (Math.abs(angule_radians) > Math.PI/2){
-                this.body.vel.x -= this.body.accel.x * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.x += this.body.accel.y * dt / 200;
-                }
+                if (this.pos.distance(this.target_pos) >= 20)
+                    this.body.vel.x -= this.body.accel.x * dt / 200;
+                else
+                    this.body.vel.x += this.body.vel.x*.1;
             }
             //Right
             else{
-                this.body.vel.x += this.body.accel.x * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.x -= this.body.accel.y * dt / 200;
-                }
+                if (this.pos.distance(this.target_pos) >= 20)
+                    this.body.vel.x += this.body.accel.x * dt / 200;
+                else
+                    this.body.vel.x -= this.body.vel.x*.1;
             }
             //Up
             if (angule_radians > 0){
-                this.body.vel.y += this.body.accel.y * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.y -= this.body.accel.y * dt / 200;
-                }
+                if (this.pos.distance(this.target_pos) >= 20)
+                    this.body.vel.y += this.body.accel.y * dt / 200;
+                else
+                    this.body.vel.y -= this.body.vel.y*.1;
             }
             //Down
             else{
-                this.body.vel.y -= this.body.accel.y * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.y += this.body.accel.y * dt / 200;
-                }
+                if (this.pos.distance(this.target_pos) >= 20)
+                    this.body.vel.y -= this.body.accel.y * dt / 200;
+                else
+                    this.body.vel.y += this.body.vel.y*.1;
             }
 
         }
@@ -81,7 +81,7 @@ game.OtherPlayer = game.Player.extend({
             return true;
         }
 
-        
+
         return false;
 
     }
