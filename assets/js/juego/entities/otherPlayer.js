@@ -16,19 +16,22 @@ game.OtherPlayer = game.Player.extend({
          */
         //
         this.direccion = 0;
-        if (Math.abs(this.pos.x - this.target_pos.x) > 1) {
+        if (Math.abs(this.pos.x - this.target_pos.x) > 5) {
             this.body.vel.x = (1.5 ^ (this.target_pos.x - this.pos.x) - 1);
 
         } else {
-            this.body.vel.x = 0;
+            this.body.vel.x /= 1.55;
         }
 
-        if (Math.abs(this.pos.y - this.target_pos.y) > 1) {
+        if (Math.abs(this.pos.y - this.target_pos.y) > 5) {
             this.body.vel.y = (1.5 ^ (this.target_pos.y - this.pos.y) - 1);
 
         } else {
-            this.body.vel.y = 0;
+            this.body.vel.y  /= 1.55;
         }
+
+
+
 
         if (this.body.vel.length() > this.body.maxVel.x) {
             // Now calc actual vel to prevent speeding by going diag..
@@ -62,8 +65,6 @@ game.OtherPlayer = game.Player.extend({
             this._super(me.Entity, 'update', [dt]);
             return true;
         }
-
-
         return false;
 
     }
