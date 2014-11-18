@@ -5,9 +5,13 @@
  * @param {} color
  * @return buff
  */
-function tintImage(img, color) {
-    var w = img.width;
-    var h = img.height;
+function tintImage(img, color, x, y, w, h) {
+
+    w = w || img.width;
+    h = h || img.height;
+    x = x || 0;
+    y = y || 0;
+
     var RGB = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
 
     var red = parseInt(RGB[1], 16);
@@ -17,8 +21,9 @@ function tintImage(img, color) {
     var canvas = document.createElement("canvas");
     canvas.width = w;
     canvas.height = h;
+
     var ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, x, y, w, h, 0, 0, w, h);
     var to = ctx.getImageData(0, 0, w, h);
     var rgbks = [];
 
@@ -27,8 +32,6 @@ function tintImage(img, color) {
     // 4 is used to ask for 3 images: red, green, blue and
     // black in that order.
     for (var rgbI = 0; rgbI < 4; rgbI++) {
-
-
         for (
             var i = 0;
             i < pixels.length;
@@ -41,7 +44,6 @@ function tintImage(img, color) {
         }
 
         ctx.putImageData(to, 0, 0);
-
         // image is _slightly_ faster then canvas for this, so convert
         var imgComp = new Image();
         imgComp.src = canvas.toDataURL();
@@ -51,8 +53,8 @@ function tintImage(img, color) {
 
 
     var buff = document.createElement("canvas");
-    buff.width = img.width;
-    buff.height = img.height;
+    buff.width = w;
+    buff.height = h;
 
     var context = buff.getContext("2d");
 
@@ -73,6 +75,6 @@ function tintImage(img, color) {
         context.globalAlpha = blue / 255.0;
         context.drawImage(rgbks[2], 0, 0);
     }
-
+    context.stroke();
     return buff;
 }

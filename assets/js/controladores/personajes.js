@@ -10,40 +10,26 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
     var sexo = '';
     var img = {
         pelo: {
-            front: [],
-            frontShadow: [],
-            back: [],
+            front: new Image(),
             frontColored: new Image(),
-            backColored: new Image()
+            backColored: new Image(),
+            frontShadow: new Image()
         },
         pantalon: new Image(),
         torso: new Image(),
         zapato: new Image(),
-        cuerpo: {
-            c1: new Image(),
-            c2: new Image()
-        }
+        cuerpo: new Image()
     };
     var img_h = 0;
     var img_v = 0;
 
     $scope.$parent.getUser().then(function (data) {
         sexo = data.sexo;
-        img.torso.src = "data/sprites/characters/" + sexo + "/shirt/1.png";
-        img.zapato.src = "data/sprites/characters/" + sexo + "/foot/1.png";
-        img.pantalon.src = "data/sprites/characters/" + sexo + "/pants/1.png";
-        img.cuerpo.c1.src = "data/sprites/characters/" + sexo + "/basic/1f.png";
-        img.cuerpo.c2.src = "data/sprites/characters/" + sexo + "/basic/1b.png";
-
-
-        for (var i = 1; i < 16; i++) {
-            img.pelo.front[i] = new Image();
-            img.pelo.front[i].src = "data/sprites/characters/" + sexo + "/hair/front/" + i + "hair.png";
-            img.pelo.frontShadow[i] = new Image();
-            img.pelo.frontShadow[i].src = "data/sprites/characters/" + sexo + "/hair/front/" + i + ".png";
-            img.pelo.back[i] = new Image();
-            img.pelo.back[i].src = "data/sprites/characters/" + sexo + "/hair/back/" + i + ".png";
-        }
+        img.torso.src = "data/sprites/characters/" + sexo + "/shirt.png";
+        img.zapato.src = "data/sprites/characters/" + sexo + "/foot.png";
+        img.pantalon.src = "data/sprites/characters/" + sexo + "/pants.png";
+        img.cuerpo.src = "data/sprites/characters/" + sexo + "/basic.png";
+        img.pelo.front.src = "data/sprites/characters/" + sexo + "/hairFront.png";
     });
 
 
@@ -71,28 +57,24 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         var color_pelo = document.getElementById('pelo_color').value;
         //TODO: Cambiar WM por el sexo del usuario
 
-        if (color_pelo_ant_front != color_pelo && img.pelo.front[pelo].complete && img.pelo.front[pelo].naturalWidth > 0) {
-            setTimeout(function () {
-                color_pelo_ant_front = color_pelo;
-                img.pelo.frontColored = tintImage(img.pelo.front[pelo], color_pelo);
-            }, 201);
+        if (color_pelo_ant_front != color_pelo && img.pelo.front.complete && img.pelo.front.naturalWidth > 0) {
+            color_pelo_ant_front = color_pelo;
+            img.pelo.frontColored.src = tintImage(img.pelo.front, color_pelo, (pelo - 1) * 128, 0, 128, 192).toDataURL();
         }
-        if (color_pelo_ant_back != color_pelo && img.pelo.back[pelo].complete && img.pelo.back[pelo].naturalWidth > 0) {
-            setTimeout(function () {
-                color_pelo_ant_back = color_pelo;
-                img.pelo.backColored = tintImage(img.pelo.back[pelo], color_pelo);
-            }, 201);
+        if (color_pelo_ant_back != color_pelo && img.pelo.front.complete && img.pelo.front.naturalWidth > 0) {
+            color_pelo_ant_back = color_pelo;
+            img.pelo.backColored.src = tintImage(img.pelo.front, color_pelo, (pelo - 1) * 128, 192 * 2, 128, 192).toDataURL();
         }
 // 1 el cuerpo de fondo
-        if (img.cuerpo.c2.naturalWidth > 0)
-            context.drawImage(img.cuerpo.c2, sx, sy, 32, 48, 0, 0, 32, 48);
+        if (img.cuerpo.naturalWidth > 0)
+            context.drawImage(img.cuerpo, sx, 192 + sy, 32, 48, 0, 0, 32, 48);
 // 2 el pelo de fondo
-        if (img.pelo.backColored.width > 0) {
+        if (img.pelo.backColored.naturalWidth > 0)
             context.drawImage(img.pelo.backColored, sx, sy, 32, 48, 0, 0, 32, 48);
-        }
+
 // 3 el cuerpo normal
-        if (img.cuerpo.c1.naturalWidth > 0)
-            context.drawImage(img.cuerpo.c1, sx, sy, 32, 48, 0, 0, 32, 48);
+        if (img.cuerpo.naturalWidth > 0)
+            context.drawImage(img.cuerpo, sx, sy, 32, 48, 0, 0, 32, 48);
 // 4 zapato
         if (img.zapato.naturalWidth > 0)
             context.drawImage(img.zapato, sx, sy, 32, 48, 0, 0, 32, 48);
@@ -100,17 +82,14 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         if (img.pantalon.naturalWidth > 0)
             context.drawImage(img.pantalon, sx, sy, 32, 48, 0, 0, 32, 48);
 
-
         if (img.torso.naturalWidth > 0)
             context.drawImage(img.torso, sx, sy, 32, 48, 0, 0, 32, 48);
 
-
-        if (img.pelo.frontColored.width > 0) {
+        if (img.pelo.frontColored.naturalWidth > 0)
             context.drawImage(img.pelo.frontColored, sx, sy, 32, 48, 0, 0, 32, 48);
-        }
 
-        if (img.pelo.frontShadow[pelo].naturalWidth > 0 && img.pelo.frontColored.width > 0)
-            context.drawImage(img.pelo.frontShadow[pelo], sx, sy, 32, 48, 0, 0, 32, 48);
+        if (img.pelo.frontShadow.naturalWidth > 0 )
+            context.drawImage(img.pelo.frontShadow, (pelo - 1) * 128 + sx, 192 + sy, 32, 48, 0, 0, 32, 48);
 
         ctx.drawImage(canvas, 0, 0);
 
@@ -139,7 +118,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         "x": 900,
         "y": 200,
         "direccion": 0,
-        "masRecientementeUtilizado":true,
+        "masRecientementeUtilizado": true,
         "conectado": false
     };
 
@@ -166,6 +145,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         color_pelo_ant_front = '';
         img.pelo.frontColored = new Image();
         img.pelo.backColored = new Image();
+
     };
 
     /**

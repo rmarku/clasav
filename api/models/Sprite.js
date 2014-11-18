@@ -18,6 +18,9 @@ module.exports = {
         },
         icono: {
             type: 'string'
+        },
+        offset:{
+            type: 'integer'
         }
     }
 };

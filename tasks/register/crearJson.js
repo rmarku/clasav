@@ -22,16 +22,8 @@ module.exports = function (grunt) {
         // var sprites = grunt.file.expand({filter: 'isFile'}, ['assets/data/sprites/characters/**/*.png']);
         var sprites = grunt.file.expand({filter: 'isFile'},
             [
-                'assets/data/sprites/characters/masculino/basic/**/*.png',
-                'assets/data/sprites/characters/femenino/basic/**/*.png',
-                'assets/data/sprites/characters/masculino/foot/**/?.png',
-                'assets/data/sprites/characters/femenino/foot/**/?.png',
-                'assets/data/sprites/characters/masculino/hair/**/*.png',
-                'assets/data/sprites/characters/femenino/hair/**/*.png',
-                'assets/data/sprites/characters/masculino/shirt/**/?.png',
-                'assets/data/sprites/characters/femenino/shirt/**/?.png',
-                'assets/data/sprites/characters/masculino/pants/**/?.png',
-                'assets/data/sprites/characters/femenino/pants/**/?.png'
+                'assets/data/sprites/characters/masculino/*.png',
+                'assets/data/sprites/characters/femenino/*.png'
             ]);
 
         tmxMaps.forEach(function (tmx) {
