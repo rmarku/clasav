@@ -18,6 +18,8 @@ game.Player = me.Entity.extend({
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
         this.alwaysUpdate = true;
+        this.target_pos = new me.Vector2d(x, y);
+        this.target_direccion = 0;
 
         this.body.setVelocity(5, 5);
         this.body.setFriction(0.3, 0.3);
@@ -92,6 +94,8 @@ game.Player = me.Entity.extend({
             if (this.body.vel.x < 0.0)
                 this.animationToUseThisFrame = "run-left";
         }
+        if(this.body.vel.length()=== 0)
+            this.renderable.setAnimationFrame();
 
         if (this.lastAnimationUsed != this.animationToUseThisFrame) {
             this.lastAnimationUsed = this.animationToUseThisFrame;

@@ -16,13 +16,19 @@ module.exports.bootstrap = function (cb) {
 
     sails.services.passport.loadStrategies();
 
-    var Barrels = require('barrels');
-    var barrels = new Barrels();
-    var fixtures = barrels.data;
+    Item.find({}).then(function (items) {
+        if (items.length == 0) {
+            var Barrels = require('barrels');
+            var barrels = new Barrels();
+            var fixtures = barrels.data;
 
-    barrels.populate(function (err) {
-        console.log(err);
-        cb();
+            barrels.populate(function (err) {
+                console.log(err);
+                cb();
+            });
+        } else {
+            cb();
+        }
     });
 
 
@@ -51,5 +57,5 @@ module.exports.bootstrap = function (cb) {
      return 0;
      });
      }, 0).then(cb);
-    */
+     */
 };

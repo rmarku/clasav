@@ -19,7 +19,7 @@ function misionesGuia($scope, $sailsBind) {
 		"tituloMision" : "Playa Natural",
 		"inicipioNPC" : "Kregan",
 		"finNPC" : "Kregan",
-		"textoInicial" : "Hola! Esta es 'La playa Natural', ¿te animas a responder estas sencillas preguntas sobre numeros naturales? Por cada acierto prometo darte 3 monedas de oro.",
+		"textoInicial" : "Hola! Esta es 'La playa Natural', Â¡te animas a responder estas sencillas preguntas sobre numeros naturales? Por cada acierto prometo darte 3 monedas de oro.",
 		"textoFinal" : "Felicitaciones! Sabia que podias lograrlo. Aqui tienes tu recompensa",
 		"recompensa" : "3 oros x pregunta",
 		"minijuego" : true, //multiplechoice
@@ -30,7 +30,7 @@ function misionesGuia($scope, $sailsBind) {
 		"tituloMision" : "Playa Natural 2",
 		"inicipioNPC" : "Kregan",
 		"finNPC" : "Kregan",
-		"textoInicial" : "Que tal esto: Si me ayudas a ordenar los siguientes numeros en una recta numerica, prometo pagarte. ¿Si?",
+		"textoInicial" : "Que tal esto: Si me ayudas a ordenar los siguientes numeros en una recta numerica, prometo pagarte. Â¿Si?",
 		"textoFinal" : "Felicitaciones! Sabia que podias lograrlo. Aqui tienes tu recompensa",
 		"recompensa" : "3 oros x pregunta",
 		"minijuego" : true, //Drag & drop
@@ -63,7 +63,7 @@ function misionesGuia($scope, $sailsBind) {
 		"tituloMision" : "Viaja!",
 		"inicipioNPC" : "Quio",
 		"finNPC" : "Quio",
-		"textoInicial" : "Asi que decidiste emprender tu viaje. Me parece una excelente idea camarada. ¿A que ciudad deseas teletrasportarte?",
+		"textoInicial" : "Asi que decidiste emprender tu viaje. Me parece una excelente idea camarada. Â¿A que ciudad deseas teletrasportarte?",
 		"textoFinal" : "Suerte en el viaje! No lo olvides, en cada ciudad tienes un centro de viaje!",
 		"recompensa" : null,
 		"minijuego" : false,
