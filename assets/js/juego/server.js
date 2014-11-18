@@ -5,7 +5,7 @@
 var server = {
 
     update_counter: 0,
-    update_timeOut: 5, // (1)segs aproximadamente
+    update_timeOut: 15, // (1)segs aproximadamente
 
     /**
      * Description
@@ -87,6 +87,7 @@ var server = {
             }
             */
 
+            game.players[obj.id].target_direccion = obj.estado;
 
             game.players[obj.id].target_pos.x = obj.x;
             game.players[obj.id].target_pos.y = obj.y;
