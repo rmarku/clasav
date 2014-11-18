@@ -25,6 +25,10 @@ var game = {
         }
 
         me.plugin.register(debugPanel, "debug");
+
+        // Plugin: AStar pathfinding
+        me.plugin.register(aStarPlugin, "astar");
+
         me.audio.init('ogg,mp3');
         me.sys.pauseOnBlur=false;
 

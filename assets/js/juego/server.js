@@ -87,6 +87,7 @@ var server = {
             }
             */
 
+
             game.players[obj.id].target_pos.x = obj.x;
             game.players[obj.id].target_pos.y = obj.y;
 
