@@ -94,6 +94,8 @@ game.Player = me.Entity.extend({
             if (this.body.vel.x < 0.0)
                 this.animationToUseThisFrame = "run-left";
         }
+        if(this.body.vel.length()=== 0)
+            this.renderable.setAnimationFrame();
 
         if (this.lastAnimationUsed != this.animationToUseThisFrame) {
             this.lastAnimationUsed = this.animationToUseThisFrame;

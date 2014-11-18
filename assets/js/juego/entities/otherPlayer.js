@@ -1,55 +1,33 @@
 game.OtherPlayer = game.Player.extend({
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
-        this.body.setFriction(0.5, 0.5);
+        this.body.setFriction(0.3, 0.3);
         this.id = settings.data.id;
         this.direccion = settings.data.direccion;
-        this.target_pos = {x:x,y:y};
+        this.last_animation = "run-down";
+        this.target_pos = {x: x, y: y};
     },
 
     update: function (dt) {
-/* A* example
-        this.myPath = me.astar.search(this.pos.x,this.pos.y,366,349);
-        console.log("path:");
-        console.log(this.myPath);
-*/
+        /* A* example
+         this.myPath = me.astar.search(this.pos.x,this.pos.y,366,349);
+         console.log("path:");
+         console.log(this.myPath);
+         */
         //
         this.direccion = 0;
+        if (Math.abs(this.pos.x - this.target_pos.x) > 1) {
+            this.body.vel.x = (1.5 ^ (this.target_pos.x - this.pos.x) - 1);
 
-        if (this.pos.distance(this.target_pos) > 1) {
+        } else {
+            this.body.vel.x = 0;
+        }
 
-            var direction = this.pos.clone();
-            var angule_radians = direction.sub(this.target_pos).angle(new me.Vector2d(1, 0));
+        if (Math.abs(this.pos.y - this.target_pos.y) > 1) {
+            this.body.vel.y = (1.5 ^ (this.target_pos.y - this.pos.y) - 1);
 
-            //Left
-            if (Math.abs(angule_radians) > Math.PI/2){
-                this.body.vel.x -= this.body.accel.x * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.x += this.body.accel.y * dt / 200;
-                }
-            }
-            //Right
-            else{
-                this.body.vel.x += this.body.accel.x * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.x -= this.body.accel.y * dt / 200;
-                }
-            }
-            //Up
-            if (angule_radians > 0){
-                this.body.vel.y += this.body.accel.y * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.y -= this.body.accel.y * dt / 200;
-                }
-            }
-            //Down
-            else{
-                this.body.vel.y -= this.body.accel.y * dt / 200;
-                if (this.pos.distance(this.target_pos) < 10){
-                    this.body.vel.y += this.body.accel.y * dt / 200;
-                }
-            }
-
+        } else {
+            this.body.vel.y = 0;
         }
 
         if (this.body.vel.length() > this.body.maxVel.x) {
@@ -69,6 +47,10 @@ game.OtherPlayer = game.Player.extend({
             if (this.body.vel.x < 0.0)
                 this.animationToUseThisFrame = "run-left";
         }
+        if (this.body.vel.length() === 0) {
+            this.renderable.setAnimationFrame();
+            this.animationToUseThisFrame = this.last_animation;
+        }
 
         if (this.lastAnimationUsed != this.animationToUseThisFrame) {
             this.lastAnimationUsed = this.animationToUseThisFrame;
@@ -81,7 +63,7 @@ game.OtherPlayer = game.Player.extend({
             return true;
         }
 
-        
+
         return false;
 
     }

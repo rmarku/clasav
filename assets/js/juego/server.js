@@ -6,6 +6,7 @@ var server = {
 
     update_counter: 0,
     update_timeOut: 15, // (1)segs aproximadamente
+    enviado_velZero: true,
 
     /**
      * Description
@@ -16,19 +17,24 @@ var server = {
      */
     update_mainplayer: function (local_coordenates) {
         // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
-        if (game.mainPlayer.direccion !== 0) {
+
+        var player = game.mainPlayer;
+
+        if (player.direccion !== 0) {
             this.update_counter++;
+            this.enviado_velZero = false;
         }
 
         //Envio al servidor solo si: se agoto el counter, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
-        if ((this.update_counter >= this.update_timeOut) || (game.mainPlayer.direccion != game.mainPlayer.direccion_anterior)) {
+        if ((this.update_counter >= this.update_timeOut) || (player.direccion != player.direccion_anterior || (player.body.vel.length() === 0 && !this.enviado_velZero))) {
 
             io.socket.put('/api/personaje/updateStatus', {
-                    mapa_instancia : game.mainPlayer.data.mapa_instancia.id.toString(),
-                    id      :   game.mainPlayer.id,
-                    estado  :   game.mainPlayer.direccion,
-                    x       :   ~~game.mainPlayer.pos.x,
-                    y       :   ~~game.mainPlayer.pos.y
+                    mapa_instancia: player.data.mapa_instancia.id.toString(),
+                    id: player.id,
+                    estado: player.direccion,
+                    animation: player.animationToUseThisFrame,
+                    x: ~~player.pos.x,
+                    y: ~~player.pos.y
                 }
                 , function (resdata) {
                 }
@@ -42,8 +48,9 @@ var server = {
              }
              );
              */
-
-            game.mainPlayer.direccion_anterior = game.mainPlayer.direccion;
+            if (player.body.vel.length() === 0)
+                this.enviado_velZero = true;
+            player.direccion_anterior = player.direccion;
             this.update_counter = 0;
         }
     },
@@ -75,22 +82,24 @@ var server = {
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
 
             /*
-            if ( obj.estado & 0 ||  game.players[obj.id].pos.x+15 < obj.x ||
-                                        game.players[obj.id].pos.x-15 > obj.x ||
-                                        game.players[obj.id].pos.y+15 < obj.y ||
-                                        game.players[obj.id].pos.y-15 > obj.y) {
-                game.players[obj.id].pos.x = obj.x;
-                game.players[obj.id].pos.y = obj.y;
-                game.players[obj.id].direccion = obj.estado;
-                game.players[obj.id].updateBounds();
-                return;
-            }
-            */
+             if ( obj.estado & 0 ||  game.players[obj.id].pos.x+15 < obj.x ||
+             game.players[obj.id].pos.x-15 > obj.x ||
+             game.players[obj.id].pos.y+15 < obj.y ||
+             game.players[obj.id].pos.y-15 > obj.y) {
+             game.players[obj.id].pos.x = obj.x;
+             game.players[obj.id].pos.y = obj.y;
+             game.players[obj.id].direccion = obj.estado;
+             game.players[obj.id].updateBounds();
+             return;
+             }
+             */
 
             game.players[obj.id].target_direccion = obj.estado;
 
             game.players[obj.id].target_pos.x = obj.x;
             game.players[obj.id].target_pos.y = obj.y;
+
+            game.players[obj.id].last_animation = obj.animation;
 
             game.players[obj.id].updateBounds();
 
