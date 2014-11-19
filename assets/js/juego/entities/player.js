@@ -51,7 +51,7 @@ game.Player = me.Entity.extend({
 
         this.anchorPoint.set(0.5, 1);
 
-        this.body.addShape(new me.Rect(0, 0, this.body.width - 3, this.body.height / 2));
+        this.body.addShape(new me.Rect(0, 0, this.body.width - 4, this.body.height / 2));
         // set the renderable position to bottom center
 
     },
