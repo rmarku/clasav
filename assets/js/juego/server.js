@@ -95,6 +95,9 @@ var server = {
              */
             game.players[obj.id].target_pos.x = obj.x;
             game.players[obj.id].target_pos.y = obj.y;
+            game.players[obj.id].newTarget = true;
+            game.players[obj.id].original_target_pos.x = obj.x;
+            game.players[obj.id].original_target_pos.y = obj.y;
 
             game.players[obj.id].last_animation = obj.animation;
 

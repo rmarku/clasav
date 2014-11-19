@@ -395,7 +395,7 @@
     };
     AStarInstance.prototype.search = function(x0,y0,x1,y1) {
         //console.log(this.graph.nodes[~~(x0/this.tw)][~~(y0/this.th)],this.graph.nodes[~~(x1/this.tw)][~~(y1/this.th)]);
-        return astar.search(this.grid,this.grid[~~(x0/this.tw)][~~(y0/this.th)],this.grid[~~(x1/this.tw)][~~(y1/this.th)],true);
+        return astar.search(this.grid,this.grid[~~(x0/this.tw)][~~(y0/this.th)],this.grid[~~(x1/this.tw)][~~(y1/this.th)],false);
     }
 
 

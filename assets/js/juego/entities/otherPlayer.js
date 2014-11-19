@@ -9,29 +9,54 @@ game.OtherPlayer = game.Player.extend({
     },
 
     update: function (dt) {
-        /* A* example
-         this.myPath = me.astar.search(this.pos.x,this.pos.y,366,349);
-         console.log("path:");
-         console.log(this.myPath);
-         */
-        //
+        // Si existe nuevo target
+         if(this.newTarget) {
+             this.pathIsRunning = false;
+             this.newTarget = false;
+             this.myPath = [];
+
+            //Si esta suficientemente lejos, calcular path, sino se actua normalemnte con el target_pos enviado por el servidor
+            if (Math.abs(this.pos.x - this.target_pos.x) > me.game.collisionMap.tilewidth &&
+                Math.abs(this.pos.y - this.target_pos.y) > me.game.collisionMap.tileheight) {
+
+                this.myPath = me.astar.search(this.pos.x, this.pos.y, this.target_pos.x, this.target_pos.y);
+                this.myPath[0].pos= this.target_pos; // al ultimo objetivo le pongo la target_pos original para tener precision
+                this.target_pos = this.myPath.pop().pos;
+                this.pathIsRunning = true;
+             }
+        }
+
+        //  Si hay targets pendientes de myPath && Si ya me acerque lo suficiente al target actual de myPath, setear nuevo target
+        if(this.myPath.length > 0   &&   (Math.abs(this.pos.x - this.target_pos.x) <= 3)
+                                    &&   (Math.abs(this.pos.y - this.target_pos.y) <= 3)){
+            this.target_pos = this.myPath.pop().pos;
+        }
+        else // Si termino el Path, y todavia sigo lejos del objetivo, setearlo nuevamente
+            if(     this.pathIsRunning                              &&
+                    this.myPath.length == 0                         &&
+                    (Math.abs(this.pos.x - this.target_pos.x) >5)   &&
+                    (Math.abs(this.pos.y - this.target_pos.y) >5)       ){
+
+                this.target_pos = this.original_target_pos;
+                this.newTarget = true;
+                return false;
+            }
+
+        // Actuar Normalmente con target_pos actual
         this.direccion = 0;
-        if (Math.abs(this.pos.x - this.target_pos.x) > 5) {
+        if (Math.abs(this.pos.x - this.target_pos.x) > 1) {
             this.body.vel.x = (1.5 ^ (this.target_pos.x - this.pos.x) - 1);
 
         } else {
-            this.body.vel.x /= 1.55;
+            this.body.vel.x = 0;
         }
 
-        if (Math.abs(this.pos.y - this.target_pos.y) > 5) {
+        if (Math.abs(this.pos.y - this.target_pos.y) > 1) {
             this.body.vel.y = (1.5 ^ (this.target_pos.y - this.pos.y) - 1);
 
         } else {
-            this.body.vel.y  /= 1.55;
+            this.body.vel.y  = 0;
         }
-
-
-
 
         if (this.body.vel.length() > this.body.maxVel.x) {
             // Now calc actual vel to prevent speeding by going diag..

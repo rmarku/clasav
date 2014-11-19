@@ -19,6 +19,10 @@ game.Player = me.Entity.extend({
         this.data = settings.data;
         this.alwaysUpdate = true;
         this.target_pos = new me.Vector2d(x, y);
+        this.original_target_pos = new me.Vector2d(x, y);
+        this.myPath = [];
+        this.newTarget = false;
+        this.pathIsRunning = false;
 
         this.body.setVelocity(5, 5);
         this.body.setFriction(0.3, 0.3);
