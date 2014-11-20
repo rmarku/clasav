@@ -36,8 +36,49 @@ module.exports.sockets = {
   ***************************************************************************/
   onDisconnect: function(session, socket) {
 
-    // By default: do nothing.
-  },
+      //TO DO: Agregar esta FUNCION A SERVICES, ya que tambien lo necesito cuando me quiera desconectar de forma manual (no por sockets)
+      try {
+          var userId = session.passport.user;
+          if(userId) {
+              console.log("Disconnecting from server. User:");
+              console.log(userId);
+              Personaje.findOne({duenio: userId, masRecientementeUtilizado: true}).exec(function (err, personaje) {
+                  if (personaje) {
+                      Personaje.update(personaje.id, {conectado: false}).exec(function afterwards(err, updated) {
+                          console.log("Personaje se ha desconectado. ID:");
+                          console.log(updated);
+                          sails.sockets.leave(socket, personaje.clase_instancia);
+                          sails.sockets.broadcast(personaje.clase_instancia, 'otherPlayer_leave', personaje.id, socket);
+                      });
+                  }
+              });
+          }
+
+
+      }
+      catch(err) {
+          console.log("Error in onDisconnect: ", err);
+      }
+
+
+/*
+
+              // Look up the user ID using the connected socket
+
+          // Get the user instance
+          User.findOne(userId).populate('rooms').exec(function(err, user) {
+
+              // Destroy the user instance
+              User.destroy({id:user.id}).exec(function(){});
+
+              // Publish the destroy event to every socket subscribed to this user instance
+              User.publishDestroy(user.id, null, {previous: user});
+          });
+      } catch (e) {
+          console.log("Error in onDisconnect: ", e);
+      }
+*/
+  }
 
 
   /***************************************************************************

@@ -4,7 +4,7 @@ game.OtherPlayer = game.Player.extend({
         this.body.setFriction(0, 0);
         this.id = settings.data.id;
         this.direccion = settings.data.direccion;
-        this.last_animation = "run-down";
+        this.last_animation = settings.data.animation;
         this.target_pos = {x: x, y: y};
     },
 
@@ -16,16 +16,19 @@ game.OtherPlayer = game.Player.extend({
             this.myPath = [];
 
             //Si esta suficientemente lejos, calcular path, sino se actua normalemnte con el target_pos enviado por el servidor
-            if (Math.abs(this.pos.x - this.target_pos.x) > me.game.collisionMap.tilewidth ||
-                Math.abs(this.pos.y - this.target_pos.y) > me.game.collisionMap.tileheight) {
+            if (Math.abs(this.pos.x - this.target_pos.x) > me.game.collisionMap.tilewidth+50 ||
+                Math.abs(this.pos.y - this.target_pos.y) > me.game.collisionMap.tileheight+50) {
                 me.astar.init();
                 this.myPath = me.astar.search(this.pos.x, this.pos.y, this.target_pos.x, this.target_pos.y);
-                this.myPath[0].pos = this.target_pos; // al ultimo objetivo le pongo la target_pos original para tener precision
-                this.target_pos = this.myPath.pop().pos;
-                this.target_pos.x += 4;
-                this.target_pos.y += 7;
-
-                this.pathIsRunning = true;
+                if(this.myPath){
+                    this.myPath[0].pos = this.original_target_pos; // al ultimo target le pongo la target_pos original para tener precision
+                    this.pathIsRunning = true;
+                    this.target_pos = this.myPath.pop().pos;
+                }
+                else{
+                    this.target_pos.x += 4;
+                    this.target_pos.y += 7;
+                }
             }
         }
 
@@ -38,8 +41,9 @@ game.OtherPlayer = game.Player.extend({
         else // Si termino el Path, y todavia sigo lejos del objetivo, setearlo nuevamente
         if (this.pathIsRunning &&
             this.myPath.length === 0 &&
-            (Math.abs(this.pos.x - this.target_pos.x) > 5) &&
-            (Math.abs(this.pos.y - this.target_pos.y) > 5)) {
+            //(Math.abs(this.pos.x - this.target_pos.x) > 5) &&
+            //(Math.abs(this.pos.y - this.target_pos.y) > 5))
+            (this.pos.distance(this.target_pos) > 2)){ //probar que esto ande bien
 
             this.target_pos = this.original_target_pos;
             this.newTarget = true;

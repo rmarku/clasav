@@ -140,7 +140,8 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         "y": 200,
         "direccion": 0,
         "masRecientementeUtilizado":true,
-        "conectado": false
+        "conectado": false,
+        "animation":"run-down"
     };
 
     $.get("/api/user/getUser", function (data) {

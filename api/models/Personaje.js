@@ -24,6 +24,9 @@ module.exports = {
         direccion: {
             type: "integer"
         },
+        animation: {
+            type: "string"
+        },
         mapa_instancia: {
             model: 'mapa_instancia'
         },
