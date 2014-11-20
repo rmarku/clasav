@@ -37,12 +37,12 @@ var server = {
         if ((this.updateMyplayer_counter >= this.updateMyplayer_timeOut) || (player.direccion != player.direccion_anterior || (player.body.vel.length() === 0 && !this.enviado_velZero))) {
 
             io.socket.put('/api/personaje/updateStatus', {
-                    mapa_instancia:     player.data.mapa_instancia.id.toString(),
-                    id:                 player.id,
-                    estado:             player.direccion,
-                    animation:          player.animationToUseThisFrame,
-                    x:                  ~~player.pos.x,
-                    y:                  ~~player.pos.y
+                    mapa_instancia: player.data.mapa_instancia.id.toString(),
+                    id: player.id,
+                    estado: player.direccion,
+                    animation: player.animationToUseThisFrame,
+                    x: ~~player.pos.x,
+                    y: ~~player.pos.y
                 }
                 , function (resdata) {
                 }
@@ -60,13 +60,13 @@ var server = {
     update_Personaje: function () {
         this.updatePersonaje_counter++;
 
-        if(this.updatePersonaje_counter >= this.updatePersonaje_timeOut){
+        if (this.updatePersonaje_counter >= this.updatePersonaje_timeOut) {
 
             $.post('/api/personaje/' + game.mainPlayer.id, {
-                    animation:  game.mainPlayer.animationToUseThisFrame,
-                    direccion:  game.mainPlayer.direccion,
-                    x:          ~~game.mainPlayer.pos.x,
-                    y:          ~~game.mainPlayer.pos.y
+                    animation: game.mainPlayer.animationToUseThisFrame,
+                    direccion: game.mainPlayer.direccion,
+                    x: ~~game.mainPlayer.pos.x,
+                    y: ~~game.mainPlayer.pos.y
                 }
                 , function (resdata) {
                 }
@@ -78,7 +78,7 @@ var server = {
     join_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/join',
             {
-                personajeId:        game.mainPlayer.data.id
+                personajeId: game.mainPlayer.data.id
             },
             function joinCB(data) {
                 console.log(data);
@@ -89,8 +89,8 @@ var server = {
     leave_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/leave',
             {
-                personajeId:        game.mainPlayer.data.id,
-                mapa_instanciaId:   game.mainPlayer.data.mapa_instancia.id
+                personajeId: game.mainPlayer.data.id,
+                mapa_instanciaId: game.mainPlayer.data.mapa_instancia.id
             },
             function joinCB(data) {
                 console.log(data);
@@ -102,14 +102,8 @@ var server = {
 
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
 
-            game.players[obj.id].target_pos.x = obj.x;
-            game.players[obj.id].target_pos.y = obj.y;
-            game.players[obj.id].newTarget = true;
-            game.players[obj.id].original_target_pos.x = obj.x;
-            game.players[obj.id].original_target_pos.y = obj.y;
-
             game.players[obj.id].last_animation = obj.animation;
-
+            game.players[obj.id].nextNode(new me.Vector2d(obj.x, obj.y));
             game.players[obj.id].updateBounds();
 
         });

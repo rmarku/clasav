@@ -10,7 +10,7 @@
 // Includes Binary Heap (with modifications) from Marijn Haverbeke.
 // http://eloquentjavascript.net/appendix2.html
 
-(function($) {
+(function ($) {
 
     me.astar = me.astar || {};
 
@@ -18,17 +18,17 @@
         /** @scope me.astar.prototype */
 
 
-        init: function() {
+        init: function () {
             // call parent constructor
             this._super(me.plugin.Base, 'init');
             //this.parent();
-            this.version ="1.1.0";
-            this.GUID = "astar-"+me.utils.createGUID();
+            this.version = "1.1.0";
+            this.GUID = "astar-" + me.utils.createGUID();
             this.name = "me.astar";
             this.isPersistent = true;
             me.event.subscribe(me.event.LEVEL_LOADED, this.refresh);
         },
-        refresh: function() {
+        refresh: function () {
             if (me.astar != null) {
                 // alternatively, just update the nodes?
                 me.astar = null;
@@ -43,8 +43,9 @@
         OPEN: 1,
         WALL: 0
     };
-    function GraphNode(x,y,px,py,rect,type) {
-        this.data = { };
+
+    function GraphNode(x, y, px, py, rect, type) {
+        this.data = {};
         this.x = x;
         this.y = y;
         this.rect = rect;
@@ -55,28 +56,28 @@
         this.type = type;
     }
 
-    GraphNode.prototype.toString = function() {
+    GraphNode.prototype.toString = function () {
         return "[" + this.x + " " + this.y + "]";
     };
 
-    GraphNode.prototype.isWall = function() {
+    GraphNode.prototype.isWall = function () {
         return this.type == GraphNodeType.WALL;
     };
 
-    function BinaryHeap(scoreFunction){
+    function BinaryHeap(scoreFunction) {
         this.content = [];
         this.scoreFunction = scoreFunction;
     }
 
     BinaryHeap.prototype = {
-        push: function(element) {
+        push: function (element) {
             // Add the new element to the end of the array.
             this.content.push(element);
 
             // Allow it to sink down.
             this.sinkDown(this.content.length - 1);
         },
-        pop: function() {
+        pop: function () {
             // Store the first element so we can return it later.
             var result = this.content[0];
             // Get the element at the end of the array.
@@ -89,7 +90,7 @@
             }
             return result;
         },
-        remove: function(node) {
+        remove: function (node) {
             var i = this.content.indexOf(node);
 
             // When it is found, the process seen in 'pop' is repeated
@@ -107,13 +108,13 @@
                 }
             }
         },
-        size: function() {
+        size: function () {
             return this.content.length;
         },
-        rescoreElement: function(node) {
+        rescoreElement: function (node) {
             this.sinkDown(this.content.indexOf(node));
         },
-        sinkDown: function(n) {
+        sinkDown: function (n) {
             // Fetch the element that has to be sunk.
             var element = this.content[n];
 
@@ -137,13 +138,13 @@
                 }
             }
         },
-        bubbleUp: function(n) {
+        bubbleUp: function (n) {
             // Look up the target element and its score.
             var length = this.content.length,
                 element = this.content[n],
                 elemScore = this.scoreFunction(element);
 
-            while(true) {
+            while (true) {
                 // Compute the indices of the child elements.
                 var child2N = (n + 1) << 1, child1N = child2N - 1;
                 // This is used to store the new position of the element,
@@ -186,9 +187,9 @@
 
 
     var astar = {
-        init: function(grid) {
-            for(var x = 0, xl = grid.length; x < xl; x++) {
-                for(var y = 0, yl = grid[x].length; y < yl; y++) {
+        init: function (grid) {
+            for (var x = 0, xl = grid.length; x < xl; x++) {
+                for (var y = 0, yl = grid[x].length; y < yl; y++) {
                     var node = grid[x][y];
                     node.f = 0;
                     node.g = 0;
@@ -200,13 +201,12 @@
                 }
             }
         },
-        heap: function() {
-            return new BinaryHeap(function(node) {
+        heap: function () {
+            return new BinaryHeap(function (node) {
                 return node.f;
             });
         },
-        search: function(grid, start, end, diagonal, heuristic) {
-            console.time('astar');
+        search: function (grid, start, end, diagonal, heuristic) {
             astar.init(grid);
             //heuristic = heuristic || astar.manhattan;
             heuristic = heuristic || astar.chessboard;
@@ -216,20 +216,19 @@
 
             openHeap.push(start);
 
-            while(openHeap.size() > 0) {
+            while (openHeap.size() > 0) {
 
                 // Grab the lowest f(x) to process next.  Heap keeps this sorted for us.
                 var currentNode = openHeap.pop();
 
                 // End case -- result has been found, return the traced path.
-                if(currentNode === end) {
+                if (currentNode === end) {
                     var curr = currentNode;
                     var ret = [];
-                    while(curr.parent) {
+                    while (curr.parent) {
                         ret.push(curr);
                         curr = curr.parent;
                     }
-                    console.timeEnd('astar');
                     return ret;
                 }
 
@@ -239,10 +238,10 @@
                 // Find all neighbors for the current node. Optionally find diagonal neighbors as well (false by default).
                 var neighbors = astar.neighbors(grid, currentNode, diagonal);
 
-                for(var i=0, il = neighbors.length; i < il; i++) {
+                for (var i = 0, il = neighbors.length; i < il; i++) {
                     var neighbor = neighbors[i];
 
-                    if(neighbor.closed || neighbor.isWall()) {
+                    if (neighbor.closed || neighbor.isWall()) {
                         // Not a valid node to process, skip to next neighbor.
                         continue;
                     }
@@ -252,7 +251,7 @@
                     var gScore = currentNode.g + neighbor.cost;
                     var beenVisited = neighbor.visited;
 
-                    if(!beenVisited || gScore < neighbor.g) {
+                    if (!beenVisited || gScore < neighbor.g) {
 
                         // Found an optimal (so far) path to this node.  Take score for node to see how good it is.
                         neighbor.visited = true;
@@ -274,68 +273,67 @@
             }
 
             // No result was found - empty array signifies failure to find path.
-            console.timeEnd('astar');
             return [];
         },
-        chessboard: function(pos0, pos1) {
+        chessboard: function (pos0, pos1) {
             // See list of heuristics: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
 
-            var d1 = Math.abs (pos1.x - pos0.x);
-            var d2 = Math.abs (pos1.y - pos0.y);
-            return Math.max(d1,d2);
+            var d1 = Math.abs(pos1.x - pos0.x);
+            var d2 = Math.abs(pos1.y - pos0.y);
+            return Math.max(d1, d2);
         },
-        manhattan: function(pos0, pos1) {
+        manhattan: function (pos0, pos1) {
             // See list of heuristics: http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
 
-            var d1 = Math.abs (pos1.x - pos0.x);
-            var d2 = Math.abs (pos1.y - pos0.y);
+            var d1 = Math.abs(pos1.x - pos0.x);
+            var d2 = Math.abs(pos1.y - pos0.y);
             return d1 + d2;
         },
-        neighbors: function(grid, node, diagonals) {
+        neighbors: function (grid, node, diagonals) {
             var ret = [];
             var x = node.x;
             var y = node.y;
 
             // West
-            if(grid[x-1] && grid[x-1][y]) {
-                ret.push(grid[x-1][y]);
+            if (grid[x - 1] && grid[x - 1][y]) {
+                ret.push(grid[x - 1][y]);
             }
 
             // East
-            if(grid[x+1] && grid[x+1][y]) {
-                ret.push(grid[x+1][y]);
+            if (grid[x + 1] && grid[x + 1][y]) {
+                ret.push(grid[x + 1][y]);
             }
 
             // South
-            if(grid[x] && grid[x][y-1]) {
-                ret.push(grid[x][y-1]);
+            if (grid[x] && grid[x][y - 1]) {
+                ret.push(grid[x][y - 1]);
             }
 
             // North
-            if(grid[x] && grid[x][y+1]) {
-                ret.push(grid[x][y+1]);
+            if (grid[x] && grid[x][y + 1]) {
+                ret.push(grid[x][y + 1]);
             }
 
             if (diagonals) {
 
                 // Southwest
-                if(grid[x-1] && grid[x-1][y-1]) {
-                    ret.push(grid[x-1][y-1]);
+                if (grid[x] && grid[x - 1] && grid[x - 1][y - 1] && grid[x][y - 1].cost!=0 && grid[x - 1][y].cost!=0) {
+                    ret.push(grid[x - 1][y - 1]);
                 }
 
                 // Southeast
-                if(grid[x+1] && grid[x+1][y-1]) {
-                    ret.push(grid[x+1][y-1]);
+                if (grid[x] && grid[x + 1] && grid[x + 1][y - 1] && grid[x][y - 1].cost!=0 && grid[x + 1][y].cost!=0) {
+                    ret.push(grid[x + 1][y - 1]);
                 }
 
                 // Northwest
-                if(grid[x-1] && grid[x-1][y+1]) {
-                    ret.push(grid[x-1][y+1]);
+                if (grid[x] && grid[x - 1] && grid[x - 1][y + 1] && grid[x][y + 1].cost!=0 && grid[x - 1][y].cost!=0) {
+                    ret.push(grid[x - 1][y + 1]);
                 }
 
                 // Northeast
-                if(grid[x+1] && grid[x+1][y+1]) {
-                    ret.push(grid[x+1][y+1]);
+                if (grid[x] && grid[x + 1] && grid[x + 1][y + 1] && grid[x][y + 1].cost!=0 && grid[x + 1][y].cost!=0) {
+                    ret.push(grid[x + 1][y + 1]);
                 }
 
             }
@@ -344,12 +342,12 @@
         }
     };
 
-    var AStarInstance = function() { };
-    AStarInstance.prototype.init = function() {
+    var AStarInstance = function () {
+    };
+    AStarInstance.prototype.init = function () {
         if (me.game.collisionMap == null) {
             return; // nothing to do
         }
-        console.log(me.game);
         // hook into level data to generate the graph
         // Get the collision layer reference.
 
@@ -365,12 +363,12 @@
         // TODO really should not create new objects if possible
         // TODO micro optimize if needed
         // TODO - two tier. If we have larger / complex maps astar suckksss
-        for (var x = 0, xx = layerData.length; x < xx; x+=1) {
+        for (var x = 0, xx = layerData.length; x < xx; x += 1) {
             grid[x] = [];
-            for (var y = 0, yy = layerData[x].length; y < yy; y+=1) {
+            for (var y = 0, yy = layerData[x].length; y < yy; y += 1) {
                 if (layerData[x][y] == null) {
                     // null collision tile, assume it's open
-                    grid[x][y] = new GraphNode(x,y,x*this.tw,y*this.th,new me.Rect(x*this.tw,y*this.th, this.tw, this.th),GraphNodeType.OPEN);
+                    grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, new me.Rect(x * this.tw, y * this.th, this.tw, this.th), GraphNodeType.OPEN);
                     continue;
                 }
                 tile = layerData[x][y];
@@ -381,9 +379,9 @@
                 // TODO - assign weights if needed
 
                 if (this.collisionTileset.TileProperties[tile.tileId].isSolid) {
-                    grid[x][y] = new GraphNode(x,y,x*this.tw,y*this.th,tile,GraphNodeType.WALL);
+                    grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, tile, GraphNodeType.WALL);
                 } else {
-                    grid[x][y] = new GraphNode(x,y,x*this.tw,y*this.th,tile,GraphNodeType.OPEN);
+                    grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, tile, GraphNodeType.OPEN);
                 }
 
             }
@@ -393,13 +391,9 @@
         // now we have A* grid arrays, so init astar
         // TODO: should really instance astar so we can have two-tier
     };
-    AStarInstance.prototype.search = function(x0,y0,x1,y1) {
-        //console.log(this.graph.nodes[~~(x0/this.tw)][~~(y0/this.th)],this.graph.nodes[~~(x1/this.tw)][~~(y1/this.th)]);
-        return astar.search(this.grid,this.grid[~~(x0/this.tw)][~~(y0/this.th)],this.grid[~~(x1/this.tw)][~~(y1/this.th)],false);
+    AStarInstance.prototype.search = function (x0, y0, x1, y1) {
+        return astar.search(this.grid, this.grid[~~(x0 / this.tw)][~~(y0 / this.th)], this.grid[~~(x1 / this.tw)][~~(y1 / this.th)], true);
     }
-
-
-
 
 
 })(window);

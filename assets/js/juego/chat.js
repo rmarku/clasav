@@ -1,6 +1,7 @@
 app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sailsBind) {
     $scope.chats = [];
     var tiempo = new Date();
+    $scope.mensaje = "";
     $sailsBind.bind('api/chat', $scope, {">": {"createdAt": tiempo}});
 
 
@@ -11,7 +12,7 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
      */
     $scope.envMsj = function () {
         if ($scope.mensaje !== "") {
-            io.socket.put('/api/chat/create/', {nick: game.mainPlayer.data.nombre , mensaje: $scope.mensaje});
+            $scope.chats.push({nick: game.mainPlayer.data.nombre, mensaje: $scope.mensaje});
         }
         $scope.mensaje = "";
     };
@@ -35,8 +36,7 @@ app.directive('chat', function () {
             });
             elem.bind('keyup', function (e) {
                 if (e.keyCode == 13) {
-                    //scope[attrs.chat]();
-                    scope.envMsj();
+                    scope.$apply(attrs.chat);
                 }
                 e.stopImmediatePropagation();
             });
