@@ -5,9 +5,9 @@
 
 var game = {
     mainPlayer: {},
-    players: [],
-    playersOffline:[],
-    NPCs: [],
+    players: {},
+    playersOffline:{},
+    NPCs: {},
     items: {},
     sprites: {},
 
