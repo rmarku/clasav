@@ -27,7 +27,7 @@ game.PlayScreen = me.ScreenObject.extend({
         $.get('/api/user/getUser', function (user) {
             if (typeof user.userId != 'undefined') {
 
-                $.get('/api/personaje?where={"duenio":"' + user.userId + '","masRecientementeUtilizado":true}', function (datos) {
+                $.get('/api/personaje?where={"duenio":"' + user.userId + '","masRecientementeUtilizado":true}', function CB(datos) {
                     if (datos.length == 1) {
                         data = datos[0];
                         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
@@ -60,23 +60,13 @@ game.PlayScreen = me.ScreenObject.extend({
                                 height: 28,
                                 data: data
                             });
-                      me.game.world.addChild(game.players[1], 9);
-                        game.players[2] = me.pool.pull('otherPlayer', Number(17*32),
-                            Number(29*32), {
-                                width: 28,
-                                height: 28,
-                                data: data
-                            });
-                        me.game.world.addChild(game.players[2], 9);
 */
                         me.game.world.sort();
 
-                        //Pasamos el MainPlayer a Conectado:true
-                        $.get('/api/personaje/update/' + game.mainPlayer.id+'?conectado=true'
-                            , function (resdata) {
-                            }
-                        );
+                        //Nos Unimos al Mapa, pasando nuestro personaje a Conectado, y lo hacemos disponible a otros Users
+                        server.join_mapa_instancia();
                         game.init_otherPlayers();
+
 
 
                     } else {

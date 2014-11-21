@@ -19,7 +19,8 @@ game.Player = me.Entity.extend({
         this.data = settings.data;
         this.alwaysUpdate = true;
         this.target_pos = new me.Vector2d(x, y);
-        this.target_direccion = 0;
+        this.final_target_pos = new me.Vector2d(x, y);
+        this.myPath = [];
 
         this.body.setVelocity(5, 5);
         this.body.setFriction(0.3, 0.3);
@@ -48,7 +49,7 @@ game.Player = me.Entity.extend({
 
         this.anchorPoint.set(0.5, 1);
 
-        this.body.addShape(new me.Rect(0, 0, this.body.width - 3, this.body.height / 2));
+        this.body.addShape(new me.Rect(0, 0, this.body.width - 4, this.body.height / 2));
         // set the renderable position to bottom center
 
     },
@@ -59,11 +60,6 @@ game.Player = me.Entity.extend({
      * @return Literal
      */
     update: function (dt) {
-        return this.updateAnimation(dt);
-    },
-
-
-    updateAnimation: function (dt) {
         if (this.direccion & 1) {
             this.body.vel.y += this.body.accel.y * dt / 200;
         }
@@ -77,6 +73,12 @@ game.Player = me.Entity.extend({
             this.body.vel.x -= this.body.accel.x * dt / 200;
         }
 
+        return this.updateAnimation(dt);
+    },
+
+
+    updateAnimation: function (dt) {
+
         if (this.body.vel.length() > this.body.maxVel.x) {
             // Now calc actual vel to prevent speeding by going diag..
             this.body.vel.normalize();
@@ -84,17 +86,17 @@ game.Player = me.Entity.extend({
         }
 
         if (Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
-            if (this.body.vel.y > 0.0)
+            if (this.body.vel.y > 0.1)
                 this.animationToUseThisFrame = "run-down";
-            if (this.body.vel.y < 0.0)
+            if (this.body.vel.y < -0.1)
                 this.animationToUseThisFrame = "run-up";
         } else {
-            if (this.body.vel.x > 0.0)
+            if (this.body.vel.x > 0.1)
                 this.animationToUseThisFrame = "run-right";
-            if (this.body.vel.x < 0.0)
+            if (this.body.vel.x < -0.1)
                 this.animationToUseThisFrame = "run-left";
         }
-        if(this.body.vel.length()=== 0)
+        if (this.body.vel.length() === 0)
             this.renderable.setAnimationFrame();
 
         if (this.lastAnimationUsed != this.animationToUseThisFrame) {

@@ -4,8 +4,12 @@
 
 var server = {
 
-    update_counter: 0,
-    update_timeOut: 15, // (1)segs aproximadamente
+    updateMyplayer_counter: 0,
+    updateMyplayer_timeOut: 15,     // (500  ms) Aproximadamente
+
+    updatePersonaje_counter: 0,
+    updatePersonaje_timeOut: 180,   // (6000 ms) Aproximadamente
+
     enviado_velZero: true,
 
     /**
@@ -15,18 +19,22 @@ var server = {
      * @param {} local_coordenates
      * @return
      */
-    update_mainplayer: function (local_coordenates) {
-        // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
+    update_myPlayer: function (local_coordenates) {
+        this.update_myPlayer_in_OtherPlayers();
+        this.update_Personaje();
+    },
 
+    update_myPlayer_in_OtherPlayers: function () {
+        // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
         var player = game.mainPlayer;
 
         if (player.direccion !== 0) {
-            this.update_counter++;
+            this.updateMyplayer_counter++;
             this.enviado_velZero = false;
         }
 
         //Envio al servidor solo si: se agoto el counter, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
-        if ((this.update_counter >= this.update_timeOut) || (player.direccion != player.direccion_anterior || (player.body.vel.length() === 0 && !this.enviado_velZero))) {
+        if ((this.updateMyplayer_counter >= this.updateMyplayer_timeOut) || (player.direccion != player.direccion_anterior || (player.body.vel.length() === 0 && !this.enviado_velZero))) {
 
             io.socket.put('/api/personaje/updateStatus', {
                     mapa_instancia: player.data.mapa_instancia.id.toString(),
@@ -39,26 +47,38 @@ var server = {
                 , function (resdata) {
                 }
             );
-            /*
-             io.socket.put('/api/personaje/' + game.mainPlayer.id, {
-             estado: game.mainPlayer.direccion,
-             x: ~~game.mainPlayer.pos.x, y: ~~game.mainPlayer.pos.y
-             }
-             , function (resdata) {
-             }
-             );
-             */
+
             if (player.body.vel.length() === 0)
                 this.enviado_velZero = true;
+
             player.direccion_anterior = player.direccion;
-            this.update_counter = 0;
+            this.updateMyplayer_counter = 0;
+        }
+
+    },
+
+    update_Personaje: function () {
+        this.updatePersonaje_counter++;
+
+        if (this.updatePersonaje_counter >= this.updatePersonaje_timeOut) {
+
+            $.post('/api/personaje/' + game.mainPlayer.id, {
+                    animation: game.mainPlayer.animationToUseThisFrame,
+                    direccion: game.mainPlayer.direccion,
+                    x: ~~game.mainPlayer.pos.x,
+                    y: ~~game.mainPlayer.pos.y
+                }
+                , function (resdata) {
+                }
+            );
+            this.updatePersonaje_counter = 0;
         }
     },
 
     join_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/join',
             {
-                mapa_instancia: game.mainPlayer.data.mapa_instancia.id.toString()
+                personajeId: game.mainPlayer.data.id
             },
             function joinCB(data) {
                 console.log(data);
@@ -69,7 +89,8 @@ var server = {
     leave_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/leave',
             {
-                mapa_instancia: game.mainPlayer.data.mapa_instancia.id.toString()
+                personajeId: game.mainPlayer.data.id,
+                mapa_instanciaId: game.mainPlayer.data.mapa_instancia.id
             },
             function joinCB(data) {
                 console.log(data);
@@ -81,28 +102,18 @@ var server = {
 
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
 
-            /*
-             if ( obj.estado & 0 ||  game.players[obj.id].pos.x+15 < obj.x ||
-             game.players[obj.id].pos.x-15 > obj.x ||
-             game.players[obj.id].pos.y+15 < obj.y ||
-             game.players[obj.id].pos.y-15 > obj.y) {
-             game.players[obj.id].pos.x = obj.x;
-             game.players[obj.id].pos.y = obj.y;
-             game.players[obj.id].direccion = obj.estado;
-             game.players[obj.id].updateBounds();
-             return;
-             }
-             */
-
-            game.players[obj.id].target_direccion = obj.estado;
-
-            game.players[obj.id].target_pos.x = obj.x;
-            game.players[obj.id].target_pos.y = obj.y;
-
             game.players[obj.id].last_animation = obj.animation;
-
+            game.players[obj.id].nextNode(new me.Vector2d(obj.x, obj.y));
             game.players[obj.id].updateBounds();
 
+        });
+
+        io.socket.on('otherPlayer_leave', function messageReceived(personajeId) {
+            game.removeOtherPlayer(personajeId);
+        });
+
+        io.socket.on('otherPlayer_join', function messageReceived(data) {
+            game.create_otherPlayer(data);
         });
 
     }

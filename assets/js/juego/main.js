@@ -5,9 +5,9 @@
 
 var game = {
     mainPlayer: {},
-    players: [],
-    playersOffline:[],
-    NPCs: [],
+    players: {},
+    playersOffline:{},
+    NPCs: {},
     items: {},
     sprites: {},
 
@@ -76,7 +76,6 @@ var game = {
 
     init_otherPlayers:function() {
         game.create_otherPlayers();
-        server.join_mapa_instancia();
         server.listen_events();
     },
 
@@ -99,6 +98,8 @@ var game = {
         });
     },
 
+
+
     saveOnlineOtherPlayer: function (data){
         game.players[data.id] = me.pool.pull('otherPlayer',
             Number(data.x),
@@ -112,27 +113,35 @@ var game = {
     },
 
     saveOfflineOtherPlayer: function (data){
-        game.playersOffline[data.id] = me.pool.pull('otherPlayer',
-            Number(data.x),
-            Number(data.y),
-            {
-                width: 28,
-                height: 28,
-                data: data
-            }
-        );
+        game.playersOffline[data.id] = data;
     },
     removeOtherPlayer: function(id){
-        console.log('Removing player: ', data.id);
-        var player = game.players[id];
-        me.game.world.removeChild(player);
-        delete game.players[id];
+        if (game.players[id]) {
+            console.log('Removing player: ', id);
+
+            game.playersOffline[id] = game.players[id].data;
+
+            me.game.world.removeChild(game.players[id]);
+            delete game.players[id];
+        }
     },
 
     removeOfflineOtherPlayer: function(id){
-        console.log('Removing player: ', data.id);
+        console.log('Removing player: ', id);
         var player = game.playersOffline[id];
         delete game.playersOffline[id];
+    },
+
+    create_otherPlayer: function (data) {
+        console.log('Adding player: ', data.id);
+
+        game.saveOnlineOtherPlayer(game.playersOffline[data.id]);
+
+        delete game.playersOffline[data.id];
+
+        me.game.world.addChild(game.players[data.id], 9);
+
+
     }
 
 }; // game
