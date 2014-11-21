@@ -6,7 +6,7 @@
 var game = {
     mainPlayer: {},
     players: {},
-    playersOffline:{},
+    playersOffline: {},
     NPCs: {},
     items: {},
     sprites: {},
@@ -30,7 +30,7 @@ var game = {
         me.plugin.register(aStarPlugin, "astar");
 
         me.audio.init('ogg,mp3');
-        me.sys.pauseOnBlur=false;
+        me.sys.pauseOnBlur = false;
 
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
@@ -74,14 +74,14 @@ var game = {
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
     },
 
-    init_otherPlayers:function() {
+    init_otherPlayers: function () {
         game.create_otherPlayers();
         server.listen_events();
     },
 
     create_otherPlayers: function () {
 
-        $.get('/api/personaje?where={"mapa_instancia":"' + game.mainPlayer.data.mapa_instancia + '"',function messageReceived(personajes) {
+        $.get('/api/personaje?where={"mapa_instancia":"' + game.mainPlayer.data.mapa_instancia + '"', function messageReceived(personajes) {
             while (personajes.length) {
 
                 var personaje = personajes.pop();
@@ -97,10 +97,23 @@ var game = {
             }
         });
     },
+    get_otherPlayers: function (pjid) {
 
+        $.get('/api/personaje/' + pjid, function messageReceived(personaje) {
+            if (personaje) {
 
+                if (personaje.conectado === true) {
+                    game.saveOnlineOtherPlayer(personaje);
+                    me.game.world.addChild(game.players[personaje.id], 9);
+                }
+                else {
+                    game.saveOfflineOtherPlayer(personaje);
+                }
+            }
+        });
+    },
 
-    saveOnlineOtherPlayer: function (data){
+    saveOnlineOtherPlayer: function (data) {
         game.players[data.id] = me.pool.pull('otherPlayer',
             Number(data.x),
             Number(data.y),
@@ -111,11 +124,10 @@ var game = {
             }
         );
     },
-
-    saveOfflineOtherPlayer: function (data){
+    saveOfflineOtherPlayer: function (data) {
         game.playersOffline[data.id] = data;
     },
-    removeOtherPlayer: function(id){
+    removeOtherPlayer: function (id) {
         if (game.players[id]) {
             console.log('Removing player: ', id);
 
@@ -125,8 +137,7 @@ var game = {
             delete game.players[id];
         }
     },
-
-    removeOfflineOtherPlayer: function(id){
+    removeOfflineOtherPlayer: function (id) {
         console.log('Removing player: ', id);
         var player = game.playersOffline[id];
         delete game.playersOffline[id];
@@ -135,13 +146,14 @@ var game = {
     create_otherPlayer: function (data) {
         console.log('Adding player: ', data.id);
 
-        game.saveOnlineOtherPlayer(game.playersOffline[data.id]);
+        if (game.playersOffline[data.id]) {
+            game.saveOnlineOtherPlayer(game.playersOffline[data.id]);
+            delete game.playersOffline[data.id];
 
-        delete game.playersOffline[data.id];
-
-        me.game.world.addChild(game.players[data.id], 9);
-
-
+            me.game.world.addChild(game.players[data.id], 9);
+        } else {
+            this.get_otherPlayers(data.id);
+        }
     }
 
 }; // game
