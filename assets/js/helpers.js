@@ -9,6 +9,7 @@ function tintImage(img, color) {
     var w = img.width;
     var h = img.height;
     var RGB = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    var imgTemp = document.getElementById("imgTemp");
 
     var red = parseInt(RGB[1], 16);
     var green = parseInt(RGB[2], 16);
@@ -43,9 +44,11 @@ function tintImage(img, color) {
         ctx.putImageData(to, 0, 0);
 
         // image is _slightly_ faster then canvas for this, so convert
-        var imgComp = new Image();
-        imgComp.src = canvas.toDataURL();
-
+        var imgComp =  document.createElement("canvas");
+        imgComp.width = w;
+        imgComp.height = h;
+        var imgCompctx = imgComp.getContext("2d");
+        imgCompctx.drawImage(canvas,0,0);
         rgbks.push(imgComp);
     }
 
