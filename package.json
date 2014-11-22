@@ -41,7 +41,7 @@
     "start": "node app.js",
     "debug": "node debug app.js",
     "postinstall": "node node_modules/bower/bin/bower install",
-    "test": "grunt jshint"
+    "test": "node -e \"require('grunt').tasks(['test']);\""
   },
   "main": "app.js",
   "repository": {
