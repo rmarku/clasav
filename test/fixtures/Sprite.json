@@ -1,11 +1,14 @@
 [
     {
-        "imagen": "pants/1.png"
+        "imagen": "pants/1.png",
+        "icono": "items/pantalon/1.png"
     },
     {
-        "imagen": "shirt/1.png"
+        "imagen": "shirt/1.png",
+        "icono": "items/pechera/1.png"
     },
     {
-        "imagen": "foot/1.png"
+        "imagen": "foot/1.png",
+        "icono": "items/pies/3.png"
     }
 ]
