@@ -49,5 +49,8 @@
     "url": "git://github.com/martin/Gamification.git"
   },
   "author": "UCC",
-  "license": ""
+  "license": "",
+  "engines":{
+    "node": "0.10.x"
+  }
 }
