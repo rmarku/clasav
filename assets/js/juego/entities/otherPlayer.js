@@ -1,30 +1,76 @@
 game.OtherPlayer = game.Player.extend({
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
-        this.body.setFriction(0.5, 0.5);
+        this.body.setVelocity(4.68, 4.68);
+        this.body.setFriction(0, 0);
         this.id = settings.data.id;
         this.direccion = settings.data.direccion;
+        this.last_animation = settings.data.animation;
+        this.myPath = [];
+    },
+
+    nextNode: function (new_target) {
+        // Si el nuevo target es muy diferente al anterior o no hay A*
+        if (this.final_target_pos.distance(new_target) > 32 || this.myPath.length === 0) {
+
+            // Si la posicion actual es muy lejana calculo Astar
+            if (this.pos.distance(this.final_target_pos) > 32 * 3) {
+
+                me.astar.init();
+                this.target_pos = this.final_target_pos.clone();
+
+                this.myPath = me.astar.search(this.pos.x, this.pos.y, this.final_target_pos.x, this.final_target_pos.y);
+                if (this.myPath.length > 0) {
+                    this.target_pos = this.myPath.pop().pos;
+                    this.target_pos.x += 4;
+                    this.target_pos.y += 7;
+                }
+            }
+        }
+        this.final_target_pos.copy(new_target);
     },
 
     update: function (dt) {
+        // Actuar Normalmente con target_pos actual
         this.direccion = 0;
 
-        if (this.pos.distance(this.target_pos) > 1) {
-            var direction = this.pos.clone();
-            var angule_radians = direction.sub(this.target_pos).angle(new me.Vector2d(1, 0));
 
-            //Left
-            if (Math.abs(angule_radians) > Math.PI/2)
-                this.direccion |= 8;
-            else
-                this.direccion |= 4;
+        //  Si tengo todavia nodos por recorrer
+        if (this.myPath.length > 0) {
 
-            //Up
-            if (angule_radians > 0)
-                this.direccion |= 1;
-            else
-                this.direccion |= 2;
+            if (this.pos.distance(this.target_pos) < 5) {
+                this.target_pos = this.myPath.pop().pos;
+                this.target_pos.x += 4;
+                this.target_pos.y += 7;
+            }
+            //maxima velocidad por defecto
+            this.body.vel.copy(this.pos.clone().sub(this.target_pos));
+            this.body.vel.scale(-100, -100);
+
+        } else {    //Me dirijo al punto  donde debo estar.
+            this.target_pos = this.final_target_pos.clone();
+            this.body.vel.x = Math.pow((this.target_pos.x - this.pos.x), 3) / 25;
+            this.body.vel.y = Math.pow((this.target_pos.y - this.pos.y), 3) / 25;
         }
-        this._super(game.Player, 'update', [dt]);
+
+        if (this.body.vel.length() < 0.1) {
+            this.body.vel.setZero();
+            this.animationToUseThisFrame = this.last_animation;
+        }
+        return this.updateAnimation(dt);
+    },
+
+    draw: function (renderer) {
+        var context = renderer.getContext();
+        this._super(game.Player, 'draw', [renderer]);
+
+        for (var i = 0; i < this.myPath.length; i++) {
+            context.fillStyle = 'white';
+            context.fillRect(this.myPath[i].pos.x + 16 - 5, this.myPath[i].pos.y + 16 - 5, 10, 10);
+            context.fillStyle = 'red';
+            context.fillRect(this.myPath[i].pos.x + 16, this.myPath[i].pos.y + 16, 1, 1);
+        }
+        context.fillStyle = 'blue';
+        context.fillRect(this.pos.x + 12, this.pos.y + 7, 2, 2);
     }
 });

@@ -7,36 +7,48 @@
 
 module.exports = {
     join: function (req, res) {
-        var user = req.session.passport.user;
 
-        var roomName = req.param('mapa_instancia');
-        if(!roomName){
-            return res.send('No se ha indicado una correcta Instancia de Mapa');
-        }
 
-        sails.sockets.join(req.socket, roomName);
-        //console.log('join to mapa_instancia.id:');
-        //console.log(roomName);
+        var personajeId = req.param('personajeId');
 
-        sails.sockets.broadcast(roomName, 'NuevoJoin_Mapa_Instancia', {userID:user.id});
-        return res.send(roomName);
+        Personaje.findOne(personajeId).exec(function (err, personaje) {
+
+            Personaje.update(personajeId,{conectado:true}).exec(function afterUpdate(){
+
+                //Si el Room no existe todavia, se creata automaticamente con el Join.
+                //Se establece como nombre de la Room, el id del Mapa instancia, para que sean unicos y cada Usuario sepa a donde mandar sus Updates
+                var roomName = personaje.mapa_instancia;
+                sails.sockets.join(req.socket,roomName);
+
+                //Se enviadtodo el personaje para que se actualicen segun cambios que hayan podido suceder en modo Offline
+                sails.sockets.broadcast(roomName, 'otherPlayer_join',personaje,req.socket);
+                return res.send(roomName);
+            });
+        });
+
+        return ;
     },
 
     leave: function (req,res) {
-        var user = req.session.passport.user;
-        if(!user){
-            return res.send('No existe un Usuario Logueado');
-        }
+        //Reveer esta funcion, el broadcaste debe ser con la info del personaje no del user
+        var roomName = req.param('mapa_instanciaId');
+        var personajeId = req.param('personajeId');
 
-        var roomName = req.param('mapa_instancia');
+
         if(!roomName){
             return res.send('No se ha indicado una correcta Instancia de Mapa');
         }
 
-        sails.sockets.leave(req.socket, roomName);
-        sails.sockets.broadcast(roomName, 'NuevoPersonajeConectado', {userID:user.id});
-        return res.send(200);
+        Personaje.update(personajeId,{conectado:true}).exec(function afterUpdate(updated){
+            if(updated){
+                sails.sockets.leave(req.socket, roomName);
+
+                sails.sockets.broadcast(roomName, 'otherPlayer_join',personajeId,req.socket);
+                return res.send(roomName);
+            }
+        });
+        return ;
     }
-	
+
 };
 

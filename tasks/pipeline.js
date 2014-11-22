@@ -42,8 +42,13 @@ var jsFilesToInject = [
     "/lib/melonJS.js",
     "/lib/plugins/debug/debugPanel.js",
     "/lib/plugins/debug/particleDebugPanel.js",
+<<<<<<< HEAD
     "/js/dependencies/ng-scrollbar/dist/ng-scrollbar.js",
     "/js/flexcroll.js",
+=======
+    "/lib/plugins/astar.js",
+
+>>>>>>> remotes/origin/master
     //"/js/dependencies/melonJS/melonJS.js",
     
 
@@ -61,6 +66,7 @@ var jsFilesToInject = [
     "/js/juego/server.js",
     "/js/juego/misiones.js", //eliminar cuando este la BD
     "/js/juego/logros.js", //eliminar cuando este la DB
+
 
     // WEB
     "/js/app.js",
