@@ -1,14 +1,17 @@
 [
     {
         "imagen": "pants/1.png",
-        "offset":0
+        "icono": "items/pantalon/1.png",
+	"offset":0
     },
     {
         "imagen": "shirt/1.png",
-        "offset":0
+        "icono": "items/pechera/1.png",
+	"offset":0
     },
     {
         "imagen": "foot/1.png",
-        "offset":0
+        "icono": "items/pies/3.png",
+	"offset":0
     }
 ]

@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module('juegoapl', ['ngSailsBind', 'ngRoute', 'toastr']);
+var app = angular.module('juegoapl', ['ngSailsBind', 'ngRoute', 'toastr', 'ngScrollbar']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {

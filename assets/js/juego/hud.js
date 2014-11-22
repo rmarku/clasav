@@ -174,12 +174,12 @@ $(function() {
 	//var objDiv = document.getElementById("divChat");
 	//objDiv.scrollTop = objDiv.scrollHeight;
 
-	//Enviar Mensaje al Chat al presionar Enter
+/*	//Enviar Mensaje al Chat al presionar Enter
 	$("#msjChat").keyup(function(event) {
 		if (event.keyCode == 13) {
 			$("#btn_enviar").click();
 		}
-	});
+	});*/
 
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {
