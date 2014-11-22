@@ -16,10 +16,7 @@
     "font-awesome": "~4.2.0",
     "angular-toastr": "~0.5.1",
     "angular-animate": "~1.3.1",
-<<<<<<< HEAD
-    "ng-scrollbar": "~0.0.7"
-=======
+    "ng-scrollbar": "~0.0.7",
     "node-pathfinding": "*"
->>>>>>> remotes/origin/master
   }
 }
