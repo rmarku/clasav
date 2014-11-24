@@ -137,22 +137,6 @@ game.Player = me.Entity.extend({
             30);
     },
 
-
-    /**
-     * Description
-     * @method getItemImg
-     * @param {} itemId
-     * @return Literal
-     */
-    getItemImg: function (itemId) {
-        var dir = this.data.duenio.sexo + '/';
-        if (typeof itemId != 'undefined') {
-            return me.loader.getImage(dir + game.sprites[game.items[itemId.item].sprite].imagen);
-        } else
-            return null;
-
-    },
-
     nombre: function () {
         var width = 32 * 4;
         var height = 30;
@@ -179,6 +163,21 @@ game.Player = me.Entity.extend({
 
     /**
      * Description
+     * @method getItemImg
+     * @param {} itemId
+     * @return Literal
+     */
+    getItemImg: function (itemId) {
+        var dir = this.data.duenio.sexo + '/';
+        if (typeof itemId != 'undefined') {
+            return me.loader.getImage(dir + game.sprites[game.items[itemId.item].sprite].imagen);
+        } else
+            return null;
+
+    },
+
+    /**
+     * Description
      * @return
      * @method vestir
      * @return
@@ -189,50 +188,74 @@ game.Player = me.Entity.extend({
         var canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
-
         var ctx = canvas.getContext("2d");
-        // Dibujo el personaje
+        var body = document.getElementsByTagName("body")[0];
+        body.appendChild(canvas);
+
+        var sprites = [{
+            imagen: 'basic.png',
+            xoffset: 0,
+            yoffset: 1,   // si el yOffset es -1, hay mascara que aplicar.
+            color: "#ffffff",
+            zIndex: -999
+        }, {
+            imagen: 'basic.png',
+            xoffset: 0,
+            yoffset: 0,
+            color: "#ffffff",
+            zIndex: 0
+        }, {
+            imagen: 'hairFront.png', //Frente
+            xoffset: this.data.pelo-1,
+            yoffset: 0,
+            color: this.data.pelo_color,
+            zIndex: 100
+        }, {
+            imagen: 'hairFront.png', //Sombra
+            xoffset: this.data.pelo -1,
+            yoffset: 1,
+            color: "#ffffff",
+            zIndex: 101
+        }, {
+            imagen: 'hairFront.png', //Fondo
+            xoffset: this.data.pelo -1,
+            yoffset: 2,
+            color: this.data.pelo_color,
+            zIndex: -10
+        }];
 
         var dir = this.data.duenio.sexo + '/';
-        // 1 el cuerpo de fondo
-        img = me.loader.getImage(dir + 'basic/1b.png');
-        ctx.drawImage(img, 0, 0);
+        var that = this;
+        //Cargo los prites de cada parte
 
-        // 2 el pelo de fondo
-        img = me.loader.getImage(dir + 'hair/back/' + this.data.pelo + '.png');
-        if (img) {
-            ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
-        }
+        ['zapatos', 'pantalon', 'torso'].forEach(function (it) {
 
-        // 3 el cuerpo normal
-        img = me.loader.getImage(dir + 'basic/1f.png');
-        ctx.drawImage(img, 0, 0);
+            var i = game.items[that.data[it].item];
+            sprites.push({
+                imagen: game.sprites[i.sprite].imagen,
+                xoffset: game.sprites[i.sprite].xoffset,
+                yoffset: game.sprites[i.sprite].yoffset,
+                color: i.color,
+                zIndex: game.sprites[i.sprite].zIndex
+            });
+        });
 
-        // 4 zapato No andando :S
-        img = this.getItemImg(this.data.zapatos);
-        if (img) {
-            ctx.drawImage(tintImage(img, game.items[this.data.zapatos.item].color), 0, 0);
-        } else {
-            console.log('no img' + img);
-        }
-        // 5 Pantalon
-        img = this.getItemImg(this.data.pantalon);
-        if (img) {
-            ctx.drawImage(tintImage(img, game.items[this.data.pantalon.item].color), 0, 0);
-        }
+        // Ordeno los sprites segun su zindex
+        sprites.sort(function (a, b) {
+            return a.zIndex - b.zIndex;
+        });
 
-        img = this.getItemImg(this.data.torso);
-        if (img) {
-            ctx.drawImage(tintImage(img, game.items[this.data.torso.item].color), 0, 0);
-        }
-
-
-        if (this.data.pelo !== "") {
-            img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + '.png');
-            ctx.drawImage(img, 0, 0);
-            img = me.loader.getImage(dir + 'hair/front/' + this.data.pelo + 'hair.png');
-            ctx.drawImage(tintImage(img, this.data.pelo_color), 0, 0);
-        }
+        // Dibujo los sprites
+        var img;
+        sprites.forEach(function (sp) {
+            console.log(sp.zIndex);
+            img = me.loader.getImage(dir + sp.imagen);
+            if (img) {
+                // Todo: Sacar numeros magickos
+                img = tintImage(img, sp.color, sp.xoffset * 128, sp.yoffset * 192, 128, 192);
+                ctx.drawImage(img, 0, 0);
+            }
+        });
 
         var i = new Image(width, height);
         i.src = canvas.toDataURL();

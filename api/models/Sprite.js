@@ -19,7 +19,13 @@ module.exports = {
         icono: {
             type: 'string'
         },
-        offset:{
+        xoffset: {
+            type: 'integer'
+        },
+        yoffset: {
+            type: 'integer'
+        },
+        zIndex: {
             type: 'integer'
         }
     }
