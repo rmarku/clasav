@@ -22,8 +22,8 @@ game.Player = me.Entity.extend({
         this.final_target_pos = new me.Vector2d(x, y);
         this.myPath = [];
 
-        this.body.setVelocity(5, 5);
-        this.body.setFriction(0.3, 0.3);
+        this.body.setVelocity(5.2, 5.2);
+        this.body.setFriction(0.5, 0.5);
 
         this.body.gravity = 0;
 
@@ -61,16 +61,16 @@ game.Player = me.Entity.extend({
      */
     update: function (dt) {
         if (this.direccion & 1) {
-            this.body.vel.y += this.body.accel.y * dt / 200;
+            this.body.vel.y = this.body.maxVel.y;
         }
         if (this.direccion & 2) {
-            this.body.vel.y -= this.body.accel.y * dt / 200;
+            this.body.vel.y = -this.body.maxVel.y;
         }
         if (this.direccion & 4) {
-            this.body.vel.x += this.body.accel.x * dt / 200;
+            this.body.vel.x = this.body.maxVel.x;
         }
         if (this.direccion & 8) {
-            this.body.vel.x -= this.body.accel.x * dt / 200;
+            this.body.vel.x = -this.body.maxVel.x;
         }
 
         return this.updateAnimation(dt);
@@ -206,19 +206,19 @@ game.Player = me.Entity.extend({
             zIndex: 0
         }, {
             imagen: 'hairFront.png', //Frente
-            xoffset: this.data.pelo-1,
+            xoffset: this.data.pelo - 1,
             yoffset: 0,
             color: this.data.pelo_color,
             zIndex: 100
         }, {
             imagen: 'hairFront.png', //Sombra
-            xoffset: this.data.pelo -1,
+            xoffset: this.data.pelo - 1,
             yoffset: 1,
             color: "#ffffff",
             zIndex: 101
         }, {
             imagen: 'hairFront.png', //Fondo
-            xoffset: this.data.pelo -1,
+            xoffset: this.data.pelo - 1,
             yoffset: 2,
             color: this.data.pelo_color,
             zIndex: -10

@@ -1,7 +1,7 @@
 game.OtherPlayer = game.Player.extend({
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
-        this.body.setVelocity(4.68, 4.68);
+        this.body.setVelocity(4.6, 4.6);
         this.body.setFriction(0, 0);
         this.id = settings.data.id;
         this.direccion = settings.data.direccion;
@@ -49,8 +49,8 @@ game.OtherPlayer = game.Player.extend({
 
         } else {    //Me dirijo al punto  donde debo estar.
             this.target_pos = this.final_target_pos.clone();
-            this.body.vel.x = Math.pow((this.target_pos.x - this.pos.x), 3) / 25;
-            this.body.vel.y = Math.pow((this.target_pos.y - this.pos.y), 3) / 25;
+            this.body.vel.x = (this.target_pos.x - this.pos.x) / 3;
+            this.body.vel.y = (this.target_pos.y - this.pos.y) / 3;
         }
 
         if (this.body.vel.length() < 0.1) {

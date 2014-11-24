@@ -26,32 +26,34 @@ var server = {
 
     update_myPlayer_in_OtherPlayers: function () {
         // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
-        var player = game.mainPlayer;
+        var p = game.mainPlayer;
 
-        if (player.direccion !== 0) {
+        if (p.direccion !== 0) {
             this.updateMyplayer_counter++;
             this.enviado_velZero = false;
         }
 
         //Envio al servidor solo si: se agoto el counter, o si hubo algun cambio de estado (respecto al ultimo cambio de estado)
-        if ((this.updateMyplayer_counter >= this.updateMyplayer_timeOut) || (player.direccion != player.direccion_anterior || (player.body.vel.length() === 0 && !this.enviado_velZero))) {
+        if ((p.direccion !== 0 && (this.updateMyplayer_counter >= this.updateMyplayer_timeOut ||
+            p.direccion != p.direccion_anterior)) ||
+            (p.body.vel.length() === 0 && !this.enviado_velZero)) {
 
             io.socket.put('/api/personaje/updateStatus', {
-                    mapa_instancia: player.data.mapa_instancia.id.toString(),
-                    id: player.id,
-                    estado: player.direccion,
-                    animation: player.animationToUseThisFrame,
-                    x: ~~player.pos.x,
-                    y: ~~player.pos.y
+                    mapa_instancia: p.data.mapa_instancia.id.toString(),
+                    id: p.id,
+                    estado: p.direccion,
+                    animation: p.animationToUseThisFrame,
+                    x: ~~p.pos.x,
+                    y: ~~p.pos.y
                 }
                 , function (resdata) {
                 }
             );
 
-            if (player.body.vel.length() === 0)
+            if (p.body.vel.length() === 0)
                 this.enviado_velZero = true;
 
-            player.direccion_anterior = player.direccion;
+            p.direccion_anterior = p.direccion;
             this.updateMyplayer_counter = 0;
         }
 
