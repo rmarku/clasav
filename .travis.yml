@@ -5,3 +5,6 @@ deploy:
     provider: heroku
     api_key: ***REMOVED***
     app: clases-y-aventuras
+
+notifications:
+    slack: clav:ZgjgDSgKLailo97GLlrdRSKL
