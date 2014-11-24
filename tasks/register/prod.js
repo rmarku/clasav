@@ -1,15 +1,16 @@
 module.exports = function (grunt) {
-	grunt.registerTask('prod', [
-    'crearJson',
-		'compileAssets',
-		'concat',
-		'uglify',
-		'cssmin',
-		'sails-linker:prodJs',
-		'sails-linker:prodStyles',
-		'sails-linker:devTpl',
-		'sails-linker:prodJsJade',
-		'sails-linker:prodStylesJade',
-		'sails-linker:devTplJade'
-	]);
+    grunt.registerTask('prod', [
+        'crearSprites',
+        'crearJson',
+        'compileAssets',
+        'concat',
+        'uglify',
+        'cssmin',
+        'sails-linker:prodJs',
+        'sails-linker:prodStyles',
+        'sails-linker:devTpl',
+        'sails-linker:prodJsJade',
+        'sails-linker:prodStylesJade',
+        'sails-linker:devTplJade'
+    ]);
 };
