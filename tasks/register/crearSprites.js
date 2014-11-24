@@ -6,6 +6,8 @@ module.exports = function (grunt) {
     grunt.registerTask('crearSprites', 'crea el archivo resources.json para melon', function () {
         var fs = require('fs');
         var gmagick = require('gm');
+        var execFile = require('child_process').execFile;
+        var optipng = require('optipng-bin').path;
 
         var resource = [
             {
@@ -125,12 +127,19 @@ module.exports = function (grunt) {
                 }
             }
 
-            gm = gm.background('none').mosaic();
+            gm = gm.background('none').quality(100);
             gm.write(res.folder + res.sex + '/' + res.name + ".png", function (err) {
                 if (err)
                     grunt.log.writeln(err);
                 else
-                    grunt.log.writeln('Ok');
+                    execFile(optipng, ['-o7', res.folder + res.sex + '/' + res.name + ".png"], function (err) {
+                        if (err) {
+                            throw err;
+                        } else {
+                            grunt.log.writeln('Ok');
+                        }
+                    });
+
             });
         });
     });
