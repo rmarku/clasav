@@ -49,7 +49,7 @@ game.Player = me.Entity.extend({
 
         this.anchorPoint.set(0.5, 1);
 
-        this.body.addShape(new me.Rect(0, 0, this.body.width - 4, this.body.height / 2));
+        this.body.addShape(new me.Ellipse(0, 0, this.body.width - 4, this.body.width - 4));
         // set the renderable position to bottom center
 
     },
@@ -79,6 +79,9 @@ game.Player = me.Entity.extend({
 
     updateAnimation: function (dt) {
 
+        this.body.update();
+        me.collision.check(this);
+
         if (this.body.vel.length() > this.body.maxVel.x) {
             // Now calc actual vel to prevent speeding by going diag..
             this.body.vel.normalize();
@@ -103,7 +106,6 @@ game.Player = me.Entity.extend({
             this.lastAnimationUsed = this.animationToUseThisFrame;
             this.renderable.setCurrentAnimation(this.animationToUseThisFrame);
         }
-        this.body.update();
 
         if (this.body.vel.x !== 0 || this.body.vel.y !== 0 || (this.renderable && this.renderable.isFlickering())) {
             this._super(me.Entity, 'update', [dt]);
@@ -112,6 +114,14 @@ game.Player = me.Entity.extend({
         return false;
     },
 
+    onCollision: function (response, other) {
+        if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+            // Choque contra el mundo!
+            return false;
+        }
+        // Make the object solid
+        return true;
+    },
 
     /**
      * Description
@@ -131,7 +141,7 @@ game.Player = me.Entity.extend({
 
         // Dibujo el nombre
         context.drawImage(this.canvasNombre,
-            ~~(this.pos.x + this.width / 2 - this.canvasNombre.width / 2),
+            ~~(this.pos.x  - this.canvasNombre.width / 2),
             ~~(this.pos.y + this.height / 2),
             32 * 4,
             30);

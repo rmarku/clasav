@@ -24,7 +24,7 @@ var game = {
             return;
         }
 
-        me.plugin.register(debugPanel, "debug");
+        me.plugin.register(me.debug.Panel, "debug");
 
         // Plugin: AStar pathfinding
         me.plugin.register(aStarPlugin, "astar");
