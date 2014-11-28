@@ -39,14 +39,14 @@ var jsFilesToInject = [
     "/js/dependencies/angular-route/angular-route.js",
     "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
     "/js/dependencies/angular-toastr/dist/angular-toastr.js",
-    "/lib/melonJS.js",
+    "/lib/melonJS-2.0.1.js",
     "/lib/plugins/debug/debugPanel.js",
     "/lib/plugins/debug/particleDebugPanel.js",
     "/js/dependencies/ng-scrollbar/dist/ng-scrollbar.js",
     "/lib/plugins/astar.js",
 
     //"/js/dependencies/melonJS/melonJS.js",
-    
+
 
     "/js/app.js",
     // Juego
