@@ -25,7 +25,6 @@ module.exports = function (grunt) {
 
         grunt.log.writeln(res.name + ".png");
 
-        var fileExist = grunt.file.exists(res.folder + res.sex + '/' + res.name + ".png");
 
         gm = gm.background('none').quality(100).mosaic();
         gm.write(res.folder + res.sex + '/' + res.name + ".png", function (err) {
@@ -34,9 +33,20 @@ module.exports = function (grunt) {
                 grunt.log.writeln(err);
                 done(false);
             } else {
-                grunt.log.writeln('Sprite: OK');
-
-                done();
+                if (process.env.NODE_ENV != 'development') {
+                    grunt.log.writeln('Sprite: OK');
+                    execFile(optipng, ['-o7', res.folder + res.sex + '/' + res.name + ".png"], function (err) {
+                        if (err) {
+                            throw err;
+                            done(false);
+                        } else {
+                            grunt.log.writeln('Opti: Ok');
+                            done();
+                        }
+                    });
+                } else {
+                    done();
+                }
             }
         });
     });
