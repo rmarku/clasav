@@ -1,3 +1,6 @@
+[![Build Status](https://magnum.travis-ci.com/rmarku/tesis.svg?token=***REMOVED***&branch=master)](https://magnum.travis-ci.com/rmarku/tesis)
+
+
 Herramientas
 ============
 
