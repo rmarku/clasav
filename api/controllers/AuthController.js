@@ -25,7 +25,7 @@ var AuthController = {
      * @method login
      * @param {Object} req
      * @param {Object} res
-     * @return 
+     * @return
      */
     login: function (req, res) {
         var strategies = sails.config.passport;
@@ -60,7 +60,7 @@ var AuthController = {
      * @method logout
      * @param {Object} req
      * @param {Object} res
-     * @return 
+     * @return
      */
     logout: function (req, res) {
         req.logout();
@@ -80,7 +80,7 @@ var AuthController = {
      * @method register
      * @param {Object} req
      * @param {Object} res
-     * @return 
+     * @return
      */
     register: function (req, res) {
         res.send({
@@ -94,7 +94,7 @@ var AuthController = {
      * @method provider
      * @param {Object} req
      * @param {Object} res
-     * @return 
+     * @return
      */
     provider: function (req, res) {
         passport.endpoint(req, res);
@@ -113,7 +113,7 @@ var AuthController = {
      * @method callback
      * @param {Object} req
      * @param {Object} res
-     * @return 
+     * @return
      */
     callback: function (req, res) {
         /**
@@ -121,7 +121,7 @@ var AuthController = {
          * @return
          * @method tryAgain
          * @param {} err
-         * @return 
+         * @return
          */
         function tryAgain(err) {
 
@@ -164,12 +164,14 @@ var AuthController = {
                 if (err) {
                     return tryAgain();
                 }
-                if (typeof req.body.local != 'undefined') {
+                if (typeof req.body != 'undefined' && typeof req.body.local != 'undefined') {
                     res.send({
                         loguedin: 'true'
                     });
+                    sails.log.warn("Usuario ", user.nombre, " logueado");
                     return;
                 }
+                sails.log.warn("Usuario ", user.nombre, " logueado");
 
                 // Upon successful login, send the user to the homepage were req.user
                 // will available.
@@ -184,7 +186,7 @@ var AuthController = {
      * @method disconnect
      * @param {Object} req
      * @param {Object} res
-     * @return 
+     * @return
      */
     disconnect: function (req, res) {
         passport.disconnect(req, res);

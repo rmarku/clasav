@@ -10,20 +10,42 @@
  * http://sailsjs.org/#/documentation/concepts/Logging
  */
 
+var winston = require('winston');
+var winstonSlack = require('slack-winston').Slack;
+
+
 module.exports.log = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Valid `level` configs: i.e. the minimum log level to capture with        *
-  * sails.log.*()                                                            *
-  *                                                                          *
-  * The order of precedence for log levels from lowest to highest is:        *
-  * silly, verbose, info, debug, warn, error                                 *
-  *                                                                          *
-  * You may also set the level to "silent" to suppress all logs.             *
-  *                                                                          *
-  ***************************************************************************/
+    /***************************************************************************
+     *                                                                          *
+     * Valid `level` configs: i.e. the minimum log level to capture with        *
+     * sails.log.*()                                                            *
+     *                                                                          *
+     * The order of precedence for log levels from lowest to highest is:        *
+     * silly, verbose, info, debug, warn, error                                 *
+     *                                                                          *
+     * You may also set the level to "silent" to suppress all logs.             *
+     *                                                                          *
+     ***************************************************************************/
 
-  // level: 'info'
-
+    // level: 'info'
+    'colors': false,
+    'custom': new (winston.Logger)({
+        'transports': [
+            new (winston.transports.Console)({
+                'level': 'info',
+                'colorize': true,
+                'timestamp': false,
+                'json': false
+            }),
+            new winstonSlack({
+                level: 'warn',
+//                silent: (process.env.NODE_ENV == 'production') ? false : true,
+                webhookUrl: ' https://hooks.slack.com/services/REDACTED/REDACTED/REDACTED',
+                channel: '#online',
+                domain: 'clav',
+                username: 'sails.js-log'
+            })
+        ]
+    })
 };
