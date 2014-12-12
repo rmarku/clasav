@@ -38,7 +38,7 @@
     "sails-disk": "~0.10.0",
     "sails-generate-auth": "^0.2.0",
     "sails-mongo": "^0.10.4",
-    "slack-winston": "git+ssh://git@github.com:nhitchins/slack-winston.git",
+    "slack-winston": "git+https://github.com/nhitchins/slack-winston.git",
     "validator": "^3.19.1",
     "winston": "^0.8.3"
   },
