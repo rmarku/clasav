@@ -6,10 +6,8 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('crearSprites', 'crea el archivo resources.json para melon', function () {
         var fs = require('fs');
 
-        if( process.env.NODE_ENV == 'production')
-            var gmagick = require('gm').subClass({ imageMagick: true });
-        else
-            var gmagick = require('gm');
+        var gmagick = require('gm').subClass({imageMagick: true});
+
         var execFile = require('child_process').execFile;
         var optipng = require('optipng-bin').path;
         var done = this.async();

@@ -40,7 +40,7 @@ module.exports.log = {
             }),
             new winstonSlack({
                 level: 'warn',
-//                silent: (process.env.NODE_ENV == 'production') ? false : true,
+                silent: (process.env.NODE_ENV == 'production') ? false : true,
                 webhookUrl: ' https://hooks.slack.com/services/REDACTED/REDACTED/REDACTED',
                 channel: '#online',
                 domain: 'clav',
