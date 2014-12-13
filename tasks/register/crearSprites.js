@@ -7,7 +7,7 @@ module.exports = function (grunt) {
         var fs = require('fs');
 
         var gmagick;
-        if (process.env.NODE_ENV == 'production')
+        if (process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'test')
             gmagick = require('gm').subClass({imageMagick: true});
         else
             gmagick = require('gm');
