@@ -119,4 +119,4 @@ nbproject
 assets/js/dependencies/
 assets/data/sprites/characters/femenino/*.png
 assets/data/sprites/characters/masculino/*.png
-
+assets/api/resources.json

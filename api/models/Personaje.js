@@ -151,7 +151,9 @@ module.exports = {
         ]).then(function (items) {
 
             Mapa_instancia.find({sort: 'createdAt DESC', limit:1}).then(function (mapa) {
- //               console.log('Mapa '+mapa[0]);
+
+                sails.log.warn(":smile: *Personaje Creado:* ", newPJ.nombre);
+
                 // items es un array con el resultado de cada promesa en orden.
                 Personaje.update({id: newPJ.id},
                     {
@@ -161,7 +163,7 @@ module.exports = {
                         zapatos: items[2]
                     }).exec(next);
             }).catch(function(err){
-                console.log(err);
+                sails.log.error(err);
                 next();
             });
         });

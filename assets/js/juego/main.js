@@ -29,7 +29,9 @@ var game = {
         // Plugin: AStar pathfinding
         me.plugin.register(aStarPlugin, "astar");
 
-        me.audio.init('ogg,mp3');
+        // Initialize the audio.
+        me.audio.init("mp3,ogg");
+
         me.sys.pauseOnBlur = false;
 
         // funcion a llamar cuando todos los recursos esten cargados

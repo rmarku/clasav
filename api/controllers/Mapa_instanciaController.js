@@ -15,6 +15,7 @@ module.exports = {
 
             Personaje.update(personajeId,{conectado:true}).exec(function afterUpdate(){
 
+                sails.log.warn("El personaje *" + personaje.nombre + "* (" + personaje.id + ") se ha conectado :smile:.");
                 //Si el Room no existe todavia, se creata automaticamente con el Join.
                 //Se establece como nombre de la Room, el id del Mapa instancia, para que sean unicos y cada Usuario sepa a donde mandar sus Updates
                 var roomName = personaje.mapa_instancia;
