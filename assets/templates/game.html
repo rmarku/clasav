@@ -43,30 +43,41 @@
 							<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; margin: 0px -1px 0px -3px; border: 0px 0px 0px 0px">
 								<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
 								<span ng-class="{hidden: x.acumulable==false}" style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
-								<!--p style="position: absolute">{{x.cant | filter: { acumulable: true }}}</p-->
 							</div>
 						</div>
 					</div>
 
 					<!--MISIONES-->
-					<div id="mis" class="div-panel" style="background: url('images/iconos/misiones2.png')">
+					<div id="mis" ng-controller="misionesGuia" class="div-panel" style="background: url('images/iconos/misiones2.png')">
 						<p class="capaSup titulo-botonera">
 							Misiones
 						</p>
+						
+						<div id="misiones" class="scrollme" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px" ng-scrollbar>
+							<table>
+								<tbody>
+									<tr ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}">
+										<td> <img src="images/quest/inventario.png"/></td>
+										<td> {{x.tituloMision}} </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 					
-					<div class="capaSup" id="quest" style="width: 523px; height: 304px; position: absolute; left: 138px; top: 88px; background: url('images/quest/ventana.png')">
-						<p class="capaSup titulo-botonera" style="margin-left: 80px">
-							Mision para realizar
+					<!--Ventana de Misiones-->
+					<div class="capaSup" ng-controller="misionesGuia" id="quest" style="width: 523px; height: 304px; position: absolute; left: 138px; top: 88px; background: url('images/quest/ventana.png')">
+						<p class="capaSup titulo-botonera" style="margin-left: 80px" ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}">
+							{{ x.tituloMision }}
 						</p>
-						<span style="position: absolute; margin: 123px 0px 0px 36px">
-							Nombre NPC
+						<span ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}" style="position: absolute; margin: 123px 0px 0px 36px">
+							{{ x.inicipioNPC }}
 						</span>
-						<div style="position: absolute; width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: scroll">
-							 	Bienvenido a 'Clases y Aventuras'. Espero que disfrutes tu estadia aqui. Para comenzar porque no te diriges con 'Quio', quien ye ayudara a teletransportarte a otros mapas para comenzar tus misiones. Oh! casi lo olvidaba, deberas pagarle 2 oros por cada viaje. Dejame darte algo de dinero.
+						<div ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}" style="position: absolute; width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: scroll">
+							 {{ x.textoInicial }}
 						</div>
 						<img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/>
-						<img id="aceptar" style="position: absolute; bottom: 20px; right: 40px" src="images/quest/btn.png" onclick="aceptarQuest()"/>
+						<img id="aceptar" style="position: absolute; bottom: 20px; right: 40px" src="images/quest/btn.png"/>
 						<span class="titulo-botonera" style="position: absolute; bottom: 10px; right: 34px">
 							Aceptar
 						</span>

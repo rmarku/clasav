@@ -166,6 +166,10 @@ function noPressBtn() {
 	$("#per").hide();
 }
 
+function agregarQuest(){
+	//Se deberia poner un atributo de la lista de misiones del personaje como "quest tomada =1", que sea 0 si esta tomada...y 2 si esta terminada	
+}
+
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
 
@@ -173,13 +177,6 @@ $(function() {
 	
 	//var objDiv = document.getElementById("divChat");
 	//objDiv.scrollTop = objDiv.scrollHeight;
-
-/*	//Enviar Mensaje al Chat al presionar Enter
-	$("#msjChat").keyup(function(event) {
-		if (event.keyCode == 13) {
-			$("#btn_enviar").click();
-		}
-	});*/
 
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {
@@ -258,8 +255,13 @@ $(function() {
 	
 	//Boton para cerrar Ventana de Quest
 	$("#cerrar").click(function() {
-		noPressBtn();
 		$("#quest").hide();
 	});
+	
+	//Boton Aceptar para agregar la Quest al panel de misiones
+	$("#aceptar").click(function() {
+		$("#quest").hide();
+		agregarQuest();
+	});	
 
 });
