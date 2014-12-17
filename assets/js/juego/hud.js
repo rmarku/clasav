@@ -255,5 +255,11 @@ $(function() {
 			$("#tal").hide();
 		}
 	});
+	
+	//Boton para cerrar Ventana de Quest
+	$("#cerrar").click(function() {
+		noPressBtn();
+		$("#quest").hide();
+	});
 
 });

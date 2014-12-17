@@ -54,7 +54,24 @@
 							Misiones
 						</p>
 					</div>
-
+					
+					<div class="capaSup" id="quest" style="width: 523px; height: 304px; position: absolute; left: 138px; top: 88px; background: url('images/quest/ventana.png')">
+						<p class="capaSup titulo-botonera" style="margin-left: 80px">
+							Mision para realizar
+						</p>
+						<span style="position: absolute; margin: 123px 0px 0px 36px">
+							Nombre NPC
+						</span>
+						<div style="position: absolute; width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: scroll">
+							 	Bienvenido a 'Clases y Aventuras'. Espero que disfrutes tu estadia aqui. Para comenzar porque no te diriges con 'Quio', quien ye ayudara a teletransportarte a otros mapas para comenzar tus misiones. Oh! casi lo olvidaba, deberas pagarle 2 oros por cada viaje. Dejame darte algo de dinero.
+						</div>
+						<img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/>
+						<img id="aceptar" style="position: absolute; bottom: 20px; right: 40px" src="images/quest/btn.png" onclick="aceptarQuest()"/>
+						<span class="titulo-botonera" style="position: absolute; bottom: 10px; right: 34px">
+							Aceptar
+						</span>
+					</div>
+					
 					<!--LOGROS-->
 					<div id="log" class="div-panel" ng-controller="listaLogros" style="background: url('images/iconos/logros2.png')">
 						<p class="capaSup titulo-botonera">
@@ -98,10 +115,12 @@
 							<div id="itemMano" class="itemP"></div>
 
 						</div>
+						
 						<!--CANVAS PERSONAJE-->
 						<!--canvas id="pj" width="32" height="48" style="position: absolute"></canvas>
 						<div id="imagenes" style="position: absolute"></div-->
 						<!--FIN CANVAS PERSONAJE-->
+						
 						<div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
 							<div id="itemEspec1" class="itemP"></div>
 							<div id="itemEspec2" class="itemP"></div>
@@ -124,8 +143,7 @@
 			</div>
 
 			<!--CHAT-->
-			<!--Se deberian agregar 2 funciones:-->
-			<!--Que el nick sea  el user.nombre-->
+			<!--Se deberian agregar funcion:-->
 			<!--Scroll abajo del todo-->
 			<div ng-controller="ChatController" style="width: 800px">
 				<div class="divChat scrollme" id="divChat" ng-scrollbar>
