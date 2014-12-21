@@ -15,6 +15,10 @@ module.exports = {
         nombre: {
             type: "string"
         },
+        clases:{
+            collection: "clase",
+            via: "personajes"
+        },
         x: {
             type: "integer"
         },
@@ -150,18 +154,33 @@ module.exports = {
             })
         ]).then(function (items) {
 
-            Mapa_instancia.find({sort: 'createdAt DESC', limit:1}).then(function (mapa) {
+            Mapa_instancia.find().populate('mapa_generico').exec(function afterUpdate(err,mapas_instancias) {
 
-                sails.log.warn(":smile: *Personaje Creado:* ", newPJ.nombre);
+                if(mapas_instancias) {
+                    var mapa_instancia;
+                    var succesfull;
+                    while (mapas_instancias.length) {
+                        mapa_instancia = mapas_instancias.pop();
+                        //Si el mapa_instancia es el que esta relacionado al mapa generico
+                        if (mapa_instancia.mapa_generico.nombre.toLowerCase() === "island") {
+                            succesfull = true;
+                            break;
+                        }
+                    }
+                    //Variable hecha para que Grunt no se queje de que pongo una funcion dentro de un Loop
+                    if(succesfull) {
+                        sails.log.warn(":smile: *Personaje Creado:* ", newPJ.nombre);
 
-                // items es un array con el resultado de cada promesa en orden.
-                Personaje.update({id: newPJ.id},
-                    {
-                        mapa_instancia: mapa[0],
-                        pantalon: items[0],
-                        torso: items[1],
-                        zapatos: items[2]
-                    }).exec(next);
+                        // items es un array con el resultado de cada promesa en orden.
+                        Personaje.update({id: newPJ.id},
+                            {
+                                mapa_instancia: mapa_instancia,
+                                pantalon: items[0],
+                                torso: items[1],
+                                zapatos: items[2]
+                            }).exec(next);
+                    }
+                }
             }).catch(function(err){
                 sails.log.error(err);
                 next();

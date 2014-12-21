@@ -19,7 +19,8 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         departamento: '',
         password: '',
         password2: '',
-        local: true
+        local: true,
+        clase: 1
     };
 
     var lang = {
@@ -81,6 +82,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                         toastr.info('Datos actualizados!!!!');
                         setTimeout(function () {
                             $location.path('/');
+                            //hacer algo aca para que dentro de las pestaas aparezca "juego"
                         }, 1000);
                     } else {
                         toastr.info('Datos actualizados, ahora crea tu personaje');

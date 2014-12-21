@@ -46,8 +46,8 @@ module.exports.sockets = {
                     if (personaje) {
                         Personaje.update(personaje.id, {conectado: false}).exec(function afterwards(err, updated) {
                             sails.log.warn("El personaje *" + personaje.nombre + "* (" + personaje.id + ") se ha desconectado.");
-                            sails.sockets.leave(socket, personaje.clase_instancia);
-                            sails.sockets.broadcast(personaje.clase_instancia, 'otherPlayer_leave', personaje.id, socket);
+                            sails.sockets.leave(socket.id, personaje.mapa_instancia);
+                            sails.sockets.broadcast(personaje.mapa_instancia, 'otherPlayer_leave', personaje.id, socket);
                         });
                     }
                 });

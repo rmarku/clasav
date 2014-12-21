@@ -62,7 +62,7 @@ module.exports = {
 
         clases: {
             collection: 'clase',
-            via: 'integrantes',
+            via: 'users',
             required: false
         },
 

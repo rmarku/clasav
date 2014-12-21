@@ -114,8 +114,8 @@ var server = {
             game.removeOtherPlayer(personajeId);
         });
 
-        io.socket.on('otherPlayer_join', function messageReceived(data) {
-            game.create_otherPlayer(data);
+        io.socket.on('otherPlayer_join', function messageReceived(personajeId) {
+            game.create_otherPlayer(personajeId);
         });
 
     }
