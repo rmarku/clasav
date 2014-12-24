@@ -32,10 +32,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
                     me.levelDirector.loadLevel(data.mapa_instancia.mapa_generico.nombre);
                     game.addMainPlayer(data);
-                        game.create_OtherPlayers();
-
-                            server.listen_events();
-
+                    game.create_OtherPlayers();
+                    server.listen_events();
                     server.join_mapa_instancia();
                     me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
