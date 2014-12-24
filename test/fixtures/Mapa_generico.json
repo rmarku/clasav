@@ -3,12 +3,12 @@
         "nombre": "island",
         "clase": 1,
         "posicion_inicial_x":200,
-        "posicion_inicial_y":200
+        "posicion_inicial_y":250
     },
     {
         "nombre": "islandcasa01",
         "clase": 1,
-        "posicion_inicial_x":250,
-        "posicion_inicial_y":632
+        "posicion_inicial_x":200,
+        "posicion_inicial_y":550
     }
 ]

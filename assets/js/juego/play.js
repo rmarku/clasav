@@ -13,7 +13,6 @@ game.PlayScreen = me.ScreenObject.extend({
         me.audio.playTrack("snow", 0.7);
         me.audio.muteAll();
 
-
         //me.input.preventDefault();
         me.input.bindKey(me.input.KEY.LEFT, 'left');
         me.input.bindKey(me.input.KEY.A, 'left');
@@ -26,69 +25,48 @@ game.PlayScreen = me.ScreenObject.extend({
 
 
         $.get('/api/user/getUser', function (user) {
-            if (typeof user.userId != 'undefined') {
+            if (typeof user.userId!= 'undefined') {
+                game.userId = user.userId;
 
-                $.get('/api/personaje/getPersonaje_masReciente' ,
-                    {
-                        duenio:user.userId
-                    },
-                    function CB(data) {
-                        if (data) {
+                $.get('/api/personaje/getPersonaje_masReciente',{duenio: game.userId}, function messageReceived(data) {
 
-                            me.levelDirector.loadLevel(data.mapa_instancia.mapa_generico.nombre);
+                    me.levelDirector.loadLevel(data.mapa_instancia.mapa_generico.nombre);
+                    game.addMainPlayer(data);
+                        game.create_OtherPlayers();
 
-                            game.saveMainPlayer(data);
-                            me.game.world.addChild(game.mainPlayer, 9);
-                            me.game.world.sort();
+                            server.listen_events();
 
-    /*
-                          game.NPCs[1] = me.pool.pull('NPCPlayer', Number(36*32),
-                            Number(12*32), {
-                              width: 28,
-                              height: 28,
-                              data: data
-                            });
-                          me.game.world.addChild(game.NPCs[1], 9);
-                            game.NPCs[2] = me.pool.pull('NPCPlayer', Number(35*32),
-                                Number(21*32), {
-                                    width: 28,
-                                    height: 28,
-                                    data: data
-                                });
-                            me.game.world.addChild(game.NPCs[2], 9);
-                          game.players[1] = me.pool.pull('otherPlayer', Number(8*32),
-                                Number(15*32), {
-                                    width: 28,
-                                    height: 28,
-                                    data: data
-                                });
-    */
-
-                            server.join_mapa_instancia();
-                            game.init_otherPlayers();
-                            me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
-
-                    } else {
-                        console.log("No existe el personaje");
-                    }
-                    // start the game
+                    server.join_mapa_instancia();
+                    me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
+
+/*
+              game.NPCs[1] = me.pool.pull('NPCPlayer', Number(36*32),
+                Number(12*32), {
+                  width: 28,
+                  height: 28,
+                  data: data
+                });
+              me.game.world.addChild(game.NPCs[1], 9);
+                game.NPCs[2] = me.pool.pull('NPCPlayer', Number(35*32),
+                    Number(21*32), {
+                        width: 28,
+                        height: 28,
+                        data: data
+                    });
+                me.game.world.addChild(game.NPCs[2], 9);
+              game.players[1] = me.pool.pull('otherPlayer', Number(8*32),
+                    Number(15*32), {
+                        width: 28,
+                        height: 28,
+                        data: data
+                    });
+*/
             } else {
                 console.log("No existe el usuario");
             }
         });
-
-
     },
-
-    "loadLevel" : function loadLevel(settings) {
-        var a =13;
-    },
-
-    "onLevelLoaded" : function onLevelLoaded() {
-        var a =9;
-    },
-
 
     /**
      * action to perform when leaving this screen (state change)

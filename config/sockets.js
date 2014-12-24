@@ -38,22 +38,10 @@ module.exports.sockets = {
 
         //TO DO: Agregar esta FUNCION A SERVICES, ya que tambien lo necesito cuando me quiera desconectar de forma manual (no por sockets)
         try {
-            if (typeof(session.passport) != "undefined")
+            if (typeof(session.passport) != "undefined") {
                 var userId = session.passport.user;
-            if (userId) {
-                // sails.log.warn("*Desconectado del servidor:* " + userId);
-                Personaje.findOne({duenio: userId, masRecientementeUtilizado: true}).exec(function (err, personaje) {
-                    if (personaje) {
-                        Personaje.update(personaje.id, {conectado: false}).exec(function afterwards(err, updated) {
-                            sails.log.warn("El personaje *" + personaje.nombre + "* (" + personaje.id + ") se ha desconectado.");
-                            sails.sockets.leave(socket.id, personaje.mapa_instancia);
-                            sails.sockets.broadcast(personaje.mapa_instancia, 'otherPlayer_leave', personaje.id, socket);
-                        });
-                    }
-                });
+                GameService.leaveGame(userId,socket);
             }
-
-
         }
         catch (err) {
             sails.log.error("Error in onDisconnect: ", err);

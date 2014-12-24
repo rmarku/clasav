@@ -83,7 +83,6 @@ var server = {
                 personajeId: game.mainPlayer.data.id
             },
             function joinCB(data) {
-                console.log(data);
             }
         );
     },
@@ -95,7 +94,6 @@ var server = {
                 mapa_instanciaId: game.mainPlayer.data.mapa_instancia.id
             },
             function joinCB(data) {
-                console.log(data);
             }
         );
     },
@@ -107,15 +105,14 @@ var server = {
             game.players[obj.id].last_animation = obj.animation;
             game.players[obj.id].nextNode(new me.Vector2d(obj.x, obj.y));
             game.players[obj.id].updateBounds();
-
         });
 
         io.socket.on('otherPlayer_leave', function messageReceived(personajeId) {
             game.removeOtherPlayer(personajeId);
         });
 
-        io.socket.on('otherPlayer_join', function messageReceived(personajeId) {
-            game.create_otherPlayer(personajeId);
+        io.socket.on('otherPlayer_join', function messageReceived(data) {
+            game.addOnlineOtherPlayer(data);
         });
 
     }

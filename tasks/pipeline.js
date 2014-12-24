@@ -36,6 +36,7 @@ var jsFilesToInject = [
     "/js/dependencies/jquery/dist/jquery.js",
     "/js/dependencies/bootstrap/dist/js/bootstrap.js",
     "/js/dependencies/angular-resource/angular-resource.js",
+    "/js/dependencies/lodash/dist/lodash.js",
     "/js/dependencies/angular-route/angular-route.js",
     "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
     "/js/dependencies/angular-toastr/dist/angular-toastr.js",

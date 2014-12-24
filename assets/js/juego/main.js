@@ -5,8 +5,8 @@
 
 var game = {
     mainPlayer: {},
+    userId: 0,
     players: {},
-    playersOffline: {},
     NPCs: {},
     items: {},
     sprites: {},
@@ -76,90 +76,50 @@ var game = {
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
     },
 
-    change_level: function(nuevo_mapa_generico){
-
-        //Guardo data de mi user para no tener que solicitarla
+    change_level: function(target_mapa_generico){
+        //Guardo data para poder eliminar inmediatamente
         var data = game.mainPlayer.data;
-        me.game.world.removeChild(game.mainPlayer);
-        game.mainPlayer = {};
-        //Borro los datos de los Jugadores
-        game.removeEveryOtherPlayer();
+        game.remove_AllPlayers();
 
         //Actualizo mi cambio de mapa_instancia en la BD, borrando mi suscripcion al Room anterior, suscribiendo al nuevo
+        //Envio con socket para poder desuscribirlo
         io.socket.post('/api/mapa_instancia/change_level',
             {
-                mapa_generico: nuevo_mapa_generico,
+                mapa_generico: target_mapa_generico,
                 mapa_instancia: data.mapa_instancia.id,
                 personajeId: data.id
             },
-            function changeLevelCB(nuevo_mapa_instancia) {
-
-                data.x = nuevo_mapa_instancia.mapa_generico.posicion_inicial_x;
-                data.y = nuevo_mapa_instancia.mapa_generico.posicion_inicial_y;
-
-                game.saveMainPlayer(data);
-                //Guardio el mapa_instancia al cual pertenece el mapa_generico que me indico el evento CHANGE-lEVEL
-                game.mainPlayer.data.mapa_instancia = nuevo_mapa_instancia;
-
-                me.game.world.addChild(game.mainPlayer, 9);
-                me.game.world.sort();
-
-                game.create_otherPlayers();
+            function changeLevelCB(data) {
+                game.addMainPlayer(data);
+                game.create_OtherPlayers();
             });
     },
 
-    init_otherPlayers: function () {
-        game.create_otherPlayers();
-        server.listen_events();
-    },
 
-    create_otherPlayers: function () {
-
+    create_OtherPlayers: function (){
         $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true', function messageReceived(personajes) {
             while (personajes.length) {
-
                 var personaje = personajes.pop();
-                if (personaje.id != game.mainPlayer.id) {
-                    if (personaje.conectado === true) {
-                        game.saveOnlineOtherPlayer(personaje);
-                        me.game.world.addChild(game.players[personaje.id], 9);
-                    }
-                    else {
-                        game.saveOfflineOtherPlayer(personaje);
-                    }
-                }
-            }
-        });
 
-    },
-
-    get_otherPlayers: function (pjid) {
-
-        $.get('/api/personaje/' + pjid, function messageReceived(personaje) {
-            if (personaje) {
-
-                if (personaje.conectado === true) {
-                    game.saveOnlineOtherPlayer(personaje);
-                    me.game.world.addChild(game.players[personaje.id], 9);
-                }
-                else {
-                    game.saveOfflineOtherPlayer(personaje);
+                if (personaje.duenio.id != game.userId) {
+                    game.addOnlineOtherPlayer(personaje);
                 }
             }
         });
     },
 
-    saveMainPlayer: function (data) {
+    addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
             Number(data.y), {
                 width: 28,
                 height: 28,
                 data: data
             });
-        game.players[data.id] = game.mainPlayer;
+        me.game.world.addChild(game.mainPlayer, 9);
+        me.game.world.sort();
     },
 
-    saveOnlineOtherPlayer: function (data) {
+    addOnlineOtherPlayer: function (data) {
         game.players[data.id] = me.pool.pull('otherPlayer',
             Number(data.x),
             Number(data.y),
@@ -169,20 +129,17 @@ var game = {
                 data: data
             }
         );
-    },
-    saveOfflineOtherPlayer: function (data) {
-        game.playersOffline[data.id] = data;
+        me.game.world.addChild(game.players[data.id], 9);
     },
 
-    removeOtherPlayer: function (id) {
-        if (game.players[id]) {
-            console.log('Removing player: ', id);
+    remove_AllPlayers: function () {
+        game.removeMainPlayer();
+        game.removeEveryOtherPlayer();
+    },
 
-            game.playersOffline[id] = game.players[id].data;
-
-            me.game.world.removeChild(game.players[id]);
-            delete game.players[id];
-        }
+    removeMainPlayer: function(){
+        me.game.world.removeChild(game.mainPlayer);
+        game.mainPlayer = {};
     },
 
     removeEveryOtherPlayer: function(){
@@ -190,32 +147,13 @@ var game = {
             game.removeOtherPlayer(game.player.pop().id);
         }
         game.players = {};
-        game.playersOffline = {};
     },
 
-    removeOfflineOtherPlayer: function (id) {
-        console.log('Removing player: ', id);
-        var player = game.playersOffline[id];
-        delete game.playersOffline[id];
-    },
-
-
-    create_otherPlayer: function (id) {
-        console.log('Adding player: ', id);
-
-        if(game.players[id]){
-            return;
-        }
-
-
-        if (game.playersOffline[id]) {
-            game.saveOnlineOtherPlayer(game.playersOffline[id]);
-            game.removeOfflineOtherPlayer(id);
-
-            me.game.world.addChild(game.players[id], 9);
-        }
-        else {
-            this.get_otherPlayers(id);
+    removeOtherPlayer: function (id) {
+        if (game.players[id]) {
+            console.log('Removing player: ', id);
+            me.game.world.removeChild(game.players[id]);
+            delete game.players[id];
         }
     }
 

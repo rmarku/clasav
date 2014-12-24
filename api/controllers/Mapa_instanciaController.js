@@ -8,22 +8,21 @@
 module.exports = {
     join: function (req, res) {
 
-
         var personajeId = req.param('personajeId');
 
-        Personaje.findOne(personajeId).exec(function (err, personaje) {
+        Personaje.update(personajeId,{conectado:true}).exec(function afterUpdate(){
 
-            Personaje.update(personajeId,{conectado:true}).exec(function afterUpdate(){
+            Personaje.findOne(personajeId).populateAll().exec(function (err, personaje) {
 
                 sails.log.warn("El personaje *" + personaje.nombre + "* (" + personaje.id + ") se ha conectado :smile:.");
                 //Si el Room no existe todavia, se creata automaticamente con el Join.
                 //Se establece como nombre de la Room, el id del Mapa instancia, para que sean unicos y cada Usuario sepa a donde mandar sus Updates
-                var roomName = personaje.mapa_instancia;
+                var roomName = personaje.mapa_instancia.id;
                 sails.sockets.join(req.socket,roomName);
-
                 //Se enviadtodo el personaje para que se actualicen segun cambios que hayan podido suceder en modo Offline
-                console.log("OtherPlayer Join. PlayerId: ",personajeId," to Mapa_instanciaId",personaje.mapa_instancia);
-                sails.sockets.broadcast(roomName, 'otherPlayer_join',personajeId,req.socket);
+                console.log("OtherPlayer Join. PlayerId: ",personajeId," to Mapa_instanciaId: ",personaje.mapa_instancia.id);
+
+                sails.sockets.broadcast(roomName,'otherPlayer_join',personaje,req.socket);
                 return res.send(roomName);
             });
         });
@@ -32,7 +31,6 @@ module.exports = {
     },
 
     leave: function (req,res) {
-        //Reveer esta funcion, el broadcaste debe ser con la info del personaje no del user
         var roomName = req.param('mapa_instanciaId');
         var personajeId = req.param('personajeId');
 
@@ -101,27 +99,33 @@ module.exports = {
                         }
                     ).exec(function afterwards(err,updated){
 
-                        //Una vez que se actualizo la base de datos
-                        //Me agrego al Room Nuevo para que los demas obtengan mis actualizaciones
-                        sails.sockets.join(req.socket, mapa_instancia.id);
-                        console.log("OtherPlayer Join on LevelChange. PlayerId: ",personajeId," to Mapa_instanciaId",mapa_instancia.id);
-                        //Hago broadcast a todos los que esten en la Room del Mapa_instancia que acabo de ingresar
-                        sails.sockets.broadcast(mapa_instancia.id, 'otherPlayer_join', personajeId, req.socket);
+                            //Una vez que se actualizo la base de datos
+                            //Me agrego al Room Nuevo para que los demas obtengan mis actualizaciones
+                            sails.sockets.join(req.socket, mapa_instancia.id);
+                            console.log("OtherPlayer Join on LevelChange. PlayerId: ",personajeId," to Mapa_instanciaId: ",mapa_instancia.id);
 
-                        console.log("se encontro este id de mapa_instancia:",mapa_instancia.id);
-                        //Retorno el mapa_instancia que acabod e ingresar para agregar OtherPlayer que esten en ese mapa
-                        return res.json(mapa_instancia);
+                            Personaje.findOne(personajeId).populateAll().exec(function (err, personaje) {
+                                if(personaje){
+                                    Mapa_instancia.findOne({mapa_generico:personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
+                                        if(populated_mapa_instancia){
+                                            personaje.mapa_instancia = populated_mapa_instancia;
+                                            //Hago broadcast a todos los que esten en la Room del Mapa_instancia que acabo de ingresar
+                                            sails.sockets.broadcast(mapa_instancia.id, 'otherPlayer_join', personaje, req.socket);
+
+                                            console.log("se encontro este id de mapa_instancia:",mapa_instancia.id);
+                                            //Retorno el player
+                                            return res.json(personaje);
+                                        }
+                                    });
+                                }
+                                else{
+                                    return res.json(null);
+                                }
+                            });
                     });
                 }
             }
-
         });
-
-
-
-
-
-
     }
 
 };
