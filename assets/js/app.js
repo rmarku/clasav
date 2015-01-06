@@ -16,6 +16,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/misiones', {
         template: JST["assets/templates/gmisiones.html"]
     });
+    $routeProvider.when('/coliseo', {
+        template: JST["assets/templates/coliseo.html"]
+    });
     $routeProvider.when('/game', {
         template: JST["assets/templates/game.html"],
         controller: 'gamePageController'
