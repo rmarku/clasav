@@ -62,6 +62,7 @@ var jsFilesToInject = [
     "/js/juego/server.js",
     "/js/juego/misiones.js", //eliminar cuando este la BD
     "/js/juego/logros.js", //eliminar cuando este la DB
+    "/js/juego/pregunta4.js", //eliminar cuando este la DB
 
 
     // WEB
