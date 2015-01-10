@@ -32,5 +32,30 @@ function listaLogros($scope, $sailsBind) {
 		"tituloLogro" : "Ahorrador: Conseguiste 100 oros",
 		"progresivo" : true,
 		"sprite" : "../images/logros/4.png"
+	}, {
+		"id" : 7,
+		"tituloLogro" : "Guerrero: Gana un duelo en el Coliseo",
+		"progresivo" : true,
+		"sprite" : "../images/logros/6.png"
+	}, {
+		"id" : 8,
+		"tituloLogro" : "Guerrero: Gana 10 duelos en el Coliseo",
+		"progresivo" : true,
+		"sprite" : "../images/logros/6.png"
+	}, {
+		"id" : 9,
+		"tituloLogro" : "Guerrero: Gana 100 duelos en el Coliseo",
+		"progresivo" : true,
+		"sprite" : "../images/logros/6.png"
+	}, {
+		"id" : 10,
+		"tituloLogro" : "Mapa: Completa todas las misiones de Matlandia",
+		"progresivo" : true,
+		"sprite" : "../images/logros/7.png"
+	}, {
+		"id" : 10,
+		"tituloLogro" : "Mapa: Completa todas las misiones de Geogralandia",
+		"progresivo" : true,
+		"sprite" : "../images/logros/7.png"
 	}];
 }]);
