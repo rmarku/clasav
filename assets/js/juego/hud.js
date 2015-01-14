@@ -147,7 +147,6 @@ function personajeInvContr($scope, $sailsBind, $interval) {
 	}];
 }]);
 
-
 /**
  * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
  * @method noPressBtn
@@ -173,11 +172,6 @@ function agregarQuest(){
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
 
-	//$("#msjChat").scrollTop($("#msjChat")[0].scrollHeight);
-	
-	//var objDiv = document.getElementById("divChat");
-	//objDiv.scrollTop = objDiv.scrollHeight;
-
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {
 		if (me.audio.getVolume() !== 0) {
@@ -198,6 +192,7 @@ $(function() {
 		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
 			noPressBtn();
 			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
+			//$.ionSound.play("../data/sfx/switch26.wav");
 			$("#inv").show();
 		} else {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
