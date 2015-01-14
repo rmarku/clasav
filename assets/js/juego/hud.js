@@ -113,10 +113,6 @@ function inventarioContr($scope, $sailsBind) {
 		"acumulable" : true,
 		"sprite" : "../data/sprites/items/nep/102_potaEnergia.png"
 	}];
-
-	/*$http.get("../api/inventario.json").success(function(response) {
-	 $scope.items = response;
-	 });*/
 }]);
 
 
@@ -144,6 +140,20 @@ function personajeInvContr($scope, $sailsBind, $interval) {
 		"nombreItem" : "botas",
 		"parte": "pies",
 		"sprite" : "../data/sprites/items/pies/1.png"
+	}, {
+		"nombreItem" : "Alas Angelicales",
+		"parte": "accesorio1",
+		"sprite" : "../data/sprites/items/acc/1.png"
+	}, {
+		"id" : 16,
+		"nombreItem" : "Lazo",
+		"parte": "accesorio2",
+		"sprite" : "../data/sprites/items/acc/1.png"
+	}, {
+		"id" : 15,
+		"nombreItem" : "Casco del Rey",
+		"parte": "Cabeza",
+		"sprite" : "../data/sprites/items/cabeza/1.png"
 	}];
 }]);
 
