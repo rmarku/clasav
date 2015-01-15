@@ -116,47 +116,6 @@ function inventarioContr($scope, $sailsBind) {
 }]);
 
 
-app.controller("personajeInvContr", ['$scope', "$sailsBind","$interval",
-function personajeInvContr($scope, $sailsBind, $interval) {
-	//    $sailsBind.bind("api/inventario", $scope);
-	
-	$scope.personajeInv = [{
-		"id" : 3,
-		"nombreItem" : "capa dorada",
-		"parte": "capa",
-		"sprite" : "../data/sprites/items/capa/1.png"
-	}, {
-		"id" : 8,
-		"nombreItem" : "espada burocratica",
-		"parte": "arma",
-		"sprite" : "../data/sprites/items/arma/1.png"
-	}, {
-		"id" : 12,
-		"nombreItem" : "anillo magico",
-		"parte": "anillo",
-		"sprite" : "../data/sprites/items/anillo/3.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "botas",
-		"parte": "pies",
-		"sprite" : "../data/sprites/items/pies/1.png"
-	}, {
-		"nombreItem" : "Alas Angelicales",
-		"parte": "accesorio1",
-		"sprite" : "../data/sprites/items/acc/1.png"
-	}, {
-		"id" : 16,
-		"nombreItem" : "Lazo",
-		"parte": "accesorio2",
-		"sprite" : "../data/sprites/items/acc/1.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "Casco del Rey",
-		"parte": "Cabeza",
-		"sprite" : "../data/sprites/items/cabeza/1.png"
-	}];
-}]);
-
 /**
  * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
  * @method noPressBtn
@@ -184,12 +143,12 @@ $(function() {
 
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {
-		if (me.audio.getVolume() !== 0) {
+		if (me.audio.getCurrentTrack() === "snow") {
 			$("#audio").attr("src", "../images/iconos/audio_OFF.png");
-			me.audio.muteAll();
+			me.audio.stopTrack();
 		} else {
 			$("#audio").attr("src", "../images/iconos/audio_on.png");
-			me.audio.unmuteAll();
+			me.audio.playTrack("snow", 0.7);
 		}
 	});
 

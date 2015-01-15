@@ -10,8 +10,8 @@ game.PlayScreen = me.ScreenObject.extend({
         // load a level
         me.levelDirector.loadLevel("Inicio");
         // subscribe to key down event
-        me.audio.playTrack("snow", 0.7);
-        me.audio.muteAll();
+        //me.audio.playTrack("snow", 0.7);
+        //me.audio.muteAll();
 
 
         //me.input.preventDefault();
