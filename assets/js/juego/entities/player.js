@@ -82,10 +82,10 @@ game.Player = me.Entity.extend({
         this.body.update();
         me.collision.check(this);
 
-        if (this.body.vel.length() > this.body.maxVel.x) {
+        if (this.body.vel.length() > (this.body.maxVel.x - this.body.friction.x )) {
             // Now calc actual vel to prevent speeding by going diag..
             this.body.vel.normalize();
-            this.body.vel.scale(this.body.maxVel.x);
+            this.body.vel.scale(this.body.maxVel.x - this.body.friction.x );
         }
 
         if (Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
@@ -141,7 +141,7 @@ game.Player = me.Entity.extend({
 
         // Dibujo el nombre
         context.drawImage(this.canvasNombre,
-            ~~(this.pos.x  - this.canvasNombre.width / 2),
+            ~~(this.pos.x - this.canvasNombre.width / 2),
             ~~(this.pos.y + this.height / 2),
             32 * 4,
             30);
@@ -199,9 +199,8 @@ game.Player = me.Entity.extend({
         canvas.width = width;
         canvas.height = height;
         var ctx = canvas.getContext("2d");
-        var body = document.getElementsByTagName("body")[0];
-        body.appendChild(canvas);
 
+        // Sprites por defecto por si no hay en la BD
         var sprites = [{
             imagen: 'basic.png',
             xoffset: 0,
@@ -258,7 +257,8 @@ game.Player = me.Entity.extend({
         // Dibujo los sprites
         var img;
         sprites.forEach(function (sp) {
-            console.log(sp.zIndex);
+
+
             img = me.loader.getImage(dir + sp.imagen);
             if (img) {
                 // Todo: Sacar numeros magickos

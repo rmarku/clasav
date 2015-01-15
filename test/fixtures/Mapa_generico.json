@@ -1,8 +1,14 @@
 [
     {
-        "nombre": "calabozo siniestro"
+        "nombre": "island",
+        "clase": 1,
+        "posicion_inicial_x":200,
+        "posicion_inicial_y":250
     },
     {
-        "nombre": "cala bozo sin hiestro"
+        "nombre": "islandcasa01",
+        "clase": 1,
+        "posicion_inicial_x":200,
+        "posicion_inicial_y":550
     }
 ]

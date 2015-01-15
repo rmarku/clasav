@@ -13,7 +13,7 @@ module.exports = {
             required: false
         },
 
-        integrantes: {
+        users: {
             collection: 'user',
             via: 'clases',
             required: false
@@ -26,6 +26,11 @@ module.exports = {
         },
         nombre: {
             type: "string"
+        },
+
+        personajes:{
+            collection: "personaje",
+            via: "clases"
         }
     }
 };

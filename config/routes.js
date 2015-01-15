@@ -65,6 +65,10 @@ module.exports.routes = {
     'get /api/mapa_instancia/join':    'Mapa_instanciaController.join',
     'get /api/mapa_instancia/leave':   'Mapa_instanciaController.leave',
 
-    'put  /api/personaje/updateStatus':   'PersonajeController.updateStatus'
+    'put  /api/personaje/updateStatus':   'PersonajeController.updateStatus',
+
+    'post /api/mapa_instancia/change_level':    'Mapa_instanciaController.change_level',
+
+    'get /api/personaje/getPersonaje_masReciente':    'PersonajeController.getPersonaje_masReciente'
 
 };

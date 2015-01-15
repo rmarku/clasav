@@ -25,7 +25,28 @@ module.exports = {
         sails.sockets.broadcast(req.param('mapa_instancia'),'otherPlayer_updateState',req.allParams(),req.socket);
 
         return res.send(200);
+    },
+
+    getPersonaje_masReciente:function (req,res){
+
+        var userId = req.param('duenio');
+        Personaje.findOne({duenio:userId,masRecientementeUtilizado:true}).populateAll().exec(function (err, personaje) {
+            if(personaje){
+                Mapa_instancia.findOne({mapa_generico:personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
+                    if(populated_mapa_instancia){
+                        personaje.mapa_instancia = populated_mapa_instancia;
+                        return res.json(personaje);
+                    }
+                });
+            }
+            else{
+                return res.json(null);
+            }
+        });
+
+
     }
-	
+
+
 };
 

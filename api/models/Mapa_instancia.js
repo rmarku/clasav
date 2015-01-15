@@ -14,10 +14,12 @@ module.exports = {
             required: false
         },
 
+        /*
         personajes: {
-            model: 'personaje',
+            collection: 'personaje',
+            via:'mapa_instancia',
             required: false
-        },
+        },*/
 
         mapa_generico: {
             model: 'mapa_generico',

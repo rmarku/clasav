@@ -51,7 +51,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/martin/Gamification.git"
+    "url": "git@github.com:rmarku/tesis.git"
   },
   "author": "UCC",
   "license": "",

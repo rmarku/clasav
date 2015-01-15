@@ -8,11 +8,8 @@ game.PlayScreen = me.ScreenObject.extend({
      */
     onResetEvent: function () {
         // load a level
-        me.levelDirector.loadLevel("Inicio");
-        // subscribe to key down event
-        //me.audio.playTrack("snow", 0.7);
-        //me.audio.muteAll();
 
+        // subscribe to key down event
 
         //me.input.preventDefault();
         me.input.bindKey(me.input.KEY.LEFT, 'left');
@@ -24,20 +21,20 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.DOWN, 'down');
         me.input.bindKey(me.input.KEY.S, 'down');
 
+
         $.get('/api/user/getUser', function (user) {
             if (typeof user.userId != 'undefined') {
+                game.userId = user.userId;
 
-                $.get('/api/personaje?where={"duenio":"' + user.userId + '","masRecientementeUtilizado":true}', function CB(datos) {
-                    if (datos.length == 1) {
-                        data = datos[0];
-                        game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
-                            Number(data.y), {
-                                width: 28,
-                                height: 28,
-                                data: data
+                $.get('/api/personaje/getPersonaje_masReciente',{duenio: game.userId}, function messageReceived(data) {
+
+                    me.levelDirector.loadLevel(data.mapa_instancia.mapa_generico.nombre);
+                    game.addMainPlayer(data);
+                    game.create_OtherPlayers();
+                    server.listen_events();
+                    server.join_mapa_instancia();
+                    me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                             });
-                        me.game.world.addChild(game.mainPlayer, 9);
-                        game.players[data.id] = game.mainPlayer;         //Se agrega a ala bolsa donde se van update
 
 /*
                       game.NPCs[1] = me.pool.pull('NPCPlayer', Number(36*32),
@@ -61,20 +58,7 @@ game.PlayScreen = me.ScreenObject.extend({
                                 data: data
                             });
 */
-                        me.game.world.sort();
-
-                        //Nos Unimos al Mapa, pasando nuestro personaje a Conectado, y lo hacemos disponible a otros Users
-                        server.join_mapa_instancia();
-                        game.init_otherPlayers();
-
-
-
                     } else {
-                        console.log("No existe el personaje");
-                    }
-                    // start the game
-                });
-            } else {
                 console.log("No existe el usuario");
             }
         });

@@ -47,5 +47,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     $scope.verCuenta = function () {
         $location.path('/cuenta');
     };
+
 }])
 ;
