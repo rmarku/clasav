@@ -5,9 +5,24 @@ game.PlayerEntity = game.Player.extend({
         this.id = settings.data.id;
         // Camara sigue al main player
         me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
-        this.direccion = settings.data.direccion;
+
+        if (settings.data.direccion == 1)
+            this.animationToUseThisFrame = "run-down";
+        if (settings.data.direccion == 2)
+            this.animationToUseThisFrame = "run-up";
+        if (settings.data.direccion == 4)
+            this.animationToUseThisFrame = "run-right";
+        if (settings.data.direccion == 8)
+            this.animationToUseThisFrame = "run-left";
+
+        this.direccion = 0;
 
         this.keys = {left: false, right: false, up: false, down: false};
+        if(game.nextxy.x != 0){
+            this.pos.x = game.nextxy.x;
+            this.pos.y = game.nextxy.y;
+            this.animationToUseThisFrame = game.nextxy.direction;
+        }
     },
 
     update: function (dt) {
@@ -44,8 +59,8 @@ game.PlayerEntity = game.Player.extend({
 
         this._super(game.Player, 'update', [dt]);
 
-    server.update_myPlayer();
-    // Dibujo en el minimapa
-    drawPointsMinimap();
-  }
+        server.update_myPlayer();
+        // Dibujo en el minimapa
+        drawPointsMinimap();
+    }
 });

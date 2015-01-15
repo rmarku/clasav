@@ -11,6 +11,8 @@ var game = {
     items: {},
     sprites: {},
 
+    nextxy: {x: 0, y: 0, direction: 0},
+
     /**
      * initialization
      * @return
@@ -68,15 +70,16 @@ var game = {
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
-        me.pool.register("mainPlayer"   , game.PlayerEntity);
-        me.pool.register("NPCPlayer"    , game.NPCPlayer);
-        me.pool.register("otherPlayer"  , game.OtherPlayer);
+        me.pool.register("mainPlayer", game.PlayerEntity);
+        me.pool.register("NPCPlayer", game.NPCPlayer);
+        me.pool.register("otherPlayer", game.OtherPlayer);
+        me.pool.register("clavLevelEntity", game.clavLevelEntity);
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
     },
 
-    change_level: function(target_mapa_generico){
+    change_level: function (target_mapa_generico) {
         //Guardo data para poder eliminar inmediatamente
         var data = game.mainPlayer.data;
         game.remove_AllPlayers();
@@ -96,8 +99,9 @@ var game = {
     },
 
 
-    create_OtherPlayers: function (){
+    create_OtherPlayers: function () {
         $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true', function messageReceived(personajes) {
+
             while (personajes.length) {
                 var personaje = personajes.pop();
 
@@ -137,13 +141,13 @@ var game = {
         game.removeEveryOtherPlayer();
     },
 
-    removeMainPlayer: function(){
+    removeMainPlayer: function () {
         me.game.world.removeChild(game.mainPlayer);
         game.mainPlayer = {};
     },
 
-    removeEveryOtherPlayer: function(){
-        while(game.players.length){
+    removeEveryOtherPlayer: function () {
+        while (game.players.length) {
             game.removeOtherPlayer(game.player.pop().id);
         }
         game.players = {};
