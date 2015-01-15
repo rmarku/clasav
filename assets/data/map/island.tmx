@@ -204,7 +204,7 @@
   </properties>
  </imagelayer>
  <objectgroup color="#ffb300" name="Spawns">
-  <object id="52" name="islandcasa01" x="192" y="192" width="32" height="32">
+  <object id="52" x="192" y="192" width="32" height="32">
    <properties>
     <property name="direction" value="run-down"/>
     <property name="spawn" value="islandcasa01"/>
