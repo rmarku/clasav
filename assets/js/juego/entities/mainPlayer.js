@@ -18,7 +18,7 @@ game.PlayerEntity = game.Player.extend({
         this.direccion = 0;
 
         this.keys = {left: false, right: false, up: false, down: false};
-        if(game.nextxy.x != 0){
+        if(game.nextxy.x !== 0){
             this.pos.x = game.nextxy.x;
             this.pos.y = game.nextxy.y;
             this.animationToUseThisFrame = game.nextxy.direction;
