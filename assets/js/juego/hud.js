@@ -113,38 +113,6 @@ function inventarioContr($scope, $sailsBind) {
 		"acumulable" : true,
 		"sprite" : "../data/sprites/items/nep/102_potaEnergia.png"
 	}];
-
-	/*$http.get("../api/inventario.json").success(function(response) {
-	 $scope.items = response;
-	 });*/
-}]);
-
-
-app.controller("personajeInvContr", ['$scope', "$sailsBind","$interval",
-function personajeInvContr($scope, $sailsBind, $interval) {
-	//    $sailsBind.bind("api/inventario", $scope);
-	
-	$scope.personajeInv = [{
-		"id" : 3,
-		"nombreItem" : "capa dorada",
-		"parte": "capa",
-		"sprite" : "../data/sprites/items/capa/1.png"
-	}, {
-		"id" : 8,
-		"nombreItem" : "espada burocratica",
-		"parte": "arma",
-		"sprite" : "../data/sprites/items/arma/1.png"
-	}, {
-		"id" : 12,
-		"nombreItem" : "anillo magico",
-		"parte": "anillo",
-		"sprite" : "../data/sprites/items/anillo/3.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "botas",
-		"parte": "pies",
-		"sprite" : "../data/sprites/items/pies/1.png"
-	}];
 }]);
 
 
@@ -166,29 +134,32 @@ function noPressBtn() {
 	$("#per").hide();
 }
 
+function agregarQuest(){
+	//Se deberia poner un atributo de la lista de misiones del personaje como "quest tomada =1", que sea 0 si esta tomada...y 2 si esta terminada	
+}
+
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
 
-	//$("#msjChat").scrollTop($("#msjChat")[0].scrollHeight);
-	
-	//var objDiv = document.getElementById("divChat");
-	//objDiv.scrollTop = objDiv.scrollHeight;
-
-/*	//Enviar Mensaje al Chat al presionar Enter
-	$("#msjChat").keyup(function(event) {
-		if (event.keyCode == 13) {
-			$("#btn_enviar").click();
-		}
-	});*/
-
 	//Habilitar o Deshabilitar audio
 	$("#audio").click(function() {
-		if (me.audio.getVolume() !== 0) {
+		if (me.audio.getCurrentTrack() === "snow") {
 			$("#audio").attr("src", "../images/iconos/audio_OFF.png");
-			me.audio.muteAll();
+			me.audio.stopTrack();
 		} else {
 			$("#audio").attr("src", "../images/iconos/audio_on.png");
-			me.audio.unmuteAll();
+			me.audio.playTrack("snow", 0.7);
+		}
+	});
+	
+	$("#sfx").click(function() {
+		if ( $("#sfx").attr('src')  === "../images/iconos/sfx_on.png") {
+			$("#sfx").attr("src", "../images/iconos/sfx_OFF.png");
+			//me.audio.unload("switch26");
+			me.audio.mute("switch26");
+		} else {
+			$("#sfx").attr("src", "../images/iconos/sfx_on.png");
+			me.audio.unmute("switch26");
 		}
 	});
 
@@ -197,10 +168,10 @@ $(function() {
 
 	//Boton para ver el inventario de items
 	$("#btnInve").click(function() {
-
 		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
 			noPressBtn();
 			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
+			me.audio.play("switch26", false);
 			$("#inv").show();
 		} else {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
@@ -213,6 +184,7 @@ $(function() {
 		if ($("#btnMisi").attr("src") != "../images/iconos/btn_misionOVER.png") {
 			noPressBtn();
 			$("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
+			me.audio.play("switch26", false);
 			$("#mis").show();
 		} else {
 			$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
@@ -225,6 +197,7 @@ $(function() {
 		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
 			noPressBtn();
 			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
+			me.audio.play("switch26", false);
 			$("#per").show();
 		} else {
 			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
@@ -237,6 +210,7 @@ $(function() {
 		if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
 			noPressBtn();
 			$("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
+			me.audio.play("switch26", false);
 			$("#log").show();
 		} else {
 			$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
@@ -249,11 +223,23 @@ $(function() {
 		if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
 			noPressBtn();
 			$("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
+			me.audio.play("switch26", false);
 			$("#tal").show();
 		} else {
 			$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
 			$("#tal").hide();
 		}
 	});
+	
+	//Boton para cerrar Ventana de Quest
+	$("#cerrar").click(function() {
+		$("#quest").hide();
+	});
+	
+	//Boton Aceptar para agregar la Quest al panel de misiones
+	$("#aceptar").click(function() {
+		$("#quest").hide();
+		agregarQuest();
+	});	
 
 });

@@ -43,7 +43,6 @@ var jsFilesToInject = [
     "/lib/melonJS-2.0.2.js",
     "/lib/plugins/debug/debugPanel.js",
     "/lib/plugins/debug/particleDebugPanel.js",
-    "/js/dependencies/ng-scrollbar/dist/ng-scrollbar.js",
     "/lib/plugins/astar.js",
 
     //"/js/dependencies/melonJS/melonJS.js",
@@ -62,8 +61,9 @@ var jsFilesToInject = [
     "/js/juego/play.js",
     "/js/juego/chat.js",
     "/js/juego/server.js",
-    "/js/juego/misiones.js", //eliminar cuando este la BD
-    "/js/juego/logros.js", //eliminar cuando este la DB
+    "/js/juego/misiones.js", //todo: eliminar cuando este la BD
+    "/js/juego/logros.js", //todo: eliminar cuando este la DB
+    "/js/juego/pregunta4.js", //todo: eliminar cuando este la DB
 
 
     // WEB

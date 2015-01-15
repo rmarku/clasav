@@ -136,9 +136,9 @@
 	background: #F5ECCE;
 	border: solid #FE9A2E;
 	border-radius: 15px;
-	overflow-y: scroll;
 	text-align: left;
-	padding-left: 10px
+	padding-left: 10px;
+	overflow-y: auto;
 }
 
 #pj {
@@ -157,46 +157,10 @@
 	height: 48px;
 }
 
-#mycustomscroll {
-/* Typical fixed height and fixed width example */
-width: 300px;
-height: 250px;
-overflow: auto;
-/* IE overflow fix, position must be relative or absolute*/
-position: relative;
-background-color: pink;
-margin: 0.3em auto;
-padding: 15px;
-}
-
-.scrollgeneric {
-line-height: 1px;
-font-size: 1px;
-position: absolute;
-top: 0; left: 0;
-}
-
-.vscrollerbase {
-width: 10px;
-background-color: #FFD28C;
-}
-.vscrollerbar {
-width: 10px;
-background-color: #FFAC2F;
-}
-.hscrollerbase {
-height: 10px;
-background-color: #FFD28C;
-}
-.hscrollerbar {
-height: 10px;
-background-color: #FFAC2F;
-}
-
-.scrollerjogbox {
-width: 10px;
-height: 10px;
-top: auto; left: auto;
-bottom: 0px; right: 0px;
-background-color: gray;
+divNS {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; 
 }

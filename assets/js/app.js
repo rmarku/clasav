@@ -1,5 +1,5 @@
 //creamos nuestro modulo llamado app
-var app = angular.module('juegoapl', ['ngSailsBind', 'ngRoute', 'toastr', 'ngScrollbar']);
+var app = angular.module('juegoapl', ['ngSailsBind', 'ngRoute', 'toastr']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
@@ -15,6 +15,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
     $routeProvider.when('/misiones', {
         template: JST["assets/templates/gmisiones.html"]
+    });
+    $routeProvider.when('/coliseo', {
+        template: JST["assets/templates/coliseo.html"]
     });
     $routeProvider.when('/game', {
         template: JST["assets/templates/game.html"],

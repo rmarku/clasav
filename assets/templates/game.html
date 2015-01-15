@@ -3,7 +3,7 @@
 		<div class="col-md-10" align="center">
 			<div id="dcanvas" style="width: 800px; height: 480px; position: relative" align="left">
 
-				<!--HUD SUPERIOR- ->
+				<!--HUD SUPERIOR-->
 				<div id="hudSuperior" class="capaSup">
 				<img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
 				<div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
@@ -20,7 +20,7 @@
 				<b>Experiencia</b>
 				</div>
 				</div>
-				</div><!-- -->
+				</div>
 
 				<!--HUD INFERIOR-->
 				<div id="jsapp" class="capaInf" style="width: 800px; height: 480px; position: relative">
@@ -32,7 +32,8 @@
 						<img id="btnPers" src="images/iconos/btn_personaje.png" style="margin-left: -4px;"/>
 					</div>
 					<img class="capaSup" id="audio" src="images/iconos/audio_OFF.png" style="position: absolute; bottom: 4px; right: 4px"/>
-
+					<img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" style="position: absolute; bottom: 4px; right: 34px"/>
+					
 					<!--INVENTARIO-->
 					<div id="inv" class="div-panel" ng-controller="inventarioContr" style="background: url('images/iconos/inventario2.png')">
 						<p class="capaSup titulo-botonera">
@@ -43,24 +44,52 @@
 							<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; margin: 0px -1px 0px -3px; border: 0px 0px 0px 0px">
 								<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
 								<span ng-class="{hidden: x.acumulable==false}" style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
-								<!--p style="position: absolute">{{x.cant | filter: { acumulable: true }}}</p-->
 							</div>
 						</div>
 					</div>
 
 					<!--MISIONES-->
-					<div id="mis" class="div-panel" style="background: url('images/iconos/misiones2.png')">
+					<div id="mis" ng-controller="misionesGuia" class="div-panel" style="background: url('images/iconos/misiones2.png')">
 						<p class="capaSup titulo-botonera">
 							Misiones
 						</p>
+						
+						<div id="misiones" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px">
+							<table>
+								<tbody>
+									<tr ng-repeat="x in misiones">
+										<td> <img src="images/quest/inventario.png"/></td>
+										<td> {{x.tituloMision}} </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
-
+					
+					<!--Ventana de Misiones-->
+					<div class="capaSup" ng-controller="misionesGuia" id="quest" style="width: 523px; height: 304px; position: absolute; left: 138px; top: 88px; background: url('images/quest/ventana.png')">
+						<p class="capaSup titulo-botonera" style="margin-left: 80px" ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}">
+							{{ x.tituloMision }}
+						</p>
+						<span ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}" style="position: absolute; margin: 123px 0px 0px 36px">
+							{{ x.inicipioNPC }}
+						</span>
+						<div ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}" style="position: absolute;width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: auto">
+							 {{ x.textoInicial }}
+						</div>
+						<img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/>
+						<img id="aceptar" style="position: absolute; bottom: 20px; right: 40px" src="images/quest/btn.png"/>
+						<span class="titulo-botonera" style="position: absolute; bottom: 10px; right: 34px">
+							Aceptar
+						</span>
+					</div>
+					
 					<!--LOGROS-->
 					<div id="log" class="div-panel" ng-controller="listaLogros" style="background: url('images/iconos/logros2.png')">
 						<p class="capaSup titulo-botonera">
 							Logros
 						</p>
-						<div id="items" class="scrollme" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px" ng-scrollbar>
+						<div id="items" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px">
 							<table>
 								<tbody>
 									<tr ng-repeat="x in logros">
@@ -80,12 +109,14 @@
 					</div>
 
 					<!--PERSONAJE-->
-					<div id="per" class="div-panel" ng-controller="personajeInvContr" style="background: url('images/iconos/personaje2.png')">
+					<div id="per" class="div-panel" style="background: url('images/iconos/personaje2.png')">
 						<p class="capaSup titulo-botonera">
 							Personaje
 						</p>
 						<div align="left" style="width: 49px; position: absolute; margin-top: 42px; margin-left: 12px">
-							<div id="itemCabeza" class="itemP"></div>
+							<div id="itemCabeza" class="itemP">
+								<img src="../data/sprites/items/cabeza/1.png">
+							</div>
 							<div id="itemPechera" class="itemP">
 								<img src="../data/sprites/items/pechera/1.png">
 							</div>
@@ -98,13 +129,19 @@
 							<div id="itemMano" class="itemP"></div>
 
 						</div>
+						
 						<!--CANVAS PERSONAJE-->
 						<!--canvas id="pj" width="32" height="48" style="position: absolute"></canvas>
 						<div id="imagenes" style="position: absolute"></div-->
 						<!--FIN CANVAS PERSONAJE-->
+						
 						<div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
-							<div id="itemEspec1" class="itemP"></div>
-							<div id="itemEspec2" class="itemP"></div>
+							<div id="itemEspec1" class="itemP">
+								<img src="../data/sprites/items/acc/1.png">
+							</div>
+							<div id="itemEspec2" class="itemP">
+								<img src="../data/sprites/items/acc/2.png">
+							</div>
 							<div id="itemCapa" class="itemP">
 								<img src="../data/sprites/items/capa/1.png">
 							</div>
@@ -124,11 +161,8 @@
 			</div>
 
 			<!--CHAT-->
-			<!--Se deberian agregar 2 funciones:-->
-			<!--Que el nick sea  el user.nombre-->
-			<!--Scroll abajo del todo-->
 			<div ng-controller="ChatController" style="width: 800px">
-				<div class="divChat scrollme" id="divChat" ng-scrollbar>
+				<div class="divChat" id="divChat">
 					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}}
 						<br>
 					</span>
@@ -143,17 +177,24 @@
 
 		</div>
 
-		<!--MAPA-->
+		
 		<div class="col-md-2" align="left">
+			<!--MAPA-->
 			<div style="width: 176px; height: 176px">
 				<img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
-				<img id="btnMas" class="capaSup" style="position: absolute;float: right;" src="images/iconos/btnMas.png">
-				<img id="btnMenos" class="capaSup" style="position: absolute;float: right;bottom: 0px;right: 34px" src="images/iconos/btnMenos.png">
-
 				<div id=divMinimapa class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
 					<canvas id="canvasMinimap" width="156" height="156"></canvas>
 				</div>
 
+			</div>
+			
+			<!--ventana de amigos-->
+			<div class="titulo-botonera" style="background-color: #FBF8EF; border: 2px solid #FF8000; margin: 30px 0px; height: 277px;">
+				<div style="background-color: #FF8000"> <strong> Lista de Amigos </strong> </div>
+				Conectados
+				<div style="overflow-y: auto;"> </div>
+				Desconectados
+				<div style="overflow-y: auto;"> </div>
 			</div>
 		</div>
 	</div>

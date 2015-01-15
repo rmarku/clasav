@@ -1,23 +1,57 @@
 [
-    {
-        "imagen": "pants.png",
-        "icono": "items/pantalon/1.png",
-        "xoffset": 0,
-        "yoffset": 0,
-        "zIndex": 20
-    },
-    {
-        "imagen": "shirt.png",
-        "icono": "items/pechera/1.png",
-        "xoffset": 0,
-        "yoffset": 0,
-        "zIndex": 30
-    },
-    {
-        "imagen": "foot.png",
-        "icono": "items/pies/3.png",
-        "xoffset": 0,
-        "yoffset": 0,
-        "zIndex": 10
-    }
+	{
+		"imagen": "pants.png",
+		"icono": "items/pantalon/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 20
+	}, {
+		"imagen": "shirt.png",
+		"icono": "items/pechera/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 30
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/pies/3.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/capa/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/arma/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "",
+		"icono": "items/anillo/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/acc/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/acc/2.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/cabeza/1.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}
 ]

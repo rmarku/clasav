@@ -10,8 +10,6 @@ game.PlayScreen = me.ScreenObject.extend({
         // load a level
 
         // subscribe to key down event
-        me.audio.playTrack("snow", 0.7);
-        me.audio.muteAll();
 
         //me.input.preventDefault();
         me.input.bindKey(me.input.KEY.LEFT, 'left');
@@ -25,7 +23,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 
         $.get('/api/user/getUser', function (user) {
-            if (typeof user.userId!= 'undefined') {
+            if (typeof user.userId != 'undefined') {
                 game.userId = user.userId;
 
                 $.get('/api/personaje/getPersonaje_masReciente',{duenio: game.userId}, function messageReceived(data) {
@@ -36,31 +34,31 @@ game.PlayScreen = me.ScreenObject.extend({
                     server.listen_events();
                     server.join_mapa_instancia();
                     me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
-                });
+                            });
 
 /*
-              game.NPCs[1] = me.pool.pull('NPCPlayer', Number(36*32),
-                Number(12*32), {
-                  width: 28,
-                  height: 28,
-                  data: data
-                });
-              me.game.world.addChild(game.NPCs[1], 9);
-                game.NPCs[2] = me.pool.pull('NPCPlayer', Number(35*32),
-                    Number(21*32), {
-                        width: 28,
-                        height: 28,
-                        data: data
-                    });
-                me.game.world.addChild(game.NPCs[2], 9);
-              game.players[1] = me.pool.pull('otherPlayer', Number(8*32),
-                    Number(15*32), {
-                        width: 28,
-                        height: 28,
-                        data: data
-                    });
+                      game.NPCs[1] = me.pool.pull('NPCPlayer', Number(36*32),
+                        Number(12*32), {
+                          width: 28,
+                          height: 28,
+                          data: data
+                        });
+                      me.game.world.addChild(game.NPCs[1], 9);
+                        game.NPCs[2] = me.pool.pull('NPCPlayer', Number(35*32),
+                            Number(21*32), {
+                                width: 28,
+                                height: 28,
+                                data: data
+                            });
+                        me.game.world.addChild(game.NPCs[2], 9);
+                      game.players[1] = me.pool.pull('otherPlayer', Number(8*32),
+                            Number(15*32), {
+                                width: 28,
+                                height: 28,
+                                data: data
+                            });
 */
-            } else {
+                    } else {
                 console.log("No existe el usuario");
             }
         });
