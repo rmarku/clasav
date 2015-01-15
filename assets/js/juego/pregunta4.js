@@ -13,7 +13,7 @@ function preguntaColiseo($scope, $sailsBind) {
 	}, {
 		"id" : 1,
 		"materia" : "Historia",
-		"pregunta" : "En que a&ntilde;o fue la revolución francesa?",
+		"pregunta" : "En que a&ntilde;o fue la revoluci&oatilde;n francesa?",
 		"correcta" : "1789",
 		"opcionA" : "1790",
 		"opcionB" : "1879",
