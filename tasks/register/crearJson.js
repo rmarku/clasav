@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         var tmxMaps = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/**/*.tmx']);
         var tileImages = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/**/*.png']);
         var music = grunt.file.expand({filter: 'isFile'}, ['assets/data/music/**/*.ogg']);
-        // var sfx = grunt.file.expand({filter: 'isFile'}, ['assets/data/sfx/**/*.ogg', 'assets/data/sfx/**/*.mp3']);
+        var sfx = grunt.file.expand({filter: 'isFile'}, ['assets/data/sfx/**/*.ogg', 'assets/data/sfx/**/*.mp3']);
         // var sprites = grunt.file.expand({filter: 'isFile'}, ['assets/data/sprites/characters/**/*.png']);
         var sprites = grunt.file.expand({filter: 'isFile'},
             [
@@ -47,6 +47,14 @@ module.exports = function (grunt) {
             data['name'] = baseName(mu);
             data['type'] = 'audio';
             data['src'] = mu.replace('assets/', '').replace(baseName(mu) + '.ogg', '');
+            Resources.push(data);
+        });
+        
+        sfx.forEach(function (sf) {
+            var data = {};
+            data['name'] = baseName(sf);
+            data['type'] = 'audio';
+            data['src'] = sf.replace('assets/', '').replace(baseName(sf) + '.ogg', '');
             Resources.push(data);
         });
 

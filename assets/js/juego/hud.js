@@ -151,17 +151,27 @@ $(function() {
 			me.audio.playTrack("snow", 0.7);
 		}
 	});
+	
+	$("#sfx").click(function() {
+		if ( $("#sfx").attr('src')  === "../images/iconos/sfx_on.png") {
+			$("#sfx").attr("src", "../images/iconos/sfx_OFF.png");
+			//me.audio.unload("switch26");
+			me.audio.mute("switch26");
+		} else {
+			$("#sfx").attr("src", "../images/iconos/sfx_on.png");
+			me.audio.unmute("switch26");
+		}
+	});
 
 	/* 	BOTONERA DEL JUEGO
 	*/
 
 	//Boton para ver el inventario de items
 	$("#btnInve").click(function() {
-
 		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
 			noPressBtn();
 			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
-			//$.ionSound.play("../data/sfx/switch26.wav");
+			me.audio.play("switch26", false);
 			$("#inv").show();
 		} else {
 			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
@@ -174,6 +184,7 @@ $(function() {
 		if ($("#btnMisi").attr("src") != "../images/iconos/btn_misionOVER.png") {
 			noPressBtn();
 			$("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
+			me.audio.play("switch26", false);
 			$("#mis").show();
 		} else {
 			$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
@@ -186,6 +197,7 @@ $(function() {
 		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
 			noPressBtn();
 			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
+			me.audio.play("switch26", false);
 			$("#per").show();
 		} else {
 			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
@@ -198,6 +210,7 @@ $(function() {
 		if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
 			noPressBtn();
 			$("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
+			me.audio.play("switch26", false);
 			$("#log").show();
 		} else {
 			$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
@@ -210,6 +223,7 @@ $(function() {
 		if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
 			noPressBtn();
 			$("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
+			me.audio.play("switch26", false);
 			$("#tal").show();
 		} else {
 			$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");

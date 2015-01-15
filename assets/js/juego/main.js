@@ -30,7 +30,7 @@ var game = {
         me.plugin.register(aStarPlugin, "astar");
 
         // Initialize the audio.
-        me.audio.init("mp3,ogg");
+        me.audio.init("ogg");
 
         me.sys.pauseOnBlur = false;
 
