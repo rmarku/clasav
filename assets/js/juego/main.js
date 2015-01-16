@@ -21,6 +21,10 @@ var game = {
      */
     onload: function () {
         me.sys.fps = 30;
+        me.sys.pauseOnBlur = false;
+        me.sys.resumeOnFocus = false;
+        me.sys.stopOnAudioError = false;
+
         if (!me.video.init('jsapp', me.video.CANVAS, 800, 480)) {
             alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
             return;
@@ -32,9 +36,8 @@ var game = {
         me.plugin.register(aStarPlugin, "astar");
 
         // Initialize the audio.
-        me.audio.init("ogg");
+        me.audio.init("ogg,mp3,wav");
 
-        me.sys.pauseOnBlur = false;
 
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
