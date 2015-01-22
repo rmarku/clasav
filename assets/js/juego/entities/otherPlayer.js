@@ -61,16 +61,16 @@ game.OtherPlayer = game.Player.extend({
     },
 
     draw: function (renderer) {
-        var context = renderer.getContext();
+        //var context = renderer.getContext();
         this._super(game.Player, 'draw', [renderer]);
 
         for (var i = 0; i < this.myPath.length; i++) {
-            context.fillStyle = 'white';
-            context.fillRect(this.myPath[i].pos.x + 16 - 5, this.myPath[i].pos.y + 16 - 5, 10, 10);
-            context.fillStyle = 'red';
-            context.fillRect(this.myPath[i].pos.x + 16, this.myPath[i].pos.y + 16, 1, 1);
+            renderer.fillStyle = 'white';
+            renderer.fillRect(this.myPath[i].pos.x + 16 - 5, this.myPath[i].pos.y + 16 - 5, 10, 10);
+            renderer.fillStyle = 'red';
+            renderer.fillRect(this.myPath[i].pos.x + 16, this.myPath[i].pos.y + 16, 1, 1);
         }
-        context.fillStyle = 'blue';
-        context.fillRect(this.pos.x + 12, this.pos.y + 7, 2, 2);
+        renderer.fillStyle = 'blue';
+        renderer.fillRect(this.pos.x + 12, this.pos.y + 7, 2, 2);
     }
 });

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="60">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="63">
  <tileset firstgid="1" name="building_interior_objects_01" tilewidth="32" tileheight="32">
   <image source="tileset/building_interior_objects_01.png" width="512" height="512"/>
  </tileset>
@@ -43,6 +43,14 @@
     <property name="to" value="island"/>
    </properties>
   </object>
+  <object id="62" name="clavLevelEntity" x="640" y="224" width="64" height="32">
+   <properties>
+    <property name="duration" value="250"/>
+    <property name="fade" value="#000000"/>
+    <property name="spawn" value="islandcasa02"/>
+    <property name="to" value="island"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="collision">
   <object id="41" x="192" y="192" width="288" height="96"/>
@@ -64,7 +72,13 @@
   <object id="57" x="320" y="736" width="32" height="32">
    <properties>
     <property name="direction" value="run-up"/>
-    <property name="spawn" value="island"/>
+    <property name="spawn" value="island1"/>
+   </properties>
+  </object>
+  <object id="60" x="640" y="256" width="64" height="32">
+   <properties>
+    <property name="direction" value="run-down"/>
+    <property name="spawn" value="island2"/>
    </properties>
   </object>
  </objectgroup>

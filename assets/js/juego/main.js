@@ -2,6 +2,30 @@
  *
  * Primeras pruebas
  */
+var app = angular.module('juegoapl', ['ngSailsBind', 'toastr']);
+
+app.config(['toastrConfig', function (toastrConfig) {
+    angular.extend(toastrConfig, {
+        allowHtml: true,
+        closeButton: false,
+        closeHtml: '<button>&times;</button>',
+        containerId: 'toast-container',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        messageClass: 'toast-message',
+        positionClass: 'toast-bottom-right',
+        tapToDismiss: true,
+        timeOut: 7000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
+}]);
+
 
 var game = {
     mainPlayer: {},
@@ -24,8 +48,8 @@ var game = {
         me.sys.pauseOnBlur = false;
         me.sys.resumeOnFocus = false;
         me.sys.stopOnAudioError = false;
-
-        if (!me.video.init('jsapp', me.video.CANVAS, 800, 480)) {
+           //me.video.init("screen",32,32,!0,"auto",!0)
+        if (!me.video.init('game', me.video.AUTO, 640, 330, false, 'auto', true)) {
             alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
             return;
         }

@@ -137,10 +137,10 @@ game.Player = me.Entity.extend({
         // Dibujo el personaje
         this._super(me.Entity, 'draw', [renderer]);
 
-        var context = renderer.getContext();
+        //var context = renderer.getContext();
 
         // Dibujo el nombre
-        context.drawImage(this.canvasNombre,
+        renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
             ~~(this.pos.y + this.height / 2),
             32 * 4,
