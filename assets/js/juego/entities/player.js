@@ -79,14 +79,16 @@ game.Player = me.Entity.extend({
 
     updateAnimation: function (dt) {
 
-        this.body.update();
-        me.collision.check(this);
+
 
         if (this.body.vel.length() > (this.body.maxVel.x - this.body.friction.x )) {
             // Now calc actual vel to prevent speeding by going diag..
             this.body.vel.normalize();
             this.body.vel.scale(this.body.maxVel.x - this.body.friction.x );
         }
+
+        this.body.update();
+        me.collision.check(this);
 
         if (Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
             if (this.body.vel.y > 0.1)
@@ -138,7 +140,6 @@ game.Player = me.Entity.extend({
         this._super(me.Entity, 'draw', [renderer]);
 
         //var context = renderer.getContext();
-
         // Dibujo el nombre
         renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),

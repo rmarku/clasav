@@ -48,11 +48,21 @@ var game = {
         me.sys.pauseOnBlur = false;
         me.sys.resumeOnFocus = false;
         me.sys.stopOnAudioError = false;
-           //me.video.init("screen",32,32,!0,"auto",!0)
-        if (!me.video.init('game', me.video.AUTO, 640, 330, false, 'auto', true)) {
-            alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
-            return;
+        //me.video.init("screen",32,32,!0,"auto",!0)
+
+
+        if (me.device.isMobile) {
+            if (!me.video.init('game', me.video.AUTO, 480, 280, false, 'auto', true)) {
+                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                return;
+            }
+        } else {
+            if (!me.video.init('game', me.video.AUTO, 800, 480, false, 'auto', true)) {
+                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                return;
+            }
         }
+
 
         me.plugin.register(me.debug.Panel, "debug");
 

@@ -18,7 +18,7 @@ game.PlayerEntity = game.Player.extend({
         this.direccion = 0;
 
         this.keys = {left: false, right: false, up: false, down: false};
-        if(game.nextxy.x !== 0){
+        if (game.nextxy.x !== 0) {
             this.pos.x = game.nextxy.x;
             this.pos.y = game.nextxy.y;
             this.animationToUseThisFrame = game.nextxy.direction;
@@ -62,5 +62,19 @@ game.PlayerEntity = game.Player.extend({
         server.update_myPlayer();
         // Dibujo en el minimapa
         drawPointsMinimap();
+    },
+    draw: function (renderer) {
+        //var context = renderer.getContext();
+        this._super(game.Player, 'draw', [renderer]);
+
+
+        //renderer.fillStyle = 'blue';
+        //var x, y;
+        //for (x = 0; x < me.astar.grid.length; x++) {
+        //    for (y = 0; y < me.astar.grid[x].length; y++) {
+        //        if (me.astar.grid[x][y].type == 0)
+        //            renderer.fillRect(x * me.astar.tw, y *me.astar.th, 5, 5);
+        //    }
+        //}
     }
 });

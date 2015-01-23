@@ -53,14 +53,13 @@
   </object>
  </objectgroup>
  <objectgroup name="collision">
-  <object id="41" x="192" y="192" width="288" height="96"/>
-  <object id="42" x="480" y="192" width="160" height="64"/>
-  <object id="43" x="640" y="192" width="64" height="32"/>
-  <object id="44" x="704" y="192" width="64" height="64"/>
-  <object id="45" x="768" y="192" width="32" height="608"/>
-  <object id="46" x="352" y="768" width="416" height="32"/>
-  <object id="47" x="160" y="768" width="160" height="32"/>
-  <object id="48" x="160" y="192" width="32" height="576"/>
+  <object id="41" x="192" y="0" width="288" height="288"/>
+  <object id="42" x="480" y="0" width="160" height="256"/>
+  <object id="44" x="704" y="0" width="64" height="256"/>
+  <object id="45" x="768" y="0" width="192" height="960"/>
+  <object id="46" x="352" y="768" width="416" height="192"/>
+  <object id="47" x="0" y="768" width="320" height="192"/>
+  <object id="48" x="0" y="0" width="192" height="768"/>
   <object id="49" x="192" y="320" width="96" height="160"/>
   <object id="51" x="608" y="512" width="160" height="256"/>
   <object id="52" x="576" y="672" width="32" height="96"/>
