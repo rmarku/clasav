@@ -36,8 +36,6 @@ game.Player = me.Entity.extend({
             "spriteheight": 48
         });
 
-
-        this.isCollidable = true;
         this.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
         this.renderable.addAnimation('run-left', [4, 5, 6, 7], 100);
         this.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
@@ -133,8 +131,6 @@ game.Player = me.Entity.extend({
      * @return
      */
     draw: function (renderer) {
-
-        // Envio datos de posicion y estado al servidor
 
         // Dibujo el personaje
         this._super(me.Entity, 'draw', [renderer]);
