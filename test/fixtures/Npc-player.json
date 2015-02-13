@@ -1,0 +1,16 @@
+[
+    {
+        "nombre": "Kitty",
+        "width": "38",
+        "height": "39",
+        "sprite": "kitty",
+        "animation": "4"
+    },
+    {
+        "nombre": "Anne",
+        "width": "32",
+        "height": "48",
+        "sprite": "anne",
+        "animation": "8"
+    }
+]

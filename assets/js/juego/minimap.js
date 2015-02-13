@@ -11,7 +11,7 @@ function drawPointsMinimap() {
         for (var npc in game.NPCs) {
             if (game.NPCs[npc].pos) {
                 ctxMinimap.beginPath();
-                ctxMinimap.fillStyle = '#00FFEF';
+                ctxMinimap.fillStyle = '#ffff00';
                 ctxMinimap.arc(~~(game.NPCs[npc].pos.x * 156 / 1344), ~~(game.NPCs[npc].pos.y * 156 / 1344), 2, 0, 2 * Math.PI, true);
                 ctxMinimap.fill();
                 ctxMinimap.lineWidth = 1;

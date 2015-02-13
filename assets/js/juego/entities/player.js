@@ -139,9 +139,7 @@ game.Player = me.Entity.extend({
         // Dibujo el nombre
         renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
-            ~~(this.pos.y + this.height / 2),
-            32 * 4,
-            30);
+            ~~(this.pos.y + this.height / 2));
     },
 
     nombre: function () {

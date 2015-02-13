@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="62">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="66">
  <tileset firstgid="1" name="RPGmakerXPMegaTilesetByLmnopguy7" tilewidth="32" tileheight="32">
   <image source="tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png" width="256" height="15300"/>
  </tileset>
@@ -222,6 +222,18 @@
    <properties>
     <property name="direction" value="run-down"/>
     <property name="spawn" value="islandcasa02"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="NPCs">
+  <object id="62" name="NPCPlayer" x="800" y="704" width="32" height="32">
+   <properties>
+    <property name="nombre" value="Kitty"/>
+   </properties>
+  </object>
+  <object id="65" name="NPCPlayer" x="352" y="192" width="32" height="32">
+   <properties>
+    <property name="nombre" value="Anne"/>
    </properties>
   </object>
  </objectgroup>

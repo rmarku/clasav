@@ -20,6 +20,8 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.W, 'up');
         me.input.bindKey(me.input.KEY.DOWN, 'down');
         me.input.bindKey(me.input.KEY.S, 'down');
+        me.input.bindKey(me.input.KEY.SPACE, 'accion');
+        me.input.bindKey(me.input.KEY.M, 'accion');
 
 
         $.get('/api/user/getUser', function (user) {

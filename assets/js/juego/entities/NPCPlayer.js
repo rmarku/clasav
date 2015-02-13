@@ -1,30 +1,37 @@
 game.NPCPlayer = me.Entity.extend({
     init: function (x, y, settings) {
-        this._super(me.Entity, 'init', [x, y, settings]);
-        this.data = settings.data;
+        var self = this;
+        $.get('api/npc-player?nombre=' + settings.nombre,
+            function (data) {
+                self._super(me.Entity, 'init', [x, y, settings]);
+                self.data = data[0];
+                self.alwaysUpdate = false;
+                self.body.gravity = 0;
 
-        this.alwaysUpdate = false;
+                self.nombre();
 
-        this.body.setVelocity(5.2, 5.2);
-        this.body.setFriction(0.5, 0.5);
-        this.body.gravity = 0;
-        this.nombre();
+                // lo visto.
+                self.renderable = new me.AnimationSheet(0, 0, {
+                    "image": me.loader.getImage('npc/' + self.data.sprite + '.png'),
+                    "spritewidth": self.data.width,
+                    "spriteheight": self.data.height
+                });
 
+                self.body.collisionType = me.collision.types.NPC_OBJECT;
 
-        this.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
-        this.renderable.addAnimation('run-left', [4, 5, 6, 7], 100);
-        this.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
-        this.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
+                var anim = [];
+                for (var i = 0; i < self.data.animation; i++)
+                    anim.push(i);
 
-        this.renderable.setCurrentAnimation('run-down');
-        this.animationToUseThisFrame = 'run-down';
-        this.lastAnimationUsed = 'run-down';
+                self.renderable.addAnimation('always', anim, 100);
+                self.renderable.setCurrentAnimation('always');
 
-        this.anchorPoint.set(0.5, 1);
+                self.anchorPoint.set(0.5, 1);
 
-        // Mas grande el shape por si coliciona y precionan tecla, que salte el Quest.
-        this.body.addShape(new me.Ellipse(0, 0, this.body.width * 1.6, this.body.width * 1.6));
-
+                // Mas grande el shape por si coliciona y precionan tecla, que salte el Quest.
+                self.body.addShape(new me.Rect(0, 0, self.data.height, self.data.width));
+                game.NPCs[self.data.id] = self;
+            });
     },
 
     update: function (dt) {
@@ -48,10 +55,8 @@ game.NPCPlayer = me.Entity.extend({
         //var context = renderer.getContext();
         // Dibujo el nombre
         renderer.drawImage(this.canvasNombre,
-            ~~(this.pos.x - this.canvasNombre.width / 2),
-            ~~(this.pos.y + this.height / 2),
-            32 * 4,
-            30);
+            ~~(this.pos.x - this.canvasNombre.width / 2 + this.width / 2),
+            ~~(this.pos.y + this.height + 5));
     },
 
     nombre: function () {
@@ -67,7 +72,7 @@ game.NPCPlayer = me.Entity.extend({
         ctx.lineCap = "round";
         ctx.lineJoin = "round";
         ctx.lineWidth = 3;
-        ctx.fillStyle = '#fff';
+        ctx.fillStyle = '#ff0';
         ctx.strokeStyle = "#000";
         ctx.font = '11px "Short Stack" ';
         ctx.textBaseline = 'top';

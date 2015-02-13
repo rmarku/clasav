@@ -6,6 +6,8 @@ game.PlayerEntity = game.Player.extend({
         // Camara sigue al main player
         me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
 
+        this.hablandoCon = '';
+
         if (settings.data.direccion == 1)
             this.animationToUseThisFrame = "run-down";
         if (settings.data.direccion == 2)
@@ -23,6 +25,24 @@ game.PlayerEntity = game.Player.extend({
             this.pos.y = game.nextxy.y;
             this.animationToUseThisFrame = game.nextxy.direction;
         }
+    },
+
+    onCollision: function (response, other) {
+        if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+            // Choque contra el mundo!
+            return false;
+        }
+        if (other.body.collisionType === me.collision.types.NPC_OBJECT) {
+            // Choque contra el mundo!
+            if (me.input.isKeyPressed('accion') && this.hablandoCon != other.data.nombre) {
+                this.hablandoCon = other.data.nombre;
+                console.log('Al lado de ' + other.data.nombre);
+            }
+            return false;
+        }
+        this.hablandoCon = '';
+        // Make the object solid
+        return true;
     },
 
     update: function (dt) {
