@@ -78,7 +78,7 @@ game.PlayerEntity = game.Player.extend({
         }
 
         this._super(game.Player, 'update', [dt]);
-
+        me.game.world.sort();
         server.update_myPlayer();
         // Dibujo en el minimapa
         drawPointsMinimap();
@@ -87,6 +87,8 @@ game.PlayerEntity = game.Player.extend({
         //var context = renderer.getContext();
         this._super(game.Player, 'draw', [renderer]);
 
+        renderer.fillStyle = 'blue';
+        renderer.fillRect(this.pos.x-1, this.pos.y-1, 2, 2);
 
         //renderer.fillStyle = 'blue';
         //var x, y;

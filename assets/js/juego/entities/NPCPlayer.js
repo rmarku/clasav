@@ -3,13 +3,19 @@ game.NPCPlayer = me.Entity.extend({
         var self = this;
         $.get('api/npc-player?nombre=' + settings.nombre,
             function (data) {
-                self._super(me.Entity, 'init', [x, y, settings]);
                 self.data = data[0];
+                var sett = {
+                    width: self.data.width,
+                    height: self.data.height
+                };
+                console.log(sett);
+                self._super(me.Entity, 'init', [x, y, sett]);
+
                 self.alwaysUpdate = false;
                 self.body.gravity = 0;
 
                 self.nombre();
-
+                self.z = 10;
                 // lo visto.
                 self.renderable = new me.AnimationSheet(0, 0, {
                     "image": me.loader.getImage('npc/' + self.data.sprite + '.png'),
@@ -26,10 +32,11 @@ game.NPCPlayer = me.Entity.extend({
                 self.renderable.addAnimation('always', anim, 100);
                 self.renderable.setCurrentAnimation('always');
 
-                self.anchorPoint.set(0.5, 1);
+
+                self.anchorPoint.set(0.5, 0.5);
 
                 // Mas grande el shape por si coliciona y precionan tecla, que salte el Quest.
-                self.body.addShape(new me.Rect(0, 0, self.data.height, self.data.width));
+                self.body.addShape(new me.Ellipse(0, self.body.width * -0.3, self.body.width * 2, self.body.height * 2));
                 game.NPCs[self.data.id] = self;
             });
     },
@@ -55,8 +62,10 @@ game.NPCPlayer = me.Entity.extend({
         //var context = renderer.getContext();
         // Dibujo el nombre
         renderer.drawImage(this.canvasNombre,
-            ~~(this.pos.x - this.canvasNombre.width / 2 + this.width / 2),
-            ~~(this.pos.y + this.height + 5));
+            ~~(this.pos.x - this.canvasNombre.width / 2),
+            ~~(this.pos.y + 10));
+
+        renderer.fillRect(this.pos.x - 1, this.pos.y - 1, 2, 2);
     },
 
     nombre: function () {

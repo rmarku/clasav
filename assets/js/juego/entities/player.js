@@ -17,6 +17,7 @@ game.Player = me.Entity.extend({
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
+        console.log(settings);
         this.alwaysUpdate = true;
         this.target_pos = new me.Vector2d(x, y);
         this.final_target_pos = new me.Vector2d(x, y);
@@ -78,11 +79,10 @@ game.Player = me.Entity.extend({
     updateAnimation: function (dt) {
 
 
-
         if (this.body.vel.length() > (this.body.maxVel.x - this.body.friction.x )) {
             // Now calc actual vel to prevent speeding by going diag..
             this.body.vel.normalize();
-            this.body.vel.scale(this.body.maxVel.x - this.body.friction.x );
+            this.body.vel.scale(this.body.maxVel.x - this.body.friction.x);
         }
 
         this.body.update();
@@ -139,7 +139,7 @@ game.Player = me.Entity.extend({
         // Dibujo el nombre
         renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
-            ~~(this.pos.y + this.height / 2));
+            ~~(this.pos.y +10));
     },
 
     nombre: function () {
