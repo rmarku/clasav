@@ -120,6 +120,7 @@ var game = {
     },
 
     change_level: function (target_mapa_generico) {
+
         //Guardo data para poder eliminar inmediatamente
         var data = game.mainPlayer.data;
         game.remove_AllPlayers();
@@ -130,7 +131,9 @@ var game = {
             {
                 mapa_generico: target_mapa_generico,
                 mapa_instancia: data.mapa_instancia.id,
-                personajeId: data.id
+                personajeId: data.id,
+                change_level_new_x: game.nextxy.x,
+                change_level_new_y: game.nextxy.y
             },
             function changeLevelCB(data) {
                 game.addMainPlayer(data);
@@ -139,8 +142,10 @@ var game = {
     },
 
 
+
+
     create_OtherPlayers: function () {
-        $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true', function messageReceived(personajes) {
+        $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
 
             while (personajes.length) {
                 var personaje = personajes.pop();

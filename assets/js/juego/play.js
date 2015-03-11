@@ -35,7 +35,7 @@ game.PlayScreen = me.ScreenObject.extend({
                     game.create_OtherPlayers();
                     server.listen_events();
                     server.join_mapa_instancia();
-                    me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
+                    //me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
             } else {
                 console.log("No existe el usuario");

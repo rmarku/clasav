@@ -24,5 +24,6 @@ game.clavLevelEntity = me.LevelEntity.extend({
                 game.nextxy.direction = punto_sp.direction;
             }
         });
+        game.change_level(me.game.currentLevel.name);
     }
 });

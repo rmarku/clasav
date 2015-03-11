@@ -20,7 +20,7 @@ module.exports = {
                 var roomName = personaje.mapa_instancia.id;
                 sails.sockets.join(req.socket,roomName);
                 //Se enviadtodo el personaje para que se actualicen segun cambios que hayan podido suceder en modo Offline
-                console.log("OtherPlayer Join. PlayerId: ",personajeId," to Mapa_instanciaId: ",personaje.mapa_instancia.id);
+                sails.log.warn("OtherPlayer Join. PlayerId: " + personajeId + " to Mapa_instanciaId: " + personaje.mapa_instancia.id);
 
                 sails.sockets.broadcast(roomName,'otherPlayer_join',personaje,req.socket);
                 return res.send(roomName);
@@ -55,6 +55,8 @@ module.exports = {
         var previo_roomName = req.param('mapa_instancia');
         var nuevo_mapa_generico = req.param('mapa_generico');
         var personajeId = req.param('personajeId');
+        var change_level_new_x = req.param('change_level_new_x');
+        var change_level_new_y = req.param('change_level_new_y');
 
         sails.sockets.leave(req.socket, previo_roomName);
         sails.sockets.broadcast(previo_roomName, 'otherPlayer_leave',personajeId,req.socket);
@@ -94,8 +96,8 @@ module.exports = {
                     Personaje.update(personajeId,
                         {
                             mapa_instancia:mapa_instancia.id,
-                            x:mapa_instancia.mapa_generico.posicion_inicial_x,
-                            y:mapa_instancia.mapa_generico.posicion_inicial_y
+                            x:change_level_new_x,
+                            y:change_level_new_y
                         }
                     ).exec(function afterwards(err,updated){
 
