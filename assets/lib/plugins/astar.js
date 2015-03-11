@@ -44,11 +44,10 @@
         WALL: 0
     };
 
-    function GraphNode(x, y, px, py, rect, type) {
+    function GraphNode(x, y, px, py, type) {
         this.data = {};
         this.x = x;
         this.y = y;
-        this.rect = rect;
         this.pos = {
             x: px,
             y: py
@@ -317,22 +316,22 @@
             if (diagonals) {
 
                 // Southwest
-                if (grid[x] && grid[x - 1] && grid[x - 1][y - 1] && grid[x][y - 1].cost!=0 && grid[x - 1][y].cost!=0) {
+                if (grid[x] && grid[x - 1] && grid[x - 1][y - 1] && grid[x][y - 1].cost != 0 && grid[x - 1][y].cost != 0) {
                     ret.push(grid[x - 1][y - 1]);
                 }
 
                 // Southeast
-                if (grid[x] && grid[x + 1] && grid[x + 1][y - 1] && grid[x][y - 1].cost!=0 && grid[x + 1][y].cost!=0) {
+                if (grid[x] && grid[x + 1] && grid[x + 1][y - 1] && grid[x][y - 1].cost != 0 && grid[x + 1][y].cost != 0) {
                     ret.push(grid[x + 1][y - 1]);
                 }
 
                 // Northwest
-                if (grid[x] && grid[x - 1] && grid[x - 1][y + 1] && grid[x][y + 1].cost!=0 && grid[x - 1][y].cost!=0) {
+                if (grid[x] && grid[x - 1] && grid[x - 1][y + 1] && grid[x][y + 1].cost != 0 && grid[x - 1][y].cost != 0) {
                     ret.push(grid[x - 1][y + 1]);
                 }
 
                 // Northeast
-                if (grid[x] && grid[x + 1] && grid[x + 1][y + 1] && grid[x][y + 1].cost!=0 && grid[x + 1][y].cost!=0) {
+                if (grid[x] && grid[x + 1] && grid[x + 1][y + 1] && grid[x][y + 1].cost != 0 && grid[x + 1][y].cost != 0) {
                     ret.push(grid[x + 1][y + 1]);
                 }
 
@@ -345,47 +344,49 @@
     var AStarInstance = function () {
     };
     AStarInstance.prototype.init = function () {
-        if (me.game.collisionMap == null) {
-            return; // nothing to do
-        }
+
         // hook into level data to generate the graph
         // Get the collision layer reference.
 
-        var collisionLayer = me.game.collisionMap
-            , layerData = collisionLayer.layerData
-            , tilesets = collisionLayer.tilesets
-            , tile = null;
-        // Tilesize info
+        var granularity = 1;
+        var cols = me.game.currentLevel.cols * granularity;
+        var rows = me.game.currentLevel.rows * granularity;
         var grid = [];
-        this.tw = collisionLayer.tilewidth;
-        this.th = collisionLayer.tileheight;
-        // create our graph nodes
-        // TODO really should not create new objects if possible
-        // TODO micro optimize if needed
-        // TODO - two tier. If we have larger / complex maps astar suckksss
-        for (var x = 0, xx = layerData.length; x < xx; x += 1) {
+
+        this.tw = me.game.currentLevel.tilewidth / granularity;
+        this.th = me.game.currentLevel.tileheight / granularity;
+
+        var bound = new me.Rect(Infinity, Infinity, -Infinity, -Infinity);
+        var qt = new me.QuadTree(bound, 4, 4);
+        qt.insertContainer(me.game.world);
+
+        var set = {
+            width: this.tw,
+            height: this.th,
+            type: 1
+        };
+        var ent = new me.Entity(0, 0, set);
+        ent.body.addShape(new me.Rect(0, 0, this.tw, this.th));
+
+        var x, y, i;
+        var objects = qt.retrieve(ent);
+
+        for (x = 0; x < rows; x++) {
+            ent.pos.x = this.tw * x;
             grid[x] = [];
-            for (var y = 0, yy = layerData[x].length; y < yy; y += 1) {
-                if (layerData[x][y] == null) {
-                    // null collision tile, assume it's open
-                    grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, new me.Rect(x * this.tw, y * this.th, this.tw, this.th), GraphNodeType.OPEN);
-                    continue;
-                }
-                tile = layerData[x][y];
-                // figure out which tileset this tile is in
-                if (!this.collisionTileset || !this.collisionTileset.contains(tile.tileId)) {
-                    this.collisionTileset = tilesets.getTilesetByGid(tile.tileId);
-                }
-                // TODO - assign weights if needed
+            for (y = 0; y < cols; y++) {
+                ent.pos.y = this.th * y;
+                grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, GraphNodeType.OPEN);
+                for (i = 0; i < objects.length; i++) {
 
-                if (this.collisionTileset.TileProperties[tile.tileId].isSolid) {
-                    grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, tile, GraphNodeType.WALL);
-                } else {
-                    grid[x][y] = new GraphNode(x, y, x * this.tw, y * this.th, tile, GraphNodeType.OPEN);
-                }
+                    if (objects[i].body.collisionType == me.collision.types.WORLD_SHAPE &&
+                        ent.overlaps(objects[i].getBounds()))
+                        grid[x][y].type = GraphNodeType.WALL;
 
+                }
             }
         }
+
         this.grid = grid;
 
         // now we have A* grid arrays, so init astar

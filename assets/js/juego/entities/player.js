@@ -17,6 +17,7 @@ game.Player = me.Entity.extend({
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
+        console.log(settings);
         this.alwaysUpdate = true;
         this.target_pos = new me.Vector2d(x, y);
         this.final_target_pos = new me.Vector2d(x, y);
@@ -36,8 +37,6 @@ game.Player = me.Entity.extend({
             "spriteheight": 48
         });
 
-
-        this.isCollidable = true;
         this.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
         this.renderable.addAnimation('run-left', [4, 5, 6, 7], 100);
         this.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
@@ -79,14 +78,15 @@ game.Player = me.Entity.extend({
 
     updateAnimation: function (dt) {
 
-        this.body.update();
-        me.collision.check(this);
 
         if (this.body.vel.length() > (this.body.maxVel.x - this.body.friction.x )) {
             // Now calc actual vel to prevent speeding by going diag..
             this.body.vel.normalize();
-            this.body.vel.scale(this.body.maxVel.x - this.body.friction.x );
+            this.body.vel.scale(this.body.maxVel.x - this.body.friction.x);
         }
+
+        this.body.update();
+        me.collision.check(this);
 
         if (Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
             if (this.body.vel.y > 0.1)
@@ -132,19 +132,14 @@ game.Player = me.Entity.extend({
      */
     draw: function (renderer) {
 
-        // Envio datos de posicion y estado al servidor
-
         // Dibujo el personaje
         this._super(me.Entity, 'draw', [renderer]);
 
-        var context = renderer.getContext();
-
+        //var context = renderer.getContext();
         // Dibujo el nombre
-        context.drawImage(this.canvasNombre,
+        renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
-            ~~(this.pos.y + this.height / 2),
-            32 * 4,
-            30);
+            ~~(this.pos.y +10));
     },
 
     nombre: function () {

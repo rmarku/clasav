@@ -48,27 +48,34 @@ module.exports.routes = {
      ***************************************************************************/
     //Routes de autentificacion
 
+    '/game': {
+        locals:{
+            layout:false
+        },
+        view: 'game'
+    },
 
-    'get /login':       'AuthController.login',
-    'get /logout':      'AuthController.logout',
-    'get /register':    'AuthController.register',
 
-    'post /auth/local':         'AuthController.callback',
+    'get /login': 'AuthController.login',
+    'get /logout': 'AuthController.logout',
+    'get /register': 'AuthController.register',
+
+    'post /auth/local': 'AuthController.callback',
     'post /auth/local/:action': 'AuthController.callback',
 
-    'get /auth/:provider':          'AuthController.provider',
+    'get /auth/:provider': 'AuthController.provider',
     'get /auth/:provider/callback': 'AuthController.callback',
-    'get /auth/:provider/:action':  'AuthController.callback',
+    'get /auth/:provider/:action': 'AuthController.callback',
 
-    '/api/user/getUser':    'UserController.getUser',
+    '/api/user/getUser': 'UserController.getUser',
 
-    'get /api/mapa_instancia/join':    'Mapa_instanciaController.join',
-    'get /api/mapa_instancia/leave':   'Mapa_instanciaController.leave',
+    'get /api/mapa_instancia/join': 'Mapa_instanciaController.join',
+    'get /api/mapa_instancia/leave': 'Mapa_instanciaController.leave',
 
-    'put  /api/personaje/updateStatus':   'PersonajeController.updateStatus',
+    'put  /api/personaje/updateStatus': 'PersonajeController.updateStatus',
 
-    'post /api/mapa_instancia/change_level':    'Mapa_instanciaController.change_level',
+    'post /api/mapa_instancia/change_level': 'Mapa_instanciaController.change_level',
 
-    'get /api/personaje/getPersonaje_masReciente':    'PersonajeController.getPersonaje_masReciente'
+    'get /api/personaje/getPersonaje_masReciente': 'PersonajeController.getPersonaje_masReciente'
 
 };

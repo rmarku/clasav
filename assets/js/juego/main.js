@@ -2,6 +2,30 @@
  *
  * Primeras pruebas
  */
+var app = angular.module('juegoapl', ['ngSailsBind', 'toastr']);
+
+app.config(['toastrConfig', function (toastrConfig) {
+    angular.extend(toastrConfig, {
+        allowHtml: true,
+        closeButton: false,
+        closeHtml: '<button>&times;</button>',
+        containerId: 'toast-container',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        messageClass: 'toast-message',
+        positionClass: 'toast-bottom-right',
+        tapToDismiss: true,
+        timeOut: 7000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
+}]);
+
 
 var game = {
     mainPlayer: {},
@@ -24,11 +48,21 @@ var game = {
         me.sys.pauseOnBlur = false;
         me.sys.resumeOnFocus = false;
         me.sys.stopOnAudioError = false;
+        //me.video.init("screen",32,32,!0,"auto",!0)
 
-        if (!me.video.init('jsapp', me.video.CANVAS, 800, 480)) {
-            alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
-            return;
+
+        if (me.device.isMobile) {
+            if (!me.video.init('game', me.video.CANVAS, 480, 280, false, 'auto', true)) {
+                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                return;
+            }
+        } else {
+            if (!me.video.init('game', me.video.CANVAS, 800, 480, false, 'auto', true)) {
+                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                return;
+            }
         }
+
 
         me.plugin.register(me.debug.Panel, "debug");
 
@@ -41,6 +75,9 @@ var game = {
 
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
+
+        // Ordenar por posicion en Y del objeto
+        me.game.world.sortOn = "y";
 
         // Cargo los recursos desde la API
         $.getJSON("api/resources.json", function (data) {
@@ -118,11 +155,11 @@ var game = {
     addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
             Number(data.y), {
-                width: 28,
-                height: 28,
+                width: 32,
+                height: 48,
                 data: data
             });
-        me.game.world.addChild(game.mainPlayer, 9);
+        me.game.world.addChild(game.mainPlayer, 10);
         me.game.world.sort();
     },
 
@@ -131,12 +168,12 @@ var game = {
             Number(data.x),
             Number(data.y),
             {
-                width: 28,
-                height: 28,
+                width: 32,
+                height: 48,
                 data: data
             }
         );
-        me.game.world.addChild(game.players[data.id], 9);
+        me.game.world.addChild(game.players[data.id], 10);
     },
 
     remove_AllPlayers: function () {
