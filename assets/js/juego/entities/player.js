@@ -42,9 +42,10 @@ game.Player = me.Entity.extend({
         this.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
         this.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
 
-        this.renderable.setCurrentAnimation('run-down');
-        this.animationToUseThisFrame = 'run-down';
-        this.lastAnimationUsed = 'run-down';
+        this.renderable.setCurrentAnimation(this.data.animation);
+        this.animationToUseThisFrame = this.data.animation;
+        this.lastAnimationUsed = this.data.animation;
+
 
         this.anchorPoint.set(0.5, 1);
 

@@ -133,7 +133,8 @@ var game = {
                 mapa_instancia: data.mapa_instancia.id,
                 personajeId: data.id,
                 change_level_new_x: game.nextxy.x,
-                change_level_new_y: game.nextxy.y
+                change_level_new_y: game.nextxy.y,
+                change_level_new_animation: game.nextxy.direction
             },
             function changeLevelCB(data) {
                 game.addMainPlayer(data);

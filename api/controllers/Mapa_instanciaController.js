@@ -57,6 +57,7 @@ module.exports = {
         var personajeId = req.param('personajeId');
         var change_level_new_x = req.param('change_level_new_x');
         var change_level_new_y = req.param('change_level_new_y');
+        var change_level_new_animation = req.param('change_level_new_animation');
 
         sails.sockets.leave(req.socket, previo_roomName);
         sails.sockets.broadcast(previo_roomName, 'otherPlayer_leave',personajeId,req.socket);
@@ -97,7 +98,8 @@ module.exports = {
                         {
                             mapa_instancia:mapa_instancia.id,
                             x:change_level_new_x,
-                            y:change_level_new_y
+                            y:change_level_new_y,
+                            animation:change_level_new_animation
                         }
                     ).exec(function afterwards(err,updated){
 
