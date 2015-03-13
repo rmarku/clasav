@@ -1,12 +1,12 @@
 [
     {
         "mapa_generico":1,
-        "clase_instancia": 1
+        "clase": 1
     },
 
     {
         "mapa_generico":2,
-        "clase_instancia": 1
+        "clase": 1
     }
 
 ]
