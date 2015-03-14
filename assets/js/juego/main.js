@@ -57,7 +57,7 @@ var game = {
                 return;
             }
         } else {
-            if (!me.video.init('game', me.video.CANVAS, 800, 480, false, 'auto', true)) {
+            if (!me.video.init('game', me.video.AUTO, 800, 480, false, 'auto', true)) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
             }
