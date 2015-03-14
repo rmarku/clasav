@@ -21,7 +21,7 @@ module.exports = {
 
         mapas_instancias: {
             collection: 'mapa_instancia',
-            via: 'clase_instancia',
+            via: 'clase',
             required: false
         },
         nombre: {

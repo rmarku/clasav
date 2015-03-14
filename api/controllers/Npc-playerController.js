@@ -1,7 +1,7 @@
 /**
- * MateriaController
+ * Npc-playerController
  *
- * @description :: Server-side logic for managing materias
+ * @description :: Server-side logic for managing npc-players
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 

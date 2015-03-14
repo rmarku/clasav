@@ -1,14 +1,10 @@
 [
     {
         "nombre": "island",
-        "clase": 1,
-        "posicion_inicial_x":200,
-        "posicion_inicial_y":250
+        "clase": 1
     },
     {
         "nombre": "islandcasa01",
-        "clase": 1,
-        "posicion_inicial_x":200,
-        "posicion_inicial_y":550
+        "clase": 1
     }
 ]

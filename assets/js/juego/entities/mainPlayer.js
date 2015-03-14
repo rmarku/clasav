@@ -6,6 +6,8 @@ game.PlayerEntity = game.Player.extend({
         // Camara sigue al main player
         me.game.viewport.follow(this, me.game.viewport.AXIS.BOTH);
 
+        this.hablandoCon = '';
+
         if (settings.data.direccion == 1)
             this.animationToUseThisFrame = "run-down";
         if (settings.data.direccion == 2)
@@ -18,11 +20,29 @@ game.PlayerEntity = game.Player.extend({
         this.direccion = 0;
 
         this.keys = {left: false, right: false, up: false, down: false};
-        if(game.nextxy.x !== 0){
+        if (game.nextxy.x !== 0) {
             this.pos.x = game.nextxy.x;
             this.pos.y = game.nextxy.y;
             this.animationToUseThisFrame = game.nextxy.direction;
         }
+    },
+
+    onCollision: function (response, other) {
+        if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+            // Choque contra el mundo!
+            return false;
+        }
+        if (other.body.collisionType === me.collision.types.NPC_OBJECT) {
+            // Choque contra el mundo!
+            if (me.input.isKeyPressed('accion') && this.hablandoCon != other.data.nombre) {
+                this.hablandoCon = other.data.nombre;
+                console.log('Al lado de ' + other.data.nombre);
+            }
+            return false;
+        }
+        this.hablandoCon = '';
+        // Make the object solid
+        return true;
     },
 
     update: function (dt) {
@@ -58,9 +78,25 @@ game.PlayerEntity = game.Player.extend({
         }
 
         this._super(game.Player, 'update', [dt]);
-
+        me.game.world.sort();
         server.update_myPlayer();
         // Dibujo en el minimapa
         drawPointsMinimap();
+    },
+    draw: function (renderer) {
+        //var context = renderer.getContext();
+        this._super(game.Player, 'draw', [renderer]);
+
+        renderer.fillStyle = 'blue';
+        renderer.fillRect(this.pos.x-1, this.pos.y-1, 2, 2);
+
+        //renderer.fillStyle = 'blue';
+        //var x, y;
+        //for (x = 0; x < me.astar.grid.length; x++) {
+        //    for (y = 0; y < me.astar.grid[x].length; y++) {
+        //        if (me.astar.grid[x][y].type == 0)
+        //            renderer.fillRect(x * me.astar.tw, y *me.astar.th, 5, 5);
+        //    }
+        //}
     }
 });

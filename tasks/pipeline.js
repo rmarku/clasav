@@ -40,31 +40,8 @@ var jsFilesToInject = [
     "/js/dependencies/angular-route/angular-route.js",
     "/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js",
     "/js/dependencies/angular-toastr/dist/angular-toastr.js",
-    "/lib/melonJS-2.0.2.js",
-    "/lib/plugins/debug/debugPanel.js",
-    "/lib/plugins/debug/particleDebugPanel.js",
-    "/lib/plugins/astar.js",
 
     //"/js/dependencies/melonJS/melonJS.js",
-
-
-    "/js/app.js",
-    // Juego
-    "/js/juego/main.js",
-    "/js/juego/entities/player.js",
-    "/js/juego/entities/mainPlayer.js",
-    "/js/juego/entities/otherPlayer.js",
-    "/js/juego/entities/NPCPlayer.js",
-    "/js/juego/entities/clavLevelEntity.js",
-    "/js/juego/hud.js",
-    "/js/juego/minimap.js",
-    "/js/juego/play.js",
-    "/js/juego/chat.js",
-    "/js/juego/server.js",
-    "/js/juego/misiones.js", //todo: eliminar cuando este la BD
-    "/js/juego/logros.js", //todo: eliminar cuando este la DB
-    "/js/juego/pregunta4.js", //todo: eliminar cuando este la DB
-
 
     // WEB
     "/js/app.js",

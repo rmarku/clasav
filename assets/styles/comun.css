@@ -5,6 +5,10 @@
 	src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
 }
 
+.img-center {
+    margin: 0 auto;
+}
+
 .body-gradient {
 	background-color: #A9E2F3;
 	background-image: url("../images/fondo2.jpg");
@@ -49,7 +53,6 @@
 
 .div-form {
 	padding: 30px;
-	width: 600px;
 	border-radius: 25px;
 	background-image: -moz-linear-gradient(left, #DEDEDE, #FFF5F6);
 	background-image: -ms-linear-gradient(left, #DEDEDE, #FFF5F6);
@@ -232,10 +235,12 @@
 	height: 48px;
 }
 
+
+
 divNS {
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-o-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
 }

@@ -2,6 +2,30 @@
  *
  * Primeras pruebas
  */
+var app = angular.module('juegoapl', ['ngSailsBind', 'toastr']);
+
+app.config(['toastrConfig', function (toastrConfig) {
+    angular.extend(toastrConfig, {
+        allowHtml: true,
+        closeButton: false,
+        closeHtml: '<button>&times;</button>',
+        containerId: 'toast-container',
+        extendedTimeOut: 1000,
+        iconClasses: {
+            error: 'toast-error',
+            info: 'toast-info',
+            success: 'toast-success',
+            warning: 'toast-warning'
+        },
+        messageClass: 'toast-message',
+        positionClass: 'toast-bottom-right',
+        tapToDismiss: true,
+        timeOut: 7000,
+        titleClass: 'toast-title',
+        toastClass: 'toast'
+    });
+}]);
+
 
 var game = {
     mainPlayer: {},
@@ -21,10 +45,24 @@ var game = {
      */
     onload: function () {
         me.sys.fps = 30;
-        if (!me.video.init('jsapp', me.video.CANVAS, 800, 480)) {
-            alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
-            return;
+        me.sys.pauseOnBlur = false;
+        me.sys.resumeOnFocus = false;
+        me.sys.stopOnAudioError = false;
+        //me.video.init("screen",32,32,!0,"auto",!0)
+
+
+        if (me.device.isMobile) {
+            if (!me.video.init('game', me.video.CANVAS, 480, 280, false, 'auto', true)) {
+                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                return;
+            }
+        } else {
+            if (!me.video.init('game', me.video.CANVAS, 800, 480, false, 'auto', true)) {
+                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                return;
+            }
         }
+
 
         me.plugin.register(me.debug.Panel, "debug");
 
@@ -32,12 +70,14 @@ var game = {
         me.plugin.register(aStarPlugin, "astar");
 
         // Initialize the audio.
-        me.audio.init("ogg");
+        me.audio.init("ogg,mp3,wav");
 
-        me.sys.pauseOnBlur = false;
 
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
+
+        // Ordenar por posicion en Y del objeto
+        me.game.world.sortOn = "y";
 
         // Cargo los recursos desde la API
         $.getJSON("api/resources.json", function (data) {
@@ -80,6 +120,7 @@ var game = {
     },
 
     change_level: function (target_mapa_generico) {
+
         //Guardo data para poder eliminar inmediatamente
         var data = game.mainPlayer.data;
         game.remove_AllPlayers();
@@ -90,7 +131,10 @@ var game = {
             {
                 mapa_generico: target_mapa_generico,
                 mapa_instancia: data.mapa_instancia.id,
-                personajeId: data.id
+                personajeId: data.id,
+                change_level_new_x: game.nextxy.x,
+                change_level_new_y: game.nextxy.y,
+                change_level_new_animation: game.nextxy.direction
             },
             function changeLevelCB(data) {
                 game.addMainPlayer(data);
@@ -99,8 +143,10 @@ var game = {
     },
 
 
+
+
     create_OtherPlayers: function () {
-        $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true', function messageReceived(personajes) {
+        $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
 
             while (personajes.length) {
                 var personaje = personajes.pop();
@@ -115,11 +161,11 @@ var game = {
     addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
             Number(data.y), {
-                width: 28,
-                height: 28,
+                width: 32,
+                height: 48,
                 data: data
             });
-        me.game.world.addChild(game.mainPlayer, 9);
+        me.game.world.addChild(game.mainPlayer, 10);
         me.game.world.sort();
     },
 
@@ -128,12 +174,12 @@ var game = {
             Number(data.x),
             Number(data.y),
             {
-                width: 28,
-                height: 28,
+                width: 32,
+                height: 48,
                 data: data
             }
         );
-        me.game.world.addChild(game.players[data.id], 9);
+        me.game.world.addChild(game.players[data.id], 10);
     },
 
     remove_AllPlayers: function () {

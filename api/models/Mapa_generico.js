@@ -18,14 +18,6 @@ module.exports = {
             collection: 'mapa_instancia',
             via: 'mapa_generico',
             required: false
-        },
-
-        posicion_inicial_x: {
-            type: 'integer'
-        },
-
-        posicion_inicial_y: {
-            type: 'integer'
         }
     }
 
