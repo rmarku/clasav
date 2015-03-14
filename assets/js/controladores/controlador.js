@@ -7,7 +7,7 @@ app.controller('gamePageController', ['$scope', '$location', function ($scope, $
      */
     $scope.$parent.getUser().then(function (data) {
             if (angular.isUndefined(data.id))
-                $location.path('/');
+                window.location.href = '/';
             else
                 $scope.init();
         }
