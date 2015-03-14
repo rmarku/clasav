@@ -54,8 +54,10 @@
 				<img id="btnTale" src="images/iconos/btn_talentos.png" style="margin-left: -4px;"/>
 				<img id="btnPers" src="images/iconos/btn_personaje.png" style="margin-left: -4px;"/>
 			</div>
-			<img class="capaSup" id="audio" src="images/iconos/audio_OFF.png"
-			style="position: absolute; bottom: 4px; right: 4px"/>
+			<img class="capaSup" id="audio" src="images/iconos/audio_OFF.png" style="position: absolute; bottom: 4px; right: 4px"/>
+			<a href="/">
+				<img class="capaSup" id="home" src="images/iconos/btn_home.png" style="position: absolute; bottom: 32px; right: 4px"/>
+			</a>
 			<!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
 
 			<!--INVENTARIO-->
@@ -203,6 +205,20 @@
 
 			</div>
 
+			<!--CHAT-->
+			<div ng-controller="ChatController" style="width: 800px; bottom: 0px; left:245px;" class="capaSup">
+				<div class="divChat" id="divChat">
+					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}}
+						<br>
+					</span>
+				</div>
+
+				<input chat="envMsj()" class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="display: inline; width: 730px">
+				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()">
+					Enviar
+				</button>
+			</div>
+
 			<!--ventana de amigos-->
 			<div class="titulo-botonera" style=" display:none; background-color: #FBF8EF; border: 2px solid #FF8000; margin: 30px 0px; height: 277px;">
 				<div style="background-color: #FF8000">
@@ -216,6 +232,7 @@
 			<div id="game-parent" style="text-align: center">
 				<div id="game"></div>
 			</div>
+
 		</div>
 		<script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
 		<script src="/js/dependencies/angular/angular.js"></script>
