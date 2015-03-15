@@ -91,6 +91,10 @@
     <img class="img-center img-responsive" src="images/init.png"/>
     <br/>
     <!--BOTONERA-->
+<div>
+    <%if(user){%>
+    <%if(usuario.tipo == 'alumno'){%>
+
     <div class="btn-group botonera">
         <a href="#/" type="button" class="btn btn-default">Home</a>
         <a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
@@ -115,6 +119,9 @@
         <a href="/game" type="button" class="btn btn-default">Juego</a>
         <% } %>
     </div>
+    <%}%>
+    <%}%>
+</div>
     <!--FIN DE BOTONERA-->
 
 
