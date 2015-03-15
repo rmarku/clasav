@@ -1,0 +1,36 @@
+<%= JSON.stringify(res.locals) %>
+
+<header class="text-center">
+	<link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
+    <div class="navbar navbar-inverse row">
+        <div class="text-left col-md-3">
+            <a href="#/crear-cuenta" class="btn btn2 btn-default">Crear Cuenta</a>
+        </div>
+        <div class="text-right col-md-9">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="email">Email address</label>
+                    <input type="email" class="form-control2" name="email" size="40" ng-model="alumno.e_mail"
+                           placeholder="Introduce tu E-mail" required>
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="contrasena">Password</label>
+                    <input type="password" class="form-control2" name="contrasena" id="contrasena"
+                           ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
+                </div>
+                <a href="#/crear-cuenta" class="btn btn2 btn-default">Ingresar</a>
+            </form>
+        </div>
+    </div>
+
+    </div>
+</header>
+<div ng-view></div>
+<!--TEMPLATES-->
+<script type="text/javascript" src="/jst.js"></script>
+<!--TEMPLATES END-->
+
+<footer>
+    <!--h1>Titulo del Juego</h1-->
+    <img src="images/logoUCC.png"/> Universidad Catolica de Cordoba
+</footer>

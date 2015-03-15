@@ -1,6 +1,5 @@
 //Mock de la Guia de misiones (hasta que implementemos BD)
-app.controller("listaLogros", ['$scope', "$sailsBind",
-function listaLogros($scope, $sailsBind) {
+app.controller("listaLogros", ['$scope', "$sailsBind", function listaLogros($scope, $sailsBind) {
 
 	var config = {};
     $scope.scrollbar = function(direction, autoResize, show) {
@@ -10,12 +9,12 @@ function listaLogros($scope, $sailsBind) {
             color: 'rgba(255,128,0, .6)', // Background color of the scrollbar
             show: true
         };
-        
+
         config.scrollbarContainer = {
             width: 12, // Width of the container surrounding the scrollbar. Becomes visible on hover
       		color: 'rgba(255,171,86, .1)' // Background color of the scrollbar container
         };
-        
+
         return config;
     };
 
