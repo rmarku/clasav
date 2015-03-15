@@ -20,7 +20,7 @@ var validator = require('validator');
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
- * @return 
+ * @return
  */
 exports.register = function (req, res, next) {
   var email    = req.param('email')
@@ -28,6 +28,7 @@ exports.register = function (req, res, next) {
       , nombre = req.param('nombre')
       , apellido = req.param('apellido')
       , sexo = req.param('sexo')
+      , tipo = req.param('tipo')
       , password = req.param('password');
 
   if (!email) {
@@ -51,6 +52,7 @@ exports.register = function (req, res, next) {
       , nombre    : nombre
       , apellido    : apellido
       , sexo    : sexo
+      , tipo : tipo
   }, function (err, user) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
@@ -93,7 +95,7 @@ exports.register = function (req, res, next) {
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
- * @return 
+ * @return
  */
 exports.connect = function (req, res, next) {
   var user     = req.user
@@ -132,7 +134,7 @@ exports.connect = function (req, res, next) {
  * @param {string}   identifier
  * @param {string}   password
  * @param {Function} next
- * @return 
+ * @return
  */
 exports.login = function (req, identifier, password, next) {
   var isEmail = validator.isEmail(identifier)

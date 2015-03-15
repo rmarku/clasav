@@ -68,7 +68,7 @@ module.exports = {
 
         tipo: {
             type: 'string',
-            in: ['Profesor', 'Estudiante']
+            enum: ['profesor', 'alumno']
         },
 
         // passport
