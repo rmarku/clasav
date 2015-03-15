@@ -89,8 +89,10 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                     if (data.lenght > 0) {
                         toastr.info('Datos actualizados!!!!');
                         setTimeout(function () {
-                            $location.path('/');
+                           // $location.path('/');
                             //hacer algo aca para que dentro de las pestas aparezca "juego"
+                            //document.location.href = ('/');
+                            location.reload();
                         }, 1000);
                     } else {
                         toastr.info('Datos actualizados');
@@ -125,7 +127,9 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
                     toastr.info('Cuenta Creada!!! ahora puedes crear tu personaje!!');
                     setTimeout(function () {
+                        location.reload();
                         window.location.href = '#/personaje';
+
                     }, 2000);
                 }
             });
