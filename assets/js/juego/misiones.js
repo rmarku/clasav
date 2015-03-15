@@ -1,7 +1,8 @@
 //Mock de la Guia de misiones (hasta que implementemos BD)
-app.controller("misionesGuia", ['$scope', "$sailsBind", function misionesGuia($scope, $sailsBind) {
+app.controller("misionesGuia", ['$scope', "$sailsBind",'$location', function misionesGuia($scope, $sailsBind, $location) {
 
-	$scope.misiones = [{
+	$scope.var = "1234";
+    $scope.misiones = [{
 		"id" : 1,
 		"mapa" : "Matland",
 		"tituloMision" : "Bienvenido a Matland",

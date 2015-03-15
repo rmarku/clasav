@@ -49,7 +49,9 @@ var jsFilesToInject = [
     "/js/controladores/controlador.js",
     "/js/helpers.js",
     "/js/controladores/personajes.js",
-    "/js/controladores/editUsuario.js"
+    "/js/controladores/editUsuario.js",
+    "/js/juego/misiones.js"
+
     //'lib/**/*.js',
 
     // All of the rest of your client-side js files

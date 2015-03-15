@@ -14,7 +14,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'editUsuario'
     });
     $routeProvider.when('/misiones', {
-        template: JST["assets/templates/gmisiones.html"]
+        template: JST["assets/templates/gmisiones.html"],
+        controller: 'misionesGuia'
     });
     $routeProvider.when('/coliseo', {
         template: JST["assets/templates/coliseo.html"]

@@ -1,6 +1,6 @@
 <br>
 <br>
-<div class="container" ng-app="" ng-controller="misionesGuia">
+<div class="container">
 	<table class="table table-hover" style="background-color: #FFFFFF; opacity: 0.2);">
 		<caption>
 			<p class="titulos">
@@ -16,7 +16,7 @@
 				<th>Estado</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody>{{var }}
 			<tr ng-repeat="x in misiones | filter: { mapa: 'Principal' }">
 				<td>{{ x.tituloMision }}</td>
 				<td>{{ x.inicipioNPC }}</td>
