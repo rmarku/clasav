@@ -88,7 +88,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         if (img.pelo.frontColored.naturalWidth > 0)
             context.drawImage(img.pelo.frontColored, sx, sy, 32, 48, 0, 0, 32, 48);
 
-        if (img.pelo.frontShadow.naturalWidth > 0 )
+        if (img.pelo.frontShadow.naturalWidth > 0)
             context.drawImage(img.pelo.frontShadow, (pelo - 1) * 128 + sx, 192 + sy, 32, 48, 0, 0, 32, 48);
 
         ctx.drawImage(canvas, 0, 0);
@@ -118,9 +118,9 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
         "x": 900,
         "y": 200,
         "direccion": 0,
-        "masRecientementeUtilizado":true,
+        "masRecientementeUtilizado": true,
         "conectado": false,
-        "animation":"run-down"
+        "animation": "run-down"
     };
 
     $.get("/api/user/getUser", function (data) {
@@ -128,6 +128,14 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
             window.location.href = '/';
             return;
         }
+        $.get("/api/user/" + data.userId, function (data) {
+            $scope.user = data;
+            $scope.$apply();
+            if (data.personajes.length > 0) {
+                toastr.info('Ya tienes un personaje, ya puedes comenzar a jugar.');
+                $location.path('/');
+            }
+        });
         $scope.pj.duenio = data.userId;
         $scope.$apply();
     });
@@ -170,7 +178,6 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
      * @return
      */
     $scope.crearPj = function () {
-
         $.get('/api/personaje?where={"nombre":"' + $scope.pj.nombre + '"}', function (data) {
             if (data.length > 0) {
                 toastr.error('El nombre del personaje ya existe');

@@ -7,31 +7,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
-
 
     <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons.min.css">
     <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css">
     <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/js/dependencies/angular-toastr/dist/angular-toastr.css">
-    <link rel="stylesheet" href="/js/dependencies/ng-scrollbar/dist/ng-scrollbar.css">
     <link rel="stylesheet" href="/styles/comun.css">
     <link rel="stylesheet" href="/styles/importer.css">
-
 
 </head>
 <body ng-controller="bodyController" style="background: #000000" onload="window.scrollTo(0, 1);">
 <div id="jsapp" ng-controller="gamePageController">
-
     <!--HUD SUPERIOR-->
     <div id="hudSuperior" class="capaSup">
         <img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
 
         <div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
-            <div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60"
+					<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60"
                  aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 
             <div style="position: absolute; float: left">
@@ -57,10 +53,11 @@
         <img id="btnTale" src="images/iconos/btn_talentos.png" style="margin-left: -4px;"/>
         <img id="btnPers" src="images/iconos/btn_personaje.png" style="margin-left: -4px;"/>
     </div>
-    <img class="capaSup" id="audio" src="images/iconos/audio_OFF.png"
-         style="position: absolute; bottom: 4px; right: 4px"/>
-    <img class="capaSup" id="sfx" src="images/iconos/sfx_on.png"
-         style="position: absolute; bottom: 4px; right: 34px"/>
+			<img class="capaSup" id="audio" src="images/iconos/audio_OFF.png" style="position: absolute; bottom: 4px; right: 4px"/>
+    <a href="/">
+				<img class="capaSup" id="home" src="images/iconos/btn_home.png" style="position: absolute; bottom: 32px; right: 4px"/>
+    </a>
+    <!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
 
     <!--INVENTARIO-->
     <div id="inv" class="div-panel" ng-controller="inventarioContr"
@@ -73,28 +70,28 @@
             <div ng-repeat="x in inventario"
                  style="display: inline; width: 49px; height: 49px; margin: 0px -1px 0px -3px; border: 0px 0px 0px 0px">
                 <img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
-                    <span ng-class="{hidden: x.acumulable==false}"
-                          style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
+						<span ng-class="{hidden: x.acumulable==false}"
+                              style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
             </div>
         </div>
     </div>
 
     <!--INVENTARIO-->
-    <div id="inv" class="div-panel" ng-controller="inventarioContr" style="background: url('images/iconos/inventario2.png')">
+			<div id="inv" class="div-panel" ng-controller="inventarioContr" style="background: url('images/iconos/inventario2.png')">
         <p class="capaSup titulo-botonera">
             Inventario
         </p>
 
         <div id="items" style="padding: 41px 7px 0px 9px">
-            <div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; margin: 0px -1px 0px -3px; border: 0px 0px 0px 0px">
+					<div ng-repeat="x in inventario" style="display: inline; width: 49px; height: 49px; margin: 0px -1px 0px -3px; border: 0px 0px 0px 0px">
                 <img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
-                <span ng-class="{hidden: x.acumulable==false}" style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
+						<span ng-class="{hidden: x.acumulable==false}" style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
             </div>
         </div>
     </div>
 
     <!--MISIONES-->
-    <div id="mis" ng-controller="misionesGuia" class="div-panel" style="background: url('images/iconos/misiones2.png')">
+			<div id="mis" ng-controller="misionesGuia" class="div-panel" style="background: url('images/iconos/misiones2.png')">
         <p class="capaSup titulo-botonera">
             Misiones
         </p>
@@ -111,27 +108,9 @@
         </div>
     </div>
 
-    <!--Ventana de Misiones-->
-    <div class="capaSup" ng-controller="misionesGuia" id="quest" style="width: 523px; height: 304px; position: absolute; left: 138px; top: 88px; background: url('images/quest/ventana.png')">
-        <p class="capaSup titulo-botonera" style="margin-left: 80px" ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}">
-            {{ x.tituloMision }}
-        </p>
-						<span ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}" style="position: absolute; margin: 123px 0px 0px 36px">
-							{{ x.inicipioNPC }}
-						</span>
-
-        <div ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}" style="position: absolute;width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: auto">
-            {{ x.textoInicial }}
-        </div>
-        <img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/>
-        <img id="aceptar" style="position: absolute; bottom: 20px; right: 40px" src="images/quest/btn.png"/>
-						<span class="titulo-botonera" style="position: absolute; bottom: 10px; right: 34px">
-							Aceptar
-						</span>
-    </div>
 
     <!--LOGROS-->
-    <div id="log" class="div-panel" ng-controller="listaLogros" style="background: url('images/iconos/logros2.png')">
+			<div id="log" class="div-panel" ng-controller="listaLogros" style="background: url('images/iconos/logros2.png')">
         <p class="capaSup titulo-botonera">
             Logros
         </p>
@@ -205,15 +184,35 @@
     <div style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
         <img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
 
-        <div id=divMinimapa class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
+				<div id=divMinimapa class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
             <canvas id="canvasMinimap" width="156" height="156"></canvas>
         </div>
 
     </div>
 
+<<<<<<< HEAD
+    <!--CHAT-->
+			<div id="ChatGame" ng-controller="ChatController" class="capaSup" style="bottom: 0px; left:245px; right: 32px; text-align: center; overflow: hidden">
+				<div id="glyChat" class="glyphicon glyphicon-comment" style="background-color: white; width: 24px; height: 16px;border-radius: 6px"></div>
+				<div class="divChat" id="divChat" style="width: 100%;">
+					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}}
+						<br>
+					</span>
+				</div>
+				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()" style="float: right;">
+					Enviar
+				</button>
+				<div style="overflow: hidden; padding: 0 1px 0 0">
+					<input chat="envMsj()" class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="width: 100%">
+				</div>
+			</div>
+			
+
     <!--ventana de amigos-->
-    <div class="titulo-botonera" style=" display:none; background-color: #FBF8EF; border: 2px solid #FF8000; margin: 30px 0px; height: 277px;">
-        <div style="background-color: #FF8000"><strong> Lista de Amigos </strong></div>
+			<div class="titulo-botonera" style=" display:none; background-color: #FBF8EF; border: 2px solid #FF8000; margin: 30px 0px; height: 277px;">
+        <div style="background-color: #FF8000">
+            <strong> Lista de Amigos </strong>
+        </div>
         Conectados
         <div style="overflow-y: auto;"></div>
         Desconectados
@@ -221,6 +220,26 @@
     </div>
     <div id="game-parent" style="text-align: center">
         <div id="game"></div>
+    </div>
+
+    <!--Ventana de Misiones-->
+    <div style="position: absolute; top:0px; width: 100%">
+        <div class="capaSup questModal" ng-controller="misionesGuia" id="quest">
+            <p class="capaSup titulo-botonera" style="margin-left: 80px"
+               ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}">
+                {{ x.tituloMision }}
+            </p>
+        <span ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}"
+              style="position: absolute; margin: 123px 0px 0px 36px"> {{ x.inicipioNPC }} </span>
+
+            <div ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}"
+                 style="position: absolute;width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: auto">
+                {{ x.textoInicial }}
+            </div>
+            <img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/>
+            <span class="btn-quest" type="button" style="position: absolute; bottom: 19px; right: 34px"> Aceptar </span>
+
+        </div>
     </div>
 </div>
 <script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>

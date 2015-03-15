@@ -240,6 +240,16 @@ $(function() {
 	$("#aceptar").click(function() {
 		$("#quest").hide();
 		agregarQuest();
-	});	
+	});
+	
+	//Boton desplazar el chat
+	$("#glyChat").click(function() {
+		var e = $("#ChatGame");
+		if(e.css('height')!='30px')
+			e.animate({'height': '30px'},1500);
+		else
+			e.animate({'height': '154px'},1500);
+	});
+		
 
 });

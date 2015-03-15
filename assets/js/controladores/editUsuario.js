@@ -41,9 +41,11 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         "Error.Passport.Generic": "Fua, algo salio mal con la autentificacion."
     };
 
+    // Segun si es editar o crear muestro el titulo y el boton
     if ($location.path() == '/cuenta') {
         $scope.editar = true;
         $scope.Titulo = 'Editar Cuenta';
+        $scope.Boton = 'Guardar Cambios';
         $scope.$parent.getUser().then(function (data) {
             $scope.usuario = data;
             delete $scope.usuario.passports;
@@ -52,6 +54,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
         $scope.editar = false;
         $scope.Titulo = 'Cuenta Nueva';
+        $scope.Boton = 'Crear';
     }
 
 
@@ -76,7 +79,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
             toastr.error('Seleccione un Tipo de Cuenta');
             return;
         }
-        if ($scope.editar) {
+        if ($scope.editar) {  // Voy a editar una cuenta
 
             $.post("/api/user/" + $scope.usuario.id, $scope.usuario, function (data) {
 
@@ -86,23 +89,24 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                     if (data.lenght > 0) {
                         toastr.info('Datos actualizados!!!!');
                         setTimeout(function () {
-                            $location.path('/');
-                            //hacer algo aca para que dentro de las pestaas aparezca "juego"
+                           // $location.path('/');
+                            //hacer algo aca para que dentro de las pestas aparezca "juego"
+                            //document.location.href = ('/');
+                            location.reload();
                         }, 1000);
                     } else {
-                        toastr.info('Datos actualizados, ahora crea tu personaje');
+                        toastr.info('Datos actualizados');
                         setTimeout(function () {
                             window.location.href = '#/personaje';
-                        }, 1000);
+                        }, 2000);
                     }
                 });
             });
-        } else {
+        } else {   // Voy a crear una nueva cuenta.
 
             if ($scope.usuario.password === '') {
                 toastr.error('Contraseña no valida');
             }
-
 
             var req = $http({
                 method: 'POST',
@@ -121,10 +125,12 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
                 if (typeof data.loguedin != "undefined") {
 
-                    toastr.info('Cuenta Creada, ahora crea tu personaje');
+                    toastr.info('Cuenta Creada!!! ahora puedes crear tu personaje!!');
                     setTimeout(function () {
+                        location.reload();
                         window.location.href = '#/personaje';
-                    }, 1000);
+
+                    }, 2000);
                 }
             });
         }

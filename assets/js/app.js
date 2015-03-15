@@ -18,12 +18,13 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'misionesGuia'
     });
     $routeProvider.when('/coliseo', {
-        template: JST["assets/templates/coliseo.html"]
+        template: JST["assets/templates/coliseo.html"],
+        controller: 'preguntaColiseo'
     });
-    $routeProvider.when('/game', {
-        template: JST["assets/templates/game.html"],
-        controller: 'gamePageController'
-    });
+//    $routeProvider.when('/game', {
+//        template: JST["assets/templates/game.html"],
+//        controller: 'gamePageController'
+//    });
     $routeProvider.when('/personaje', {
         template: JST["assets/templates/personaje.html"],
         controller: 'personajeController'
@@ -49,7 +50,7 @@ app.config(['toastrConfig', function (toastrConfig) {
             warning: 'toast-warning'
         },
         messageClass: 'toast-message',
-        positionClass: 'toast-bottom-right',
+        positionClass: 'toast-top-right',
         tapToDismiss: true,
         timeOut: 7000,
         titleClass: 'toast-title',
