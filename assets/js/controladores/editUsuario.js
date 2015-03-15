@@ -123,14 +123,21 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                     });
                 }
 
+
                 if (typeof data.loguedin != "undefined") {
 
                     toastr.info('Cuenta Creada!!! ahora puedes crear tu personaje!!');
-                    setTimeout(function () {
-                        location.reload();
-                        window.location.href = '#/personaje';
+                    $scope.$parent.getUser().then(function (data) {
+                        setTimeout(function () {
+                            //window.location.href = '#/cuenta';
+                            window.location.href = '#/personaje';
+                            location.reload();
 
-                    }, 2000);
+                        }, 2000);
+                    });
+
+                   // $scope.parent.user.tipo = $scope.usuario.tipo;
+
                 }
             });
         }

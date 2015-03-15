@@ -14,7 +14,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
     $scope.getUser = function () {
         var deferred = $q.defer();
-        if (angular.isUndefined($scope.user.id)) {
+        if (angular.isUndefined($scope.user.id) || angular.isUndefined($scope.user.tipo)) {
             $.get("/api/user/getUser", function (data) {
                 if (angular.isUndefined(data.userId)) {
                     toastr.info('Inicia para Jugar');
