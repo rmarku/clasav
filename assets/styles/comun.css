@@ -60,6 +60,7 @@
 	background-image: -webkit-gradient(linear, left top, right top, from(#DEDEDE), to(#FFF5F6));
 	background-image: -webkit-linear-gradient(left, #DEDEDE, #FFF5F6);
 	background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
+	opacity: 0.85;
 	border: 5px double #9c5959;
 }
 
