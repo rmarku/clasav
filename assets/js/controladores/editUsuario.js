@@ -40,9 +40,11 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         "Error.Passport.Generic": "Fua, algo salio mal con la autentificacion."
     };
 
+    // Segun si es editar o crear muestro el titulo y el boton
     if ($location.path() == '/cuenta') {
         $scope.editar = true;
         $scope.Titulo = 'Editar Cuenta';
+        $scope.Boton = 'Guardar Cambios';
         $scope.$parent.getUser().then(function (data) {
             $scope.alumno = data;
             delete $scope.alumno.passports;
@@ -51,6 +53,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
         $scope.editar = false;
         $scope.Titulo = 'Cuenta Nueva';
+        $scope.Boton = 'Crear';
     }
 
 
@@ -71,7 +74,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
             return;
         }
 
-        if ($scope.editar) {
+        if ($scope.editar) {  // Voy a editar una cuenta
 
             $.post("/api/user/" + $scope.alumno.id, $scope.alumno, function (data) {
 
@@ -82,22 +85,21 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                         toastr.info('Datos actualizados!!!!');
                         setTimeout(function () {
                             $location.path('/');
-                            //hacer algo aca para que dentro de las pestaas aparezca "juego"
+                            //hacer algo aca para que dentro de las pestas aparezca "juego"
                         }, 1000);
                     } else {
-                        toastr.info('Datos actualizados, ahora crea tu personaje');
+                        toastr.info('Datos actualizados');
                         setTimeout(function () {
                             window.location.href = '#/personaje';
-                        }, 1000);
+                        }, 2000);
                     }
                 });
             });
-        } else {
+        } else {   // Voy a crear una nueva cuenta.
 
             if ($scope.alumno.password === '') {
                 toastr.error('Contraseña no valida');
             }
-
 
             var req = $http({
                 method: 'POST',
@@ -116,10 +118,10 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
                 if (typeof data.loguedin != "undefined") {
 
-                    toastr.info('Cuenta Creada, ahora crea tu personaje');
+                    toastr.info('Cuenta Creada!!! ahora puedes crear tu personaje!!');
                     setTimeout(function () {
                         window.location.href = '#/personaje';
-                    }, 1000);
+                    }, 2000);
                 }
             });
         }
