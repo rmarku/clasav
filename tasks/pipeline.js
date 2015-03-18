@@ -53,6 +53,8 @@ var jsFilesToInject = [
     "/js/juego/pregunta4.js",
     "/js/juego/misiones.js",
     "/js/controladores/editUsuario.js",
+    "/js/controladores/profesor/clases.js",
+    "/js/controladores/profesor/instituciones.js",
 
     //'lib/**/*.js',
 

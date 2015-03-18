@@ -1,0 +1,70 @@
+/**
+ * Created by Fabricio on 16/03/2015.
+ */
+app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
+
+    $scope.visibilidad_nuevaInstitucion = false;
+
+    $scope.get_instituciones = function () {
+         $.get('/api/institucion', function (local_instituciones) {
+             $scope.instituciones = local_instituciones;
+             $scope.institucion_seleccionada = $scope.instituciones[0];
+             return $scope.instituciones;
+         });
+    };
+    $scope.get_instituciones();
+
+    $scope.get_mapas = function () {
+        $.get('/api/mapa_generico', function (local_mapas) {
+            $scope.mapas = local_mapas;
+            $scope.mapa_seleccionado = $scope.mapas[0];
+            return $scope.mapas;
+        });
+    };
+    $scope.get_mapas();
+
+    $scope.crearClase = function () {
+        window.location.href = '#/crearClase';
+    };
+
+    $scope.set_visibilidad_nuevaInstitucion = function (state) {
+        $scope.visibilidad_nuevaInstitucion = state;
+    };
+
+    $scope.subirClase = function () {
+
+        if($scope.visibilidad_nuevaInstitucion){
+            $scope.createInstitucion().then(function (returned_data) {
+                $scope.createClase();
+            });
+        }
+        else{
+            $scope.createClase();
+        }
+    };
+
+    $scope.createClase = function () {
+        $.get("/api/clase/crearClaseProfesor",
+            {
+                nombre:             $scope.clase.nombre,
+                mapa_genericoID:    $scope.mapa_seleccionado.id,
+                institucionID:      $scope.institucion_seleccionada.id
+            },
+            function (data) {
+        });
+    };
+
+    $scope.createInstitucion = function () {
+        var deferred = $q.defer();
+            $.post("/api/institucion/create", $scope.institucion_nueva,
+                function (data) {
+                    $scope.institucion_seleccionada = data;
+                    deferred.resolve();
+                });
+        return deferred.promise;
+    };
+
+}
+
+]);
+

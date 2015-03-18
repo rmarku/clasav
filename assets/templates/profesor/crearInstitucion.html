@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+        <span class="titulos"> Crear Nueva Institución </span>
+
+        <form novalidate="novalidate"role="form">
+            <div class="form-group">
+                <label for="nombre">Nombre: </label>
+                <input type="text" class="form-control" ng-model="institucion_nueva.nombre"
+                       placeholder="Introduce el nombre de la Institución" required>
+            </div>
+            <div class="form-group">
+                <label for="pais">País: </label>
+                <input type="text" class="form-control" ng-model="institucion_nueva.pais"
+                       placeholder="Introduce el país" required>
+            </div>
+            <div class="form-group">
+                <label for="provincia">Provincia: </label>
+                <input type="text" class="form-control" ng-model="institucion_nueva.provincia"
+                       placeholder="Introduce la provincia de la Institución" required>
+            </div>
+            <div class="form-group">
+                <label for="ciudad">Ciudad: </label>
+                <input type="text" class="form-control" ng-model="institucion_nueva.ciudad"
+                       placeholder="Introduce la ciudad de la Institución" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección: </label>
+                <input type="text" class="form-control" ng-model="institucion_nueva.direccion"
+                       placeholder="Introduce la dirección de la Institución" required>
+            </div>
+
+            <div>
+                <button class="btn btn-default btn-align" ng-click="subirInstitucion()">Confirmar Nueva Institucion</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+

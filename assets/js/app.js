@@ -30,9 +30,27 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'personajeController'
     });
     //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
+
+    //<!--RUTAS PROFESOR-->
+    $routeProvider.when('/clasesProfesor', {
+        template: JST["assets/templates/profesor/clases.html"],
+        controller: 'clasesProfesorController'
+    });
+    $routeProvider.when('/crearClase', {
+        template: JST["assets/templates/profesor/crearClase.html"],
+        controller: 'clasesProfesorController'
+    });
+    $routeProvider.when('/crearInstitucion', {
+        template: JST["assets/templates/profesor/crearInstitucion.html"],
+        controller: 'institucionesProfesorController'
+    });
+    //<!--FIN RUTAS PROFESOR-->
+
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]
     });
+
+
 }
 ]);
 

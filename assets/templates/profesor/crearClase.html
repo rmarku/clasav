@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+        <span class="titulos"> Crear Nueva Clase </span>
+
+        <form novalidate="novalidate"role="form">
+            <div class="form-group">
+                <label for="nombre_clase">Nombre de la Clase: </label>
+                <input type="text" class="form-control" name="nombre" ng-model="clase.nombre"
+                       placeholder="Introduce el nuevo nombre de tu clase" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mapa">Mapa Central de la Nueva Clase: </label>
+                <select ng-model    ="mapa_seleccionado"
+                        class       ="form-control"
+                        ng-options  ="m.nombre for m in mapas" >
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Institucion:</label>
+                <br>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="GrupoInstitucion" ng-click="set_visibilidad_nuevaInstitucion(false)" checked="checked">
+                        Existente </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="GrupoInstitucion" ng-click="set_visibilidad_nuevaInstitucion(true)">
+                        Nueva </label>
+                </div>
+            </div>
+
+            <span  ng-hide="visibilidad_nuevaInstitucion">
+                <div class="form-group">
+                    <select ng-model    ="institucion_seleccionada"
+                            class       ="form-control"
+                            ng-options  ="c.nombre for c in instituciones">
+                    </select>
+                </div>
+            </span>
+
+            <span  ng-show="visibilidad_nuevaInstitucion">
+                <div class="form-group">
+                    <label for="nombre_institucion">Nombre de la Institucion: </label>
+                    <input type="text" class="form-control" ng-model="institucion_nueva.nombre"
+                           placeholder="Introduce el nombre de la Institución" required>
+                </div>
+                <div class="form-group">
+                    <label for="pais">País: </label>
+                    <input type="text" class="form-control" ng-model="institucion_nueva.pais"
+                           placeholder="Introduce el país" required>
+                </div>
+                <div class="form-group">
+                    <label for="provincia">Provincia: </label>
+                    <input type="text" class="form-control" ng-model="institucion_nueva.provincia"
+                           placeholder="Introduce la provincia de la Institución" required>
+                </div>
+                <div class="form-group">
+                    <label for="ciudad">Ciudad: </label>
+                    <input type="text" class="form-control" ng-model="institucion_nueva.ciudad"
+                           placeholder="Introduce la ciudad de la Institución" required>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección: </label>
+                    <input type="text" class="form-control" ng-model="institucion_nueva.direccion"
+                           placeholder="Introduce la dirección de la Institución" required>
+                </div>
+            </span>
+
+
+            <div>
+                <button class="btn btn-default btn-align" ng-click="subirClase()">Confirmar Nueva Clase</button>
+            </div>
+        </form>
+    </div>
+</div>
+

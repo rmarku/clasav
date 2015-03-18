@@ -90,39 +90,49 @@
     <!--h1>Titulo del Juego</h1-->
     <img class="img-center img-responsive" src="images/init.png"/>
     <br/>
-    <!--BOTONERA-->
-<div>
+    <!--BOTONERA ALUMNO-->
+
     <%if(user){%>
-    <%if(user.tipo == 'alumno'){%>
+        <%if(user.tipo == 'alumno'){%>
 
-    <div class="btn-group botonera">
-        <a href="#/" type="button" class="btn btn-default">Home</a>
-        <a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
+        <div class="btn-group botonera">
+            <a href="#/" type="button" class="btn btn-default">Home</a>
+            <a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
 
-        <div class="btn-group">
-            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span
-                    class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <% if (user) { %>
-                <li>
-                    <a href="#">Mi Personaje</a>
-                </li>
-                <% } %>
-                <li>
-                    <a href="#">Ranking</a>
-                </li>
-            </ul>
+            <div class="btn-group">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span
+                        class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <% if (user) { %>
+                    <li>
+                        <a href="#">Mi Personaje</a>
+                    </li>
+                    <% } %>
+                    <li>
+                        <a href="#">Ranking</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="#/coliseo" class="btn btn-default">COLISEO</a>
+            <a href="/game" type="button" class="btn btn-default">Juego</a>
         </div>
+        <%}%>
+        <!--FIN DE BOTONERA ALUMNO-->
 
-        <% if (user) { %>
-        <a href="#/coliseo" class="btn btn-default">COLISEO</a>
-        <a href="/game" type="button" class="btn btn-default">Juego</a>
-        <% } %>
-    </div>
+        <!--BOTONERA PROFESOR-->
+        <%if(user.tipo == 'profesor'){%>
+
+        <div class="btn-group botonera">
+            <a href="#/" type="button" class="btn btn-default">Home</a>
+
+            <a href="#/clasesProfesor" class="btn btn-default">Clases</a>
+        </div>
+        <%}%>
+        <!--FIN DE BOTONERA PROFESOR-->
     <%}%>
-    <%}%>
-</div>
-    <!--FIN DE BOTONERA-->
+
+
+
 
 
     <div ng-view></div>
@@ -152,6 +162,8 @@
 <script src="/js/controladores/editUsuario.js"></script>
 <script src="/js/juego/pregunta4.js"></script>
 <script src="/js/juego/misiones.js"></script>
+<script src="/js/controladores/profesor/clases.js"></script>
+<script src="/js/controladores/profesor/instituciones.js"></script>
 <!--SCRIPTS END-->
 
 </body>
