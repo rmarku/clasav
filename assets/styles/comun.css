@@ -157,6 +157,7 @@
 	text-shadow: 0px 1px 0px #cc9f52;
 	width: 14%;
 	font-family: Gorditas-Regular;
+	text-align: center;
 }
 .btn-quest:hover {
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
