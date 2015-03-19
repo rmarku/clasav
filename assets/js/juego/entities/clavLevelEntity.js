@@ -1,11 +1,24 @@
 
 
 game.clavLevelEntity = me.LevelEntity.extend({
+    /**
+     * Description
+     * @method init
+     * @param {} x
+     * @param {} y
+     * @param {} settings
+     * @return 
+     */
     init: function (x, y, settings) {
         // Inicializo y guardo valores particulares de este spawn point
         this._super(me.LevelEntity, "init", [x, y, settings]);
         this.spawn = settings.spawn;
     },
+    /**
+     * Description
+     * @method onFadeComplete
+     * @return 
+     */
     onFadeComplete : function () {
         // Al terminar de cargar el nivel,  muevo el personaje al punto de spawn
         this._super(me.LevelEntity, "onFadeComplete");

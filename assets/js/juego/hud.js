@@ -134,6 +134,11 @@ function noPressBtn() {
 	$("#per").hide();
 }
 
+/**
+ * Description
+ * @method agregarQuest
+ * @return 
+ */
 function agregarQuest(){
 	//Se deberia poner un atributo de la lista de misiones del personaje como "quest tomada =1", que sea 0 si esta tomada...y 2 si esta terminada	
 }

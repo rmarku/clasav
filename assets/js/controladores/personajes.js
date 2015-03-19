@@ -35,8 +35,9 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
 
     /**
      * Description
-     * @method animacion
      * @return
+     * @method animacion
+     * @return 
      */
     var animacion = function () {
 
@@ -143,8 +144,9 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
 
     /**
      * Description
-     * @method peloSiguiente
      * @return
+     * @method peloSiguiente
+     * @return 
      */
     $scope.peloSiguiente = function () {
         if (pelo < 15)
@@ -159,8 +161,9 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
 
     /**
      * Description
-     * @method peloAnterior
      * @return
+     * @method peloAnterior
+     * @return 
      */
     $scope.peloAnterior = function () {
         if (pelo > 1)
@@ -174,8 +177,9 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
 
     /**
      * Description
-     * @method crearPj
      * @return
+     * @method crearPj
+     * @return 
      */
     $scope.crearPj = function () {
         $.get('/api/personaje?where={"nombre":"' + $scope.pj.nombre + '"}', function (data) {

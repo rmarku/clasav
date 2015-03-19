@@ -8,11 +8,12 @@ game.Player = me.Entity.extend({
     /**
      * Description
      * @return
+     * @return
      * @method init
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return
+     * @return 
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
@@ -57,7 +58,7 @@ game.Player = me.Entity.extend({
      * Description
      * @method update
      * @param {} dt
-     * @return Literal
+     * @return CallExpression
      */
     update: function (dt) {
         if (this.direccion & 1) {
@@ -77,6 +78,12 @@ game.Player = me.Entity.extend({
     },
 
 
+    /**
+     * Description
+     * @method updateAnimation
+     * @param {} dt
+     * @return Literal
+     */
     updateAnimation: function (dt) {
 
 
@@ -115,6 +122,13 @@ game.Player = me.Entity.extend({
         return false;
     },
 
+    /**
+     * Description
+     * @method onCollision
+     * @param {} response
+     * @param {} other
+     * @return Literal
+     */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
             // Choque contra el mundo!
@@ -127,9 +141,10 @@ game.Player = me.Entity.extend({
     /**
      * Description
      * @return
+     * @return
      * @method draw
      * @param {} renderer
-     * @return
+     * @return 
      */
     draw: function (renderer) {
 
@@ -143,6 +158,11 @@ game.Player = me.Entity.extend({
             ~~(this.pos.y +10));
     },
 
+    /**
+     * Description
+     * @method nombre
+     * @return 
+     */
     nombre: function () {
         var width = 32 * 4;
         var height = 30;
@@ -171,7 +191,7 @@ game.Player = me.Entity.extend({
      * Description
      * @method getItemImg
      * @param {} itemId
-     * @return Literal
+     * @return 
      */
     getItemImg: function (itemId) {
         var dir = this.data.duenio.sexo + '/';
@@ -185,8 +205,9 @@ game.Player = me.Entity.extend({
     /**
      * Description
      * @return
-     * @method vestir
      * @return
+     * @method vestir
+     * @return i
      */
     vestir: function () {
         var width = 32 * 4;

@@ -3,6 +3,14 @@ app.controller("listaLogros", ['$scope', "$sailsBind",
 function listaLogros($scope, $sailsBind) {
 
 	var config = {};
+    /**
+     * Description
+     * @method scrollbar
+     * @param {} direction
+     * @param {} autoResize
+     * @param {} show
+     * @return config
+     */
     $scope.scrollbar = function(direction, autoResize, show) {
         config.direction = direction;
         config.autoResize = autoResize;

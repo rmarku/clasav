@@ -3,6 +3,10 @@
  * @method tintImage
  * @param {} img
  * @param {} color
+ * @param {} x
+ * @param {} y
+ * @param {} w
+ * @param {} h
  * @return buff
  */
 function tintImage(img, color, x, y, w, h) {

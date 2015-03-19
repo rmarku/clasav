@@ -41,8 +41,9 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     /**
      * Description
-     * @method verCuenta
      * @return
+     * @method verCuenta
+     * @return 
      */
     $scope.verCuenta = function () {
         $location.path('/cuenta');

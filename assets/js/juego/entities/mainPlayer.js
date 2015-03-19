@@ -1,5 +1,13 @@
 // Jugador principal
 game.PlayerEntity = game.Player.extend({
+    /**
+     * Description
+     * @method init
+     * @param {} x
+     * @param {} y
+     * @param {} settings
+     * @return 
+     */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
         this.id = settings.data.id;
@@ -27,6 +35,13 @@ game.PlayerEntity = game.Player.extend({
         }
     },
 
+    /**
+     * Description
+     * @method onCollision
+     * @param {} response
+     * @param {} other
+     * @return Literal
+     */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
             // Choque contra el mundo!
@@ -45,6 +60,12 @@ game.PlayerEntity = game.Player.extend({
         return true;
     },
 
+    /**
+     * Description
+     * @method update
+     * @param {} dt
+     * @return 
+     */
     update: function (dt) {
         // Interpretacion de teclas
         //this.direccion = 0;
@@ -83,6 +104,12 @@ game.PlayerEntity = game.Player.extend({
         // Dibujo en el minimapa
         drawPointsMinimap();
     },
+    /**
+     * Description
+     * @method draw
+     * @param {} renderer
+     * @return 
+     */
     draw: function (renderer) {
         //var context = renderer.getContext();
         this._super(game.Player, 'draw', [renderer]);

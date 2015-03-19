@@ -1,4 +1,12 @@
 game.OtherPlayer = game.Player.extend({
+    /**
+     * Description
+     * @method init
+     * @param {} x
+     * @param {} y
+     * @param {} settings
+     * @return 
+     */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
         this.body.setVelocity(4.6, 4.6);
@@ -9,6 +17,12 @@ game.OtherPlayer = game.Player.extend({
         this.myPath = [];
     },
 
+    /**
+     * Description
+     * @method nextNode
+     * @param {} new_target
+     * @return 
+     */
     nextNode: function (new_target) {
         // Si el nuevo target es muy diferente al anterior o no hay A*
         if (this.inViewport && (this.final_target_pos.distance(new_target) > 32 || this.myPath.length === 0)) {
@@ -30,6 +44,12 @@ game.OtherPlayer = game.Player.extend({
         this.final_target_pos.copy(new_target);
     },
 
+    /**
+     * Description
+     * @method update
+     * @param {} dt
+     * @return CallExpression
+     */
     update: function (dt) {
         // Actuar Normalmente con target_pos actual
         this.direccion = 0;
@@ -64,6 +84,12 @@ game.OtherPlayer = game.Player.extend({
         return this.updateAnimation(dt);
     },
 
+    /**
+     * Description
+     * @method draw
+     * @param {} renderer
+     * @return 
+     */
     draw: function (renderer) {
         //var context = renderer.getContext();
         this._super(game.Player, 'draw', [renderer]);

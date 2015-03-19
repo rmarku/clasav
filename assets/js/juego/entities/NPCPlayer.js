@@ -1,4 +1,12 @@
 game.NPCPlayer = me.Entity.extend({
+    /**
+     * Description
+     * @method init
+     * @param {} x
+     * @param {} y
+     * @param {} settings
+     * @return 
+     */
     init: function (x, y, settings) {
         var self = this;
         $.get('api/npc-player?nombre=' + settings.nombre,
@@ -41,10 +49,23 @@ game.NPCPlayer = me.Entity.extend({
             });
     },
 
+    /**
+     * Description
+     * @method update
+     * @param {} dt
+     * @return 
+     */
     update: function (dt) {
         this._super(me.Entity, 'update', [dt]);
     },
 
+    /**
+     * Description
+     * @method onCollision
+     * @param {} response
+     * @param {} other
+     * @return Literal
+     */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
             // Choque contra el mundo!
@@ -54,6 +75,12 @@ game.NPCPlayer = me.Entity.extend({
         return true;
     },
 
+    /**
+     * Description
+     * @method draw
+     * @param {} renderer
+     * @return 
+     */
     draw: function (renderer) {
 
         // Dibujo el personaje
@@ -68,6 +95,11 @@ game.NPCPlayer = me.Entity.extend({
         renderer.fillRect(this.pos.x - 1, this.pos.y - 1, 2, 2);
     },
 
+    /**
+     * Description
+     * @method nombre
+     * @return 
+     */
     nombre: function () {
         var width = 32 * 4;
         var height = 30;

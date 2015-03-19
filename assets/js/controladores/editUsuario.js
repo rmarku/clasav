@@ -59,9 +59,9 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
     /**
      * Envia el formulario
-     *
-     * @method subirForm
      * @return
+     * @method subirForm
+     * @return 
      */
     $scope.subirForm = function () {
 

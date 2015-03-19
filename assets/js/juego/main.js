@@ -40,8 +40,9 @@ var game = {
     /**
      * initialization
      * @return
-     * @method onload
      * @return
+     * @method onload
+     * @return 
      */
     onload: function () {
         me.sys.fps = 30;
@@ -105,8 +106,9 @@ var game = {
     /**
      * Llamo cuando todos los recursos estan cargados
      * @return
-     * @method loaded
      * @return
+     * @method loaded
+     * @return 
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -119,6 +121,12 @@ var game = {
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
     },
 
+    /**
+     * Description
+     * @method change_level
+     * @param {} target_mapa_generico
+     * @return 
+     */
     change_level: function (target_mapa_generico) {
 
         //Guardo data para poder eliminar inmediatamente
@@ -145,6 +153,11 @@ var game = {
 
 
 
+    /**
+     * Description
+     * @method create_OtherPlayers
+     * @return 
+     */
     create_OtherPlayers: function () {
         $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
 
@@ -158,6 +171,12 @@ var game = {
         });
     },
 
+    /**
+     * Description
+     * @method addMainPlayer
+     * @param {} data
+     * @return 
+     */
     addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
             Number(data.y), {
@@ -169,6 +188,12 @@ var game = {
         me.game.world.sort();
     },
 
+    /**
+     * Description
+     * @method addOnlineOtherPlayer
+     * @param {} data
+     * @return 
+     */
     addOnlineOtherPlayer: function (data) {
         game.players[data.id] = me.pool.pull('otherPlayer',
             Number(data.x),
@@ -182,16 +207,31 @@ var game = {
         me.game.world.addChild(game.players[data.id], 10);
     },
 
+    /**
+     * Description
+     * @method remove_AllPlayers
+     * @return 
+     */
     remove_AllPlayers: function () {
         game.removeMainPlayer();
         game.removeEveryOtherPlayer();
     },
 
+    /**
+     * Description
+     * @method removeMainPlayer
+     * @return 
+     */
     removeMainPlayer: function () {
         me.game.world.removeChild(game.mainPlayer);
         game.mainPlayer = {};
     },
 
+    /**
+     * Description
+     * @method removeEveryOtherPlayer
+     * @return 
+     */
     removeEveryOtherPlayer: function () {
         while (game.players.length) {
             game.removeOtherPlayer(game.player.pop().id);
@@ -199,6 +239,12 @@ var game = {
         game.players = {};
     },
 
+    /**
+     * Description
+     * @method removeOtherPlayer
+     * @param {} id
+     * @return 
+     */
     removeOtherPlayer: function (id) {
         if (game.players[id]) {
             console.log('Removing player: ', id);
