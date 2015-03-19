@@ -25,9 +25,13 @@
 
 			<!--HUD SUPERIOR-->
 			<div id="hudSuperior" class="capaSup">
-				<img src="data/sprites/characters/masculino/face/pepe.png" style="float: left;">
+				<!--img src="images/iconos/circuloNivel.png" style="float: left; width: 68px; height: 68px;"-->
+				<div class="nivelPJ">
+					<b> <font size="7">1 </font> <br> Nivel</b>
+				</div>
+				
 
-				<div class="progress" style="margin-left: 100px; margin-top: 10px ;width: 200px">
+				<div class="progress" style="margin-left: 75px; margin-top: 10px ;width: 200px">
 					<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60"
 					aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 
@@ -35,7 +39,7 @@
 						<b>Energia</b>
 					</div>
 				</div>
-				<div class="progress" style="margin-left: 100px; margin-top: -10px ;width: 200px">
+				<div class="progress" style="margin-left: 75px; margin-top: -10px ;width: 200px">
 					<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
 					aria-valuemax="100" style="width: 60%;"></div>
 
@@ -55,9 +59,7 @@
 				<img id="btnPers" src="images/iconos/btn_personaje.png" style="margin-left: -4px;"/>
 			</div>
 			<img class="capaSup" id="audio" src="images/iconos/audio_OFF.png" style="position: absolute; bottom: 4px; right: 4px"/>
-			<a href="/">
-				<img class="capaSup" id="home" src="images/iconos/btn_home.png" style="position: absolute; bottom: 32px; right: 4px"/>
-			</a>
+			<a href="/"> <img class="capaSup" id="home" src="images/iconos/btn_home.png" style="position: absolute; bottom: 32px; right: 4px"/> </a>
 			<!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
 
 			<!--INVENTARIO-->
@@ -199,7 +201,7 @@
 			<div style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
 				<img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
 
-				<div id=divMinimapa class="div-mapa" style="width: 156px; height: 156px; position: absolute; float: left; margin-left: 9px; margin-top: 11px">
+				<div id=divMinimapa class="div-mapa">
 					<canvas id="canvasMinimap" width="156" height="156"></canvas>
 				</div>
 
@@ -220,7 +222,6 @@
 					<input chat="envMsj()" class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="width: 100%">
 				</div>
 			</div>
-			
 
 			<!--ventana de amigos-->
 			<div class="titulo-botonera" style=" display:none; background-color: #FBF8EF; border: 2px solid #FF8000; margin: 30px 0px; height: 277px;">

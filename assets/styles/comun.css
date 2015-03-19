@@ -6,7 +6,7 @@
 }
 
 .img-center {
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 .body-gradient {
@@ -78,6 +78,12 @@
 .div-mapa {
 	background-image: url("../data/map/minimap/Inicio.png");
 	background-size: cover;
+	width: 156px;
+	height: 156px;
+	position: absolute;
+	float: left;
+	margin-left: 9px;
+	margin-top: 11px;
 }
 
 .div-panel {
@@ -237,18 +243,25 @@
 	height: 48px;
 }
 
-
-
 .divNS {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
 }
 
+.toast-top-right {
+	margin-top: 28px;
+}
 
-.toast-top-right{
-    margin-top: 28px;
+.nivelPJ {
+	position: absolute;
+	float: left;
+	text-align: center;
+	width: 68px;
+	height: 68px;
+	background-image: url("../images/iconos/circuloNivel.png");
+	font-family: "Gorditas-Regular";
 }
 
