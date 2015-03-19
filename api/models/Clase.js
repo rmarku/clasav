@@ -31,6 +31,12 @@ module.exports = {
         personajes:{
             collection: "personaje",
             via: "clases"
+        },
+
+        clase_x_user: {
+            collection: 'clase_x_user',
+            via: 'clase',
+            required: false
         }
     }
 };

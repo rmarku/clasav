@@ -66,6 +66,12 @@ module.exports = {
             required: false
         },
 
+        clase_x_user: {
+            collection: 'clase_x_user',
+            via: 'user',
+            required: false
+        },
+
         tipo: {
             type: 'string',
             enum: ['profesor', 'alumno']

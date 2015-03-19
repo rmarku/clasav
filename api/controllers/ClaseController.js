@@ -39,6 +39,7 @@ module.exports = {
                     //Asociamos la claseCreada con el mapa_instanciaCreado
                     claseEncontrada.mapas_instancias.add(mapa_instanciaCreado.id);
 
+                    //Guardamos los cambios y enviamos respuesta al Cliente
                     claseEncontrada.save(function (err) {
                         if(err){
                             res.json(err);
@@ -52,6 +53,13 @@ module.exports = {
                 });
             });
         });
+    },
+
+
+    solicitarClase: function (req,res) {
+
+
     }
+
 };
 

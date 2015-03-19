@@ -5,6 +5,16 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
 
     $scope.visibilidad_nuevaInstitucion = false;
 
+    $scope.get_clases = function () {
+        $.get('/api/clases', function (local_instituciones) {
+            $scope.instituciones = local_instituciones;
+            $scope.institucion_seleccionada = $scope.instituciones[0];
+            $scope.$apply();
+            return $scope.instituciones;
+        });
+    };
+    $scope.get_clases();
+
     $scope.get_instituciones = function () {
          $.get('/api/institucion', function (local_instituciones) {
              $scope.instituciones = local_instituciones;
