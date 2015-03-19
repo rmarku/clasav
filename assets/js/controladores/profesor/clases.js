@@ -9,6 +9,7 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
          $.get('/api/institucion', function (local_instituciones) {
              $scope.instituciones = local_instituciones;
              $scope.institucion_seleccionada = $scope.instituciones[0];
+             $scope.$apply();
              return $scope.instituciones;
          });
     };
@@ -18,6 +19,7 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         $.get('/api/mapa_generico', function (local_mapas) {
             $scope.mapas = local_mapas;
             $scope.mapa_seleccionado = $scope.mapas[0];
+            $scope.$apply();
             return $scope.mapas;
         });
     };
@@ -51,7 +53,8 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                 institucionID:      $scope.institucion_seleccionada.id
             },
             function (data) {
-                var a = "";
+                toastr.info('Nueva Clase Creada');
+                window.location.href = '#/clasesProfesor';
         });
     };
 

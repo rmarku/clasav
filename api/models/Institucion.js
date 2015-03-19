@@ -35,7 +35,7 @@ module.exports = {
 
         clases: {
             collection: 'clase',
-            via: 'institucion_instancia',
+            via: 'institucion',
             required: false
         }
 

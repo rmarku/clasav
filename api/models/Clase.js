@@ -8,7 +8,7 @@
 module.exports = {
 
     attributes: {
-        institucion_instancia: {
+        institucion: {
             model: 'institucion',
             required: false
         },
