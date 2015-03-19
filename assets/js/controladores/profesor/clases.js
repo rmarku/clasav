@@ -51,14 +51,15 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                 institucionID:      $scope.institucion_seleccionada.id
             },
             function (data) {
+                var a = "";
         });
     };
 
     $scope.createInstitucion = function () {
         var deferred = $q.defer();
             $.post("/api/institucion/create", $scope.institucion_nueva,
-                function (data) {
-                    $scope.institucion_seleccionada = data;
+                function (institucionCreada) {
+                    $scope.institucion_seleccionada = institucionCreada;
                     deferred.resolve();
                 });
         return deferred.promise;
