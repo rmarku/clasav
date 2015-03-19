@@ -58,8 +58,35 @@ module.exports = {
 
     solicitarClase: function (req,res) {
         var userID = req.session.passport.user;
+        var claseID = req.param('claseID');
+
         //realizar un update en clase_x_user
 
+        Clase.findOne({id:claseID}).populate('users').exec(function afterwards(err,clase){
+
+            if (err) {
+                return;
+            }
+
+            clase.users.add(userID);
+
+            claseEncontrada.save(function (err) {
+                if(err){
+                    res.json(err);
+                }
+
+                //Crear Mapa Instancia a partir de mapa_genericoID
+                Clase_x_user.create({user:userID, clase:claseID}).exec(function createCB(err,clase_x_user) {
+
+                    if (err) {
+                        res.json(err);
+                    }
+
+                    res.json(clase_x_user);
+
+                });
+            });
+        });
     },
 
     get_misClases_conUsers: function (req,res) {
