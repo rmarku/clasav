@@ -57,8 +57,59 @@ module.exports = {
 
 
     solicitarClase: function (req,res) {
+        var userID = req.session.passport.user;
+        //realizar un update en clase_x_user
+
+    },
+
+    get_misClases_conUsers: function (req,res) {
+
+        var userID = req.session.passport.user;
+        var misClases = [];
+
+        Clase.find().populate('users').exec(function(err,todasLasClases) {
+
+            if (err) {
+                res.json(err);
+            }
+
+            //Recorremos cada clase
+            todasLasClases.forEach(function(clase){
+                //Recorremos  cada user de cada clase
+                clase.users.forEach(function(user,index){
+                    //Si el User esta dentro de la clase
+                    if (user.id == userID){
+                        misClases.push(clase);
+                        return;
+                    }
+
+                });
+            });
+
+            //Recorremos cada clase
+            misClases.forEach(function(clase) {
+                //Recorremos  cada user de cada clase
+                clase.users.forEach(function (user, index) {
+
+                    //Buscamos en cada User, la situacion en que se encuentra
+                    // con respecto cada clase
+                    //(dato que esta dentro del modelo Clase_x_user)
+                    Clase_x_user.findOne({clase: clase.id, user: user.id}).exec(function (err, local_clase_x_user) {
+                        if (err) {
+                            res.json(err);
+                        }
+
+                        if (local_clase_x_user) {
+                            //Asignamos a cada usuario su situacion con la clase
+                            user.clase_x_user = local_clase_x_user;
+                        }
+                    });
+                });
+            });
 
 
+            return res.json(misClases);
+        });
     }
 
 };

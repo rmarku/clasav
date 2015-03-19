@@ -18,9 +18,9 @@ module.exports = {
           required: false
       },
 
-      tipo: {
+      situacion: {
           type: 'string',
-          enum: ['espera','aceptado']
+          enum: ['espera','aceptado','rechazado']
       }
 
   }

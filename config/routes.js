@@ -78,6 +78,9 @@ module.exports.routes = {
 
     'get /api/personaje/getPersonaje_masReciente':  'PersonajeController.getPersonaje_masReciente',
 
-    'put /api/clase/crearClaseProfesor':           'ClaseController.crearClaseProfesor'
+    'put /api/clase/crearClaseProfesor':            'ClaseController.crearClaseProfesor',
 
+    'get /api/clase/get_misClases_conUsers':        'ClaseController.get_misClases_conUsers',
+
+    'get /api/clase/solicitarClase':                'ClaseController.solicitarClase'
 };
