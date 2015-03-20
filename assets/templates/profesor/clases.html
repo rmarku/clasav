@@ -9,6 +9,9 @@
             </b>
         </div>
 
+        <div>
+            <button class="btn btn-default btn-align" ng-click="crearClase()">Crear Clase</button>
+        </div>
 
         <div class="container-fluid">
             <div class="row">
@@ -19,31 +22,25 @@
                         <thead>
                         <tr>
                             <th>Clase</th>
-                            <th class="text-center" style="width: 180px">Institucion</th>
-                            <th class="text-center" style="width: 180px">Alumnos Actuales</th>
+                            <th class="text-center" style="width: 100px">Institucion</th>
                             <th class="text-center" style="width: 180px">Mapa Central</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="c in misClases ">
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.nombre }}
+                            <td >
+                              <span>
+                                {{ c.nombre}}
                               </span>
                             </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
+                            <td class="text-center">
+                              <span >
                                 {{ c.institucion.nombre  || ' '}}
                               </span>
                             </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.cantidadAlumnos || ' ' }}
-                              </span>
-                            </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.cantidadAlumnos || ' ' }}
+                            <td class="text-center">
+                              <span >
+                                {{ c.mapaCentral.nombre|| ' ' }}
                               </span>
                             </td>
                         </tr>
@@ -54,63 +51,6 @@
 
             </div>
 
-            <button class="btn btn-default btn-align" ng-click="crearClase()">Crear Clase</button>
-        </div>
-
-
-
-
-        <div class="page-header" align="center" style="margin-top: 0px">
-
-            <b class="titulos">
-                Todas las clases
-            </b>
-        </div>
-
-
-        <div class="container-fluid">
-            <div class="row">
-                <div >
-                    <br>
-
-                    <table class="table table-striped table-hover table" style="width: 80%">
-                        <thead>
-                        <tr>
-                            <th>Clase</th>
-                            <th class="text-center" style="width: 180px">Institucion</th>
-                            <th class="text-center" style="width: 180px">Alumnos Actuales</th>
-                            <th class="text-center" style="width: 180px">Mapa Central</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="c in todasLasClases ">
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.nombre }}
-                              </span>
-                            </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.institucion.nombre  || ' '}}
-                              </span>
-                            </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.cantidadAlumnos || ' ' }}
-                              </span>
-                            </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.cantidadAlumnos || ' ' }}
-                              </span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-
-            </div>
         </div>
 
     </div>

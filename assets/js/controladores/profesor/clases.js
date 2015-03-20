@@ -9,7 +9,7 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
     $scope.get_clases = function () {
         $.get('/api/clase/get_misClases_conUsers', function (clases) {
 
-            $scope.misClases_quitarMapasSecundarios(clases);
+            $scope.definirMapaCentral(clases);
             $scope.misClases = clases;
             $scope.$apply();
 
@@ -84,15 +84,15 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         return deferred.promise;
     };
 
-    $scope.misClases_quitarMapasSecundarios = function (misClases) {
+    $scope.definirMapaCentral= function (misClases) {
 
         ////Recorremos cada mapa_instancia: solo nos quedamos con el mapa_principal
         misClases.forEach(function(clase){
 
-            clase.mapas_instancias.forEach(function(mapas_instancias){
+            clase.mapas_instancias.forEach(function(mapa_instancia){
 
-                if (tipo == 'central'){
-                    misClases.mapa_instancia = mapa_instancia;
+                if (mapa_instancia.tipo == 'central'){
+                    clase.mapaCentral = mapa_instancia;
                     return;
                 }
             });
