@@ -115,14 +115,18 @@ module.exports = {
         var misClases = [];
         var mapas_genericos = [];
 
+        console.log("apartado1");
         Clase.find().populate('users').populate('mapas_instancias').populate('institucion').exec(function(err,todasLasClases) {
 
-            if (err) {
+            if(err){
+                console.log(err);
                 res.json(err);
+                return;
             }
-
+            console.log("apartado1");
             //Recorremos cada clase: obtenemos cuales pertenecen al usuario
             todasLasClases.forEach(function(clase){
+                console.log("foeach1");
                 //Recorremos  cada user de cada clase
                 clase.users.forEach(function(user,index){
                     //Si el User esta dentro de la clase
@@ -130,23 +134,26 @@ module.exports = {
                         misClases.push(clase);
                         return;
                     }
-
+                    console.log("foeach2");
                 });
             });
-
+            console.log("apartado1");
             //Recorremos cada clase: obtenemos la relacion del usuario con la clase
             misClases.forEach(function(clase) {
+                console.log("foreach3");
                 //Recorremos  cada user de cada clase
                 clase.users.forEach(function (user) {
-
+                    console.log("foreach4");
                     //Buscamos en cada User, la situacion en que se encuentra
                     // con respecto cada clase
                     //(dato que esta dentro del modelo Clase_x_user)
                     Clase_x_user.findOne({clase: clase.id, user: user.id}).exec(function (err, local_clase_x_user) {
-                        if (err) {
+                        if(err){
+                            console.log(err);
                             res.json(err);
+                            return;
                         }
-
+                        console.log("clase_x_user_find");
                         if (local_clase_x_user) {
                             //Asignamos a cada usuario su situacion con la clase
                             user.clase_x_user = local_clase_x_user;
@@ -154,10 +161,9 @@ module.exports = {
                     });
                 });
 
-                return res.json(misClases);
             });
-
-
+            console.log("final");
+            return res.json(misClases);
 
         });
     }
