@@ -4,29 +4,35 @@
 app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
     $scope.visibilidad_nuevaInstitucion = false;
+    $scope.misClases = [];
 
     $scope.get_clases = function () {
-        $.get('/api/clases', function (local_instituciones) {
-            $scope.instituciones = local_instituciones;
-            $scope.institucion_seleccionada = $scope.instituciones[0];
+        $.get('/api/clase/get_misClases_conUsers', function (clases) {
+
+            $scope.misClases_quitarMapasSecundarios(clases);
+            $scope.misClases = clases;
             $scope.$apply();
-            return $scope.instituciones;
+
+            return $scope.misClases;
         });
     };
+
     $scope.get_clases();
 
     $scope.get_instituciones = function () {
          $.get('/api/institucion', function (local_instituciones) {
+
              $scope.instituciones = local_instituciones;
              $scope.institucion_seleccionada = $scope.instituciones[0];
              $scope.$apply();
+
              return $scope.instituciones;
          });
     };
     $scope.get_instituciones();
 
     $scope.get_mapas = function () {
-        $.get('/api/mapa_generico', function (local_mapas) {
+        $.get('/api/mapa_generico?tipo=central', function (local_mapas) {
             $scope.mapas = local_mapas;
             $scope.mapa_seleccionado = $scope.mapas[0];
             $scope.$apply();
@@ -76,6 +82,22 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                     deferred.resolve();
                 });
         return deferred.promise;
+    };
+
+    $scope.misClases_quitarMapasSecundarios = function (misClases) {
+
+        ////Recorremos cada mapa_instancia: solo nos quedamos con el mapa_principal
+        misClases.forEach(function(clase){
+
+            clase.mapas_instancias.forEach(function(mapas_instancias){
+
+                if (tipo == 'central'){
+                    misClases.mapa_instancia = mapa_instancia;
+                    return;
+                }
+            });
+        });
+
     };
 
 }

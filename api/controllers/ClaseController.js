@@ -12,42 +12,62 @@ module.exports = {
         var nombre = req.param('nombre');
         var mapa_genericoID = req.param('mapa_genericoID');
         var institucionID = req.param('institucionID');
+        var mapa_instanciaCentralCreado = "";
 
-        //Crear Mapa Instancia a partir de mapa_genericoID
-        Mapa_instancia.create({mapa_generico: mapa_genericoID}).exec(function createCB(err, mapa_instanciaCreado) {
+
+        //Crear Clase con Nombre e institucion
+        Clase.create({nombre: nombre, institucion: institucionID}).exec(function createCB(err, claseCreada) {
 
             if(err){
+                console.log(err);
                 res.json(err);
+                return;
             }
 
-            console.log('mapa_instancia creado a partir del mapa_generico: ', mapa_instanciaCreado.mapa_generico);
+            ///////////////////// Generamos mapa_instancia central y secundarios/////////////
+            //Asociamos la claseCreada con el User que la creó
+            claseCreada.users.add(userID);
 
-            //Crear Clase con: nombre, mapa_instanciaID (recien creada), institucionID, User (profesor que la creo)
-            Clase.create({nombre: nombre, mapa_instancia: mapa_instanciaCreado.id, institucion: institucionID}).exec(function createCB(err, claseCreada) {
-
+            //Asociamos el User a la clase recien creada
+            claseCreada.save(function (err) {
                 if(err){
+                    console.log(err);
                     res.json(err);
+                    return;
                 }
+                ///////////////////// FIN Generamos mapa_instancia central y secundarios/////////////
 
-                Clase.findOne({id:claseCreada.id}).populate('users').populate('mapas_instancias').exec(function(err,claseEncontrada){
+                ///////////////////// Generamos mapa_instancia central y secundarios////////////////////////////////////////////////////////////////////////////////////////////////
+                Mapa_generico.findOne({id: mapa_genericoID}).exec(function afterwards(err, mapa_generico) {
 
-                    if(err){
-                        res.json(err);
-                    }
-                    //Asociamos la claseCreada con el User que la creó
-                    claseEncontrada.users.add(userID);
-                    //Asociamos la claseCreada con el mapa_instanciaCreado
-                    claseEncontrada.mapas_instancias.add(mapa_instanciaCreado.id);
+                    Dependencia_mapa_generico.findOne({id: mapa_generico.dependencia_mapa_generico}).populate('mapas_genericos').exec(function afterwards(err, dependencia_mapa_generico) {
 
-                    //Guardamos los cambios y enviamos respuesta al Cliente
-                    claseEncontrada.save(function (err) {
-                        if(err){
-                            res.json(err);
-                        }
+                        dependencia_mapa_generico.mapas_genericos.forEach(function (mapa_generico) {
 
-                        console.log('Clase creada: ' + claseCreada.nombre);
-                        return res.json(claseEncontrada);
+                            //Creo los mapas secundarios y el central inclusive
+                            Mapa_instancia.create(
+                                {
+                                    mapa_generico: mapa_generico.id,
+                                    nombre: mapa_generico.nombre,
+                                    tipo: mapa_generico.tipo,
+                                    clase: claseCreada
+                                }
+                            ).exec(function createCB(err, mapa_instancia) {
 
+                                    if (err) {
+                                        console.log(err);
+                                        res.json(err);
+                                        return;
+                                    }
+
+                                    if(mapa_instancia.mapa_generico == mapa_genericoID){
+
+                                        mapa_instanciaCentralCreado = mapa_instancia;
+                                    }
+                                });
+                        });
+                        ///////////////////// FIN Generamos mapa_instancia central y secundarios//////////////////////////////////////////////////
+                        return res.json(claseCreada);
 
                     });
                 });
@@ -75,7 +95,7 @@ module.exports = {
                     res.json(err);
                 }
 
-                //Crear Mapa Instancia a partir de mapa_genericoID
+                //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
                 Clase_x_user.create({user:userID, clase:claseID}).exec(function createCB(err,clase_x_user) {
 
                     if (err) {
@@ -93,14 +113,15 @@ module.exports = {
 
         var userID = req.session.passport.user;
         var misClases = [];
+        var mapas_genericos = [];
 
-        Clase.find().populate('users').exec(function(err,todasLasClases) {
+        Clase.find().populate('users').populate('mapas_instancias').populate('institucion').exec(function(err,todasLasClases) {
 
             if (err) {
                 res.json(err);
             }
 
-            //Recorremos cada clase
+            //Recorremos cada clase: obtenemos cuales pertenecen al usuario
             todasLasClases.forEach(function(clase){
                 //Recorremos  cada user de cada clase
                 clase.users.forEach(function(user,index){
@@ -113,10 +134,10 @@ module.exports = {
                 });
             });
 
-            //Recorremos cada clase
+            //Recorremos cada clase: obtenemos la relacion del usuario con la clase
             misClases.forEach(function(clase) {
                 //Recorremos  cada user de cada clase
-                clase.users.forEach(function (user, index) {
+                clase.users.forEach(function (user) {
 
                     //Buscamos en cada User, la situacion en que se encuentra
                     // con respecto cada clase
@@ -132,10 +153,12 @@ module.exports = {
                         }
                     });
                 });
+
+                return res.json(misClases);
             });
 
 
-            return res.json(misClases);
+
         });
     }
 

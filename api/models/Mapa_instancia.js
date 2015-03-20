@@ -13,11 +13,22 @@ module.exports = {
             model: 'clase',
             required: false
         },
-        
+
         mapa_generico: {
             model: 'mapa_generico',
             required: false
+        },
+
+        nombre: {
+            type: 'string',
+            required: false
+        },
+
+        tipo: {
+            type: 'string',
+            enum: ['central','secundario']
         }
+
     }
 };
 

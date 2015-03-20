@@ -46,6 +46,13 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
     //<!--FIN RUTAS PROFESOR-->
 
+    //<!--RUTAS ALUMNO-->
+        $routeProvider.when('/clasesAlumno', {
+        template: JST["assets/templates/alumno/clases.html"],
+        controller: 'clasesAlumnoController'
+    });
+    //<!--FIN RUTAS ALUMNO-->
+
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]
     });

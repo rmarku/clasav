@@ -24,6 +24,7 @@ module.exports = {
             via: 'clase',
             required: false
         },
+
         nombre: {
             type: "string"
         },

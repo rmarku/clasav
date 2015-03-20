@@ -1,12 +1,16 @@
 [
     {
-        "mapa_generico":1,
-        "clase": 1
+        "mapa_generico" :1,
+        "clase"         : 1,
+        "nombre"        : "island",
+        "tipo"          :"central"
     },
 
     {
-        "mapa_generico":2,
-        "clase": 1
+        "mapa_generico" :2,
+        "clase"         :1,
+        "nombre"        :"islandcasa01",
+        "tipo"          :"secundario"
     }
 
 ]

@@ -55,6 +55,7 @@ var jsFilesToInject = [
     "/js/controladores/editUsuario.js",
     "/js/controladores/profesor/clases.js",
     "/js/controladores/profesor/instituciones.js",
+    "/js/controladores/alumno/clases.js",
 
     //'lib/**/*.js',
 

@@ -18,33 +18,22 @@
                     <table class="table table-striped table-hover table" style="width: 80%">
                         <thead>
                         <tr>
-                            <th>Clase</th>
-                            <th class="text-center" style="width: 180px">Institucion</th>
+                            <th>Clases </th>
+                            <th class="text-center" style="width: 100px">Institucion</th>
                             <th class="text-center" style="width: 180px">Alumnos Actuales</th>
-                            <th class="text-center" style="width: 180px">Mapa Central</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="c in misClases ">
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.nombre }}
-                              </span>
+                        <tr ng-repeat="c in courses ">
+                            <td class="text-center">
+                                    <span
+                                        class="pointer-primary pointer fa fa-play fa-2x" ng-click="">
+                                    </span>
                             </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.institucion.nombre  || ' '}}
-                              </span>
-                            </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.cantidadAlumnos || ' ' }}
-                              </span>
-                            </td>
-                            <td>
-                              <span class="courseName"  e-form="rowform" >
-                                {{ c.cantidadAlumnos || ' ' }}
-                              </span>
+                            <td class="text-center">
+                                    <span
+                                        class="pointer fa fa-eye fa-2x" ng-click="">
+                                    </span>
                             </td>
                         </tr>
                         </tbody>
@@ -53,8 +42,6 @@
                 </div>
 
             </div>
-
-            <button class="btn btn-default btn-align" ng-click="crearClase()">Crear Clase</button>
         </div>
 
 
@@ -91,7 +78,7 @@
                             </td>
                             <td>
                               <span class="courseName"  e-form="rowform" >
-                                {{ c.institucion.nombre  || ' '}}
+                                {{ c.institucion.nombre }}
                               </span>
                             </td>
                             <td>
@@ -115,3 +102,5 @@
 
     </div>
 </div>
+
+
