@@ -20,7 +20,7 @@ module.exports = {
 
       situacion: {
           type: 'string',
-          enum: ['espera','aceptado','rechazado']
+          enum: ['espera','aceptado','rechazado','creador']
       }
 
   }

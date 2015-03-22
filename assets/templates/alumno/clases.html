@@ -2,28 +2,24 @@
 <br>
 <div class="container-fluid">
     <div class="div-form text-left" style="margin: auto;">
+
         <div class="page-header" align="center" style="margin-top: 0px">
-
             <b class="titulos">
-                Mis Clases
+                Clases Actuales
             </b>
-        </div>
-
-        <div>
-            <button class="btn btn-default btn-align" ng-click="crearClase()">Crear Clase</button>
         </div>
 
         <div class="container-fluid">
             <div class="row">
                 <div >
                     <br>
-
                     <table class="table table-striped table-hover table" style="width: 80%">
                         <thead>
                         <tr>
                             <th>Clase</th>
                             <th class="text-center" style="width: 100px">Institucion</th>
-                            <th class="text-center" style="width: 180px">Mapa Central</th>
+                            <th class="text-center" style="width: 150px">Mapa Central</th>
+                            <th class="text-center" style="width: 100px">Profesor</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,6 +39,66 @@
                                 {{ c.mapaCentral.nombre|| ' ' }}
                               </span>
                             </td>
+                            <td class="text-center">
+                              <span >
+                                {{c.profesor.apellido + ' ' + c.profesor.nombre  || ' ' }}
+                              </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="page-header" align="center" style="margin-top: 0px">
+            <b class="titulos">
+                Clases en Espera de Confirmación
+            </b>
+        </div>
+
+        <div>
+            <button class="btn btn-default btn-align" ng-click="solicitarClase()">Solicitar Clase</button>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div >
+                    <br>
+                    <table class="table table-striped table-hover table" style="width: 80%">
+                        <thead>
+                        <tr>
+                            <th>Clase </th>
+                            <th class="text-center" style="width: 100px">Institucion</th>
+                            <th class="text-center" style="width: 150px">Mapa Central</th>
+                            <th class="text-center" style="width: 100px">Profesor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="c in misClasesConfirmacionPendiente ">
+                            <td >
+                              <span>
+                                {{ c.nombre}}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ c.institucion.nombre  || ' '}}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ c.mapaCentral.nombre|| ' ' }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{c.profesor.apellido + ' ' + c.profesor.nombre  || ' ' }}
+                              </span>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -52,6 +108,9 @@
             </div>
 
         </div>
+
+
+
 
     </div>
 </div>
