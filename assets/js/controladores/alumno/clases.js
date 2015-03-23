@@ -4,14 +4,14 @@
 app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
     $scope.misClases = [];
-    $scope.misClasesConfirmacionPendiente = [];
+    $scope.misClasesSituacionEspera = [];
 
     $scope.get_misClases = function () {
         $.get('/api/clase/get_misClases_conUsers', function (clases) {
 
             clases              = $scope.definirMapasCentrales(clases);
             clases              = $scope.definirProfesores(clases);
-            clases              = $scope.definirClasesConfirmacionPendiente(clases);
+            clases              = $scope.definirClasesSituacionEspera(clases);
             $scope.misClases    = clases;
 
             $scope.$apply();
@@ -50,6 +50,22 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
             return $scope.clasesDeInstitucion;
         });
+    };
+
+    $scope.solicitarClase = function () {
+        window.location.href = '#/solicitarClase';
+    };
+
+    $scope.subirSolicitudClase = function () {
+
+        $.get("/api/clase/solicitarClase",
+            {
+                claseID: $scope.clase_seleccionada.id
+            },
+            function (data) {
+                toastr.info('Solicitud Enviada');
+                window.location.href = '#/clasesAlumno';
+            });
     };
 
     $scope.definirMapasCentrales = function (clases) {
@@ -91,7 +107,7 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
     $scope.get_profesor = function (clase) {
 
-       var userToReturn = "";
+        var userToReturn = "";
 
         clase.users.forEach(function(user){
 
@@ -104,21 +120,23 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
         return userToReturn;
     };
 
+    $scope.definirClasesSituacionEspera = function (clases) {
 
-    $scope.solicitarClase = function () {
-        window.location.href = '#/solicitarClase';
-    };
+        var otherClasesToReturn = [];
 
-    $scope.subirSolicitudClase = function () {
+        while(clases.length){
+            var clase = clases.pop();
 
-        $.get("/api/clase/solicitarClase",
-            {
-                claseID: $scope.clase_seleccionada.id
-            },
-            function (data) {
-                toastr.info('Solicitud Enviada');
-                window.location.href = '#/clasesAlumno';
-            });
+            if(clase.clase_x_user[0].situacion == "espera"){
+
+                $scope.misClasesSituacionEspera.push(clase);
+                continue;
+            }
+
+            otherClasesToReturn.push(clase);
+        };
+
+        return otherClasesToReturn;
     };
 
     $scope.concatenarDatosInstituciones = function (instituciones) {
@@ -140,23 +158,6 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
         return clases;
     };
-
-
-    $scope.definirClasesConfirmacionPendiente = function (clases) {
-
-        clases.forEach(function(clase){
-
-            if(clase.clase_x_user[0].situacion == "espera"){
-
-                $scope.misClasesConfirmacionPendiente.push(clase);
-
-                clases.pop(clase);
-            }
-        });
-
-        return clases;
-    };
-
 
 
     }

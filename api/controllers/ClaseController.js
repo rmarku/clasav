@@ -37,7 +37,7 @@ module.exports = {
                 }
                 ///////////////////// /////////////
                 //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
-                Clase_x_user.create({user:userID, clase:claseCreada.id, situacion:"creador"}).exec(function createCB(err,clase_x_user) {
+                Clase_x_user.create({user:userID, clase:claseCreada.id, situacion:"administrador"}).exec(function createCB(err,clase_x_user) {
 
                     if (err) {
                         console.log(err);
@@ -137,70 +137,173 @@ module.exports = {
             populate('institucion').
             exec(function(err,todasLasClases) {
 
-            if(err){
-                console.log(err);
-                res.json(err);
-                return;
-            }
-            //Recorremos cada clase: obtenemos cuales pertenecen al usuario
-            todasLasClases.forEach(function(clase){
-                //Recorremos  cada user de cada clase
-                clase.users.forEach(function(user,index){
 
-                    //Si el User esta dentro de la clase
-                    if (user.id == userID){
+                if(err){
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+                //Recorremos cada clase: obtenemos cuales pertenecen al usuario
+                todasLasClases.forEach(function(clase){
+                    //Recorremos  cada user de cada clase
+                    clase.users.forEach(function(user,index){
 
-                        misClases.push(clase);
-                        return;
-                    }
-                });
-            });
+                        //Si el User esta dentro de la clase
+                        if (user.id == userID){
 
-
-                /*
-            for(var x =0; x<misClases.length ; x++){
-                var clase = misClases[x];
-
-                for(var y =0; y<clase.users.length ; y++){
-                    console.log(clase);
-                    var user = clase.users[y];
-                    console.log(user);
-
-
-                    User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
-                        console.log(x);
-                        misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
+                            misClases.push(clase);
+                            return;
+                        }
                     });
+                });
+
+                res.send(misClases);
+
+/*
+
+                var x = 0;
+                var y = 0;
+                var Q = require('q');
+
+                function a(misClases) {
+                    var deferred = Q.defer();
+
+                    var b = function (){
+                        misClases.forEach(function (clase) {
+                            console.log("aca1");
+                            var promises = [];
+                            clase.users.forEach(function (user) {
+                                console.log("aca2");
+                                promises.push(function () {
+                                    console.log("aca3");
+                                    User.findOne({id: user.id}).populate('clase_x_user', {
+                                        user: user.id,
+                                        clase: clase.id
+                                    }).exec(function (err, local_user) {
+                                        console.log("aca4");
+                                        console.log(x);
+                                        console.log(y);
+                                        console.log(misClases[x].users[y].situacionAux_estaClase);
+                                        misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
+                                        console.log(misClases[x].users[y].situacionAux_estaClase);
+                                    });
+                                });
+                                Q.allSettled(promises).then(function () {
+                                    console.log("aca5");
+                                    y++;
+                                });
+
+                            });
+                            x++;
+                            y = 0;
+                        });
+                        deferred.resolve(data); // fulfills the promise with `data` as the value
+                    };
+
+
+                    return deferred.promise; // the promise is returned
+
 
 
                 }
-            }
+
+                a(misClases).then(function(){
+                    console.log("aca6");
+                    return
+
+
+                });
+/*
+                res.send(misClases);
 
 
 
-                 //Recorremos cada clase: obtenemos la relacion del usuario con la clase
-            misClases.forEach(function(clase) {
-                //Recorremos  cada user de cada clase
-
-                clase.users.forEach(function (user) {
-
-                     User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
-
-                         //console.log(user);
-                         //console.log(local_user.clase_x_user[0].situacion);
-                         user.situacionAux_estaClase = local_user.clase_x_user[0].situacion;
-
-                         //console.log(user);
 
 
+
+
+/*
+                var x = 0;
+                var y = 0;
+                misClases.forEach(function(clase){
+                    var asyncs = [];
+                    clase.users.forEach(function (user) {
+
+                        asyncs.push(function(callback) {
+                            User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
+
+                                misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
+                                console.log(user);
+                                y++;
+                                callback();
+                            });
+                        });
 
                     });
+                    async.series(asyncs, function(err) {
+                        if (!err) {
+                            res.send(200);
+                        }
+                    });
+                    y=0;
+                    x++;
+
+
                 });
 
-            });
+/*
+
+
+/*
+                for(var x =0; x<misClases.length ; x++){
+                    var asyncs = [];
+                    var clase = misClases[x];
+
+                    for(var y =0; y<clase.users.length ; y++){
+                        console.log(clase);
+                        var user = clase.users[y];
+                        console.log(user);
+
+                        asyncs.push(function(callback) {
+                            User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
+
+                                misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
+                                console.log(user);
+                                callback();
+                            });
+                        });
+                    }
+                    async.series(asyncs, function(err) {
+                        if (!err) {
+                            res.send(200);
+                        }
+                    });
+                }
+
+*/
+/*
+                     //Recorremos cada clase: obtenemos la relacion del usuario con la clase
+                misClases.forEach(function(clase) {
+                    //Recorremos  cada user de cada clase
+
+                    clase.users.forEach(function (user) {
+
+                         User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
+
+                             //console.log(user);
+                             //console.log(local_user.clase_x_user[0].situacion);
+                             user.situacionAux_estaClase = local_user.clase_x_user[0].situacion;
+
+                             //console.log(user);
+
+
+
+                        });
+                    });
+
+                });
                  */
 
-            return res.send(misClases);
         });
     }
 

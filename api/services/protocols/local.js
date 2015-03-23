@@ -53,6 +53,7 @@ exports.register = function (req, res, next) {
       , apellido    : apellido
       , sexo    : sexo
       , tipo : tipo
+
   }, function (err, user) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
