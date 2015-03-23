@@ -149,6 +149,7 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
             if(clase.clase_x_user[0].situacion == "espera"){
 
                 $scope.misClasesConfirmacionPendiente.push(clase);
+                
                 clases.pop(clase);
             }
         });
