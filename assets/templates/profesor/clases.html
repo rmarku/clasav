@@ -25,7 +25,8 @@
                             <th class="text-center" style="width: 100px">Institucion</th>
                             <th class="text-center" style="width: 180px">Mapa Central</th>
                             <th class="text-center" style="width: 180px">Alumnos</th>
-                            <th class="text-center" style="width: 180px">Solicitudes</th>
+                            <th class="text-center" style="width: 50px">Solicitudes</th>
+                            <th class="text-center" style="width: 50px">Detalle</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,13 +48,17 @@
                             </td>
                             <td class="text-center">
                               <span >
-                                {{ c.users_situacionAceptado.length|| 0}}
+                                {{ c.users_situacionAceptado.length|| 0 }}
                               </span>
                             </td>
                             <td class="text-center">
                               <span >
-                                {{ c.users_situacionEspera.length || 0}}
+                                {{ c.users_situacionEspera.length || 0 }}
                               </span>
+                            </td>
+                            <td>
+                                <span class="fa fa-th-list" ng-click="verSolicitudes()">
+                                </span>
                             </td>
                         </tr>
                         </tbody>

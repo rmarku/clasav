@@ -83,7 +83,8 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                 function (institucionCreada) {
                     $scope.institucion_seleccionada = institucionCreada;
                     deferred.resolve();
-                });
+                }
+            );
         return deferred.promise;
     };
 
@@ -173,12 +174,23 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                     if (clase_x_user.user.id == user.id) {
 
                         if (clase_x_user.situacion == 'espera') {
+
+                            user.clase_x_user = clase_x_user;
                             clase.users_situacionEspera.push(user);
+
                         } else if (clase_x_user.situacion == 'aceptado') {
+
+                            user.clase_x_user = clase_x_user;
                             clase.users_situacionAceptado.push(user);
+
                         } else if (clase_x_user.situacion == 'rechazado') {
+
+                            user.clase_x_user = clase_x_user;
                             clase.users_situacionRechazado.push(user);
+
                         } else if (clase_x_user.situacion == 'administrador') {
+
+                            user.clase_x_user = clase_x_user;
                             clase.users_situacionAdministrador.push(user);
                         }
                     }
@@ -192,6 +204,39 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         return deferred.promise;
     };
 
+    $scope.verSolicitudes = function () {
+        window.location.href = '#/verSolicitudes';
+    };
+
+    $scope.aceptarAlumnoEnClase = function (user,user_index,clase_index) {
+
+        $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=aceptado",
+            function (err,detail) {
+                if(detail != "success"){
+                    toastr.error('Hubo un problema. Intente nuevamente.');
+                    return;
+                }
+                $scope.misClases[clase_index].users_situacionAceptado.push(user);
+                $scope.misClases[clase_index].users_situacionEspera.pop(user_index);
+                toastr.info('Usuario Aceptado!');
+            }
+        );
+    };
+
+    $scope.rechazarAlumnoEnClase = function(user,user_index,clase_index) {
+
+        $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=rechazado",
+            function (err,detail) {
+                if(detail != "success"){
+                    toastr.error('Hubo un problema. Intente nuevamente.');
+                    return;
+                }
+                $scope.misClases[clase_index].users_situacionRechazado.push(user);
+                $scope.misClases[clase_index].users_situacionEspera.pop(user_index);
+                toastr.info('Usuario Aceptado!');
+            }
+        );
+    };
 
 
     }

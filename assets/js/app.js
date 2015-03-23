@@ -44,6 +44,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/profesor/crearInstitucion.html"],
         controller: 'institucionesProfesorController'
     });
+    $routeProvider.when('/verSolicitudes', {
+        template: JST["assets/templates/profesor/verSolicitudes.html"],
+        controller: 'clasesProfesorController'
+    });
     //<!--FIN RUTAS PROFESOR-->
 
     //<!--RUTAS ALUMNO-->
