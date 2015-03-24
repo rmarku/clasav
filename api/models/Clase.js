@@ -39,6 +39,7 @@ module.exports = {
             via: 'clase',
             required: false
         }
+
     }
 };
 

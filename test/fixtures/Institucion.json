@@ -5,5 +5,12 @@
         "provincia": "Cordoba",
         "ciudad": "Cordoba",
         "direccion": "Pueyrredon 15"
+    },
+    {
+        "nombre": "San Jorge",
+        "pais": "Argentina",
+        "provincia": "Cordoba",
+        "ciudad": "Cordoba",
+        "direccion": "Pucara 98"
     }
 ]

@@ -24,6 +24,8 @@
                             <th>Clase</th>
                             <th class="text-center" style="width: 100px">Institucion</th>
                             <th class="text-center" style="width: 180px">Mapa Central</th>
+                            <th class="text-center" style="width: 180px">Alumnos</th>
+                            <th class="text-center" style="width: 180px">Solicitudes</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,6 +43,16 @@
                             <td class="text-center">
                               <span >
                                 {{ c.mapaCentral.nombre|| ' ' }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ c.users_situacionAceptado.length|| 0}}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ c.users_situacionEspera.length || 0}}
                               </span>
                             </td>
                         </tr>

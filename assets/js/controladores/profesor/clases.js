@@ -6,18 +6,21 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
     $scope.visibilidad_nuevaInstitucion = false;
     $scope.misClases = [];
 
-    $scope.get_clases = function () {
+    $scope.get_misClases = function () {
         $.get('/api/clase/get_misClases_conUsers', function (clases) {
 
-            $scope.definirMapaCentral(clases);
-            $scope.misClases = clases;
+            clases              = $scope.definirMapasCentrales(clases);
+         // clases              = $scope.definirProfesores(clases);
+            clases              = $scope.definirSituacionUsers(clases);
+            $scope.misClases    = clases;
+
             $scope.$apply();
 
             return $scope.misClases;
         });
     };
 
-    $scope.get_clases();
+    $scope.get_misClases();
 
     $scope.get_instituciones = function () {
          $.get('/api/institucion', function (local_instituciones) {
@@ -84,23 +87,114 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         return deferred.promise;
     };
 
-    $scope.definirMapaCentral= function (misClases) {
+
+
+    $scope.definirMapasCentrales = function (clases) {
 
         ////Recorremos cada mapa_instancia: solo nos quedamos con el mapa_principal
-        misClases.forEach(function(clase){
+        clases.forEach(function(clase) {
 
-            clase.mapas_instancias.forEach(function(mapa_instancia){
-
-                if (mapa_instancia.tipo == 'central'){
-                    clase.mapaCentral = mapa_instancia;
-                    return;
-                }
-            });
+            var mapa_instancia = $scope.get_mapaCentral(clase);
+            clase.mapas_instancias.pop(mapa_instancia);
+            clase.mapaCentral = mapa_instancia;
         });
-
+        return clases;
     };
 
-}
+    $scope.get_mapaCentral = function (clase) {
+
+        var mapaToReturn = "";
+
+        clase.mapas_instancias.forEach(function(mapa_instancia){
+
+            if (mapa_instancia.tipo == 'central'){
+                mapaToReturn = mapa_instancia;
+            }
+        });
+
+        return mapaToReturn;
+    };
+
+    $scope.definirProfesores = function (clases) {
+
+        clases.forEach(function(clase) {
+
+            var user = $scope.get_profesor(clase);
+            clase.users.pop(user);
+            clase.profesor = user;
+        });
+        return clases;
+    };
+
+    $scope.get_profesor = function (clase) {
+
+        var userToReturn = "";
+
+        clase.users.forEach(function(user){
+
+            if (user.tipo == 'profesor'){
+                userToReturn = user;
+                return;
+            }
+        });
+
+        return userToReturn;
+    };
+
+    $scope.definirSituacionUsers = function (clases) {
+
+        clases.forEach(function(clase){
+
+
+            clase.users_situacionEspera            = [];
+            clase.users_situacionAceptado          = [];
+            clase.users_situacionRechazado         = [];
+            clase.users_situacionAdministrador     = [];
+            $scope.definirSituacionUsers_enClase(clase).then(function (data){
+                clase=data;
+            });
+        });
+        return clases;
+    };
+
+    $scope.definirSituacionUsers_enClase = function (clase) {
+
+        var deferred = $q.defer();
+
+        $.get('/api/clase_x_user?clase='+clase.id, function (clases_x_users) {
+
+            for (var y = 0; y < clase.users.length; y++) {
+
+                var user = clase.users[y];
+
+                for (var x = 0; x < clase.users.length; x++) {
+                    var clase_x_user = clases_x_users[x];
+
+                    if (clase_x_user.user.id == user.id) {
+
+                        if (clase_x_user.situacion == 'espera') {
+                            clase.users_situacionEspera.push(user);
+                        } else if (clase_x_user.situacion == 'aceptado') {
+                            clase.users_situacionAceptado.push(user);
+                        } else if (clase_x_user.situacion == 'rechazado') {
+                            clase.users_situacionRechazado.push(user);
+                        } else if (clase_x_user.situacion == 'administrador') {
+                            clase.users_situacionAdministrador.push(user);
+                        }
+                    }
+                }
+                if(y == clase.users.length-1){
+                    clase.users = [];
+                    deferred.resolve(clase);
+                }
+            }
+        });
+        return deferred.promise;
+    };
+
+
+
+    }
 
 ]);
 
