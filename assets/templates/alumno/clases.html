@@ -23,7 +23,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="c in misClases ">
+                        <tr ng-repeat="c in $parent.misClases ">
                             <td >
                               <span>
                                 {{ c.nombre}}
@@ -78,7 +78,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="c in misClasesSituacionEspera ">
+                        <tr ng-repeat="c in $parent.misClasesSituacionEspera ">
                             <td >
                               <span>
                                 {{ c.nombre}}
