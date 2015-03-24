@@ -134,7 +134,7 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
             }
 
             otherClasesToReturn.push(clase);
-        };
+        }
 
         return otherClasesToReturn;
     };
