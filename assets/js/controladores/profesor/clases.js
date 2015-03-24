@@ -204,11 +204,15 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         return deferred.promise;
     };
 
-    $scope.verSolicitudes = function () {
+    $scope.verSolicitudesDeClase = function (index) {
+        $scope.$parent.claseActual = $scope.misClases[index];
+        //$scope.$apply();
         window.location.href = '#/verSolicitudes';
+
     };
 
-    $scope.aceptarAlumnoEnClase = function (user,user_index,clase_index) {
+    $scope.aceptarAlumnoEnClase = function (user) {
+
 
         $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=aceptado",
             function (err,detail) {
@@ -216,14 +220,14 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                     toastr.error('Hubo un problema. Intente nuevamente.');
                     return;
                 }
-                $scope.misClases[clase_index].users_situacionAceptado.push(user);
-                $scope.misClases[clase_index].users_situacionEspera.pop(user_index);
+                $scope.$parent.claseActual.users_situacionAceptado.push(user);
+                $scope.$parent.claseActual.users_situacionEspera.pop(user);
                 toastr.info('Usuario Aceptado!');
             }
         );
     };
 
-    $scope.rechazarAlumnoEnClase = function(user,user_index,clase_index) {
+    $scope.rechazarAlumnoEnClase = function(user,user_index) {
 
         $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=rechazado",
             function (err,detail) {
@@ -231,8 +235,8 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
                     toastr.error('Hubo un problema. Intente nuevamente.');
                     return;
                 }
-                $scope.misClases[clase_index].users_situacionRechazado.push(user);
-                $scope.misClases[clase_index].users_situacionEspera.pop(user_index);
+                $scope.$parent.claseActual.users_situacionRechazado.push(user);
+                $scope.$parent.claseActual.users_situacionEspera.pop(user);
                 toastr.info('Usuario Aceptado!');
             }
         );

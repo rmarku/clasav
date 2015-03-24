@@ -6,6 +6,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
+    $scope.claseActual = {};
 
     /**
      * Description

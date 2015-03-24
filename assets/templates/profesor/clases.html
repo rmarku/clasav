@@ -30,34 +30,34 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="c in misClases ">
+                        <tr ng-repeat="clase in misClases ">
                             <td >
                               <span>
-                                {{ c.nombre}}
+                                {{ clase.nombre}}
                               </span>
                             </td>
                             <td class="text-center">
                               <span >
-                                {{ c.institucion.nombre  || ' '}}
+                                {{ clase.institucion.nombre  || ' '}}
                               </span>
                             </td>
                             <td class="text-center">
                               <span >
-                                {{ c.mapaCentral.nombre|| ' ' }}
+                                {{ clase.mapaCentral.nombre|| ' ' }}
                               </span>
                             </td>
                             <td class="text-center">
                               <span >
-                                {{ c.users_situacionAceptado.length|| 0 }}
+                                {{ clase.users_situacionAceptado.length|| 0 }}
                               </span>
                             </td>
                             <td class="text-center">
                               <span >
-                                {{ c.users_situacionEspera.length || 0 }}
+                                {{ clase.users_situacionEspera.length || 0 }}
                               </span>
                             </td>
-                            <td>
-                                <span class="fa fa-th-list" ng-click="verSolicitudes()">
+                            <td class="text-center">
+                                <span class="fa fa-th-list" ng-click="verSolicitudesDeClase($index)">
                                 </span>
                             </td>
                         </tr>

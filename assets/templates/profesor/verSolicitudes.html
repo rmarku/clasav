@@ -5,7 +5,7 @@
         <div class="page-header" align="center" style="margin-top: 0px">
 
             <b class="titulos">
-                Solicitudes
+                Solicitudes clase {{claseActual.nombre}}
             </b>
         </div>
 
@@ -30,8 +30,8 @@
                             </tr>
                         </thead>
 
-                        <tbody ng-repeat="clase in misClases">
-                            <tr ng-repeat="user in clase.users_situacionEspera">
+                        <tbody >
+                            <tr ng-repeat="user in $parent.claseActual.users_situacionEspera">
                                 <td >
                                   <span>
                                     {{user.apellido + " " + user.nombre}}
@@ -39,27 +39,27 @@
                                 </td>
                                 <td class="text-center">
                                   <span >
-                                    {{clase.nombre }}
+                                    {{claseActual.nombre }}
                                   </span>
                                 </td>
                                 <td class="text-center">
                                   <span >
-                                    {{clase.institucion.nombre}}
+                                    {{claseActual.institucion.nombre}}
                                   </span>
                                 </td>
                                 <td class="text-center">
                                   <span >
-                                    {{clase.mapaCentral.nombre}}
+                                    {{claseActual.mapaCentral.nombre}}
                                   </span>
                                 </td>
                                 <td class="text-center">
                                   <span class="fa fa-check"
-                                        ng-click="aceptarAlumnoEnClase(user,$index,$parent.$index)">
+                                        ng-click="aceptarAlumnoEnClase(user)">
                                     </span>
                                 </td>
                                 <td class="text-center">
                                   <span class="fa fa-times"
-                                        ng-click="rechazarAlumnoEnClase(user,$index,$parent.$index)">
+                                        ng-click="rechazarAlumnoEnClase(user)">
                                     </span>
                                 </td>
                             </tr>
