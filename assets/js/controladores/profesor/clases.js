@@ -142,10 +142,10 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         return deferred.promise;
     };
 
-    $scope.verSolicitudesDeClase = function (index) {
+    $scope.set_claseActual = function (index) {
         $scope.$parent.claseActual = $scope.misClases[index];
-        window.location.href = '#/verSolicitudes';
-
+        $scope.$parent.claseActual.activa = true;
+        toastr.info('Clase Actual: '+$scope.$parent.claseActual.nombre+'.\n Recorre sus detalles en el Panel Principal.');
     };
 
 

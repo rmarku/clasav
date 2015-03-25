@@ -48,6 +48,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/profesor/verSolicitudes.html"],
         controller: 'verSolicitudesController'
     });
+    $routeProvider.when('/verAlumnos', {
+        template: JST["assets/templates/profesor/verAlumnos.html"],
+        controller: 'verAlumnosController'
+    });
     //<!--FIN RUTAS PROFESOR-->
 
     //<!--RUTAS ALUMNO-->
@@ -64,7 +68,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]
     });
-    
+
 }
 ]);
 
