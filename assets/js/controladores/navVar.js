@@ -6,6 +6,15 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
+    $scope.misClases = [];
+    $scope.claseActual =
+    {
+        "activa" : false
+    };
+    $scope.clasesCargadas = false;
+    $scope.misClasesSituacionEspera = [];
+    $scope.variable123 = false;
+
 
     /**
      * Description
@@ -46,6 +55,81 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
     $scope.verCuenta = function () {
         $location.path('/cuenta');
+    };
+
+    //////////// FUNCIONES DE CLASES ///////////////////
+
+
+    $scope.concatenarDatosInstituciones = function (instituciones) {
+
+        instituciones.forEach(function(institucion) {
+
+            institucion.datosConcatenados = institucion.nombre +' ( Dirección: '+ institucion.direccion + ', Ciudad: ' + institucion.ciudad + ', País: ' + institucion.pais + ')';
+        });
+
+        return instituciones;
+    };
+
+    $scope.concatenarDatosClases = function (clases) {
+
+        clases.forEach(function(clase) {
+
+            clase.datosConcatenados = clase.nombre +' ( Profesor: '+ clase.profesor.nombre + ' '+ clase.profesor.apellido + ', Mapa: ' + clase.mapaCentral.nombre + ')';
+        });
+
+        return clases;
+    };
+
+    $scope.definirMapasCentrales = function (clases) {
+
+        ////Recorremos cada mapa_instancia: solo nos quedamos con el mapa_principal
+        clases.forEach(function(clase) {
+
+            var mapa_instancia = $scope.get_mapaCentral(clase);
+            clase.mapas_instancias.pop(mapa_instancia);
+            clase.mapaCentral = mapa_instancia;
+        });
+        return clases;
+    };
+
+    $scope.get_mapaCentral = function (clase) {
+
+        var mapaToReturn = "";
+
+        clase.mapas_instancias.forEach(function(mapa_instancia){
+
+            if (mapa_instancia.tipo == 'central'){
+                mapaToReturn = mapa_instancia;
+            }
+        });
+
+        return mapaToReturn;
+    };
+
+    $scope.definirProfesores = function (clases) {
+
+        clases.forEach(function(clase) {
+
+            var user = $scope.get_profesor(clase);
+            clase.users.pop(user);
+            clase.profesor = user;
+        });
+        return clases;
+    };
+
+    $scope.get_profesor = function (clase) {
+
+        var userToReturn = "";
+
+        clase.users.forEach(function(user){
+
+            if (user.tipo == 'profesor'){
+                userToReturn = user;
+                return;
+            }
+        });
+
+        return userToReturn;
     };
 
 }])

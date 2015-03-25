@@ -124,9 +124,14 @@
         <%if(user.tipo == 'profesor'){%>
 
         <div class="btn-group botonera">
-            <a href="#/" type="button" class="btn btn-default">Home</a>
-
+            <a href="#/" class="btn btn-default">Home</a>
             <a href="#/clasesProfesor" class="btn btn-default">Clases</a>
+
+            <a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
+            <a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
+
+
+
         </div>
         <%}%>
         <!--FIN DE BOTONERA PROFESOR-->
@@ -166,6 +171,10 @@
 <script src="/js/controladores/profesor/clases.js"></script>
 <script src="/js/controladores/profesor/instituciones.js"></script>
 <script src="/js/controladores/alumno/clases.js"></script>
+<script src="/js/controladores/alumno/solicitarClase.js"></script>
+<script src="/js/controladores/profesor/verSolicitudes.js"></script>
+<script src="/js/controladores/profesor/verAlumnos.js"></script>
+<script src="/js/controladores/profesor/crearClase.js"></script>
 <!--SCRIPTS END-->
 
 </body>
