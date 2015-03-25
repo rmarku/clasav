@@ -64,8 +64,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]
     });
-
-
+    
 }
 ]);
 

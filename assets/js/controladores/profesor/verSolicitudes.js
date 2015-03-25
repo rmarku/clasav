@@ -19,7 +19,7 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
         );
     };
 
-    $scope.rechazarAlumnoEnClase = function(user,user_index) {
+    $scope.rechazarAlumnoEnClase = function(user) {
 
         $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=rechazado",
             function (err,detail) {

@@ -132,7 +132,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                             }
                             else
                             if ($scope.usuario.tipo == 'profesor') {
-                                window.location.href = '#/';
+                                window.location.href = '#/clases';
                             }
                             location.reload();
                             toastr.info('Cuenta Creada!');

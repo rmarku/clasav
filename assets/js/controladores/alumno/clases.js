@@ -7,7 +7,7 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
     $scope.get_misClases = function () {
 
-        if($scope.$parent.clasesCargadas == true){
+        if($scope.$parent.clasesCargadas === true){
             return;
         }
 

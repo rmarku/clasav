@@ -10,6 +10,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     $scope.claseActual = {};
     $scope.clasesCargadas = false;
     $scope.misClasesSituacionEspera = [];
+    $scope.variable123 = false;
+
 
     /**
      * Description
