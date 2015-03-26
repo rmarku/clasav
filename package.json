@@ -1,7 +1,7 @@
 {
   "name": "Gamification",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Clases y Aventuras the VideoGame!",
   "keywords": [],
   "dependencies": {
@@ -40,7 +40,7 @@
     "sails-generate-auth": "^0.2.0",
     "sails-mongo": "^0.10.4",
     "slack-winston": "git+https://github.com/nhitchins/slack-winston.git",
-    "tmxLint": "git+https://github.com/rmarku/tmxLint.git",
+    "tmxLint": "git+https://github.com/rmarku/tmxLint.git#v0.0.2",
     "validator": "^3.19.1",
     "winston": "^0.8.3"
   },
