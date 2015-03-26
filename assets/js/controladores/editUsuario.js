@@ -5,7 +5,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
      * @method init
      * @return
      */
-    $scope.alumno = {
+    $scope.usuario = {
         nombre: '',
         apellido: '',
         sexo: '',
@@ -46,8 +46,8 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         $scope.Titulo = 'Editar Cuenta';
         $scope.Boton = 'Guardar Cambios';
         $scope.$parent.getUser().then(function (data) {
-            $scope.alumno = data;
-            delete $scope.alumno.passports;
+            $scope.usuario = data;
+            delete $scope.usuario.passports;
         });
     } else {
 
@@ -65,21 +65,21 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
      */
     $scope.subirForm = function () {
 
-        if ($scope.alumno.password != $scope.alumno.password2) {
+        if ($scope.usuario.password != $scope.usuario.password2) {
             toastr.error('Las contraseñas no coinciden');
             return;
         }
-        if ($scope.alumno.sexo != 'masculino' && $scope.alumno.sexo != 'femenino') {
+        if ($scope.usuario.sexo != 'masculino' && $scope.usuario.sexo != 'femenino') {
             toastr.error('Seleccione un Genero');
             return;
         }
 
         if ($scope.editar) {  // Voy a editar una cuenta
 
-            $.post("/api/user/" + $scope.alumno.id, $scope.alumno, function (data) {
+            $.post("/api/user/" + $scope.usuario.id, $scope.usuario, function (data) {
 
 
-                $.get('/api/personaje?where={"duenio":"' + $scope.alumno.id + '"}', function (data) {
+                $.get('/api/personaje?where={"duenio":"' + $scope.usuario.id + '"}', function (data) {
                     console.log(data);
                     if (data.lenght > 0) {
                         toastr.info('Datos actualizados!!!!');
@@ -97,14 +97,14 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
             });
         } else {   // Voy a crear una nueva cuenta.
 
-            if ($scope.alumno.password === '') {
+            if ($scope.usuario.password === '') {
                 toastr.error('Contraseña no valida');
             }
 
             var req = $http({
                 method: 'POST',
                 url: "/auth/local/register",
-                data: $.param($scope.alumno),
+                data: $.param($scope.usuario),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             });
 
