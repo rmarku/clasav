@@ -120,4 +120,6 @@ assets/js/dependencies/
 assets/data/sprites/characters/femenino/*.png
 assets/data/sprites/characters/masculino/*.png
 assets/api/resources.json
-/assets/api/resources.json
+assets/api/resources.json
+assets/data/map/compiled/*.png
+assets/data/map/compiled/*.tmx

@@ -74,8 +74,13 @@ module.exports.routes = {
 
     'put  /api/personaje/updateStatus': 'PersonajeController.updateStatus',
 
-    'post /api/mapa_instancia/change_level': 'Mapa_instanciaController.change_level',
+    'post /api/mapa_instancia/change_level':        'Mapa_instanciaController.change_level',
 
-    'get /api/personaje/getPersonaje_masReciente': 'PersonajeController.getPersonaje_masReciente'
+    'get /api/personaje/getPersonaje_masReciente':  'PersonajeController.getPersonaje_masReciente',
 
+    'put /api/clase/crearClaseProfesor':            'ClaseController.crearClaseProfesor',
+
+    'get /api/clase/get_misClases_conUsers':        'ClaseController.get_misClases_conUsers',
+
+    'get /api/clase/solicitarClase':                'ClaseController.solicitarClase'
 };

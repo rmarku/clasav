@@ -15,9 +15,9 @@ app.controller('gamePageController', ['$scope', '$location', function ($scope, $
 
     /**
      * Description
-     * @return
+     *
      * @method init
-     * @return 
+     * @return
      */
     $scope.init = function () {
         setTimeout(function () {

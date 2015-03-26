@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+        <span class="titulos"> Solicitar Nueva Clase </span>
+
+
+        <span>
+            <div class="form-group">
+                <label for="institucion">Institución: </label>
+                <select
+                    ng-model    ="institucion_seleccionada"
+                    ng-click    ="get_clasesDeInstitucion()"
+                    class       ="form-control"
+                    ng-options  ="c.datosConcatenados for c in instituciones">
+
+                </select>
+            </div>
+        </span>
+
+        <span>
+            <div class="form-group">
+                <label for="clase">Clase: </label>
+                <select
+                    ng-model    ="clase_seleccionada"
+                    class       ="form-control"
+                    ng-options  ="c.datosConcatenados for c in clasesDeInstitucion">
+
+                </select>
+            </div>
+        </span>
+
+
+        <span>
+            <div>
+                <button class="btn btn-default btn-align" ng-click="subirSolicitudClase()">Confirmar Solicitud</button>
+            </div>
+        </span>
+
+
+        </form>
+    </div>
+</div>
+

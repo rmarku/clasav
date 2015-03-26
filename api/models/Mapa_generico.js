@@ -18,7 +18,21 @@ module.exports = {
             collection: 'mapa_instancia',
             via: 'mapa_generico',
             required: false
+        },
+
+        tipo: {
+            type: 'string',
+            enum: ['central','secundario']
+        },
+
+        dependencia_mapa_generico: {
+            model: 'dependencia_mapa_generico',
+            required: false
         }
+
+
+
+
     }
 
 };
