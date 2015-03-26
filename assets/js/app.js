@@ -38,11 +38,19 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
     $routeProvider.when('/crearClase', {
         template: JST["assets/templates/profesor/crearClase.html"],
-        controller: 'clasesProfesorController'
+        controller: 'crearClaseController'
     });
     $routeProvider.when('/crearInstitucion', {
         template: JST["assets/templates/profesor/crearInstitucion.html"],
         controller: 'institucionesProfesorController'
+    });
+    $routeProvider.when('/verSolicitudes', {
+        template: JST["assets/templates/profesor/verSolicitudes.html"],
+        controller: 'verSolicitudesController'
+    });
+    $routeProvider.when('/verAlumnos', {
+        template: JST["assets/templates/profesor/verAlumnos.html"],
+        controller: 'verAlumnosController'
     });
     //<!--FIN RUTAS PROFESOR-->
 
@@ -53,14 +61,13 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
     $routeProvider.when('/solicitarClase', {
         template: JST["assets/templates/alumno/solicitudClase.html"],
-        controller: 'clasesAlumnoController'
+        controller: 'solicitarClaseController'
     });
     //<!--FIN RUTAS ALUMNO-->
 
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]
     });
-
 
 }
 ]);
