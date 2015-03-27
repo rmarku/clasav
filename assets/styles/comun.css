@@ -62,6 +62,7 @@
 	background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
 	opacity: 0.85;
 	border: 5px double #9c5959;
+	max-width: 700px;
 }
 
 .form-control:focus {
@@ -259,13 +260,13 @@
 }
 
 .questModal {
-    width: 523px;
-    height: 304px;
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    top: 88px;
-    background: url('/images/quest/ventana.png');
+	width: 523px;
+	height: 304px;
+	margin: 0 auto;
+	position: relative;
+	display: block;
+	top: 88px;
+	background: url('/images/quest/ventana.png');
 }
 .nivelPJ {
 	position: absolute;
@@ -275,5 +276,12 @@
 	height: 68px;
 	background-image: url("../images/iconos/circuloNivel.png");
 	font-family: "Gorditas-Regular";
+}
+
+.tablaDuelo {
+	float: left;
+	background-color: #FBF8EF;
+	border: 1px solid #FF8000;
+	text-align: center;
 }
 
