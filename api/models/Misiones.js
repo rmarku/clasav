@@ -27,9 +27,6 @@ module.exports = {
             model: 'item'
         },
         cond_item_cant: 'integer',
-        cond_mision: {
-            model: 'misiones'
-        },
         cond_oro: 'integer',
 
         // Textos
@@ -37,10 +34,9 @@ module.exports = {
         no_nivel: 'string',
         no_energia: 'string',
         no_item: 'string',
-        no_quest: 'string',
 
         pregunta: 'string',
-        mision: 'string',
+        mision: 'string',   // URL: www.google.com.ar
 
 
         no_paso: 'string',
@@ -56,7 +52,16 @@ module.exports = {
         reco_oro: 'integer',
 
         // Acciones
-        new_mission: 'string'  // Array   [ 'quest': qorder, 'quest': qorder]
+        new_mission: 'string'
+        /* Array
+        [ {
+           "npc": "anna",
+           "qorder": 5
+          }, {
+           "npc": "kitty",
+           "qorder": 2
+         } ]
+        */
 
     },
     getMision: function (userId, npcId) {
@@ -75,8 +80,7 @@ module.exports = {
                 }, {
                     qorder: 0,
                     personaje: pj.id,
-                    npc: npcId,
-                    estado: 'pregunta'
+                    npc: npcId
                 }).populateAll().exec(function (err, mxp) {
                     if (err) return reject(err);
                     if (!mxp) return reject("Mision no encontrada");

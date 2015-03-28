@@ -5,7 +5,7 @@ game.NPCPlayer = me.Entity.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return 
+     * @return
      */
     init: function (x, y, settings) {
         var self = this;
@@ -40,6 +40,13 @@ game.NPCPlayer = me.Entity.extend({
                 self.renderable.addAnimation('always', anim, 100);
                 self.renderable.setCurrentAnimation('always');
 
+                // Traigo datos del quest (si es visible en este momento o no)
+                $.get('api/misiones/info?npc=' + self.data.id,
+                    function (data) {
+                        if (!data.npc_visible)
+                            self.isRenderable = false;
+                    });
+
 
                 self.anchorPoint.set(0.5, 0.5);
 
@@ -53,7 +60,7 @@ game.NPCPlayer = me.Entity.extend({
      * Description
      * @method update
      * @param {} dt
-     * @return 
+     * @return
      */
     update: function (dt) {
         this._super(me.Entity, 'update', [dt]);
@@ -79,7 +86,7 @@ game.NPCPlayer = me.Entity.extend({
      * Description
      * @method draw
      * @param {} renderer
-     * @return 
+     * @return
      */
     draw: function (renderer) {
 
@@ -98,7 +105,7 @@ game.NPCPlayer = me.Entity.extend({
     /**
      * Description
      * @method nombre
-     * @return 
+     * @return
      */
     nombre: function () {
         var width = 32 * 4;

@@ -1,7 +1,7 @@
 /**
  * Created by guille on 04/11/14.
  * @method drawPointsMinimap
- * @return 
+ * @return
  */
 function drawPointsMinimap() {
     var canvasMinimap = document.getElementById("canvasMinimap");
@@ -11,7 +11,7 @@ function drawPointsMinimap() {
 
         // Dibujo NPCs
         for (var npc in game.NPCs) {
-            if (game.NPCs[npc].pos) {
+            if (game.NPCs[npc].pos && game.NPCs[npc].isRenderable) {
                 ctxMinimap.beginPath();
                 ctxMinimap.fillStyle = '#ffff00';
                 ctxMinimap.arc(~~(game.NPCs[npc].pos.x * 156 / 1344), ~~(game.NPCs[npc].pos.y * 156 / 1344), 2, 0, 2 * Math.PI, true);

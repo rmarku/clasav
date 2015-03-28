@@ -42,7 +42,7 @@ var game = {
      * @return
      * @return
      * @method onload
-     * @return 
+     * @return
      */
     onload: function () {
         me.sys.fps = 30;
@@ -108,7 +108,7 @@ var game = {
      * @return
      * @return
      * @method loaded
-     * @return 
+     * @return
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -125,7 +125,7 @@ var game = {
      * Description
      * @method change_level
      * @param {} target_mapa_generico
-     * @return 
+     * @return
      */
     change_level: function (target_mapa_generico) {
 
@@ -156,7 +156,7 @@ var game = {
     /**
      * Description
      * @method create_OtherPlayers
-     * @return 
+     * @return
      */
     create_OtherPlayers: function () {
         $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
@@ -175,7 +175,7 @@ var game = {
      * Description
      * @method addMainPlayer
      * @param {} data
-     * @return 
+     * @return
      */
     addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
@@ -192,7 +192,7 @@ var game = {
      * Description
      * @method addOnlineOtherPlayer
      * @param {} data
-     * @return 
+     * @return
      */
     addOnlineOtherPlayer: function (data) {
         game.players[data.id] = me.pool.pull('otherPlayer',
@@ -210,7 +210,7 @@ var game = {
     /**
      * Description
      * @method remove_AllPlayers
-     * @return 
+     * @return
      */
     remove_AllPlayers: function () {
         game.removeMainPlayer();
@@ -220,7 +220,7 @@ var game = {
     /**
      * Description
      * @method removeMainPlayer
-     * @return 
+     * @return
      */
     removeMainPlayer: function () {
         me.game.world.removeChild(game.mainPlayer);
@@ -230,7 +230,7 @@ var game = {
     /**
      * Description
      * @method removeEveryOtherPlayer
-     * @return 
+     * @return
      */
     removeEveryOtherPlayer: function () {
         while (game.players.length) {
@@ -243,13 +243,37 @@ var game = {
      * Description
      * @method removeOtherPlayer
      * @param {} id
-     * @return 
+     * @return
      */
     removeOtherPlayer: function (id) {
         if (game.players[id]) {
             console.log('Removing player: ', id);
             me.game.world.removeChild(game.players[id]);
             delete game.players[id];
+        }
+    },
+
+
+    // Misiones
+    mision: {
+        estado:false,
+        startMision: function (npc) {
+
+            //
+            //$.get('api/misiones/gettxt?npc=' + self.data.id,
+            //    function (data) {
+            //        if (data.error)
+            //            self.isRenderable = false;
+            //    });
+
+            $("#mision_npc").html(npc.data.nombre);
+            $("#mision").fadeIn(600);
+
+        },
+        cancelar: function (){
+            game.mainPlayer.hablandoCon = '';
+            this.estado = false;
+            $("#mision").fadeOut(600);
         }
     }
 
