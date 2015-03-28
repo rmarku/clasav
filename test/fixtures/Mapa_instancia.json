@@ -11,6 +11,12 @@
         "clase"         :1,
         "nombre"        :"islandcasa01",
         "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :3,
+        "clase"         :1,
+        "nombre"        :"ciudad",
+        "tipo"          :"secundario"
     }
 
 ]
