@@ -7,8 +7,9 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
 
     /**
      * Funcion que envia mensaje a la ventana(div) de Chat, y luego blanquea el campo del "input"
-     * @method envMsj
      * @return
+     * @method envMsj
+     * @return 
      */
     $scope.envMsj = function () {
         if ($scope.mensaje !== "") {
@@ -24,11 +25,12 @@ app.directive('chat', function () {
         restrict: 'A',
         /**
          * Para la propagacion del evento para poder escribir en el campo de "input", y que no se mueva el personaje
+         * @return
          * @method link
          * @param {} scope
          * @param {} elem
          * @param {} attrs
-         * @return
+         * @return 
          */
         link: function (scope, elem, attrs) {
             elem.bind('keydown', function (e) {

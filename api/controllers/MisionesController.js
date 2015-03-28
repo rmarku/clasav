@@ -1,7 +1,7 @@
 /**
- * MateriaController
+ * MisionesController
  *
- * @description :: Server-side logic for managing materias
+ * @description :: Server-side logic for managing misiones
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 

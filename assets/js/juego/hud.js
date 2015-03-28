@@ -134,6 +134,11 @@ function noPressBtn() {
 	$("#per").hide();
 }
 
+/**
+ * Description
+ * @method agregarQuest
+ * @return 
+ */
 function agregarQuest(){
 	//Se deberia poner un atributo de la lista de misiones del personaje como "quest tomada =1", que sea 0 si esta tomada...y 2 si esta terminada	
 }
@@ -240,6 +245,16 @@ $(function() {
 	$("#aceptar").click(function() {
 		$("#quest").hide();
 		agregarQuest();
-	});	
+	});
+	
+	//Boton desplazar el chat
+	$("#glyChat").click(function() {
+		var e = $("#ChatGame");
+		if(e.css('height')!='30px')
+			e.animate({'height': '30px'},1500);
+		else
+			e.animate({'height': '154px'},1500);
+	});
+		
 
 });

@@ -20,13 +20,19 @@ module.exports = {
             required: false
         },
 
-        posicion_inicial_x: {
-            type: 'integer'
+        tipo: {
+            type: 'string',
+            enum: ['central','secundario']
         },
 
-        posicion_inicial_y: {
-            type: 'integer'
+        dependencia_mapa_generico: {
+            model: 'dependencia_mapa_generico',
+            required: false
         }
+
+
+
+
     }
 
 };

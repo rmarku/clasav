@@ -1,8 +1,8 @@
 //Mock de la Guia de misiones (hasta que implementemos BD)
-app.controller("misionesGuia", ['$scope', "$sailsBind",
-function misionesGuia($scope, $sailsBind) {
-	
-	$scope.misiones = [{
+app.controller("misionesGuia", ['$scope', "$sailsBind",'$location', function misionesGuia($scope, $sailsBind, $location) {
+
+	$scope.var = "1234";
+    $scope.misiones = [{
 		"id" : 1,
 		"mapa" : "Matland",
 		"tituloMision" : "Bienvenido a Matland",
@@ -52,7 +52,7 @@ function misionesGuia($scope, $sailsBind) {
 		"tituloMision" : "Bienvenido!",
 		"inicipioNPC" : "Ale",
 		"finNPC" : "Ale",
-		"textoInicial" : "Bienvenido a 'Clases y Aventuras'. Espero qu disfrutes tu estadia aqui. Para comenzar porque no te diriges con 'Quio', quien ye ayudara a teletransportarte a otros mapas para comenzar tus misiones. Oh! casi lo olvidaba, deberas pagarle 2 oros por cada viaje. Dejame darte algo de dinero................Hola! Y bienvenido a Matland. Te encontraras que esta isla es muy inmensa. Como primera mision en estos lares, debes dirigirte a 'La Playa Natural', donde comenzaras tus misiones sobre numeros naturales y reportarte con 'Kristel'. Mucha suerte guerrero!",
+		"textoInicial" : "Bienvenido a 'Clases y Aventuras'. Espero qu disfrutes tu estadia aqui. Para comenzar porque no te diriges con 'Quio', quien ye ayudara a teletransportarte a otros mapas para comenzar tus misiones. Oh! casi lo olvidaba, deberas pagarle 2 oros por cada viaje. Dejame darte algo de dinero.",
 		"textoFinal" : "Suerte en el viaje",
 		"recompensa" : "10 oros",
 		"minijuego" : false,

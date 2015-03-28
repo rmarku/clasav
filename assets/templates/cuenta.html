@@ -1,89 +1,106 @@
 <div class="container-fluid">
-	<div class="div-form text-left" style="margin: auto;">
-		<span class="titulos"> {{Titulo}} </span>
+    <div class="div-form text-left" style="margin: auto;">
+        <span class="titulos"> {{Titulo}} </span>
 
-		<form novalidate="novalidate"role="form">
-			<div class="form-group">
+        <form novalidate="novalidate" role="form">
+            <div class="form-group">
 				<label for="nombre">Nombre: </label>
-				<input type="text" class="form-control" name="nombre" ng-model="alumno.nombre"
-				placeholder="Introduce tu nombre" required>
-			</div>
-			<div class="form-group">
+				<input type="text" class="form-control" name="nombre" ng-model="usuario.nombre"
+                       placeholder="Introduce tu nombre" required>
+            </div>
+            <div class="form-group">
 				<label for="apellido">Apellido: </label>
-				<input type="text" class="form-control" name="apellido" placeholder="Introduce tu apellido"
-				ng-model="alumno.apellido" required>
-			</div>
-			<div class="form-group">
+                <input type="text" class="form-control" name="apellido" placeholder="Introduce tu apellido"
+				ng-model="usuario.apellido" required>
+            </div>
+            <div class="form-group">
 				<label for="email">E-mail: </label>
-				<input type="text" class="form-control" name="email" ng-model="alumno.email"
-				placeholder="Introduce tu E-mail" required>
-			</div>
+				<input type="text" class="form-control" name="email" ng-model="usuario.email"
+                       placeholder="Introduce tu E-mail" required>
+            </div>
 
-			<!--div class="form-group well">
-				<div id="datetimepicker4" class="input-append">
-					<input data-format="yyyy-MM-dd" type="text">
-					</input>
-					<span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
-				</div>
-			</div-->
+            <!--div class="form-group well">
+                <div id="datetimepicker4" class="input-append">
+                    <input data-format="yyyy-MM-dd" type="text">
+                    </input>
+                    <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"> </i> </span>
+                </div>
+            </div-->
 
-			<!--div class="form-group col-xs-3">
-			<label for="nombre">Fecha de Nacimiento: </label>
-			<input type="date" class="form-control" placeholder="Dia">
-			</div>
-			<div class="form-group col-xs-6">
-			<label> &nbsp </label>
-			<select class="form-control">
-			<option>Enero</option>
-			<option>Febrero</option>
-			<option>Marzo</option>
-			<option>Abril</option>
-			<option>Mayo</option>
-			<option>Junio</option>
-			<option>Julio</option>
-			<option>Agosto</option>
-			<option>Septiembre</option>
-			<option>Octubre</option>
-			<option>Noviembre</option>
-			<option>Diciembre</option>
-			</select>
-			</div>
-			<div class="form-group col-xs-3">
-			<label for="nombre"> &nbsp </label>
-			<input type="date" class="form-control" placeholder="A�o">
-			</div-->
+            <!--div class="form-group col-xs-3">
+            <label for="nombre">Fecha de Nacimiento: </label>
+            <input type="date" class="form-control" placeholder="Dia">
+            </div>
+            <div class="form-group col-xs-6">
+            <label> &nbsp </label>
+            <select class="form-control">
+            <option>Enero</option>
+            <option>Febrero</option>
+            <option>Marzo</option>
+            <option>Abril</option>
+            <option>Mayo</option>
+            <option>Junio</option>
+            <option>Julio</option>
+            <option>Agosto</option>
+            <option>Septiembre</option>
+            <option>Octubre</option>
+            <option>Noviembre</option>
+            <option>Diciembre</option>
+            </select>
+            </div>
+            <div class="form-group col-xs-3">
+            <label for="nombre"> &nbsp </label>
+            <input type="date" class="form-control" placeholder="A�o">
+            </div-->
 
-			<div class="form-group">
-				<label>Genero:</label>
-				<br>
+            <div class="form-group">
+                <label>Genero:</label>
+                <br>
 
-				<div class="radio">
-					<label>
-						<input type="radio" name="sexo" value="femenino" ng-model="alumno.sexo">
-						Femenino </label>
-				</div>
-				<div class="radio">
-					<label>
-						<input type="radio" name="sexo" value="masculino" ng-model="alumno.sexo" checked>
-						Masculino </label>
-				</div>
-			</div>
+                <div class="radio">
+                    <label>
+						<input type="radio" name="sexo" value="femenino" ng-model="usuario.sexo">
+                        Femenino </label>
+                </div>
+                <div class="radio">
+                    <label>
+						<input type="radio" name="sexo" value="masculino" ng-model="usuario.sexo" checked>
+                        Masculino </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo:</label>
+                <br>
+
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="tipo" value="alumno" ng-model="usuario.tipo">
+                        Alumno </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="tipo" value="profesor" ng-model="usuario.tipo" checked>
+                        Profesor </label>
+                </div>
+            </div>
+
 			<div class="form-group">
 				<label for="contrasena">Contrase&ntilde;a: </label>
-				<input type="password" class="form-control" name="password" ng-model="alumno.password"
-				placeholder="Contrase&ntilde;a" required>
-			</div>
-			<div class="form-group">
+				<input type="password" class="form-control" name="password" ng-model="usuario.password"
+                       placeholder="Contrase&ntilde;a" required>
+            </div>
+            <div class="form-group">
 				<label for="contrasena2">Confirme Contrase&ntilde;a: </label>
-				<input type="password" class="form-control" name="password2" ng-model="alumno.password2"
-				placeholder="Contrase&ntilde;a" required>
-			</div>
-			<div>
+				<input type="password" class="form-control" name="password2" ng-model="usuario.password2"
+                       placeholder="Contrase&ntilde;a" required>
+            </div>
+            <div>
 
-				<button class="btn btn-default btn-align" ng-click="subirForm()">
-					Crea
-				</button>
-			</div>
-		</form>
-	</div>
+                <button class="btn btn-default btn-align" ng-click="subirForm()">
+                    {{Boton}}
+                </button>
+            </div>
+        </form>
+    </div>
 </div>

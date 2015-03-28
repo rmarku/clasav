@@ -9,22 +9,26 @@ module.exports = {
 
     attributes: {
 
-        clase_instancia: {
+        clase: {
             model: 'clase',
             required: false
         },
 
-        /*
-        personajes: {
-            collection: 'personaje',
-            via:'mapa_instancia',
-            required: false
-        },*/
-
         mapa_generico: {
             model: 'mapa_generico',
             required: false
+        },
+
+        nombre: {
+            type: 'string',
+            required: false
+        },
+
+        tipo: {
+            type: 'string',
+            enum: ['central','secundario']
         }
+
     }
 };
 

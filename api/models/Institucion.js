@@ -28,19 +28,14 @@ module.exports = {
             required: false
         },
 
-        calle: {
+        direccion: {
             type: 'string',
-            required: false
-        },
-
-        altura_calle: {
-            type: 'integer',
             required: false
         },
 
         clases: {
             collection: 'clase',
-            via: 'institucion_instancia',
+            via: 'institucion',
             required: false
         }
 

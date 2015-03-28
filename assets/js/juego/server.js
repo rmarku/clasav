@@ -15,15 +15,21 @@ var server = {
     /**
      * Description
      * @return
-     * @method send_Server_mainPlayer_update
-     * @param {} local_coordenates
      * @return
+     * @method update_myPlayer
+     * @param {} local_coordenates
+     * @return 
      */
     update_myPlayer: function (local_coordenates) {
         this.update_myPlayer_in_OtherPlayers();
         this.update_Personaje();
     },
 
+    /**
+     * Description
+     * @method update_myPlayer_in_OtherPlayers
+     * @return 
+     */
     update_myPlayer_in_OtherPlayers: function () {
         // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
         var p = game.mainPlayer;
@@ -59,6 +65,11 @@ var server = {
 
     },
 
+    /**
+     * Description
+     * @method update_Personaje
+     * @return 
+     */
     update_Personaje: function () {
         this.updatePersonaje_counter++;
 
@@ -77,6 +88,11 @@ var server = {
         }
     },
 
+    /**
+     * Description
+     * @method join_mapa_instancia
+     * @return 
+     */
     join_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/join',
             {
@@ -87,6 +103,11 @@ var server = {
         );
     },
 
+    /**
+     * Description
+     * @method leave_mapa_instancia
+     * @return 
+     */
     leave_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/leave',
             {
@@ -98,6 +119,11 @@ var server = {
         );
     },
 
+    /**
+     * Description
+     * @method listen_events
+     * @return 
+     */
     listen_events: function () {
 
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {

@@ -3,8 +3,9 @@ game.PlayScreen = me.ScreenObject.extend({
     /**
      * action to perform on state change
      * @return
-     * @method onResetEvent
      * @return
+     * @method onResetEvent
+     * @return 
      */
     onResetEvent: function () {
         // load a level
@@ -35,7 +36,7 @@ game.PlayScreen = me.ScreenObject.extend({
                     game.create_OtherPlayers();
                     server.listen_events();
                     server.join_mapa_instancia();
-                    me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
+                    //me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
             } else {
                 console.log("No existe el usuario");
@@ -46,8 +47,9 @@ game.PlayScreen = me.ScreenObject.extend({
     /**
      * action to perform when leaving this screen (state change)
      * @return
-     * @method onDestroyEvent
      * @return
+     * @method onDestroyEvent
+     * @return 
      */
     onDestroyEvent: function () {
         me.audio.stopTrack("snow");

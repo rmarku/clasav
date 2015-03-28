@@ -3,7 +3,7 @@
  */
 
 module.exports = function (grunt) {
-    grunt.registerMultiTask('crearSprites', 'crea el archivo resources.json para melon', function () {
+    grunt.registerMultiTask('crearSprites', 'crea Sprites con todas las imagenes.', function () {
         var fs = require('fs');
 
         var gmagick;

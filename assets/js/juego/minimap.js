@@ -1,5 +1,7 @@
 /**
  * Created by guille on 04/11/14.
+ * @method drawPointsMinimap
+ * @return 
  */
 function drawPointsMinimap() {
     var canvasMinimap = document.getElementById("canvasMinimap");

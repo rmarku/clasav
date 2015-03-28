@@ -14,6 +14,14 @@ module.exports = {
                     });
                 }
             });
+    },
+
+    crearMapaConDependencias: function(res,mapa_genericoID) {
+
 
     }
+
+
+
+
 };
