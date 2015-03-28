@@ -255,6 +255,15 @@ $(function() {
 		else
 			e.animate({'height': '154px'},1500);
 	});
+	
+	//Boton desplazar lista amigos
+	$("#ventAmigos").click(function() {
+		var e = $("#ventAmigos");
+		if(e.css('height')!='23px')
+			e.animate({'height': '23px'},1500);
+		else
+			e.animate({'height': '260px'},1500);
+	});
 		
 
 });
