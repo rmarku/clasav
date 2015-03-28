@@ -10,5 +10,11 @@
         "clase"     : 1,
         "tipo"      :"secundario",
         "dependencia_mapa_generico" : 1
+    },
+    {
+        "nombre"    : "ciudad",
+        "clase"     : 1,
+        "tipo"      :"secundario",
+        "dependencia_mapa_generico" : 1
     }
 ]
