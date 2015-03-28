@@ -1,0 +1,13 @@
+[
+    {
+        "npc": "2",
+        "qorder": "0",
+        "img_quest": "anne.png",
+        "npc_visible": "true",
+        "mision": "Hola viajero",
+        "paso": "Bien ahí",
+        "no_paso": "Mocaso, pa la proxima",
+        "reco_oro": "500",
+        "new_mission": "[{kitty:1}]"
+    }
+]

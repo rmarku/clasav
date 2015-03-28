@@ -276,7 +276,7 @@ module.exports = {
                     async.series(asyncs, function(err) {
                         if (!err) {
                             res.send(200);
-                        }
+                        }NPC
                     });
                 }
 
