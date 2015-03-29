@@ -121,7 +121,8 @@ module.exports = {
         nivel: 'integer',
         experiencia: 'integer',
         oro: 'integer',
-        energia: 'integer'
+        energia: 'integer',
+        energia_max: 'integer'
     },
     afterCreate: function (newPJ, next) {
         // Para procesar todas las promesas que devuelven cada item create.
@@ -181,7 +182,12 @@ module.exports = {
                                 mapa_instancia: mapa_instancia,
                                 pantalon: items[0],
                                 torso: items[1],
-                                zapatos: items[2]
+                                zapatos: items[2],
+                                nivel: 1,
+                                oro: 0,
+                                energia: 100,
+                                energia_max: 100,
+                                experiencia: 0
                             }).exec(next);
                     }
                 }

@@ -11,7 +11,7 @@ module.exports = {
     attributes: {
         // Info
         npc: {
-            model: 'npc-player'
+            model: 'npcplayer'
         },
         qorder: 'integer',
         img_quest: 'string',
@@ -54,14 +54,14 @@ module.exports = {
         // Acciones
         new_mission: 'string'
         /* Array
-        [ {
-           "npc": "anna",
-           "qorder": 5
-          }, {
-           "npc": "kitty",
-           "qorder": 2
+         [ {
+         "npc": "anna",
+         "qorder": 5
+         }, {
+         "npc": "kitty",
+         "qorder": 2
          } ]
-        */
+         */
 
     },
     getMision: function (userId, npcId) {
@@ -82,13 +82,14 @@ module.exports = {
                     personaje: pj.id,
                     npc: npcId
                 }).populateAll().exec(function (err, mxp) {
+
                     if (err) return reject(err);
                     if (!mxp) return reject("Mision no encontrada");
 
                     // obtengo el orden y el npc
                     Misiones.findOne({npc: mxp.npc.id || mxp.npc, qorder: mxp.qorder}).exec(function (err, misi) {
                         if (!misi) return reject('Mision no encontrada');
-                        resolve(misi, mxp, pj);
+                        resolve({misi:misi, mxp:mxp, pj:pj});
                     });
                 });
             });

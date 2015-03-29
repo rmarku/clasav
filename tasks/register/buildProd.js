@@ -3,6 +3,7 @@ module.exports = function (grunt) {
         'crearSprites',
         'crearJson',
         'compileAssets',
+        'crearMisiones',
         'concat',
         'uglify',
         'cssmin',

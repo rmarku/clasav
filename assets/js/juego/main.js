@@ -133,6 +133,8 @@ var game = {
         var data = game.mainPlayer.data;
         game.remove_AllPlayers();
 
+        var map = me.game.currentLevel;
+        minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
         //Actualizo mi cambio de mapa_instancia en la BD, borrando mi suscripcion al Room anterior, suscribiendo al nuevo
         //Envio con socket para poder desuscribirlo
         io.socket.post('/api/mapa_instancia/change_level',
@@ -149,8 +151,6 @@ var game = {
                 game.create_OtherPlayers();
             });
     },
-
-
 
 
     /**
@@ -215,6 +215,7 @@ var game = {
     remove_AllPlayers: function () {
         game.removeMainPlayer();
         game.removeEveryOtherPlayer();
+        game.removeNPCs();
     },
 
     /**
@@ -253,27 +254,123 @@ var game = {
         }
     },
 
+    /**
+     * Description
+     * @method removeNPCs
+     * @return
+     */
+    removeNPCs: function () {
+        for (var npc in game.NPCs) {
+            delete game.NPCs[npc];
+        }
+    },
+    /**
+     * Description
+     * @method removeNPCs
+     * @return
+     */
+    updateNPCs: function () {
+        for (var npc in game.NPCs) {
+            game.NPCs[npc].updateInfo();
+        }
+    },
+
 
     // Misiones
     mision: {
-        estado:false,
+        misiontxt: '',
+        npc: null,
         startMision: function (npc) {
+            $("#mision_aceptar").hide();
+            $("#mision_siguiente").hide();
+            $("#mision_cancelar").hide();
+            $("#mision_salir").hide();
+            $("#mision_txt").html('');
+            this.npc = npc;
+            $.get('api/misiones/gettxt?npc=' + npc.data.id,
+                function (data) {
+                    // Si no hay error,
+                    if (!data.err) {
+                        // Si hay pregunta, muestro boton de siguiente y cancelar
+                        if (data.pregunta) {
+                            $("#mision_siguiente").show();
+                            $("#mision_cancelar").show();
+                            $("#mision_txt").html(data.pregunta);
+                            if (data.mision)
+                                game.mision.misiontxt = data.mision;
 
-            //
-            //$.get('api/misiones/gettxt?npc=' + self.data.id,
-            //    function (data) {
-            //        if (data.error)
-            //            self.isRenderable = false;
-            //    });
+                        } else if (data.falta) {
+                            $("#mision_cancelar").show();
+                            $("#mision_txt").html(data.falta);
+
+                        } else if (data.mision) {
+                            $("#mision_cancelar").show();
+                            if (data.mision.substring(0, 4) == "URL:") {
+
+                                $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
+                                document.URL.substring(0, document.URL.length - 4) +
+                                'data/minijuegos/' +
+                                data.mision.substring(4) +
+                                '"></iframe>');
+
+                            } else {
+                                $("#mision_txt").html(data.mision);
+                            }
+                        }
+                    }else{
+                        $("#mision").hide();
+                    }
+                });
 
             $("#mision_npc").html(npc.data.nombre);
             $("#mision").fadeIn(600);
 
         },
-        cancelar: function (){
-            game.mainPlayer.hablandoCon = '';
-            this.estado = false;
-            $("#mision").fadeOut(600);
+        cancelar: function () {
+            this.mision = '';
+            this.npc = null;
+            $("#mision").fadeOut(600, function () {
+                game.mainPlayer.hablandoCon = '';
+                me.input.unlockKey('accion');
+            });
+        },
+        siguiente: function (resultado) {
+            $("#mision_aceptar").hide();
+            $("#mision_siguiente").hide();
+            $("#mision_cancelar").hide();
+            $("#mision_salir").hide();
+            $("#mision_txt").html('');
+            if (this.misiontxt !== '') {
+                if (this.misiontxt.substring(0, 4) == "URL:") {
+
+                    $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
+                    document.URL.substring(0, document.URL.length - 4) +
+                    'data/minijuegos/' +
+                    this.misiontxt.substring(4) +
+                    '"></iframe>');
+
+                } else {
+                    $("#mision_txt").html(this.misiontxt);
+                }
+                this.misiontxt = '';
+            } else {
+                if (resultado)
+                    resultado = 1;
+                else
+                    resultado = 0;
+
+                $.get('api/misiones/finish?npc=' + this.npc.data.id + '&resultado=' + resultado,
+                    function (data) {
+                        if (data.txt !== '') {
+                            $("#mision_salir").show();
+                            $("#mision_txt").html(data.txt);
+                        } else {
+                            this.cancelar();
+                        }
+                        game.updateNPCs();
+                        game.mainPlayer.updateData();
+                    });
+            }
         }
     }
 

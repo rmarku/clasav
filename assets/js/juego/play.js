@@ -5,7 +5,7 @@ game.PlayScreen = me.ScreenObject.extend({
      * @return
      * @return
      * @method onResetEvent
-     * @return 
+     * @return
      */
     onResetEvent: function () {
         // load a level
@@ -21,8 +21,8 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.W, 'up');
         me.input.bindKey(me.input.KEY.DOWN, 'down');
         me.input.bindKey(me.input.KEY.S, 'down');
-        me.input.bindKey(me.input.KEY.SPACE, 'accion');
-        me.input.bindKey(me.input.KEY.M, 'accion');
+        me.input.bindKey(me.input.KEY.SPACE, 'accion', true);
+        me.input.bindKey(me.input.KEY.M, 'accion', true);
 
 
         $.get('/api/user/getUser', function (user) {
@@ -49,7 +49,7 @@ game.PlayScreen = me.ScreenObject.extend({
      * @return
      * @return
      * @method onDestroyEvent
-     * @return 
+     * @return
      */
     onDestroyEvent: function () {
         me.audio.stopTrack("snow");

@@ -9,7 +9,7 @@ game.NPCPlayer = me.Entity.extend({
      */
     init: function (x, y, settings) {
         var self = this;
-        $.get('api/npc-player?nombre=' + settings.nombre,
+        $.get('api/npcplayer?nombre=' + settings.nombre,
             function (data) {
                 self.data = data[0];
                 var sett = {
@@ -40,12 +40,7 @@ game.NPCPlayer = me.Entity.extend({
                 self.renderable.addAnimation('always', anim, 100);
                 self.renderable.setCurrentAnimation('always');
 
-                // Traigo datos del quest (si es visible en este momento o no)
-                $.get('api/misiones/info?npc=' + self.data.id,
-                    function (data) {
-                        if (!data.npc_visible)
-                            self.isRenderable = false;
-                    });
+                self.updateInfo();
 
 
                 self.anchorPoint.set(0.5, 0.5);
@@ -129,5 +124,15 @@ game.NPCPlayer = me.Entity.extend({
 
         ctx.strokeText(this.data.nombre, width / 2 - txtw / 2, 3);
         ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3);
+    },
+
+
+    updateInfo: function () {
+        // Traigo datos del quest (si es visible en este momento o no)
+        $.get('api/misiones/info?npc=' + self.data.id,
+            function (data) {
+                if (!data.npc_visible)
+                    self.isRenderable = false;
+            });
     }
 });

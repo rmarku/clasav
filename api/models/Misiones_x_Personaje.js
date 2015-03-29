@@ -9,7 +9,7 @@ module.exports = {
 
     attributes: {
         npc: {
-            model: 'npc-player'
+            model: 'npcplayer'
         },
         qorder: 'integer',
         personaje: {

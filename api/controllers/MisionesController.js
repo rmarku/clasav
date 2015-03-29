@@ -13,16 +13,17 @@ module.exports = {
             return res.json({err: 'No existe un usuario Logueado'});
         }
 
-        Misiones.getMision(userId, npcId).then(function (misi) {
+        Misiones.getMision(userId, npcId).then(function (datos) {
+            var misi = datos.misi;
             //Verifico precondiciones
             if (misi.cond_nivel && mxp.personaje.nivel < misi.cond_nivel)
-                return res.json({error: misi.no_nivel});
+                return res.json({falta: misi.no_nivel});
 
             if (misi.cond_energia && mxp.personaje.energia < misi.cond_energia)
-                return res.json({error: misi.no_energia});
+                return res.json({falta: misi.no_energia});
 
             if (misi.cond_oro && mxp.personaje.oro < misi.cond_oro)
-                return res.json({error: misi.no_oro});
+                return res.json({falta: misi.no_oro});
 
             // TODO: Ver como hacer con la busqueda de un item como condicion
 
@@ -49,7 +50,11 @@ module.exports = {
             return res.json({err: 'No existe un usuario Logueado'});
         }
 
-        Misiones.getMision(userId, npcId).then(function (misi, mxp, pj) {
+        Misiones.getMision(userId, npcId).then(function (datos) {
+            var misi = datos.misi;
+            var mxp = datos.mxp;
+            var pj = datos.pj;
+
             //Verifico precondiciones
             if (resultado == '0') {
                 //No paso, resto la energia
@@ -84,10 +89,11 @@ module.exports = {
 
             // habilito el flujo de misiones que siguen.
             var new_misiones = JSON.parse(misi.new_mission);
+            console.log(JSON.stringify(new_misiones));
 
             new_misiones.forEach(function (valor) {
-                Npc_player.findOne({nombre: valor.npc}).exec(function (err, npc) {
-                    if (err) return res.json({err: 'No se encontro el npc :('});
+                Npcplayer.findOne({nombre: valor.npc}).exec(function (err, npc) {
+                    if (err || !npc) return res.json({err: 'No se encontro el npc :('});
 
                     Misiones_x_Personaje.findOrCreate({
                         where: {
@@ -107,8 +113,7 @@ module.exports = {
                     });
                 });
             });
-
-
+            pj.save();
             return res.json({result: 'si', txt: misi.paso});
         }).catch(function (err) {
             return res.json({
@@ -121,13 +126,14 @@ module.exports = {
     info: function (req, res) {
         var userId = req.session.passport.user;
         var npcId = req.param('npc');
+
         if (!userId) {
             return res.json({err: 'No existe un usuario Logueado'});
         }
 
-        Misiones.getMision(userId, npcId).then(function (misi) {
+        Misiones.getMision(userId, npcId).then(function (datos) {
+            var misi = datos.misi;
             // Doy informacion general del quest
-
             return res.json({
                 img_quest: misi.img_quest,
                 npc_visible: misi.npc_visible

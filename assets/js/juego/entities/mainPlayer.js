@@ -103,7 +103,7 @@ game.PlayerEntity = game.Player.extend({
         me.game.world.sort();
         server.update_myPlayer();
         // Dibujo en el minimapa
-        drawPointsMinimap();
+        minimap.drawPointsMinimap();
     },
     /**
      * Description
@@ -126,5 +126,16 @@ game.PlayerEntity = game.Player.extend({
         //            renderer.fillRect(x * me.astar.tw, y *me.astar.th, 5, 5);
         //    }
         //}
+    },
+
+
+    updateData: function () {
+        // Traigo datos del quest (si es visible en este momento o no)
+        $.get('api/personaje/' + this.data.id,
+            function (data) {
+                this.data = data;
+            });
     }
+
+
 });

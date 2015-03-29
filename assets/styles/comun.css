@@ -77,8 +77,6 @@
 }
 
 .div-mapa {
-	background-image: url("../data/map/minimap/Inicio.png");
-	background-size: cover;
 	width: 156px;
 	height: 156px;
 	position: absolute;
