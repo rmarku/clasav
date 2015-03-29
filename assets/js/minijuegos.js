@@ -4,7 +4,7 @@ var ctx;
 var primeracoincidencia = true;
 var primeracarta = -1;
 var segundacarta;
-var colordorso = "rgb(0,128,128)";
+var colordorso = "#fb9e25";
 var colormesa = "rgb(255,255,255)";
 var baraja = [];
 var primersx = 30;
@@ -16,12 +16,15 @@ var tid;
 var coincide;
 var tiempoinicio;
 var contador = 0;
-var pares = [["../images/minijuegos/figuras/circulo.jpg", "../images/minijuegos/figuras/circulo2.jpg"], ["../images/minijuegos/figuras/rectangulo.jpg", "../images/minijuegos/figuras/rectangulo2.jpg"], ["../images/minijuegos/figuras/romboide.jpg", "../images/minijuegos/figuras/romboide2.jpg"], ["../images/minijuegos/figuras/trapecio.jpg", "../images/minijuegos/figuras/trapecio2.jpg"], ["../images/minijuegos/figuras/triangulo.jpg", "../images/minijuegos/figuras/triangulo2.jpg"]];
+var pares = [["../images/minijuegos/figuras/circulo.jpg", "../images/minijuegos/figuras/circulo2.jpg"], 
+			["../images/minijuegos/figuras/rectangulo.jpg", "../images/minijuegos/figuras/rectangulo2.jpg"], 
+			["../images/minijuegos/figuras/romboide.jpg", "../images/minijuegos/figuras/romboide2.jpg"], 
+			["../images/minijuegos/figuras/trapecio.jpg", "../images/minijuegos/figuras/trapecio2.jpg"], 
+			["../images/minijuegos/figuras/triangulo.jpg", "../images/minijuegos/figuras/triangulo2.jpg"]];
 
 //baraja guarda info en las cartas: la localización y dimensiones, el src para la foto
 //y la info de identificación
 //la info es configurada usando el array de arrays en la función hacerbaraja
-
 function Carta(sx, sy, sancho, salto, img, info) {
 	this.sx = sx;
 	this.sy = sy;
@@ -64,7 +67,7 @@ function barajar() {
 	var k;
 	var contieneinfo;
 	var contieneimg;
-	var dl = baraja.length
+	var dl = baraja.length;
 	var nt;
 	for ( nt = 0; nt < 3 * dl; nt++) {//hacer el intercambio 3 veces baraja.length
 		i = Math.floor(Math.random() * dl);
@@ -89,13 +92,13 @@ function elegir(ev) {
 	var my;
 	var eleccion1;
 	var eleccion2;
-	if (ev.layerX || ev.layerX == 0) {// Firefox
+	if (ev.layerX || ev.layerX == 0) {
 		mx = ev.layerX;
 		my = ev.layerY;
-	} else if (ev.offsetX || ev.offsetX == 0) {// Opera
-		mx = ev.offsetX;
-		my = ev.offsetY;
-	}
+	}else if (ev.offsetX || ev.offsetX == 0) { // Opera
+    	mx = ev.offsetX;
+    	my = ev.offsetY;
+  	}
 	var i;
 	for ( i = 0; i < baraja.length; i++) {
 		var carta = baraja[i];
@@ -159,6 +162,8 @@ function flipback() {
 }
 
 function init() {
+	//canvas.width = canvas.width;
+
 	ctx = document.getElementById('canvas').getContext('2d');
 	canvas1 = document.getElementById('canvas');
 	canvas1.addEventListener('click', elegir, false);
