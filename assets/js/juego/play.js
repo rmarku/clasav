@@ -36,6 +36,8 @@ game.PlayScreen = me.ScreenObject.extend({
                     game.create_OtherPlayers();
                     server.listen_events();
                     server.join_mapa_instancia();
+                    var map = me.game.currentLevel;
+                    minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
                     //me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
             } else {

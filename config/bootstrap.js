@@ -25,16 +25,13 @@ module.exports.bootstrap = function (cb) {
                 cb();
             });
         } else {
-            Misiones.destroy({});
-            Misiones_x_Personaje.destroy({});
-
-            var Barrels = require('barrels');
-            var barrels = new Barrels();
-            var fixtures = barrels.data;
-            barrels.populate(['misiones','npcplayer','item','sprite'], function (err) {
-                console.log(err);
-                cb();
+            Misiones_x_Personaje.destroy({}).exec(function(err,mxp){
+                if (err)
+                    console.log(err);
             });
+
+            // Importar todas las misiones de nuevo :(
+            cb();
         }
     });
 };

@@ -12,11 +12,7 @@ module.exports = {
         width: 'integer',
         height: 'integer',
         sprite: 'string',
-        animation: 'integer',
-        misiones: {
-            collection: 'misiones',
-            via: 'npc'
-        }
+        animation: 'integer'
     }
 };
 

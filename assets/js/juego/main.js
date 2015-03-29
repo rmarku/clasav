@@ -361,11 +361,11 @@ var game = {
 
                 $.get('api/misiones/finish?npc=' + this.npc.data.id + '&resultado=' + resultado,
                     function (data) {
-                        if (data.txt !== '') {
+                        if (typeof data.txt !== 'undefined' && data.txt !== '') {
                             $("#mision_salir").show();
                             $("#mision_txt").html(data.txt);
                         } else {
-                            this.cancelar();
+                            game.mision.cancelar();
                         }
                         game.updateNPCs();
                         game.mainPlayer.updateData();

@@ -129,10 +129,13 @@ game.NPCPlayer = me.Entity.extend({
 
     updateInfo: function () {
         // Traigo datos del quest (si es visible en este momento o no)
-        $.get('api/misiones/info?npc=' + self.data.id,
+        var self = this;
+        $.get('api/misiones/info?npc=' + this.data.id,
             function (data) {
-                if (!data.npc_visible)
+                if (typeof data.npc_visible != 'undefined' && data.npc_visible === false)
                     self.isRenderable = false;
+                else
+                    self.isRenderable = true;
             });
     }
 });
