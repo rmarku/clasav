@@ -4,13 +4,13 @@
 		"tipo_item": "pantalon",
 		"maximo": "3",
 		"sprite": "1",
-		"color": "#00ff00"
+		"color": "#2AF827"
 	}, {
 		"nombre": "Remera Corta",
 		"tipo_item": "torso",
 		"maximo": "3",
 		"sprite": "2",
-		"color": "#ff0000"
+		"color": "#FF0000"
 	}, {
 		"nombre": "Zapato",
 		"tipo_item": "zapatos",
@@ -22,7 +22,7 @@
 		"tipo_item": "capa",
 		"maximo": "3",
 		"sprite": "4",
-		"color": "#0000ff"
+		"color": "#FAF037"
 	}, {
 		"nombre": "Espada Burocratica",
 		"tipo_item": "arma",
@@ -40,18 +40,18 @@
 		"tipo_item": "accesorio",
 		"maximo": "1",
 		"sprite": "7",
-		"color": "#0000ff"
+		"color": "#F7F8EF"
 	}, {
-		"nombre": "Lazo",
+		"nombre": "Lazo Resplandeciente",
 		"tipo_item": "accesorio",
 		"maximo": "2",
 		"sprite": "7",
-		"color": "#0000ff"
+		"color": "#FFCD00"
 	}, {
 		"nombre": "Casco del Rey",
 		"tipo_item": "Cabeza",
 		"maximo": "1",
 		"sprite": "8",
-		"color": "#0000ff"
+		"color": "#A29C82"
 	}
 ]
