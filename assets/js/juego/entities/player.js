@@ -159,7 +159,7 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Dibuja el nombre del personaje por debajo
      * @method nombre
      * @return 
      */
@@ -203,7 +203,7 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Viste al personaje
      * @return
      * @return
      * @method vestir
