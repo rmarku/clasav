@@ -134,14 +134,6 @@ function noPressBtn() {
 	$("#per").hide();
 }
 
-/**
- * Description
- * @method agregarQuest
- * @return 
- */
-function agregarQuest(){
-	//Se deberia poner un atributo de la lista de misiones del personaje como "quest tomada =1", que sea 0 si esta tomada...y 2 si esta terminada	
-}
 
 // Esto se ejecuta al terminar de cargar la pagina
 $(function() {
@@ -204,6 +196,8 @@ $(function() {
 			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
 			me.audio.play("switch26", false);
 			$("#per").show();
+			//Agregar tint de los items
+			tintImage(pechera, '#FF0000', 0, 0, 49, 49);
 		} else {
 			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
 			$("#per").hide();
@@ -239,12 +233,6 @@ $(function() {
 	//Boton para cerrar Ventana de Quest
 	$("#cerrar").click(function() {
 		$("#quest").hide();
-	});
-	
-	//Boton Aceptar para agregar la Quest al panel de misiones
-	$("#aceptar").click(function() {
-		$("#quest").hide();
-		agregarQuest();
 	});
 	
 	//Boton desplazar el chat

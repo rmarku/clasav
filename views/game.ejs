@@ -26,7 +26,7 @@
 			<div id="hudSuperior" class="capaSup">
 				<!--img src="images/iconos/circuloNivel.png" style="float: left; width: 68px; height: 68px;"-->
 				<div class="nivelPJ">
-					<b> <font size="7">1 </font>
+					<b> <font size="7">1 <!--game.mainPlayer.data.nivel--></font>
 					<br>
 					Nivel</b>
 				</div>
@@ -63,8 +63,7 @@
 			<!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
 
 			<!--INVENTARIO-->
-			<div id="inv" class="div-panel" ng-controller="inventarioContr"
-			style="background: url('images/iconos/inventario2.png')">
+			<div id="inv" class="div-panel" ng-controller="inventarioContr"	style="background: url('images/iconos/inventario2.png')">
 				<p class="capaSup titulo-botonera">
 					Inventario
 				</p>
@@ -147,7 +146,10 @@
 						<img src="../data/sprites/items/cabeza/1.png">
 					</div>
 					<div id="itemPechera" class="itemP">
-						<img src="../data/sprites/items/pechera/1.png">
+						<!--Se deberia llamar a la funcion tintImage-->
+						<!--tintImage(img, color, x, y, w, h)-->
+						<!--img src="../data/sprites/items/pechera/1.png"-->
+						<img id="pechera" src="../data/sprites/items/pechera/1.png" onclick="tintImage(pechera, '#FF0000', 0, 0, 49, 49);">
 					</div>
 					<div id="itemPantalon" class="itemP">
 						<img src="../data/sprites/items/pantalon/1.png">
