@@ -38,16 +38,18 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
 
     $scope.subirSolicitudClase = function () {
 
-        $.get("/api/clase/solicitarClase",
-            {
-                claseID: $scope.clase_seleccionada.id
-            },
-            function (data) {
-                toastr.info('Solicitud Enviada');
-                $scope.$parent.clasesCargadas = false;
-                window.location.href = '#/clasesAlumno';
-            });
+        io.socket.get("/api/clase/solicitarClase",
+        {
+            claseID: $scope.clase_seleccionada.id
+        },
+        function (data) {
+            toastr.info('Solicitud Enviada');
+            $scope.$parent.clasesCargadas = false;
+            window.location.href = '#/clasesAlumno';
+        });
     };
+
+
 
 
 

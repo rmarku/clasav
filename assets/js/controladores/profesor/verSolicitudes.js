@@ -5,7 +5,12 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
 
     $scope.aceptarAlumnoEnClase = function (user) {
 
-        $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=aceptado",
+        $.get("/api/clase_x_user/set_situacion",
+            {
+                clase_x_user : user.clase_x_user[0].id,
+                situacion:"aceptado",
+                clase: $scope.$parent.claseActual.id
+            },
             function (err,detail) {
                 if(detail != "success"){
                     toastr.error('Hubo un problema. Intente nuevamente.');
@@ -21,7 +26,12 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
 
     $scope.rechazarAlumnoEnClase = function(user) {
 
-        $.get("/api/clase_x_user/update/"+user.clase_x_user.id+"?situacion=rechazado",
+        $.get("/api/clase_x_user/set_situacion",
+            {
+                clase_x_user : user.clase_x_user[0].id,
+                situacion:"rechazado",
+                clase: $scope.$parent.claseActual.id
+            },
             function (err,detail) {
                 if(detail != "success"){
                     toastr.error('Hubo un problema. Intente nuevamente.');

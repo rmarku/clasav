@@ -72,10 +72,14 @@ module.exports = {
                                             res.json(err);
                                             return;
                                         }
+
+
+                                        return res.json(claseCreada);
+
                                     });
                             });
                             ///////////////////// FIN Generamos mapa_instancia central y secundarios//////////////////////////////////////////////////
-                            return res.json(claseCreada);
+
                         });
                     });
 
@@ -83,7 +87,6 @@ module.exports = {
             });
         });
     },
-
 
     solicitarClase: function (req,res) {
         var userID = req.session.passport.user;
@@ -101,6 +104,7 @@ module.exports = {
 
             clase.users.add(userID);
 
+
             clase.save(function (err) {
                 if(err){
                     console.log(err);
@@ -108,8 +112,11 @@ module.exports = {
                     return;
                 }
 
+
+
                 //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
                 Clase_x_user.create({user:userID, clase:claseID, situacion:"espera"}).exec(function createCB(err,clase_x_user) {
+
 
                     if (err) {
                         console.log(err);
@@ -117,7 +124,15 @@ module.exports = {
                         return;
                     }
 
-                    return res.json(clase_x_user);
+                    // Me suscribo a futuras modificaciones de la clase que acabo de crear
+
+                    User.findOne({id:userID}).populate('clase_x_user',{clase:clase.id}).exec(function afterwards(err,user) {
+
+                        sails.sockets.join(req.socket,"clase:"+clase.id);
+                        sails.sockets.broadcast("clase:"+clase.id,'nuevaSolicitud',user,req.socket);
+
+                        return res.json(clase_x_user);
+                    });
 
                 });
             });
@@ -143,15 +158,25 @@ module.exports = {
                     res.json(err);
                     return;
                 }
+
                 //Recorremos cada clase: obtenemos cuales pertenecen al usuario
+
                 todasLasClases.forEach(function(clase){
+
+
                     //Recorremos  cada user de cada clase
                     clase.users.forEach(function(user,index){
 
-                        //Si el User esta dentro de la clase
+                        //Si el User esta dentro de la clase.( Si es una de mis clases)
                         if (user.id == userID){
 
                             misClases.push(clase);
+                            //Me suscribo a actualizaciones de mi clase
+
+                            sails.sockets.leave(req.socket, "clase:" + clase.id);
+                            sails.sockets.join(req.socket, "clase:" + clase.id);
+
+
                             return;
                         }
                     });
