@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="70">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="71">
  <tileset firstgid="1" name="RPGmakerXPMegaTilesetByLmnopguy7" tilewidth="32" tileheight="32">
   <image source="tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png" width="256" height="15300"/>
  </tileset>
@@ -261,7 +261,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#ff0000" name="NPCs">
-  <object id="62" name="NPCPlayer" x="800" y="704" width="32" height="32">
+  <object id="62" name="NPCPlayer" x="542" y="354" width="32" height="32">
    <properties>
     <property name="nombre" value="Kitty"/>
    </properties>
@@ -269,6 +269,12 @@
   <object id="65" name="NPCPlayer" x="352" y="192" width="32" height="32">
    <properties>
     <property name="nombre" value="Anne"/>
+    <property name="z" value="9"/>
+   </properties>
+  </object>
+  <object id="70" name="NPCPlayer" x="256" y="193" width="32" height="31">
+   <properties>
+    <property name="nombre" value="Chris"/>
     <property name="z" value="9"/>
    </properties>
   </object>

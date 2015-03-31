@@ -1,152 +1,168 @@
 <!DOCTYPE html>
 <html ng-app="paginaapl">
-<head>
-    <title>Clases y Aventuras</title>
-    <link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
+	<head>
+		<title>Clases y Aventuras</title>
+		<link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
+		<!-- Viewport mobile tag for sensible mobile support -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons.min.css">
-    <link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css">
-    <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/js/dependencies/angular-toastr/dist/angular-toastr.css">
-    <link rel="stylesheet" href="/styles/comun.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <!--STYLES END-->
+		<!--STYLES-->
+<link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
+<link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons.min.css">
+<link rel="stylesheet" href="/js/dependencies/BrandButtons/dist/brand-buttons-inversed.min.css">
+<link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/js/dependencies/angular-toastr/dist/angular-toastr.css">
+<link rel="stylesheet" href="/styles/comun.css">
+<link rel="stylesheet" href="/styles/importer.css">
+<!--STYLES END-->
 
+	</head>
+	<body class="body-gradient" ng-controller="bodyController">
 
-</head>
-<body class="body-gradient" ng-controller="bodyController">
+		<div class="container-fluid text-center">
+			<!---login/logout--->
+			<nav class="navbar navbar-inverse navbar-static-top">
+				<div class="container-fluid" style="height: 30px">
+					<% if (!user) { %>
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+						aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<div class="text-left col-md-2" style="padding: 0px">
+							<a href="#/crear-cuenta" class="btn btn2 btn-default" style="margin-top: 4px;">Crear Cuenta</a>
+						</div>
+						<div class="text-center col-md-4">
+							<% if (errors.length > 0) { %>
+							<div class="alert alert-danger" role="alert" style="height: 25px;padding:2px;margin:0px">
+								<% errors.forEach(function (error) { %>
+								<%= __(error) %>
+								<% }) %>
+							</div>
+							<% } %>
+						</div>
+						<div class="text-right col-md-6">
+							<form class="form-inline" role="form" action="/auth/local" method="post">
+								<div class="form-group">
+									<label class="sr-only" for="email">Email address</label>
+									<input type="email" class="form-control2" name="identifier" size="35"
+									ng-model="alumno.e_mail"
+									placeholder="Introduce tu E-mail" required>
+								</div>
+								<div class="form-group">
+									<label class="sr-only" for="contrasena">Password</label>
+									<input type="password" class="form-control2" name="password" id="contrasena"
+									ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
+								</div>
+								<div class="form-group" style="display: inline">
+									<button type="submit" class="btn btn2 btn-default">
+										Sign in
+									</button>
+								</div>
+								<div class="form-group" style="display: inline">
+									<a href="/auth/facebook" class="btn btn-facebook-inversed"><i
+									class="fa fa-facebook"></i></a>
+									<a href="/auth/google" class="btn btn-googleplus-inversed"><i class="fa fa-google-plus"></i></a>
+								</div>
+							</form>
+						</div>
+						<%- user %>
+					</div>
+					<% } else { %>
 
-<div class="container-fluid text-center">
-    <!---login/logout--->
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid" style="height: 30px">
-            <% if (!user) { %>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <div class="text-left col-md-2" style="padding: 0px">
-                    <a href="#/crear-cuenta" class="btn btn2 btn-default" style="margin-top: 4px;">Crear Cuenta</a>
-                </div>
-                <div class="text-center col-md-4">
-                    <% if (errors.length > 0) { %>
-                    <div class="alert alert-danger" role="alert" style="height: 25px;padding:2px;margin:0px">
-                        <% errors.forEach(function (error) { %>
-                        <%= __(error) %>
-                        <% }) %>
-                    </div>
-                    <% } %>
-                </div>
-                <div class="text-right col-md-6">
-                    <form class="form-inline" role="form" action="/auth/local" method="post">
-                        <div class="form-group">
-                            <label class="sr-only" for="email">Email address</label>
-                            <input type="email" class="form-control2" name="identifier" size="35"
-                                   ng-model="alumno.e_mail"
-                                   placeholder="Introduce tu E-mail" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="sr-only" for="contrasena">Password</label>
-                            <input type="password" class="form-control2" name="password" id="contrasena"
-                                   ng-model="alumno.contrasena" placeholder="Contrase&ntilde;a">
-                        </div>
-                        <div class="form-group" style="display: inline">
-                            <button type="submit" class="btn btn2 btn-default">Sign in</button>
-                        </div>
-                        <div class="form-group" style="display: inline">
-                            <a href="/auth/facebook" class="btn btn-facebook-inversed"><i
-                                    class="fa fa-facebook"></i></a>
-                            <a href="/auth/google" class="btn btn-googleplus-inversed"><i class="fa fa-google-plus"></i></a>
-                        </div>
-                    </form>
-                </div> <%- user %>
-            </div>
-            <% } else { %>
+					<div class="text-right">
+						<p style="color: white;">
+							Bienvenido
+							<%- user.nombre %> <%- user.apellido %>
+							<a class="btn btn2 btn-default" ng-click="verCuenta()">Cuenta</a>
+							<a class="btn btn2 btn-default" href="/logout">Cerrar Sesi&oacute;n</a>
+						</p>
+					</div>
+					<% } %>
+				</div>
+			</nav>
+			<!---final login/logout--->
+			<!--h1>Titulo del Juego</h1-->
+			<img class="img-center img-responsive" src="images/init.png"/>
+			<br/>
+			<!--BOTONERA ALUMNO-->
 
-            <div class="text-right">
-                <p style="color: white;">Bienvenido
-                    <%- user.nombre %> <%- user.apellido %>
-                    <a class="btn btn2 btn-default" ng-click="verCuenta()">Cuenta</a>
-                    <a class="btn btn2 btn-default" href="/logout">Cerrar Sesi&oacute;n</a>
-                </p>
-            </div>
-            <% } %>
-        </div>
-    </nav>
-    <!---final login/logout--->
-    <!--h1>Titulo del Juego</h1-->
-    <img class="img-center img-responsive" src="images/init.png"/>
-    <br/>
-    <!--BOTONERA ALUMNO-->
+			<%if(user){%>
+			<%if(user.tipo == 'alumno'){%>
 
-    <%if(user){%>
-        <%if(user.tipo == 'alumno'){%>
+			<div class="btn-group botonera">
+				<a href="#/" type="button" class="btn btn-default">Home</a>
+				<a href="#/clasesAlumno" class="btn btn-default">Clases</a>
+				<a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
 
-        <div class="btn-group botonera">
-            <a href="#/" type="button" class="btn btn-default">Home</a>
-            <a href="#/clasesAlumno" class="btn btn-default">Clases</a>
-            <a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span
+					class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<% if (user) { %>
+						<li>
+							<a href="#">Mi Personaje</a>
+						</li>
+						<% } %>
+						<li>
+							<a href="#">Ranking</a>
+						</li>
+					</ul>
+				</div>
+				<a href="#/coliseo" class="btn btn-default">COLISEO</a>
+				<a href="/game" type="button" class="btn btn-default">Juego</a>
+			</div>
+			<%}%>
+			<!--FIN DE BOTONERA ALUMNO-->
 
-            <div class="btn-group">
-                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span
-                        class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <% if (user) { %>
-                    <li>
-                        <a href="#">Mi Personaje</a>
-                    </li>
-                    <% } %>
-                    <li>
-                        <a href="#">Ranking</a>
-                    </li>
-                </ul>
-            </div>
-            <a href="#/coliseo" class="btn btn-default">COLISEO</a>
-            <a href="/game" type="button" class="btn btn-default">Juego</a>
-        </div>
-        <%}%>
-        <!--FIN DE BOTONERA ALUMNO-->
+			<!--BOTONERA PROFESOR-->
+			<%if(user.tipo == 'profesor'){%>
 
-        <!--BOTONERA PROFESOR-->
-        <%if(user.tipo == 'profesor'){%>
+			<div class="btn-group botonera">
+				<a href="#/" class="btn btn-default">Home</a>
+				<a href="#/clasesProfesor" class="btn btn-default">Clases</a>
 
-        <div class="btn-group botonera">
-            <a href="#/" class="btn btn-default">Home</a>
-            <a href="#/clasesProfesor" class="btn btn-default">Clases</a>
+				<a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
+				<a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
+			</div>
 
-            <a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
-            <a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
-        </div>
+			<%}%>
+			<!--FIN DE BOTONERA PROFESOR-->
 
-        <%}%>
-        <!--FIN DE BOTONERA PROFESOR-->
+			<%}else{%>
+			<div class="btn-group botonera">
+				<a href="#/" type="button" class="btn btn-default">Home</a>
+				<a href="#/misiones" class="btn btn-default">Guia de Misiones</a>
+				<div class="btn-group">
+					<a class="btn btn-default dropdown-toggle" data-toggle="dropdown">Estadisticas<span
+					class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li>
+							<a href="#">Ranking</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<%}%>
 
-    <%}%>
+			<div ng-view></div>
+			<!--%- body %-->
+			<!--TEMPLATES-->
+<script type="text/javascript" src="/jst.js"></script>
+<!--TEMPLATES END-->
 
-
-    <div ng-view></div>
-    <!--%- body %-->
-    <!--TEMPLATES-->
-    <script type="text/javascript" src="/jst.js"></script>
-    <!--TEMPLATES END-->
-
-    <!--h1>Titulo del Juego</h1-->
-    <img class="img-responsive" src="images/logoUCC.png"/> Universidad Catolica de Cordoba
-</div>
-<!--SCRIPTS-->
+			<!--h1>Titulo del Juego</h1-->
+			<img class="img-responsive" src="images/logoUCC.png"/> Universidad Catolica de Cordoba
+		</div>
+		<!--SCRIPTS-->
 <script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
 <script src="/js/dependencies/angular/angular.js"></script>
 <script src="/js/dependencies/jquery/dist/jquery.js"></script>
@@ -174,5 +190,5 @@
 <script src="/js/controladores/profesor/crearClase.js"></script>
 <!--SCRIPTS END-->
 
-</body>
+	</body>
 </html>

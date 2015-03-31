@@ -12,5 +12,12 @@
         "height": "48",
         "sprite": "anne",
         "animation": "16"
+    },
+    {
+        "nombre": "Chris",
+        "width": "31",
+        "height": "48",
+        "sprite": "chris",
+        "animation": "1"
     }
 ]
