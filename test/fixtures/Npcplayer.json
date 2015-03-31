@@ -26,5 +26,26 @@
         "height": "46",
         "sprite": "daniela",
         "animation": "1"
+    },
+    {
+        "nombre": "Divina",
+        "width": "26",
+        "height": "46",
+        "sprite": "divina",
+        "animation": "1"
+    },
+    {
+        "nombre": "Pirata",
+        "width": "57",
+        "height": "63",
+        "sprite": "pirata",
+        "animation": "1"
+    },
+    {
+        "nombre": "SraBibliotecaria",
+        "width": "25",
+        "height": "47",
+        "sprite": "sraBibliotecaria",
+        "animation": "1"
     }
 ]
