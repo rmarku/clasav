@@ -4,12 +4,26 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
     $scope.mensaje = "";
     $sailsBind.bind('api/chat', $scope, {">": {"createdAt": tiempo}});
 
+    $("#glyChat").click(function () {
+        var e = $("#ChatGame");
+        if (e.css('height') != '30px')
+            e.animate({'height': '30px'}, 600);
+        else
+            e.animate({'height': '154px'}, 600);
+    });
 
+    $("#ventAmigos").click(function () {
+        var e = $("#ventAmigos");
+        if (e.css('height') != '23px')
+            e.animate({'height': '23px'}, 600);
+        else
+            e.animate({'height': '260px'}, 600);
+    });
     /**
      * Funcion que envia mensaje a la ventana(div) de Chat, y luego blanquea el campo del "input"
      * @return
      * @method envMsj
-     * @return 
+     * @return
      */
     $scope.envMsj = function () {
         if ($scope.mensaje !== "") {
@@ -30,7 +44,7 @@ app.directive('chat', function () {
          * @param {} scope
          * @param {} elem
          * @param {} attrs
-         * @return 
+         * @return
          */
         link: function (scope, elem, attrs) {
             elem.bind('keydown', function (e) {

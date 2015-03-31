@@ -28,8 +28,11 @@ module.exports = {
     },
 
     getPersonaje_masReciente: function (req, res) {
+        var userId = req.session.passport.user;
+        if (!userId) {
+            return res.json({err: 'No existe un usuario Logueado'});
+        }
 
-        var userId = req.param('duenio');
         Personaje.getPersonaje_masReciente(userId).then(function (pj) {
             return res.json(pj);
         });

@@ -37,6 +37,26 @@ var game = {
 
     nextxy: {x: 0, y: 0, direction: 0},
 
+
+    start: function () {
+        $.get("/api/user/getUser", function (data) {
+            if (typeof data.userId == 'undefined') {
+                window.location.href = '/';
+                return;
+            }
+            $.get('/api/personaje/getPersonaje_masReciente', function (pj) {
+                if (typeof pj.id == 'undefined') {
+                    window.location.href = '/';
+                    return;
+                }
+                this.userId = data.userId;
+                setTimeout(function () {
+
+                    game.onload();
+                }, 1000);
+            });
+        });
+    },
     /**
      * initialization
      * @return
@@ -53,11 +73,13 @@ var game = {
 
 
         if (me.device.isMobile) {
-            if (!me.video.init('game', me.video.CANVAS, 480, 280, false, 'auto', true)) {
+            me.sys.fps = 15;
+            if (!me.video.init('game', me.video.AUTO, 480, 280, false, 'auto', true)) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
             }
         } else {
+            me.sys.fps = 30;
             if (!me.video.init('game', me.video.AUTO, 800, 480, false, 'auto', true)) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
@@ -101,7 +123,9 @@ var game = {
             });
         });
 
-    },
+    }
+
+    ,
 
     /**
      * Llamo cuando todos los recursos estan cargados
@@ -119,7 +143,8 @@ var game = {
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
-    },
+    }
+    ,
 
     /**
      * Description
@@ -150,7 +175,8 @@ var game = {
                 game.addMainPlayer(data);
                 game.create_OtherPlayers();
             });
-    },
+    }
+    ,
 
 
     /**
@@ -169,7 +195,8 @@ var game = {
                 }
             }
         });
-    },
+    }
+    ,
 
     /**
      * Description
@@ -186,7 +213,9 @@ var game = {
             });
         me.game.world.addChild(game.mainPlayer, 10);
         me.game.world.sort();
-    },
+        hud.update();
+    }
+    ,
 
     /**
      * Description
@@ -205,7 +234,8 @@ var game = {
             }
         );
         me.game.world.addChild(game.players[data.id], 10);
-    },
+    }
+    ,
 
     /**
      * Description
@@ -216,7 +246,8 @@ var game = {
         game.removeMainPlayer();
         game.removeEveryOtherPlayer();
         game.removeNPCs();
-    },
+    }
+    ,
 
     /**
      * Description
@@ -226,7 +257,8 @@ var game = {
     removeMainPlayer: function () {
         me.game.world.removeChild(game.mainPlayer);
         game.mainPlayer = {};
-    },
+    }
+    ,
 
     /**
      * Description
@@ -238,7 +270,8 @@ var game = {
             game.removeOtherPlayer(game.player.pop().id);
         }
         game.players = {};
-    },
+    }
+    ,
 
     /**
      * Description
@@ -252,7 +285,8 @@ var game = {
             me.game.world.removeChild(game.players[id]);
             delete game.players[id];
         }
-    },
+    }
+    ,
 
     /**
      * Description
@@ -263,7 +297,8 @@ var game = {
         for (var npc in game.NPCs) {
             delete game.NPCs[npc];
         }
-    },
+    }
+    ,
     /**
      * Description
      * @method removeNPCs
@@ -273,7 +308,8 @@ var game = {
         for (var npc in game.NPCs) {
             game.NPCs[npc].updateInfo();
         }
-    },
+    }
+    ,
 
 
     // Misiones
@@ -317,7 +353,7 @@ var game = {
                                 $("#mision_txt").html(data.mision);
                             }
                         }
-                    }else{
+                    } else {
                         $("#mision").hide();
                     }
                 });
@@ -325,7 +361,9 @@ var game = {
             $("#mision_npc").html(npc.data.nombre);
             $("#mision").fadeIn(600);
 
-        },
+        }
+
+        ,
         cancelar: function () {
             this.mision = '';
             this.npc = null;
@@ -333,7 +371,8 @@ var game = {
                 game.mainPlayer.hablandoCon = '';
                 me.input.unlockKey('accion');
             });
-        },
+        }
+        ,
         siguiente: function (resultado) {
             $("#mision_aceptar").hide();
             $("#mision_siguiente").hide();

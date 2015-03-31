@@ -36,7 +36,7 @@ module.exports = {
         no_item: 'string',
 
         pregunta: 'string',
-        mision: 'string',   // URL: www.google.com.ar
+        mision: 'string',   // URL:www.google.com.ar
 
 
         no_paso: 'string',
@@ -73,14 +73,16 @@ module.exports = {
                 Misiones_x_Personaje.findOrCreate({
                     where: {
                         personaje: pj.id,
-                        npc: npcId
+                        npc: npcId,
+                        mapa_instancia: pj.mapa_instancia
                     },
                     sort: 'qorder DESC',
                     limit: 1
                 }, {
                     qorder: 0,
                     personaje: pj.id,
-                    npc: npcId
+                    npc: npcId,
+                    mapa_instancia: pj.mapa_instancia
                 }).populateAll().exec(function (err, mxp) {
 
                     if (err) return reject(err);

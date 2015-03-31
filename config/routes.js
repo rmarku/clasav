@@ -85,6 +85,7 @@ module.exports.routes = {
     'get /api/clase/solicitarClase':                'ClaseController.solicitarClase',
 
 
+    'get /api/item/getItemsPJ':                'ItemController.getItemsPJ',
     // Misiones
     'get /api/misiones/gettxt':                     'MisionesController.gettxt',
     'get /api/misiones/finish':                     'MisionesController.finish',

@@ -14,6 +14,9 @@ module.exports = {
         qorder: 'integer',
         personaje: {
             model: 'personaje'
+        },
+        mapa_instancia: {
+            model: 'mapa_instancia'
         }
     }
 };
