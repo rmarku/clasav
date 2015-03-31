@@ -4,6 +4,14 @@
 </head>
 <body>
 Esto es una prueba del iframe para minijuego
-<button onclick="parent.game.mision.siguiente(1)">Listo</button>
+<button onclick="
+                game.nextxy.x = 400;
+                game.nextxy.y = 400;
+                game.nextxy.direction = 'run-left'; // Lo que es la direccion en los mapas tiled es la animation en el Player
+                game.change_level('islacasa01');
+
+
+
+parent.game.mision.siguiente(1)">Listo</button>
 </body>
 </html>

@@ -13,6 +13,7 @@
         "reco_oro": "500",
         "new_mission": [
             {
+                "result":"4",
                 "npc": "Kitty",
                 "qorder": "1"
             },

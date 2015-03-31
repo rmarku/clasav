@@ -134,6 +134,7 @@ game.PlayerEntity = game.Player.extend({
         $.get('api/personaje/' + this.data.id,
             function (data) {
                 this.data = data;
+                hud.update();
             });
     }
 
