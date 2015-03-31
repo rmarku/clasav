@@ -66,13 +66,49 @@
         "npc_visible": "true",
         "titulo": "Ayudame con mi tarea 2!",
         "pregunta":"A veces se me confunden los numeros naturales con los enteros... Pero por suerte, encontre un video... Lo vemos juntos?",
-        "mision": "URL: www.youtube.com/embed/FR2j-GciX3c",
-        "paso": "Fue divertido!",
+        "mision": "URL:test/quest2_3.html",
+        "paso": "Fue divertido! Realmente eres bueno en esto! Porque no ayudas a Daniela? Seguro que esta bajo el viejo arbol haciendo su tarea.",
         "no_paso": "Lo veamos otra vez!",
         "reco_oro": "10",
         "new_mission": [
             {
-                "npc": "chris",
+                "npc": "daniela",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "4",
+        "qorder": "1",
+        "img_quest": "daniela.png",
+        "npc_visible": "true",
+        "titulo": "A la biblioteca!",
+        "pregunta":"Hola! Soy Dani! Seguro que antes estuviste con mi amigo Chris! Ah, me gustaria jugar con el, pero no puedo al menos que termine mi tarea. Me deje mi cuarno en la biblioteca! Puedes ir al pueblo a buscarlo? Te pagare por ello",
+        "mision": "",
+        "paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
+        "no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
+        "reco_oro": "25",
+        "new_mission": [
+            {
+                "npc": "daniela",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "4",
+        "qorder": "2",
+        "img_quest": "daniela.png",
+        "npc_visible": "true",
+        "titulo": "Para poder salir a jugar...",
+        "pregunta":"Bien, ahora falta menos para poder salir a jugar. Pero primero debo entender un poco sobre geometria.",
+        "mision": "URL: test/quest3_1.html",
+        "paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
+        "no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
+        "reco_oro": "25",
+        "new_mission": [
+            {
+                "npc": "daniela",
                 "qorder": "3"
             }
         ]

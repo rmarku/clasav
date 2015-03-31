@@ -1,0 +1,41 @@
+<html>
+	<head></head>
+	<body>
+		Escribe el nombre de las siguientes figuras:
+		<br>
+		<img src="../../../images/minijuegos/figuras/circulo.jpg">
+		<br>
+		<input type="text" id="fig1" name="fig1" size="12">
+
+		<br>
+		<br>
+
+		<img src="../../../images/minijuegos/figuras/rectangulo.jpg">
+		<br>
+		<input type="text" id="fig2" name="fig2" size="12">
+
+		<br>
+		<br>
+
+		<img src="../../../images/minijuegos/figuras/triangulo.jpg">
+		<br>
+		<input type="text" id="fig3" name="fig3" size="12">
+
+		<script>
+			function comprobar() {
+				var f1, f2, f3;
+				f1 = document.getElementById('fig1').value;
+				f2 = document.getElementById('fig2').value;
+				f3 = document.getElementById('fig3').value;
+
+				if ((f1.value=="circulo" || f1.value=="círculo")  && (f1.value=="rectangulo" || f1.value=="rectángulo") && (f1.value=="triangulo" || f1.value=="triángulo")) {
+					alert('Bien');
+				}
+			}
+		</script>
+
+		<button onclick="parent.game.mision.siguiente(1)">
+			Listo
+		</button>
+	</body>
+</html>
