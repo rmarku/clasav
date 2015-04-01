@@ -17,6 +17,42 @@
         "clase"         :1,
         "nombre"        :"ciudad",
         "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :4,
+        "clase"         :1,
+        "nombre"        :"ciudad_items",
+        "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :5,
+        "clase"         :1,
+        "nombre"        :"ciudad_biblioteca",
+        "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :6,
+        "clase"         :1,
+        "nombre"        :"ciudad_casa01",
+        "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :7,
+        "clase"         :1,
+        "nombre"        :"ciudad_escuela",
+        "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :8,
+        "clase"         :1,
+        "nombre"        :"ciudad_iglesia",
+        "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :9,
+        "clase"         :1,
+        "nombre"        :"ciudad_taberna",
+        "tipo"          :"secundario"
     }
 
 ]
