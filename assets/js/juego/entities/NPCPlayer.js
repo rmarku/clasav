@@ -5,11 +5,11 @@ game.NPCPlayer = me.Entity.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return
+     * @return 
      */
     init: function (x, y, settings) {
         var self = this;
-        $.get('api/npcplayer?nombre=' + settings.nombre,
+        $.get('api/npc-player?nombre=' + settings.nombre,
             function (data) {
                 self.data = data[0];
                 var sett = {
@@ -40,8 +40,6 @@ game.NPCPlayer = me.Entity.extend({
                 self.renderable.addAnimation('always', anim, 100);
                 self.renderable.setCurrentAnimation('always');
 
-                self.updateInfo();
-
 
                 self.anchorPoint.set(0.5, 0.5);
 
@@ -55,7 +53,7 @@ game.NPCPlayer = me.Entity.extend({
      * Description
      * @method update
      * @param {} dt
-     * @return
+     * @return 
      */
     update: function (dt) {
         this._super(me.Entity, 'update', [dt]);
@@ -81,7 +79,7 @@ game.NPCPlayer = me.Entity.extend({
      * Description
      * @method draw
      * @param {} renderer
-     * @return
+     * @return 
      */
     draw: function (renderer) {
 
@@ -100,7 +98,7 @@ game.NPCPlayer = me.Entity.extend({
     /**
      * Description
      * @method nombre
-     * @return
+     * @return 
      */
     nombre: function () {
         var width = 32 * 4;
@@ -124,18 +122,5 @@ game.NPCPlayer = me.Entity.extend({
 
         ctx.strokeText(this.data.nombre, width / 2 - txtw / 2, 3);
         ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3);
-    },
-
-
-    updateInfo: function () {
-        // Traigo datos del quest (si es visible en este momento o no)
-        var self = this;
-        $.get('api/misiones/info?npc=' + this.data.id,
-            function (data) {
-                if (typeof data.npc_visible != 'undefined' && data.npc_visible === false)
-                    self.isRenderable = false;
-                else
-                    self.isRenderable = true;
-            });
     }
 });

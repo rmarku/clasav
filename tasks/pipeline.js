@@ -21,6 +21,7 @@ var cssFilesToInject = [
     "/js/dependencies/font-awesome/css/font-awesome.min.css",
     "/js/dependencies/angular-animate/angular-animate.css",
     "/js/dependencies/angular-toastr/dist/angular-toastr.css",
+    "/js/dependencies/ng-scrollbar/dist/ng-scrollbar.css",
     'styles/**/*.css'
 ];
 
@@ -51,7 +52,6 @@ var jsFilesToInject = [
     "/js/controladores/editUsuario.js",
     "/js/juego/pregunta4.js",
     "/js/juego/misiones.js",
-    "/js/minijuegos.js",
     "/js/controladores/editUsuario.js",
     "/js/controladores/profesor/clases.js",
     "/js/controladores/profesor/instituciones.js",

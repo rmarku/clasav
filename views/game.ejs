@@ -26,10 +26,9 @@
 			<div id="hudSuperior" class="capaSup">
 				<!--img src="images/iconos/circuloNivel.png" style="float: left; width: 68px; height: 68px;"-->
 				<div class="nivelPJ">
-					<b> <font size="7">1 <!--game.mainPlayer.data.nivel--></font>
-					<br>
-					Nivel</b>
+					<b> <font size="7">1 </font> <br> Nivel</b>
 				</div>
+				
 
 				<div class="progress" style="margin-left: 75px; margin-top: 10px ;width: 200px">
 					<div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60"
@@ -63,7 +62,8 @@
 			<!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
 
 			<!--INVENTARIO-->
-			<div id="inv" class="div-panel" ng-controller="inventarioContr"	style="background: url('images/iconos/inventario2.png')">
+			<div id="inv" class="div-panel" ng-controller="inventarioContr"
+			style="background: url('images/iconos/inventario2.png')">
 				<p class="capaSup titulo-botonera">
 					Inventario
 				</p>
@@ -110,6 +110,7 @@
 				</div>
 			</div>
 
+
 			<!--LOGROS-->
 			<div id="log" class="div-panel" ng-controller="listaLogros" style="background: url('images/iconos/logros2.png')">
 				<p class="capaSup titulo-botonera">
@@ -146,10 +147,7 @@
 						<img src="../data/sprites/items/cabeza/1.png">
 					</div>
 					<div id="itemPechera" class="itemP">
-						<!--Se deberia llamar a la funcion tintImage-->
-						<!--tintImage(img, color, x, y, w, h)-->
-						<!--img src="../data/sprites/items/pechera/1.png"-->
-						<img id="pechera" src="../data/sprites/items/pechera/1.png" onclick="tintImage(pechera, '#FF0000', 0, 0, 49, 49);">
+						<img src="../data/sprites/items/pechera/1.png">
 					</div>
 					<div id="itemPantalon" class="itemP">
 						<img src="../data/sprites/items/pantalon/1.png">
@@ -184,25 +182,12 @@
 					</div>
 				</div>
 			</div>
-
-			<!--ventana de amigos-->
-			<div id="ventAmigos" class="titulo-botonera capaSup" style="background-color: #FBF8EF; border: 2px solid #FF8000; margin: 176px 0px; width: 176px; height: 277px; right: 0px">
-				<div style="background-color: #FF8000; text-align: center">
-					<strong> Lista de Amigos </strong>
-				</div>
-				Conectados
-				<div style="overflow-y: auto;"></div>
-				Desconectados
-				<div style="overflow-y: auto;"></div>
-			</div>
-
 			<!--MAPA-->
 			<div style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
 				<img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
 
 				<div id=divMinimapa class="div-mapa">
-                    <img id="minimap_img" src="asserts/data/map/island.png" style="position:absolute; float: left;"/>
-					<canvas id="canvasMinimap" style="position:absolute; float: left;" width="156" height="156"></canvas>
+					<canvas id="canvasMinimap" width="156" height="156"></canvas>
 				</div>
 
 			</div>
@@ -223,35 +208,40 @@
 				</div>
 			</div>
 
-			<!--GAME-->
+			<!--ventana de amigos-->
+			<div class="titulo-botonera" style=" display:none; background-color: #FBF8EF; border: 2px solid #FF8000; margin: 30px 0px; height: 277px;">
+				<div style="background-color: #FF8000">
+					<strong> Lista de Amigos </strong>
+				</div>
+				Conectados
+				<div style="overflow-y: auto;"></div>
+				Desconectados
+				<div style="overflow-y: auto;"></div>
+			</div>
 			<div id="game-parent" style="text-align: center">
 				<div id="game"></div>
 			</div>
 
-			<!--Ventana de Misiones-->
-			<div id="mision" style="display:none; position: absolute; top:0px; width: 100%">
-				<div class="capaSup questModal">
-					<p id="mision_titulo" class="capaSup titulo-botonera" style="margin-left: 80px">
-                        <!-- Titulo Mision -->
-					</p>
-					<span id="mision_npc" style="position: absolute; margin: 123px 0px 0px 36px">
-                        <!-- Nombre NPC -->
-                    </span>
+    <!--Ventana de Misiones-->
+    <div style="position: absolute; top:0px; width: 100%">
+        <div class="capaSup questModal" ng-controller="misionesGuia" id="quest">
+            <p class="capaSup titulo-botonera" style="margin-left: 80px"
+               ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}">
+                {{ x.tituloMision }}
+            </p>
+        <span ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}"
+              style="position: absolute; margin: 123px 0px 0px 36px"> {{ x.inicipioNPC }} </span>
 
-					<div id="mision_txt" style="position: absolute;width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: auto">
-
-					</div>
-					<!--img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/-->
-                    <div style="position: absolute; right: 34px; text-align: right;bottom: 19px;">
-                        <span id="mision_aceptar" onclick="game.mision.aceptar()" class="btn-quest" type="button" > Aceptar </span>
-                        <span id="mision_siguiente" onclick="game.mision.siguiente(1)" class="btn-quest" type="button"> Siguiente </span>
-                        <span id="mision_cancelar" onclick="game.mision.cancelar()" class="btn-quest" type="button"> Cancelar </span>
-                        <span id="mision_salir" onclick="game.mision.cancelar()" class="btn-quest" type="button"> Salir </span>
-                    </div>
-
-				</div>
-			</div>
+            <div ng-repeat="x in misiones | filter: { mapa: 'Principal' , id: 1}"
+                 style="position: absolute;width: 342px; height: 200px; margin: 47px 0px 0px 123px; overflow-y: auto">
+                {{ x.textoInicial }}
 		</div>
+            <img id="cerrar" style="position: absolute; right: 0px" src="images/quest/cerrar.png"/>
+            <span class="btn-quest" type="button" style="position: absolute; bottom: 19px; right: 34px"> Aceptar </span>
+
+        </div>
+    </div>
+</div>
 		<script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
 		<script src="/js/dependencies/angular/angular.js"></script>
 		<script src="/js/dependencies/jquery/dist/jquery.js"></script>
