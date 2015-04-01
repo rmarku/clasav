@@ -12,6 +12,7 @@
         "titulo": "Bienvenido Viajero!",
         "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu viaje, le dire a Kitty que aparezca para que te de una mision",
         "reco_oro": "500",
+        "reco_experiencia": "10",
         "new_mission": [
             {
                 "npc": "Kitty",
@@ -34,6 +35,7 @@
         "paso": "Has hecho un buen trabajo, MiaU!! Te dare de recompensa una bola de estambre... Mmmm, pero no se si te sera util... Que tal si mejor te doy este dinero que encontre... Por cierto, creo que tienes habilidad para esto de los numeros, porque no ayudas al hijo del tabernero con su tarea?",
         "no_paso": "Oh! Estoy seguro que puedes hacerlo a�n mejor",
         "reco_oro": "2",
+        "cond_energia": "10",
         "new_mission": [
             {
                 "npc": "chris",
@@ -49,7 +51,7 @@
         "titulo": "Ayudame con mi tarea!",
         "pregunta":"Podrias ayudarme con mi tarea?. Tengo qu estudiar las operaciones con numeros naturales, se que son la suma y la multiplicacion; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
         "mision": "URL:test/test.html",
-        "paso": "Wow! En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
+        "paso": "<strong>Wow!</strong> En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
         "no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
         "reco_oro": "10",
         "new_mission": [

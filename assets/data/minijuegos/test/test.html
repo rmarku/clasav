@@ -31,17 +31,17 @@
 				n2 = document.getElementById('num2').value = aleatorio(1, 30);
 				n3 = document.getElementById('num3').value = aleatorio(1, 30);
 				n4 = document.getElementById('num4').value = aleatorio(1, 30);
-				var final = false;
+				var final = -1;
 
 				function comprobar() {
 					if (document.getElementById('res').value == n1 + n2 && document.getElementById('res2').value == n3 + n4) {
-						final = true;
+						final = 1;
 					}
 				}
 			</script>
 		</form>
 
-		<button onclick="parent.game.mision.siguiente(1)">
+		<button onclick="parent.game.mision.siguiente(final)">
 			Listo
 		</button>
 	</body>

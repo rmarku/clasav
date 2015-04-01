@@ -29,7 +29,7 @@
     },
     {
         "nombre": "Divina",
-        "width": "26",
+        "width": "28",
         "height": "46",
         "sprite": "divina",
         "animation": "1"
