@@ -10,9 +10,7 @@ module.exports = {
 
     attributes: {
         // Info
-        npc: {
-            model: 'npcplayer'
-        },
+        npc: "string",
         qorder: 'integer',
         img_quest: 'string',
         npc_visible: 'boolean',
@@ -23,9 +21,7 @@ module.exports = {
         // Precondiciones
         cond_nivel: 'integer',
         cond_energia: 'integer',
-        cond_item: {
-            model: 'item'
-        },
+        cond_item: "string",
         cond_item_cant: 'integer',
         cond_oro: 'integer',
 
@@ -55,16 +51,17 @@ module.exports = {
         new_mission: 'string'
         /* Array
          [ {
-         "npc": "anna",
-         "qorder": 5
-         }, {
-         "npc": "kitty",
-         "qorder": 2
+             "resultado":"4",   // Solo lo  hace si el resultado es 4
+             "npc": "anna",
+             "qorder": 5
+             }, {
+             "npc": "kitty",
+             "qorder": 2
          } ]
          */
 
     },
-    getMision: function (userId, npcId) {
+    getMision: function (userId, npcNombre) {
 
         return new Promesa(function (resolve, reject) {
             Personaje.getPersonaje_masReciente(userId).then(function (pj) {
@@ -73,23 +70,23 @@ module.exports = {
                 Misiones_x_Personaje.findOrCreate({
                     where: {
                         personaje: pj.id,
-                        npc: npcId,
-                        mapa_instancia: pj.mapa_instancia
+                        npc: npcNombre,
+                        mapa_instancia: pj.mapa_instancia.id
                     },
                     sort: 'qorder DESC',
                     limit: 1
                 }, {
                     qorder: 0,
                     personaje: pj.id,
-                    npc: npcId,
-                    mapa_instancia: pj.mapa_instancia
-                }).populateAll().exec(function (err, mxp) {
+                    npc: npcNombre,
+                    mapa_instancia: pj.mapa_instancia.id
+                }).exec(function (err, mxp) {
 
                     if (err) return reject(err);
                     if (!mxp) return reject("Mision no encontrada");
 
                     // obtengo el orden y el npc
-                    Misiones.findOne({npc: mxp.npc.id || mxp.npc, qorder: mxp.qorder}).exec(function (err, misi) {
+                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).exec(function (err, misi) {
                         if (!misi) return reject('Mision no encontrada');
                         resolve({misi:misi, mxp:mxp, pj:pj});
                     });
@@ -118,15 +115,13 @@ module.exports = {
                         id: mis.id,
                         mapa: mis.mapa,
                         tituloMision: mis.titulo,
-                        inicioNPC: mis.npc.nombre,
+                        inicioNPC: mis.npc,
                         descripcion: mis.descripcion,
                         recompensa: reco
 
                     });
                 }
-
                 resolve(res);
-
             });
         });
     }

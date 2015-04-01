@@ -86,8 +86,11 @@ var game = {
             }
         }
 
-
-        me.plugin.register(me.debug.Panel, "debug");
+        if (document.location.hash === "#debug") {
+            window.onReady(function () {
+                me.plugin.register(me.debug.Panel, "debug");
+            });
+        }
 
         // Plugin: AStar pathfinding
         me.plugin.register(aStarPlugin, "astar");
@@ -323,7 +326,7 @@ var game = {
             $("#mision_salir").hide();
             $("#mision_txt").html('');
             this.npc = npc;
-            $.get('api/misiones/gettxt?npc=' + npc.data.id,
+            $.get('api/misiones/gettxt?npc=' + npc.data.nombre,
                 function (data) {
                     // Si no hay error,
                     if (!data.err) {
@@ -398,7 +401,7 @@ var game = {
                 else
                     resultado = 0;
 
-                $.get('api/misiones/finish?npc=' + this.npc.data.id + '&resultado=' + resultado,
+                $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
                     function (data) {
                         if (typeof data.txt !== 'undefined' && data.txt !== '') {
                             $("#mision_salir").show();
