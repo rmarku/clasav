@@ -16,39 +16,39 @@
         "clase"     : 1,
         "tipo"      :"secundario",
         "dependencia_mapa_generico" : 1
-    }
+    },
     {
         "clase"         :1,
         "nombre"        :"ciudad_items",
-        "tipo"          :"secundario"
+        "tipo"          :"secundario",
         "dependencia_mapa_generico" : 1
     },
     {
-    	"dependencia_mapa_generico" : 1
+    	"dependencia_mapa_generico" : 1,
         "clase"         :1,
         "nombre"        :"ciudad_biblioteca",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1
+        "dependencia_mapa_generico" : 1,
         "clase"         :1,
         "nombre"        :"ciudad_casa01",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1
+        "dependencia_mapa_generico" : 1,
         "clase"         :1,
         "nombre"        :"ciudad_escuela",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1
+        "dependencia_mapa_generico" : 1,
         "clase"         :1,
         "nombre"        :"ciudad_iglesia",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1
+        "dependencia_mapa_generico" : 1,
         "clase"         :1,
         "nombre"        :"ciudad_taberna",
         "tipo"          :"secundario"

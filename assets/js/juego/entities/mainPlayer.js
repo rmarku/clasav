@@ -6,7 +6,7 @@ game.PlayerEntity = game.Player.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return 
+     * @return
      */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
@@ -49,8 +49,9 @@ game.PlayerEntity = game.Player.extend({
         }
         if (other.body.collisionType === me.collision.types.NPC_OBJECT) {
             // Choque contra el mundo!
-            if (me.input.isKeyPressed('accion') && this.hablandoCon != other.data.nombre) {
+            if (me.input.isKeyPressed('accion') && this.hablandoCon != other.data.nombre && other.isRenderable) {
                 this.hablandoCon = other.data.nombre;
+                game.mision.startMision(other);
                 console.log('Al lado de ' + other.data.nombre);
             }
             return false;
@@ -64,7 +65,7 @@ game.PlayerEntity = game.Player.extend({
      * Description
      * @method update
      * @param {} dt
-     * @return 
+     * @return
      */
     update: function (dt) {
         // Interpretacion de teclas
@@ -102,20 +103,20 @@ game.PlayerEntity = game.Player.extend({
         me.game.world.sort();
         server.update_myPlayer();
         // Dibujo en el minimapa
-        drawPointsMinimap();
+        minimap.drawPointsMinimap();
     },
     /**
      * Description
      * @method draw
      * @param {} renderer
-     * @return 
+     * @return
      */
     draw: function (renderer) {
         //var context = renderer.getContext();
         this._super(game.Player, 'draw', [renderer]);
 
         renderer.fillStyle = 'blue';
-        renderer.fillRect(this.pos.x-1, this.pos.y-1, 2, 2);
+        renderer.fillRect(this.pos.x - 1, this.pos.y - 1, 2, 2);
 
         //renderer.fillStyle = 'blue';
         //var x, y;
@@ -125,5 +126,16 @@ game.PlayerEntity = game.Player.extend({
         //            renderer.fillRect(x * me.astar.tw, y *me.astar.th, 5, 5);
         //    }
         //}
+    },
+
+
+    updateData: function () {
+        // Traigo datos del quest (si es visible en este momento o no)
+        $.get('api/personaje/' + this.data.id,
+            function (data) {
+                this.data = data;
+            });
     }
+
+
 });

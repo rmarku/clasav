@@ -62,6 +62,7 @@
 	background-image: linear-gradient(left, #DEDEDE, #FFF5F6);
 	opacity: 0.85;
 	border: 5px double #9c5959;
+	max-width: 700px;
 }
 
 .form-control:focus {
@@ -76,8 +77,6 @@
 }
 
 .div-mapa {
-	background-image: url("../data/map/minimap/Inicio.png");
-	background-size: cover;
 	width: 156px;
 	height: 156px;
 	position: absolute;
@@ -105,18 +104,18 @@
 	-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
 	box-shadow: inset 0px 1px 0px 0px #fce2c1;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
-	background: -moz-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: -webkit-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: -o-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: -ms-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
-	background-color: #ffc477;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f2af81), color-stop(1, #e87325));
+	background: -moz-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: -webkit-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: -o-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: -ms-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: linear-gradient(to bottom, #f2af81 5%, #e87325 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2af81', endColorstr='#e87325',GradientType=0);
+	background-color: #f2af81;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	border: 1px solid #eeb44f;
+	border: 1px solid #f9dbc6;
 	display: inline-block;
 	cursor: pointer;
 	color: #000000;
@@ -126,14 +125,14 @@
 }
 
 .btn-coliseo:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
-	background: -moz-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: -webkit-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: -o-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: -ms-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477',GradientType=0);
-	background-color: #fb9e25;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e87325), color-stop(1, #f2af81));
+	background: -moz-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: -webkit-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: -o-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: -ms-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: linear-gradient(to bottom, #e87325 5%, #f2af81 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e87325', endColorstr='#f2af81',GradientType=0);
+	background-color: #e87325;
 	font-weight: bold;
 }
 
@@ -146,38 +145,36 @@
 	-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
 	-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
 	box-shadow: inset 0px 1px 0px 0px #fce2c1;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #fb9e25));
-	background: -moz-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: -webkit-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: -o-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: -ms-linear-gradient(top, #ffc477 5%, #fb9e25 100%);
-	background: linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
-	background-color: #ffc477;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f2af81), color-stop(1, #e87325));
+	background: -moz-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: -webkit-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: -o-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: -ms-linear-gradient(top, #f2af81 5%, #e87325 100%);
+	background: linear-gradient(to bottom, #f2af81 5%, #e87325 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2af81', endColorstr='#e87325',GradientType=0);
+	background-color: #f2af81;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
-	border: 1px solid #eeb44f;
+	border: 1px solid #dc6717;
 	display: inline-block;
 	cursor: pointer;
 	color: #000000;
 	padding: 4px 8px;
-	text-shadow: 0px 1px 0px #cc9f52;
-	width: 14%;
+	text-shadow: 0px 1px 0px #dc6717;
 	font-family: Gorditas-Regular;
 	text-align: center;
 }
 
 .btn-quest:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #fb9e25), color-stop(1, #ffc477));
-	background: -moz-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: -webkit-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: -o-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: -ms-linear-gradient(top, #fb9e25 5%, #ffc477 100%);
-	background: linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fb9e25', endColorstr='#ffc477',GradientType=0);
-	background-color: #fb9e25;
-	font-weight: bold;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e87325), color-stop(1, #f2af81));
+	background: -moz-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: -webkit-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: -o-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: -ms-linear-gradient(top, #e87325 5%, #f2af81 100%);
+	background: linear-gradient(to bottom, #e87325 5%, #f2af81 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e87325', endColorstr='#f2af81',GradientType=0);
+	background-color: #e87325;
 }
 
 .nav-tabs {
@@ -259,13 +256,13 @@
 }
 
 .questModal {
-    width: 523px;
-    height: 304px;
-    margin: 0 auto;
-    position: relative;
-    display: block;
-    top: 88px;
-    background: url('/images/quest/ventana.png');
+	width: 523px;
+	height: 304px;
+	margin: 0 auto;
+	position: relative;
+	display: block;
+	top: 88px;
+	background: url('/images/quest/ventana.png');
 }
 .nivelPJ {
 	position: absolute;
@@ -275,5 +272,12 @@
 	height: 68px;
 	background-image: url("../images/iconos/circuloNivel.png");
 	font-family: "Gorditas-Regular";
+}
+
+.tablaDuelo {
+	float: left;
+	background-color: #FBF8EF;
+	border: 1px solid #FF8000;
+	text-align: center;
 }
 

@@ -1,6 +1,7 @@
 module.exports = function (grunt) {
     grunt.registerTask('prod', [
         'crearJson',
+        'crearMisiones',
         'compileAssets',
         'concat',
         'uglify',
