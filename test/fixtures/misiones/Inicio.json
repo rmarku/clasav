@@ -32,7 +32,7 @@
         "pregunta":"Es hora de hacer tu primera mision, MiaU!! Comenzaremos por algo sencillo, te parece? Con mis amigos del callejon siempre practicamos operaciones con Numeros Naturales, N = {0, 1, 2, 3, 4, ...}. Se que suena extrano, pero costaria dividir el botin diario de pescado si no supieramos contar. Es asombroso, Miau, los numeros naturales estan formador por un conjunto infinito de numeros.",
         "mision": "URL:test/test.html",
         "paso": "Has hecho un buen trabajo, MiaU!! Te dare de recompensa una bola de estambre... Mmmm, pero no se si te sera util... Que tal si mejor te doy este dinero que encontre... Por cierto, creo que tienes habilidad para esto de los numeros, porque no ayudas al hijo del tabernero con su tarea?",
-        "no_paso": "Oh! Estoy seguro que puedes hacerlo aún mejor",
+        "no_paso": "Oh! Estoy seguro que puedes hacerlo aï¿½n mejor",
         "reco_oro": "2",
         "new_mission": [
             {
@@ -42,7 +42,7 @@
         ]
     },
     {
-        "npc": "3",
+        "npc": "Chris",
         "qorder": "1",
         "img_quest": "chris.png",
         "npc_visible": "true",
@@ -60,7 +60,7 @@
         ]
     },
     {
-        "npc": "3",
+        "npc": "Chris",
         "qorder": "2",
         "img_quest": "chris.png",
         "npc_visible": "true",
@@ -78,7 +78,7 @@
         ]
     },
     {
-        "npc": "4",
+        "npc": "Daniela",
         "qorder": "1",
         "img_quest": "daniela.png",
         "npc_visible": "true",
@@ -96,7 +96,7 @@
         ]
     },
     {
-        "npc": "4",
+        "npc": "Daniela",
         "qorder": "2",
         "img_quest": "daniela.png",
         "npc_visible": "true",
