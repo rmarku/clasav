@@ -42,15 +42,26 @@ app.controller('crearClaseController', ['$scope', '$rootScope', "toastr",'$locat
     };
 
     $scope.createClase = function () {
-        $.get("/api/clase/crearClaseProfesor",
+        $scope.$parent.clasesCargadas = false;
+        $scope.$parent.subscribeToClases = false;
+
+        io.socket.get("/api/clase/crearClaseProfesor",
             {
                 nombre:             $scope.clase.nombre,
                 mapa_genericoID:    $scope.mapa_seleccionado.id,
                 institucionID:      $scope.institucion_seleccionada.id
             },
-            function (data) {
+            function (clase) {
                 toastr.info('Nueva Clase Creada');
-                $scope.$parent.clasesCargadas = false;
+
+
+                /*
+                clase = $scope.definirMapasCentrales(clase);
+                clase = $scope.definirSituacionUsers(clase);
+                $scope.$parent.misClases.push(clase[0]);
+*/
+                $scope.$apply();
+
                 window.location.href = '#/clasesProfesor';
             });
     };

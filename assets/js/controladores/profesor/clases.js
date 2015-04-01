@@ -9,15 +9,22 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         if ($scope.$parent.clasesCargadas === true) {
             return;
         }
-        $.get('/api/clase/get_misClases_conUsers', function (clases) {
 
-            clases = $scope.definirMapasCentrales(clases);
-            clases = $scope.definirSituacionUsers(clases);
+        $scope.$parent.misClases = [];
+        $scope.$parent.misClasesSituacionEspera = [];
+        $scope.$parent.misClasesSituacionRechazado = [];
+
+        io.socket.get('/api/clase/get_misClases_conUsers', function (clases) {
+
+            clases = $scope.$parent.definirMapasCentrales(clases);
+            clases = $scope.$parent.definirSituacionUsers(clases);
             $scope.$parent.misClases = clases;
             $scope.$parent.clasesCargadas = true;
 
             $scope.$apply();
         });
+
+
     };
 
     $scope.get_misClases();
@@ -26,7 +33,7 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         window.location.href = '#/crearClase';
     };
 
-
+/*
     $scope.definirMapasCentrales = function (clases) {
 
         ////Recorremos cada mapa_instancia: solo nos quedamos con el mapa_principal
@@ -141,6 +148,7 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         });
         return deferred.promise;
     };
+    */
 
     $scope.set_claseActual = function (index) {
         $scope.$parent.claseActual = $scope.misClases[index];

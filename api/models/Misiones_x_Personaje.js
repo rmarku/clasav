@@ -1,0 +1,21 @@
+/**
+ * Misiones_x_usuario.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
+
+module.exports = {
+
+    attributes: {
+        npc: 'string',
+        qorder: 'integer',
+        personaje: {
+            model: 'personaje'
+        },
+        mapa_instancia: {
+            model: 'mapa_instancia'
+        }
+    }
+};
+

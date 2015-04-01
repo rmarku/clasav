@@ -11,13 +11,19 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
             return;
         }
 
-        $.get('/api/clase/get_misClases_conUsers', function (clases) {
+        $scope.$parent.misClases = [];
+        $scope.$parent.misClasesSituacionEspera = [];
+        $scope.$parent.misClasesSituacionRechazado = [];
 
-            clases                      = $scope.definirMapasCentrales(clases);
-            clases                      = $scope.definirProfesores(clases);
+        io.socket.get('/api/clase/get_misClases_conUsers',function (clases) {
+
+            clases                      = $scope.$parent.definirMapasCentrales(clases);
+            clases                      = $scope.$parent.definirProfesores(clases);
             clases                      = $scope.definirClasesSituacionEspera(clases);
             $scope.$parent.misClases    = clases;
             $scope.$parent.clasesCargadas = true;
+
+
 
             $scope.$apply();
         });
@@ -49,6 +55,8 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
         return otherClasesToReturn;
     };
+
+
 
 
 

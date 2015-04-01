@@ -82,5 +82,13 @@ module.exports.routes = {
 
     'get /api/clase/get_misClases_conUsers':        'ClaseController.get_misClases_conUsers',
 
-    'get /api/clase/solicitarClase':                'ClaseController.solicitarClase'
+    'get /api/clase/solicitarClase':                'ClaseController.solicitarClase',
+
+
+    'get /api/item/getItemsPJ':                'ItemController.getItemsPJ',
+    // Misiones
+    'get /api/misiones/gettxt':                     'MisionesController.gettxt',
+    'get /api/misiones/finish':                     'MisionesController.finish',
+    'get /api/misiones/info':                       'MisionesController.info',
+    'get /api/clase_x_user/set_situacion':          'Clase_x_userController.set_situacion'
 };

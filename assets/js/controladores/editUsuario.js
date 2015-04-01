@@ -116,12 +116,24 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                     });
                 }
 
-                if (typeof data.loguedin != "undefined") {
 
-                    toastr.info('Cuenta Creada!!! ahora puedes crear tu personaje!!');
-                    setTimeout(function () {
-                        window.location.href = '#/personaje';
-                    }, 2000);
+                if (typeof data.loguedin != "undefined") {
+                    $scope.$parent.getUser().then(function (data) {
+                        setTimeout(function () {
+                            if ($scope.usuario.tipo == 'alumno') {
+                                window.location.href = '#/personaje';
+                            }
+                            else
+                            if ($scope.usuario.tipo == 'profesor') {
+                                window.location.href = '#/clases';
+                            }
+                            location.reload();
+                            toastr.info('Cuenta Creada!');
+
+                        }, 2000);
+                    });
+
+
                 }
             });
         }

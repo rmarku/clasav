@@ -37,12 +37,32 @@ var game = {
 
     nextxy: {x: 0, y: 0, direction: 0},
 
+
+    start: function () {
+        $.get("/api/user/getUser", function (data) {
+            if (typeof data.userId == 'undefined') {
+                window.location.href = '/';
+                return;
+            }
+            $.get('/api/personaje/getPersonaje_masReciente', function (pj) {
+                if (typeof pj.id == 'undefined') {
+                    window.location.href = '/';
+                    return;
+                }
+                this.userId = data.userId;
+                setTimeout(function () {
+
+                    game.onload();
+                }, 1000);
+            });
+        });
+    },
     /**
      * initialization
      * @return
      * @return
      * @method onload
-     * @return 
+     * @return
      */
     onload: function () {
         me.sys.fps = 30;
@@ -53,19 +73,24 @@ var game = {
 
 
         if (me.device.isMobile) {
-            if (!me.video.init('game', me.video.CANVAS, 480, 280, false, 'auto', true)) {
+            me.sys.fps = 15;
+            if (!me.video.init('game', me.video.AUTO, 480, 280, false, 'auto', true)) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
             }
         } else {
+            me.sys.fps = 30;
             if (!me.video.init('game', me.video.AUTO, 800, 480, false, 'auto', true)) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
             }
         }
 
-
-        me.plugin.register(me.debug.Panel, "debug");
+        if (document.location.hash === "#debug") {
+            window.onReady(function () {
+                me.plugin.register(me.debug.Panel, "debug");
+            });
+        }
 
         // Plugin: AStar pathfinding
         me.plugin.register(aStarPlugin, "astar");
@@ -101,14 +126,16 @@ var game = {
             });
         });
 
-    },
+    }
+
+    ,
 
     /**
      * Llamo cuando todos los recursos estan cargados
      * @return
      * @return
      * @method loaded
-     * @return 
+     * @return
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -119,13 +146,14 @@ var game = {
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
-    },
+    }
+    ,
 
     /**
      * Description
      * @method change_level
      * @param {} target_mapa_generico
-     * @return 
+     * @return
      */
     change_level: function (target_mapa_generico) {
 
@@ -133,6 +161,8 @@ var game = {
         var data = game.mainPlayer.data;
         game.remove_AllPlayers();
 
+        var map = me.game.currentLevel;
+        minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
         //Actualizo mi cambio de mapa_instancia en la BD, borrando mi suscripcion al Room anterior, suscribiendo al nuevo
         //Envio con socket para poder desuscribirlo
         io.socket.post('/api/mapa_instancia/change_level',
@@ -148,15 +178,14 @@ var game = {
                 game.addMainPlayer(data);
                 game.create_OtherPlayers();
             });
-    },
-
-
+    }
+    ,
 
 
     /**
      * Description
      * @method create_OtherPlayers
-     * @return 
+     * @return
      */
     create_OtherPlayers: function () {
         $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
@@ -169,13 +198,14 @@ var game = {
                 }
             }
         });
-    },
+    }
+    ,
 
     /**
      * Description
      * @method addMainPlayer
      * @param {} data
-     * @return 
+     * @return
      */
     addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
@@ -186,13 +216,15 @@ var game = {
             });
         me.game.world.addChild(game.mainPlayer, 10);
         me.game.world.sort();
-    },
+        hud.update();
+    }
+    ,
 
     /**
      * Description
      * @method addOnlineOtherPlayer
      * @param {} data
-     * @return 
+     * @return
      */
     addOnlineOtherPlayer: function (data) {
         game.players[data.id] = me.pool.pull('otherPlayer',
@@ -205,51 +237,182 @@ var game = {
             }
         );
         me.game.world.addChild(game.players[data.id], 10);
-    },
+    }
+    ,
 
     /**
      * Description
      * @method remove_AllPlayers
-     * @return 
+     * @return
      */
     remove_AllPlayers: function () {
         game.removeMainPlayer();
         game.removeEveryOtherPlayer();
-    },
+        game.removeNPCs();
+    }
+    ,
 
     /**
      * Description
      * @method removeMainPlayer
-     * @return 
+     * @return
      */
     removeMainPlayer: function () {
         me.game.world.removeChild(game.mainPlayer);
         game.mainPlayer = {};
-    },
+    }
+    ,
 
     /**
      * Description
      * @method removeEveryOtherPlayer
-     * @return 
+     * @return
      */
     removeEveryOtherPlayer: function () {
         while (game.players.length) {
             game.removeOtherPlayer(game.player.pop().id);
         }
         game.players = {};
-    },
+    }
+    ,
 
     /**
      * Description
      * @method removeOtherPlayer
      * @param {} id
-     * @return 
+     * @return
      */
     removeOtherPlayer: function (id) {
         if (game.players[id]) {
             console.log('Removing player: ', id);
             me.game.world.removeChild(game.players[id]);
             delete game.players[id];
+        }
+    }
+    ,
+
+    /**
+     * Description
+     * @method removeNPCs
+     * @return
+     */
+    removeNPCs: function () {
+        for (var npc in game.NPCs) {
+            delete game.NPCs[npc];
+        }
+    }
+    ,
+    /**
+     * Description
+     * @method removeNPCs
+     * @return
+     */
+    updateNPCs: function () {
+        for (var npc in game.NPCs) {
+            game.NPCs[npc].updateInfo();
+        }
+    }
+    ,
+
+
+    // Misiones
+    mision: {
+        misiontxt: '',
+        npc: null,
+        startMision: function (npc) {
+            $("#mision_aceptar").hide();
+            $("#mision_siguiente").hide();
+            $("#mision_cancelar").hide();
+            $("#mision_salir").hide();
+            $("#mision_txt").html('');
+            this.npc = npc;
+            $.get('api/misiones/gettxt?npc=' + npc.data.nombre,
+                function (data) {
+                    // Si no hay error,
+                    if (!data.err) {
+                        // Si hay pregunta, muestro boton de siguiente y cancelar
+                        if (data.pregunta) {
+                            $("#mision_siguiente").show();
+                            $("#mision_cancelar").show();
+                            $("#mision_txt").html(data.pregunta);
+                            if (data.mision)
+                                game.mision.misiontxt = data.mision;
+
+                        } else if (data.falta) {
+                            $("#mision_cancelar").show();
+                            $("#mision_txt").html(data.falta);
+
+                        } else if (data.mision) {
+                            $("#mision_cancelar").show();
+                            if (data.mision.substring(0, 4) == "URL:") {
+
+                                $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
+                                document.URL.substring(0, document.URL.length - 4) +
+                                'data/minijuegos/' +
+                                data.mision.substring(4) +
+                                '"></iframe>');
+
+                            } else {
+                                $("#mision_txt").html(data.mision);
+                            }
+                        }
+                    } else {
+                        $("#mision").hide();
+                    }
+                });
+
+            $("#mision_npc").html(npc.data.nombre);
+            $("#mision").fadeIn(600);
+
+        }
+
+        ,
+        cancelar: function () {
+            this.mision = '';
+            this.npc = null;
+            $("#mision").fadeOut(600, function () {
+                game.mainPlayer.hablandoCon = '';
+                me.input.unlockKey('accion');
+            });
+        }
+        ,
+        siguiente: function (resultado) {
+            $("#mision_aceptar").hide();
+            $("#mision_siguiente").hide();
+            $("#mision_cancelar").hide();
+            $("#mision_salir").hide();
+            $("#mision_txt").html('');
+            if (this.misiontxt !== '') {
+                if (this.misiontxt.substring(0, 4) == "URL:") {
+
+                    $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
+                    document.URL.substring(0, document.URL.length - 4) +
+                    'data/minijuegos/' +
+                    this.misiontxt.substring(4) +
+                    '"></iframe>');
+
+                } else {
+                    $("#mision_txt").html(this.misiontxt);
+                }
+                this.misiontxt = '';
+            } else {
+                if (resultado)
+                    resultado = 1;
+                else
+                    resultado = 0;
+
+                $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
+                    function (data) {
+                        if (typeof data.txt !== 'undefined' && data.txt !== '') {
+                            $("#mision_salir").show();
+                            $("#mision_txt").html(data.txt);
+                        } else {
+                            game.mision.cancelar();
+                        }
+                        game.updateNPCs();
+                        game.mainPlayer.updateData();
+                    });
+            }
         }
     }
 

@@ -1,0 +1,42 @@
+[
+    {
+        "npc": "Kitty",
+        "qorder": "0",
+        "npc_visible": "false"
+    },
+    {
+        "npc": "Anne",
+        "qorder": "0",
+        "img_quest": "anne.png",
+        "npc_visible": "true",
+        "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu viaje, le dire a Kitty que aparezca para que te de una mision",
+        "reco_oro": "500",
+        "new_mission": [
+            {
+                "npc": "Kitty",
+                "qorder": "1"
+            },
+            {
+                "npc": "Anne",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "Kitty",
+        "qorder": "1",
+        "img_quest": "kitty.png",
+        "npc_visible": "true",
+        "pregunta":"Quiere probar una mision en un Iframe?",
+        "mision": "URL:test/test.html",
+        "paso": "Bien ahí",
+        "no_paso": "Mocaso, pa la proxima",
+        "reco_oro": "500",
+        "new_mission": [
+            {
+                "npc": "Kitty",
+                "qorder": "2"
+            }
+        ]
+    }
+]

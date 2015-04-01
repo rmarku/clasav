@@ -123,3 +123,4 @@ assets/api/resources.json
 assets/api/resources.json
 assets/data/map/compiled/*.png
 assets/data/map/compiled/*.tmx
+test/fixtures/Misiones.json

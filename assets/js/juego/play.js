@@ -5,7 +5,7 @@ game.PlayScreen = me.ScreenObject.extend({
      * @return
      * @return
      * @method onResetEvent
-     * @return 
+     * @return
      */
     onResetEvent: function () {
         // load a level
@@ -21,8 +21,8 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.W, 'up');
         me.input.bindKey(me.input.KEY.DOWN, 'down');
         me.input.bindKey(me.input.KEY.S, 'down');
-        me.input.bindKey(me.input.KEY.SPACE, 'accion');
-        me.input.bindKey(me.input.KEY.M, 'accion');
+        me.input.bindKey(me.input.KEY.SPACE, 'accion', true);
+        me.input.bindKey(me.input.KEY.M, 'accion', true);
 
 
         $.get('/api/user/getUser', function (user) {
@@ -36,6 +36,8 @@ game.PlayScreen = me.ScreenObject.extend({
                     game.create_OtherPlayers();
                     server.listen_events();
                     server.join_mapa_instancia();
+                    var map = me.game.currentLevel;
+                    minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
                     //me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
             } else {
@@ -49,7 +51,7 @@ game.PlayScreen = me.ScreenObject.extend({
      * @return
      * @return
      * @method onDestroyEvent
-     * @return 
+     * @return
      */
     onDestroyEvent: function () {
         me.audio.stopTrack("snow");

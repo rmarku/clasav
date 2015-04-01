@@ -6,14 +6,16 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
-    $scope.misClases = [];
+
     $scope.claseActual =
     {
         "activa" : false
     };
     $scope.clasesCargadas = false;
+    $scope.misClases = [];
     $scope.misClasesSituacionEspera = [];
-    $scope.variable123 = false;
+    $scope.misClasesSituacionRechazado = [];
+
 
 
     /**
@@ -52,11 +54,17 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      * Description
      * @return
      * @method verCuenta
-     * @return 
+     * @return
      */
     $scope.verCuenta = function () {
         $location.path('/cuenta');
     };
+
+
+
+
+
+
 
     //////////// FUNCIONES DE CLASES ///////////////////
 
@@ -107,6 +115,70 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return mapaToReturn;
     };
 
+
+    $scope.definirSituacionUsers = function (clases) {
+
+        clases.forEach(function (clase) {
+
+
+            clase.users_situacionEspera = [];
+            clase.users_situacionAceptado = [];
+            clase.users_situacionRechazado = [];
+            clase.users_situacionAdministrador = [];
+            $scope.definirSituacionUsers_enClase(clase).then(function (data) {
+                clase = data;
+            });
+        });
+        return clases;
+    };
+
+    $scope.definirSituacionUsers_enClase = function (clase) {
+
+        var deferred = $q.defer();
+
+        $.get('/api/clase_x_user?clase=' + clase.id, function (clases_x_users) {
+
+            for (var y = 0; y < clase.users.length; y++) {
+
+                var user = clase.users[y];
+
+                for (var x = 0; x < clase.users.length; x++) {
+                    var clase_x_user = clases_x_users[x];
+
+                    if (clase_x_user.user.id == user.id) {
+
+                        user.clase_x_user = [];
+
+                        if (clase_x_user.situacion == 'espera') {
+
+                            user.clase_x_user[0] = clase_x_user;
+                            clase.users_situacionEspera.push(user);
+
+                        } else if (clase_x_user.situacion == 'aceptado') {
+
+                            user.clase_x_user[0] = clase_x_user;
+                            clase.users_situacionAceptado.push(user);
+
+                        } else if (clase_x_user.situacion == 'rechazado') {
+
+                            user.clase_x_user[0] = clase_x_user;
+                            clase.users_situacionRechazado.push(user);
+
+                        } else if (clase_x_user.situacion == 'administrador') {
+
+                            user.clase_x_user[0] = clase_x_user;
+                            clase.users_situacionAdministrador.push(user);
+                        }
+                    }
+                }
+                if (y == clase.users.length - 1) {
+                    clase.users = [];
+                    deferred.resolve(clase);
+                }
+            }
+        });
+        return deferred.promise;
+    };
     $scope.definirProfesores = function (clases) {
 
         clases.forEach(function(clase) {
@@ -132,6 +204,70 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
         return userToReturn;
     };
+    /////////////////////////FIN FUNCIONES DE CLASES
+
+
+
+    ///// SOCKETS
+
+    $scope.listen_to_nuevasSolicitudes = function () {
+        io.socket.on('nuevaSolicitud', function onServerSentEvent(user) {
+            $scope.misClases.forEach(function (clase) {
+                if (clase.id == user.clase_x_user[0].clase) {
+                    clase.users_situacionEspera.push(user);
+                    $scope.$apply();
+                    return;
+                }
+            });
+        });
+    };
+    $scope.listen_to_nuevasSolicitudes();
+
+    $scope.listen_to_clasesEnEspera = function () {
+
+        io.socket.on('userUpdatedFromEspera', function onServerSentEvent(clase_x_user) {
+
+            for(var x=0 ; x < $scope.misClasesSituacionEspera.length ; x++){
+
+                var clase = $scope.misClasesSituacionEspera[x];
+
+                if (clase.clase_x_user[0].id == clase_x_user[0].id) {
+
+                    if (clase_x_user[0].situacion == 'aceptado') {
+
+                        clase.clase_x_user[0].situacion = 'aceptado';
+                        $scope.misClases.push(clase);
+                        $scope.misClasesSituacionEspera.splice(x, 1);
+
+                        $scope.$apply();
+                        return;
+
+                    } else if (clase_x_user[0].situacion == 'rechazado') {
+
+                        clase.clase_x_user[0].situacion = 'rechazado';
+                        $scope.misClases.push(clase);
+                        $scope.misClasesSituacionEspera.splice(x, 1);
+                        $scope.$apply();
+                        return;
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+            }
+
+        });
+    };
+    $scope.listen_to_clasesEnEspera();
+
+    /////////////////////////////FIN DE SOCKETS
 
 }])
 ;

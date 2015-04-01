@@ -1,260 +1,190 @@
 //var app = angular.module('juegoapl', ['ngSailsBind']);
-app.controller("inventarioContr", ['$scope', "$sailsBind",
-function inventarioContr($scope, $sailsBind) {
-	//    $sailsBind.bind("api/inventario", $scope);
 
-	$scope.inventario = [{
-		"id" : 3,
-		"nombreItem" : "capa dorada",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/capa/1.png"
-	}, {
-		"id" : 8,
-		"nombreItem" : "espada burocratica",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/arma/1.png"
-	}, {
-		"id" : 12,
-		"nombreItem" : "anillo magico",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/anillo/1.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "botas",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/pies/1.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "libro",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/nep/15_libro.png"
-	}, {
-		"id" : 18,
-		"nombreItem" : "manzana",
-		"cant" : 1,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/18_manzana.png"
-	}, {
-		"id" : 21,
-		"nombreItem" : "gema",
-		"cant" : 2,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/21_gema.png"
-	}, {
-		"id" : 101,
-		"nombreItem" : "pota de mana",
-		"cant" : 5,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/101_potaMana.png"
-	}, {
-		"id" : 102,
-		"nombreItem" : "pota de energia",
-		"cant" : 5,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/102_potaEnergia.png"
-	}, //copia de modelo
-	{
-		"id" : 3,
-		"nombreItem" : "capa dorada",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/capa/1.png"
-	}, {
-		"id" : 8,
-		"nombreItem" : "espada burocratica",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/arma/1.png"
-	}, {
-		"id" : 12,
-		"nombreItem" : "anillo magico",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/anillo/2.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "botas",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/pies/1.png"
-	}, {
-		"id" : 15,
-		"nombreItem" : "libro",
-		"cant" : 1,
-		"acumulable" : false,
-		"sprite" : "../data/sprites/items/nep/15_libro.png"
-	}, {
-		"id" : 18,
-		"nombreItem" : "manzana",
-		"cant" : 1,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/18_manzana.png"
-	}, {
-		"id" : 21,
-		"nombreItem" : "gema",
-		"cant" : 2,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/21_gema.png"
-	}, {
-		"id" : 101,
-		"nombreItem" : "pota de mana",
-		"cant" : 5,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/101_potaMana.png"
-	}, {
-		"id" : 102,
-		"nombreItem" : "pota de energia",
-		"cant" : 5,
-		"acumulable" : true,
-		"sprite" : "../data/sprites/items/nep/102_potaEnergia.png"
-	}];
-}]);
+hud = {
+    /**
+     * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
+     * @method noPressBtn
+     * @return
+     */
+    noPressBtn: function () {
+        $("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
+        $("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
+        $("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
+        $("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
+        $("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
+        $("#inv").hide();
+        $("#mis").hide();
+        $("#log").hide();
+        $("#tal").hide();
+        $("#per").hide();
+    },
+
+    toggleAudio: function () {
+        if (me.audio.getCurrentTrack() === "snow") {
+            $("#audio").attr("src", "../images/iconos/audio_OFF.png");
+            me.audio.stopTrack();
+        } else {
+            $("#audio").attr("src", "../images/iconos/audio_on.png");
+            me.audio.playTrack("snow", 0.7);
+        }
+    },
+    update: function () {
+        this.superior.update();
+        this.inventario.update();
+        this.misiones.update();
+        this.logros.update();
+        this.talentos.update();
+        this.personaje.update();
+    },
+    superior: {
+        update: function () {
+            document.getElementById('PJnivel').innerHTML = game.mainPlayer.data.nivel;
+            document.getElementById('PJoro').innerHTML = game.mainPlayer.data.oro;
+            var ene = document.getElementById('PJenergia');
+            var exp = document.getElementById('PJexperiencia');
+
+            var max = game.mainPlayer.data.energia_max;
+            var val = game.mainPlayer.data.energia;
+            ene.setAttribute('aria-valuenow', val);
+            ene.setAttribute('aria-valuemax', max);
+            $('#PJenergia').css('width', val * 100 / max + '%');
+
+            max = Math.pow(game.mainPlayer.data.nivel, 1.6) * 100;
+            val = game.mainPlayer.data.experiencia;
+            exp.setAttribute('aria-valuenow', val);
+            exp.setAttribute('aria-valuemax', max);
+            $('#PJexperiencia').css('width', (val * 100 / max) + '%');
+
+        }
+    },
+
+    inventario: {
+        toggle: function () {
+            if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
+                hud.noPressBtn();
+                $("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
+                me.audio.play("switch26", false);
+                $("#inv").show();
+            } else {
+                $("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
+                $("#inv").hide();
+            }
+        },
+        update: function () {
+
+            $.getJSON("api/item/getItemsPJ", function (data) {
+                document.getElementById('items').innerHTML = '';
+                data.forEach(function (it) {
+                    var item = game.items[it.id];
+                    var icono = game.sprites[item.sprite].icono;
+
+                    var img = new Image();
+
+                    img.onload = function () {
+                        var cnv = tintImage(img, item.color);
+                        var div = document.createElement('div');
+                        div.setAttribute('class','itemInv'); //<div class="itemInv" >
+                        var ic = document.createElement('img');
+                        ic.setAttribute('src',cnv.toDataURL());
+                        ic.setAttribute('title',item.nombre);
+                        div.appendChild(ic);
+                        if (item.maximo > 1) {
+                            var span = document.createElement('span');
+                            span.innerHTML = it.cantidad;
+                            div.appendChild(span);
+                        }
+                        document.getElementById('items').appendChild(div);
+                    };
+                    img.src = 'data/sprites/' + icono;
+                });
+            });
+        }
+    },
+
+    misiones: {
+        toggle: function () {
+            if ($("#btnMisi").attr("src") != "../images/iconos/btn_misionOVER.png") {
+                hud.noPressBtn();
+                $("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
+                me.audio.play("switch26", false);
+                $("#mis").show();
+            } else {
+                $("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
+                $("#mis").hide();
+            }
+        },
+        update: function () {
+        }
+    },
+
+    logros: {
+        toggle: function () {
+            if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
+                hud.noPressBtn();
+                $("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
+                me.audio.play("switch26", false);
+                $("#log").show();
+            } else {
+                $("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
+                $("#log").hide();
+            }
+
+        },
+        update: function () {
+        }
+    },
+
+    talentos: {
+        toggle: function () {
+            if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
+                hud.noPressBtn();
+                $("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
+                me.audio.play("switch26", false);
+                $("#tal").show();
+            } else {
+                $("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
+                $("#tal").hide();
+            }
+
+        },
+        update: function () {
+        }
+    },
+
+    personaje: {
+        toggle: function () {
+            if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
+                hud.noPressBtn();
+                $("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
+                me.audio.play("switch26", false);
+                $("#per").show();
+            } else {
+                $("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
+                $("#per").hide();
+            }
+        },
+        update: function () {
+            var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
+
+            cuerpo.forEach(function (it) {
+                if (typeof game.mainPlayer.data[it] != 'undefined') {
+
+                    var item = game.items[game.mainPlayer.data[it].item];
+                    var icono = game.sprites[item.sprite].icono;
 
 
-/**
- * Desactiva la visualizacion de todos los paneles de la botonera (inventario, misiones, logros, talentos, personaje)
- * @method noPressBtn
- * @return 
- */
-function noPressBtn() {
-	$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
-	$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
-	$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
-	$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
-	$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
-	$("#inv").hide();
-	$("#mis").hide();
-	$("#log").hide();
-	$("#tal").hide();
-	$("#per").hide();
-}
+                    var img = new Image();
 
-/**
- * Description
- * @method agregarQuest
- * @return 
- */
-function agregarQuest(){
-	//Se deberia poner un atributo de la lista de misiones del personaje como "quest tomada =1", que sea 0 si esta tomada...y 2 si esta terminada	
-}
-
-// Esto se ejecuta al terminar de cargar la pagina
-$(function() {
-
-	//Habilitar o Deshabilitar audio
-	$("#audio").click(function() {
-		if (me.audio.getCurrentTrack() === "snow") {
-			$("#audio").attr("src", "../images/iconos/audio_OFF.png");
-			me.audio.stopTrack();
-		} else {
-			$("#audio").attr("src", "../images/iconos/audio_on.png");
-			me.audio.playTrack("snow", 0.7);
-		}
-	});
-	
-	$("#sfx").click(function() {
-		if ( $("#sfx").attr('src')  === "../images/iconos/sfx_on.png") {
-			$("#sfx").attr("src", "../images/iconos/sfx_OFF.png");
-			//me.audio.unload("switch26");
-			me.audio.mute("switch26");
-		} else {
-			$("#sfx").attr("src", "../images/iconos/sfx_on.png");
-			me.audio.unmute("switch26");
-		}
-	});
-
-	/* 	BOTONERA DEL JUEGO
-	*/
-
-	//Boton para ver el inventario de items
-	$("#btnInve").click(function() {
-		if ($("#btnInve").attr("src") != "../images/iconos/btn_inventarioOVER.png") {
-			noPressBtn();
-			$("#btnInve").attr("src", "../images/iconos/btn_inventarioOVER.png");
-			me.audio.play("switch26", false);
-			$("#inv").show();
-		} else {
-			$("#btnInve").attr("src", "../images/iconos/btn_inventario.png");
-			$("#inv").hide();
-		}
-	});
-
-	//Boton para mostrar el listado de misiones
-	$("#btnMisi").click(function() {
-		if ($("#btnMisi").attr("src") != "../images/iconos/btn_misionOVER.png") {
-			noPressBtn();
-			$("#btnMisi").attr("src", "../images/iconos/btn_misionOVER.png");
-			me.audio.play("switch26", false);
-			$("#mis").show();
-		} else {
-			$("#btnMisi").attr("src", "../images/iconos/btn_mision.png");
-			$("#mis").hide();
-		}
-	});
-
-	//Boton para ver los items que tiene equipados la PERSONA
-	$("#btnPers").click(function() {
-		if ($("#btnPers").attr("src") != "../images/iconos/btn_personajeOVER.png") {
-			noPressBtn();
-			$("#btnPers").attr("src", "../images/iconos/btn_personajeOVER.png");
-			me.audio.play("switch26", false);
-			$("#per").show();
-		} else {
-			$("#btnPers").attr("src", "../images/iconos/btn_personaje.png");
-			$("#per").hide();
-		}
-	});
-
-	//Boton para ver el listado de logros obtenidos
-	$("#btnLogr").click(function() {
-		if ($("#btnLogr").attr("src") != "../images/iconos/btn_logrosOVER.png") {
-			noPressBtn();
-			$("#btnLogr").attr("src", "../images/iconos/btn_logrosOVER.png");
-			me.audio.play("switch26", false);
-			$("#log").show();
-		} else {
-			$("#btnLogr").attr("src", "../images/iconos/btn_logros.png");
-			$("#log").hide();
-		}
-	});
-
-	//Boton para ver los talentos
-	$("#btnTale").click(function() {
-		if ($("#btnTale").attr("src") != "../images/iconos/btn_talentosOVER.png") {
-			noPressBtn();
-			$("#btnTale").attr("src", "../images/iconos/btn_talentosOVER.png");
-			me.audio.play("switch26", false);
-			$("#tal").show();
-		} else {
-			$("#btnTale").attr("src", "../images/iconos/btn_talentos.png");
-			$("#tal").hide();
-		}
-	});
-	
-	//Boton para cerrar Ventana de Quest
-	$("#cerrar").click(function() {
-		$("#quest").hide();
-	});
-	
-	//Boton Aceptar para agregar la Quest al panel de misiones
-	$("#aceptar").click(function() {
-		$("#quest").hide();
-		agregarQuest();
-	});
-	
-	//Boton desplazar el chat
-	$("#glyChat").click(function() {
-		var e = $("#ChatGame");
-		if(e.css('height')!='30px')
-			e.animate({'height': '30px'},1500);
-		else
-			e.animate({'height': '154px'},1500);
-	});
-		
-
-});
+                    img.onload = function () {
+                        var cnv = tintImage(img, item.color);
+                        document.getElementById('PJ' + it).firstElementChild.src = cnv.toDataURL();
+                    };
+                    img.src = 'data/sprites/' + icono;
+                }
+            });
+            var canvas = document.getElementById('PJimage');
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(game.mainPlayer.renderable.image, 0, 0);
+        }
+    }
+};
