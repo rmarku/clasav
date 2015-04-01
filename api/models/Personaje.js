@@ -15,7 +15,7 @@ module.exports = {
         nombre: {
             type: "string"
         },
-        clases: {
+        clases:{
             collection: "clase",
             via: "personajes"
         },
@@ -117,12 +117,7 @@ module.exports = {
         },
         zapatos: {
             model: "item_instancia"
-        },
-        nivel: 'integer',
-        experiencia: 'integer',
-        oro: 'integer',
-        energia: 'integer',
-        energia_max: 'integer'
+        }
     },
     afterCreate: function (newPJ, next) {
         // Para procesar todas las promesas que devuelven cada item create.
@@ -159,11 +154,11 @@ module.exports = {
             })
         ]).then(function (items) {
 
-            Mapa_instancia.find().populate('mapa_generico').then(function (mapas_instancias) {
+            Mapa_instancia.find().populate('mapa_generico').exec(function afterUpdate(err,mapas_instancias) {
 
-                if (mapas_instancias) {
+                if(mapas_instancias) {
                     var mapa_instancia;
-                    var succesfull = false;
+                    var succesfull;
                     while (mapas_instancias.length) {
                         mapa_instancia = mapas_instancias.pop();
                         //Si el mapa_instancia es el que esta relacionado al mapa generico
@@ -173,7 +168,7 @@ module.exports = {
                         }
                     }
                     //Variable hecha para que Grunt no se queje de que pongo una funcion dentro de un Loop
-                    if (succesfull) {
+                    if(succesfull) {
                         sails.log.warn(":smile: *Personaje Creado:* ", newPJ.nombre);
 
                         // items es un array con el resultado de cada promesa en orden.
@@ -182,41 +177,15 @@ module.exports = {
                                 mapa_instancia: mapa_instancia,
                                 pantalon: items[0],
                                 torso: items[1],
-                                zapatos: items[2],
-                                nivel: 1,
-                                oro: 0,
-                                energia: 100,
-                                energia_max: 100,
-                                experiencia: 0
+                                zapatos: items[2]
                             }).exec(next);
                     }
                 }
-            }).catch(function (err) {
+            }).catch(function(err){
                 sails.log.error(err);
                 next();
             });
         });
-    },
-
-    getPersonaje_masReciente: function (userId) {
-        return new Promesa(function (resolve, reject) {
-            Personaje.findOne({
-                duenio: userId,
-                masRecientementeUtilizado: true
-            }).populateAll().then(function (personaje) {
-                if (personaje) {
-                    Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
-                        if (populated_mapa_instancia) {
-                            personaje.mapa_instancia = populated_mapa_instancia;
-                            resolve(personaje);
-                        }
-                    });
-                } else {
-                    resolve(null);
-                }
-            });
-        });
     }
 };
-
 

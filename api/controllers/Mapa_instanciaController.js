@@ -93,7 +93,6 @@ module.exports = {
                 }
                 //Variable hecha para que Grunt no se queje de que pongo una funcion dentro de un Loop
                 if(succesfull){
-
                     //Cambio el mapa_instancia actual del personaje
                     Personaje.update(personajeId,
                         {
@@ -104,11 +103,6 @@ module.exports = {
                         }
                     ).exec(function afterwards(err,updated){
 
-                            if(!updated || err){
-                                console.log("hubo un error en personjae.update");
-
-                                return res.json(null);
-                            }
                             //Una vez que se actualizo la base de datos
                             //Me agrego al Room Nuevo para que los demas obtengan mis actualizaciones
                             sails.sockets.join(req.socket, mapa_instancia.id);
@@ -129,7 +123,6 @@ module.exports = {
                                     });
                                 }
                                 else{
-                                    console.log("hubo un error en personjae.update2");
                                     return res.json(null);
                                 }
                             });
