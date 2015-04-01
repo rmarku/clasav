@@ -29,9 +29,18 @@ module.exports.bootstrap = function (cb) {
                 if (err)
                     console.log(err);
             });
-
+            Misiones.destroy({}).exec(function(err,misi){
+                if (err)
+                    console.log(err);
+            });
+            var Barrels = require('barrels');
+            var barrels = new Barrels();
+            var fixtures = barrels.data;
+            barrels.populate(['misiones'],function (err) {
+                console.log(err);
+                cb();
+            });
             // Importar todas las misiones de nuevo :(
-            cb();
         }
     });
 };

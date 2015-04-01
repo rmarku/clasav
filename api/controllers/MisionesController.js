@@ -8,12 +8,12 @@
 module.exports = {
     gettxt: function (req, res) {
         var userId = req.session.passport.user;
-        var npcId = req.param('npc');
+        var npcName = req.param('npc');
         if (!userId) {
             return res.json({err: 'No existe un usuario Logueado'});
         }
 
-        Misiones.getMision(userId, npcId).then(function (datos) {
+        Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
             //Verifico precondiciones
             if (misi.cond_nivel && mxp.personaje.nivel < misi.cond_nivel)
@@ -44,19 +44,18 @@ module.exports = {
     // Informo que temino la mision y el resultado.
     finish: function (req, res) {
         var userId = req.session.passport.user;
-        var npcId = req.param('npc');
+        var npcName = req.param('npc');
         var resultado = req.param('resultado') || '0';
         if (!userId) {
             return res.json({err: 'No existe un usuario Logueado'});
         }
 
-        Misiones.getMision(userId, npcId).then(function (datos) {
+        Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
-            var mxp = datos.mxp;
             var pj = datos.pj;
 
             //Verifico precondiciones
-            if (resultado == '0') {
+            if (resultado == '-1') {
                 //No paso, resto la energia
 
                 if (misi.cond_energia)
@@ -92,26 +91,30 @@ module.exports = {
             console.log(JSON.stringify(new_misiones));
 
             new_misiones.forEach(function (valor) {
-                Npcplayer.findOne({nombre: valor.npc}).exec(function (err, npc) {
-                    if (err || !npc) return res.json({err: 'No se encontro el npc :('});
+                if (typeof valor.resultado == 'undefined' || resultado == valor.resultado) {
+                    Npcplayer.findOne({nombre: valor.npc}).exec(function (err, npc) {
+                        if (err || !npc) return res.json({err: 'No se encontro el npc :('});
 
-                    Misiones_x_Personaje.findOrCreate({
-                        where: {
+                        Misiones_x_Personaje.findOrCreate({
+                            where: {
+                                personaje: pj.id,
+                                npc: npc.nombre,
+                                mapa_instancia: pj.mapa_instancia.id
+                            },
+                            sort: 'qorder DESC',
+                            limit: 1
+                        }, {
                             personaje: pj.id,
-                            npc: npc.id
-                        },
-                        sort: 'qorder DESC',
-                        limit: 1
-                    }, {
-                        qorder: valor.qorder,
-                        personaje: pj.id,
-                        npc: npc.id
-                    }).exec(function (err, mxp) {
-                        if (err) return res.json({err: 'Error sector 7'});
-                        mxp.qorder = valor.qorder;
-                        mxp.save();
+                            npc: npc.nombre,
+                            mapa_instancia: pj.mapa_instancia.id,
+                            qorder: valor.qorder
+                        }).exec(function (err, mxp) {
+                            if (err) return res.json({err: 'Error sector 7'});
+                            mxp.qorder = valor.qorder;
+                            mxp.save();
+                        });
                     });
-                });
+                }
             });
             pj.save();
             return res.json({result: 'si', txt: misi.paso});
@@ -125,13 +128,13 @@ module.exports = {
     // Informo que temino la mision y el resultado.
     info: function (req, res) {
         var userId = req.session.passport.user;
-        var npcId = req.param('npc');
+        var npcName = req.param('npc');
 
         if (!userId) {
             return res.json({err: 'No existe un usuario Logueado'});
         }
 
-        Misiones.getMision(userId, npcId).then(function (datos) {
+        Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
             // Doy informacion general del quest
             return res.json({

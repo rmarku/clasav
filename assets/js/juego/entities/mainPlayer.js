@@ -133,7 +133,8 @@ game.PlayerEntity = game.Player.extend({
         // Traigo datos del quest (si es visible en este momento o no)
         $.get('api/personaje/' + this.data.id,
             function (data) {
-                this.data = data;
+                game.mainPlayer.data = data;
+                hud.update();
             });
     }
 

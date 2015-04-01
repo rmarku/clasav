@@ -8,12 +8,13 @@
 module.exports = {
 
     attributes: {
-        npc: {
-            model: 'npcplayer'
-        },
+        npc: 'string',
         qorder: 'integer',
         personaje: {
             model: 'personaje'
+        },
+        mapa_instancia: {
+            model: 'mapa_instancia'
         }
     }
 };

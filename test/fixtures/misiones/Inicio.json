@@ -1,11 +1,11 @@
 [
     {
-        "npc": "1",
+        "npc": "Kitty",
         "qorder": "0",
         "npc_visible": "false"
     },
     {
-        "npc": "2",
+        "npc": "Anne",
         "qorder": "0",
         "img_quest": "anne.png",
         "npc_visible": "true",
@@ -24,7 +24,7 @@
         ]
     },
     {
-        "npc": "1",
+        "npc": "Kitty",
         "qorder": "1",
         "img_quest": "kitty.png",
         "npc_visible": "true",
