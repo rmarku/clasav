@@ -29,6 +29,10 @@ module.exports = {
 
             // Si paso es que cumple condiciones.mando datos de la mision
             var mision = {};
+
+            if (misi.titulo)
+                mision.titulo = misi.titulo;
+
             if (misi.pregunta)
                 mision.pregunta = misi.pregunta;
 
@@ -45,7 +49,7 @@ module.exports = {
     finish: function (req, res) {
         var userId = req.session.passport.user;
         var npcName = req.param('npc');
-        var resultado = req.param('resultado') || '0';
+        var resultado = req.param('resultado') || '-1';
         if (!userId) {
             return res.json({err: 'No existe un usuario Logueado'});
         }
@@ -53,7 +57,7 @@ module.exports = {
         Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
             var pj = datos.pj;
-
+            console.log("RESULTADO" + resultado);
             //Verifico precondiciones
             if (resultado == '-1') {
                 //No paso, resto la energia

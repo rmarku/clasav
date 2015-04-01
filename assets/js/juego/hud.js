@@ -71,11 +71,10 @@ hud = {
             }
         },
         update: function () {
-
             $.getJSON("api/item/getItemsPJ", function (data) {
                 document.getElementById('items').innerHTML = '';
                 data.forEach(function (it) {
-                    var item = game.items[it.id];
+                    var item = game.items[it.item];
                     var icono = game.sprites[item.sprite].icono;
 
                     var img = new Image();

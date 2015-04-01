@@ -331,6 +331,7 @@ var game = {
                     // Si no hay error,
                     if (!data.err) {
                         // Si hay pregunta, muestro boton de siguiente y cancelar
+                        $("#mision_titulo").html(data.titulo);
                         if (data.pregunta) {
                             $("#mision_siguiente").show();
                             $("#mision_cancelar").show();
@@ -396,10 +397,8 @@ var game = {
                 }
                 this.misiontxt = '';
             } else {
-                if (resultado)
+                if (typeof resultado == "undefined")
                     resultado = 1;
-                else
-                    resultado = 0;
 
                 $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
                     function (data) {
