@@ -130,7 +130,7 @@ game.NPCPlayer = me.Entity.extend({
     updateInfo: function () {
         // Traigo datos del quest (si es visible en este momento o no)
         var self = this;
-        $.get('api/misiones/info?npc=' + this.data.id,
+        $.get('api/misiones/info?npc=' + this.data.nombre,
             function (data) {
                 if (typeof data.npc_visible != 'undefined' && data.npc_visible === false)
                     self.isRenderable = false;

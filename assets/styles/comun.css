@@ -231,7 +231,8 @@
     display: inline;
     width: 49px;
     height: 49px;
-    margin: 0 -1px 0 -3px;
+    margin: 0;
+    padding: 0;
     border: 0px;
 }
 
@@ -240,7 +241,7 @@
     margin: 25px 0px 0px -13px
 }
 
-#PJimage {
+#pj {
     image-rendering: optimizeSpeed;
     image-rendering: -moz-crisp-edges;
     image-rendering: -webkit-optimize-contrast;
@@ -249,6 +250,9 @@
     -ms-interpolation-mode: nearest-neighbor;
     width: 96px;
     height: 192px;
+}
+
+#PJimage {
     margin: 55px 0 0 110px;
 }
 
@@ -314,3 +318,16 @@
     text-align: center;
 }
 
+iframe {
+    width: 100%;
+    height: 97%;
+    border: none;
+}
+
+#mision_txt {
+    position: absolute;
+    width: 370px;
+    height: 210px;
+    margin: 47px 0px 0px 123px;
+    overflow-y: auto
+}

@@ -8,9 +8,7 @@
 module.exports = {
 
     attributes: {
-        npc: {
-            model: 'npcplayer'
-        },
+        npc: 'string',
         qorder: 'integer',
         personaje: {
             model: 'personaje'
