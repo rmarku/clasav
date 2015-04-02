@@ -222,5 +222,12 @@
         "height": "25",
         "sprite": "vaca",
         "animation": "1"
+    },
+    {
+        "nombre": "libro",
+        "width": "24",
+        "height": "24",
+        "sprite": "libro",
+        "animation": "1"
     }
 ]

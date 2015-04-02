@@ -9,17 +9,26 @@
         "qorder": "0",
         "img_quest": "anne.png",
         "npc_visible": "true",
-        "titulo": "Bienvenido Viajero!",
-        "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu viaje, le dire a Kitty que aparezca para que te de una mision",
+        "titulo": "Bienvenido a Clases y Aventuras!",
+        "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar A S D W o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
         "reco_oro": "500",
         "reco_experiencia": "10",
         "new_mission": [
             {
-                "npc": "Kitty",
-                "qorder": "1"
-            },
-            {
                 "npc": "Anne",
+                "qorder": "1"
+            }
+        ]
+    },{
+        "npc": "Anne",
+        "qorder": "1",
+        "img_quest": "anne.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a Clases y Aventuras 2!",
+        "pregunta":"Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui, o puedes ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a Kitty que aparezca para que te de una mision. Suerte!",
+        "new_mission": [
+            {
+                "npc": "Kitty",
                 "qorder": "1"
             }
         ]
@@ -29,16 +38,54 @@
         "qorder": "1",
         "img_quest": "kitty.png",
         "npc_visible": "true",
-        "titulo": "Comenzemos esta aventura!",
-        "pregunta":"Es hora de hacer tu primera mision, MiaU!! Comenzaremos por algo sencillo, te parece? Con mis amigos del callejon siempre practicamos operaciones con Numeros Naturales, N = {0, 1, 2, 3, 4, ...}. Se que suena extrano, pero costaria dividir el botin diario de pescado si no supieramos contar. Es asombroso, Miau, los numeros naturales estan formador por un conjunto infinito de numeros.",
-        "mision": "URL:test/test.html",
-        "paso": "Has hecho un buen trabajo, MiaU!! Te dare de recompensa una bola de estambre... Mmmm, pero no se si te sera util... Que tal si mejor te doy este dinero que encontre... Por cierto, creo que tienes habilidad para esto de los numeros, porque no ayudas al hijo del tabernero con su tarea?",
-        "no_paso": "Oh! Estoy seguro que puedes hacerlo a�n mejor",
-        "reco_oro": "2",
+        "titulo": "Nuevo por estos lares?",
+        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella, siendo nuevo, es bueno hacer amigos.",
+        "paso": "Me caes bien, MiaU!! Te daria mi bola de estambre... Mmmm, pero no se si te seria util...",
+        "no_paso": "Oh! Deberias ir a la biblioteca!",
         "cond_energia": "10",
         "new_mission": [
             {
-                "npc": "chris",
+                "npc": "SraBibliotecaria",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "SraBibliotecaria",
+        "qorder": "1",
+        "img_quest": "sraBibliotecaria.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a la Biblioteca!",
+        "pregunta":"Hola Jovencito! Esta es la biblioteca. Aqui podras encontrar cientos de libros interesantes para leer. Puedes ayudarme y pasarme ese libro que esta sobre la mesa?",
+        "paso": "Muchas Gracias!! Supongo que debes volver con Kitty! Buena suerte!",
+        "no_paso": "Alcanzame el libro sobre la mesa por favor!",
+        "cond_energia": "10",
+        "reco_oro": "10",
+        "new_mission": [
+            {
+                "npc": "Kitty",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "libro",
+        "qorder": "1",
+        "img_quest": "libro.png",
+        "npc_visible": "true",
+        "reco_item": "libro",
+    },
+    {
+        "npc": "Kitty",
+        "qorder": "2",
+        "img_quest": "kitty.png",
+        "npc_visible": "true",
+        "titulo": "Nuevo por estos lares? 2",
+        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores.",
+        "cond_energia": "10",
+        "new_mission": [
+            {
+                "npc": "Paco",
                 "qorder": "1"
             }
         ]
