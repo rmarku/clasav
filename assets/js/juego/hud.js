@@ -72,29 +72,43 @@ hud = {
         },
         update: function () {
             $.getJSON("api/item/getItemsPJ", function (data) {
+                var pj = game.mainPlayer.data;
                 document.getElementById('items').innerHTML = '';
                 data.forEach(function (it) {
-                    var item = game.items[it.item];
-                    var icono = game.sprites[item.sprite].icono;
+                    var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
+                    var no_vestido = false;
 
-                    var img = new Image();
-
-                    img.onload = function () {
-                        var cnv = tintImage(img, item.color);
-                        var div = document.createElement('div');
-                        div.setAttribute('class','itemInv'); //<div class="itemInv" >
-                        var ic = document.createElement('img');
-                        ic.setAttribute('src',cnv.toDataURL());
-                        ic.setAttribute('title',item.nombre);
-                        div.appendChild(ic);
-                        if (item.maximo > 1) {
-                            var span = document.createElement('span');
-                            span.innerHTML = it.cantidad;
-                            div.appendChild(span);
+                    // Me fijo que no este vestido
+                    for (var i = 0; i < cuerpo.length; i++) {
+                        if (pj[cuerpo[i]] && it.id == pj[cuerpo[i]].id) {
+                            no_vestido = false;
+                            break;
                         }
-                        document.getElementById('items').appendChild(div);
-                    };
-                    img.src = 'data/sprites/' + icono;
+                    }
+
+                    if (no_vestido) {
+                        var item = game.items[it.item];
+                        var icono = game.sprites[item.sprite].icono;
+
+                        var img = new Image();
+
+                        img.onload = function () {
+                            var cnv = tintImage(img, item.color);
+                            var div = document.createElement('div');
+                            div.setAttribute('class', 'itemInv'); //<div class="itemInv" >
+                            var ic = document.createElement('img');
+                            ic.setAttribute('src', cnv.toDataURL());
+                            ic.setAttribute('title', item.nombre);
+                            div.appendChild(ic);
+                            if (item.maximo > 1) {
+                                var span = document.createElement('span');
+                                span.innerHTML = it.cantidad;
+                                div.appendChild(span);
+                            }
+                            document.getElementById('items').appendChild(div);
+                        };
+                        img.src = 'data/sprites/' + icono;
+                    }
                 });
             });
         }
