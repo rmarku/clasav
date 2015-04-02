@@ -28,7 +28,9 @@ game.NPCPlayer = me.Entity.extend({
                 self.renderable = new me.AnimationSheet(0, 0, {
                     "image": me.loader.getImage('npc/' + self.data.sprite + '.png'),
                     "spritewidth": self.data.width,
-                    "spriteheight": self.data.height
+                    "spriteheight": self.data.height,
+                    "framewidth": self.data.width,
+                    "frameheight": self.data.height
                 });
 
                 self.body.collisionType = me.collision.types.NPC_OBJECT;

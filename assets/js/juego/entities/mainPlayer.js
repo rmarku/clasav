@@ -33,6 +33,7 @@ game.PlayerEntity = game.Player.extend({
             this.pos.y = game.nextxy.y;
             this.animationToUseThisFrame = game.nextxy.direction;
         }
+        this.alwaysUpdate = true;
     },
 
     /**
@@ -98,12 +99,13 @@ game.PlayerEntity = game.Player.extend({
             else
                 this.direccion &= ~1;
         }
-
-        this._super(game.Player, 'update', [dt]);
+        me.collision.check(this);
         me.game.world.sort();
+
         server.update_myPlayer();
         // Dibujo en el minimapa
         minimap.drawPointsMinimap();
+        return (this._super(game.Player, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
     },
     /**
      * Description

@@ -65,22 +65,33 @@ var game = {
      * @return
      */
     onload: function () {
-        me.sys.fps = 30;
         me.sys.pauseOnBlur = false;
         me.sys.resumeOnFocus = false;
         me.sys.stopOnAudioError = false;
         //me.video.init("screen",32,32,!0,"auto",!0)
-
-
+        var video = me.video.CANVAS;
+        if (document.location.hash === "#debug") {
+            video = me.video.CANVAS;
+        }
         if (me.device.isMobile) {
             me.sys.fps = 15;
-            if (!me.video.init('game', me.video.AUTO, 480, 280, false, 'auto', true)) {
+            if (!me.video.init(480, 280, {
+                    wrapper: "game",
+                    renderer: video,
+                    scaleMethod: "flex-width",
+                    scale: 'auto'
+                })) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
             }
         } else {
-            me.sys.fps = 30;
-            if (!me.video.init('game', me.video.AUTO, 800, 480, false, 'auto', true)) {
+            me.sys.fps = 20;
+            if (!me.video.init(800, 480, {
+                    wrapper: "game",
+                    renderer: video,
+                    scaleMethod: "flex-width",
+                    scale: 'auto'
+                })) {
                 alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
                 return;
             }
