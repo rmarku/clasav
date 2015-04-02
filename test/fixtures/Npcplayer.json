@@ -47,5 +47,180 @@
         "height": "47",
         "sprite": "sraBibliotecaria",
         "animation": "1"
+    },
+    {
+        "nombre": "caballero",
+        "width": "22",
+        "height": "48",
+        "sprite": "caballero",
+        "animation": "1"
+    },
+    {
+        "nombre": "capitan",
+        "width": "29",
+        "height": "31",
+        "sprite": "capitan",
+        "animation": "1"
+    },
+    {
+        "nombre": "cavalier",
+        "width": "29",
+        "height": "45",
+        "sprite": "cavalier",
+        "animation": "1"
+    },
+    {
+        "nombre": "devian",
+        "width": "29",
+        "height": "47",
+        "sprite": "devian",
+        "animation": "1"
+    },
+    {
+        "nombre": "fairy",
+        "width": "14",
+        "height": "26",
+        "sprite": "fairy",
+        "animation": "1"
+    },
+    {
+        "nombre": "fantasmin",
+        "width": "48",
+        "height": "44",
+        "sprite": "Fantasmin",
+        "animation": "1"
+    },
+    {
+        "nombre": "gallito",
+        "width": "21",
+        "height": "18",
+        "sprite": "gallito",
+        "animation": "1"
+    },
+    {
+        "nombre": "gatitu",
+        "width": "14",
+        "height": "27",
+        "sprite": "gatitu",
+        "animation": "1"
+    },
+    {
+        "nombre": "guardia",
+        "width": "31",
+        "height": "48",
+        "sprite": "guardia",
+        "animation": "1"
+    },
+    {
+        "nombre": "guardib",
+        "width": "21",
+        "height": "48",
+        "sprite": "guardib",
+        "animation": "1"
+    },
+    {
+        "nombre": "guardic",
+        "width": "21",
+        "height": "48",
+        "sprite": "guardic",
+        "animation": "1"
+    },
+    {
+        "nombre": "jinete",
+        "width": "92",
+        "height": "80",
+        "sprite": "jinete",
+        "animation": "1"
+    },
+    {
+        "nombre": "libro",
+        "width": "24",
+        "height": "24",
+        "sprite": "libro",
+        "animation": "1"
+    },
+    {
+        "nombre": "madam",
+        "width": "25",
+        "height": "32",
+        "sprite": "madam",
+        "animation": "3"
+    },
+    {
+        "nombre": "monja",
+        "width": "22",
+        "height": "44",
+        "sprite": "monja",
+        "animation": "1"
+    },
+    {
+        "nombre": "monk",
+        "width": "26",
+        "height": "31",
+        "sprite": "monk",
+        "animation": "1"
+    },
+    {
+        "nombre": "oveja",
+        "width": "32",
+        "height": "23",
+        "sprite": "oveja",
+        "animation": "1"
+    },
+    {
+        "nombre": "peque",
+        "width": "23",
+        "height": "42",
+        "sprite": "peque",
+        "animation": "1"
+    },
+    {
+        "nombre": "paco",
+        "width": "31",
+        "height": "48",
+        "sprite": "paco",
+        "animation": "1"
+    },
+    {
+        "nombre": "puppy",
+        "width": "28",
+        "height": "21",
+        "sprite": "puppy",
+        "animation": "1"
+    },
+    {
+        "nombre": "ratica",
+        "width": "21",
+        "height": "24",
+        "sprite": "ratica",
+        "animation": "2"
+    },
+    {
+        "nombre": "roger",
+        "width": "28",
+        "height": "44",
+        "sprite": "roger",
+        "animation": "1"
+    },
+    {
+        "nombre": "sabio",
+        "width": "22",
+        "height": "49",
+        "sprite": "sabio",
+        "animation": "1"
+    },
+    {
+        "nombre": "sadako",
+        "width": "24",
+        "height": "41",
+        "sprite": "sadako",
+        "animation": "1"
+    },
+    {
+        "nombre": "vaca",
+        "width": "33",
+        "height": "25",
+        "sprite": "vaca",
+        "animation": "1"
     }
 ]
