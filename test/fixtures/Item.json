@@ -1,6 +1,6 @@
 [
 	{
-		"nombre": "Pantalon Corto",
+		"nombre": "Pantalon Largo",
 		"tipo_item": "pantalon",
 		"maximo": "3",
 		"sprite": "1",
@@ -30,11 +30,10 @@
 		"sprite": "5",
 		"color": "#0000ff"
 	}, {
-		"nombre": "Anillo Mágico",
+		"nombre": "Anillo Magico",
 		"tipo_item": "anillo",
 		"maximo": "3",
 		"sprite": "6",
-		"color": "#0000ff"
 	}, {
 		"nombre": "Alas Angelicales",
 		"tipo_item": "accesorio",

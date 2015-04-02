@@ -12,6 +12,7 @@
         "titulo": "Bienvenido a Clases y Aventuras!",
         "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar A S D W o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
         "reco_oro": "500",
+        "reco_item": "Anillo Magico", 
         "reco_experiencia": "10",
         "new_mission": [
             {
@@ -81,85 +82,78 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares? 2",
-        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores.",
+        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Paco! Quizas el pueda darte mas consejos!",
         "cond_energia": "10",
         "new_mission": [
             {
-                "npc": "Paco",
+                "npc": "paco",
                 "qorder": "1"
             }
         ]
     },
     {
-        "npc": "Chris",
+        "npc": "paco",
         "qorder": "1",
-        "img_quest": "chris.png",
+        "img_quest": "paco.png",
         "npc_visible": "true",
-        "titulo": "Ayudame con mi tarea!",
-        "pregunta":"Podrias ayudarme con mi tarea?. Tengo qu estudiar las operaciones con numeros naturales, se que son la suma y la multiplicacion; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
-        "mision": "URL:test/test.html",
-        "paso": "<strong>Wow!</strong> En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
-        "no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
-        "reco_oro": "10",
+        "titulo": "Bienvenido a la Escuela!",
+        "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
+        "paso": "De recompensa te dare esta camisa. Es parte del uniforme del colegio. Mandale saludos a Kitty de mi parte!",
+        "cond_energia": "10",
+        "reco_item": "camisa",
         "new_mission": [
             {
-                "npc": "chris",
-                "qorder": "2"
-            }
-        ]
-    },
-    {
-        "npc": "Chris",
-        "qorder": "2",
-        "img_quest": "chris.png",
-        "npc_visible": "true",
-        "titulo": "Ayudame con mi tarea 2!",
-        "pregunta":"A veces se me confunden los numeros naturales con los enteros... Pero por suerte, encontre un video... Lo vemos juntos?",
-        "mision": "URL:test/quest2_3.html",
-        "paso": "Fue divertido! Realmente eres bueno en esto! Porque no ayudas a Daniela? Seguro que esta bajo el viejo arbol haciendo su tarea.",
-        "no_paso": "Lo veamos otra vez!",
-        "reco_oro": "10",
-        "new_mission": [
-            {
-                "npc": "daniela",
-                "qorder": "1"
-            }
-        ]
-    },
-    {
-        "npc": "Daniela",
-        "qorder": "1",
-        "img_quest": "daniela.png",
-        "npc_visible": "true",
-        "titulo": "A la biblioteca!",
-        "pregunta":"Hola! Soy Dani! Seguro que antes estuviste con mi amigo Chris! Ah, me gustaria jugar con el, pero no puedo al menos que termine mi tarea. Me deje mi cuarno en la biblioteca! Puedes ir al pueblo a buscarlo? Te pagare por ello",
-        "mision": "",
-        "paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-        "no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-        "reco_oro": "25",
-        "new_mission": [
-            {
-                "npc": "daniela",
-                "qorder": "2"
-            }
-        ]
-    },
-    {
-        "npc": "Daniela",
-        "qorder": "2",
-        "img_quest": "daniela.png",
-        "npc_visible": "true",
-        "titulo": "Para poder salir a jugar...",
-        "pregunta":"Bien, ahora falta menos para poder salir a jugar. Pero primero debo entender un poco sobre geometria.",
-        "mision": "URL: test/quest3_1.html",
-        "paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-        "no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-        "reco_oro": "25",
-        "new_mission": [
-            {
-                "npc": "daniela",
+                "npc": "Kitty",
                 "qorder": "3"
             }
         ]
-    }
+    },
+    {
+        "npc": "Kitty",
+        "qorder": "3",
+        "img_quest": "kitty.png",
+        "npc_visible": "true",
+        "titulo": "Nuevo por estos lares? 3",
+        "pregunta":"Cada vez conoces mas de por aquie Miau! Ahora es turno que vayas hasta el mercado! Conoce a la pequeña melisa, y comprale pociones de energia!",
+        "cond_energia": "10",
+        "new_mission": [
+            {
+                "npc": "melisa",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "melisa",
+        "qorder": "1",
+        "img_quest": "melisa.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a mi mercado!",
+        "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta posiones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
+        "paso": "Deberias comprar una posion de energia!",
+        "cond_energia": "10",
+        "new_mission": [
+            {
+                "npc": "melisa",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "melisa",
+        "qorder": "2",
+        "img_quest": "melisa.png",
+        "npc_visible": "true",
+        "titulo": "Quieres comprar?",
+        "pregunta":"Deseas comprar algo?",
+        "mision": "URL:test/mercado.html",
+        "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+        "new_mission": [
+            {
+                "npc": "kitty",
+                "qorder": "4"
+            }
+        ]
+    },
 ]
+

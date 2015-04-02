@@ -229,5 +229,12 @@
         "height": "24",
         "sprite": "libro",
         "animation": "1"
+    },
+    {
+        "nombre": "melisa",
+        "width": "23",
+        "height": "42",
+        "sprite": "melisa",
+        "animation": "1"
     }
 ]
