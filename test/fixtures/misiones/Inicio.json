@@ -12,7 +12,6 @@
         "titulo": "Bienvenido a Clases y Aventuras!",
         "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar A S D W o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
         "reco_oro": "500",
-        "reco_item": "Anillo Magico", 
         "reco_experiencia": "10",
         "new_mission": [
             {
