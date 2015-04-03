@@ -8,6 +8,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 		<meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
 
@@ -52,7 +53,33 @@
                 </div>
 
 			</div>
-
+            <!--Teclas Movil -->
+            <div id="movil" class="capaSup" style="display: none;">
+                <div id="movil-izq">
+                    <svg height="50" width="50">
+                        <path d="M0 50 L40 25 L0 0z" fill="#00000099" transform="rotate(180 25 25)" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+                <div id="movil-der">
+                    <svg height="50" width="50">
+                        <path d="M0 50 L40 25 L0 0z" fill="#000" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+                <div id="movil-arr">
+                    <svg height="50" width="50">
+                        <path d="M0 50 L40 25 L0 0z" fill="#000" transform="rotate(-90 25 25)"fill-opacity="0.5"/>
+                    </svg></div>
+                <div id="movil-aba">
+                    <svg height="50" width="50">
+                        <path d="M0 50 L40 25 L0 0z" fill="#000" transform="rotate(90 25 25)"fill-opacity="0.5"/>
+                    </svg>
+                </div>
+                <div id="movil-accion">
+                    <svg height="50" width="50">
+                        <circle cx="25" cy="25" r="20" fill="#000" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
 			<!--HUD INFERIOR-->
 			<div id="botonera" class="capaSup" style="height: 49px; width: 261px; position: absolute; bottom: 0px">
 				<img id="btnInve" src="images/iconos/btn_inventario.png" onclick="hud.inventario.toggle()"/>
@@ -187,7 +214,7 @@
 			</div>
 
 			<!--ventana de amigos-->
-			<div id="ventAmigos" class="titulo-botonera capaSup" style="background-color: #FBF8EF; border: 2px solid #FF8000; margin: 176px 0 0 0; width: 176px; height: 250px; right: 0px;    overflow: auto;">
+			<div id="ventAmigos" class="titulo-botonera capaSup" style="background-color: #FBF8EF; border: 2px solid #FF8000; margin: 176px 0 0 0; width: 176px; height: 250px;max-height: 250px; right: 0px;    overflow: auto;">
 				<div style="background-color: #FF8000; text-align: center">
 					<strong> Lista de Amigos </strong>
 				</div>
@@ -198,7 +225,7 @@
 			</div>
 
 			<!--MAPA-->
-			<div style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
+			<div id="miniMap" style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
 				<img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
 
 				<div id=divMinimapa class="div-mapa">
@@ -209,7 +236,7 @@
 			</div>
 
 			<!--CHAT-->
-			<div id="ChatGame" ng-controller="ChatController" class="capaSup" style="bottom: 0px; left:245px; right: 32px; text-align: center; overflow: hidden">
+			<div id="ChatGame" ng-controller="ChatController" class="capaSup" style="bottom: 0px; left:245px; right: 32px; max-height:155px; text-align: center; overflow: hidden">
 				<div id="glyChat" class="glyphicon glyphicon-comment" style="background-color: white; width: 24px; height: 16px;border-radius: 6px"></div>
 				<div class="divChat" id="divChat" style="width: 100%;">
 					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}}
@@ -252,6 +279,8 @@
 
 				</div>
 			</div>
+
+
 		</div>
 		<script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
 		<script src="/js/dependencies/angular/angular.js"></script>

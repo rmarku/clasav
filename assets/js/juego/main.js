@@ -68,31 +68,31 @@ var game = {
         me.sys.pauseOnBlur = false;
         me.sys.resumeOnFocus = false;
         me.sys.stopOnAudioError = false;
+        me.sys.fps = 20;
         //me.video.init("screen",32,32,!0,"auto",!0)
         var video = me.video.CANVAS;
         if (document.location.hash === "#debug") {
             video = me.video.CANVAS;
         }
         if (me.device.isMobile) {
-            me.sys.fps = 15;
-            if (!me.video.init(480, 280, {
+            if (!me.video.init(400, 240, {
                     wrapper: "game",
                     renderer: video,
                     scaleMethod: "flex-width",
                     scale: 'auto'
                 })) {
-                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                alert("Perdon pero su Navegador no soporta canvas de HTML5. Instale Firefox o Google Chrome!");
                 return;
             }
+            hud.movil.init();
         } else {
-            me.sys.fps = 20;
             if (!me.video.init(800, 480, {
                     wrapper: "game",
                     renderer: video,
                     scaleMethod: "flex-width",
                     scale: 'auto'
                 })) {
-                alert("Perdon pero su Navegador no soporta canvas de HTML5.Instale Firefox o Google Chrome!");
+                alert("Perdon pero su Navegador no soporta canvas de HTML5. Instale Firefox o Google Chrome!");
                 return;
             }
         }
@@ -376,6 +376,8 @@ var game = {
             $("#mision_npc").html(npc.data.nombre);
             $("#mision").fadeIn(600);
 
+            // Doy de baja el evento de la tecla
+            me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
         }
 
         ,
@@ -386,6 +388,8 @@ var game = {
                 game.mainPlayer.hablandoCon = '';
                 me.input.unlockKey('accion');
             });
+            // Doy de baja el evento de la tecla
+            me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
         }
         ,
         siguiente: function (resultado) {
@@ -423,6 +427,8 @@ var game = {
                         game.mainPlayer.updateData();
                     });
             }
+            // Doy de baja el evento de la tecla
+            me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
         }
     }
 

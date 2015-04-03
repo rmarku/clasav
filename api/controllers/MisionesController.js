@@ -10,11 +10,13 @@ module.exports = {
         var userId = req.session.passport.user;
         var npcName = req.param('npc');
         if (!userId) {
-            return res.json({err: 'No existe un usuario Logueado'});
+            return res.json({err: 'Usuario no logueado'});
         }
 
         Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
+            var mxp = datos.mxp;
+
             //Verifico precondiciones
             if (misi.cond_nivel && mxp.personaje.nivel < misi.cond_nivel)
                 return res.json({falta: misi.no_nivel});
@@ -41,6 +43,7 @@ module.exports = {
 
             return res.json(mision);
         }).catch(function (err) {
+            sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
             return res.json({err: err});
         });
     },
@@ -51,17 +54,17 @@ module.exports = {
         var npcName = req.param('npc');
         var resultado = req.param('resultado') || '-1';
         if (!userId) {
-            return res.json({err: 'No existe un usuario Logueado'});
+            return res.json({err: 'Usuario no logueado'});
         }
 
         Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
             var pj = datos.pj;
-            console.log("RESULTADO" + resultado);
+
             //Verifico precondiciones
             if (resultado == '-1') {
-                //No paso, resto la energia
 
+                //No paso, resto la energia
                 if (misi.cond_energia)
                     pj.energia -= misi.cond_energia;
                 if (pj.energia < 0)
@@ -69,6 +72,7 @@ module.exports = {
 
                 return res.json({result: 'no', txt: misi.no_paso});
             }
+
             // Paso bien la mision!!!!
             // Ahora tengo que descontar y dar los premios
 
@@ -76,29 +80,47 @@ module.exports = {
             if (misi.cond_oro)
                 pj.oro -= misi.cond_oro;
 
+            // TODO: ver como descontar item async
+
             // Doy
             if (misi.reco_oro)
                 pj.oro += misi.reco_oro;
             if (misi.reco_energia)
                 pj.energia += misi.reco_energia;
-            if (misi.reco_experiencia)
+            if (misi.reco_experiencia) {
+                var max = (pj.nivel + pj.nivel / 2) * 100;
                 pj.experiencia += misi.reco_experiencia;
+
+                while (pj.experiencia > max) {
+                    pj.nivel++;
+                    pj.experiencia -= max;
+                    max = (pj.nivel + pj.nivel / 2) * 100;
+                }
+            }
             if (misi.reco_item)
-                Item_instancia.create({
-                    item: misi.reco_item,
-                    personaje: pj,
-                    cantidad: misi.reco_item_cant
+                Item.findOne({nombre: misi.reco_item}).exec(function (err, item) {
+                    if (err || !npc) {
+                        sails.log.warn('No se encontro el item recompensa "' + misi.reco_item +
+                        '" en la mision de  ' + npcName + ', qorder ' + misi.qorder);
+                        return res.json({err: 'No se encontro el item ' + err});
+                    }
+                    Item_instancia.create({
+                        item: item.id,
+                        personaje: pj,
+                        cantidad: misi.reco_item_cant
+                    });
                 });
 
             // habilito el flujo de misiones que siguen.
             var new_misiones = JSON.parse(misi.new_mission);
-            console.log(JSON.stringify(new_misiones));
-
             new_misiones.forEach(function (valor) {
+
+                // Solo si no requiere resultado o si el resultado es el de sta mision
                 if (typeof valor.resultado == 'undefined' || resultado == valor.resultado) {
                     Npcplayer.findOne({nombre: valor.npc}).exec(function (err, npc) {
-                        if (err || !npc) return res.json({err: 'No se encontro el npc :('});
+                        if (err || !npc) return res.json({err: 'No se encontro el npc :(' + err});
 
+                        sails.log(npc.nombre + ' con ' + pj.id + ' cambiada a ' + valor.qorder);
                         Misiones_x_Personaje.findOrCreate({
                             where: {
                                 personaje: pj.id,
@@ -113,7 +135,11 @@ module.exports = {
                             mapa_instancia: pj.mapa_instancia.id,
                             qorder: valor.qorder
                         }).exec(function (err, mxp) {
-                            if (err) return res.json({err: 'Error sector 7'});
+                            if (err) {
+                                sails.log.error('Error al cambiar de mision ' + npc.nombre + ' pj:' + pj.nombre + ' qorder:' + valor.qorder);
+                                return res.json({err: 'Error sector 7'});
+                            }
+
                             mxp.qorder = valor.qorder;
                             mxp.save();
                         });
@@ -121,11 +147,10 @@ module.exports = {
                 }
             });
             pj.save();
-            return res.json({result: 'si', txt: misi.paso});
+            return res.json({result: 'si', txt: misi.paso, cerrar: !misi.no_cerrar});
         }).catch(function (err) {
-            return res.json({
-                err: 'no tiene mision'
-            });
+            sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
+            return res.json({err: err});
         });
     },
 
@@ -135,7 +160,7 @@ module.exports = {
         var npcName = req.param('npc');
 
         if (!userId) {
-            return res.json({err: 'No existe un usuario Logueado'});
+            return res.json({err: 'Usuario no logueado'});
         }
 
         Misiones.getMision(userId, npcName).then(function (datos) {

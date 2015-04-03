@@ -7,17 +7,17 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
     $("#glyChat").click(function () {
         var e = $("#ChatGame");
         if (e.css('height') != '30px')
-            e.animate({'height': '30px'}, 600);
+            e.animate({'height': '30px'}, 400);
         else
-            e.animate({'height': '154px'}, 600);
+            e.animate({'height': e.css('max-height')}, 400);
     });
 
     $("#ventAmigos").click(function () {
         var e = $("#ventAmigos");
         if (e.css('height') != '23px')
-            e.animate({'height': '23px'}, 600);
+            e.animate({'height': '23px'}, 400);
         else
-            e.animate({'height': '260px'}, 600);
+            e.animate({'height': e.css('max-height')}, 400);
     });
     /**
      * Funcion que envia mensaje a la ventana(div) de Chat, y luego blanquea el campo del "input"

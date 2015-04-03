@@ -12156,8 +12156,8 @@ THE SOFTWARE.
                     sWidth = Math.min(maxWidth, designHeight * screenRatio);
                     scaleX = scaleY = _max_width / sWidth;
                     sWidth = ~~(sWidth + 0.5);
-                    this.renderer.resize(sWidth-17, designHeight-17);
-                    me.game.viewport.resize(sWidth-17, designHeight-17);
+                    this.renderer.resize(sWidth-5, designHeight-5);
+                    me.game.viewport.resize(sWidth-5, designHeight-5);
                     /*
                      * XXX: Workaround for not updating container child-bounds
                      * automatically (it's expensive!)

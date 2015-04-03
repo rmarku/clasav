@@ -49,7 +49,7 @@ hud = {
             ene.setAttribute('aria-valuemax', max);
             $('#PJenergia').css('width', val * 100 / max + '%');
 
-            max = Math.pow(game.mainPlayer.data.nivel, 1.6) * 100;
+            max = (game.mainPlayer.data.nivel + game.mainPlayer.data.nivel / 2) * 100;
             val = game.mainPlayer.data.experiencia;
             exp.setAttribute('aria-valuenow', val);
             exp.setAttribute('aria-valuemax', max);
@@ -198,6 +198,64 @@ hud = {
             var canvas = document.getElementById('PJimage');
             var ctx = canvas.getContext("2d");
             ctx.drawImage(game.mainPlayer.renderable.image, 0, 0);
+        }
+    },
+
+    movil: {
+        init: function () {
+
+            // Teclas del hub
+            ['izq', 'der', 'arr', 'aba', 'accion'].forEach(function (item) {
+                var el = document.getElementById('movil-' + item);
+                el.addEventListener('touchstart', hud.movil.touchstart);
+                el.addEventListener('touchmove', hud.movil.touchstart);
+            });
+            document.getElementById('movil').addEventListener('touchend', hud.movil.touchend);
+
+            window.scrollTo(0, 1);
+            // escondo chat y amigos
+            $("#ChatGame").animate({'height': '30px'}, 400);
+
+            $("#ventAmigos").animate({'height': '23px'}, 400).css('max-height', '170px').css('margin', '0px');
+            $('.questModal').css('top', '0');
+
+            //acomodo el minimap
+            $("#miniMap").css('zoom', '0.5').css('top', '46px');
+
+            $('#movil').css('display', 'block');
+
+        },
+        touchstart: function (ev) {
+            var key = me.input.KEY.SPACE;
+            switch (ev.currentTarget.id.substring(6)) {
+                case 'izq':
+                    key = me.input.KEY.LEFT;
+                    break;
+                case 'der':
+                    key = me.input.KEY.RIGHT;
+                    break;
+                case 'arr':
+                    key = me.input.KEY.UP;
+                    break;
+                case 'aba':
+                    key = me.input.KEY.DOWN;
+                    break;
+            }
+            hud.movil.touchend();
+            me.input.triggerKeyEvent(key, true);
+            ev.stopPropagation();
+            ev.preventDefault();
+        },
+        touchend: function (ev) {
+            [
+                me.input.KEY.LEFT,
+                me.input.KEY.RIGHT,
+                me.input.KEY.UP,
+                me.input.KEY.DOWN,
+                me.input.KEY.SPACE
+            ].forEach(function (item) {
+                    me.input.triggerKeyEvent(item, false);
+                });
         }
     }
 };

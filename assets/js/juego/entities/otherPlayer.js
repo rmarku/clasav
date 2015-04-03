@@ -15,6 +15,7 @@ game.OtherPlayer = game.Player.extend({
         this.direccion = settings.data.direccion;
         this.last_animation = settings.data.animation;
         this.myPath = [];
+        this.alwaysUpdate = true;
     },
 
     /**

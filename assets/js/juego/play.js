@@ -24,7 +24,6 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.SPACE, 'accion', true);
         me.input.bindKey(me.input.KEY.M, 'accion', true);
 
-
         $.get('/api/user/getUser', function (user) {
             if (typeof user.userId != 'undefined') {
                 game.userId = user.userId;
