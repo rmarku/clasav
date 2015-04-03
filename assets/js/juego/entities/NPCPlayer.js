@@ -95,8 +95,6 @@ game.NPCPlayer = me.Entity.extend({
         renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
             ~~(this.pos.y + 10));
-
-        renderer.fillRect(this.pos.x - 1, this.pos.y - 1, 2, 2);
     },
 
     /**
