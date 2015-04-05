@@ -46,7 +46,7 @@
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js",
-    "postinstall": "node node_modules/bower/bin/bower install && node -e \"require('grunt').tasks(['crearSprites', 'compileMaps']);\" ",
+    "postinstall": "node node_modules/bower/bin/bower install && node -e \"require('grunt').tasks(['crearSprites', 'compileMaps', 'crearMisiones']);\" ",
     "test": "node -e \"require('grunt').tasks(['test']);\""
   },
   "main": "app.js",

@@ -15,7 +15,7 @@ module.exports = {
 
         tipo_item: {
             type: 'string',
-            //enum: ['',''] //agregar esto cuando se conozcan los tipos
+            enum: ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'],
             required: true
         },
 

@@ -89,6 +89,8 @@ module.exports = {
                         resolve({misi: misi, mxp: mxp, pj: pj});
                     });
                 });
+            }).catch(function (err) {
+                reject(err);
             });
         });
     },

@@ -86,6 +86,7 @@ hud = {
                         }
                     }
 
+                    // Si no lo esta usando el PJ, lo pongo en el inventario
                     if (no_vestido) {
                         var item = game.items[it.item];
                         var icono = game.sprites[item.sprite].icono;
@@ -94,12 +95,17 @@ hud = {
 
                         img.onload = function () {
                             var cnv = tintImage(img, item.color);
+                            //div que contiene la imagen
                             var div = document.createElement('div');
                             div.setAttribute('class', 'itemInv'); //<div class="itemInv" >
+
+                            //imagen
                             var ic = document.createElement('img');
                             ic.setAttribute('src', cnv.toDataURL());
                             ic.setAttribute('title', item.nombre);
+
                             div.appendChild(ic);
+                            // Numero si hay maximos
                             if (item.maximo > 1) {
                                 var span = document.createElement('span');
                                 span.innerHTML = it.cantidad;

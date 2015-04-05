@@ -16,6 +16,7 @@ module.exports = {
         Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
             var mxp = datos.mxp;
+            var pj = datos.pj;
 
             //Verifico precondiciones
             if (misi.cond_nivel && mxp.personaje.nivel < misi.cond_nivel)
@@ -28,20 +29,44 @@ module.exports = {
                 return res.json({falta: misi.no_oro});
 
             // TODO: Ver como hacer con la busqueda de un item como condicion
+            Item.findOne({nombre: misi.cond_item}).exec(function (err, it) {
+                if (err) {
+                    sails.log.error('error el item: ' + misi.cond_item + ' no existe');
+                    return res.json({err: err});
+                }
+                var search = {};
+                if (typeof it !== 'undefined')
+                    search.item = it.id;
+                search.personaje = pj.id;
+                search.usando = false;
 
-            // Si paso es que cumple condiciones.mando datos de la mision
-            var mision = {};
+                // Si encuentro el item
+                Item_instancia.findOne(search).exec(function (err, inst) {
+                    if (err) {
+                        sails.log.error('error item_instancia: ' + misi.cond_item + ' no existe');
+                        return res.json({err: err});
+                    }
+                    // si hay condicion y no hay item
+                    if (misi.cond_item && (typeof inst.id === 'undefined' || (misi.cond_item_cant && misi.cond_item_cant < inst.cantidad )))
+                        return res.json({falta: misi.no_item});
 
-            if (misi.titulo)
-                mision.titulo = misi.titulo;
 
-            if (misi.pregunta)
-                mision.pregunta = misi.pregunta;
+                    // Si paso es que cumple condiciones.mando datos de la mision
+                    var mision = {};
 
-            if (misi.mision)
-                mision.mision = misi.mision;
+                    if (misi.titulo)
+                        mision.titulo = misi.titulo;
 
-            return res.json(mision);
+                    if (misi.pregunta)
+                        mision.pregunta = misi.pregunta;
+
+                    if (misi.mision)
+                        mision.mision = misi.mision;
+
+                    return res.json(mision);
+                });
+            });
+
         }).catch(function (err) {
             sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
             return res.json({err: err});

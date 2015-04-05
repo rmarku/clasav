@@ -319,8 +319,10 @@ var game = {
      * @return
      */
     updateNPCs: function () {
+        var respuesta = function () {
+        };
         for (var npc in game.NPCs) {
-            game.NPCs[npc].updateInfo();
+            respuesta = game.NPCs[npc].updateInfo().pipe(respuesta);
         }
     }
     ,
