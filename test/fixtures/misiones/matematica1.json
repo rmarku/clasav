@@ -1,5 +1,19 @@
 [
     {
+        "npc": "Carlos",
+        "qorder": "1",
+        "img_quest": "carlos.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a 'Isla Matematica'!",
+        "pregunta":"Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Espero disfrutes tu visita en estos lares.",
+        "new_mission": [
+            {
+                "npc": "chris",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
         "npc": "Chris",
         "qorder": "1",
         "img_quest": "chris.png",
