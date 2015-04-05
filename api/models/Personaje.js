@@ -206,7 +206,6 @@ module.exports = {
             }).populateAll().exec(function (err, personaje) {
                 if (err) return reject(err);
 
-                sails.log.warn(JSON.stringify(err) + '  personaje: ' + JSON.stringify(personaje));
                 if (personaje) {
                     Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
                         if (populated_mapa_instancia) {

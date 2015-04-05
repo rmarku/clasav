@@ -191,12 +191,15 @@ module.exports = {
         Misiones.getMision(userId, npcName).then(function (datos) {
             var misi = datos.misi;
             // Doy informacion general del quest
+
+            sails.log.warn('Fin ' + npcName);
             return res.json({
                 img_quest: misi.img_quest,
                 npc_visible: misi.npc_visible
             });
 
         }).catch(function (err) {
+            sails.log.warn('Fin ' + npcName);
             return res.json({
                 err: 'no tiene mision',
                 img_quest: '',
