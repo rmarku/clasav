@@ -124,7 +124,7 @@ module.exports = {
         energia: 'integer',
         energia_max: 'integer'
     },
-    afterCreate: function (newPJ, next) {
+    afterCreate: function (newPJ, next, req) {
         // Para procesar todas las promesas que devuelven cada item create.
         Promesa.all([
             Item.findOne({"nombre": "Pantalon Corto"}).then(function (item) {
@@ -167,7 +167,7 @@ module.exports = {
                     while (mapas_instancias.length) {
                         mapa_instancia = mapas_instancias.pop();
                         //Si el mapa_instancia es el que esta relacionado al mapa generico
-                        if (mapa_instancia.mapa_generico.nombre.toLowerCase() === "island") {
+                        if (mapa_instancia.mapa_generico.nombre.toLowerCase() === "ciudad") {
                             succesfull = true;
                             break;
                         }
@@ -187,9 +187,34 @@ module.exports = {
                                 oro: 0,
                                 energia: 100,
                                 energia_max: 100,
-                                experiencia: 0
-                            }).exec(next);
-                    }
+                                experiencia: 0,
+                                x:2200,
+                                y:3100
+                                //Agregar x e y inicial
+                            }).exec(function afterUpdate(err, updated){
+                                /////////////////////AGREGO PERSONJAE A LA CLASE MATEMATICAS: para que por defevto pieda entrar a island////
+                                var userID = newPJ.duenio;
+                                Clase.findOne({nombre:'Matematicas'}).populate('users').exec(function afterwards(err,clase){
+                                    if (err) {
+                                        console.log(err);
+                                        res.json(err);
+                                        return;
+                                    }
+                                    clase.users.add(userID);
+                                    clase.save(function (err) {
+                                        if(err){
+                                            console.log(err);
+                                            res.json(err);
+                                            return;
+                                        }
+                                        //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
+                                        Clase_x_user.create({user:userID, clase:clase.id, situacion:"aceptado"}).exec(next);
+                                        ///////////////////// fin AGREGO PERSONJAE A LA CLASE MATEMATICAS: para que por defevto pieda entrar a island////
+
+                                    });
+                                });
+                            });
+                      }
                 }
             }).catch(function (err) {
                 sails.log.error(err);

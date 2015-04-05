@@ -47,5 +47,12 @@
         "height": "47",
         "sprite": "sraBibliotecaria",
         "animation": "1"
+    },
+    {
+        "nombre": "SelectorClases",
+        "width": "32",
+        "height": "32",
+        "sprite": "SelectorClases",
+        "animation": "1"
     }
 ]

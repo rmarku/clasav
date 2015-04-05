@@ -29,18 +29,19 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/personaje.html"],
         controller: 'personajeController'
     });
-    
+
     //<!--MINIJUEGO-->
     $routeProvider.when('/minijuego', {
         template: JST["assets/templates/minijuego.html"]
     });
-    
+
     //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
 
     //<!--RUTAS PROFESOR-->
     $routeProvider.when('/clasesProfesor', {
         template: JST["assets/templates/profesor/clases.html"],
-        controller: 'clasesProfesorController'
+        controller: 'clasesProfesorController'//,
+     //   activetab: 'dashboard'
     });
     $routeProvider.when('/crearClase', {
         template: JST["assets/templates/profesor/crearClase.html"],

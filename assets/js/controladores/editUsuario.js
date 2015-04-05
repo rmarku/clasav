@@ -19,8 +19,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         departamento: '',
         password: '',
         password2: '',
-        local: true,
-        clase: 1
+        local: true
     };
 
     var lang = {
@@ -78,22 +77,30 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
             $.post("/api/user/" + $scope.usuario.id, $scope.usuario, function (data) {
 
+                if ($scope.usuario.tipo == 'alumno') {
 
-                $.get('/api/personaje?where={"duenio":"' + $scope.usuario.id + '"}', function (data) {
-                    console.log(data);
-                    if (data.lenght > 0) {
-                        toastr.info('Datos actualizados!!!!');
-                        setTimeout(function () {
-                            $location.path('/');
-                            //hacer algo aca para que dentro de las pestas aparezca "juego"
-                        }, 1000);
-                    } else {
-                        toastr.info('Datos actualizados');
-                        setTimeout(function () {
-                            window.location.href = '#/personaje';
-                        }, 2000);
-                    }
-                });
+                    $.get('/api/personaje?where={"duenio":"' + $scope.usuario.id + '"}', function (data) {
+                        console.log(data);
+                        if (data.lenght > 0) {
+                            toastr.info('Datos actualizados!!!!');
+                            location.reload();
+                            setTimeout(function () {
+                                $location.path('/');
+                                //hacer algo aca para que dentro de las pestas aparezca "juego"
+                            }, 1000);
+                        } else {
+                            toastr.info('Datos actualizados');
+                            setTimeout(function () {
+                                window.location.href = '#/personaje';
+                                location.reload();
+                            }, 2000);
+                        }
+                    });
+                }
+                else   if ($scope.usuario.tipo == 'profesor') {
+                    window.location.href = '#/clases';
+                    location.reload();
+                }
             });
         } else {   // Voy a crear una nueva cuenta.
 

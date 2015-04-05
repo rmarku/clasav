@@ -7,14 +7,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     $scope.user = {};
 
-    $scope.claseActual =
-    {
-        "activa" : false
-    };
-    $scope.clasesCargadas = false;
     $scope.misClases = [];
     $scope.misClasesSituacionEspera = [];
     $scope.misClasesSituacionRechazado = [];
+
+    $scope.clasesCargadas = false;
+    $scope.claseActual = {"activa" : false};
 
 
 
@@ -95,7 +93,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         clases.forEach(function(clase) {
 
             var mapa_instancia = $scope.get_mapaCentral(clase);
-            clase.mapas_instancias.pop(mapa_instancia);
+            clase.mapas_instancias.pop();
             clase.mapaCentral = mapa_instancia;
         });
         return clases;
@@ -184,7 +182,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         clases.forEach(function(clase) {
 
             var user = $scope.get_profesor(clase);
-            clase.users.pop(user);
+            clase.users.pop();
             clase.profesor = user;
         });
         return clases;
@@ -251,20 +249,10 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                         return;
                     }
                 }
-
-
-
-
-
-
-
-
-
-
             }
-
         });
     };
+
     $scope.listen_to_clasesEnEspera();
 
     /////////////////////////////FIN DE SOCKETS

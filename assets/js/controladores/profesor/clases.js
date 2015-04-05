@@ -154,6 +154,12 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         $scope.$parent.claseActual = $scope.misClases[index];
         $scope.$parent.claseActual.activa = true;
         toastr.info('Clase Actual: '+$scope.$parent.claseActual.nombre+'.\n Recorre sus detalles en el Panel Principal.');
+
+
+     //   $('#button_navBar_alumnos').trigger('click');
+       // $('[href=#button_navBar_alumnos]').tab('show');
+
+
     };
 
 

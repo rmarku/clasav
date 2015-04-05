@@ -57,6 +57,8 @@ module.exports = {
                             }
                             dependencia_mapa_generico.mapas_genericos.forEach(function (mapa_generico) {
 
+                                console.log('mapa generico');
+                                console.log(mapa_generico);
                                 //Creo los mapas secundarios y el central inclusive
                                 Mapa_instancia.create(
                                     {
@@ -72,7 +74,8 @@ module.exports = {
                                             res.json(err);
                                             return;
                                         }
-
+                                        console.log('mapa instancia');
+                                        console.log(mapa_instancia);
 
                                         return res.json(claseCreada);
 
@@ -118,7 +121,7 @@ module.exports = {
                 Clase_x_user.create({user:userID, clase:claseID, situacion:"espera"}).exec(function createCB(err,clase_x_user) {
 
 
-                    if (err) {
+                    if (err || !clase_x_user) {
                         console.log(err);
                         res.json(err);
                         return;
@@ -128,6 +131,11 @@ module.exports = {
 
                     User.findOne({id:userID}).populate('clase_x_user',{clase:clase.id}).exec(function afterwards(err,user) {
 
+                        if (err || !user) {
+                            console.log(err);
+                            res.json(err);
+                            return;
+                        }
                         sails.sockets.join(req.socket,"clase:"+clase.id);
                         sails.sockets.broadcast("clase:"+clase.id,'nuevaSolicitud',user,req.socket);
 
@@ -137,6 +145,82 @@ module.exports = {
                 });
             });
         });
+    },
+
+    get_misclases:function (req,res){
+
+        var userID = req.session.passport.user;
+        var misClases = [];
+
+        if (!userID) {
+            console.log(err);
+            res.json(err);
+            return;
+        }
+
+        Clase.find().
+            populate('users').
+            populate('mapas_instancias').
+            populate('clase_x_user',{user:userID}).
+            exec(function(err,todasLasClases) {
+
+                if (err || !todasLasClases) {
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+
+                //Recorremos cada clase: obtenemos cuales pertenecen al usuario
+
+                todasLasClases.forEach(function(clase){
+
+                    if (err || !clase) {
+                        console.log(err);
+                        res.json(err);
+                        return;
+                    }
+
+                    //Si es una clase de prueba que no tiene generado un clase_x_user. Por ej.: Matematicas que esta en el test clase.JSON
+                    if(!clase.clase_x_user[0]){
+                        return;
+                    }
+
+                    if(clase.clase_x_user[0].situacion == 'aceptado') {
+                        //Recorremos  cada user de cada clase
+                        clase.users.forEach(function (user, index) {
+
+                            //Si el User esta dentro de la clase.( Si es una de mis clases)
+                            if (user.id == userID) {
+
+                                clase.users = [];
+                                clase.clase_x_user = [];
+                                misClases.push(clase);
+                                //Me suscribo a actualizaciones de mi clase
+                                return;
+                            }
+                        });
+
+                    }
+                });
+
+                misClases.forEach(function(clase){
+                    clase.mapas_instancias.forEach(function (mapa, index) {
+
+                        //Si el User esta dentro de la clase.( Si es una de mis clases)
+                        if (mapa.tipo == 'central'){
+                            clase.mapaCentral = mapa;
+                            clase.mapas_instancias = [];
+                            return;
+                        }
+
+                    });
+
+                });
+
+                res.send(misClases);
+
+            });
+
     },
 
     get_misClases_conUsers: function (req,res) {
@@ -183,151 +267,6 @@ module.exports = {
                 });
 
                 res.send(misClases);
-
-/*
-
-                var x = 0;
-                var y = 0;
-                var Q = require('q');
-
-                function a(misClases) {
-                    var deferred = Q.defer();
-
-                    var b = function (){
-                        misClases.forEach(function (clase) {
-                            console.log("aca1");
-                            var promises = [];
-                            clase.users.forEach(function (user) {
-                                console.log("aca2");
-                                promises.push(function () {
-                                    console.log("aca3");
-                                    User.findOne({id: user.id}).populate('clase_x_user', {
-                                        user: user.id,
-                                        clase: clase.id
-                                    }).exec(function (err, local_user) {
-                                        console.log("aca4");
-                                        console.log(x);
-                                        console.log(y);
-                                        console.log(misClases[x].users[y].situacionAux_estaClase);
-                                        misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
-                                        console.log(misClases[x].users[y].situacionAux_estaClase);
-                                    });
-                                });
-                                Q.allSettled(promises).then(function () {
-                                    console.log("aca5");
-                                    y++;
-                                });
-
-                            });
-                            x++;
-                            y = 0;
-                        });
-                        deferred.resolve(data); // fulfills the promise with `data` as the value
-                    };
-
-
-                    return deferred.promise; // the promise is returned
-
-
-
-                }
-
-                a(misClases).then(function(){
-                    console.log("aca6");
-                    return
-
-
-                });
-/*
-                res.send(misClases);
-
-
-
-
-
-
-
-/*
-                var x = 0;
-                var y = 0;
-                misClases.forEach(function(clase){
-                    var asyncs = [];
-                    clase.users.forEach(function (user) {
-
-                        asyncs.push(function(callback) {
-                            User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
-
-                                misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
-                                console.log(user);
-                                y++;
-                                callback();
-                            });
-                        });
-
-                    });
-                    async.series(asyncs, function(err) {
-                        if (!err) {
-                            res.send(200);
-                        }
-                    });
-                    y=0;
-                    x++;
-
-
-                });
-
-/*
-
-
-/*
-                for(var x =0; x<misClases.length ; x++){
-                    var asyncs = [];
-                    var clase = misClases[x];
-
-                    for(var y =0; y<clase.users.length ; y++){
-                        console.log(clase);
-                        var user = clase.users[y];
-                        console.log(user);
-
-                        asyncs.push(function(callback) {
-                            User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
-
-                                misClases[x].users[y].situacionAux_estaClase = local_user.clase_x_user[0].situacion;
-                                console.log(user);
-                                callback();
-                            });
-                        });
-                    }
-                    async.series(asyncs, function(err) {
-                        if (!err) {
-                            res.send(200);
-                        }NPC
-                    });
-                }
-
-*/
-/*
-                     //Recorremos cada clase: obtenemos la relacion del usuario con la clase
-                misClases.forEach(function(clase) {
-                    //Recorremos  cada user de cada clase
-
-                    clase.users.forEach(function (user) {
-
-                         User.findOne({id:user.id}).populate('clase_x_user',{user:user.id,clase:clase.id}).exec(function (err, local_user) {
-
-                             //console.log(user);
-                             //console.log(local_user.clase_x_user[0].situacion);
-                             user.situacionAux_estaClase = local_user.clase_x_user[0].situacion;
-
-                             //console.log(user);
-
-
-
-                        });
-                    });
-
-                });
-                 */
 
         });
     }
