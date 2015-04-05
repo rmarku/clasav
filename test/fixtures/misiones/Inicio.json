@@ -158,6 +158,15 @@
                 "qorder": "1"
             }
         ]
+    },
+
+    {
+        "npc": "Pirata",
+        "qorder": "0",
+        "npc_visible": "true",
+        "titulo": "Viajar",
+        "mision": "URL:listaClasesDisponibles.html"
+
     }
 ]
 

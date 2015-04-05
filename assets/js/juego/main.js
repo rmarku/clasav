@@ -31,9 +31,13 @@ var game = {
     mainPlayer: {},
     userId: 0,
     players: {},
+    clavLevelEntity: {},
     NPCs: {},
     items: {},
     sprites: {},
+    misClases:[],
+    claseActual:{},
+    claseActualId: '',
 
     nextxy: {x: 0, y: 0, direction: 0},
 
@@ -137,6 +141,8 @@ var game = {
             });
         });
 
+
+
     }
 
     ,
@@ -178,8 +184,9 @@ var game = {
         //Envio con socket para poder desuscribirlo
         io.socket.post('/api/mapa_instancia/change_level',
             {
-                mapa_generico: target_mapa_generico,
-                mapa_instancia: data.mapa_instancia.id,
+                claseID: game.claseActualId,           //No importa que se mande vacio si esta en mapa principal. El server sabe! jaj
+                mapa_generico: target_mapa_generico,    //target
+                mapa_instancia: data.mapa_instancia.id, //room actual
                 personajeId: data.id,
                 change_level_new_x: game.nextxy.x,
                 change_level_new_y: game.nextxy.y,
@@ -188,6 +195,7 @@ var game = {
             function changeLevelCB(data) {
                 game.addMainPlayer(data);
                 game.create_OtherPlayers();
+                game.get_claseActual();
             });
     }
     ,
@@ -228,8 +236,38 @@ var game = {
         me.game.world.addChild(game.mainPlayer, 10);
         me.game.world.sort();
         hud.update();
-    }
-    ,
+    },
+
+    add_clavLevelEntity: function (info){
+
+        var data            = {};
+        data.duration       = 250;
+        data.fade           = "#000000";
+        data.height         = 32;
+        data.width          = 32;
+        data.isEllipse      = false;
+        data.isPolyLine     = false;
+        data.isPolygon      = false;
+        data.name           = "clavLevelEntity";
+        data.orientation    = "orthogonal";
+        data.points         = "";
+        data.rotation       = 0;
+        data.to             = info.to;
+        data.spawn          = info.spawn;
+        data.type           = "";
+        data.x              = 0;
+        data.y              = 0;
+        data.z              = 9;
+
+        game.clavLevelEntity = me.pool.pull('clavLevelEntity', Number(data.x),
+            Number(data.y), data);
+        me.game.world.addChild(game.clavLevelEntity, 10);
+    },
+
+    travel_by_genericClavLevelEntity: function (data){
+        parent.game.add_clavLevelEntity(data);
+        game.clavLevelEntity.goTo(game.clavLevelEntity.to);
+    },
 
     /**
      * Description
@@ -360,13 +398,14 @@ var game = {
                             $("#mision_cancelar").show();
                             if (data.mision.substring(0, 4) == "URL:") {
 
-                                $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
-                                document.URL.substring(0, document.URL.length - 4) +
-                                'data/minijuegos/' +
-                                data.mision.substring(4) +
+                                $("#mision_txt").html('' +
+                                '<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
+                                    document.URL.substring(0, document.URL.length - 4)  +
+                                    'data/minijuegos/'                                  +
+                                    data.mision.substring(4)                            +
                                 '"></iframe>');
 
-                            } else {
+                            } else{
                                 $("#mision_txt").html(data.mision);
                             }
                         }
@@ -432,6 +471,23 @@ var game = {
             // Doy de baja el evento de la tecla
             me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
         }
+    },
+
+    get_misClases: function (){
+        $.get('/api/clase/get_misClases',function (clases) {
+            game.misClases = clases;
+        });
+
+    },
+
+    get_claseActual: function (){
+        $.get('/api/mapa_instancia/'+game.mainPlayer.data.mapa_instancia.id+'/clase',function (clase) {
+            game.claseActual = clase;
+            game.claseActualId = clase.id;
+        });
+
     }
+
+
 
 }; // game
