@@ -7,14 +7,22 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     $scope.user = {};
 
+    //Variables para ALUMNOS/PROFESORES//
     $scope.misClases = [];
-    $scope.misClasesSituacionEspera = [];
-    $scope.misClasesSituacionRechazado = [];
+    $scope.clasesCargadas       = false;
+    $scope.claseActual          = {"activa" : false};
+    //FIN Variables para ALUMNOS/PROFESORES//
 
-    $scope.clasesCargadas = false;
-    $scope.claseActual = {"activa" : false};
+    //Variables para ALUMNOS//
+    $scope.misClasesSituacionEspera     = [];
+    $scope.misClasesSituacionRechazado  = [];
+    //FIN Variables para ALUMNOS//
 
-
+    //Variables para ADMINISTRADORES//
+    $scope.misInstituciones             = [];
+    $scope.institucionActual          = {"activa" : false};
+    $scope.institucionesCargadas       = false;
+    //fin Variables para ADMINISTRADORES//
 
     /**
      * Description
@@ -140,7 +148,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
                 var user = clase.users[y];
 
-                for (var x = 0; x < clase.users.length; x++) {
+                for (var x = 0; x < clases_x_users.users.length; x++) {
                     var clase_x_user = clases_x_users[x];
 
                     if (clase_x_user.user.id == user.id) {
@@ -177,6 +185,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         });
         return deferred.promise;
     };
+
     $scope.definirProfesores = function (clases) {
 
         clases.forEach(function(clase) {
@@ -203,7 +212,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return userToReturn;
     };
     /////////////////////////FIN FUNCIONES DE CLASES
-
 
 
     ///// SOCKETS

@@ -71,6 +71,20 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'solicitarClaseController'
     });
     //<!--FIN RUTAS ALUMNO-->
+    //<!--RUTAS ADMINISTRADOR-->
+    $routeProvider.when('/institucionesAdministrador', {
+        template: JST["assets/templates/administrador/instituciones.html"],
+        controller: 'institucionesAdministradorController'
+    });
+    $routeProvider.when('/verProfesores', {
+        template: JST["assets/templates/administrador/verProfesores.html"],
+        controller: 'verProfesoresController'
+    });
+    $routeProvider.when('/verSolicitudesProfesores', {
+        template: JST["assets/templates/administrador/verSolicitudes.html"],
+        controller: 'verSolicitudesProfesoresController'
+    });
+    //<!--FIN RUTAS ADMINISTRADOR-->
 
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]

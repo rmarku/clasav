@@ -1,0 +1,86 @@
+<br>
+<br>
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+        <div class="page-header" align="center" style="margin-top: 0px">
+
+            <b class="titulos">
+                Instituciones
+            </b>
+        </div>
+
+        <div>
+            <button class="btn btn-default btn-align" ng-click="crearClase()">Crear Clase</button>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div >
+                    <br>
+
+                    <table class="table table-striped table-hover table" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Institución</th>
+                            <th class="text-center" style="width: 180px">Ciudad</th>
+                            <th class="text-center" style="width: 180px">Dirección</th>
+                            <th class="text-center" style="width: 180px">Provincia</th>
+                            <th class="text-center" style="width: 180px">País</th>
+                            <th class="text-center" style="width: 180px">Profesores</th>
+                            <th class="text-center" style="width: 180px">Solicitudes</th>
+                            <th class="text-center" style="width: 180px">Ingresar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="institucion in $parent.misInstituciones ">
+                            <td >
+                              <span>
+                                {{ institucion.nombre}}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ institucion.ciudad  || ' '}}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ institucion.direccion || ' ' }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ institucion.provincia || ' ' }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ institucion.pais || ' ' }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ institucion.profesores_situacionAceptado.length|| 0 }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                              <span >
+                                {{ institucion.profesores_situacionEspera.length || 0 }}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                                <span class="fa fa-sign-in" ng-click="set_institucionActual($index)">
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -125,18 +125,30 @@
         <!--FIN DE BOTONERA ALUMNO-->
 
         <!--BOTONERA PROFESOR-->
-        <%if(user.tipo == 'profesor'){%>
+        <%else if(user.tipo == 'profesor'){%>
 
         <div class="btn-group botonera" >
             <a href="#/" class="btn btn-default">Home</a>
             <a href="#/clasesProfesor" class="btn btn-default">Clases</a>
 
-            <a ng-class="{active:isActive('/dashboard')}" ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
-            <a id="button_navBar_solicitudes"ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
+            <a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
+            <a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
         </div>
 
         <%}%>
         <!--FIN DE BOTONERA PROFESOR-->
+        <!--BOTONERA PROFESOR-->
+        <%else if(user.tipo == 'administrador'){%>
+
+        <div class="btn-group botonera" >
+            <a href="#/" class="btn btn-default">Home</a>
+            <a href="#/institucionesAdministrador" class="btn btn-default">Clases</a>
+
+        </div>
+
+        <%}%>
+        <!--FIN DE BOTONERA PROFESOR-->
+
 
     <%}%>
 
