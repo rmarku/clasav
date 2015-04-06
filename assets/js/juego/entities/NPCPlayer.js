@@ -16,7 +16,6 @@ game.NPCPlayer = me.Entity.extend({
                     width: self.data.width,
                     height: self.data.height
                 };
-                console.log(sett);
                 self._super(me.Entity, 'init', [x, y, sett]);
 
                 self.alwaysUpdate = false;
@@ -28,7 +27,9 @@ game.NPCPlayer = me.Entity.extend({
                 self.renderable = new me.AnimationSheet(0, 0, {
                     "image": me.loader.getImage('npc/' + self.data.sprite + '.png'),
                     "spritewidth": self.data.width,
-                    "spriteheight": self.data.height
+                    "spriteheight": self.data.height,
+                    "framewidth": self.data.width,
+                    "frameheight": self.data.height
                 });
 
                 self.body.collisionType = me.collision.types.NPC_OBJECT;
@@ -93,8 +94,6 @@ game.NPCPlayer = me.Entity.extend({
         renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
             ~~(this.pos.y + 10));
-
-        renderer.fillRect(this.pos.x - 1, this.pos.y - 1, 2, 2);
     },
 
     /**
@@ -130,8 +129,10 @@ game.NPCPlayer = me.Entity.extend({
     updateInfo: function () {
         // Traigo datos del quest (si es visible en este momento o no)
         var self = this;
-        $.get('api/misiones/info?npc=' + this.data.nombre,
+        console.log (this.data.nombre + ' update');
+        return $.get('api/misiones/info?npc=' + this.data.nombre,
             function (data) {
+                console.log (self.data.nombre + ' update Terminado');
                 if (typeof data.npc_visible != 'undefined' && data.npc_visible === false)
                     self.isRenderable = false;
                 else

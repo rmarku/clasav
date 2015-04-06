@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="680">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="681">
  <tileset firstgid="1" name="RPGmakerXPMegaTilesetByLmnopguy7" tilewidth="32" tileheight="32">
   <image source="tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png" width="256" height="15300"/>
  </tileset>
@@ -163,14 +163,6 @@
   </data>
  </layer>
  <objectgroup color="#15ff00" name="Triggers">
-  <object id="297" name="clavLevelEntity" x="2176" y="3072" width="32" height="64">
-   <properties>
-    <property name="duration" value="250"/>
-    <property name="fade" value="#000000"/>
-    <property name="spawn" value="from_city"/>
-    <property name="to" value="island"/>
-   </properties>
-  </object>
   <object id="625" name="clavLevelEntity" x="1024" y="672" width="64" height="64">
    <properties>
     <property name="duration" value="250"/>
@@ -649,10 +641,10 @@
   </properties>
  </imagelayer>
  <objectgroup color="#ffb300" name="Spawns">
-  <object id="296" x="2176" y="3008" width="32" height="32">
+  <object id="296" x="2175" y="3011" width="32" height="32">
    <properties>
     <property name="direction" value="run-up"/>
-    <property name="spawn" value="from_island"/>
+    <property name="spawn" value="island"/>
    </properties>
   </object>
   <object id="650" x="2912" y="2368" width="32" height="32">
@@ -740,5 +732,12 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup color="#ff0000" name="NPCs"/>
+ <objectgroup color="#ff0000" name="NPCs">
+  <object id="680" name="NPCPlayer" x="2207.5" y="2940" width="35" height="36">
+   <properties>
+    <property name="nombre" value="Pirata"/>
+    <property name="z" value="9"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

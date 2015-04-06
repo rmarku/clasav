@@ -49,7 +49,7 @@ hud = {
             ene.setAttribute('aria-valuemax', max);
             $('#PJenergia').css('width', val * 100 / max + '%');
 
-            max = Math.pow(game.mainPlayer.data.nivel, 1.6) * 100;
+            max = (game.mainPlayer.data.nivel + game.mainPlayer.data.nivel / 2) * 100;
             val = game.mainPlayer.data.experiencia;
             exp.setAttribute('aria-valuenow', val);
             exp.setAttribute('aria-valuemax', max);
@@ -72,29 +72,49 @@ hud = {
         },
         update: function () {
             $.getJSON("api/item/getItemsPJ", function (data) {
+                var pj = game.mainPlayer.data;
                 document.getElementById('items').innerHTML = '';
                 data.forEach(function (it) {
-                    var item = game.items[it.item];
-                    var icono = game.sprites[item.sprite].icono;
+                    var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
+                    var no_vestido = false;
 
-                    var img = new Image();
-
-                    img.onload = function () {
-                        var cnv = tintImage(img, item.color);
-                        var div = document.createElement('div');
-                        div.setAttribute('class','itemInv'); //<div class="itemInv" >
-                        var ic = document.createElement('img');
-                        ic.setAttribute('src',cnv.toDataURL());
-                        ic.setAttribute('title',item.nombre);
-                        div.appendChild(ic);
-                        if (item.maximo > 1) {
-                            var span = document.createElement('span');
-                            span.innerHTML = it.cantidad;
-                            div.appendChild(span);
+                    // Me fijo que no este vestido
+                    for (var i = 0; i < cuerpo.length; i++) {
+                        if (pj[cuerpo[i]] && it.id == pj[cuerpo[i]].id) {
+                            no_vestido = false;
+                            break;
                         }
-                        document.getElementById('items').appendChild(div);
-                    };
-                    img.src = 'data/sprites/' + icono;
+                    }
+
+                    // Si no lo esta usando el PJ, lo pongo en el inventario
+                    if (no_vestido) {
+                        var item = game.items[it.item];
+                        var icono = game.sprites[item.sprite].icono;
+
+                        var img = new Image();
+
+                        img.onload = function () {
+                            var cnv = tintImage(img, item.color);
+                            //div que contiene la imagen
+                            var div = document.createElement('div');
+                            div.setAttribute('class', 'itemInv'); //<div class="itemInv" >
+
+                            //imagen
+                            var ic = document.createElement('img');
+                            ic.setAttribute('src', cnv.toDataURL());
+                            ic.setAttribute('title', item.nombre);
+
+                            div.appendChild(ic);
+                            // Numero si hay maximos
+                            if (item.maximo > 1) {
+                                var span = document.createElement('span');
+                                span.innerHTML = it.cantidad;
+                                div.appendChild(span);
+                            }
+                            document.getElementById('items').appendChild(div);
+                        };
+                        img.src = 'data/sprites/' + icono;
+                    }
                 });
             });
         }
@@ -184,6 +204,64 @@ hud = {
             var canvas = document.getElementById('PJimage');
             var ctx = canvas.getContext("2d");
             ctx.drawImage(game.mainPlayer.renderable.image, 0, 0);
+        }
+    },
+
+    movil: {
+        init: function () {
+
+            // Teclas del hub
+            ['izq', 'der', 'arr', 'aba', 'accion'].forEach(function (item) {
+                var el = document.getElementById('movil-' + item);
+                el.addEventListener('touchstart', hud.movil.touchstart);
+                el.addEventListener('touchmove', hud.movil.touchstart);
+            });
+            document.getElementById('movil').addEventListener('touchend', hud.movil.touchend);
+
+            window.scrollTo(0, 1);
+            // escondo chat y amigos
+            $("#ChatGame").animate({'height': '30px'}, 400);
+
+            $("#ventAmigos").animate({'height': '23px'}, 400).css('max-height', '170px').css('margin', '0px');
+            $('.questModal').css('top', '0');
+
+            //acomodo el minimap
+            $("#miniMap").css('zoom', '0.5').css('top', '46px');
+
+            $('#movil').css('display', 'block');
+
+        },
+        touchstart: function (ev) {
+            var key = me.input.KEY.SPACE;
+            switch (ev.currentTarget.id.substring(6)) {
+                case 'izq':
+                    key = me.input.KEY.LEFT;
+                    break;
+                case 'der':
+                    key = me.input.KEY.RIGHT;
+                    break;
+                case 'arr':
+                    key = me.input.KEY.UP;
+                    break;
+                case 'aba':
+                    key = me.input.KEY.DOWN;
+                    break;
+            }
+            hud.movil.touchend();
+            me.input.triggerKeyEvent(key, true);
+            ev.stopPropagation();
+            ev.preventDefault();
+        },
+        touchend: function (ev) {
+            [
+                me.input.KEY.LEFT,
+                me.input.KEY.RIGHT,
+                me.input.KEY.UP,
+                me.input.KEY.DOWN,
+                me.input.KEY.SPACE
+            ].forEach(function (item) {
+                    me.input.triggerKeyEvent(item, false);
+                });
         }
     }
 };

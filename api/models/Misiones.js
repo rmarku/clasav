@@ -34,16 +34,14 @@ module.exports = {
         pregunta: 'string',
         mision: 'string',   // URL:www.google.com.ar
 
-
         no_paso: 'string',
         paso: 'string',
+        no_cerrar: 'boolean',
 
         // Recompensas
         reco_energia: 'integer',
         reco_experiencia: 'integer',
-        reco_item: {
-            model: 'item'
-        },
+        reco_item: 'string',
         reco_item_cant: 'integer',
         reco_oro: 'integer',
 
@@ -51,12 +49,12 @@ module.exports = {
         new_mission: 'string'
         /* Array
          [ {
-             "resultado":"4",   // Solo lo  hace si el resultado es 4
-             "npc": "anna",
-             "qorder": 5
-             }, {
-             "npc": "kitty",
-             "qorder": 2
+         "resultado":"4",   // Solo lo  hace si el resultado es 4
+         "npc": "anna",
+         "qorder": 5
+         }, {
+         "npc": "kitty",
+         "qorder": 2
          } ]
          */
 
@@ -88,9 +86,11 @@ module.exports = {
                     // obtengo el orden y el npc
                     Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).exec(function (err, misi) {
                         if (!misi) return reject('Mision no encontrada');
-                        resolve({misi:misi, mxp:mxp, pj:pj});
+                        resolve({misi: misi, mxp: mxp, pj: pj});
                     });
                 });
+            }).catch(function (err) {
+                reject(err);
             });
         });
     },

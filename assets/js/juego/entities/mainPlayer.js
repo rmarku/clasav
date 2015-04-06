@@ -33,6 +33,7 @@ game.PlayerEntity = game.Player.extend({
             this.pos.y = game.nextxy.y;
             this.animationToUseThisFrame = game.nextxy.direction;
         }
+        this.alwaysUpdate = true;
     },
 
     /**
@@ -98,36 +99,14 @@ game.PlayerEntity = game.Player.extend({
             else
                 this.direccion &= ~1;
         }
-
-        this._super(game.Player, 'update', [dt]);
+        me.collision.check(this);
         me.game.world.sort();
+
         server.update_myPlayer();
         // Dibujo en el minimapa
         minimap.drawPointsMinimap();
+        return (this._super(game.Player, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
     },
-    /**
-     * Description
-     * @method draw
-     * @param {} renderer
-     * @return
-     */
-    draw: function (renderer) {
-        //var context = renderer.getContext();
-        this._super(game.Player, 'draw', [renderer]);
-
-        renderer.fillStyle = 'blue';
-        renderer.fillRect(this.pos.x - 1, this.pos.y - 1, 2, 2);
-
-        //renderer.fillStyle = 'blue';
-        //var x, y;
-        //for (x = 0; x < me.astar.grid.length; x++) {
-        //    for (y = 0; y < me.astar.grid[x].length; y++) {
-        //        if (me.astar.grid[x][y].type == 0)
-        //            renderer.fillRect(x * me.astar.tw, y *me.astar.th, 5, 5);
-        //    }
-        //}
-    },
-
 
     updateData: function () {
         // Traigo datos del quest (si es visible en este momento o no)

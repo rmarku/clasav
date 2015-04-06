@@ -3,7 +3,7 @@
  */
 app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
-    $scope.aceptarAlumnoEnClase = function (user) {
+    $scope.aceptarAlumnoEnClase = function (user,index) {
 
         $.get("/api/clase_x_user/set_situacion",
             {
@@ -17,14 +17,14 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
                     return;
                 }
                 $scope.$parent.claseActual.users_situacionAceptado.push(user);
-                $scope.$parent.claseActual.users_situacionEspera.pop(user);
+                $scope.$parent.claseActual.users_situacionEspera.splice(index, 1);
                 $scope.$parent.clasesCargadas = false;
                 toastr.info('Usuario Aceptado!');
             }
         );
     };
 
-    $scope.rechazarAlumnoEnClase = function(user) {
+    $scope.rechazarAlumnoEnClase = function(user,index) {
 
         $.get("/api/clase_x_user/set_situacion",
             {
@@ -38,7 +38,7 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
                     return;
                 }
                 $scope.$parent.claseActual.users_situacionRechazado.push(user);
-                $scope.$parent.claseActual.users_situacionEspera.pop(user);
+                $scope.$parent.claseActual.users_situacionEspera.splice(index, 1);
                 $scope.$parent.clasesCargadas = false;
                 toastr.info('Usuario Aceptado!');
             }

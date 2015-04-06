@@ -52,8 +52,9 @@ module.exports = {
 
     change_level: function (req,res) {
 
+        var claseTargetID = req.param('claseID');
         var previo_roomName = req.param('mapa_instancia');
-        var nuevo_mapa_generico = req.param('mapa_generico');
+        var nombre_mapaTarget = req.param('mapa_generico');
         var personajeId = req.param('personajeId');
         var change_level_new_x = req.param('change_level_new_x');
         var change_level_new_y = req.param('change_level_new_y');
@@ -64,79 +65,145 @@ module.exports = {
 
         console.log("OtherPlayer Leave. PlayerId: ",personajeId);
 
-        /*
-        Mapa_instancia.findOne(previo_roomName).exec(function findCB(err,mapa_instancia){
-            console.log("mapa_instancia encontrado: ");
-            console.log(mapa_instancia);
-            if(mapa_instancia) {
-                var user = req.session.passport.user;
-                console.log(user);
-                mapa_instancia.personajes.remove(user);
-                mapa_instancia.save(console.log);
-            }
-        });
-        */
+        var mapa_instancia;
+        var succesfull;
 
-        Mapa_instancia.find().populate('mapa_generico').exec(function afterUpdate(err,mapas_instancias) {
 
-            if(mapas_instancias) {
-                var mapa_instancia;
-                var succesfull;
+
+        ////////////////////// SI VIAJO A MAPA PRINCIPAL ///////////////////
+        if(nombre_mapaTarget == 'ciudad'){
+            Mapa_instancia.findOne({nombre:'ciudad'}).exec(function (err,mapa_instanciaLocal){
+
+                if (err || !mapa_instanciaLocal) {
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+
+                mapa_instancia = mapa_instanciaLocal;
+
+                //Cambio el mapa_instancia actual del personaje
+                Personaje.update(personajeId,
+                    {
+                        mapa_instancia: mapa_instancia.id,
+                        x: change_level_new_x,
+                        y: change_level_new_y,
+                        animation: change_level_new_animation
+                    }
+                ).exec(function afterwards(err, updated) {
+
+                        if (!updated || err) {
+                            console.log("hubo un error en personjae.update");
+
+                            return res.json(null);
+                        }
+                        //Una vez que se actualizo la base de datos
+                        //Me agrego al Room Nuevo para que los demas obtengan mis actualizaciones
+                        sails.sockets.join(req.socket, mapa_instancia.id);
+                        console.log("OtherPlayer Join on LevelChange. PlayerId: ", personajeId, " to Mapa_instanciaId: ", mapa_instancia.id);
+
+                        Personaje.findOne(personajeId).populateAll().exec(function (err, personaje) {
+                            if (personaje) {
+                                Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
+                                    if (populated_mapa_instancia) {
+                                        personaje.mapa_instancia = populated_mapa_instancia;
+                                        //Hago broadcast a todos los que esten en la Room del Mapa_instancia que acabo de ingresar
+                                        sails.sockets.broadcast(mapa_instancia.id, 'otherPlayer_join', personaje, req.socket);
+
+                                        console.log("se encontro este id de mapa_instancia:", mapa_instancia.id);
+                                        //Retorno el player
+                                        return res.json(personaje);
+                                    }
+                                });
+                            }
+                            else {
+                                console.log("hubo un error en personjae.update2");
+                                return res.json(null);
+                            }
+                        });
+                    });
+
+            });
+        }
+
+        ////////////////////// FIN SI VIAJO A MAPA PRINCIPAL ///////////////////
+
+        ////////////////////// SI VIAJO A UN MAPA DE UNA CLASE ///////////////////
+        else {
+
+
+            Mapa_instancia.find().populate('mapa_generico').exec(function afterUpdate(err, mapas_instancias) {
+                if (err || !mapas_instancias) {
+                    return res.json(null);
+                }
+
                 while (mapas_instancias.length) {
-                    mapa_instancia = mapas_instancias.pop();
 
-                    //Si el mapa_instancia es el que esta relacionado al mapa generico
-                    if (mapa_instancia.mapa_generico.nombre.toLowerCase() === nuevo_mapa_generico.toLowerCase()) {
+                    mapa_instancia = mapas_instancias.pop();
+                    //Si el mapa_instancia es el que esta relacionado al mapaTarget
+                    if ((mapa_instancia.mapa_generico.nombre.toLowerCase() === nombre_mapaTarget.toLowerCase() ) && (mapa_instancia.clase == claseTargetID )) {
                         succesfull = true;
+                        console.log('se encontro una clase !! ');
+
                         break;
                     }
                 }
+
                 //Variable hecha para que Grunt no se queje de que pongo una funcion dentro de un Loop
-                if(succesfull){
+                if (!succesfull) {
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
 
-                    //Cambio el mapa_instancia actual del personaje
-                    Personaje.update(personajeId,
-                        {
-                            mapa_instancia:mapa_instancia.id,
-                            x:change_level_new_x,
-                            y:change_level_new_y,
-                            animation:change_level_new_animation
+                //Cambio el mapa_instancia actual del personaje
+                Personaje.update(personajeId,
+                    {
+                        mapa_instancia: mapa_instancia.id,
+                        x: change_level_new_x,
+                        y: change_level_new_y,
+                        animation: change_level_new_animation
+                    }
+                ).exec(function afterwards(err, updated) {
+
+                        if (!updated || err) {
+                            console.log("hubo un error en personjae.update");
+
+                            return res.json(null);
                         }
-                    ).exec(function afterwards(err,updated){
+                        //Una vez que se actualizo la base de datos
+                        //Me agrego al Room Nuevo para que los demas obtengan mis actualizaciones
+                        sails.sockets.join(req.socket, mapa_instancia.id);
+                        console.log("OtherPlayer Join on LevelChange. PlayerId: ", personajeId, " to Mapa_instanciaId: ", mapa_instancia.id);
 
-                            if(!updated || err){
-                                console.log("hubo un error en personjae.update");
+                        Personaje.findOne(personajeId).populateAll().exec(function (err, personaje) {
+                            if (personaje) {
+                                Mapa_instancia.findOne({id:personaje.mapa_instancia.id}).exec(function (err, populated_mapa_instancia) {
+                                    if (populated_mapa_instancia) {
+                                        personaje.mapa_instancia = populated_mapa_instancia;
+                                        //Hago broadcast a todos los que esten en la Room del Mapa_instancia que acabo de ingresar
+                                        sails.sockets.broadcast(mapa_instancia.id, 'otherPlayer_join', personaje, req.socket);
 
+                                       //console.log("se encontro este id de mapa_instancia:", mapa_instancia.id);
+                                        //Retorno el player
+                                        return res.json(personaje);
+                                    }
+                                });
+                            }
+                            else {
+                                console.log("hubo un error en personjae.update2");
                                 return res.json(null);
                             }
-                            //Una vez que se actualizo la base de datos
-                            //Me agrego al Room Nuevo para que los demas obtengan mis actualizaciones
-                            sails.sockets.join(req.socket, mapa_instancia.id);
-                            console.log("OtherPlayer Join on LevelChange. PlayerId: ",personajeId," to Mapa_instanciaId: ",mapa_instancia.id);
-
-                            Personaje.findOne(personajeId).populateAll().exec(function (err, personaje) {
-                                if(personaje){
-                                    Mapa_instancia.findOne({mapa_generico:personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
-                                        if(populated_mapa_instancia){
-                                            personaje.mapa_instancia = populated_mapa_instancia;
-                                            //Hago broadcast a todos los que esten en la Room del Mapa_instancia que acabo de ingresar
-                                            sails.sockets.broadcast(mapa_instancia.id, 'otherPlayer_join', personaje, req.socket);
-
-                                            console.log("se encontro este id de mapa_instancia:",mapa_instancia.id);
-                                            //Retorno el player
-                                            return res.json(personaje);
-                                        }
-                                    });
-                                }
-                                else{
-                                    console.log("hubo un error en personjae.update2");
-                                    return res.json(null);
-                                }
-                            });
+                        });
                     });
-                }
-            }
-        });
+
+
+            });
+        }
+        ////////////////////// fin SI VIAJO A UN MAPA DE UNA CLASE ///////////////////
+
+
+
     }
 
 };
