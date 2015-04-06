@@ -1,4 +1,20 @@
 [
+        {
+        "npc": "melisa",
+        "qorder": "0",
+        "img_quest": "melisa.png",
+        "npc_visible": "true",
+        "titulo": "Quieres comprar?",
+        "pregunta":"Deseas comprar algo? Haz click en el item que deseas comprar",
+        "mision": "URL:test/mercado.html",
+        "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+        "new_mission": [
+            {
+                "npc": "melisa",
+                "qorder": "10"
+            }
+        ]
+    },
     {
         "npc": "Carlos",
         "qorder": "1",
