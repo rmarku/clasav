@@ -78,19 +78,20 @@ module.exports = {
                     personaje: pj.id,
                     npc: npcNombre,
                     mapa_instancia: pj.mapa_instancia.id
-                }).exec(function (err, mxp) {
-
-                    if (err) return reject(err);
-                    if (!mxp) return reject("Mision no encontrada");
+                }).then(function (mxp) {
+                    if (!mxp)
+                        return reject("Mision no encontrada");
 
                     // obtengo el orden y el npc
-                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).exec(function (err, misi) {
-                        if (!misi) return reject('Mision no encontrada');
-                        resolve({misi: misi, mxp: mxp, pj: pj});
+                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).then(function (misi) {
+                        if (!misi)
+                            return reject('Mision no encontrada');
+
+                        return resolve({misi: misi, mxp: mxp, pj: pj});
                     });
                 });
             }).catch(function (err) {
-                reject(err);
+                return reject(err);
             });
         });
     },

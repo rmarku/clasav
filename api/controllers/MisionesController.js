@@ -5,6 +5,9 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var Promesa = require('bluebird');
+
+
 module.exports = {
     gettxt: function (req, res) {
         var userId = req.session.passport.user;
@@ -28,7 +31,7 @@ module.exports = {
             if (misi.cond_oro && mxp.personaje.oro < misi.cond_oro)
                 return res.json({falta: misi.no_oro});
 
-            // TODO: Ver como hacer con la busqueda de un item como condicion
+
             Item.findOne({nombre: misi.cond_item}).exec(function (err, it) {
                 if (err) {
                     sails.log.error('error el item: ' + misi.cond_item + ' no existe');
@@ -37,6 +40,9 @@ module.exports = {
                 var search = {};
                 if (typeof it !== 'undefined')
                     search.item = it.id;
+                else
+                    search.item = '-1';
+
                 search.personaje = pj.id;
                 search.usando = false;
 
@@ -47,7 +53,7 @@ module.exports = {
                         return res.json({err: err});
                     }
                     // si hay condicion y no hay item
-                    if (misi.cond_item && (typeof inst.id === 'undefined' || (misi.cond_item_cant && misi.cond_item_cant < inst.cantidad )))
+                    if (misi.cond_item  && typeof inst === 'undefined' && misi.cond_item_cant < inst.cantidad )
                         return res.json({falta: misi.no_item});
 
 
@@ -105,7 +111,7 @@ module.exports = {
             if (misi.cond_oro)
                 pj.oro -= misi.cond_oro;
 
-            // TODO: ver como descontar item async
+
 
             // Doy
             if (misi.reco_oro)
@@ -138,48 +144,59 @@ module.exports = {
 
             // habilito el flujo de misiones que siguen.
             var new_misiones = JSON.parse(misi.new_mission);
+
+            var npc_promises = [];
+            var npc_changed = [];
+
             new_misiones.forEach(function (valor) {
 
                 // Solo si no requiere resultado o si el resultado es el de sta mision
                 if (typeof valor.resultado == 'undefined' || resultado == valor.resultado) {
-                    Npcplayer.findOne({nombre: valor.npc}).exec(function (err, npc) {
-                        if (err || !npc) return res.json({err: 'No se encontro el npc :(' + err});
+                    npc_promises.push(new Promesa(function (resolve, reject) {
+                        Npcplayer.findOne({nombre: valor.npc}).then(function (npc) {
+                            if (!npc) return reject('No se encontro el NPC :(');
 
-                        sails.log(npc.nombre + ' con ' + pj.id + ' cambiada a ' + valor.qorder);
-                        Misiones_x_Personaje.findOrCreate({
-                            where: {
+                            sails.log(npc.nombre + ' con ' + pj.id + ' cambiada a ' + valor.qorder);
+                            // Busco el estado de esa mision o lo creo con el qoder
+                            Misiones_x_Personaje.findOrCreate({
+                                where: {
+                                    personaje: pj.id,
+                                    npc: npc.nombre,
+                                    mapa_instancia: pj.mapa_instancia.id
+                                },
+                                sort: 'qorder DESC',
+                                limit: 1
+                            }, {
                                 personaje: pj.id,
                                 npc: npc.nombre,
-                                mapa_instancia: pj.mapa_instancia.id
-                            },
-                            sort: 'qorder DESC',
-                            limit: 1
-                        }, {
-                            personaje: pj.id,
-                            npc: npc.nombre,
-                            mapa_instancia: pj.mapa_instancia.id,
-                            qorder: valor.qorder
-                        }).exec(function (err, mxp) {
-                            if (err) {
-                                sails.log.error('Error al cambiar de mision ' + npc.nombre + ' pj:' + pj.nombre + ' qorder:' + valor.qorder);
-                                return res.json({err: 'Error sector 7'});
-                            }
+                                mapa_instancia: pj.mapa_instancia.id,
+                                qorder: valor.qorder
+                            }).then(function (mxp) {
+                                if (!mxp) {
+                                    sails.log.error('Error al cambiar de mision ' + npc.nombre + ' pj:' + pj.nombre + ' qorder:' + valor.qorder);
+                                    return reject('Error MisionXPj no encontrada por ahí');
+                                }
+                                npc_changed.push(npc.id);
 
-                            mxp.qorder = valor.qorder;
-                            mxp.save();
+                                mxp.qorder = valor.qorder;
+                                mxp.save();
+                                return resolve(npc);
+                            });
                         });
-                    });
+                    }));
                 }
             });
-            pj.save();
-            return res.json({result: 'si', txt: misi.paso, cerrar: !misi.no_cerrar});
+            Promesa.all(npc_promises).then(function () {
+                pj.save();
+                return res.json({result: 'si', txt: misi.paso, cerrar: !misi.no_cerrar, npcs: npc_changed});
+            });
         }).catch(function (err) {
             sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
             return res.json({err: err});
         });
     },
 
-    // Informo que temino la mision y el resultado.
+// Informo que temino la mision y el resultado.
     info: function (req, res) {
         var userId = req.session.passport.user;
         var npcName = req.param('npc');
@@ -207,5 +224,6 @@ module.exports = {
             });
         });
     }
-};
+}
+;
 
