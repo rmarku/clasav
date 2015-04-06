@@ -53,7 +53,7 @@ module.exports = {
                         return res.json({err: err});
                     }
                     // si hay condicion y no hay item
-                    if (misi.cond_item  && typeof inst === 'undefined' && misi.cond_item_cant < inst.cantidad )
+                    if (misi.cond_item  && (typeof inst === 'undefined' || misi.cond_item_cant < inst.cantidad ))
                         return res.json({falta: misi.no_item});
 
 
@@ -130,7 +130,7 @@ module.exports = {
             }
             if (misi.reco_item)
                 Item.findOne({nombre: misi.reco_item}).exec(function (err, item) {
-                    if (err || !npc) {
+                    if (err || !item) {
                         sails.log.warn('No se encontro el item recompensa "' + misi.reco_item +
                         '" en la mision de  ' + npcName + ', qorder ' + misi.qorder);
                         return res.json({err: 'No se encontro el item ' + err});
@@ -192,7 +192,7 @@ module.exports = {
             });
         }).catch(function (err) {
             sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
-            return res.json({err: err});
+            return res.json({err: JSON.stringify(err)});
         });
     },
 
