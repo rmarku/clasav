@@ -103,7 +103,7 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares? 3",
-        "pregunta":"Cada vez conoces mas de por aquie Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la pequeña melisa, y comprale una pocion de energia!",
+        "pregunta":"Cada vez conoces mas de por aquie Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la pequeï¿½a melisa, y comprale una pocion de energia!",
         "cond_energia": "5",
         "new_mission": [
             {
@@ -166,7 +166,6 @@
         "npc_visible": "true",
         "titulo": "Viajar",
         "mision": "URL:listaClasesDisponibles.html"
-
     }
 ]
 
