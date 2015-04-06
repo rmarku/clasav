@@ -302,17 +302,5 @@
     <property name="z" value="9"/>
    </properties>
   </object>
-  <object id="75" name="NPCPlayer" x="351" y="320" width="31" height="30">
-   <properties>
-    <property name="nombre" value="paco"/>
-    <property name="z" value="9"/>
-   </properties>
-  </object>
-  <object id="76" name="NPCPlayer" x="542" y="477" width="33" height="34">
-   <properties>
-    <property name="nombre" value="melisa"/>
-    <property name="z" value="9"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>
