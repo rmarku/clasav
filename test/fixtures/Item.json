@@ -54,4 +54,11 @@
 		"sprite": "8",
 		"color": "#A29C82"
 	}
+	, {
+		"nombre": "libro",
+		"tipo_item": "sombrero",
+		"maximo": "1",
+		"sprite": "10",
+		"color": "#A29C82"
+	}
 ]
