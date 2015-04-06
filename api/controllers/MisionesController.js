@@ -31,7 +31,7 @@ module.exports = {
             if (misi.cond_oro && mxp.personaje.oro < misi.cond_oro)
                 return res.json({falta: misi.no_oro});
 
-            // TODO: Ver como hacer con la busqueda de un item como condicion
+
             Item.findOne({nombre: misi.cond_item}).exec(function (err, it) {
                 if (err) {
                     sails.log.error('error el item: ' + misi.cond_item + ' no existe');
@@ -40,6 +40,9 @@ module.exports = {
                 var search = {};
                 if (typeof it !== 'undefined')
                     search.item = it.id;
+                else
+                    search.item = '-1';
+
                 search.personaje = pj.id;
                 search.usando = false;
 
@@ -50,7 +53,7 @@ module.exports = {
                         return res.json({err: err});
                     }
                     // si hay condicion y no hay item
-                    if (misi.cond_item && (typeof inst.id === 'undefined' || (misi.cond_item_cant && misi.cond_item_cant < inst.cantidad )))
+                    if (misi.cond_item  && typeof inst === 'undefined' && misi.cond_item_cant < inst.cantidad )
                         return res.json({falta: misi.no_item});
 
 
@@ -108,7 +111,7 @@ module.exports = {
             if (misi.cond_oro)
                 pj.oro -= misi.cond_oro;
 
-            // TODO: ver como descontar item async
+
 
             // Doy
             if (misi.reco_oro)
