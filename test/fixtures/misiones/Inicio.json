@@ -32,8 +32,6 @@
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares?",
         "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella, siendo nuevo, es bueno hacer amigos.",
-        "paso": "Me caes bien, MiaU!! Te daria mi bola de estambre... Mmmm, pero no se si te seria util...",
-        "no_paso": "Oh! Deberias ir a la biblioteca!",
         "cond_energia": "5",
         "new_mission": [
             {
@@ -49,8 +47,35 @@
         "npc_visible": "true",
         "titulo": "Bienvenido a la Biblioteca!",
         "pregunta":"Hola Jovencito! Esta es la biblioteca. Aqui podras encontrar cientos de libros interesantes para leer. Puedes ayudarme y pasarme ese libro que esta sobre la mesa?",
+        "new_mission": [
+            {
+                "npc": "SraBibliotecaria",
+                "qorder": "2"
+            },
+            {
+                "npc": "libro",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "libro",
+        "qorder": "1",
+        "img_quest": "libro.png",
+        "npc_visible": "true",
+        "reco_item": "libro",
+        "reco_item_cant": "1"
+    },
+    {
+        "npc": "SraBibliotecaria",
+        "qorder": "2",
+        "img_quest": "sraBibliotecaria.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a la Biblioteca!",
+        "cond_item": "libro",
+        "cond_item_cant": "1",
         "paso": "Muchas Gracias!! Supongo que debes volver con Kitty! Buena suerte!",
-        "no_paso": "Alcanzame el libro sobre la mesa por favor!",
+        "no_item": "Alcanzame el libro sobre la mesa por favor!",
         "cond_energia": "10",
         "reco_oro": "10",
         "new_mission": [
@@ -59,12 +84,6 @@
                 "qorder": "2"
             }
         ]
-    },
-    {
-        "npc": "libro",
-        "qorder": "1",
-        "img_quest": "libro.png",
-        "npc_visible": "true"
     },
     {
         "npc": "Kitty",
@@ -86,10 +105,12 @@
         "qorder": "1",
         "img_quest": "paco.png",
         "npc_visible": "true",
-        "titulo": "Bienvenido a la Escuela!",
+        "titulo": "Bienvenido a la escuela!",
         "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
         "paso": "De recompensa te dare esta camisa. Es parte del uniforme del colegio. Mandale saludos a Kitty de mi parte!",
-        "cond_energia": "2",
+        "cond_energia": "5",
+        "reco_item": "Remera Corta",
+        "reco_item_cant": "1",
         "new_mission": [
             {
                 "npc": "Kitty",
@@ -103,7 +124,7 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares? 3",
-        "pregunta":"Cada vez conoces mas de por aquie Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la peque�a melisa, y comprale una pocion de energia!",
+        "pregunta":"Cada vez conoces mas de por aqui Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la pequena melisa, y comprale una pocion de energia!",
         "cond_energia": "5",
         "new_mission": [
             {
@@ -150,16 +171,15 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares? 4",
-        "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con un marinero y viaja a lugares distantes!!",
+        "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con un pirata y viaja a lugares distantes!!",
         "cond_energia": "5",
         "new_mission": [
             {
-                "npc": "marinero",
+                "npc": "Pirata",
                 "qorder": "1"
             }
         ]
     },
-
     {
         "npc": "Pirata",
         "qorder": "0",

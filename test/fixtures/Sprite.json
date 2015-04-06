@@ -53,5 +53,11 @@
 		"xoffset": 0,
 		"yoffset": 0,
 		"zIndex": 10
+	}, {
+		"imagen": "foot.png",
+		"icono": "items/nep/15_libro.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
 	}
 ]
