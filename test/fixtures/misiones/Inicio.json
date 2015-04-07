@@ -12,7 +12,7 @@
         "titulo": "Bienvenido a Clases y Aventuras!",
         "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar A S D W o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
         "paso": "Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui. Luego podras ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a Kitty que aparezca para que te de una misión. Suerte!",
-        "reco_oro": "500",
+        "reco_oro": "5000",
         "reco_experiencia": "10",
         "new_mission": [
         	{
@@ -123,7 +123,7 @@
         "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
         "paso": "De recompensa te dare esta camisa. Es parte del uniforme del colegio. Mandale saludos a Kitty de mi parte!",
         "cond_energia": "5",
-        "reco_item": "Remera Corta",
+        "reco_item": "Camisa",
         "reco_item_cant": "1",
         "reco_experiencia": "10",
         "new_mission": [
@@ -181,6 +181,10 @@
             {
                 "npc": "kitty",
                 "qorder": "4"
+            },
+            {
+                "npc": "melisa",
+                "qorder": "0"
             }
         ]
     },
@@ -195,7 +199,7 @@
         "new_mission": [
             {
                 "npc": "Pirata",
-                "qorder": "1"
+                "qorder": "0"
             }
         ]
     },

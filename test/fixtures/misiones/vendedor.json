@@ -1,0 +1,157 @@
+[
+	{
+		"npc": "melisa",
+		"qorder": "0",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Deseas comprar algo? Haz click en el item que deseas comprar",
+		"mision": "URL:test/mercado.html",
+		"new_mission": [
+			{
+				"resultado":"10",
+				"npc": "melisa",
+				"qorder": "10"
+			},
+			{
+				"resultado":"11",
+				"npc": "melisa",
+				"qorder": "11"
+			},
+			{
+				"resultado":"12",
+				"npc": "melisa",
+				"qorder": "12"
+			},
+			{
+				"resultado":"13",
+				"npc": "melisa",
+				"qorder": "13"
+			},
+			{
+				"resultado":"14",
+				"npc": "melisa",
+				"qorder": "14"
+			},
+			{
+				"resultado":"15",
+				"npc": "melisa",
+				"qorder": "15"
+			}
+		]
+	}, 
+	{
+		"npc": "melisa",
+		"qorder": "10",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Has comprado la pocion de energia",
+		"cond_oro": "100",
+		"reco_item": "pocion de energia",
+		"reco_item_cant": "1",
+		"no_oro": "No tienes suficiente oro para realizar esta compra!",
+		"paso": "Muchas Gracias por la compra! Vuelve pronto!",
+		"new_mission": [
+			{
+				"npc": "melisa",
+				"qorder": "0"
+			}
+		]
+	}, 
+	{
+		"npc": "melisa",
+		"qorder": "11",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Has comprado el Anillo Magico",
+		"cond_oro": "400",
+		"reco_item": "Anillo Magico",
+		"reco_item_cant": "1",
+		"no_oro": "No tienes suficiente oro para realizar esta compra!",
+		"paso": "Muchas Gracias por la compra! Vuelve pronto!",
+		"new_mission": [
+			{
+				"npc": "melisa",
+				"qorder": "0"
+			}
+		]
+	}, 
+	{
+		"npc": "melisa",
+		"qorder": "12",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Has comprado el Anillo Adiamantado",
+		"cond_oro": "400",
+		"reco_item": "Anillo Adiamantado",
+		"reco_item_cant": "1",
+		"no_oro": "No tienes suficiente oro para realizar esta compra!",
+		"paso": "Muchas Gracias por la compra! Vuelve pronto!",
+		"new_mission": [
+			{
+				"npc": "melisa",
+				"qorder": "0"
+			}
+		]
+	}, 
+	{
+		"npc": "melisa",
+		"qorder": "13",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Has comprado la Pechera",
+		"cond_oro": "1400",
+		"reco_item": "Pechera",
+		"reco_item_cant": "1",
+		"no_oro": "No tienes suficiente oro para realizar esta compra!",
+		"paso": "Muchas Gracias por la compra! Vuelve pronto!",
+		"new_mission": [
+			{
+				"npc": "melisa",
+				"qorder": "0"
+			}
+		]
+	}, 
+	{
+		"npc": "melisa",
+		"qorder": "14",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Has comprado la Remera Corta Verde",
+		"cond_oro": "300",
+		"reco_item": "Pechera",
+		"reco_item_cant": "1",
+		"no_oro": "No tienes suficiente oro para realizar esta compra!",
+		"paso": "Muchas Gracias por la compra! Vuelve pronto!",
+		"new_mission": [
+			{
+				"npc": "melisa",
+				"qorder": "0"
+			}
+		]
+	}, 
+	{
+		"npc": "melisa",
+		"qorder": "15",
+		"img_quest": "melisa.png",
+		"npc_visible": "true",
+		"titulo": "Quieres comprar?",
+		"pregunta": "Has comprado la Remera Corta Rosa",
+		"cond_oro": "300",
+		"reco_item": "Pechera",
+		"reco_item_cant": "1",
+		"no_oro": "No tienes suficiente oro para realizar esta compra!",
+		"paso": "Muchas Gracias por la compra! Vuelve pronto!",
+		"new_mission": [
+			{
+				"npc": "melisa",
+				"qorder": "0"
+			}
+		]
+	}
+]

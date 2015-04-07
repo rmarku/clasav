@@ -65,5 +65,23 @@
 		"xoffset": 0,
 		"yoffset": 0,
 		"zIndex": 10
+	}, {
+		"imagen": "",
+		"icono": "items/anillo/2.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "",
+		"icono": "items/pechera/2.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "",
+		"icono": "items/pechera/3.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
 	}
 ]
