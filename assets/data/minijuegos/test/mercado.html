@@ -5,8 +5,8 @@
 	<body>
 		<table>
 			<tr>
-				<td><img src="../../sprites/items/nep/1.png" title="recupera un 100% de energia"></td>
-				<td> Posión de Energia
+				<td><img src="../../sprites/items/nep/1.png" title="recupera un 100% de energia" onclick="parent.game.mision.siguiente(10)" style="cursor: pointer"></td>
+				<td> Poción de Energia
 					<br>
 					100 oros 
 				</td>
@@ -19,10 +19,15 @@
 					400 oros 
 				</td>
 			</tr>
+			
+			<tr>
+				<td><img src="../../sprites/items/anillo/2.png" title="mejora tu recuperacion de energia"></td>
+				<td> Anillo Magico
+					<br>
+					400 oros 
+				</td>
+			</tr>
 		</table>
 
-		<button onclick="parent.game.mision.siguiente(final)">
-			Comprar
-		</button>
 	</body>
 </html>

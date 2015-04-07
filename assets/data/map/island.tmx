@@ -316,7 +316,7 @@
   </object>
   <object id="81" name="NPCPlayer" x="352" y="349" width="31" height="34">
    <properties>
-    <property name="nombre" value="paco"/>
+    <property name="nombre" value="franco"/>
     <property name="z" value="9"/>
    </properties>
   </object>

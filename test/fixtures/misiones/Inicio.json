@@ -31,7 +31,7 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares?",
-        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella, siendo nuevo, es bueno hacer amigos.",
+        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella. Siendo nuevo, es bueno hacer amigos.",
         "cond_energia": "5",
         "new_mission": [
             {
@@ -66,7 +66,13 @@
         "titulo": "Bienvenido a la Biblioteca!",
         "pregunta":"Has agarrado un libro!",
         "reco_item": "libro",
-        "reco_item_cant": "1"
+        "reco_item_cant": "1",
+        "new_mission": [
+            {
+                "npc": "libro",
+                "qorder": "2"
+            }
+        ]
     },
     {
         "npc": "SraBibliotecaria",
@@ -81,10 +87,15 @@
         "no_item": "Alcanzame el libro que esta sobre la mesa por favor!",
         "cond_energia": "10",
         "reco_oro": "10",
+        "reco_experiencia": "10",
         "new_mission": [
             {
                 "npc": "Kitty",
                 "qorder": "2"
+            },
+            {
+                "npc": "SraBibliotecaria",
+                "qorder": "3"
             }
         ]
     },
@@ -94,19 +105,19 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares? 2",
-        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Paco! Quizas el pueda darte mas consejos!",
+        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Franco! Quizas el pueda darte mas consejos!",
         "cond_energia": "5",
         "new_mission": [
             {
-                "npc": "paco",
+                "npc": "franco",
                 "qorder": "1"
             }
         ]
     },
     {
-        "npc": "paco",
+        "npc": "franco",
         "qorder": "1",
-        "img_quest": "paco.png",
+        "img_quest": "franco.png",
         "npc_visible": "true",
         "titulo": "Bienvenido a la escuela!",
         "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
@@ -114,10 +125,15 @@
         "cond_energia": "5",
         "reco_item": "Remera Corta",
         "reco_item_cant": "1",
+        "reco_experiencia": "10",
         "new_mission": [
             {
                 "npc": "Kitty",
                 "qorder": "3"
+            },
+            {
+                "npc": "franco",
+                "qorder": "2"
             }
         ]
     },
@@ -142,8 +158,8 @@
         "img_quest": "melisa.png",
         "npc_visible": "true",
         "titulo": "Bienvenido a mi mercado!",
-        "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta posiones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
-        "paso": "Deberias comprar una posion de energia!, y luego habla nuevamente con kitty",
+        "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta pociones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
+        "paso": "Deberias comprar una pocion de energia!, y luego habla nuevamente con kitty",
         "cond_energia": "10",
         "new_mission": [
             {

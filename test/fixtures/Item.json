@@ -60,5 +60,11 @@
 		"maximo": "1",
 		"sprite": "10",
 		"color": "#A29C82"
+	}, {
+		"nombre": "pocion de energia",
+		"tipo_item": "sombrero",
+		"maximo": "10",
+		"sprite": "11",
+		"color": "#ffffff"
 	}
 ]
