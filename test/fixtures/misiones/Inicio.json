@@ -12,7 +12,7 @@
         "titulo": "Bienvenido a Clases y Aventuras!",
         "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar A S D W o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
         "paso": "Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui. Luego podras ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a Kitty que aparezca para que te de una misión. Suerte!",
-        "reco_oro": "500",
+        "reco_oro": "5000",
         "reco_experiencia": "10",
         "new_mission": [
         	{
@@ -31,8 +31,9 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares?",
-        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella, siendo nuevo, es bueno hacer amigos.",
+        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella. Siendo nuevo, es bueno hacer amigos.",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "SraBibliotecaria",
@@ -66,7 +67,13 @@
         "titulo": "Bienvenido a la Biblioteca!",
         "pregunta":"Has agarrado un libro!",
         "reco_item": "libro",
-        "reco_item_cant": "1"
+        "reco_item_cant": "1",
+        "new_mission": [
+            {
+                "npc": "libro",
+                "qorder": "2"
+            }
+        ]
     },
     {
         "npc": "SraBibliotecaria",
@@ -80,11 +87,17 @@
         "paso": "Muchas Gracias!! Supongo que debes volver con Kitty! Buena suerte!",
         "no_item": "Alcanzame el libro que esta sobre la mesa por favor!",
         "cond_energia": "10",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
         "reco_oro": "10",
+        "reco_experiencia": "10",
         "new_mission": [
             {
                 "npc": "Kitty",
                 "qorder": "2"
+            },
+            {
+                "npc": "SraBibliotecaria",
+                "qorder": "3"
             }
         ]
     },
@@ -94,30 +107,37 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares? 2",
-        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Paco! Quizas el pueda darte mas consejos!",
+        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Franco! Quizas el pueda darte mas consejos!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
-                "npc": "paco",
+                "npc": "franco",
                 "qorder": "1"
             }
         ]
     },
     {
-        "npc": "paco",
+        "npc": "franco",
         "qorder": "1",
-        "img_quest": "paco.png",
+        "img_quest": "franco.png",
         "npc_visible": "true",
         "titulo": "Bienvenido a la escuela!",
         "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
         "paso": "De recompensa te dare esta camisa. Es parte del uniforme del colegio. Mandale saludos a Kitty de mi parte!",
         "cond_energia": "5",
-        "reco_item": "Remera Corta",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
+        "reco_item": "Camisa",
         "reco_item_cant": "1",
+        "reco_experiencia": "10",
         "new_mission": [
             {
                 "npc": "Kitty",
                 "qorder": "3"
+            },
+            {
+                "npc": "franco",
+                "qorder": "2"
             }
         ]
     },
@@ -129,6 +149,7 @@
         "titulo": "Nuevo por estos lares? 3",
         "pregunta":"Cada vez conoces mas de por aqui Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la pequena melisa, y comprale una pocion de energia!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "melisa",
@@ -142,9 +163,10 @@
         "img_quest": "melisa.png",
         "npc_visible": "true",
         "titulo": "Bienvenido a mi mercado!",
-        "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta posiones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
-        "paso": "Deberias comprar una posion de energia!, y luego habla nuevamente con kitty",
+        "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta pociones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
+        "paso": "Deberias comprar una pocion de energia!, y luego habla nuevamente con kitty",
         "cond_energia": "10",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
         "new_mission": [
             {
                 "npc": "melisa",
@@ -165,6 +187,10 @@
             {
                 "npc": "kitty",
                 "qorder": "4"
+            },
+            {
+                "npc": "melisa",
+                "qorder": "0"
             }
         ]
     },
@@ -176,10 +202,11 @@
         "titulo": "Nuevo por estos lares? 4",
         "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con un pirata y viaja a lugares distantes!!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "Pirata",
-                "qorder": "1"
+                "qorder": "0"
             }
         ]
     },

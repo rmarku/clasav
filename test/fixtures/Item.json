@@ -34,7 +34,7 @@
 		"tipo_item": "anillo",
 		"maximo": "3",
 		"sprite": "6",
-		"color": "#0000ff"
+		"color": "#ffffff"
 	}, {
 		"nombre": "Alas Angelicales",
 		"tipo_item": "decoracion1",
@@ -60,5 +60,41 @@
 		"maximo": "1",
 		"sprite": "10",
 		"color": "#A29C82"
+	}, {
+		"nombre": "pocion de energia",
+		"tipo_item": "sombrero",
+		"maximo": "10",
+		"sprite": "11",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Anillo Adiamantado",
+		"tipo_item": "anillo",
+		"maximo": "1",
+		"sprite": "12",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Camisa",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "13",
+		"color": "#fffac3"
+	}, {
+		"nombre": "Armadura",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "14",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Remera Corta Azul",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "2",
+		"color": "#2E2EFE"
+	}, {
+		"nombre": "Remera Corta Rosa",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "2",
+		"color": "#F5A9E1"
 	}
 ]
