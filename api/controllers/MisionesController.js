@@ -53,7 +53,7 @@ module.exports = {
                         return res.json({err: err});
                     }
                     // si hay condicion y no hay item
-                    if (misi.cond_item  && (typeof inst === 'undefined' || misi.cond_item_cant < inst.cantidad ))
+                    if (misi.cond_item && (typeof inst === 'undefined' || misi.cond_item_cant < inst.cantidad ))
                         return res.json({falta: misi.no_item});
 
 
@@ -111,8 +111,41 @@ module.exports = {
             if (misi.cond_oro)
                 pj.oro -= misi.cond_oro;
 
+            if (misi.cond_item)
+                Item.findOne({nombre: misi.cond_item}).exec(function (err, it) {
+                    if (err) {
+                        sails.log.error('error el item: ' + misi.cond_item + ' no existe');
+                        return res.json({err: err});
+                    }
+                    var search = {};
+                    if (typeof it !== 'undefined')
+                        search.item = it.id;
+                    else
+                        search.item = '-1';
 
+                    search.personaje = pj.id;
+                    search.usando = false;
 
+                    // Si encuentro el item
+                    Item_instancia.findOne(search).exec(function (err, inst) {
+                        if (err) {
+                            sails.log.error('Error item_instancia: ' + misi.cond_item + ' no existe');
+                        }
+                        // si hay condicion y no hay item
+                        if (misi.cond_item && (typeof inst === 'undefined' || misi.cond_item_cant < inst.cantidad ))
+                            sails.log.error('Error item_instancia: ' + misi.cond_item + ' no existe');
+
+                        // Descuento o elimino item intancia
+                        if (misi.cond_item_cant > inst.cantidad) {
+                            inst.cantidad -= misi.cond_item_cant;
+                            inst.save();
+                        } else {
+                            Item_instancia.destroy({id: inst.id}).then(function (it) {
+                                sails.log.info('Borrado item instancia ' + it.id);
+                            });
+                        }
+                    });
+                });
             // Doy
             if (misi.reco_oro)
                 pj.oro += misi.reco_oro;
@@ -137,13 +170,19 @@ module.exports = {
                     }
                     Item_instancia.create({
                         item: item.id,
-                        personaje: pj,
-                        cantidad: misi.reco_item_cant
+                        personaje: pj.id,
+                        cantidad: misi.reco_item_cant,
+                        seccion_inventario: 2,
+                        usando: false
+                    }).then(function (it_inst) {
+                        sails.log.info('item creado: ' + it_inst.id);
                     });
                 });
 
             // habilito el flujo de misiones que siguen.
-            var new_misiones = JSON.parse(misi.new_mission);
+            var new_misiones = [];
+            if (typeof misi.new_mission !== 'undefined')
+                new_misiones = JSON.parse(misi.new_mission);
 
             var npc_promises = [];
             var npc_changed = [];
@@ -209,14 +248,14 @@ module.exports = {
             var misi = datos.misi;
             // Doy informacion general del quest
 
-            sails.log.warn('Fin ' + npcName);
+            sails.log.info('Fin ' + npcName);
             return res.json({
                 img_quest: misi.img_quest,
                 npc_visible: misi.npc_visible
             });
 
         }).catch(function (err) {
-            sails.log.warn('Fin ' + npcName);
+            sails.log.info('Fin ' + npcName);
             return res.json({
                 err: 'no tiene mision',
                 img_quest: '',

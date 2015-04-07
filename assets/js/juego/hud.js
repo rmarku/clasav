@@ -76,7 +76,7 @@ hud = {
                 document.getElementById('items').innerHTML = '';
                 data.forEach(function (it) {
                     var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
-                    var no_vestido = false;
+                    var no_vestido = true;
 
                     // Me fijo que no este vestido
                     for (var i = 0; i < cuerpo.length; i++) {

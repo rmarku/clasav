@@ -410,7 +410,10 @@ var game = {
 
                                 } else {
                                     $("#mision_txt").html(data.mision);
+                                    $("#mision_siguiente").show();
                                 }
+                            }else{
+                                game.mision.siguiente(1);
                             }
                         } else {
                             $("#mision").hide();

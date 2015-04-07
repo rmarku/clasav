@@ -76,6 +76,7 @@
         "titulo": "Bienvenido a la Biblioteca!",
         "cond_item": "libro",
         "cond_item_cant": "1",
+        "mision": "Eres muy amable",
         "paso": "Muchas Gracias!! Supongo que debes volver con Kitty! Buena suerte!",
         "no_item": "Alcanzame el libro que esta sobre la mesa por favor!",
         "cond_energia": "10",
