@@ -33,6 +33,7 @@
         "titulo": "Nuevo por estos lares?",
         "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella. Siendo nuevo, es bueno hacer amigos.",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "SraBibliotecaria",
@@ -86,6 +87,7 @@
         "paso": "Muchas Gracias!! Supongo que debes volver con Kitty! Buena suerte!",
         "no_item": "Alcanzame el libro que esta sobre la mesa por favor!",
         "cond_energia": "10",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
         "reco_oro": "10",
         "reco_experiencia": "10",
         "new_mission": [
@@ -107,6 +109,7 @@
         "titulo": "Nuevo por estos lares? 2",
         "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Franco! Quizas el pueda darte mas consejos!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "franco",
@@ -123,6 +126,7 @@
         "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
         "paso": "De recompensa te dare esta camisa. Es parte del uniforme del colegio. Mandale saludos a Kitty de mi parte!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "reco_item": "Camisa",
         "reco_item_cant": "1",
         "reco_experiencia": "10",
@@ -145,6 +149,7 @@
         "titulo": "Nuevo por estos lares? 3",
         "pregunta":"Cada vez conoces mas de por aqui Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la pequena melisa, y comprale una pocion de energia!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "melisa",
@@ -161,6 +166,7 @@
         "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta pociones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
         "paso": "Deberias comprar una pocion de energia!, y luego habla nuevamente con kitty",
         "cond_energia": "10",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
         "new_mission": [
             {
                 "npc": "melisa",
@@ -196,6 +202,7 @@
         "titulo": "Nuevo por estos lares? 4",
         "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con un pirata y viaja a lugares distantes!!",
         "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
                 "npc": "Pirata",
