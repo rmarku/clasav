@@ -6,14 +6,26 @@
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
 		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
-		"paso": "Si quieres, puedes comenzar por Chris, y ayudarlo con sus tareas.",
+		"paso": "Si quieres, puedes comenzar con Chris, y ayudarlo con sus tareas de numeros enteros.",
 		"new_mission": [
 			{
 				"npc": "chris",
 				"qorder": "1"
+			},
+			{
+				"npc": "pitagoras",
+				"qorder": "1"
+			},
+			{
+				"npc": "eduardo",
+				"qorder": "1"
+			},
+			{
+				"npc": "fibonacci",
+				"qorder": "1"
 			}
 		]
-	},{
+	}, {
 		"npc": "Chris",
 		"qorder": "1",
 		"img_quest": "chris.png",
@@ -30,7 +42,7 @@
 				"qorder": "2"
 			}
 		]
-	},{
+	}, {
 		"npc": "Chris",
 		"qorder": "2",
 		"img_quest": "chris.png",
@@ -57,46 +69,36 @@
 		"titulo": "Ayudame con mi tarea 3!",
 		"pregunta": "¿Conoces algo sobre las <b> propiedades </b> de las operaciones con Números Naturales? <br> La adición o suma tiene estas propiedades: <br> 1) <b> Asociativa: </b> m + n + p = (m + n) + p = m + (n + p) <br> 2) <b> Conmutativa: </b> m + n + p = m + p + n = n + m + p <br> La multiplicación tiene estas propiedades: <br> 1) <b> Distributiva: </b> m*(n + p) = m*n + m*p",
 		"mision": "URL:test/test2.html",
-		"paso": "<strong>Wow!</strong> Eres genial!!!... <br> Pudimos terminar mi tarea... Pero que tal si ayudas a Daniela? Ella esta haciendo su tarea sentada bajo el Gran Árbol",
+		"paso": "<strong>Wow!</strong> Eres genial!!!... <br> Pudimos terminar mi tarea... Ahora deberias visitar a Fibonacci, para seguir aprendiendo sobre divisibilidad",
 		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
 		"reco_oro": "10",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
 		"new_mission": [
 			{
-				"npc": "Daniela",
-				"qorder": "1"
-			},
-			{
 				"npc": "Chris",
 				"qorder": "4"
 			}
 		]
-	},{
-		"npc": "Daniela",
+	}, {
+		"npc": "fibonacci",
 		"qorder": "1",
-		"img_quest": "daniela.png",
+		"img_quest": "fibonacci.png",
 		"npc_visible": "true",
-		"titulo": "Que sabes sobre divisibilidad?!",
-		"pregunta": "Hola! Soy Dani! Seguro que antes estuviste con mi amigo Chris! Ah, me gustaria jugar con el, pero no puedo al menos que termine mi tarea. <br> ¿Sabias que los criterios de divisibilidad los invento Fibonacci, un gran matemático italiano? <br> <b>2</b> Termina en cifra par (Ej. 42, 78) <br> <b> 3</b> La suma de los valores es multiplo de 3 (Ej. 150 porque 1+5=6) <br> <b>4</b> Las dos ultimas cifras son multiplo de 4 <br> <b>5</b> La ultima cifra es 5 o 0 <br> <b>6</b> es divisible por 2 y 3 al mismo tiempo <br> <b>9</b> La suma de sus valores absolutos es multiplo de nueve (Ej. 288 porque 2+8+8=18)",
-		"paso": "Si, lo se, la <b> matemática </b> es <b>GENIAL </b>! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-		"reco_oro": "25",
-		"new_mission": [
-			{
-				"npc": "daniela",
-				"qorder": "2"
-			}
-		]
+		"titulo": "Qué sabes sobre divisibilidad?!",
+		"pregunta": "Yo soy Fibonacci, un matemático italiano, e hice conocer las reglas de divisibilidad... <br> <b>2</b> Termina en cifra par (Ej. 42, 78) <br> <b> 3</b> La suma de los valores es multiplo de 3 (Ej. 150 porque 1+5=6) <br> <b>4</b> Las dos ultimas cifras son multiplo de 4 <br> <b>5</b> La ultima cifra es 5 o 0 <br> <b>6</b> es divisible por 2 y 3 al mismo tiempo <br> <b>9</b> La suma de sus valores absolutos es multiplo de nueve (Ej. 288 porque 2+8+8=18)",
+		"paso": "Si, lo se, la <b> matemática </b> es <b>GENIAL </b>",
+		"reco_oro": "25"
 	}, {
 		"npc": "Daniela",
-		"qorder": "2",
+		"qorder": "0",
 		"img_quest": "daniela.png",
 		"npc_visible": "true",
 		"titulo": "Para poder salir a jugar...",
 		"pregunta": "Bien, ahora falta menos para poder salir a jugar. Pero primero debo entender un poco sobre geometria.",
 		"mision": "URL: test/quest3_1.html",
 		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
+		"no_paso": "Oh! Geometria es algo complicado... Vuelve a intentarlo!",
 		"reco_oro": "25",
 		"new_mission": [
 			{
@@ -104,5 +106,27 @@
 				"qorder": "3"
 			}
 		]
+	}, {
+		"npc": "pitagoras",
+		"qorder": "1",
+		"img_quest": "pitagoras.png",
+		"npc_visible": "true",
+		"titulo": "El teorema de Pitagoras...",
+		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa.",
+		"mision": "URL: test/quest3_1.html",
+		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
+		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
+		"reco_oro": "25"
+	}, {
+		"npc": "eduardo",
+		"qorder": "1",
+		"img_quest": "eduardo.png",
+		"npc_visible": "true",
+		"titulo": "Numeros Racionales...",
+		"pregunta": "Se llama número racional a todo número que puede representarse como el cociente de dos números enteros. Existen 2 maneras de escribir el mismo número racional: como fracción o en forma decimal.",
+		"mision": "URL: test/quest3_1.html",
+		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
+		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
+		"reco_oro": "25"
 	}
 ]

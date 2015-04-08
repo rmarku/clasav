@@ -236,5 +236,33 @@
         "height": "49",
         "sprite": "carlos",
         "animation": "1"
+    },
+    {
+        "nombre": "novia",
+        "width": "32",
+        "height": "33",
+        "sprite": "novia",
+        "animation": "2"
+    },
+    {
+        "nombre": "pitagoras",
+        "width": "31",
+        "height": "49",
+        "sprite": "pitagoras",
+        "animation": "1"
+    },
+    {
+        "nombre": "fibonacci",
+        "width": "31",
+        "height": "48",
+        "sprite": "fibonacci",
+        "animation": "1"
+    },
+    {
+        "nombre": "eduardo",
+        "width": "22",
+        "height": "49",
+        "sprite": "eduardo",
+        "animation": "1"
     }
 ]

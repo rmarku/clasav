@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="84">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="87">
  <tileset firstgid="1" name="RPGmakerXPMegaTilesetByLmnopguy7" tilewidth="32" tileheight="32">
   <image source="tileset/LicDesc/RPGmakerXPMegaTilesetByLmnopguy7.png" width="256" height="15300"/>
  </tileset>
@@ -329,6 +329,24 @@
   <object id="83" name="NPCPlayer" x="188" y="636" width="35" height="34">
    <properties>
     <property name="nombre" value="carlos"/>
+    <property name="z" value="9"/>
+   </properties>
+  </object>
+  <object id="84" name="NPCPlayer" x="108" y="747" width="36" height="37">
+   <properties>
+    <property name="nombre" value="pitagoras"/>
+    <property name="z" value="9"/>
+   </properties>
+  </object>
+  <object id="85" name="NPCPlayer" x="108" y="862" width="35" height="36">
+   <properties>
+    <property name="nombre" value="fibonacci"/>
+    <property name="z" value="9"/>
+   </properties>
+  </object>
+  <object id="86" name="NPCPlayer" x="112" y="943" width="34" height="36">
+   <properties>
+    <property name="nombre" value="eduardo"/>
     <property name="z" value="9"/>
    </properties>
   </object>
