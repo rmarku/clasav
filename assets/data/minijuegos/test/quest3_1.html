@@ -1,5 +1,7 @@
 <html>
-	<head></head>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+	</head>
 	<body>
 		Escribe el nombre de las siguientes figuras:
 		<br>
@@ -28,13 +30,13 @@
 				f2 = document.getElementById('fig2').value;
 				f3 = document.getElementById('fig3').value;
 
-				if ((f1.value=="circulo" || f1.value=="círculo")  && (f1.value=="rectangulo" || f1.value=="rectángulo") && (f1.value=="triangulo" || f1.value=="triángulo")) {
+				if ((f1.value=="circulo" || f1.value=="cï¿½rculo")  && (f1.value=="rectangulo" || f1.value=="rectï¿½ngulo") && (f1.value=="triangulo" || f1.value=="triï¿½ngulo")) {
 					alert('Bien');
 				}
 			}
 		</script>
 
-		<button onclick="parent.game.mision.siguiente(1)">
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(1)">
 			Listo
 		</button>
 	</body>

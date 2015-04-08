@@ -35,8 +35,8 @@
 		"qorder": "2",
 		"img_quest": "chris.png",
 		"npc_visible": "true",
-		"titulo": "Ayudame con mi tarea!",
-		"pregunta": "Podrias ayudarme con mi tarea?. Tengo que estudiar las operaciones con numeros naturales, se que son la suma y la multiplicacion; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
+		"titulo": "Ayudame con mi tarea 2!",
+		"pregunta": "Podrias ayudarme con mi tarea?. Tengo que estudiar las operaciones con numeros naturales, se que son la <b> suma </b> y la <b>multiplicacion</b>; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. <br> Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
 		"mision": "URL:test/test.html",
 		"paso": "<strong>Wow!</strong> En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
 		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
@@ -45,20 +45,41 @@
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
 		"new_mission": [
 			{
-				"npc": "Daniela",
-				"qorder": "1"
+				"npc": "Chris",
+				"qorder": "3"
 			}
 		]
 	}, {
+		"npc": "Chris",
+		"qorder": "3",
+		"img_quest": "chris.png",
+		"npc_visible": "true",
+		"titulo": "Ayudame con mi tarea 3!",
+		"pregunta": "¿Conoces algo sobre las <b> propiedades </b> de las operaciones con Números Naturales? <br> La adición o suma tiene estas propiedades: <br> 1) <b> Asociativa: </b> m + n + p = (m + n) + p = m + (n + p) <br> 2) <b> Conmutativa: </b> m + n + p = m + p + n = n + m + p <br> La multiplicación tiene estas propiedades: <br> 1) <b> Distributiva: </b> m*(n + p) = m*n + m*p",
+		"mision": "URL:test/test2.html",
+		"paso": "<strong>Wow!</strong> Eres genial!!!... <br> Pudimos terminar mi tarea... Pero que tal si ayudas a Daniela? Ella esta haciendo su tarea sentada bajo el Gran Árbol",
+		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
+		"reco_oro": "10",
+		"cond_energia": "10",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+		"new_mission": [
+			{
+				"npc": "Daniela",
+				"qorder": "1"
+			},
+			{
+				"npc": "Chris",
+				"qorder": "4"
+			}
+		]
+	},{
 		"npc": "Daniela",
 		"qorder": "1",
 		"img_quest": "daniela.png",
 		"npc_visible": "true",
-		"titulo": "A la biblioteca!",
-		"pregunta": "Hola! Soy Dani! Seguro que antes estuviste con mi amigo Chris! Ah, me gustaria jugar con el, pero no puedo al menos que termine mi tarea. Me deje mi cuarno en la biblioteca! Puedes ir al pueblo a buscarlo? Te pagare por ello",
-		"mision": "",
-		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
+		"titulo": "Que sabes sobre divisibilidad?!",
+		"pregunta": "Hola! Soy Dani! Seguro que antes estuviste con mi amigo Chris! Ah, me gustaria jugar con el, pero no puedo al menos que termine mi tarea. <br> ¿Sabias que los criterios de divisibilidad los invento Fibonacci, un gran matemático italiano? <br> <b>2</b> Termina en cifra par (Ej. 42, 78) <br> <b> 3</b> La suma de los valores es multiplo de 3 (Ej. 150 porque 1+5=6) <br> <b>4</b> Las dos ultimas cifras son multiplo de 4 <br> <b>5</b> La ultima cifra es 5 o 0 <br> <b>6</b> es divisible por 2 y 3 al mismo tiempo <br> <b>9</b> La suma de sus valores absolutos es multiplo de nueve (Ej. 288 porque 2+8+8=18)",
+		"paso": "Si, lo se, la <b> matemática </b> es <b>GENIAL </b>! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
 		"reco_oro": "25",
 		"new_mission": [
 			{
