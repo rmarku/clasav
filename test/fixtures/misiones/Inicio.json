@@ -216,6 +216,52 @@
         "npc_visible": "true",
         "titulo": "Viajar",
         "mision": "URL:listaClasesDisponibles.html"
+    },
+    {
+        "npc": "Divina",
+        "qorder": "0",
+        "img_quest": "divina.png",
+        "npc_visible": "true",
+        "titulo": "Quieres conocer tu suerte?",
+        "pregunta":"Hola! Soy divina, la adivina de esta gran ciudad! Por un poco de dinero estoy dispuesta a darte consejo",
+        "new_mission": [
+            {
+                "npc": "Divina",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "Divina",
+        "qorder": "1",
+        "img_quest": "divina.png",
+        "npc_visible": "true",
+        "titulo": "La bola de cristal dice...",
+        "mision":"Si estudias mucho para tus examenes tienes mayor probabilidad de aprobar...",
+        "cond_oro": "5",
+        "no_oro": "no tienes suficiente oro para pedir consejo...",
+        "new_mission": [
+            {
+                "npc": "Divina",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "Divina",
+        "qorder": "2",
+        "img_quest": "divina.png",
+        "npc_visible": "true",
+        "titulo": "La bola de cristal dice...",
+        "mision":"Si apruebas todas las materias en el colegio, tienes más tiempo libre y menos preocupaciones...",
+        "cond_oro": "5",
+        "no_oro": "no tienes suficiente oro para pedir consejo...",
+        "new_mission": [
+            {
+                "npc": "Divina",
+                "qorder": "0"
+            }
+        ]
     }
 ]
 

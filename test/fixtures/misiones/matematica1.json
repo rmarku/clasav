@@ -1,48 +1,51 @@
 [
 	{
 		"npc": "Carlos",
-		"qorder": "1",
+		"qorder": "0",
 		"img_quest": "carlos.png",
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
-		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Espero disfrutes tu visita en estos lares.",
+		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
+		"paso": "Si quieres, puedes comenzar por Chris, y ayudarlo con sus tareas.",
 		"new_mission": [
 			{
 				"npc": "chris",
-				"qorder": "2"
+				"qorder": "1"
 			}
 		]
-	}, {
+	},{
 		"npc": "Chris",
 		"qorder": "1",
 		"img_quest": "chris.png",
 		"npc_visible": "true",
-		"titulo": "Ayudame con mi tarea!",
-		"pregunta": "Podrias ayudarme con mi tarea?. Tengo qu estudiar las operaciones con numeros naturales, se que son la suma y la multiplicacion; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
-		"mision": "URL:test/test.html",
-		"paso": "<strong>Wow!</strong> En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
-		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
-		"reco_oro": "10",
-		"new_mission": [
-			{
-				"npc": "chris",
-				"qorder": "2"
-			}
-		]
-	}, {
-		"npc": "Chris",
-		"qorder": "2",
-		"img_quest": "chris.png",
-		"npc_visible": "true",
-		"titulo": "Ayudame con mi tarea 2!",
-		"pregunta": "A veces se me confunden los numeros naturales con los enteros... Pero por suerte, encontre un video... Lo vemos juntos?",
+		"titulo": "Ayudame con mi tarea 1!",
+		"pregunta": "Es hora de comenzar! Los Números Naturales pertenecen a la serie a la serie N = {1, 2, 3, 4, ...}. Se usan para contar o para ordenar (primero, segundo, tercero, ...). Son los azules: <br> <img src='https://mariaelenaibagos.files.wordpress.com/2012/05/recta.png' width='100%'> <br> A veces se me confunden los numeros naturales con los enteros... Pero por suerte, encontre un video... Lo vemos juntos?",
 		"mision": "URL:test/quest2_3.html",
-		"paso": "Fue divertido! Realmente eres bueno en esto! Porque no ayudas a Daniela? Seguro que esta bajo el viejo arbol haciendo su tarea.",
+		"paso": "Fue divertido! Pero hay que continuar...",
 		"no_paso": "Lo veamos otra vez!",
 		"reco_oro": "10",
 		"new_mission": [
 			{
-				"npc": "daniela",
+				"npc": "Chris",
+				"qorder": "2"
+			}
+		]
+	},{
+		"npc": "Chris",
+		"qorder": "2",
+		"img_quest": "chris.png",
+		"npc_visible": "true",
+		"titulo": "Ayudame con mi tarea!",
+		"pregunta": "Podrias ayudarme con mi tarea?. Tengo que estudiar las operaciones con numeros naturales, se que son la suma y la multiplicacion; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
+		"mision": "URL:test/test.html",
+		"paso": "<strong>Wow!</strong> En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
+		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
+		"reco_oro": "10",
+		"cond_energia": "10",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+		"new_mission": [
+			{
+				"npc": "Daniela",
 				"qorder": "1"
 			}
 		]
