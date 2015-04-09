@@ -1,0 +1,157 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior
+				var aleat = Math.random() * numPosibilidades
+				aleat = Math.round(aleat)
+				return parseInt(inferior) + aleat
+			}
+		</script>
+		<style>
+			td {text-align: center}
+		</style>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td></td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>9</td>
+			</tr>
+			<tr>
+				<td><input type="text" id="num1" name="num1" size="3" disabled></td>
+				<td> <input type="checkbox" name="n1_2" onchange="comprobar()"/> </td>
+				<td><input type="checkbox" name="n1_3" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n1_4" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n1_5" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n1_6" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n1_9" onchange="comprobar()"/></td>
+			</tr>
+			
+			<tr>
+				<td><input type="text" id="num2" name="num2" size="3" disabled></td>
+				<td> <input type="checkbox" name="n2_2" onchange="comprobar()"/> </td>
+				<td><input type="checkbox" name="n2_3" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n2_4" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n2_5" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n2_6" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n2_9" onchange="comprobar()"/></td>
+			</tr>
+			
+			<tr>
+				<td><input type="text" id="num3" name="num3" size="3" disabled></td>
+				<td> <input type="checkbox" name="n3_2" onchange="comprobar()"/> </td>
+				<td><input type="checkbox" name="n3_3" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n3_4" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n3_5" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n3_6" onchange="comprobar()"/></td>
+				<td><input type="checkbox" name="n3_9" onchange="comprobar()"/></td>
+			</tr>
+		</table>
+		
+			<script>
+				var n1, n2, n3;
+				n1 = document.getElementById('num1').value = aleatorio(30, 900);
+				n2 = document.getElementById('num2').value = aleatorio(30, 900);
+				n3 = document.getElementById('num3').value = aleatorio(30, 900);
+				
+
+				var final = -1;
+				var fn1=[false,false,false,false,false,false]; //JS calcula si es divisible
+				var fn1C=[-1,-1,-1,-1,-1,-1]; //valores que ingresa el usuario
+				var fn2=[false,false,false,false,false,false]; //JS calcula si es divisible
+				var fn2C=[-1,-1,-1,-1,-1,-1]; //valores que ingresa el usuario
+				var fn3=[false,false,false,false,false,false]; //JS calcula si es divisible
+				var fn3C=[-1,-1,-1,-1,-1,-1]; //valores que ingresa el usuario
+				
+				function comprobar() {
+					fn1C[0]=document.getElementsByName("n1_2")[0].checked;
+					fn1C[1]=document.getElementsByName("n1_3")[0].checked;
+					fn1C[2]=document.getElementsByName("n1_4")[0].checked;
+					fn1C[3]=document.getElementsByName("n1_5")[0].checked;
+					fn1C[4]=document.getElementsByName("n1_6")[0].checked;
+					fn1C[5]=document.getElementsByName("n1_9")[0].checked;
+					
+					fn2C[0]=document.getElementsByName("n2_2")[0].checked;
+					fn2C[1]=document.getElementsByName("n2_3")[0].checked;
+					fn2C[2]=document.getElementsByName("n2_4")[0].checked;
+					fn2C[3]=document.getElementsByName("n2_5")[0].checked;
+					fn2C[4]=document.getElementsByName("n2_6")[0].checked;
+					fn2C[5]=document.getElementsByName("n2_9")[0].checked;
+					
+					fn3C[0]=document.getElementsByName("n3_2")[0].checked;
+					fn3C[1]=document.getElementsByName("n3_3")[0].checked;
+					fn3C[2]=document.getElementsByName("n3_4")[0].checked;
+					fn3C[3]=document.getElementsByName("n3_5")[0].checked;
+					fn3C[4]=document.getElementsByName("n3_6")[0].checked;
+					fn3C[5]=document.getElementsByName("n3_9")[0].checked;
+					
+					if(n1%2==0)
+						fn1[0]=true;
+					if(n1%3==0)
+						fn1[1]=true;
+					if(n1%4==0)
+						fn1[2]=true;
+					if(n1%5==0)
+						fn1[3]=true;
+					if(n1%6==0)
+						fn1[4]=true;
+					if(n1%9==0)
+						fn1[5]=true;
+					
+					if(n2%2==0)
+						fn2[0]=true;
+					if(n2%3==0)
+						fn2[1]=true;
+					if(n2%4==0)
+						fn2[2]=true;
+					if(n2%5==0)
+						fn2[3]=true;
+					if(n2%6==0)
+						fn2[4]=true;
+					if(n2%9==0)
+						fn2[5]=true;
+					
+					if(n3%2==0)
+						fn3[0]=true;
+					if(n3%3==0)
+						fn3[1]=true;
+					if(n3%4==0)
+						fn3[2]=true;
+					if(n3%5==0)
+						fn3[3]=true;
+					if(n3%6==0)
+						fn3[4]=true;
+					if(n3%9==0)
+						fn3[5]=true;
+					
+					//alert(fn1C);
+					//alert(fn1);
+					//alert(fn2C);
+					//alert(fn2);
+					//alert(fn3C);
+					//alert(fn3);
+					for(i=0;i<6;i++){
+						if(fn1C[i]==fn1[i] && fn2C[i]==fn2[i] && fn3C[i]==fn3[i])
+							final=1;
+						else{
+							final=-1;
+							break;
+						}
+					}
+					
+					//alert(final);
+				}
+			</script>
+
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

@@ -240,6 +240,7 @@
         "mision":"Si estudias mucho para tus examenes tienes mayor probabilidad de aprobar...",
         "cond_oro": "5",
         "no_oro": "no tienes suficiente oro para pedir consejo...",
+        "reco_experiencia": "1",
         "new_mission": [
             {
                 "npc": "Divina",
@@ -256,6 +257,7 @@
         "mision":"Si apruebas todas las materias en el colegio, tienes más tiempo libre y menos preocupaciones...",
         "cond_oro": "5",
         "no_oro": "no tienes suficiente oro para pedir consejo...",
+        "reco_experiencia": "1",
         "new_mission": [
             {
                 "npc": "Divina",

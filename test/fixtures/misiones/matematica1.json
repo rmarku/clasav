@@ -36,6 +36,7 @@
 		"paso": "Fue divertido! Pero hay que continuar...",
 		"no_paso": "Lo veamos otra vez!",
 		"reco_oro": "10",
+		"reco_experiencia": "10",
 		"new_mission": [
 			{
 				"npc": "Chris",
@@ -53,6 +54,7 @@
 		"paso": "<strong>Wow!</strong> En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
 		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
 		"reco_oro": "10",
+		"reco_experiencia": "10",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
 		"new_mission": [
@@ -72,6 +74,7 @@
 		"paso": "<strong>Wow!</strong> Eres genial!!!... <br> Pudimos terminar mi tarea... Ahora deberias visitar a Fibonacci, para seguir aprendiendo sobre divisibilidad",
 		"no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
 		"reco_oro": "10",
+		"reco_experiencia": "15",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
 		"new_mission": [
@@ -87,8 +90,13 @@
 		"npc_visible": "true",
 		"titulo": "Qué sabes sobre divisibilidad?!",
 		"pregunta": "Yo soy Fibonacci, un matemático italiano, e hice conocer las reglas de divisibilidad... <br> <b>2</b> Termina en cifra par (Ej. 42, 78) <br> <b> 3</b> La suma de los valores es multiplo de 3 (Ej. 150 porque 1+5=6) <br> <b>4</b> Las dos ultimas cifras son multiplo de 4 <br> <b>5</b> La ultima cifra es 5 o 0 <br> <b>6</b> es divisible por 2 y 3 al mismo tiempo <br> <b>9</b> La suma de sus valores absolutos es multiplo de nueve (Ej. 288 porque 2+8+8=18)",
+		"mision": "URL:test/mat_divisibilidad.html",
 		"paso": "Si, lo se, la <b> matemática </b> es <b>GENIAL </b>",
-		"reco_oro": "25"
+		"no_paso": "Si, esto es difícil!! Pero confío en que podrás resolverlo bien! Volvemos a hacer este ejercicio?",
+		"reco_oro": "25",
+		"reco_experiencia": "25",
+		"cond_energia": "10",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia."
 	}, {
 		"npc": "Daniela",
 		"qorder": "0",
