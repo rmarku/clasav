@@ -96,7 +96,33 @@
 		"reco_oro": "25",
 		"reco_experiencia": "25",
 		"cond_energia": "10",
-		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia."
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+		"new_mission": [
+			{
+				"npc": "fibonacci",
+				"qorder": "2"
+			}
+		]
+	}, {
+		"npc": "fibonacci",
+		"qorder": "2",
+		"img_quest": "fibonacci.png",
+		"npc_visible": "true",
+		"titulo": "Números Primos y Compuestos?!",
+		"pregunta": "Un número <b> primo </b> es el que no tiene otros divisores que él mismo y la unidad. Los que no son primos, se dicen <b>compuestos </b>. <br> Eratóstenes ideo una forma de encontrar los primeros números primos llamada criba de Eratostenes. <br> <img src='http://multiblog.educacion.navarra.es/jballabr/files/2013/01/criba.png' width='100%'>",
+		"mision": "URL:test/primos.html",
+		"paso": "<b>WOW!! </b> Eres muy inteligente! <br> Si deseas podemos volver a repasar la divisibilidad!",
+		"no_paso": "Oh! Has cometido algunos errores! Pero puedes volver a intentarlo!",
+		"reco_oro": "25",
+		"reco_experiencia": "25",
+		"cond_energia": "10",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+		"new_mission": [
+			{
+				"npc": "fibonacci",
+				"qorder": "1"
+			}
+		]
 	}, {
 		"npc": "Daniela",
 		"qorder": "0",
