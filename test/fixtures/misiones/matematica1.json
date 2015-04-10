@@ -6,7 +6,7 @@
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
 		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
-		"paso": "Si quieres, puedes comenzar con Chris, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con fibonacci sobre divisibilidad.",
+		"paso": "Si quieres, puedes comenzar con Chris, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con fibonacci sobre divisibilidad.<br> O visitar a Hipatia y conversar sobre cuerpos geométricos.",
 		"new_mission": [
 			{
 				"npc": "chris",
@@ -22,6 +22,10 @@
 			},
 			{
 				"npc": "fibonacci",
+				"qorder": "1"
+			},
+			{
+				"npc": "hipatia",
 				"qorder": "1"
 			}
 		]
@@ -124,6 +128,26 @@
 			}
 		]
 	}, {
+		"npc": "hipatia",
+		"qorder": "1",
+		"img_quest": "hipatia.png",
+		"npc_visible": "true",
+		"titulo": "Cuerpos Geo-Geo-Geometricos!",
+		"pregunta": "Los <b> cuerpos geométricos </b> son elementos que ocupan un volumen en el espacio, tienen 3 dimensiones: ancho, alto y largo y están compuestos por figuras geométricas. <br> Existen 2 tipos: <br> los <b>poliedros: </b>  o cuerpos planos, que son cuerpos geométricos compuestos exclusivamente por figuras geométricas planas; como por ejemplo el cubo. <br> los <b> cuerpos redondos </b> que son cuerpos geométricos compuestos total o parcialmente por figuras geométricas curvas; como por ejemplo el cilindro, la esfera o el cono.",
+		"mision": "URL:test/cuerposGeo.html",
+		"paso": "<b>Era muy complicado, pero lo has hecho bien!! </b> Felicitaciones!",
+		"no_paso": "Oh! Has cometido algunos errores! Pero puedes volver a intentarlo!",
+		"reco_oro": "50",
+		"reco_experiencia": "35",
+		"cond_energia": "10",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+		"new_mission": [
+			{
+				"npc": "hipatia",
+				"qorder": "2"
+			}
+		]
+	},{
 		"npc": "Daniela",
 		"qorder": "0",
 		"img_quest": "daniela.png",

@@ -1,0 +1,134 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior
+				var aleat = Math.random() * numPosibilidades
+				aleat = Math.round(aleat)
+				return parseInt(inferior) + aleat
+			}
+		</script>
+		<style>
+			td {
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>Cuerpos <br> Geométricos</td>
+					<td>Poliedro</td>
+					<td>Cuerpo <br> Redondo</td>
+					<td>Cantidad <br>de Caras</td>
+					<td>Cantidad <br>de Aristas</td>
+					<td>Cantidad <br>de Vertices</td>
+				</tr>
+				<tr>
+					<td><img src="cuerposGeo/prisma5.png"></td>
+					<td><input type="radio" name="cg1" id="pol1"></td>
+					<td><input type="radio" name="cg1" id="cred1"></td>
+					<td><input type="text" id="cantC1" name="cantC1" size="2"></td>
+					<td><input type="text" id="cantA1" name="cantA1" size="2"></td>
+					<td><input type="text" id="cantV1" name="cantV1" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="cuerposGeo/cubo.png"></td>
+					<td><input type="radio" name="cg2" id="pol2"></td>
+					<td><input type="radio" name="cg2" id="cred2"></td>
+					<td><input type="text" id="cantC2" name="cantC2" size="2"></td>
+					<td><input type="text" id="cantA2" name="cantA2" size="2"></td>
+					<td><input type="text" id="cantV2" name="cantV2" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="cuerposGeo/cilindro.png"></td>
+					<td><input type="radio" name="cg3" id="pol3"></td>
+					<td><input type="radio" name="cg3" id="cred3"></td>
+					<td><input type="text" id="cantC3" name="cantC3" size="2"></td>
+					<td><input type="text" id="cantA3" name="cantA3" size="2"></td>
+					<td><input type="text" id="cantV3" name="cantV3" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/piramide6.png"></td>
+					<td><input type="radio" name="cg4" id="pol4"></td>
+					<td><input type="radio" name="cg4" id="cred4"></td>
+					<td><input type="text" id="cantC4" name="cantC4" size="2"></td>
+					<td><input type="text" id="cantA4" name="cantA4" size="2"></td>
+					<td><input type="text" id="cantV4" name="cantV4" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/cono.png"></td>
+					<td><input type="radio" name="cg5" id="pol5"></td>
+					<td><input type="radio" name="cg5" id="cred5"></td>
+					<td><input type="text" id="cantC5" name="cantC5" size="2"></td>
+					<td><input type="text" id="cantA5" name="cantA5" size="2"></td>
+					<td><input type="text" id="cantV5" name="cantV5" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/esfera.png"></td>
+					<td><input type="radio" name="cg6" id="pol6"></td>
+					<td><input type="radio" name="cg6" id="cred6"></td>
+					<td><input type="text" id="cantC6" name="cantC6" size="2"></td>
+					<td><input type="text" id="cantA6" name="cantA6" size="2"></td>
+					<td><input type="text" id="cantV6" name="cantV6" size="2"></td>
+				</tr>
+			</table>
+			<br>
+			
+			<script>
+			var final=-1;
+			var cCaras=[0,0,0,0,0,0];
+			var cArist=[0,0,0,0,0,0];
+			var cVerti=[0,0,0,0,0,0];
+			var cGeo1, cGeo2, cGeo3, cGeo4, cGeo5, cGeo6;
+						
+			var solCaras=[7,6,2,7,1,0];
+			var solAristas=[15,6,2,12,1,0];
+			var solVertices=[10,8,0,7,1,0];
+			
+			
+			function comprobar() {
+				cGeo1= document.formulario.cg1[0].checked;
+				cGeo2= document.formulario.cg2[0].checked;
+				cGeo3= document.formulario.cg3[1].checked;
+				cGeo4= document.formulario.cg4[0].checked;
+				cGeo5= document.formulario.cg5[1].checked;
+				cGeo6= document.formulario.cg6[1].checked;
+				
+				for(i=0; i<6; i++){
+					cCaras[i] = document.getElementById('cantC'+[i+1]).value;	
+					cArist[i] = document.getElementById('cantA'+[i+1]).value;
+					cVerti[i] = document.getElementById('cantV'+[i+1]).value;	
+				}
+				
+				for(i=0;i<6;i++){
+					if(cGeo1 && cGeo2 && cGeo3 && cGeo4 && cGeo5 && cGeo6 && cCaras[i]==solCaras[i] && cArist[i]==solAristas[i] && cVerti[i]==solVertices[i])
+						final=1;
+					else{
+						final=-1;
+						break;
+					}
+				}
+				
+				
+				//alert(cCaras);
+				//alert(cArist);
+				//alert(cVerti);
+				//alert(final);
+			}
+		</script>
+		</form>
+
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>
