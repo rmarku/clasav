@@ -264,5 +264,12 @@
         "height": "49",
         "sprite": "eduardo",
         "animation": "1"
+    },
+    {
+        "nombre": "hipatia",
+        "width": "25",
+        "height": "50",
+        "sprite": "hipatia",
+        "animation": "1"
     }
 ]

@@ -6,7 +6,7 @@
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
 		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
-		"paso": "Si quieres, puedes comenzar con Chris, y ayudarlo con sus tareas de numeros enteros.",
+		"paso": "Si quieres, puedes comenzar con Chris, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con fibonacci sobre divisibilidad.",
 		"new_mission": [
 			{
 				"npc": "chris",
@@ -109,7 +109,7 @@
 		"img_quest": "fibonacci.png",
 		"npc_visible": "true",
 		"titulo": "Números Primos y Compuestos?!",
-		"pregunta": "Un número <b> primo </b> es el que no tiene otros divisores que él mismo y la unidad. Los que no son primos, se dicen <b>compuestos </b>. <br> Eratóstenes ideo una forma de encontrar los primeros números primos llamada criba de Eratostenes. <br> <img src='http://multiblog.educacion.navarra.es/jballabr/files/2013/01/criba.png' width='100%'>",
+		"pregunta": "Un número <b> primo </b> es el que no tiene otros divisores que él mismo y la unidad. Los que no son primos, se dicen <b>compuestos </b>. <br> Eratóstenes ideo una forma de encontrar los primeros números primos llamada criba de Eratostenes. (Los números primos son los rojos) <br> <img src='http://multiblog.educacion.navarra.es/jballabr/files/2013/01/criba.png' width='100%'>",
 		"mision": "URL:test/primos.html",
 		"paso": "<b>WOW!! </b> Eres muy inteligente! <br> Si deseas podemos volver a repasar la divisibilidad!",
 		"no_paso": "Oh! Has cometido algunos errores! Pero puedes volver a intentarlo!",
@@ -147,7 +147,7 @@
 		"npc_visible": "true",
 		"titulo": "El teorema de Pitagoras...",
 		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa.",
-		"mision": "URL: test/quest3_1.html",
+		"mision": "URL:test/quest3_1.html",
 		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
 		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
 		"reco_oro": "25"
@@ -158,7 +158,7 @@
 		"npc_visible": "true",
 		"titulo": "Numeros Racionales...",
 		"pregunta": "Se llama número racional a todo número que puede representarse como el cociente de dos números enteros. Existen 2 maneras de escribir el mismo número racional: como fracción o en forma decimal.",
-		"mision": "URL: test/quest3_1.html",
+		"mision": "URL:test/quest3_1.html",
 		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
 		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
 		"reco_oro": "25"
