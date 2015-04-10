@@ -13,14 +13,6 @@
 				"qorder": "1"
 			},
 			{
-				"npc": "pitagoras",
-				"qorder": "1"
-			},
-			{
-				"npc": "eduardo",
-				"qorder": "1"
-			},
-			{
 				"npc": "fibonacci",
 				"qorder": "1"
 			},
@@ -30,6 +22,10 @@
 			},
 			{
 				"npc": "teano",
+				"qorder": "1"
+			},
+			{
+				"npc": "eduardo",
 				"qorder": "1"
 			}
 		]
@@ -208,9 +204,55 @@
 		"new_mission": [
 			{
 				"npc": "teano",
+				"qorder": "2"
+			}
+		]
+	},{
+		"npc": "teano",
+		"qorder": "2",
+		"img_quest": "teano.png",
+		"npc_visible": "true",
+		"titulo": "Elementos de los poligonos!",
+		"pregunta": "Sabias que los elementos de los poligonos son: <b> Lados: </b> son cada uno de los segmentos que limitan el polígono.<br> <b> Vértices:</b> Son los puntos en los que se unen los lados. <br> <b> Ángulos:</b> Porción de plano comprendida entre dos lados y un vértice común. <br> <b>Diagonal: </b>Segmento de recta que une dos vértices no consecutivos.<br> <b> Ángulos: </b> porción de plano comprendida entre dos lados y un vértice común. <br><img src='http://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/PoliReg_11.svg/220px-PoliReg_11.svg.png'>'",
+		"mision": "URL:test/figurasPlanas2.html",
+		"paso": "Lo has hecho <b>Exelente</b>!!! Creo que ya estas listo para hablar con mi esposo, Pitágoras, y descubrir los misterios que esconden los fabulosos triángulos.",
+		"no_paso": "Me temo que has cometido errores. Pero no te desanimes, e intentalo otra vez!",
+		"reco_oro": "10",
+		"reco_experiencia": "12",
+		"cond_energia": "8",
+		"no_energia": "Descansa un poco para recuperar la energía y luego ven a resolver estos enigmas matemáticos. Necesitas 8 de energia.",
+		"new_mission": [
+			{
+				"npc": "pitagoras",
 				"qorder": "1"
 			}
 		]
+	},{
+		"npc": "pitagoras",
+		"qorder": "1",
+		"img_quest": "pitagoras.png",
+		"npc_visible": "true",
+		"titulo": "Los misteriosos Triángulos...",
+		"pregunta": "Bienvenido a la escuela Pitagórica! Supongo que deseas que te devele los misterios que esconden los fabuloso triángulos. <br> Primero que nada, debes saber que el <b> triágulo </b> es el polígono delimitado por tres lados; y que en consecuencia contiene tres ángulos, con sus respectivos vértices. <br> Los triángulos se clasifican: <br> En consideración a sus lados, en: <br> <b>Triángulos equiláteros</b> cuando sus tres lados son iguales. <br> <b>Triángulos isósceles</b> cuando solamente dos de sus lados son iguales. <br> <b>Triángulos escalenos</b> cuando sus tres lados son desiguales. <br> En consideración a sus ángulos, en: <br> <b>Triángulos acutángulos</b> cuando sus tres ángulos son agudos. <br> <b>Triángulos rectángulos</b> cuando tienen un ángulo recto. <br> <b>Triángulos obtusángulos</b> cuando tienen un ángulo obtuso.<br> Supongo que te debo estar mareando con tanta información. Porque mejor no te relajas y vemos un video!!",
+		"mision": "URL:test/triangulo1.html",
+		"paso": "Fue muy divertido!! Pero es hora de continuar",
+		"reco_oro": "7",
+		"new_mission": [
+			{
+				"npc": "pitagoras",
+				"qorder": "2"
+			}
+		]
+	},{
+		"npc": "pitagoras",
+		"qorder": "2",
+		"img_quest": "pitagoras.png",
+		"npc_visible": "true",
+		"titulo": "El teorema de Pitagoras...",
+		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa.",
+		"mision": "URL:test/quest3_1.html",
+		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
+		"reco_oro": "25"
 	},{
 		"npc": "Daniela",
 		"qorder": "0",
@@ -228,18 +270,7 @@
 				"qorder": "3"
 			}
 		]
-	}, {
-		"npc": "pitagoras",
-		"qorder": "1",
-		"img_quest": "pitagoras.png",
-		"npc_visible": "true",
-		"titulo": "El teorema de Pitagoras...",
-		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa.",
-		"mision": "URL:test/quest3_1.html",
-		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
-		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-		"reco_oro": "25"
-	}, {
+	},  {
 		"npc": "eduardo",
 		"qorder": "1",
 		"img_quest": "eduardo.png",
