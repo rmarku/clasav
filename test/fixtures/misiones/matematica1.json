@@ -6,7 +6,7 @@
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
 		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
-		"paso": "Si quieres, puedes comenzar con Chris, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con fibonacci sobre divisibilidad.<br> O visitar a Hipatia y conversar sobre cuerpos geométricos.",
+		"paso": "Si quieres, puedes comenzar con <b>Chris</b>, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con <b>Fibonacci</b> sobre divisibilidad.<br> O visitar a <b>Hipatia</b> y conversar sobre cuerpos geométricos.<br> Aunque si esos temas no te convencen, <b>Teano</b> puede hablarte de figuras planas.",
 		"new_mission": [
 			{
 				"npc": "chris",
@@ -249,10 +249,36 @@
 		"img_quest": "pitagoras.png",
 		"npc_visible": "true",
 		"titulo": "El teorema de Pitagoras...",
-		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa.",
-		"mision": "URL:test/quest3_1.html",
-		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
-		"reco_oro": "25"
+		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa. <br><br> Si aún tienes dudas, mira este video: <br><iframe width='100%' height='100%' src='https://www.youtube.com/embed/5zq3716qyg4' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/triangulo2.html",
+		"paso": "Definitivamente eres miembro Oficial de la Escuela Pitagorica!!! <br> Deseas aprender algo sobre los cuadriláteros?",
+		"reco_oro": "10",
+		"reco_experiencia": "14",
+		"cond_energia": "9",
+		"no_energia": "Oh!! No tienes suficiente energía para realizar esta misión, necesitas 9 de energia.",
+		"new_mission": [
+			{
+				"npc": "pitagoras",
+				"qorder": "3"
+			}
+		]
+	},{
+		"npc": "pitagoras",
+		"qorder": "3",
+		"img_quest": "pitagoras.png",
+		"npc_visible": "true",
+		"titulo": "Cuadriláteros...",
+		"pregunta": "Sabias que los <b>cuadriáteros</b> todos los polígonos delimitados por cuatro lados, y que en consecuencia contienen cuatro ángulos, con sus respectivos vértices.<br> Además se pueden clasificar según la posición que ocupan sus lados: <br> <b>Paralelogramos</b> cuando los dos pares de sus lados son paralelos entre sí. <br> <b>Trapecios</b> cuando solamente dos de sus lados son paralelos entre sí. <br> <b>Trapezoides</b> cuando ninguno de sus lados es paralelo a otro. <br> <img src='http://esdocs.org/pars_docs/refs/57/56833/56833_html_35b5736d.gif' width='100%'>",
+		"paso": "Además, los <b>paralelogramos</b> pueden clasificarse en: <br> <b>Cuadrado:</b> Sus cuatro lados son iguales y sus cuatro ángulos son rectos. <br> <b>Rectángulo:</b> Tiene iguales dos lados, y los otros dos distintos pero iguales entre ellos y cuyos cuatro ángulos son rectos. <br> <b> Rombo:</b> Posee cuatro lados iguales pero tiene dos ángulos agudos iguales y dos ángulos obtusos iguales. <br> <b>Romboide: </b> Tiene sus lados iguales dos a dos, pero tiene dos ángulos agudos iguales y dos ángulos obtusos iguales. <br> <img src='http://recursostic.educacion.es/gauss/web/materiales_didacticos/primaria/actividades/geometria/poligonos/cuadrilateros/img/paralelogramos.png' width='100%'>",
+		"reco_oro": "5",
+		"reco_experiencia": "5",
+		"cond_energia": "2",
+		"new_mission": [
+			{
+				"npc": "pitagoras",
+				"qorder": "1"
+			}
+		]
 	},{
 		"npc": "Daniela",
 		"qorder": "0",

@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+		Completa la siguiente tabla utilizando el teorema de Pitágoras:
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>Cateto Menor</td>
+					<td>Cateto Mayor</td>
+					<td>Hipotenusa</td>
+				</tr>
+				<tr>
+					<td><input type="text" id="catMen0" name="catMen0" size="2" value="3" disabled></td>
+					<td><input type="text" id="catMay0" name="catMay0" size="2" value="4" disabled></td>
+					<td><input type="text" id="hip0" name="hip0" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><input type="text" id="catMen1" name="catMen1" size="2"></td>
+					<td><input type="text" id="catMay1" name="catMay1" size="2" value="8" disabled></td>
+					<td><input type="text" id="hip1" name="hip1" size="2" value="10" disabled></td>
+				</tr>
+				
+				<tr>
+					<td><input type="text" id="catMen2" name="catMen2" size="2" value="5" disabled></td>
+					<td><input type="text" id="catMay2" name="catMay2" size="2"></td>
+					<td><input type="text" id="hip2" name="hip2" size="2" value="13" disabled></td>
+				</tr>
+			</table>
+			
+			<script>
+			var final=-1;
+			var hipot, catMenor, catMayor;
+			
+			
+			function comprobar() {
+				hipot = document.getElementById('hip0').value;	
+				catMenor = document.getElementById('catMen1').value;
+				catMayor = document.getElementById('catMay2').value;	
+								
+				if(hipot=="20" && catMenor=="6" && catMayor=="12")
+					final=1;
+				else
+					final=-1;
+				
+								
+				//alert(final);
+			}
+		</script>
+		</form>
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>
