@@ -27,6 +27,10 @@
 			{
 				"npc": "hipatia",
 				"qorder": "1"
+			},
+			{
+				"npc": "teano",
+				"qorder": "1"
 			}
 		]
 	}, {
@@ -184,6 +188,26 @@
 		"new_mission": [
 			{
 				"npc": "hipatia",
+				"qorder": "1"
+			}
+		]
+	},{
+		"npc": "teano",
+		"qorder": "1",
+		"img_quest": "teano.png",
+		"npc_visible": "true",
+		"titulo": "Figuras Planas!",
+		"pregunta": "Quizas no me conozcas. Soy Teano, la esposa de Pitagoras. Yo también pertenecí a la escuela pitagorica. <br> Repasemos algunos conceptos de poligonos: <br> un <b>polígino</b> es una figura plana con lados rectos. Tienen forma bidimensional, están hechos con líneas rectas, y su forma es 'cerrada' (todas las líneas están conectadas).<br> Los poligonos <b>regulares</b> todos los lados son de igual extensión.<br> Los poligonos <b>irregulares</b> por lo menos alguno de los lados es de extensión distinta.",
+		"mision": "URL:test/figurasPlanas.html",
+		"paso": "<b>Oh!! Has pasado el examen de iniciacion. Puedes unirte a la escuela pitagorica con nosotros, jaja</b> Seguimos con un poco más de geometría?",
+		"no_paso": "Lamento decirte que te has equivocado. La buena noticia es que puedes volver a hacerlo.",
+		"reco_oro": "10",
+		"reco_experiencia": "12",
+		"cond_energia": "8",
+		"no_energia": "Descansa un poco para recuperar la energía. Necesitas 8 de energia para poder hacer esta misión.",
+		"new_mission": [
+			{
+				"npc": "teano",
 				"qorder": "1"
 			}
 		]
