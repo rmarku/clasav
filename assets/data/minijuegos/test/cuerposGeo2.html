@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>Cuerpos <br> Geométricos</td>
+					<td>Cantidad <br>de Caras</td>
+					<td>Cantidad <br>de Aristas</td>
+					<td>Cantidad <br>de Vertices</td>
+				</tr>
+				<tr>
+					<td><img src="cuerposGeo/prisma5.png"></td>
+					<td><input type="text" id="cantC1" name="cantC1" size="2"></td>
+					<td><input type="text" id="cantA1" name="cantA1" size="2"></td>
+					<td><input type="text" id="cantV1" name="cantV1" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="cuerposGeo/cubo.png"></td>
+					<td><input type="text" id="cantC2" name="cantC2" size="2"></td>
+					<td><input type="text" id="cantA2" name="cantA2" size="2"></td>
+					<td><input type="text" id="cantV2" name="cantV2" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="cuerposGeo/cilindro.png"></td>
+					<td><input type="text" id="cantC3" name="cantC3" size="2"></td>
+					<td><input type="text" id="cantA3" name="cantA3" size="2"></td>
+					<td><input type="text" id="cantV3" name="cantV3" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/piramide6.png"></td>
+					<td><input type="text" id="cantC4" name="cantC4" size="2"></td>
+					<td><input type="text" id="cantA4" name="cantA4" size="2"></td>
+					<td><input type="text" id="cantV4" name="cantV4" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/cono.png"></td>
+					<td><input type="text" id="cantC5" name="cantC5" size="2"></td>
+					<td><input type="text" id="cantA5" name="cantA5" size="2"></td>
+					<td><input type="text" id="cantV5" name="cantV5" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/esfera.png"></td>
+					<td><input type="text" id="cantC6" name="cantC6" size="2"></td>
+					<td><input type="text" id="cantA6" name="cantA6" size="2"></td>
+					<td><input type="text" id="cantV6" name="cantV6" size="2"></td>
+				</tr>
+			</table>
+			<br>
+			
+			<script>
+			var final=-1;
+			var cCaras=[0,0,0,0,0,0];
+			var cArist=[0,0,0,0,0,0];
+			var cVerti=[0,0,0,0,0,0];
+						
+			var solCaras=[7,6,2,7,1,0];
+			var solAristas=[15,6,2,12,1,0];
+			var solVertices=[10,8,0,7,1,0];
+			
+			
+			function comprobar() {
+				
+				for(i=0; i<6; i++){
+					cCaras[i] = document.getElementById('cantC'+[i+1]).value;	
+					cArist[i] = document.getElementById('cantA'+[i+1]).value;
+					cVerti[i] = document.getElementById('cantV'+[i+1]).value;	
+				}
+				
+				for(i=0;i<6;i++){
+					if(cCaras[i]==solCaras[i] && cArist[i]==solAristas[i] && cVerti[i]==solVertices[i])
+						final=1;
+					else{
+						final=-1;
+						break;
+					}
+				}
+				
+				
+				//alert(cCaras);
+				//alert(cArist);
+				//alert(cVerti);
+				//alert(final);
+			}
+		</script>
+		</form>
+
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

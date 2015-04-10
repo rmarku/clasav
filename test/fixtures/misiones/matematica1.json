@@ -135,6 +135,26 @@
 		"titulo": "Cuerpos Geo-Geo-Geometricos!",
 		"pregunta": "Los <b> cuerpos geométricos </b> son elementos que ocupan un volumen en el espacio, tienen 3 dimensiones: ancho, alto y largo y están compuestos por figuras geométricas. <br> Existen 2 tipos: <br> los <b>poliedros: </b>  o cuerpos planos, que son cuerpos geométricos compuestos exclusivamente por figuras geométricas planas; como por ejemplo el cubo. <br> los <b> cuerpos redondos </b> que son cuerpos geométricos compuestos total o parcialmente por figuras geométricas curvas; como por ejemplo el cilindro, la esfera o el cono.",
 		"mision": "URL:test/cuerposGeo.html",
+		"paso": "<b>Muy Bien!! </b> Felicitaciones! Seguimos con más ejercicios?",
+		"no_paso": "Oh! Te has equivocado! Pero no te preocupes, puedes volver a hacerlo!",
+		"reco_oro": "15",
+		"reco_experiencia": "17",
+		"cond_energia": "7",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 7 de energia.",
+		"new_mission": [
+			{
+				"npc": "hipatia",
+				"qorder": "2"
+			}
+		]
+	},{
+		"npc": "hipatia",
+		"qorder": "2",
+		"img_quest": "hipatia.png",
+		"npc_visible": "true",
+		"titulo": "Elementos de los Cuerpos Geometricos!",
+		"pregunta": "<b> Caras: </b>son las superficies planas que limitan el cuerpo geométrico. <br> <b>Aristas: </b>son las líneas que se forman cuando se juntan dos caras. <br> <b>Vertices: </b> son los puntos donde se juntan tres o más caras.<br> <img src='http://neetescuela.com/wp-content/uploads/2012/11/11.gif']",
+		"mision": "URL:test/cuerposGeo2.html",
 		"paso": "<b>Era muy complicado, pero lo has hecho bien!! </b> Felicitaciones!",
 		"no_paso": "Oh! Has cometido algunos errores! Pero puedes volver a intentarlo!",
 		"reco_oro": "50",
@@ -144,7 +164,27 @@
 		"new_mission": [
 			{
 				"npc": "hipatia",
-				"qorder": "2"
+				"qorder": "3"
+			}
+		]
+	},{
+		"npc": "hipatia",
+		"qorder": "3",
+		"img_quest": "hipatia.png",
+		"npc_visible": "true",
+		"titulo": "Poliedros!",
+		"pregunta": "Existen diferentes clases de poliedros: <br> <b> Regulares: </b>en los cuales todas las caras son iguales. <br> <b>Irregulares: </b> tienen caras que comprenden más de un tipo de figuras plana. ",
+		"mision": "URL:test/cuerposGeo3.html",
+		"paso": "<b>Lo has hecho muy bien!! </b> Vuelve conmigo si deseas repasar lo visto de Geometría!",
+		"no_paso": "Estoy segura que puedes hacerlo aún mejor! Intentalo otra vez",
+		"reco_oro": "8",
+		"reco_experiencia": "9",
+		"cond_energia": "7",
+		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 7 de energia.",
+		"new_mission": [
+			{
+				"npc": "hipatia",
+				"qorder": "1"
 			}
 		]
 	},{
