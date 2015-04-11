@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
 
     </head>
-    <body>
+    <body class="listaClases" style="background: none">
         <div class="container-fluid" ng-controller="gameClasesController">
-            <div class="div-form text-left" style="margin: auto;">
+            <div class="text-left" style="margin: auto; padding: 0px">
 
                 <div class="container-fluid">
                     <div class="row">
@@ -22,14 +22,14 @@
                                 <thead>
                                 <tr>
                                     <th>Clase</th>
-                                    <th class="text-center" style="width: 100px">Mapa Central</th>
+                                    <th class="text-center" style="width: 120px">Mapa Central</th>
                                     <th class="text-center" style="width: 100px">Ingresar</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="clase in misClases">
                                     </span>
-                                    <td class="text-center">
+                                    <td>
                                             <span>
                                                 {{ clase.nombre}}
                                             </span>
@@ -40,7 +40,7 @@
                                             </span>
                                     </td>
                                     <td class="text-center">
-                                        <span class="fa fa-sign-in" ng-click="call_travel_by_genericClavLevelEntity(clase)">
+                                        <span class="fa fa-sign-in" ng-click="call_travel_by_genericClavLevelEntity(clase)" style="cursor: pointer">
                                         </span>
                                     </td>
                                     </span>
@@ -101,7 +101,7 @@
                 var data =
                 {
                     to:     claseToGo.mapaCentral.nombre,
-                    spawn:  parent.me.game.currentLevel.name
+                    spawn:  "tp_puerto"
                 };
 
                 parent.game.travel_by_genericClavLevelEntity(data);

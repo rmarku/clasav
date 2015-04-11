@@ -55,7 +55,7 @@ passport.protocols = require('./protocols');
  * @param {Object}   query
  * @param {Object}   profile
  * @param {Function} next
- * @return 
+ * @return
  */
 passport.connect = function (req, query, profile, next) {
   var user = {}
@@ -185,7 +185,7 @@ passport.connect = function (req, query, profile, next) {
  * @method endpoint
  * @param {Object} req
  * @param {Object} res
- * @return 
+ * @return
  */
 passport.endpoint = function (req, res) {
   var strategies = sails.config.passport
@@ -217,7 +217,7 @@ passport.endpoint = function (req, res) {
  * @param {Object}   req
  * @param {Object}   res
  * @param {Function} next
- * @return 
+ * @return
  */
 passport.callback = function (req, res, next) {
   var provider = req.param('provider', 'local')
@@ -269,7 +269,7 @@ passport.callback = function (req, res, next) {
  * For more information on the providers supported by Passport.js, check out:
  * http://passportjs.org/guide/providers/
  * @method loadStrategies
- * @return 
+ * @return
  */
 passport.loadStrategies = function () {
   var self       = this
@@ -330,7 +330,7 @@ passport.loadStrategies = function () {
  * @param {Object} req
  * @param {Object} res
  * @param {} next
- * @return 
+ * @return
  */
 passport.disconnect = function (req, res, next) {
   var user     = req.user

@@ -1,22 +1,22 @@
 [
 	{
-		"nombre": "Pantalon Corto",
+		"nombre": "Pantalon Largo",
 		"tipo_item": "pantalon",
 		"maximo": "3",
 		"sprite": "1",
-		"color": "#2AF827"
+		"color": "#fffac3"
 	}, {
 		"nombre": "Remera Corta",
 		"tipo_item": "torso",
 		"maximo": "3",
 		"sprite": "2",
-		"color": "#FF0000"
+		"color": "#fffac3"
 	}, {
 		"nombre": "Zapato",
 		"tipo_item": "zapatos",
 		"maximo": "3",
 		"sprite": "3",
-		"color": "#0000ff"
+		"color": "#786330"
 	}, {
 		"nombre": "Capa Dorada",
 		"tipo_item": "capa",
@@ -25,33 +25,76 @@
 		"color": "#FAF037"
 	}, {
 		"nombre": "Espada Burocratica",
-		"tipo_item": "arma",
+		"tipo_item": "espada",
 		"maximo": "2",
 		"sprite": "5",
 		"color": "#0000ff"
 	}, {
-		"nombre": "Anillo Mágico",
+		"nombre": "Anillo Magico",
 		"tipo_item": "anillo",
 		"maximo": "3",
 		"sprite": "6",
-		"color": "#0000ff"
+		"color": "#ffffff"
 	}, {
 		"nombre": "Alas Angelicales",
-		"tipo_item": "accesorio",
+		"tipo_item": "decoracion1",
 		"maximo": "1",
 		"sprite": "7",
 		"color": "#F7F8EF"
 	}, {
 		"nombre": "Lazo Resplandeciente",
-		"tipo_item": "accesorio",
+		"tipo_item": "espada",
 		"maximo": "2",
 		"sprite": "7",
 		"color": "#FFCD00"
 	}, {
 		"nombre": "Casco del Rey",
-		"tipo_item": "Cabeza",
+		"tipo_item": "sombrero",
 		"maximo": "1",
 		"sprite": "8",
 		"color": "#A29C82"
+	}
+	, {
+		"nombre": "libro",
+		"tipo_item": "sombrero",
+		"maximo": "1",
+		"sprite": "10",
+		"color": "#A29C82"
+	}, {
+		"nombre": "pocion de energia",
+		"tipo_item": "sombrero",
+		"maximo": "10",
+		"sprite": "11",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Anillo Adiamantado",
+		"tipo_item": "anillo",
+		"maximo": "1",
+		"sprite": "12",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Camisa",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "13",
+		"color": "#fffac3"
+	}, {
+		"nombre": "Armadura",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "14",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Remera Corta Azul",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "2",
+		"color": "#2E2EFE"
+	}, {
+		"nombre": "Remera Corta Rosa",
+		"tipo_item": "torso",
+		"maximo": "3",
+		"sprite": "2",
+		"color": "#F5A9E1"
 	}
 ]

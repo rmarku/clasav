@@ -127,13 +127,13 @@ module.exports = {
     afterCreate: function (newPJ, next, req) {
         // Para procesar todas las promesas que devuelven cada item create.
         Promesa.all([
-            Item.findOne({"nombre": "Pantalon Corto"}).then(function (item) {
+            Item.findOne({"nombre": "Pantalon Largo"}).then(function (item) {
                 return Item_instancia.create(
                     {
                         item: item,
                         seccion_inventario: 1,
                         cantidad: 1,
-                        usando: 'true',
+                        usando: true,
                         personaje: newPJ.id
                     });
             }),
@@ -143,7 +143,7 @@ module.exports = {
                         item: item,
                         seccion_inventario: 2,
                         cantidad: 1,
-                        usando: 'true',
+                        usando: true,
                         personaje: newPJ.id
                     });
             }),
@@ -153,7 +153,7 @@ module.exports = {
                         item: item,
                         seccion_inventario: 3,
                         cantidad: 1,
-                        usando: 'true',
+                        usando: true,
                         personaje: newPJ.id
                     });
             })
@@ -228,16 +228,22 @@ module.exports = {
             Personaje.findOne({
                 duenio: userId,
                 masRecientementeUtilizado: true
-            }).populateAll().then(function (personaje) {
-                if (personaje) {
-                    Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
+            }).populateAll().exec(function (err, personaje) {
+                if (err) return reject(err);
+
+                if (personaje && personaje.mapa_instancia) {
+                    Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico})
+                        .populate('mapa_generico')
+                        .exec(function (err, populated_mapa_instancia) {
                         if (populated_mapa_instancia) {
                             personaje.mapa_instancia = populated_mapa_instancia;
-                            resolve(personaje);
+                            return resolve(personaje);
+                        }else{
+                            return resolve(null);
                         }
                     });
                 } else {
-                    resolve(null);
+                    return resolve(null);
                 }
             });
         });

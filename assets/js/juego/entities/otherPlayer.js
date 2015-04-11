@@ -5,7 +5,7 @@ game.OtherPlayer = game.Player.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return 
+     * @return
      */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
@@ -15,13 +15,14 @@ game.OtherPlayer = game.Player.extend({
         this.direccion = settings.data.direccion;
         this.last_animation = settings.data.animation;
         this.myPath = [];
+        this.alwaysUpdate = true;
     },
 
     /**
      * Description
      * @method nextNode
      * @param {} new_target
-     * @return 
+     * @return
      */
     nextNode: function (new_target) {
         // Si el nuevo target es muy diferente al anterior o no hay A*
@@ -82,25 +83,5 @@ game.OtherPlayer = game.Player.extend({
             this.pos.y = this.final_target_pos.y;
         }
         return this.updateAnimation(dt);
-    },
-
-    /**
-     * Description
-     * @method draw
-     * @param {} renderer
-     * @return 
-     */
-    draw: function (renderer) {
-        //var context = renderer.getContext();
-        this._super(game.Player, 'draw', [renderer]);
-
-        for (var i = 0; i < this.myPath.length; i++) {
-            renderer.fillStyle = 'white';
-            renderer.fillRect(this.myPath[i].pos.x + 16 - 5, this.myPath[i].pos.y + 16 - 5, 10, 10);
-            renderer.fillStyle = 'red';
-            renderer.fillRect(this.myPath[i].pos.x + 16, this.myPath[i].pos.y + 16, 1, 1);
-        }
-        renderer.fillStyle = 'blue';
-        renderer.fillRect(this.pos.x + 12, this.pos.y + 7, 2, 2);
     }
 });

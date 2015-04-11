@@ -1,7 +1,9 @@
 language: node_js
 node_js: "0.10"
 
-deploy:
+before_install: npm install -g node-pre-gyp
+
+deploe:
     provider: heroku
     api_key: ***REMOVED***
     app: clases-y-aventuras

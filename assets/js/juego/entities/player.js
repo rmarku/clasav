@@ -13,18 +13,17 @@ game.Player = me.Entity.extend({
      * @param {} x
      * @param {} y
      * @param {} settings
-     * @return 
+     * @return
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
         console.log(settings);
-        this.alwaysUpdate = true;
         this.target_pos = new me.Vector2d(x, y);
         this.final_target_pos = new me.Vector2d(x, y);
         this.myPath = [];
 
-        this.body.setVelocity(5.2, 5.2);
+        this.body.setVelocity(9, 9);
         this.body.setFriction(0.5, 0.5);
 
         this.body.gravity = 0;
@@ -32,8 +31,11 @@ game.Player = me.Entity.extend({
 
         this.nombre();
         // lo visto.
+
         this.renderable = new me.AnimationSheet(0, 0, {
             "image": this.vestir(),
+            "framewidth": 32,
+            "frameheight": 48,
             "spritewidth": 32,
             "spriteheight": 48
         });
@@ -44,12 +46,14 @@ game.Player = me.Entity.extend({
         this.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
 
         this.renderable.setCurrentAnimation(this.data.animation);
-        this.animationToUseThisFrame = this.data.animation;
-        this.lastAnimationUsed = this.data.animation;
 
 
         this.anchorPoint.set(0.5, 1);
 
+        this.animationToUseThisFrame = this.data.animation;
+        this.lastAnimationUsed = this.data.animation;
+
+        this.body.removeShape(this.body.getShape(0));
         this.body.addShape(new me.Ellipse(0, 0, this.body.width - 4, this.body.width - 4));
         // set the renderable position to bottom center
 
@@ -74,7 +78,7 @@ game.Player = me.Entity.extend({
             this.body.vel.x = -this.body.maxVel.x;
         }
 
-        return this.updateAnimation(dt);
+        this.updateAnimation(dt);
     },
 
 
@@ -94,7 +98,6 @@ game.Player = me.Entity.extend({
         }
 
         this.body.update();
-        me.collision.check(this);
 
         if (Math.abs(this.body.vel.x) < Math.abs(this.body.vel.y)) {
             if (this.body.vel.y > 0.1)
@@ -108,7 +111,7 @@ game.Player = me.Entity.extend({
                 this.animationToUseThisFrame = "run-left";
         }
         if (this.body.vel.length() === 0)
-            this.renderable.setAnimationFrame();
+            this.renderable.setAnimationFrame(0);
 
         if (this.lastAnimationUsed != this.animationToUseThisFrame) {
             this.lastAnimationUsed = this.animationToUseThisFrame;
@@ -144,7 +147,7 @@ game.Player = me.Entity.extend({
      * @return
      * @method draw
      * @param {} renderer
-     * @return 
+     * @return
      */
     draw: function (renderer) {
 
@@ -155,13 +158,13 @@ game.Player = me.Entity.extend({
         // Dibujo el nombre
         renderer.drawImage(this.canvasNombre,
             ~~(this.pos.x - this.canvasNombre.width / 2),
-            ~~(this.pos.y +10));
+            ~~(this.pos.y + 10));
     },
 
     /**
      * Dibuja el nombre del personaje por debajo
      * @method nombre
-     * @return 
+     * @return
      */
     nombre: function () {
         var width = 32 * 4;
@@ -191,7 +194,7 @@ game.Player = me.Entity.extend({
      * Description
      * @method getItemImg
      * @param {} itemId
-     * @return 
+     * @return
      */
     getItemImg: function (itemId) {
         var dir = this.data.duenio.sexo + '/';
@@ -284,7 +287,7 @@ game.Player = me.Entity.extend({
             }
         });
 
-        var i = new Image(width, height);
+        var i = document.createElement('img');
         i.src = canvas.toDataURL();
         return i;
     }
