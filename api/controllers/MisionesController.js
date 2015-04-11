@@ -22,13 +22,13 @@ module.exports = {
             var pj = datos.pj;
 
             //Verifico precondiciones
-            if (misi.cond_nivel && mxp.personaje.nivel < misi.cond_nivel)
+            if (misi.cond_nivel && pj.nivel < misi.cond_nivel)
                 return res.json({falta: misi.no_nivel});
 
-            if (misi.cond_energia && mxp.personaje.energia < misi.cond_energia)
+            if (misi.cond_energia && pj.energia < misi.cond_energia)
                 return res.json({falta: misi.no_energia});
 
-            if (misi.cond_oro && mxp.personaje.oro < misi.cond_oro)
+            if (misi.cond_oro && pj.oro < misi.cond_oro)
                 return res.json({falta: misi.no_oro});
 
 
@@ -92,15 +92,14 @@ module.exports = {
             var misi = datos.misi;
             var pj = datos.pj;
 
+            //No paso, resto la energia
+            if (misi.cond_energia)
+                pj.energia -= misi.cond_energia;
+            if (pj.energia < 0)
+                pj.energia = 0;
+
             //Verifico precondiciones
             if (resultado == '-1') {
-
-                //No paso, resto la energia
-                if (misi.cond_energia)
-                    pj.energia -= misi.cond_energia;
-                if (pj.energia < 0)
-                    pj.energia = 0;
-
                 return res.json({result: 'no', txt: misi.no_paso});
             }
 
@@ -161,6 +160,7 @@ module.exports = {
                     max = (pj.nivel + pj.nivel / 2) * 100;
                 }
             }
+
             if (misi.reco_item)
                 Item.findOne({nombre: misi.reco_item}).exec(function (err, item) {
                     if (err || !item) {
@@ -237,6 +237,8 @@ module.exports = {
 
 // Informo que temino la mision y el resultado.
     info: function (req, res) {
+        var time_start = Date.now();
+
         var userId = req.session.passport.user;
         var npcName = req.param('npc');
 
@@ -248,14 +250,14 @@ module.exports = {
             var misi = datos.misi;
             // Doy informacion general del quest
 
-            sails.log.info('Fin ' + npcName);
+            sails.log.info('info ' + npcName + ' ' + (Date.now() - time_start) + 'ms');
             return res.json({
                 img_quest: misi.img_quest,
                 npc_visible: misi.npc_visible
             });
 
         }).catch(function (err) {
-            sails.log.info('Fin ' + npcName);
+            sails.log.info('info ' + npcName + ' ' + (Date.now() - time_start) + 'ms');
             return res.json({
                 err: 'no tiene mision',
                 img_quest: '',

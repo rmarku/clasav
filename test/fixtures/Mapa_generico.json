@@ -11,7 +11,7 @@
     },
     {
         "nombre"    : "ciudad",
-        "tipo"      :"secundario"
+        "tipo"      :"central"
     },
     {
         "nombre"        :"ciudad_items",

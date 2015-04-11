@@ -256,13 +256,7 @@
   <object id="68" x="672" y="132" width="32" height="32">
    <properties>
     <property name="direction" value="run-down"/>
-    <property name="spawn" value="ciudad"/>
-   </properties>
-  </object>
-  <object id="77" x="672" y="139" width="32" height="32">
-   <properties>
-    <property name="direction" value="run-down"/>
-    <property name="spawn" value="island"/>
+    <property name="spawn" value="tp_puerto"/>
    </properties>
   </object>
  </objectgroup>

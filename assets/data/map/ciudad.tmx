@@ -641,21 +641,15 @@
   </properties>
  </imagelayer>
  <objectgroup color="#ffb300" name="Spawns">
-  <object id="296" x="2175" y="3011" width="32" height="32">
-   <properties>
-    <property name="direction" value="run-up"/>
-    <property name="spawn" value="island"/>
-   </properties>
-  </object>
   <object id="650" x="2912" y="2368" width="32" height="32">
    <properties>
     <property name="direction" value="run-up"/>
     <property name="spawn" value="tp_taberna"/>
    </properties>
   </object>
-  <object id="651" x="1600" y="2880" width="32" height="32">
+  <object id="651" x="2175.67" y="2979.67" width="32" height="32">
    <properties>
-    <property name="direction" value="run-down"/>
+    <property name="direction" value="run-up"/>
     <property name="spawn" value="tp_puerto"/>
    </properties>
   </object>
