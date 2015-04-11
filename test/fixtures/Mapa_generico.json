@@ -1,55 +1,39 @@
 [
     {
         "nombre"    : "island",
-        "clase"     : 1,
         "tipo"      :"central",
         "dependencia_mapa_generico" : 1
     },
     {
         "nombre"    : "islandcasa01",
-        "clase"     : 1,
         "tipo"      :"secundario",
         "dependencia_mapa_generico" : 1
     },
     {
         "nombre"    : "ciudad",
-        "clase"     : 1,
-        "tipo"      :"secundario",
-        "dependencia_mapa_generico" : 1
+        "tipo"      :"secundario"
     },
     {
-        "clase"         :1,
         "nombre"        :"ciudad_items",
-        "tipo"          :"secundario",
-        "dependencia_mapa_generico" : 1
+        "tipo"          :"secundario"
     },
     {
-    	"dependencia_mapa_generico" : 1,
-        "clase"         :1,
         "nombre"        :"ciudad_biblioteca",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1,
-        "clase"         :1,
         "nombre"        :"ciudad_casa01",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1,
-        "clase"         :1,
         "nombre"        :"ciudad_escuela",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1,
-        "clase"         :1,
         "nombre"        :"ciudad_iglesia",
         "tipo"          :"secundario"
     },
     {
-        "dependencia_mapa_generico" : 1,
-        "clase"         :1,
         "nombre"        :"ciudad_taberna",
         "tipo"          :"secundario"
     }

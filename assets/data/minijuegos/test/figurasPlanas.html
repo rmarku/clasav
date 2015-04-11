@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+			Indica si las siguientes figuras planas son regulares o irregulares:
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>Figuras <br> Planas</td>
+					<td>Regulares</td>
+					<td>Irregulares</td>
+				</tr>
+				<tr>
+					<td><img src="figurasPlanas/Cuadrado.png"></td>
+					<td><input type="radio" name="fp1" id="reg1"></td>
+					<td><input type="radio" name="fp1" id="irr1"></td>
+				</tr>
+
+				<tr>
+					<td><img src="figurasPlanas/triangulo2.png"></td>
+					<td><input type="radio" name="fp2" id="reg2"></td>
+					<td><input type="radio" name="fp2" id="irr2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="figurasPlanas/hexagono2.png"></td>
+					<td><input type="radio" name="fp3" id="reg3"></td>
+					<td><input type="radio" name="fp3" id="irr3"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/triangulo.png"></td>
+					<td><input type="radio" name="fp4" id="reg4"></td>
+					<td><input type="radio" name="fp4" id="irr4"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/pentagono.png"></td>
+					<td><input type="radio" name="fp5" id="reg5"></td>
+					<td><input type="radio" name="fp5" id="irr5"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/rectangulo.png"></td>
+					<td><input type="radio" name="fp6" id="reg6"></td>
+					<td><input type="radio" name="fp6" id="irr6"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/hexagono.png"></td>
+					<td><input type="radio" name="fp7" id="reg7"></td>
+					<td><input type="radio" name="fp7" id="irr7"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/pentagono2.png"></td>
+					<td><input type="radio" name="fp8" id="reg8"></td>
+					<td><input type="radio" name="fp8" id="irr8"></td>
+				</tr>
+			</table>
+			<br>
+			
+			<script>
+			var final=-1;
+			var fPlana1, fPlana2, fPlana3, fPlana4, fPlana5, fPlana6, fPlana7, fPlana8;
+			
+			function comprobar() {
+				fPlana1= document.formulario.fp1[0].checked;
+				fPlana2= document.formulario.fp2[1].checked;
+				fPlana3= document.formulario.fp3[1].checked;
+				fPlana4= document.formulario.fp4[0].checked;
+				fPlana5= document.formulario.fp5[0].checked;
+				fPlana6= document.formulario.fp6[1].checked;
+				fPlana7= document.formulario.fp7[0].checked;
+				fPlana8= document.formulario.fp8[1].checked;
+				
+				for(i=0;i<6;i++){
+					if(fPlana1 && fPlana2 && fPlana3 && fPlana4 && fPlana5 && fPlana6 && fPlana7 && fPlana8)
+						final=1;
+					else{
+						final=-1;
+						break;
+					}
+				}
+
+				//alert(final);
+			}
+		</script>
+		</form>
+
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

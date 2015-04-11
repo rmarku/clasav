@@ -9,16 +9,18 @@
         "qorder": "0",
         "img_quest": "anne.png",
         "npc_visible": "true",
-        "titulo": "Bienvenido Viajero!",
-        "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu viaje, le dire a Kitty que aparezca para que te de una mision",
-        "reco_oro": "500",
+        "titulo": "Bienvenido a Clases y Aventuras!",
+        "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar A S D W o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
+        "paso": "Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui. Luego podras ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a Kitty que aparezca para que te de una misión. Suerte!",
+        "reco_oro": "5000",
+        "reco_experiencia": "10",
         "new_mission": [
-            {
-                "npc": "Kitty",
+        	{
+                "npc": "Anne",
                 "qorder": "1"
             },
             {
-                "npc": "Anne",
+                "npc": "Kitty",
                 "qorder": "1"
             }
         ]
@@ -28,89 +30,272 @@
         "qorder": "1",
         "img_quest": "kitty.png",
         "npc_visible": "true",
-        "titulo": "Comenzemos esta aventura!",
-        "pregunta":"Es hora de hacer tu primera mision, MiaU!! Comenzaremos por algo sencillo, te parece? Con mis amigos del callejon siempre practicamos operaciones con Numeros Naturales, N = {0, 1, 2, 3, 4, ...}. Se que suena extrano, pero costaria dividir el botin diario de pescado si no supieramos contar. Es asombroso, Miau, los numeros naturales estan formador por un conjunto infinito de numeros.",
-        "mision": "URL:test/test.html",
-        "paso": "Has hecho un buen trabajo, MiaU!! Te dare de recompensa una bola de estambre... Mmmm, pero no se si te sera util... Que tal si mejor te doy este dinero que encontre... Por cierto, creo que tienes habilidad para esto de los numeros, porque no ayudas al hijo del tabernero con su tarea?",
-        "no_paso": "Oh! Estoy seguro que puedes hacerlo a�n mejor",
-        "reco_oro": "2",
+        "titulo": "Nuevo por estos lares?",
+        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella. Siendo nuevo, es bueno hacer amigos.",
+        "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
-                "npc": "chris",
+                "npc": "SraBibliotecaria",
                 "qorder": "1"
             }
         ]
     },
     {
-        "npc": "Chris",
+        "npc": "SraBibliotecaria",
         "qorder": "1",
-        "img_quest": "chris.png",
+        "img_quest": "sraBibliotecaria.png",
         "npc_visible": "true",
-        "titulo": "Ayudame con mi tarea!",
-        "pregunta":"Podrias ayudarme con mi tarea?. Tengo qu estudiar las operaciones con numeros naturales, se que son la suma y la multiplicacion; pero no lo son la resta y division, porque, por ejemplo, la resta de dos numeros naturales no siempre da un numero natural.. Bien, ahora que repasamos esto, que tal si resolvemos los ejercicios?",
-        "mision": "URL:test/test.html",
-        "paso": "Wow! En mi colegio serias muy popular... Todos adoran a los matematicos! Que tal si seguimos con mi tarea?",
-        "no_paso": "Oh! Se que es complicado... Volvamos a intentarlo",
-        "reco_oro": "10",
+        "titulo": "Bienvenido a la Biblioteca!",
+        "pregunta":"Hola Jovencito! Esta es la biblioteca. Aqui podras encontrar cientos de libros interesantes para leer. Puedes ayudarme y pasarme ese libro que esta sobre la mesa?",
         "new_mission": [
             {
-                "npc": "chris",
+                "npc": "SraBibliotecaria",
                 "qorder": "2"
-            }
-        ]
-    },
-    {
-        "npc": "Chris",
-        "qorder": "2",
-        "img_quest": "chris.png",
-        "npc_visible": "true",
-        "titulo": "Ayudame con mi tarea 2!",
-        "pregunta":"A veces se me confunden los numeros naturales con los enteros... Pero por suerte, encontre un video... Lo vemos juntos?",
-        "mision": "URL:test/quest2_3.html",
-        "paso": "Fue divertido! Realmente eres bueno en esto! Porque no ayudas a Daniela? Seguro que esta bajo el viejo arbol haciendo su tarea.",
-        "no_paso": "Lo veamos otra vez!",
-        "reco_oro": "10",
-        "new_mission": [
+            },
             {
-                "npc": "daniela",
+                "npc": "libro",
                 "qorder": "1"
             }
         ]
     },
     {
-        "npc": "Daniela",
+        "npc": "libro",
         "qorder": "1",
-        "img_quest": "daniela.png",
+        "img_quest": "libro.png",
         "npc_visible": "true",
-        "titulo": "A la biblioteca!",
-        "pregunta":"Hola! Soy Dani! Seguro que antes estuviste con mi amigo Chris! Ah, me gustaria jugar con el, pero no puedo al menos que termine mi tarea. Me deje mi cuarno en la biblioteca! Puedes ir al pueblo a buscarlo? Te pagare por ello",
-        "mision": "",
-        "paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-        "no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-        "reco_oro": "25",
+        "titulo": "Bienvenido a la Biblioteca!",
+        "pregunta":"Has agarrado un libro!",
+        "reco_item": "libro",
+        "reco_item_cant": "1",
         "new_mission": [
             {
-                "npc": "daniela",
+                "npc": "libro",
                 "qorder": "2"
             }
         ]
     },
     {
-        "npc": "Daniela",
+        "npc": "SraBibliotecaria",
         "qorder": "2",
-        "img_quest": "daniela.png",
+        "img_quest": "sraBibliotecaria.png",
         "npc_visible": "true",
-        "titulo": "Para poder salir a jugar...",
-        "pregunta":"Bien, ahora falta menos para poder salir a jugar. Pero primero debo entender un poco sobre geometria.",
-        "mision": "URL: test/quest3_1.html",
-        "paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-        "no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-        "reco_oro": "25",
+        "titulo": "Bienvenido a la Biblioteca!",
+        "cond_item": "libro",
+        "cond_item_cant": "1",
+        "mision": "Eres muy amable",
+        "paso": "Muchas Gracias!! Supongo que debes volver con Kitty! Buena suerte!",
+        "no_item": "Alcanzame el libro que esta sobre la mesa por favor!",
+        "cond_energia": "10",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+        "reco_oro": "10",
+        "reco_experiencia": "10",
         "new_mission": [
             {
-                "npc": "daniela",
+                "npc": "Kitty",
+                "qorder": "2"
+            },
+            {
+                "npc": "SraBibliotecaria",
                 "qorder": "3"
             }
         ]
+    },
+    {
+        "npc": "Kitty",
+        "qorder": "2",
+        "img_quest": "kitty.png",
+        "npc_visible": "true",
+        "titulo": "Nuevo por estos lares? 2",
+        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberias ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con Franco! Quizas el pueda darte mas consejos!",
+        "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
+        "new_mission": [
+            {
+                "npc": "franco",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "franco",
+        "qorder": "1",
+        "img_quest": "franco.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a la escuela!",
+        "pregunta":"Hola! Esta es la escuela. Aqui podras aprender cosas nuevas.",
+        "paso": "De recompensa te dare esta camisa. Es parte del uniforme del colegio. Mandale saludos a Kitty de mi parte!",
+        "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
+        "reco_item": "Camisa",
+        "reco_item_cant": "1",
+        "reco_experiencia": "10",
+        "new_mission": [
+            {
+                "npc": "Kitty",
+                "qorder": "3"
+            },
+            {
+                "npc": "franco",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "Kitty",
+        "qorder": "3",
+        "img_quest": "kitty.png",
+        "npc_visible": "true",
+        "titulo": "Nuevo por estos lares? 3",
+        "pregunta":"Cada vez conoces mas de por aqui Miau! Ahora es turno que vayas hasta el mercado! Tiene techo de paja y chimenea. Conoce a la pequena melisa, y comprale una pocion de energia!",
+        "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
+        "new_mission": [
+            {
+                "npc": "melisa",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "melisa",
+        "qorder": "1",
+        "img_quest": "melisa.png",
+        "npc_visible": "true",
+        "titulo": "Bienvenido a mi mercado!",
+        "pregunta":"Hola! Este es mi tienda de items. Podras comprar desde armaduras nuevas, hasta pociones para recuperar algo de energia para poder seguir haciendo misiones. Quieres ver que tengo para venderte?",
+        "paso": "Deberias comprar una pocion de energia!, y luego habla nuevamente con kitty",
+        "cond_energia": "10",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+        "new_mission": [
+            {
+                "npc": "melisa",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "melisa",
+        "qorder": "2",
+        "img_quest": "melisa.png",
+        "npc_visible": "true",
+        "titulo": "Quieres comprar?",
+        "pregunta":"Deseas comprar algo?",
+        "mision": "URL:test/mercado.html",
+        "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+        "new_mission": [
+            {
+                "npc": "kitty",
+                "qorder": "4"
+            },
+            {
+                "npc": "melisa",
+                "qorder": "0"
+            }
+        ]
+    },
+    {
+        "npc": "Kitty",
+        "qorder": "4",
+        "img_quest": "kitty.png",
+        "npc_visible": "true",
+        "titulo": "Nuevo por estos lares? 4",
+        "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con un pirata y viaja a lugares distantes!!",
+        "cond_energia": "5",
+        "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
+        "new_mission": [
+            {
+                "npc": "Pirata",
+                "qorder": "0"
+            }
+        ]
+    },
+    {
+        "npc": "Pirata",
+        "qorder": "0",
+        "npc_visible": "true",
+        "titulo": "A donde deseas ir Aventurero?",
+        "mision": "URL:listaClasesDisponibles.html"
+    },
+    {
+        "npc": "Divina",
+        "qorder": "0",
+        "img_quest": "divina.png",
+        "npc_visible": "true",
+        "titulo": "Quieres conocer tu suerte?",
+        "pregunta":"Hola! Soy divina, la adivina de esta gran ciudad! Por un poco de dinero estoy dispuesta a darte consejo",
+        "new_mission": [
+            {
+                "npc": "Divina",
+                "qorder": "1"
+            }
+        ]
+    },
+    {
+        "npc": "Divina",
+        "qorder": "1",
+        "img_quest": "divina.png",
+        "npc_visible": "true",
+        "titulo": "La bola de cristal dice...",
+        "mision":"Si estudias mucho para tus examenes tienes mayor probabilidad de aprobar...",
+        "cond_oro": "5",
+        "no_oro": "no tienes suficiente oro para pedir consejo...",
+        "reco_experiencia": "1",
+        "new_mission": [
+            {
+                "npc": "Divina",
+                "qorder": "2"
+            }
+        ]
+    },
+    {
+        "npc": "Divina",
+        "qorder": "2",
+        "img_quest": "divina.png",
+        "npc_visible": "true",
+        "titulo": "La bola de cristal dice...",
+        "mision":"Si apruebas todas las materias en el colegio, tienes más tiempo libre y menos preocupaciones...",
+        "cond_oro": "5",
+        "no_oro": "no tienes suficiente oro para pedir consejo...",
+        "reco_experiencia": "1",
+        "new_mission": [
+            {
+                "npc": "Divina",
+                "qorder": "0"
+            }
+        ]
+    },
+    {
+        "npc": "guardia",
+        "qorder": "0",
+        "img_quest": "guardia.png",
+        "npc_visible": "true",
+        "titulo": "Guardianes!",
+        "pregunta":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
+    },
+    {
+        "npc": "guardib",
+        "qorder": "0",
+        "img_quest": "guardia.png",
+        "npc_visible": "true",
+        "titulo": "Guardianes!",
+        "pregunta":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
+    },
+    {
+        "npc": "guardic",
+        "qorder": "0",
+        "img_quest": "guardia.png",
+        "npc_visible": "true",
+        "titulo": "Guardianes!",
+        "pregunta":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
+    },
+    {
+        "npc": "novia",
+        "qorder": "0",
+        "img_quest": "novia.png",
+        "npc_visible": "true",
+        "titulo": "¿Dónde está?",
+        "pregunta":"¿Has visto a mi futuro esposo?"
     }
 ]
+

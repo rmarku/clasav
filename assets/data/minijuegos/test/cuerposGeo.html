@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>Cuerpos <br> Geométricos</td>
+					<td>Poliedro</td>
+					<td>Cuerpo <br> Redondo</td>
+				</tr>
+				<tr>
+					<td><img src="cuerposGeo/prisma5.png"></td>
+					<td><input type="radio" name="cg1" id="pol1"></td>
+					<td><input type="radio" name="cg1" id="cred1"></td>
+				</tr>
+
+				<tr>
+					<td><img src="cuerposGeo/cubo.png"></td>
+					<td><input type="radio" name="cg2" id="pol2"></td>
+					<td><input type="radio" name="cg2" id="cred2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="cuerposGeo/cilindro.png"></td>
+					<td><input type="radio" name="cg3" id="pol3"></td>
+					<td><input type="radio" name="cg3" id="cred3"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/piramide6.png"></td>
+					<td><input type="radio" name="cg4" id="pol4"></td>
+					<td><input type="radio" name="cg4" id="cred4"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/cono.png"></td>
+					<td><input type="radio" name="cg5" id="pol5"></td>
+					<td><input type="radio" name="cg5" id="cred5"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="cuerposGeo/esfera.png"></td>
+					<td><input type="radio" name="cg6" id="pol6"></td>
+					<td><input type="radio" name="cg6" id="cred6"></td>
+				</tr>
+			</table>
+			<br>
+			
+			<script>
+			var final=-1;
+			var cGeo1, cGeo2, cGeo3, cGeo4, cGeo5, cGeo6;
+			
+			function comprobar() {
+				cGeo1= document.formulario.cg1[0].checked;
+				cGeo2= document.formulario.cg2[0].checked;
+				cGeo3= document.formulario.cg3[1].checked;
+				cGeo4= document.formulario.cg4[0].checked;
+				cGeo5= document.formulario.cg5[1].checked;
+				cGeo6= document.formulario.cg6[1].checked;
+				
+				for(i=0;i<6;i++){
+					if(cGeo1 && cGeo2 && cGeo3 && cGeo4 && cGeo5 && cGeo6)
+						final=1;
+					else{
+						final=-1;
+						break;
+					}
+				}
+
+				//alert(final);
+			}
+		</script>
+		</form>
+
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

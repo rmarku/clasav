@@ -24,7 +24,7 @@ module.exports = {
             required: 'true'
         },
         usando: {
-            type: 'string'
+            type: 'boolean'
         }
     }
 };

@@ -36,6 +36,13 @@ game.clavLevelEntity = me.LevelEntity.extend({
                 game.nextxy.y = punto_sp.y + punto_sp.height/2;
                 game.nextxy.direction = punto_sp.direction; // Lo que es la direccion en los mapas tiled es la animation en el Player
                 game.change_level(me.game.currentLevel.name);
+
+                //Eliminamos el clavLevelEntity si el cambio de mapa se hizo con el selector de Clases
+                if(game.clavLevelEntity != {}){
+                    me.game.world.removeChild(game.clavLevelEntity);
+                    game.clavLevelEntity = {};
+                }
+
             }
         });
     }

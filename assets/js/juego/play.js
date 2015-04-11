@@ -24,7 +24,6 @@ game.PlayScreen = me.ScreenObject.extend({
         me.input.bindKey(me.input.KEY.SPACE, 'accion', true);
         me.input.bindKey(me.input.KEY.M, 'accion', true);
 
-
         $.get('/api/user/getUser', function (user) {
             if (typeof user.userId != 'undefined') {
                 game.userId = user.userId;
@@ -34,9 +33,12 @@ game.PlayScreen = me.ScreenObject.extend({
                     me.levelDirector.loadLevel(data.mapa_instancia.mapa_generico.nombre);
                     game.addMainPlayer(data);
                     game.create_OtherPlayers();
+                    game.get_misClases();
+                    game.get_claseActual();
                     server.listen_events();
                     server.join_mapa_instancia();
                     var map = me.game.currentLevel;
+
                     minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
                     //me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });

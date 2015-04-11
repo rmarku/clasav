@@ -326,6 +326,10 @@
     text-align: center;
 }
 
+listaClases{
+	background: none;
+}
+
 iframe {
     width: 100%;
     height: 97%;
@@ -338,4 +342,37 @@ iframe {
     height: 210px;
     margin: 47px 0px 0px 123px;
     overflow-y: auto
+}
+
+#movil{
+    position: absolute;
+    bottom: 80px;
+    font-size: 70px;
+}
+
+#movil div{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+#movil-izq{
+    bottom: 60px;
+    left: 0px;
+}
+#movil-der{
+    bottom: 60px;
+    left: 120px;
+}
+#movil-arr{
+    bottom: 120px;
+    left: 60px;
+}
+#movil-aba{
+    bottom: 0px;
+    left: 60px;
+}
+#movil-accion{
+    bottom: 60px;
+    left: 60px;
 }

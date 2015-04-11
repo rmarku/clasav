@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<script></script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td><img src="../../sprites/items/nep/1.png" title="recupera un 100% de energia" onclick="parent.game.mision.siguiente(10)" style="cursor: pointer"></td>
+				<td> Poción de Energia
+				<br>
+				<img src="/images/iconos/coin.png" width="10%"> 100 </td>
+			</tr>
+
+			<tr>
+				<td><img src="../../sprites/items/anillo/1.png" title="mejora tu recuperacion de energia" onclick="parent.game.mision.siguiente(11)" style="cursor: pointer"></td>
+				<td> Anillo Magico
+				<br>
+				<img src="/images/iconos/coin.png" width="10%"> 400 </td>
+			</tr>
+
+			<tr>
+				<td><img src="../../sprites/items/anillo/2.png" title="mejora tu adquisicion de experiencia" onclick="parent.game.mision.siguiente(12)" style="cursor: pointer"></td>
+				<td> Anillo Adiamantado
+				<br>
+				<img src="/images/iconos/coin.png" width="10%"> 400 </td>
+			</tr>
+
+			<tr>
+				<td><img src="../../sprites/items/pechera/3.png" title="Armadura" onclick="parent.game.mision.siguiente(13)" style="cursor: pointer"></td>
+				<td> Armadura
+				<br>
+				<img src="/images/iconos/coin.png" width="10%"> 1400 </td>
+			</tr>
+
+			<tr>
+				<td><img src="../../sprites/items/pechera/1.png" title="Remera Corta Azul" onclick="parent.game.mision.siguiente(14)" style="cursor: pointer"></td>
+				<td> Remera Corta Azul
+				<br>
+				<img src="/images/iconos/coin.png" width="10%"> 300 </td>
+			</tr>
+
+			<tr>
+				<td><img src="../../sprites/items/pechera/1.png" title="Remera Corta Rosa" onclick="parent.game.mision.siguiente(15)" style="cursor: pointer"></td>
+				<td> Remera Corta Rosa
+				<br>
+				<img src="/images/iconos/coin.png" width="10%"> 300 </td>
+			</tr>
+
+		</table>
+		<script>
+			var img = new Image();
+			var item = game.items[it.item];
+
+			img.onload = function() {
+				var cnv = tintImage(img, item.color);
+				//div que contiene la imagen
+				var div = document.createElement('div');
+				div.setAttribute('class', 'itemInv');
+
+				//imagen
+				var ic = document.createElement('img');
+				ic.setAttribute('src', cnv.toDataURL());
+				ic.setAttribute('title', item.nombre);
+
+				div.appendChild(ic);
+				document.getElementById('items').appendChild(div);
+			};
+			img.src = 'data/sprites/' + icono;
+		</script>
+	</body>
+</html>

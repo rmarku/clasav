@@ -34,16 +34,14 @@ module.exports = {
         pregunta: 'string',
         mision: 'string',   // URL:www.google.com.ar
 
-
         no_paso: 'string',
         paso: 'string',
+        no_cerrar: 'boolean',
 
         // Recompensas
         reco_energia: 'integer',
         reco_experiencia: 'integer',
-        reco_item: {
-            model: 'item'
-        },
+        reco_item: 'string',
         reco_item_cant: 'integer',
         reco_oro: 'integer',
 
@@ -51,12 +49,12 @@ module.exports = {
         new_mission: 'string'
         /* Array
          [ {
-             "resultado":"4",   // Solo lo  hace si el resultado es 4
-             "npc": "anna",
-             "qorder": 5
-             }, {
-             "npc": "kitty",
-             "qorder": 2
+         "resultado":"4",   // Solo lo  hace si el resultado es 4
+         "npc": "anna",
+         "qorder": 5
+         }, {
+         "npc": "kitty",
+         "qorder": 2
          } ]
          */
 
@@ -80,17 +78,22 @@ module.exports = {
                     personaje: pj.id,
                     npc: npcNombre,
                     mapa_instancia: pj.mapa_instancia.id
-                }).exec(function (err, mxp) {
-
-                    if (err) return reject(err);
-                    if (!mxp) return reject("Mision no encontrada");
+                }).then(function (mxp) {
+                    if (!mxp)
+                        return reject("MisionXP no encontrada");
 
                     // obtengo el orden y el npc
-                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).exec(function (err, misi) {
-                        if (!misi) return reject('Mision no encontrada');
-                        resolve({misi:misi, mxp:mxp, pj:pj});
+                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).then(function (misi) {
+                        if (!misi)
+                            return reject('Mision no encontrada');
+
+                        return resolve({misi: misi, mxp: mxp, pj: pj});
+                    }).catch(function (err) {
+                        return reject(err);
                     });
                 });
+            }).catch(function (err) {
+                return reject(err);
             });
         });
     },

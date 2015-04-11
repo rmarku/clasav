@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
 		<script>
 			function aleatorio(inferior, superior) {
 				var numPosibilidades = superior - inferior
@@ -25,23 +26,49 @@
 			=
 			<input type="text" id="res2" name="res2" size="2" onChange="comprobar()">
 
+			<br>
+			<br>
+			<input type="text" id="num5" name="num5" size="2" disabled>
+			x
+			<input type="text" id="num6" name="num6" size="2" disabled>
+			=
+			<input type="text" id="res3" name="res3" size="3" onChange="comprobar()">
+
+			<br>
+			<br>
+			<input type="text" id="num7" name="num7" size="2" disabled>
+			x
+			<input type="text" id="num8" name="num8" size="2" disabled>
+			=
+			<input type="text" id="res4" name="res4" size="3" onChange="comprobar()">
+
 			<script>
-				var n1, n2, n3, n4;
+				var n1, n2, n3, n4, n5, n6, n7, n8, r1, r2, r3, r4;
 				n1 = document.getElementById('num1').value = aleatorio(1, 30);
 				n2 = document.getElementById('num2').value = aleatorio(1, 30);
 				n3 = document.getElementById('num3').value = aleatorio(1, 30);
 				n4 = document.getElementById('num4').value = aleatorio(1, 30);
-				var final = false;
+				n5 = document.getElementById('num5').value = aleatorio(1, 10);
+				n6 = document.getElementById('num6').value = aleatorio(1, 10);
+				n7 = document.getElementById('num7').value = aleatorio(1, 10);
+				n8 = document.getElementById('num8').value = aleatorio(1, 10);
+
+				var final = -1;
 
 				function comprobar() {
-					if (document.getElementById('res').value == n1 + n2 && document.getElementById('res2').value == n3 + n4) {
-						final = true;
+					r1 = document.getElementById('res').value;
+					r2 = document.getElementById('res2').value;
+					r3 = document.getElementById('res3').value;
+					r4 = document.getElementById('res4').value;
+					
+					if (r1 == n1 + n2 && r2 == n3 + n4 && r3 == n5 * n6 && r4 == n7 * n8) {
+						final = 1;
 					}
 				}
 			</script>
 		</form>
 
-		<button onclick="parent.game.mision.siguiente(1)">
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
 			Listo
 		</button>
 	</body>

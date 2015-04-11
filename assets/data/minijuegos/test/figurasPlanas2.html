@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>Figuras <br> Planas</td>
+					<td>Cantidad <br> de Lados</td>
+					<td>Cantidad <br>de Vértices</td>
+					<td>Ángulo <br> Interior</td>
+				</tr>
+				<tr>
+					<td><img src="figurasPlanas/triangulo.png"></td>
+					<td><input type="text" id="car0" name="car0" size="2"></td>
+					<td><input type="text" id="ver0" name="ver0" size="2"></td>
+					<td><input type="text" id="ang0" name="ang0" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="figurasPlanas/cuadrado.png"></td>
+					<td><input type="text" id="car1" name="car1" size="2"></td>
+					<td><input type="text" id="ver1" name="ver1" size="2"></td>
+					<td><input type="text" id="ang1" name="ang1" size="2"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/pentagono.png"></td>
+					<td><input type="text" id="car2" name="car2" size="3"></td>
+					<td><input type="text" id="ver2" name="ver2" size="3"></td>
+					<td><input type="text" id="ang2" name="ang2" size="3"></td>
+				</tr>
+				
+				<tr>
+					<td><img src="figurasPlanas/hexagono.png"></td>
+					<td><input type="text" id="car3" name="car3" size="3"></td>
+					<td><input type="text" id="ver3" name="ver3" size="3"></td>
+					<td><input type="text" id="ang3" name="ang3" size="3"></td>
+				</tr>
+			</table>
+			<br>
+			
+			<script>
+			var final=-1;
+			var cLados=[0,0,0,0];
+			var cVertices=[0,0,0,0];
+			var angInterno=[0,0,0,0];
+						
+			var solLados=[3,4,5,6];
+			var solVertices=[3,4,5,6];
+			var solAngInterno=[60,90,108,120];
+			
+			
+			function comprobar() {
+				
+				for(i=0; i<4; i++){
+					cLados[i] = document.getElementById('car'+[i]).value;	
+					cVertices[i] = document.getElementById('ver'+[i]).value;
+					angInterno[i] = document.getElementById('ang'+[i]).value;	
+				}
+				
+				for(i=0;i<6;i++){
+					if(cLados[i]==solLados[i] && cVertices[i]==solVertices[i] && angInterno[i]==solAngInterno[i])
+						final=1;
+					else{
+						final=-1;
+						break;
+					}
+				}
+				
+				
+				//alert(cCaras);
+				//alert(cArist);
+				//alert(cVerti);
+				//alert(final);
+			}
+		</script>
+		</form>
+
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>
