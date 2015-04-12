@@ -232,7 +232,7 @@ var game = {
                     height: 48,
                     data: data
                 });
-            me.game.world.addChild(game.mainPlayer, 10);
+            me.game.world.addChild(game.mainPlayer, 6);
             me.game.world.sort();
             hud.update();
         },
