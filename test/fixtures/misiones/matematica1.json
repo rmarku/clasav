@@ -25,6 +25,10 @@
 				"qorder": "1"
 			},
 			{
+				"npc": "daniela",
+				"qorder": "1"
+			},
+			{
 				"npc": "eduardo",
 				"qorder": "1"
 			}
@@ -281,19 +285,19 @@
 		]
 	},{
 		"npc": "Daniela",
-		"qorder": "0",
+		"qorder": "1",
 		"img_quest": "daniela.png",
 		"npc_visible": "true",
 		"titulo": "Para poder salir a jugar...",
-		"pregunta": "Bien, ahora falta menos para poder salir a jugar. Pero primero debo entender un poco sobre geometria.",
-		"mision": "URL: test/quest3_1.html",
+		"pregunta": "Hola!! Soy amiga de Chris! Ya lo conoces? Quisiera salir a jugar, pero no puedo, al menos que haga mi tarea de matemática antes... <br> Mi tarea es sobre el perimetro de figuras planas...<br>  El <b> perímetro</b> de una figura geométrica plana es igual a la suma de las longitudes de sus lados. <br> Vamos a hacer los ejercicios?",
+		"mision": "URL:test/perimetro.html",
 		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-		"no_paso": "Oh! Geometria es algo complicado... Vuelve a intentarlo!",
+		"no_paso": "Oh! Algún resultado no dio bien... Hay que hacerlo de nuevo!",
 		"reco_oro": "25",
 		"new_mission": [
 			{
 				"npc": "daniela",
-				"qorder": "3"
+				"qorder": "2"
 			}
 		]
 	},  {
