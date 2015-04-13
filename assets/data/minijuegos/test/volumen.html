@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		Con los datos de los siguientes <b>Cuerpos Geométricos</b>, calcule su <b>volumen</b>:
+		<form name="formulario" onchange="javascript:comprobar()">
+			<table border="1px" style="border-collapse: collapse">
+				<tr>
+					<td>CuerposGeométricos</td>
+					<td>Volumen</td>
+				</tr>
+				<tr>
+					<td><img src="http://www.paginasprodigy.com/cats890/assets/images/prisma.jpg" height="200px"></td>
+					<td><input type="text" id="vol0" name="vol0" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="http://hotmath.com/hotmath_help/spanish/topics/surface-area-of-a-prism/surface-area-of-a-prism-image004.gif"></td>
+					<td><input type="text" id="vol1" name="vol1" size="2"></td>
+				</tr>
+
+				<tr>
+					<td><img src="http://hotmath.com/hotmath_help/spanish/topics/surface-area-of-a-prism/surface-area-of-a-prism-image005.gif"></td>
+					<td><input type="text" id="vol2" name="vol2" size="3"></td>
+				</tr>
+				
+			</table>
+			<br>
+			
+			<script>
+			var final=-1;
+			var volumen0, volumen1, volumen2;
+						
+			var solV0=96;
+			var solV1=48;
+			var solV2=360;
+			
+			
+			function comprobar() {
+				volumen0 = document.getElementById('vol0').value;
+				volumen1 = document.getElementById('vol1').value;
+				volumen2 = document.getElementById('vol2').value;
+				
+				if(volumen0==solV0 && volumen1==solV1 && volumen2==solV2)
+					final=1;
+				else
+					final=-1;
+				
+				//alert(final);
+			}
+		</script>
+		</form>
+
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

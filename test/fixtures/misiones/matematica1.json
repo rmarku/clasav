@@ -320,6 +320,23 @@
 			}
 		]
 	},{
+		"npc": "Daniela",
+		"qorder": "3",
+		"img_quest": "daniela.png",
+		"npc_visible": "true",
+		"titulo": "Para poder salir a jugar 3...",
+		"pregunta": "Y finalmente llego el momento de aprender lo que es el <b>volumen</b>. <br>El volumen es la medida del espacio que ocupa un cuerpo. Para su cálculo precisamos conocer el largo, el ancho y el alto. <br> Miremos este video para aprender a calcular el volumen de diferentes cuerpos geométricos. <br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/1yMz1tBVuZc' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/volumen.html",
+		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
+		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
+		"reco_oro": "40",
+		"new_mission": [
+			{
+				"npc": "daniela",
+				"qorder": "3"
+			}
+		]
+	},{
 		"npc": "eduardo",
 		"qorder": "1",
 		"img_quest": "eduardo.png",
