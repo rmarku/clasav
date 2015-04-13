@@ -10,7 +10,7 @@
         </div>
 
         <div>
-            <button class="btn btn-default btn-align" ng-click="crearInstitucion()">Crear Institución</button>
+            <button class="btn btn-default btn-align" ng-click="solicitarInstitucion()">Solicitar Institución</button>
         </div>
 
         <div class="container-fluid">
@@ -26,9 +26,6 @@
                             <th class="text-center" style="width: 180px">Dirección</th>
                             <th class="text-center" style="width: 180px">Provincia</th>
                             <th class="text-center" style="width: 180px">País</th>
-                            <th class="text-center" style="width: 180px">Profesores</th>
-                            <th class="text-center" style="width: 180px">Solicitudes</th>
-                            <th class="text-center" style="width: 180px">Ingresar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -57,20 +54,6 @@
                               <span >
                                 {{ institucion.pais || '-' }}
                               </span>
-                            </td>
-                            <td class="text-center">
-                              <span >
-                                {{ institucion.profesores_situacionAceptado.length|| 0 }}
-                              </span>
-                            </td>
-                            <td class="text-center">
-                              <span >
-                                {{ institucion.profesores_situacionEspera.length || 0 }}
-                              </span>
-                            </td>
-                            <td class="text-center">
-                                <span class="fa fa-sign-in" ng-click="set_institucionActual($index)">
-                                </span>
                             </td>
                         </tr>
                         </tbody>

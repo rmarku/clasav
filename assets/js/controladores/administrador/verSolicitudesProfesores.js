@@ -3,49 +3,47 @@
  */
 app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
-    $scope.aceptarAlumnoEnClase = function (user,index) {
+    $scope.aceptarProfesorEnInstitucion = function (user,index) {
 
-        $.get("/api/clase_x_user/set_situacion",
+        $.get("/api/institucion_x_user/set_situacion",
             {
-                clase_x_user : user.clase_x_user[0].id,
-                situacion:"aceptado",
-                clase: $scope.$parent.claseActual.id
+                institucion_x_user : user.institucion_x_user[0].id,
+                situacion:"profesor",
+                institucion: $scope.$parent.institucionActual.id
             },
             function (err,detail) {
                 if(detail != "success"){
                     toastr.error('Hubo un problema. Intente nuevamente.');
                     return;
                 }
-                $scope.$parent.claseActual.users_situacionAceptado.push(user);
-                $scope.$parent.claseActual.users_situacionEspera.splice(index, 1);
-                $scope.$parent.clasesCargadas = false;
-                toastr.info('Usuario Aceptado!');
+                $scope.$parent.institucionActual.profesores_situacionAceptado.push(user);
+                $scope.$parent.institucionActual.profesores_situacionEspera.splice(index, 1);
+                $scope.$parent.institucionesCargadas = false;
+                toastr.info('Profesor aceptado.');
             }
         );
     };
 
-    $scope.rechazarAlumnoEnClase = function(user,index) {
+    $scope.rechazarProfesorEnInstitucion = function(user,index) {
 
-        $.get("/api/clase_x_user/set_situacion",
+        $.get("/api/institucion_x_user/set_situacion",
             {
-                clase_x_user : user.clase_x_user[0].id,
-                situacion:"rechazado",
-                clase: $scope.$parent.claseActual.id
+                institucion_x_user : user.institucion_x_user[0].id,
+                situacion:"profesorRechazado",
+                institucion: $scope.$parent.institucionActual.id
             },
             function (err,detail) {
                 if(detail != "success"){
                     toastr.error('Hubo un problema. Intente nuevamente.');
                     return;
                 }
-                $scope.$parent.claseActual.users_situacionRechazado.push(user);
-                $scope.$parent.claseActual.users_situacionEspera.splice(index, 1);
-                $scope.$parent.clasesCargadas = false;
-                toastr.info('Usuario Aceptado!');
+                $scope.$parent.institucionActual.users_situacionRechazado.push(user);
+                $scope.$parent.institucionActual.users_situacionEspera.splice(index, 1);
+                $scope.$parent.institucionesCargadas = false;
+                toastr.info('Profesor rechazado.');
             }
         );
     };
-
-
 
 
 

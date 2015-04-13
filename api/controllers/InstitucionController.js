@@ -7,7 +7,7 @@
 
 module.exports = {
 
-    get_misInstituciones_conProfesores: function (req,res) {
+    get_misInstituciones_conUsers: function (req,res) {
 
         var userID = req.session.passport.user;
         var misInstituciones = [];
@@ -34,7 +34,7 @@ module.exports = {
                     //Recorremos  cada user de cada clase
                     institucion.users.forEach(function(user,index){
 
-                        //Si el User esta dentro de la clase.( Si es una de mis clases)
+                        //Si el User esta dentro de la institucion.( Si es una de mis institucion)
                         if (user.id == userID){
 
                             misInstituciones.push(institucion);
@@ -53,6 +53,133 @@ module.exports = {
             });
     },
 
+    get_institucionesHabilitadas: function (req,res) {
+
+        var userID = req.session.passport.user;
+        var institucionesHabilitadas = [];
+        var institucionesHabilitadas_sinSolicitudPrevia = [];
+
+        Institucion.find().
+            populate('institucion_x_user').
+            exec(function(err,todasLasInstituciones) {
+
+                if(err || !todasLasInstituciones){
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+
+                todasLasInstituciones.forEach(function(institucion){
+
+                    //Recorremos cada institucion
+                    institucion.institucion_x_user.forEach(function(institucion_x_user){
+
+                        //Si la institucion ya fue ahbilitada para algun administrador
+                        if (institucion_x_user.situacion == 'administrador'){
+
+                            institucionesHabilitadas.push(institucion);
+                            //Revisar que yo no la haya solicitado previamente
+                            institucion.institucion_x_user.forEach(function(institucion_x_user) {
+                                if((institucion_x_user.user == userID) && ((institucion_x_user.situacion != 'administrador')) ){ //Si soy administrador, tambien deberia poder solicitar ser un Profesor. COn el segundo parametro de comparacion saldria en la lista como opcion
+                                    institucionesHabilitadas.pop();
+                                    return;
+                                }
+
+                            });
+                            return;
+                        }
+                    });
+                });
+
+
+                res.send(institucionesHabilitadas);
+
+            });
+    },
+    get_institucionesConProfesores: function (req,res) {
+
+        var userID = req.session.passport.user;
+        var institucionesConProfesores = [];
+
+        Institucion.find().
+            populate('institucion_x_user').
+            exec(function(err,todasLasInstituciones) {
+
+                if(err || !todasLasInstituciones){
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+
+                todasLasInstituciones.forEach(function(institucion){
+
+                    //Recorremos cada institucion
+                    institucion.institucion_x_user.forEach(function(institucion_x_user){
+
+                        //Si la institucion ya fue ahbilitada para algun administrador
+                        if (institucion_x_user.situacion == 'profesor'){
+
+                            institucionesConProfesores.push(institucion);
+
+                            return;
+                        }
+                    });
+                });
+
+
+                res.send(institucionesConProfesores);
+
+            });
+    },
+
+
+
+    crearInstitucionAdministrador: function (req,res) {
+
+        var userID = req.session.passport.user;
+        var nombre = req.param('nombre');
+        var pais = req.param('pais');
+        var ciudad = req.param('ciudad');
+        var provincia = req.param('provincia');
+        var direccion = req.param('direccion');
+
+        //Crear Clase con Nombre e institucionci
+        Institucion.create({nombre:nombre,pais:pais,ciudad:ciudad,provincia:provincia,direccion:direccion}).exec(function createCB(err, institucionCreada) {
+
+            if(err || !institucionCreada){
+                console.log(err);
+                res.json(err);
+                return;
+            }
+
+            ///////////////////// Generamos mapa_instancia central y secundarios/////////////
+            //Asociamos la claseCreada con el User que la creó
+            institucionCreada.users.add(userID);
+
+            //Asociamos el User a la clase recien creada
+            institucionCreada.save(function (err) {
+                if(err){
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+                ///////////////////// /////////////
+                //Crear la relacion institucion_x_user para conocer la situacion actual y futura de la condicion del solicitante
+                Institucion_x_user.create({user:userID, institucion:institucionCreada.id, situacion:"esperaAdministrador"}).exec(function createCB(err,institucion_x_user) {
+
+                    if (err || !institucion_x_user) {
+                        console.log(err);
+                        res.json(err);
+                        return;
+                    }
+
+                    return res.json(institucionCreada);
+
+                });
+            });
+        });
+    },
+
     solicitarInstitucion: function (req,res) {
         var userID = req.session.passport.user;
         var institucionID = req.param('institucionID');
@@ -69,6 +196,7 @@ module.exports = {
 
             institucion.users.add(userID);
 
+
             institucion.save(function (err) {
                 if(err){
                     console.log(err);
@@ -76,8 +204,10 @@ module.exports = {
                     return;
                 }
 
+
+
                 //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
-                Institucion_x_user.create({user:userID, institucion:claseID, situacion:"espera"}).exec(function createCB(err,institucion_x_user) {
+                Institucion_x_user.create({user:userID, institucion:institucionID, situacion:"esperaProfesor"}).exec(function createCB(err,institucion_x_user) {
 
 
                     if (err || !institucion_x_user) {
@@ -88,102 +218,17 @@ module.exports = {
 
                     // Me suscribo a futuras modificaciones de la clase que acabo de crear
 
-                    User.findOne({id:userID}).populate('institucion_x_user',{clase:institucion.id}).exec(function afterwards(err,user) {
+                    User.findOne({id:userID}).populate('institucion_x_user',{institucion:institucion.id}).exec(function afterwards(err,user) {
 
                         if (err || !user) {
                             console.log(err);
                             res.json(err);
                             return;
                         }
-                        sails.sockets.join(req.socket,"institucion:"+clase.id);
-                        sails.sockets.broadcast("institucion:"+institucion.id,'nuevaSolicitud',user,req.socket);
+                        sails.sockets.join(req.socket,"institucion:"+institucion.id);
+                        sails.sockets.broadcast("clase:"+institucion.id,'nuevaSolicitudInstitucion',user,req.socket);
 
                         return res.json(institucion_x_user);
-                    });
-
-                });
-            });
-        });
-    },
-
-    //Pendiente
-    crearInstitucionAdministrador: function (req,res) {
-
-        var userID = req.session.passport.user;
-        var nombre = req.param('nombre');
-        var direccion = req.param('mapa_genericoID');
-        var pais = req.param('institucionID');
-
-
-        //Crear Clase con Nombre e institucion
-        Clase.create({nombre: nombre, institucion: institucionID}).exec(function createCB(err, claseCreada) {
-
-            if(err){
-                console.log(err);
-                res.json(err);
-                return;
-            }
-
-            ///////////////////// Generamos mapa_instancia central y secundarios/////////////
-            //Asociamos la claseCreada con el User que la creó
-            claseCreada.users.add(userID);
-
-            //Asociamos el User a la clase recien creada
-            claseCreada.save(function (err) {
-                if(err){
-                    console.log(err);
-                    res.json(err);
-                    return;
-                }
-                ///////////////////// /////////////
-                //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
-                Clase_x_user.create({user:userID, clase:claseCreada.id, situacion:"administrador"}).exec(function createCB(err,clase_x_user) {
-
-                    if (err) {
-                        console.log(err);
-                        res.json(err);
-                        return;
-                    }
-
-                    ///////////////////// Generamos mapa_instancia central y secundarios////////////////////////////////////////////////////////////////////////////////////////////////
-                    Mapa_generico.findOne({id: mapa_genericoID}).exec(function afterwards(err, mapa_generico) {
-
-                        Dependencia_mapa_generico.findOne({id: mapa_generico.dependencia_mapa_generico}).populate('mapas_genericos').exec(function afterwards(err, dependencia_mapa_generico) {
-
-                            if(!dependencia_mapa_generico || err){
-                                console.log(err);
-                                res.json(err);
-                                return;
-                            }
-                            dependencia_mapa_generico.mapas_genericos.forEach(function (mapa_generico) {
-
-                                console.log('mapa generico');
-                                console.log(mapa_generico);
-                                //Creo los mapas secundarios y el central inclusive
-                                Mapa_instancia.create(
-                                    {
-                                        mapa_generico: mapa_generico.id,
-                                        nombre: mapa_generico.nombre,
-                                        tipo: mapa_generico.tipo,
-                                        clase: claseCreada
-                                    }
-                                ).exec(function createCB(err, mapa_instancia) {
-
-                                        if (err) {
-                                            console.log(err);
-                                            res.json(err);
-                                            return;
-                                        }
-                                        console.log('mapa instancia');
-                                        console.log(mapa_instancia);
-
-                                        return res.json(claseCreada);
-
-                                    });
-                            });
-                            ///////////////////// FIN Generamos mapa_instancia central y secundarios//////////////////////////////////////////////////
-
-                        });
                     });
 
                 });

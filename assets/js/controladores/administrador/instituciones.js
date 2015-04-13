@@ -2,50 +2,69 @@
  * Created by Fabricio on 16/03/2015.
  */
 app.controller('institucionesAdministradorController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
-
-
-    $scope.get_misInstituciones = function () {
-
-        if ($scope.$parent.institucionesCargadas === true) {
-            return;
-        }
-
-        $scope.$parent.misClases                    = [];
-        $scope.$parent.misClasesSituacionEspera     = [];
-        $scope.$parent.misClasesSituacionRechazado  = [];
-
-        io.socket.get('/api/instituciones/get_misInstituciones_conProfesores', function (instituciones) {
-
-            instituciones                           = $scope.$parent.definirSituacionProfesores(clases);
-            $scope.$parent.misInstituciones         = instituciones;
-            $scope.$parent.institucionesCargadas    = true;
-
-            $scope.$apply();
-        });
-
-
-    };
-    $scope.get_misInstituciones();
-
+  /*
+    if ($scope.user.tipo == 'profesor') {
+        $scope.get_misInstituciones();
+    }
+    else if($scope.user.tipo == 'administrador'){
+        $scope.get_misInstituciones();
+        $scope.misInstituciones = $scope.definirSituacionProfesores($scope.misInstituciones);
+    }
+*/
     $scope.set_institucionActual = function (index) {
         $scope.$parent.institucionActual        = $scope.$parent.misInstituciones[index];
         $scope.$parent.institucionActual.activa = true;
+        window.location.href = '#/verProfesores';
         toastr.info('Institución Actual: '+$scope.$parent.institucionActual.nombre+'.\n Recorre sus detalles en el Panel Principal.');
+
     };
 
 
-    $scope.definirSituacionProfesores = function (clases) {
+    $scope.crearInstitucion = function () {
+        window.location.href = '#/crearInstitucion';
+    };
 
-        clases.forEach(function (clase) {
 
-            clase.profesores_situacionEspera = [];
-            clase.profesores_situacionAceptado = [];
-            clase.profesores_situacionRechazado = [];
-            $scope.definirSituacionProfesores_enInstitucion(clase).then(function (data) {
-                clase = data;
+
+    $scope.definirSituacionInstituciones = function (instituciones) {
+
+        while(instituciones.length){
+            var institucion = instituciones.pop();
+
+            if(institucion.institucion_x_user[0].situacion == "administrador"){
+
+                $scope.$parent.misInstituciones.push(institucion);
+                continue;
+            }else
+
+            if(institucion.institucion_x_user[0].situacion == "esperaAdministrador"){
+
+                $scope.$parent.misInstitucionesSituacionEspera.push(institucion);
+                continue;
+            }else
+
+            if(institucion.institucion_x_user[0].situacion == "rechazadoAdministrador"){
+
+                $scope.$parent.misInstitucionesSituacionRechazado.push(institucion);
+                continue;
+            }
+        }
+
+    };
+
+    $scope.definirSituacionProfesores = function (instituciones) {
+
+        instituciones.forEach(function (institucion) {
+
+            institucion.profesores_situacionEspera = [];
+            institucion.profesores_situacionAceptado = [];
+            institucion.profesores_situacionRechazado = [];
+            institucion.otros_Administradores = [];
+            $scope.definirSituacionProfesores_enInstitucion(institucion).then(function (data) {
+                institucion = data;
             });
         });
-        return clases;
+        return instituciones;
     };
 
     $scope.definirSituacionProfesores_enInstitucion = function (institucion) {
@@ -63,31 +82,31 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
 
                     if (institucion_x_user.user.id == user.id) {
 
-                        user.clase_x_user = [];
+                        user.institucion_x_user = [];
 
-                        if (institucion_x_user.situacion == 'espera') {
+                        if (institucion_x_user.situacion == 'esperaProfesor') {
 
-                            user.clase_x_user[0] = institucion_x_user;
-                            institucion.users_situacionEspera.push(user);
+                            user.institucion_x_user[0] = institucion_x_user;
+                            institucion.profesores_situacionEspera.push(user);
 
-                        } else if (institucion_x_user.situacion == 'aceptado') {
+                        } else if (institucion_x_user.situacion == 'profesor') {
 
-                            user.clase_x_user[0] = institucion_x_user;
-                            institucion.users_situacionAceptado.push(user);
+                            user.institucion_x_user[0] = institucion_x_user;
+                            institucion.profesores_situacionAceptado.push(user);
 
-                        } else if (clase_x_user.situacion == 'rechazado') {
+                        } else if (institucion_x_user.situacion == 'rechazadoProfesor') {
 
-                            user.clase_x_user[0] = institucion_x_user;
-                            institucion.users_situacionRechazado.push(user);
+                            user.institucion_x_user[0] = institucion_x_user;
+                            institucion.profesores_situacionRechazado.push(user);
 
                         } else if (institucion_x_user.situacion == 'administrador') {
 
-                            user.clase_x_user[0] = institucion_x_user;
-                            institucion.users_situacionAdministrador.push(user);
+                            user.institucion_x_user[0] = institucion_x_user;
+                            institucion.otros_Administradores.push(user);
                         }
                     }
                 }
-                if (y == clase.users.length - 1) {
+                if (y == institucion.users.length - 1) {
                     institucion.users = [];
                     deferred.resolve(institucion);
                 }
@@ -95,6 +114,41 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
         });
         return deferred.promise;
     };
+
+    $scope.get_misInstituciones = function () {
+
+        if($scope.$parent.institucionesCargadas === true){
+            return;
+        }
+        $scope.$parent.misInstituciones                                     = [];
+        $scope.$parent.misInstitucionesSituacionEspera                      = [];
+        $scope.$parent.misInstitucionesSituacionRechazado                   = [];
+
+        io.socket.get('/api/institucion/get_misInstituciones_conUsers', function (instituciones) {
+
+            $scope.definirSituacionInstituciones(instituciones);
+            $scope.$parent.misInstituciones = $scope.definirSituacionProfesores($scope.$parent.misInstituciones);
+            $scope.$parent.institucionesCargadas = true;
+            $scope.$apply();
+        });
+    };
+
+    $scope.get_misInstituciones();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }]);
 

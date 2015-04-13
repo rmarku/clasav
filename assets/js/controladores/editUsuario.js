@@ -97,8 +97,14 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                         }
                     });
                 }
-                else   if ($scope.usuario.tipo == 'profesor') {
-                    window.location.href = '#/clases';
+                else
+                if ($scope.usuario.tipo == 'profesor') {
+                    window.location.href = '#/clasesProfesor';
+                    location.reload();
+                }
+                else
+                if ($scope.usuario.tipo == 'administrador') {
+                    window.location.href = '#/institucionesAdministrador';
                     location.reload();
                 }
             });
@@ -132,7 +138,11 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                             }
                             else
                             if ($scope.usuario.tipo == 'profesor') {
-                                window.location.href = '#/clases';
+                                window.location.href = '#/clasesProfesor';
+                            }
+                            else
+                            if ($scope.usuario.tipo == 'administrador') {
+                                window.location.href = '#/institucionesAdministrador';
                             }
                             location.reload();
                             toastr.info('Cuenta Creada!');

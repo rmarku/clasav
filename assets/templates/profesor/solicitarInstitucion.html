@@ -1,0 +1,80 @@
+<br>
+<br>
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+
+        <div class="container-fluid">
+
+            <br><br>
+
+            <div class="page-header" align="center" style="margin-top: 0px">
+
+                <b class="titulos">
+                    Instituciones disponibles
+                </b>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div >
+                        <br>
+
+                        <table class="table table-striped table-hover table" style="width: 100%">
+                            <thead>
+                            <tr>
+                                <th>Institución</th>
+                                <th class="text-center" style="width: 180px">Ciudad</th>
+                                <th class="text-center" style="width: 180px">Dirección</th>
+                                <th class="text-center" style="width: 180px">Provincia</th>
+                                <th class="text-center" style="width: 180px">País</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="institucion in instituciones">
+                                <td >
+                                    <span>
+                                        {{ institucion.nombre}}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span >
+                                        {{ institucion.ciudad  || '-'}}
+                                     </span>
+                                </td>
+                                <td class="text-center">
+                                    <span >
+                                        {{ institucion.direccion || '-' }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span >
+                                    {{ institucion.provincia || '-' }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                  <span >
+                                    {{ institucion.pais || '-' }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <input type="radio" name="inst" ng-value=$index ng-model="$parent.index_institucion_seleccionada">
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div>
+                            <button class="btn btn-default btn-align" ng-click="subirSolicitudInstitucion()">Confirmar Solicitud</button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

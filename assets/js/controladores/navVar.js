@@ -6,12 +6,22 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
+    $scope.institucionesCargadas = {};
 
     //Variables para ALUMNOS/PROFESORES//
-    $scope.misClases = [];
-    $scope.clasesCargadas       = false;
-    $scope.claseActual          = {"activa" : false};
+    $scope.misClases                    = [];
+    $scope.clasesCargadas               = false;
+    $scope.claseActual                  = {"activa" : false};
+
+    $scope.misInstituciones        = [];
+    $scope.misInstitucionesSituacionEspera      = [];
+    $scope.misInstitucionesSituacionRechazado  = [];
     //FIN Variables para ALUMNOS/PROFESORES//
+
+    //Variables para PROFESORES
+
+
+    //Fin Variables para PROFESORES
 
     //Variables para ALUMNOS//
     $scope.misClasesSituacionEspera     = [];
@@ -19,9 +29,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     //FIN Variables para ALUMNOS//
 
     //Variables para ADMINISTRADORES//
-    $scope.misInstituciones             = [];
-    $scope.institucionActual          = {"activa" : false};
-    $scope.institucionesCargadas       = false;
+    $scope.institucionActual                    = {"activa" : false};
+    $scope.estadoProfesoresCargado               = false;
     //fin Variables para ADMINISTRADORES//
 
     /**
@@ -45,6 +54,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta') {
                         toastr.info('Completa tu información para poder jugar.');
                     }
+                    $scope.$apply();
+
                     deferred.resolve($scope.user);
                 });
             });
@@ -148,7 +159,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
                 var user = clase.users[y];
 
-                for (var x = 0; x < clases_x_users.users.length; x++) {
+                for (var x = 0; x < clases_x_users.length; x++) {
                     var clase_x_user = clases_x_users[x];
 
                     if (clase_x_user.user.id == user.id) {
@@ -211,7 +222,24 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
         return userToReturn;
     };
+
+
+
     /////////////////////////FIN FUNCIONES DE CLASES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     ///// SOCKETS

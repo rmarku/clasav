@@ -53,13 +53,22 @@ var jsFilesToInject = [
     "/js/juego/misiones.js",
     "/js/minijuegos.js",
     "/js/controladores/editUsuario.js",
-    "/js/controladores/profesor/clases.js",
-    "/js/controladores/profesor/instituciones.js",
+
+    //Alumnos
     "/js/controladores/alumno/clases.js",
     "/js/controladores/alumno/solicitarClase.js",
+    //Profesores
+    "/js/controladores/profesor/clases.js",
     "/js/controladores/profesor/verSolicitudes.js",
     "/js/controladores/profesor/verAlumnos.js",
     "/js/controladores/profesor/crearClase.js",
+    "/js/controladores/profesor/solicitarInstitucion.js",
+    "/js/controladores/profesor/instituciones.js",
+    //Administradores
+    "/js/controladores/administrador/crearInstitucion.js",
+    "/js/controladores/administrador/instituciones.js",
+    "/js/controladores/administrador/verProfesores.js",
+    "/js/controladores/administrador/verSolicitudesProfesores.js",
 
     //'lib/**/*.js',
 
