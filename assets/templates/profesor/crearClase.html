@@ -5,7 +5,7 @@
         <form novalidate="novalidate"role="form">
             <div class="form-group">
                 <label for="nombre_clase">Nombre de la Clase: </label>
-                <input type="text" class="form-control" name="nombre" ng-model="clase.nombre"
+                <input type="text" class="form-control" name="nombre" ng-model="nombreClase"
                        placeholder="Introduce el nuevo nombre de tu clase" required>
             </div>
 
@@ -20,55 +20,14 @@
             <div class="form-group">
                 <label>Institucion:</label>
                 <br>
-
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="GrupoInstitucion" ng-click="set_visibilidad_nuevaInstitucion(false)" checked="checked">
-                        Existente </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" name="GrupoInstitucion" ng-click="set_visibilidad_nuevaInstitucion(true)">
-                        Nueva </label>
-                </div>
-            </div>
-
-            <span  ng-hide="visibilidad_nuevaInstitucion">
                 <div class="form-group">
                     <select ng-model    ="institucion_seleccionada"
                             class       ="form-control"
-                            ng-options  ="c.nombre for c in instituciones">
+                            ng-options  ="c.nombre for c in misInstitucionesStringConcatenado">
                     </select>
                 </div>
-            </span>
+            </div>
 
-            <span  ng-show="visibilidad_nuevaInstitucion">
-                <div class="form-group">
-                    <label for="nombre_institucion">Nombre de la Institucion: </label>
-                    <input type="text" class="form-control" ng-model="institucion_nueva.nombre"
-                           placeholder="Introduce el nombre de la Institución" required>
-                </div>
-                <div class="form-group">
-                    <label for="pais">País: </label>
-                    <input type="text" class="form-control" ng-model="institucion_nueva.pais"
-                           placeholder="Introduce el país" required>
-                </div>
-                <div class="form-group">
-                    <label for="provincia">Provincia: </label>
-                    <input type="text" class="form-control" ng-model="institucion_nueva.provincia"
-                           placeholder="Introduce la provincia de la Institución" required>
-                </div>
-                <div class="form-group">
-                    <label for="ciudad">Ciudad: </label>
-                    <input type="text" class="form-control" ng-model="institucion_nueva.ciudad"
-                           placeholder="Introduce la ciudad de la Institución" required>
-                </div>
-                <div class="form-group">
-                    <label for="direccion">Dirección: </label>
-                    <input type="text" class="form-control" ng-model="institucion_nueva.direccion"
-                           placeholder="Introduce la dirección de la Institución" required>
-                </div>
-            </span>
 
 
             <div>

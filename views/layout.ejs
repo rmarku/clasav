@@ -130,13 +130,29 @@
         <div class="btn-group botonera" >
             <a href="#/" class="btn btn-default">Home</a>
             <a href="#/clasesProfesor" class="btn btn-default">Clases</a>
+            <a href="#/institucionesProfesor" class="btn btn-default">Instituciones</a>
 
-            <a ng-class="{active:isActive('/dashboard')}" ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
-            <a id="button_navBar_solicitudes"ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
+            <a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
+            <a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
         </div>
 
         <%}%>
         <!--FIN DE BOTONERA PROFESOR-->
+        <!--BOTONERA PROFESOR-->
+        <%if(user.tipo == 'administrador'){%>
+
+        <div class="btn-group botonera" >
+            <a href="#/" class="btn btn-default">Home</a>
+            <a href="#/institucionesAdministrador" class="btn btn-default">Instituciones</a>
+
+            <a ng-show=institucionActual.activa href="#/verProfesores" class="btn btn-default">Profesores de {{institucionActual.nombre}}</a>
+            <a ng-show=institucionActual.activa href="#/verSolicitudesProfesores" class="btn btn-default">Solicitudes de {{institucionActual.nombre}}</a>
+
+        </div>
+
+        <%}%>
+        <!--FIN DE BOTONERA PROFESOR-->
+
 
     <%}%>
 
@@ -170,13 +186,18 @@
 <script src="/js/juego/pregunta4.js"></script>
 <script src="/js/juego/misiones.js"></script>
 <script src="/js/minijuegos.js"></script>
-<script src="/js/controladores/profesor/clases.js"></script>
-<script src="/js/controladores/profesor/instituciones.js"></script>
 <script src="/js/controladores/alumno/clases.js"></script>
 <script src="/js/controladores/alumno/solicitarClase.js"></script>
+<script src="/js/controladores/profesor/clases.js"></script>
 <script src="/js/controladores/profesor/verSolicitudes.js"></script>
 <script src="/js/controladores/profesor/verAlumnos.js"></script>
 <script src="/js/controladores/profesor/crearClase.js"></script>
+<script src="/js/controladores/profesor/solicitarInstitucion.js"></script>
+<script src="/js/controladores/profesor/instituciones.js"></script>
+<script src="/js/controladores/administrador/crearInstitucion.js"></script>
+<script src="/js/controladores/administrador/instituciones.js"></script>
+<script src="/js/controladores/administrador/verProfesores.js"></script>
+<script src="/js/controladores/administrador/verSolicitudesProfesores.js"></script>
 <!--SCRIPTS END-->
 
 </body>

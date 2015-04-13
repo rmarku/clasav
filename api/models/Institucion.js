@@ -37,7 +37,21 @@ module.exports = {
             collection: 'clase',
             via: 'institucion',
             required: false
+        },
+
+        institucion_x_user: {
+            collection: 'institucion_x_user',
+            via: 'institucion',
+            required: false
+        },
+
+        users: {
+            collection: 'user',
+            via: 'instituciones',
+            required: false
         }
+
+
 
     }
 };

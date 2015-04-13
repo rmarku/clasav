@@ -74,7 +74,19 @@ module.exports = {
 
         tipo: {
             type: 'string',
-            enum: ['profesor', 'alumno']
+            enum: ['profesor', 'alumno','administrador']
+        },
+
+        institucion_x_user: {
+            collection: 'institucion_x_user',
+            via: 'user',
+            required: false
+        },
+
+        instituciones: {
+            collection: 'institucion',
+            via: 'users',
+            required: false
         },
 
         // passport

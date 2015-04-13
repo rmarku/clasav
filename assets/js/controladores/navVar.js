@@ -6,15 +6,32 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
+    $scope.institucionesCargadas = {};
 
-    $scope.misClases = [];
-    $scope.misClasesSituacionEspera = [];
-    $scope.misClasesSituacionRechazado = [];
+    //Variables para ALUMNOS/PROFESORES//
+    $scope.misClases                    = [];
+    $scope.clasesCargadas               = false;
+    $scope.claseActual                  = {"activa" : false};
 
-    $scope.clasesCargadas = false;
-    $scope.claseActual = {"activa" : false};
+    $scope.misInstituciones        = [];
+    $scope.misInstitucionesSituacionEspera      = [];
+    $scope.misInstitucionesSituacionRechazado  = [];
+    //FIN Variables para ALUMNOS/PROFESORES//
+
+    //Variables para PROFESORES
 
 
+    //Fin Variables para PROFESORES
+
+    //Variables para ALUMNOS//
+    $scope.misClasesSituacionEspera     = [];
+    $scope.misClasesSituacionRechazado  = [];
+    //FIN Variables para ALUMNOS//
+
+    //Variables para ADMINISTRADORES//
+    $scope.institucionActual                    = {"activa" : false};
+    $scope.estadoProfesoresCargado               = false;
+    //fin Variables para ADMINISTRADORES//
 
     /**
      * Description
@@ -37,6 +54,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta') {
                         toastr.info('Completa tu información para poder jugar.');
                     }
+                    $scope.$apply();
+
                     deferred.resolve($scope.user);
                 });
             });
@@ -140,7 +159,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
                 var user = clase.users[y];
 
-                for (var x = 0; x < clase.users.length; x++) {
+                for (var x = 0; x < clases_x_users.length; x++) {
                     var clase_x_user = clases_x_users[x];
 
                     if (clase_x_user.user.id == user.id) {
@@ -177,6 +196,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         });
         return deferred.promise;
     };
+
     $scope.definirProfesores = function (clases) {
 
         clases.forEach(function(clase) {
@@ -202,7 +222,23 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
         return userToReturn;
     };
+
+
+
     /////////////////////////FIN FUNCIONES DE CLASES
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
