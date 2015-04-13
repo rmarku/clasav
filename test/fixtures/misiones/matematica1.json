@@ -294,13 +294,32 @@
 		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
 		"no_paso": "Oh! Algún resultado no dio bien... Hay que hacerlo de nuevo!",
 		"reco_oro": "25",
+		"cond_energia": "12",
+		"no_energia": "Tantos ejercicios matemáticos te han dejado exhausto. Mejor descansa hasta que tengas 12 de energía.",
 		"new_mission": [
 			{
 				"npc": "daniela",
 				"qorder": "2"
 			}
 		]
-	},  {
+	},{
+		"npc": "Daniela",
+		"qorder": "2",
+		"img_quest": "daniela.png",
+		"npc_visible": "true",
+		"titulo": "Para poder salir a jugar 2...",
+		"pregunta": "Es hora de seguir aprendiendo... Ahora necesitamos saber sobre las áreas... <br> Podemos definir el <b>área</b> como la medida de la región o superficie encerrada por un polígono.<br> ¿Qué tal si vemos un video para aprender a calcular el área de diferentes cuerpos?<br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/rkYltrzcnwE' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/areas.html",
+		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
+		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
+		"reco_oro": "40",
+		"new_mission": [
+			{
+				"npc": "daniela",
+				"qorder": "3"
+			}
+		]
+	},{
 		"npc": "eduardo",
 		"qorder": "1",
 		"img_quest": "eduardo.png",
