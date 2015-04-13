@@ -6,7 +6,7 @@
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
 		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
-		"paso": "Si quieres, puedes comenzar con <b>Chris</b>, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con <b>Fibonacci</b> sobre divisibilidad.<br> O visitar a <b>Hipatia</b> y conversar sobre cuerpos geométricos.<br> Aunque si esos temas no te convencen, <b>Teano</b> puede hablarte de figuras planas.",
+		"paso": "Si quieres, puedes comenzar con <b>Chris</b>, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con <b>Fibonacci</b> sobre divisibilidad.<br> O visitar a <b>Hipatia</b> y conversar sobre cuerpos geométricos.<br> Aunque si esos temas no te convencen, <b>Teano</b> puede hablarte de figuras planas.<br> También puedes visitar a Daniela, ella necesita ayuda para estudiar el perimetro, área y volumen de diferentes figuras y cuerpos geométricos. <br> También podras hallar a René Descartes, con quién podras hablar de la 'relación entre datos'.",
 		"new_mission": [
 			{
 				"npc": "chris",
@@ -26,6 +26,10 @@
 			},
 			{
 				"npc": "daniela",
+				"qorder": "1"
+			},
+			{
+				"npc": "reneDescartes",
 				"qorder": "1"
 			},
 			{
@@ -326,6 +330,23 @@
 		"npc_visible": "true",
 		"titulo": "Para poder salir a jugar 3...",
 		"pregunta": "Y finalmente llego el momento de aprender lo que es el <b>volumen</b>. <br>El volumen es la medida del espacio que ocupa un cuerpo. Para su cálculo precisamos conocer el largo, el ancho y el alto. <br> Miremos este video para aprender a calcular el volumen de diferentes cuerpos geométricos. <br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/1yMz1tBVuZc' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/volumen.html",
+		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
+		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
+		"reco_oro": "40",
+		"new_mission": [
+			{
+				"npc": "daniela",
+				"qorder": "3"
+			}
+		]
+	},{
+		"npc": "reneDescartes",
+		"qorder": "1",
+		"img_quest": "reneDescartes.png",
+		"npc_visible": "true",
+		"titulo": "Ejes Cartesianos",
+		"pregunta": "Hola! Soy Rene Descartes... Yo invente las coordenadas cartesianas, que se utilizan para representar gráficas... No quiero aburrirte con tanto palabrerio. Mejor miremos este video! <iframe width='100%' height='100%' src='https://www.youtube.com/embed/SQoVy9VpTxM' frameborder='0' allowfullscreen></iframe>",
 		"mision": "URL:test/volumen.html",
 		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
 		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",

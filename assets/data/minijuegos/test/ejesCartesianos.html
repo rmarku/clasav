@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+			input{
+				text-align: center
+			}
+		</style>
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior
+				var aleat = Math.random() * numPosibilidades
+				aleat = Math.round(aleat)
+				return parseInt(inferior) + aleat
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="ejesC" width="300px" height="210px" style="border:1px solid black;"></canvas>
+
+		<script>
+			var c = document.getElementById("ejesC");
+			var cxt = c.getContext("2d");
+			
+			for(i=0; i<300;){
+				cxt.beginPath();
+				cxt.strokeStyle = '#D8D8D8';
+				cxt.moveTo(i+15, 0);
+				cxt.lineTo(i+15, 210);
+				i=i+15;
+				cxt.stroke();	
+			}
+			
+			for(i=0; i<200;){
+				cxt.beginPath();
+				cxt.strokeStyle = '#D8D8D8';
+				cxt.moveTo(0, i+15);
+				cxt.lineTo(300, i+15);
+				i=i+15;
+				cxt.stroke();	
+			}
+			cxt.beginPath();
+			cxt.strokeStyle = '#FF0000';
+			cxt.moveTo(150, 0);
+			cxt.lineTo(150, 210);
+			cxt.moveTo(0, 105);
+			cxt.lineTo(300, 105);
+			cxt.stroke();
+			
+			
+		</script>
+
+		<br>
+		Grafica los siguientes puntos:
+		<form name="formulario" onchange="javascript:comprobar()">
+			P1=(<input type="text" id="x0" name="x0" size="3" disabled>,
+			    <input type="text" id="y0" name="y0" size="3" disabled>) <br>
+			
+			P2=(<input type="text" id="x1" name="x1" size="3" disabled>,
+			    <input type="text" id="y1" name="y1" size="3" disabled>) <br>
+			
+			P3=(<input type="text" id="x2" name="x2" size="3" disabled>,
+			    <input type="text" id="y2" name="y2" size="3" disabled>) <br>
+			
+
+			<script>
+				var final = -1;
+				var xx0, xx1, xx2;
+				var yy0, yy1, yy2;
+				
+				xx0 = document.getElementById('x0').value = aleatorio(-10,10);
+				xx1 = document.getElementById('x1').value = aleatorio(-10,10);
+				xx2 = document.getElementById('x2').value = aleatorio(-10,10);
+				
+				yy0 = document.getElementById('y0').value = aleatorio(-7,7);
+				yy1 = document.getElementById('y1').value = aleatorio(-7,7);
+				yy2 = document.getElementById('y2').value = aleatorio(-7,7);
+
+				function comprobar() {
+					volumen0 = document.getElementById('vol0').value;
+					volumen1 = document.getElementById('vol1').value;
+					volumen2 = document.getElementById('vol2').value;
+
+					if (volumen0 == solV0 && volumen1 == solV1 && volumen2 == solV2)
+						final = 1;
+					else
+						final = -1;
+
+					//alert(final);
+				}
+			</script>
+		</form>
+
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>
