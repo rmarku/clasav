@@ -346,15 +346,15 @@
 		"img_quest": "reneDescartes.png",
 		"npc_visible": "true",
 		"titulo": "Ejes Cartesianos",
-		"pregunta": "Hola! Soy Rene Descartes... Yo invente las coordenadas cartesianas, que se utilizan para representar gráficas... No quiero aburrirte con tanto palabrerio. Mejor miremos este video! <iframe width='100%' height='100%' src='https://www.youtube.com/embed/SQoVy9VpTxM' frameborder='0' allowfullscreen></iframe>",
-		"mision": "URL:test/volumen.html",
-		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
-		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
-		"reco_oro": "40",
+		"pregunta": "Hola! Soy Rene Descartes... Yo invente las coordenadas cartesianas, que se utilizan para representar gráficas... No quiero aburrirte con tanto palabrerio. Mejor miremos este video!<br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/SQoVy9VpTxM' frameborder='0' allowfullscreen></iframe> <br> Y ahora que ya lo has visto, vamos a hacer algunos ejercicios",
+		"mision": "URL:test/ejesCartesianos.html",
+		"paso": "Has entendido este tema a la perfección!! Podriamos seguir haciendo más ejercicios!",
+		"no_paso": "Ups, algo ha salido mal... Mejor vuelvea intentarlo!",
+		"reco_oro": "25",
 		"new_mission": [
 			{
-				"npc": "daniela",
-				"qorder": "3"
+				"npc": "reneDescartes",
+				"qorder": "2"
 			}
 		]
 	},{
