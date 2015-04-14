@@ -5,6 +5,10 @@ app.controller('crearClaseController', ['$scope', '$rootScope', "toastr",'$locat
 
     $scope.nombreClase = '';
 
+    if($scope.$parent.misInstituciones.length == 0){
+        window.location.href = '#/clasesProfesor';
+    }
+
     //Deinifimos la lista de nuestras instituciones
     $scope.misInstitucionesStringConcatenado = $scope.$parent.concatenarDatosInstituciones($scope.$parent.misInstituciones);
     $scope.institucion_seleccionada = $scope.misInstitucionesStringConcatenado[0];
