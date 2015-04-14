@@ -5,7 +5,7 @@ app.controller('crearClaseController', ['$scope', '$rootScope', "toastr",'$locat
 
     $scope.nombreClase = '';
 
-    if($scope.$parent.misInstituciones.length == 0){
+    if($scope.$parent.misInstituciones.length === 0){
         window.location.href = '#/clasesProfesor';
     }
 
