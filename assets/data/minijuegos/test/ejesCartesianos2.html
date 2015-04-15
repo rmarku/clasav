@@ -11,15 +11,15 @@
 		</style>
 		<script>
 			function aleatorio(inferior, superior) {
-				var numPosibilidades = superior - inferior
-				var aleat = Math.random() * numPosibilidades
-				aleat = Math.round(aleat)
-				return parseInt(inferior) + aleat
+				var numPosibilidades = superior - inferior;
+				var aleat = Math.random() * numPosibilidades;
+				aleat = Math.round(aleat);
+				return parseInt(inferior) + aleat;
 			}
 		</script>
 	</head>
 	<body>
-		Acorde a la siguiente función, complete la tabla de X e Y:
+		Completa la siguiente función:
 		<br>
 		<form name="formulario" onchange="javascript:comprobar()">
 
@@ -93,7 +93,6 @@
 					cxt.stroke();
 				}
 				
-				var ajuste;
 				if (arriX != 0) {
 					ajuste= 10/abajX;
 					//trazar la linea
