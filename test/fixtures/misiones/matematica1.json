@@ -397,10 +397,13 @@
 		"img_quest": "eduardo.png",
 		"npc_visible": "true",
 		"titulo": "Numeros Racionales...",
-		"pregunta": "Se llama número racional a todo número que puede representarse como el cociente de dos números enteros. Existen 2 maneras de escribir el mismo número racional: como fracción o en forma decimal.",
-		"mision": "URL:test/quest3_1.html",
-		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
-		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-		"reco_oro": "25"
+		"pregunta": "Así que te interesan los números racionales... Comencemos con lo básico <br>Se llama <b>número racional (Q)</b> a todo número que puede representarse como el cociente de dos números enteros. Existen 2 maneras de escribir el mismo número racional: como fracción o en forma decimal.<br> En las fracciones, el número superior se llama 'numerador' y el inferior 'denominador'. <br> <img src='http://recursostic.educacion.es/descartes/web/materiales_didacticos/Fracciones_y_porcentajes/uni/prueba_formulas_html_26bae5f2.gif'>",
+		"paso": "Existen diferentes <b>propiedades</b> para la suma, resta, multiplicación y división: <br>Propiedad Interna: El resultado de sumar o multiplicar dos números racionales es otro número racional. <br> Propiedad Asociativa: El modo de agrupar los factores no varía el resultado.<br> Propiedad Conmutativa: El orden de los factores no varía la suma o multiplicación. <br> Elemento Neutro: El 0 es el elemento neutro de la suma, y el 1 de la multiplicación. <br> Elemento Opuesto: Dos números son opuestos si al sumarlos obtenemos como resultado el cero. <br> a + (−a) = 0 <br> Un número es inverso de otro si al multiplicarlos obtenemos como resultado el elemento unidad. <br> a*(1/a)=1 <br> Propiedad Distributiva: El producto de un número por una suma es igual a la suma de los productos de dicho número por cada uno de los sumandos. <br> a · (b + c) = a · b + a · c ",
+		"new_mission": [
+			{
+				"npc": "eduardo",
+				"qorder": "2"
+			}
+		]
 	}
 ]
