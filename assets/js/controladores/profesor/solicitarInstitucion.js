@@ -32,7 +32,7 @@ app.controller('solicitarInstitucionController', ['$scope', '$rootScope', "toast
             },
             function (data) {
                 toastr.info('Solicitud de institución enviada.');
-                $scope.$parent.misInstitucionesSituacionEspera.push(institucion_seleccionada);
+                $scope.$parent.institucionesCargadas = false;
                 $scope.$apply();
                 window.location.href = '#/institucionesProfesor';
             });

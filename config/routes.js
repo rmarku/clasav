@@ -94,7 +94,6 @@ module.exports.routes = {
 
     //Profesores
     'get /api/clase/crearClaseProfesor':                    'ClaseController.crearClaseProfesor',
-    'put /api/clase/solicitarInstitucion':                  'ClaseController.solicitarInstitucion',
     'get /api/institucion/solicitarInstitucion':            'InstitucionController.solicitarInstitucion',
     'get /api/institucion/get_institucionesHabilitadas':    'InstitucionController.get_institucionesHabilitadas',
 

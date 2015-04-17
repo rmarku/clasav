@@ -226,7 +226,7 @@ module.exports = {
                             return;
                         }
                         sails.sockets.join(req.socket,"institucion:"+institucion.id);
-                        sails.sockets.broadcast("clase:"+institucion.id,'nuevaSolicitudInstitucion',user,req.socket);
+                        sails.sockets.broadcast("institucion:"+institucion.id,'nuevaSolicitudInstitucion',user,req.socket);
 
                         return res.json(institucion_x_user);
                     });

@@ -93,6 +93,7 @@ module.exports = {
         });
     },
 
+    /*
     solicitarInstitucion: function (req,res) {
         var userID = req.session.passport.user;
         var institucionID = req.param('institucionID');
@@ -145,7 +146,7 @@ module.exports = {
             });
         });
     },
-
+*/
 
 
     //ALUMNOS

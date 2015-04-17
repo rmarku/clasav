@@ -29,7 +29,7 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
         $.get("/api/institucion_x_user/set_situacion",
             {
                 institucion_x_user : user.institucion_x_user[0].id,
-                situacion:"profesorRechazado",
+                situacion:"rechazadoProfesor",
                 institucion: $scope.$parent.institucionActual.id
             },
             function (err,detail) {
@@ -37,8 +37,8 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
                     toastr.error('Hubo un problema. Intente nuevamente.');
                     return;
                 }
-                $scope.$parent.institucionActual.users_situacionRechazado.push(user);
-                $scope.$parent.institucionActual.users_situacionEspera.splice(index, 1);
+                $scope.$parent.institucionActual.profesores_situacionRechazado.push(user);
+                $scope.$parent.institucionActual.profesores_situacionEspera.splice(index, 1);
                 $scope.$parent.institucionesCargadas = false;
                 toastr.info('Profesor rechazado.');
             }

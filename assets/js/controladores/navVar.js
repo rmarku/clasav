@@ -244,7 +244,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     ///// SOCKETS
 
-    $scope.listen_to_nuevasSolicitudes = function () {
+    $scope.listen_to_nuevasSolicitudesDeClases = function () {
         io.socket.on('nuevaSolicitud', function onServerSentEvent(user) {
             $scope.misClases.forEach(function (clase) {
                 if (clase.id == user.clase_x_user[0].clase) {
@@ -255,7 +255,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
             });
         });
     };
-    $scope.listen_to_nuevasSolicitudes();
+    $scope.listen_to_nuevasSolicitudesDeClases();
 
     $scope.listen_to_clasesEnEspera = function () {
 
@@ -290,6 +290,56 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     };
 
     $scope.listen_to_clasesEnEspera();
+
+    //Sockets para instituciones
+    $scope.listen_to_nuevasSolicitudesDeInstituciones = function () {
+        io.socket.on('nuevaSolicitudInstitucion', function onServerSentEvent(user) {
+            $scope.misInstituciones.forEach(function (institucion) {
+                if (institucion.id == user.institucion_x_user[0].institucion) {
+                    institucion.profesores_situacionEspera.push(user);
+                    $scope.$apply();
+                    return;
+                }
+            });
+        });
+    };
+    $scope.listen_to_nuevasSolicitudesDeInstituciones();
+
+    $scope.listen_to_nuevasSolicitudesDeClases();
+
+    $scope.listen_to_institucionesEnEspera = function () {
+
+        io.socket.on('userUpdatedFromEsperaProfesor', function onServerSentEvent(institucion_x_user) {
+
+            for(var x=0 ; x < $scope.misInstitucionesSituacionEspera.length ; x++){
+
+                var institucion = $scope.misInstitucionesSituacionEspera[x];
+
+                if (institucion.institucion_x_user[0].id == institucion_x_user[0].id) {
+
+                    if (institucion_x_user[0].situacion == 'profesor') {
+
+                        institucion.institucion_x_user[0].situacion = 'profesor';
+                        $scope.misInstituciones.push(institucion);
+                        $scope.misInstitucionesSituacionEspera.splice(x, 1);
+
+                        $scope.$apply();
+                        return;
+
+                    } else if (institucion_x_user[0].situacion == 'rechazadoProfesor') {
+
+                        institucion.institucion_x_user[0].situacion = 'rechazadoProfesor';
+                        $scope.misInstituciones.push(institucion);
+                        $scope.misInstitucionesSituacionEspera.splice(x, 1);
+                        $scope.$apply();
+                        return;
+                    }
+                }
+            }
+        });
+    };
+
+    $scope.listen_to_institucionesEnEspera();
 
     /////////////////////////////FIN DE SOCKETS
 
