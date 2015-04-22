@@ -305,8 +305,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     };
     $scope.listen_to_nuevasSolicitudesDeInstituciones();
 
-    $scope.listen_to_nuevasSolicitudesDeClases();
-
     $scope.listen_to_institucionesEnEspera = function () {
 
         io.socket.on('userUpdatedFromEsperaProfesor', function onServerSentEvent(institucion_x_user) {
