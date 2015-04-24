@@ -122,7 +122,12 @@ module.exports = {
         experiencia: 'integer',
         oro: 'integer',
         energia: 'integer',
-        energia_max: 'integer'
+        energia_max: 'integer',
+        logros: {
+            collection: 'logro',
+            via: 'personajes',
+            required: false
+        }
     },
     afterCreate: function (newPJ, next, req) {
         // Para procesar todas las promesas que devuelven cada item create.

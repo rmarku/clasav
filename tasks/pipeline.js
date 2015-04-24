@@ -57,6 +57,7 @@ var jsFilesToInject = [
     //Alumnos
     "/js/controladores/alumno/clases.js",
     "/js/controladores/alumno/solicitarClase.js",
+    "/js/controladores/alumno/detallesPersonaje.js",
     //Profesores
     "/js/controladores/profesor/clases.js",
     "/js/controladores/profesor/verSolicitudes.js",
@@ -64,6 +65,7 @@ var jsFilesToInject = [
     "/js/controladores/profesor/crearClase.js",
     "/js/controladores/profesor/solicitarInstitucion.js",
     "/js/controladores/profesor/instituciones.js",
+    "/js/controladores/profesor/detallesAlumno.js",
     //Administradores
     "/js/controladores/administrador/crearInstitucion.js",
     "/js/controladores/administrador/instituciones.js",

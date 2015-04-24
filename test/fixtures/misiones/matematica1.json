@@ -41,6 +41,8 @@
 		"no_paso": "Lo veamos otra vez!",
 		"reco_oro": "10",
 		"reco_experiencia": "10",
+        "logro":1,
+
 		"new_mission": [
 			{
 				"npc": "Chris",
@@ -61,6 +63,7 @@
 		"reco_experiencia": "10",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+        "logro":2,
 		"new_mission": [
 			{
 				"npc": "Chris",
@@ -81,6 +84,7 @@
 		"reco_experiencia": "15",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
+        "logro" :3,
 		"new_mission": [
 			{
 				"npc": "Chris",

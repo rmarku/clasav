@@ -65,6 +65,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/profesor/instituciones.html"],
         controller: 'institucionesProfesorController'
     });
+    $routeProvider.when('/detallesAlumno', {
+        template: JST["assets/templates/profesor/detallesAlumno.html"],
+        controller: 'detallesAlumnoController'
+    });
     //<!--FIN RUTAS PROFESOR-->
 
 
@@ -77,6 +81,10 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/solicitarClase', {
         template: JST["assets/templates/alumno/solicitudClase.html"],
         controller: 'solicitarClaseController'
+    });
+    $routeProvider.when('/detallesPersonaje', {
+        template: JST["assets/templates/alumno/detallesPersonaje.html"],
+        controller: 'detallesPersonajeController'
     });
     //<!--FIN RUTAS ALUMNO-->
 

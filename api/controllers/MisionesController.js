@@ -179,6 +179,7 @@ module.exports = {
                     });
                 });
 
+
             // habilito el flujo de misiones que siguen.
             var new_misiones = [];
             if (typeof misi.new_mission !== 'undefined')
@@ -186,6 +187,10 @@ module.exports = {
 
             var npc_promises = [];
             var npc_changed = [];
+
+            if(misi.logro){
+                pj.logros.add(misi.logro.id);
+            }
 
             new_misiones.forEach(function (valor) {
 
@@ -231,6 +236,7 @@ module.exports = {
             });
         }).catch(function (err) {
             sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
+
             return res.json({err: JSON.stringify(err)});
         });
     },

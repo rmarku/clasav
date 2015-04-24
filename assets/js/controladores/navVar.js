@@ -19,6 +19,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     //FIN Variables para ALUMNOS/PROFESORES//
 
     //Variables para PROFESORES
+    $scope.alumnoActual = {};
 
 
     //Fin Variables para PROFESORES
