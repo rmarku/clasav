@@ -192,7 +192,7 @@ module.exports = {
                     User.findOne({id:userID}).populate('clase_x_user',{clase:clase.id}).exec(function afterwards(err,user) {
 
                         if (err || !user) {
-                            console.log(err);F
+                            console.log(err);
                             res.json(err);
                             return;
                         }
