@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior
+				var aleat = Math.random() * numPosibilidades
+				aleat = Math.round(aleat)
+				return parseInt(inferior) + aleat
+			}
+		</script>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+		Halle el perímetro de las siguientes figuras:
+			<table border="1px" style="border-collapse: collapse; background: white">
+				<tr>
+					<td>Figura</td>
+					<td>Valor Lados</td>
+					<td>Perímetro</td>
+				</tr>
+				<tr>
+					<td><img src="http://www.ditutor.com/geometria/images/00_18.gif"></td>
+					<td>a=<input type="text" id="triA" name="triA" size="2" disabled>
+						<br>
+						b=<input type="text" id="triB" name="triB" size="2" disabled>
+						<br>
+						c=<input type="text" id="triC" name="triC" size="2" disabled>
+					</td>
+					<td><input type="text" id="per0" name="per0" size="3"> </td>
+				</tr>
+				
+				<tr>
+					<td><img src="http://www.ditutor.com/geometria/images/67.gif"></td>
+					<td>L=<input type="text" id="lad" name="lad" size="2" disabled>
+					</td>
+					<td>a=<input type="text" id="per1" name="per1" size="3"> </td>
+				</tr>
+				
+				<tr>
+					<td><img src="http://www.ditutor.com/geometria/images/68.gif"></td>
+					<td>H=<input type="text" id="ladH" name="ladH" size="2" disabled>
+						<br>
+						B=<input type="text" id="ladB" name="ladB" size="2" disabled>
+					</td>
+					<td>a=<input type="text" id="per2" name="per2" size="3"> </td>
+				</tr>
+			</table>
+			
+			<script>
+			var final=-1;
+			var triang=[0,0,0];
+			var cuadra;
+			var rectang=[0,0];
+			var perT, perC, perR;
+			
+			triang[0] = document.getElementById('triA').value = aleatorio(1,15);
+			triang[1] = document.getElementById('triB').value = aleatorio(1,15);
+			triang[2] = document.getElementById('triC').value = aleatorio(1,15);
+				
+			cuadra = document.getElementById('lad').value = aleatorio(1,15);
+				
+			rectang[0] = document.getElementById('ladH').value = aleatorio(1,10);
+			rectang[1] = document.getElementById('ladB').value = aleatorio(10,20);
+			
+			
+			function comprobar() {
+				perT = document.getElementById('per0').value;
+				perC = document.getElementById('per1').value;
+				perR = document.getElementById('per2').value;
+					
+				if(perT==triang[0]+triang[1]+triang[2] && perC==4*cuadra && perR==2*(rectang[0]+rectang[1]))
+					final=1;
+				else
+					final=-1;
+				
+				//alert(final);
+			}
+		</script>
+		</form>
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

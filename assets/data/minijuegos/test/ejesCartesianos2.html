@@ -1,0 +1,134 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+			input {
+				text-align: center
+			}
+		</style>
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior;
+				var aleat = Math.random() * numPosibilidades;
+				aleat = Math.round(aleat);
+				return parseInt(inferior) + aleat;
+			}
+		</script>
+	</head>
+	<body>
+		Completa la siguiente función:
+		<br>
+		<form name="formulario" onchange="javascript:comprobar()">
+
+			y=
+			<input type="text" id="const" name="const" size="2">
+			+
+			(
+			<input type="text" id="varY" name="varY" size="2">
+			/
+			<input type="text" id="varX" name="varX" size="2">
+			) X
+			<br>
+
+			<canvas id="ejesC" width="300px" height="210px" style="border:1px solid black; background-color: white"></canvas>
+
+			<script>
+				var c = document.getElementById("ejesC");
+				var cxt = c.getContext("2d");
+
+				//Creo variables almacenar los valores de la ecuación
+				var ordOrig, arriX, abajX;
+
+				arriX = aleatorio(-3, 3);
+				abajX = aleatorio(-10, 10);
+				ordOrig = aleatorio(-4, 4);
+
+				arriX = (-1) * arriX;
+				ordOrig = (-1) * ordOrig;
+
+				//Dibujar lineas verticales
+				for ( i = 0; i < 300; ) {
+					cxt.beginPath();
+					cxt.strokeStyle = '#D8D8D8';
+					cxt.moveTo(i + 15, 0);
+					cxt.lineTo(i + 15, 210);
+					i = i + 15;
+					cxt.stroke();
+				}
+
+				//Dibujar lineas horizontales
+				for ( i = 0; i < 200; ) {
+					cxt.beginPath();
+					cxt.strokeStyle = '#D8D8D8';
+					cxt.moveTo(0, i + 15);
+					cxt.lineTo(300, i + 15);
+					i = i + 15;
+					cxt.stroke();
+				}
+				//Dibujar ejes X e Y
+				cxt.beginPath();
+				cxt.strokeStyle = '#FF0000';
+				cxt.moveTo(150, 0);
+				cxt.lineTo(150, 210);
+				cxt.moveTo(0, 105);
+				cxt.lineTo(300, 105);
+				cxt.stroke();
+
+				//punto Rojo
+				cxt.fillStyle = "red";
+				cxt.beginPath();
+				cxt.arc(150, (ordOrig + 7) * 15, 5, 0, Math.PI * 2, true);
+				cxt.arc((abajX + 10) * 15, (ordOrig + arriX + 7) * 15, 5, 0, Math.PI * 2, true);
+				cxt.closePath();
+				cxt.fill();
+
+				if (arriX == 0) {
+					//trazar la linea
+					cxt.beginPath();
+					cxt.moveTo(0, (ordOrig + 7) * 15 + 10 * ((arriX) / (abajX)) * 15);
+					cxt.lineTo(300, (ordOrig + 7) * 15 + (-10) * (arriX) / (abajX) * 15);
+					cxt.stroke();
+				}
+				
+				if (arriX != 0) {
+					ajuste= 10/abajX;
+					//trazar la linea
+					cxt.beginPath();
+					cxt.moveTo(0, ((ordOrig +(arriX/abajX)*(-10))+7) * 15);
+					cxt.lineTo(300, ((ordOrig +(arriX/abajX)*(10))+7) * 15);
+					cxt.stroke();
+				}
+				
+
+				var final = -1;
+
+				var varY, varX1, varX2;
+
+				function comprobar() {
+					varX2 = document.getElementById('varX').value;
+					varX1 = (-1)*document.getElementById('varY').value;
+					varY = (-1)*document.getElementById('const').value;
+
+					
+
+					if (ordOrig==varY && arriX==varX1 && abajX==varX2)
+						final = 1;
+					else
+						final = -1;
+
+					//alert(final);
+					//alert(-ordOrig);
+					//alert(-arriX);
+					//alert(abajX);
+				}
+			</script>
+		</form>
+
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>
