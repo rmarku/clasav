@@ -76,6 +76,7 @@ module.exports.routes = {
     'post /api/mapa_instancia/change_level':        'Mapa_instanciaController.change_level',
     'get /api/personaje/getPersonaje_masReciente':  'PersonajeController.getPersonaje_masReciente',
     'get /api/item/getItemsPJ':                     'ItemController.getItemsPJ',
+    'get /api/item/:id/useItem':                   'ItemController.useItem',
 
     // Misiones
     'get /api/misiones/gettxt':                     'MisionesController.gettxt',

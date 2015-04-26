@@ -258,15 +258,16 @@ game.Player = me.Entity.extend({
         //Cargo los prites de cada parte
 
         ['zapatos', 'pantalon', 'torso'].forEach(function (it) {
-
-            var i = game.items[that.data[it].item];
-            sprites.push({
-                imagen: game.sprites[i.sprite].imagen,
-                xoffset: game.sprites[i.sprite].xoffset,
-                yoffset: game.sprites[i.sprite].yoffset,
-                color: i.color,
-                zIndex: game.sprites[i.sprite].zIndex
-            });
+            if (typeof that.data[it] !== 'undefined') {
+                var i = game.items[that.data[it].item];
+                sprites.push({
+                    imagen: game.sprites[i.sprite].imagen,
+                    xoffset: game.sprites[i.sprite].xoffset,
+                    yoffset: game.sprites[i.sprite].yoffset,
+                    color: i.color,
+                    zIndex: game.sprites[i.sprite].zIndex
+                });
+            }
         });
 
         // Ordeno los sprites segun su zindex

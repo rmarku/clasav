@@ -3,7 +3,7 @@
  */
 app.controller('detallesAlumnoController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
-    if(Object.keys($scope.$parent.alumnoActual).length == 0){
+    if(Object.keys($scope.$parent.alumnoActual).length === 0){
         window.location.href = '#/clasesProfesor';
     }
 

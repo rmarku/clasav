@@ -15,7 +15,7 @@ module.exports = {
 
         tipo_item: {
             type: 'string',
-            enum: ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'],
+            enum: ['quest', 'consumible', 'sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'],
             required: true
         },
 
@@ -36,6 +36,9 @@ module.exports = {
         color: {
             type: 'string',
             required: true
+        },
+        energia: {
+            type: 'integer'
         }
     }
 };

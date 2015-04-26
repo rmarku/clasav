@@ -92,7 +92,6 @@ hud = {
                         var icono = game.sprites[item.sprite].icono;
 
                         var img = new Image();
-
                         img.onload = function () {
                             var cnv = tintImage(img, item.color);
                             //div que contiene la imagen
@@ -103,6 +102,7 @@ hud = {
                             var ic = document.createElement('img');
                             ic.setAttribute('src', cnv.toDataURL());
                             ic.setAttribute('title', item.nombre);
+                            ic.setAttribute('data', JSON.stringify(it));
 
                             div.appendChild(ic);
                             // Numero si hay maximos
@@ -112,10 +112,24 @@ hud = {
                                 div.appendChild(span);
                             }
                             document.getElementById('items').appendChild(div);
+                            ic.ondblclick = hud.inventario.onclick;
                         };
                         img.src = 'data/sprites/' + icono;
                     }
                 });
+            });
+        },
+        onclick: function () {
+            var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
+            var it = JSON.parse(this.getAttribute('data'));
+
+
+            $.getJSON("api/item/" + it.id + "/useItem", function (data) {
+                if (typeof data.err != 'undefined') {
+                    console.log('error');
+                } else if (typeof data.ok != 'undefined') {
+                    game.mainPlayer.updateData();
+                }
             });
         }
     },
