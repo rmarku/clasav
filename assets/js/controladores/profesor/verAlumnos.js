@@ -3,7 +3,7 @@
  */
 app.controller('verAlumnosController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
-    if($scope.$parent.claseActual.activa == false){
+    if($scope.$parent.claseActual.activa === false){
         window.location.href = '#/clasesProfesor';
     }
 
