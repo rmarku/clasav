@@ -21,6 +21,7 @@
                             <th class="text-center" style="width: 140px">Clase</th>
                             <th class="text-center" style="width: 100px">Institucion</th>
                             <th class="text-center" style="width: 180px">Mapa Central</th>
+                            <th class="text-center" style="width: 50px">Detalle</th>
                         </tr>
                         </thead>
 
@@ -45,6 +46,12 @@
                                   <span >
                                     {{claseActual.mapaCentral.nombre}}
                                   </span>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-default btn-xs" ng-click="ver_detallesAlumno($index)">
+                                    <span class="fa fa-search" aria-hidden="true" ></span>
+                                </button>
+
                             </td>
                         </tr>
                         </tbody>

@@ -6,15 +6,33 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
+    $scope.institucionesCargadas = {};
 
-    $scope.misClases = [];
-    $scope.misClasesSituacionEspera = [];
-    $scope.misClasesSituacionRechazado = [];
+    //Variables para ALUMNOS/PROFESORES//
+    $scope.misClases                    = [];
+    $scope.clasesCargadas               = false;
+    $scope.claseActual                  = {"activa" : false};
 
-    $scope.clasesCargadas = false;
-    $scope.claseActual = {"activa" : false};
+    $scope.misInstituciones        = [];
+    $scope.misInstitucionesSituacionEspera      = [];
+    $scope.misInstitucionesSituacionRechazado  = [];
+    //FIN Variables para ALUMNOS/PROFESORES//
+
+    //Variables para PROFESORES
+    $scope.alumnoActual = {};
 
 
+    //Fin Variables para PROFESORES
+
+    //Variables para ALUMNOS//
+    $scope.misClasesSituacionEspera     = [];
+    $scope.misClasesSituacionRechazado  = [];
+    //FIN Variables para ALUMNOS//
+
+    //Variables para ADMINISTRADORES//
+    $scope.institucionActual                    = {"activa" : false};
+    $scope.estadoProfesoresCargado               = false;
+    //fin Variables para ADMINISTRADORES//
 
     /**
      * Description
@@ -37,6 +55,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta') {
                         toastr.info('Completa tu información para poder jugar.');
                     }
+                    $scope.$apply();
+
                     deferred.resolve($scope.user);
                 });
             });
@@ -140,7 +160,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
                 var user = clase.users[y];
 
-                for (var x = 0; x < clase.users.length; x++) {
+                for (var x = 0; x < clases_x_users.length; x++) {
                     var clase_x_user = clases_x_users[x];
 
                     if (clase_x_user.user.id == user.id) {
@@ -177,6 +197,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         });
         return deferred.promise;
     };
+
     $scope.definirProfesores = function (clases) {
 
         clases.forEach(function(clase) {
@@ -202,13 +223,29 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
         return userToReturn;
     };
+
+
+
     /////////////////////////FIN FUNCIONES DE CLASES
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     ///// SOCKETS
 
-    $scope.listen_to_nuevasSolicitudes = function () {
+    $scope.listen_to_nuevasSolicitudesDeClases = function () {
         io.socket.on('nuevaSolicitud', function onServerSentEvent(user) {
             $scope.misClases.forEach(function (clase) {
                 if (clase.id == user.clase_x_user[0].clase) {
@@ -219,7 +256,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
             });
         });
     };
-    $scope.listen_to_nuevasSolicitudes();
+    $scope.listen_to_nuevasSolicitudesDeClases();
 
     $scope.listen_to_clasesEnEspera = function () {
 
@@ -254,6 +291,54 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     };
 
     $scope.listen_to_clasesEnEspera();
+
+    //Sockets para instituciones
+    $scope.listen_to_nuevasSolicitudesDeInstituciones = function () {
+        io.socket.on('nuevaSolicitudInstitucion', function onServerSentEvent(user) {
+            $scope.misInstituciones.forEach(function (institucion) {
+                if (institucion.id == user.institucion_x_user[0].institucion) {
+                    institucion.profesores_situacionEspera.push(user);
+                    $scope.$apply();
+                    return;
+                }
+            });
+        });
+    };
+    $scope.listen_to_nuevasSolicitudesDeInstituciones();
+
+    $scope.listen_to_institucionesEnEspera = function () {
+
+        io.socket.on('userUpdatedFromEsperaProfesor', function onServerSentEvent(institucion_x_user) {
+
+            for(var x=0 ; x < $scope.misInstitucionesSituacionEspera.length ; x++){
+
+                var institucion = $scope.misInstitucionesSituacionEspera[x];
+
+                if (institucion.institucion_x_user[0].id == institucion_x_user[0].id) {
+
+                    if (institucion_x_user[0].situacion == 'profesor') {
+
+                        institucion.institucion_x_user[0].situacion = 'profesor';
+                        $scope.misInstituciones.push(institucion);
+                        $scope.misInstitucionesSituacionEspera.splice(x, 1);
+
+                        $scope.$apply();
+                        return;
+
+                    } else if (institucion_x_user[0].situacion == 'rechazadoProfesor') {
+
+                        institucion.institucion_x_user[0].situacion = 'rechazadoProfesor';
+                        $scope.misInstituciones.push(institucion);
+                        $scope.misInstitucionesSituacionEspera.splice(x, 1);
+                        $scope.$apply();
+                        return;
+                    }
+                }
+            }
+        });
+    };
+
+    $scope.listen_to_institucionesEnEspera();
 
     /////////////////////////////FIN DE SOCKETS
 

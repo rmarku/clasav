@@ -44,6 +44,9 @@ module.exports = {
         reco_item: 'string',
         reco_item_cant: 'integer',
         reco_oro: 'integer',
+        logro:{
+            model: 'logro'
+        },
 
         // Acciones
         new_mission: 'string'
@@ -57,6 +60,7 @@ module.exports = {
          "qorder": 2
          } ]
          */
+
 
     },
     getMision: function (userId, npcNombre) {
@@ -83,7 +87,7 @@ module.exports = {
                         return reject("MisionXP no encontrada");
 
                     // obtengo el orden y el npc
-                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).then(function (misi) {
+                    Misiones.findOne({npc: npcNombre, qorder: mxp.qorder}).populate('logro').then(function (misi) {
                         if (!misi)
                             return reject('Mision no encontrada');
 
@@ -93,6 +97,7 @@ module.exports = {
                     });
                 });
             }).catch(function (err) {
+
                 return reject(err);
             });
         });

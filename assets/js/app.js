@@ -37,6 +37,8 @@ app.config(['$routeProvider', function ($routeProvider) {
 
     //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
 
+
+
     //<!--RUTAS PROFESOR-->
     $routeProvider.when('/clasesProfesor', {
         template: JST["assets/templates/profesor/clases.html"],
@@ -47,10 +49,6 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/profesor/crearClase.html"],
         controller: 'crearClaseController'
     });
-    $routeProvider.when('/crearInstitucion', {
-        template: JST["assets/templates/profesor/crearInstitucion.html"],
-        controller: 'institucionesProfesorController'
-    });
     $routeProvider.when('/verSolicitudes', {
         template: JST["assets/templates/profesor/verSolicitudes.html"],
         controller: 'verSolicitudesController'
@@ -59,7 +57,21 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/profesor/verAlumnos.html"],
         controller: 'verAlumnosController'
     });
+    $routeProvider.when('/solicitarInstitucion', {
+        template: JST["assets/templates/profesor/solicitarInstitucion.html"],
+        controller: 'solicitarInstitucionController'
+    });
+    $routeProvider.when('/institucionesProfesor', {
+        template: JST["assets/templates/profesor/instituciones.html"],
+        controller: 'institucionesProfesorController'
+    });
+    $routeProvider.when('/detallesAlumno', {
+        template: JST["assets/templates/profesor/detallesAlumno.html"],
+        controller: 'detallesAlumnoController'
+    });
     //<!--FIN RUTAS PROFESOR-->
+
+
 
     //<!--RUTAS ALUMNO-->
     $routeProvider.when('/clasesAlumno', {
@@ -70,7 +82,33 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/alumno/solicitudClase.html"],
         controller: 'solicitarClaseController'
     });
+    $routeProvider.when('/detallesPersonaje', {
+        template: JST["assets/templates/alumno/detallesPersonaje.html"],
+        controller: 'detallesPersonajeController'
+    });
     //<!--FIN RUTAS ALUMNO-->
+
+
+    //<!--RUTAS ADMINISTRADOR-->
+    $routeProvider.when('/institucionesAdministrador', {
+        template: JST["assets/templates/administrador/instituciones.html"],
+        controller: 'institucionesAdministradorController'
+    });
+    $routeProvider.when('/crearInstitucion', {
+        template: JST["assets/templates/administrador/crearInstitucion.html"],
+        controller: 'crearInstitucionController'
+    });
+    $routeProvider.when('/verProfesores', {
+        template: JST["assets/templates/administrador/verProfesores.html"],
+        controller: 'verProfesoresController'
+    });
+    $routeProvider.when('/verSolicitudesProfesores', {
+        template: JST["assets/templates/administrador/verSolicitudes.html"],
+        controller: 'verSolicitudesProfesoresController'
+    });
+    //<!--FIN RUTAS ADMINISTRADOR-->
+
+
 
     $routeProvider.otherwise({
         template: JST["assets/templates/index.html"]

@@ -69,26 +69,34 @@ module.exports.routes = {
 
     '/api/user/getUser': 'UserController.getUser',
 
-    'get /api/mapa_instancia/join': 'Mapa_instanciaController.join',
-    'get /api/mapa_instancia/leave': 'Mapa_instanciaController.leave',
-
-    'put  /api/personaje/updateStatus': 'PersonajeController.updateStatus',
-
+    //Personajes
+    'get /api/mapa_instancia/join':                 'Mapa_instanciaController.join',
+    'get /api/mapa_instancia/leave':                'Mapa_instanciaController.leave',
+    'put  /api/personaje/updateStatus':             'PersonajeController.updateStatus',
     'post /api/mapa_instancia/change_level':        'Mapa_instanciaController.change_level',
-
     'get /api/personaje/getPersonaje_masReciente':  'PersonajeController.getPersonaje_masReciente',
+    'get /api/item/getItemsPJ':                     'ItemController.getItemsPJ',
 
-    'put /api/clase/crearClaseProfesor':            'ClaseController.crearClaseProfesor',
-
-    'get /api/clase/get_misClases_conUsers':        'ClaseController.get_misClases_conUsers',
-
-    'get /api/clase/solicitarClase':                'ClaseController.solicitarClase',
-
-
-    'get /api/item/getItemsPJ':                'ItemController.getItemsPJ',
     // Misiones
     'get /api/misiones/gettxt':                     'MisionesController.gettxt',
     'get /api/misiones/finish':                     'MisionesController.finish',
     'get /api/misiones/info':                       'MisionesController.info',
-    'get /api/clase_x_user/set_situacion':          'Clase_x_userController.set_situacion'
+    'get /api/clase_x_user/set_situacion':          'Clase_x_userController.set_situacion',
+
+    //Administradores
+    'get /api/institucion/crearCInstitucionAdministrador':  'InstitucionController.crearInstitucionAdministrador',
+    'get /api/institucion/get_misInstituciones_conUsers':   'InstitucionController.get_misInstituciones_conUsers',
+    'get /api/institucion_x_user/set_situacion':            'Institucion_x_userController.set_situacion',
+
+    //Alumnos
+    'get /api/clase/solicitarClase':                        'ClaseController.solicitarClase',
+    'get /api/institucion/get_institucionesConProfesores':  'InstitucionController.get_institucionesConProfesores',
+
+    //Profesores
+    'get /api/clase/crearClaseProfesor':                    'ClaseController.crearClaseProfesor',
+    'get /api/institucion/solicitarInstitucion':            'InstitucionController.solicitarInstitucion',
+    'get /api/institucion/get_institucionesHabilitadas':    'InstitucionController.get_institucionesHabilitadas',
+
+    'get /api/clase/get_misClases_conUsers':                'ClaseController.get_misClases_conUsers'
+
 };

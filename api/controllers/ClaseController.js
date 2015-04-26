@@ -6,6 +6,8 @@
  */
 
 module.exports = {
+
+    //PROFESORES
     crearClaseProfesor: function (req,res) {
 
         var userID = req.session.passport.user;
@@ -91,6 +93,64 @@ module.exports = {
         });
     },
 
+    /*
+    solicitarInstitucion: function (req,res) {
+        var userID = req.session.passport.user;
+        var institucionID = req.param('institucionID');
+
+        //realizar un update en clase_x_user
+
+        Institucion.findOne({id:institucionID}).populate('users').exec(function afterwards(err,institucion){
+
+            if (err || !institucion) {
+                console.log(err);
+                res.json(err);
+                return;
+            }
+
+            institucion.users.add(userID);
+
+            institucion.save(function (err) {
+                if(err){
+                    console.log(err);
+                    res.json(err);
+                    return;
+                }
+
+                //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
+                Institucion_x_user.create({user:userID, institucion:claseID, situacion:"espera"}).exec(function createCB(err,institucion_x_user) {
+
+
+                    if (err || !institucion_x_user) {
+                        console.log(err);
+                        res.json(err);
+                        return;
+                    }
+
+                    // Me suscribo a futuras modificaciones de la clase que acabo de crear
+
+                    User.findOne({id:userID}).populate('institucion_x_user',{clase:institucion.id}).exec(function afterwards(err,user) {
+
+                        if (err || !user) {
+                            console.log(err);
+                            res.json(err);
+                            return;
+                        }
+                        sails.sockets.join(req.socket,"institucion:"+clase.id);
+                        sails.sockets.broadcast("institucion:"+institucion.id,'nuevaSolicitud',user,req.socket);
+
+                        return res.json(institucion_x_user);
+                    });
+
+                });
+            });
+        });
+    },
+*/
+
+
+    //ALUMNOS
+
     solicitarClase: function (req,res) {
         var userID = req.session.passport.user;
         var claseID = req.param('claseID');
@@ -147,6 +207,7 @@ module.exports = {
         });
     },
 
+    //PJS
     get_misclases:function (req,res){
 
         var userID = req.session.passport.user;
@@ -222,6 +283,9 @@ module.exports = {
             });
 
     },
+
+
+    //PROFESORES/ALUMNOS
 
     get_misClases_conUsers: function (req,res) {
 

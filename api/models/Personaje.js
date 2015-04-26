@@ -122,7 +122,12 @@ module.exports = {
         experiencia: 'integer',
         oro: 'integer',
         energia: 'integer',
-        energia_max: 'integer'
+        energia_max: 'integer',
+        logros: {
+            collection: 'logro',
+            via: 'personajes',
+            required: false
+        }
     },
     afterCreate: function (newPJ, next, req) {
         // Para procesar todas las promesas que devuelven cada item create.
@@ -231,15 +236,19 @@ module.exports = {
             }).populateAll().exec(function (err, personaje) {
                 if (err) return reject(err);
 
-                if (personaje) {
-                    Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico}).populate('mapa_generico').exec(function (err, populated_mapa_instancia) {
+                if (personaje && personaje.mapa_instancia) {
+                    Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico})
+                        .populate('mapa_generico')
+                        .exec(function (err, populated_mapa_instancia) {
                         if (populated_mapa_instancia) {
                             personaje.mapa_instancia = populated_mapa_instancia;
-                            resolve(personaje);
+                            return resolve(personaje);
+                        }else{
+                            return resolve(null);
                         }
                     });
                 } else {
-                    resolve(null);
+                    return resolve(null);
                 }
             });
         });

@@ -24,7 +24,11 @@ module.exports.bootstrap = function (cb) {
                 console.log(err);
                 cb();
             });
-        } else {
+
+        }
+        else{cb();}
+        /*
+        else {
             Misiones_x_Personaje.destroy({}).exec(function(err,mxp){
                 if (err)
                     console.log(err);
@@ -42,5 +46,6 @@ module.exports.bootstrap = function (cb) {
             });
             // Importar todas las misiones de nuevo :(
         }
+        */
     });
 };

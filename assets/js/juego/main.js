@@ -232,7 +232,7 @@ var game = {
                     height: 48,
                     data: data
                 });
-            me.game.world.addChild(game.mainPlayer, 10);
+            me.game.world.addChild(game.mainPlayer, 6);
             me.game.world.sort();
             hud.update();
         },
@@ -407,6 +407,7 @@ var game = {
                                     'data/minijuegos/' +
                                     data.mision.substring(4) +
                                     '"></iframe>');
+                                    $("#mision_cancelar").show();
 
                                 } else {
                                     $("#mision_txt").html(data.mision);
@@ -479,8 +480,7 @@ var game = {
                 // Doy de baja el evento de la tecla
                 me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
             }
-        }
-        ,
+        },
 
         get_misClases: function () {
             $.get('/api/clase/get_misClases', function (clases) {

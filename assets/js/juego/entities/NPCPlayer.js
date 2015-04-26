@@ -22,7 +22,7 @@ game.NPCPlayer = me.Entity.extend({
                 self.body.gravity = 0;
 
                 self.nombre();
-                self.z = 10;
+                self.z = 6;
                 // lo visto.
                 self.renderable = new me.AnimationSheet(0, 0, {
                     "image": me.loader.getImage('npc/' + self.data.sprite + '.png'),
