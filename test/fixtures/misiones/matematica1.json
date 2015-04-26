@@ -5,8 +5,8 @@
 		"img_quest": "carlos.png",
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matematica'!",
-		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6)Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
-		"paso": "Si quieres, puedes comenzar con <b>Chris</b>, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con <b>Fibonacci</b> sobre divisibilidad.<br> O visitar a <b>Hipatia</b> y conversar sobre cuerpos geométricos.<br> Aunque si esos temas no te convencen, <b>Teano</b> puede hablarte de figuras planas.",
+		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matematicos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6) Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
+		"paso": "Si quieres, puedes comenzar con <b>Chris</b>, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con <b>Fibonacci</b> sobre divisibilidad.<br> O visitar a <b>Hipatia</b> y conversar sobre cuerpos geométricos.<br> Aunque si esos temas no te convencen, <b>Teano</b> puede hablarte de figuras planas.<br> También puedes visitar a <b>Daniela</b>, ella necesita ayuda para estudiar el perimetro, área y volumen de diferentes figuras y cuerpos geométricos. <br> También podras hallar a <b>René Descartes</b>, con quién podras hablar de la 'relación entre datos'.",
 		"new_mission": [
 			{
 				"npc": "chris",
@@ -22,6 +22,14 @@
 			},
 			{
 				"npc": "teano",
+				"qorder": "1"
+			},
+			{
+				"npc": "daniela",
+				"qorder": "1"
+			},
+			{
+				"npc": "reneDescartes",
 				"qorder": "1"
 			},
 			{
@@ -285,31 +293,121 @@
 		]
 	},{
 		"npc": "Daniela",
-		"qorder": "0",
+		"qorder": "1",
 		"img_quest": "daniela.png",
 		"npc_visible": "true",
 		"titulo": "Para poder salir a jugar...",
-		"pregunta": "Bien, ahora falta menos para poder salir a jugar. Pero primero debo entender un poco sobre geometria.",
-		"mision": "URL: test/quest3_1.html",
+		"pregunta": "Hola!! Soy amiga de Chris! Ya lo conoces? Quisiera salir a jugar, pero no puedo, al menos que haga mi tarea de matemática antes... <br> Mi tarea es sobre el perimetro de figuras planas...<br>  El <b> perímetro</b> de una figura geométrica plana es igual a la suma de las longitudes de sus lados. <br> Vamos a hacer los ejercicios?",
+		"mision": "URL:test/perimetro.html",
 		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
-		"no_paso": "Oh! Geometria es algo complicado... Vuelve a intentarlo!",
+		"no_paso": "Oh! Algún resultado no dio bien... Hay que hacerlo de nuevo!",
 		"reco_oro": "25",
+		"cond_energia": "12",
+		"no_energia": "Tantos ejercicios matemáticos te han dejado exhausto. Mejor descansa hasta que tengas 12 de energía.",
+		"new_mission": [
+			{
+				"npc": "daniela",
+				"qorder": "2"
+			}
+		]
+	},{
+		"npc": "Daniela",
+		"qorder": "2",
+		"img_quest": "daniela.png",
+		"npc_visible": "true",
+		"titulo": "Para poder salir a jugar 2...",
+		"pregunta": "Es hora de seguir aprendiendo... Ahora necesitamos saber sobre las áreas... <br> Podemos definir el <b>área</b> como la medida de la región o superficie encerrada por un polígono.<br> ¿Qué tal si vemos un video para aprender a calcular el área de diferentes cuerpos?<br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/rkYltrzcnwE' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/areas.html",
+		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
+		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
+		"reco_oro": "40",
 		"new_mission": [
 			{
 				"npc": "daniela",
 				"qorder": "3"
 			}
 		]
-	},  {
+	},{
+		"npc": "Daniela",
+		"qorder": "3",
+		"img_quest": "daniela.png",
+		"npc_visible": "true",
+		"titulo": "Para poder salir a jugar 3...",
+		"pregunta": "Y finalmente llego el momento de aprender lo que es el <b>volumen</b>. <br>El volumen es la medida del espacio que ocupa un cuerpo. Para su cálculo precisamos conocer el largo, el ancho y el alto. <br> Miremos este video para aprender a calcular el volumen de diferentes cuerpos geométricos. <br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/1yMz1tBVuZc' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/volumen.html",
+		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
+		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
+		"reco_oro": "40",
+		"new_mission": [
+			{
+				"npc": "daniela",
+				"qorder": "3"
+			}
+		]
+	},{
+		"npc": "reneDescartes",
+		"qorder": "1",
+		"img_quest": "reneDescartes.png",
+		"npc_visible": "true",
+		"titulo": "Ejes Cartesianos",
+		"pregunta": "Hola! Soy Rene Descartes... Yo invente las coordenadas cartesianas, que se utilizan para representar gráficas... No quiero aburrirte con tanto palabrerio. Mejor miremos este video!<br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/SQoVy9VpTxM' frameborder='0' allowfullscreen></iframe> <br> Y ahora que ya lo has visto, vamos a hacer algunos ejercicios",
+		"mision": "URL:test/ejesCartesianos.html",
+		"paso": "Has entendido este tema a la perfección!! Podriamos seguir haciendo más ejercicios!",
+		"no_paso": "Ups, algo ha salido mal... Mejor vuelvea intentarlo!",
+		"reco_oro": "25",
+		"new_mission": [
+			{
+				"npc": "reneDescartes",
+				"qorder": "2"
+			}
+		]
+	},{
+		"npc": "reneDescartes",
+		"qorder": "2",
+		"img_quest": "reneDescartes.png",
+		"npc_visible": "true",
+		"titulo": "Graficando Ecuaciones Lineales",
+		"pregunta": "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/h7U2O9keQJw' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/ejesCartesianos3.html",
+		"paso": "Me has dejado asombrado con tus habilidades Matemáticas!",
+		"no_paso": "No, no, no... Deberas hacer los ejercicios de nuevo",
+		"reco_oro": "25",
+		"new_mission": [
+			{
+				"npc": "reneDescartes",
+				"qorder": "3"
+			}
+		]
+	},{
+		"npc": "reneDescartes",
+		"qorder": "3",
+		"img_quest": "reneDescartes.png",
+		"npc_visible": "true",
+		"titulo": "Pendiente e Intersección",
+		"pregunta": "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/P8GZz_YbFCo' frameborder='0' allowfullscreen></iframe>",
+		"mision": "URL:test/ejesCartesianos2.html",
+		"paso": "Eres un Genio!! <br> Regresa por aquí si quieres volver a repasar los ejercicios de Ejes cartesianos",
+		"no_paso": "Es algo complicado... Quizas debas volver a intentarlo!",
+		"reco_oro": "25",
+		"new_mission": [
+			{
+				"npc": "reneDescartes",
+				"qorder": "1"
+			}
+		]
+	},{
 		"npc": "eduardo",
 		"qorder": "1",
 		"img_quest": "eduardo.png",
 		"npc_visible": "true",
 		"titulo": "Numeros Racionales...",
-		"pregunta": "Se llama número racional a todo número que puede representarse como el cociente de dos números enteros. Existen 2 maneras de escribir el mismo número racional: como fracción o en forma decimal.",
-		"mision": "URL:test/quest3_1.html",
-		"paso": "Wow! Eres bueno resolviendo enigmas matemáticos",
-		"no_paso": "Oh! Aun no tienes mi cuaderno? Buscalo bien, esta en la biblioteca",
-		"reco_oro": "25"
+		"pregunta": "Así que te interesan los números racionales... Comencemos con lo básico <br>Se llama <b>número racional (Q)</b> a todo número que puede representarse como el cociente de dos números enteros. Existen 2 maneras de escribir el mismo número racional: como fracción o en forma decimal.<br> En las fracciones, el número superior se llama 'numerador' y el inferior 'denominador'. <br> <img src='http://recursostic.educacion.es/descartes/web/materiales_didacticos/Fracciones_y_porcentajes/uni/prueba_formulas_html_26bae5f2.gif'>",
+		"paso": "Existen diferentes <b>propiedades</b> para la suma, resta, multiplicación y división: <br>Propiedad Interna: El resultado de sumar o multiplicar dos números racionales es otro número racional. <br> Propiedad Asociativa: El modo de agrupar los factores no varía el resultado.<br> Propiedad Conmutativa: El orden de los factores no varía la suma o multiplicación. <br> Elemento Neutro: El 0 es el elemento neutro de la suma, y el 1 de la multiplicación. <br> Elemento Opuesto: Dos números son opuestos si al sumarlos obtenemos como resultado el cero. <br> a + (−a) = 0 <br> Un número es inverso de otro si al multiplicarlos obtenemos como resultado el elemento unidad. <br> a*(1/a)=1 <br> Propiedad Distributiva: El producto de un número por una suma es igual a la suma de los productos de dicho número por cada uno de los sumandos. <br> a · (b + c) = a · b + a · c ",
+		"new_mission": [
+			{
+				"npc": "eduardo",
+				"qorder": "2"
+			}
+		]
 	}
 ]

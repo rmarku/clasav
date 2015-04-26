@@ -1,0 +1,107 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior
+				var aleat = Math.random() * numPosibilidades
+				aleat = Math.round(aleat)
+				return parseInt(inferior) + aleat
+			}
+		</script>
+	</head>
+	<body>
+		<form name="formulario" onchange="javascript:comprobar()">
+		Halle el perímetro de las siguientes figuras:
+			<table border="1px" style="border-collapse: collapse; background: white">
+				<tr>
+					<td>Figura</td>
+					<td>Valor Lados</td>
+					<td>Área</td>
+				</tr>
+				<tr>
+					<td><img src="../../../images/minijuegos/figuras/triangulo.jpg"></td>
+					<td>b=<input type="text" id="baseT" name="baseT" size="2" disabled>
+						<br>
+						h=<input type="text" id="alturaT" name="alturaT" size="2" disabled>
+					</td>
+					<td>area=<input type="text" id="area0" name="area0" size="4"> </td>
+				</tr>
+				
+				<tr>
+					<td><img src="../../../images/minijuegos/figuras/rectangulo.jpg"></td>
+					<td>b=<input type="text" id="ladoB" name="ladoB" size="2" disabled>
+						<br>
+						a=<input type="text" id="ladoA" name="ladoA" size="2" disabled>
+					</td>
+					<td>area=<input type="text" id="area1" name="area1" size="4"> </td>
+				</tr>
+				
+				<tr>
+					<td><img src="../../../images/minijuegos/figuras/romboide.jpg"></td>
+					<td>h=<input type="text" id="ladTh" name="ladTh" size="2" disabled>
+						<br>
+						b=<input type="text" id="ladTb" name="ladTb" size="2" disabled>
+					</td>
+					<td>area=<input type="text" id="area2" name="area2" size="4"> </td>
+				</tr>
+				
+				<tr>
+					<td><img src="../../../images/minijuegos/figuras/trapecio.jpg"></td>
+					<td>h=<input type="text" id="altTh" name="altTh" size="2" disabled>
+						<br>
+						b=<input type="text" id="baseTb" name="baseTb" size="2" disabled>
+						<br>
+						B=<input type="text" id="baseMTb" name="baseMTb" size="2" disabled>
+					</td>
+					<td>area=<input type="text" id="area3" name="area3" size="4"> </td>
+				</tr>
+			</table>
+			
+			<script>
+			var final=-1;
+			var triang=[0,0];
+			var rectang=[0,0];
+			var romboide=[0,0];
+			var trapecio=[0,0,0];
+			var areaTri, areaRect, areaRomb, areaTrap;
+			
+			triang[0] = document.getElementById('baseT').value = aleatorio(1,10);
+			triang[1] = document.getElementById('alturaT').value = aleatorio(1,10);
+				
+			rectang[0] = document.getElementById('ladoB').value = aleatorio(1,10);
+			rectang[1] = document.getElementById('ladoA').value = aleatorio(1,10);
+				
+			romboide[0] = document.getElementById('ladTh').value = aleatorio(1,10);
+			romboide[1] = document.getElementById('ladTb').value = aleatorio(1,10);
+			
+			trapecio[0] = document.getElementById('altTh').value = aleatorio(1,10);
+			trapecio[1] = document.getElementById('baseTb').value = aleatorio(1,10);
+			trapecio[2] = document.getElementById('baseMTb').value = aleatorio(1,10);
+			
+			
+			function comprobar() {
+				areaTri = document.getElementById('area0').value;
+				areaRect = document.getElementById('area1').value;
+				areaRomb = document.getElementById('area2').value;
+				areaTrap = document.getElementById('area3').value;
+					
+				if(areaTri==(triang[0]*triang[1])/2 && areaRect==rectang[0]*rectang[1] && 
+				   areaRomb==romboide[0]*romboide[1] && areaTrap==(trapecio[1]+trapecio[2])/2*trapecio[0]){
+					final=1;
+				}
+				else{
+					final=-1;
+					alert(final);
+				}
+				
+				//alert(final);
+			}
+		</script>
+		</form>
+		
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>

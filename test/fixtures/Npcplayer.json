@@ -278,5 +278,12 @@
         "height": "46",
         "sprite": "teano",
         "animation": "1"
+    },
+    {
+        "nombre": "reneDescartes",
+        "width": "23",
+        "height": "48",
+        "sprite": "reneDescartes",
+        "animation": "1"
     }
 ]

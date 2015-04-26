@@ -1,0 +1,151 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="../../../styles/comun.css" media="screen" />
+		<style>
+			td {
+				text-align: center
+			}
+			input {
+				text-align: center
+			}
+		</style>
+		<script>
+			function aleatorio(inferior, superior) {
+				var numPosibilidades = superior - inferior
+				var aleat = Math.random() * numPosibilidades
+				aleat = Math.round(aleat)
+				return parseInt(inferior) + aleat
+			}
+		</script>
+	</head>
+	<body>
+		Escribe las coordenadas de los puntos: <br>
+		<canvas id="ejesC" width="300px" height="210px" style="border:1px solid black; background-color: white"></canvas>
+
+		<script>
+			var c = document.getElementById("ejesC");
+			var cxt = c.getContext("2d");
+
+			//Dibujar lineas verticales
+			for ( i = 0; i < 300; ) {
+				cxt.beginPath();
+				cxt.strokeStyle = '#D8D8D8';
+				cxt.moveTo(i + 15, 0);
+				cxt.lineTo(i + 15, 210);
+				i = i + 15;
+				cxt.stroke();
+			}
+
+			//Dibujar lineas horizontales
+			for ( i = 0; i < 200; ) {
+				cxt.beginPath();
+				cxt.strokeStyle = '#D8D8D8';
+				cxt.moveTo(0, i + 15);
+				cxt.lineTo(300, i + 15);
+				i = i + 15;
+				cxt.stroke();
+			}
+			//Dibujar ejes X e Y
+			cxt.beginPath();
+			cxt.strokeStyle = '#FF0000';
+			cxt.moveTo(150, 0);
+			cxt.lineTo(150, 210);
+			cxt.moveTo(0, 105);
+			cxt.lineTo(300, 105);
+			cxt.stroke();
+
+			//Creo variables almacenar los puntos
+			var xx0, xx1, xx2;
+			var yy0, yy1, yy2;
+
+			xx0 = aleatorio(-10, 10);
+			xx1 = aleatorio(-10, 10);
+			xx2 = aleatorio(-10, 10);
+
+			yy0 = aleatorio(-7, 7);
+			yy1 = aleatorio(-7, 7);
+			yy2 = aleatorio(-7, 7);
+
+			//punto Rojo
+			cxt.fillStyle = "red";
+			cxt.beginPath();
+			cxt.arc((xx0+10)*15, (yy0+7)*15, 5, 0, Math.PI * 2, true);
+			cxt.closePath();
+			cxt.fill();
+
+			//punto verde
+			cxt.fillStyle = "#00FF00";
+			cxt.beginPath();
+			cxt.arc((xx1+10)*15, (yy1+7)*15, 5, 0, Math.PI * 2, true);
+			cxt.closePath();
+			cxt.fill();
+
+			//punto azul
+			cxt.fillStyle = "#0000FF";
+			cxt.beginPath();
+			//centro X, centro Y, radio
+			cxt.arc((xx2+10)*15, (yy2+7)*15, 5, 0, Math.PI * 2, true);
+			cxt.closePath();
+			cxt.fill();
+
+		</script>
+
+		<br>
+		Grafica los siguientes puntos:
+		<form name="formulario" onchange="javascript:comprobar()">
+			<font color="red">
+			P1=(
+			<input type="text" id="x0" name="x0" size="3">
+			,
+			<input type="text" id="y0" name="y0" size="3">
+			) </font>
+			<br>
+			
+			<font color="#00FF00">
+			P2=(
+			<input type="text" id="x1" name="x1" size="3">
+			,
+			<input type="text" id="y1" name="y1" size="3">
+			)</font>
+			<br>
+			
+			<font color="#0000FF">
+			P3=(
+			<input type="text" id="x2" name="x2" size="3">
+			,
+			<input type="text" id="y2" name="y2" size="3">
+			)</font>
+			<br>
+
+			<script>
+				var final = -1;
+
+				var punX0, punX1, punX2;
+				var punY0, punY1, punY2;
+
+				function comprobar() {
+					punX0 = document.getElementById('x0').value;
+					punX1 = document.getElementById('x1').value;
+					punX2 = document.getElementById('x2').value;
+
+					punY0 = document.getElementById('y0').value;
+					punY1 = document.getElementById('y1').value;
+					punY2 = document.getElementById('y2').value;
+
+					if (punX0==xx0 && punY0==-yy0 && punX1==xx1 && punY1==-yy1 && punX2==xx2 && punY2==-yy2)
+						final = 1;
+					else
+						final = -1;
+
+					//alert(final);
+					//alert(punX0==xx0);
+					//alert(punY0==-yy0);
+				}
+			</script>
+		</form>
+
+		<button class="btn-quest" onclick="parent.game.mision.siguiente(final)">
+			Listo
+		</button>
+	</body>
+</html>
