@@ -62,7 +62,9 @@ module.exports = {
                         case 'capa':
                         case 'anillo':
                         case 'espada':
-                            pj[itemi.item.tipo_item] = itemi;
+
+                            sails.sockets.broadcast(pj.mapa_instancia.id, 'otherPlayer_updateInfo', pj, req.socket);
+                            pj[itemi.item.tipo_item] = itemi.id;
                             pj.save();
                             return res.json({ok: 'vestimenta'});
 
