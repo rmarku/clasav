@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="93">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="94">
  <properties>
   <property name="z" value="0"/>
  </properties>
@@ -235,6 +235,11 @@
   <object id="90" name="NPCPlayer" x="107" y="748" width="32" height="32">
    <properties>
     <property name="nombre" value="pitagoras"/>
+   </properties>
+  </object>
+  <object id="93" name="NPCPlayer" x="792" y="911" width="35" height="36">
+   <properties>
+    <property name="nombre" value="reneDescartes"/>
    </properties>
   </object>
  </objectgroup>

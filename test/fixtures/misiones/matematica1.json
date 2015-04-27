@@ -48,7 +48,7 @@
 		"paso": "Fue divertido! Pero hay que continuar...",
 		"no_paso": "Lo veamos otra vez!",
 		"reco_oro": "10",
-		"reco_experiencia": "10",
+		"reco_experiencia": "5",
         "logro":1,
 
 		"new_mission": [
@@ -110,7 +110,7 @@
 		"paso": "Si, lo se, la <b> matemática </b> es <b>GENIAL </b>",
 		"no_paso": "Si, esto es difícil!! Pero confío en que podrás resolverlo bien! Volvemos a hacer este ejercicio?",
 		"reco_oro": "25",
-		"reco_experiencia": "25",
+		"reco_experiencia": "21",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
 		"new_mission": [
@@ -130,7 +130,7 @@
 		"paso": "<b>WOW!! </b> Eres muy inteligente! <br> Si deseas podemos volver a repasar la divisibilidad!",
 		"no_paso": "Oh! Has cometido algunos errores! Pero puedes volver a intentarlo!",
 		"reco_oro": "25",
-		"reco_experiencia": "25",
+		"reco_experiencia": "22",
 		"cond_energia": "10",
 		"no_energia": "Estas muy cansado para realizar esta mision. Necesitas 10 de energia.",
 		"new_mission": [
@@ -249,6 +249,7 @@
 		"mision": "URL:test/triangulo1.html",
 		"paso": "Fue muy divertido!! Pero es hora de continuar",
 		"reco_oro": "7",
+		"reco_experiencia": "5",
 		"new_mission": [
 			{
 				"npc": "pitagoras",
@@ -302,6 +303,7 @@
 		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
 		"no_paso": "Oh! Algún resultado no dio bien... Hay que hacerlo de nuevo!",
 		"reco_oro": "25",
+		"reco_experiencia": "12",
 		"cond_energia": "12",
 		"no_energia": "Tantos ejercicios matemáticos te han dejado exhausto. Mejor descansa hasta que tengas 12 de energía.",
 		"new_mission": [
@@ -321,6 +323,7 @@
 		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
 		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
 		"reco_oro": "40",
+		"reco_experiencia": "18",
 		"new_mission": [
 			{
 				"npc": "daniela",
@@ -338,6 +341,7 @@
 		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b> <br> Si quieres, puedes volver y comenzamos nuevamente desde perimetro..",
 		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
 		"reco_oro": "40",
+		"reco_experiencia": "15",
 		"new_mission": [
 			{
 				"npc": "daniela",
@@ -354,7 +358,10 @@
 		"mision": "URL:test/ejesCartesianos.html",
 		"paso": "Has entendido este tema a la perfección!! Podriamos seguir haciendo más ejercicios!",
 		"no_paso": "Ups, algo ha salido mal... Mejor vuelvea intentarlo!",
+		"cond_energia": "10",
+		"no_energia": "Veo que estás algo cansado. Regresa cuando tengas 10 de energía, será suficiente para que puedas continuar!",
 		"reco_oro": "25",
+		"reco_experiencia": "15",
 		"new_mission": [
 			{
 				"npc": "reneDescartes",
@@ -372,6 +379,9 @@
 		"paso": "Me has dejado asombrado con tus habilidades Matemáticas!",
 		"no_paso": "No, no, no... Deberas hacer los ejercicios de nuevo",
 		"reco_oro": "25",
+		"reco_experiencia": "10",
+		"cond_energia": "8",
+		"no_energia": "Me temo que la cantidad de energía que tienes no es suficiente, quizas estes algo cansado. Recupera tu energía, y al llegar a 8 podremos continuar!",
 		"new_mission": [
 			{
 				"npc": "reneDescartes",
@@ -388,7 +398,10 @@
 		"mision": "URL:test/ejesCartesianos2.html",
 		"paso": "Eres un Genio!! <br> Regresa por aquí si quieres volver a repasar los ejercicios de Ejes cartesianos",
 		"no_paso": "Es algo complicado... Quizas debas volver a intentarlo!",
-		"reco_oro": "25",
+		"reco_oro": "14",
+		"reco_experiencia": "12",
+		"cond_energia": "9",
+		"no_energia": "Ups! Tu energía no es suficiente... Vuelve cuando hayas descansado un poco.",
 		"new_mission": [
 			{
 				"npc": "reneDescartes",
