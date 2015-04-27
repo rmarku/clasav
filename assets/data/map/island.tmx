@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="93">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="42" height="42" tilewidth="32" tileheight="32" nextobjectid="94">
  <properties>
   <property name="z" value="0"/>
  </properties>
@@ -237,6 +237,11 @@
     <property name="nombre" value="pitagoras"/>
    </properties>
   </object>
+  <object id="93" name="NPCPlayer" x="800" y="913" width="32" height="32">
+   <properties>
+    <property name="nombre" value="reneDescartes"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="Techos" width="42" height="42">
   <properties>
@@ -377,6 +382,12 @@
    <properties>
     <property name="direction" value="run-down"/>
     <property name="spawn" value="tp_puerto"/>
+   </properties>
+  </object>
+  <object id="89" name="NPCPlayer" x="796" y="911" width="37" height="35">
+   <properties>
+    <property name="nombre" value="reneDescartes"/>
+    <property name="z" value="9"/>
    </properties>
   </object>
  </objectgroup>
