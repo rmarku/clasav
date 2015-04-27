@@ -225,7 +225,7 @@
 		"img_quest": "teano.png",
 		"npc_visible": "true",
 		"titulo": "Elementos de los poligonos!",
-		"pregunta": "Sabias que los elementos de los poligonos son: <b> Lados: </b> son cada uno de los segmentos que limitan el polígono.<br> <b> Vértices:</b> Son los puntos en los que se unen los lados. <br> <b> Ángulos:</b> Porción de plano comprendida entre dos lados y un vértice común. <br> <b>Diagonal: </b>Segmento de recta que une dos vértices no consecutivos.<br> <b> Ángulos: </b> porción de plano comprendida entre dos lados y un vértice común. <br><img src='http://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/PoliReg_11.svg/220px-PoliReg_11.svg.png'>'",
+		"pregunta": "Sabias que los elementos de los poligonos son: <br> <b> Lados: </b> son cada uno de los segmentos que limitan el polígono.<br> <b> Vértices:</b> Son los puntos en los que se unen los lados. <br> <b> Ángulos:</b> Porción de plano comprendida entre dos lados y un vértice común. <br> <b>Diagonal: </b>Segmento de recta que une dos vértices no consecutivos.<br> <b> Ángulos: </b> porción de plano comprendida entre dos lados y un vértice común. <br><img src='http://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/PoliReg_11.svg/220px-PoliReg_11.svg.png'>'",
 		"mision": "URL:test/figurasPlanas2.html",
 		"paso": "Lo has hecho <b>Exelente</b>!!! Creo que ya estas listo para hablar con mi esposo, Pitágoras, y descubrir los misterios que esconden los fabulosos triángulos.",
 		"no_paso": "Me temo que has cometido errores. Pero no te desanimes, e intentalo otra vez!",
@@ -245,7 +245,7 @@
 		"img_quest": "pitagoras.png",
 		"npc_visible": "true",
 		"titulo": "Los misteriosos Triángulos...",
-		"pregunta": "Bienvenido a la escuela Pitagórica! Supongo que deseas que te devele los misterios que esconden los fabuloso triángulos. <br> Primero que nada, debes saber que el <b> triágulo </b> es el polígono delimitado por tres lados; y que en consecuencia contiene tres ángulos, con sus respectivos vértices. <br> Los triángulos se clasifican: <br> En consideración a sus lados, en: <br> <b>Triángulos equiláteros</b> cuando sus tres lados son iguales. <br> <b>Triángulos isósceles</b> cuando solamente dos de sus lados son iguales. <br> <b>Triángulos escalenos</b> cuando sus tres lados son desiguales. <br> En consideración a sus ángulos, en: <br> <b>Triángulos acutángulos</b> cuando sus tres ángulos son agudos. <br> <b>Triángulos rectángulos</b> cuando tienen un ángulo recto. <br> <b>Triángulos obtusángulos</b> cuando tienen un ángulo obtuso.<br> Supongo que te debo estar mareando con tanta información. Porque mejor no te relajas y vemos un video!!",
+		"pregunta": "Bienvenido a la escuela Pitagórica! Supongo que deseas que te devele los misterios que esconden los fabuloso triángulos. <br> Primero que nada, debes saber que el <b> triángulo </b> es el polígono delimitado por tres lados; y que en consecuencia contiene tres ángulos, con sus respectivos vértices. <br> Los triángulos se clasifican: <br> En consideración a sus lados, en: <br> <b>Triángulos equiláteros</b> cuando sus tres lados son iguales. <br> <b>Triángulos isósceles</b> cuando solamente dos de sus lados son iguales. <br> <b>Triángulos escalenos</b> cuando sus tres lados son desiguales. <br> En consideración a sus ángulos, en: <br> <b>Triángulos acutángulos</b> cuando sus tres ángulos son agudos. <br> <b>Triángulos rectángulos</b> cuando tienen un ángulo recto. <br> <b>Triángulos obtusángulos</b> cuando tienen un ángulo obtuso.<br> Supongo que te debo estar mareando con tanta información. Porque mejor no te relajas y vemos un video!!",
 		"mision": "URL:test/triangulo1.html",
 		"paso": "Fue muy divertido!! Pero es hora de continuar",
 		"reco_oro": "7",
@@ -261,7 +261,7 @@
 		"img_quest": "pitagoras.png",
 		"npc_visible": "true",
 		"titulo": "El teorema de Pitagoras...",
-		"pregunta": "Sabias que En todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa. <br><br> Si aún tienes dudas, mira este video: <br><iframe width='100%' height='100%' src='https://www.youtube.com/embed/5zq3716qyg4' frameborder='0' allowfullscreen></iframe>",
+		"pregunta": "Sabias que en todo triángulo rectángulo el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos? <br> <img src='http://www.problemasdematematica.com/contenidos/images/teorema-de-pitagoras.jpg' width='260px'> <br> Donde <b> a </b> y <b> b </b> son catetos y <b> c</b> es la hipotenusa. <br><br> Si aún tienes dudas, mira este video: <br><iframe width='100%' height='100%' src='https://www.youtube.com/embed/5zq3716qyg4' frameborder='0' allowfullscreen></iframe>",
 		"mision": "URL:test/triangulo2.html",
 		"paso": "Definitivamente eres miembro Oficial de la Escuela Pitagorica!!! <br> Deseas aprender algo sobre los cuadriláteros?",
 		"reco_oro": "10",
@@ -280,7 +280,7 @@
 		"img_quest": "pitagoras.png",
 		"npc_visible": "true",
 		"titulo": "Cuadriláteros...",
-		"pregunta": "Sabias que los <b>cuadriáteros</b> todos los polígonos delimitados por cuatro lados, y que en consecuencia contienen cuatro ángulos, con sus respectivos vértices.<br> Además se pueden clasificar según la posición que ocupan sus lados: <br> <b>Paralelogramos</b> cuando los dos pares de sus lados son paralelos entre sí. <br> <b>Trapecios</b> cuando solamente dos de sus lados son paralelos entre sí. <br> <b>Trapezoides</b> cuando ninguno de sus lados es paralelo a otro. <br> <img src='http://esdocs.org/pars_docs/refs/57/56833/56833_html_35b5736d.gif' width='100%'>",
+		"pregunta": "Sabias que los <b>cuadriáteros</b> son todos los polígonos delimitados por cuatro lados, y que en consecuencia contienen cuatro ángulos, con sus respectivos vértices.<br> Además se pueden clasificar según la posición que ocupan sus lados: <br> <b>Paralelogramos</b> cuando los dos pares de sus lados son paralelos entre sí. <br> <b>Trapecios</b> cuando solamente dos de sus lados son paralelos entre sí. <br> <b>Trapezoides</b> cuando ninguno de sus lados es paralelo a otro. <br> <img src='http://esdocs.org/pars_docs/refs/57/56833/56833_html_35b5736d.gif' width='100%'>",
 		"paso": "Además, los <b>paralelogramos</b> pueden clasificarse en: <br> <b>Cuadrado:</b> Sus cuatro lados son iguales y sus cuatro ángulos son rectos. <br> <b>Rectángulo:</b> Tiene iguales dos lados, y los otros dos distintos pero iguales entre ellos y cuyos cuatro ángulos son rectos. <br> <b> Rombo:</b> Posee cuatro lados iguales pero tiene dos ángulos agudos iguales y dos ángulos obtusos iguales. <br> <b>Romboide: </b> Tiene sus lados iguales dos a dos, pero tiene dos ángulos agudos iguales y dos ángulos obtusos iguales. <br> <img src='http://recursostic.educacion.es/gauss/web/materiales_didacticos/primaria/actividades/geometria/poligonos/cuadrilateros/img/paralelogramos.png' width='100%'>",
 		"reco_oro": "5",
 		"reco_experiencia": "5",
@@ -297,7 +297,7 @@
 		"img_quest": "daniela.png",
 		"npc_visible": "true",
 		"titulo": "Para poder salir a jugar...",
-		"pregunta": "Hola!! Soy amiga de Chris! Ya lo conoces? Quisiera salir a jugar, pero no puedo, al menos que haga mi tarea de matemática antes... <br> Mi tarea es sobre el perimetro de figuras planas...<br>  El <b> perímetro</b> de una figura geométrica plana es igual a la suma de las longitudes de sus lados. <br> Vamos a hacer los ejercicios?",
+		"pregunta": "Hola!! Soy amiga de Chris! Ya lo conoces? Quisiera salir a jugar, pero no puedo, a menos que haga mi tarea de matemática antes... <br> Mi tarea es sobre el perimetro de figuras planas...<br>  El <b> perímetro</b> de una figura geométrica plana es igual a la suma de las longitudes de sus lados. <br> Vamos a hacer los ejercicios?",
 		"mision": "URL:test/perimetro.html",
 		"paso": "Wow! Muchas Gracias!! Ya te vas? O puedes quedarte a ayudarme?",
 		"no_paso": "Oh! Algún resultado no dio bien... Hay que hacerlo de nuevo!",
@@ -335,13 +335,13 @@
 		"titulo": "Para poder salir a jugar 3...",
 		"pregunta": "Y finalmente llego el momento de aprender lo que es el <b>volumen</b>. <br>El volumen es la medida del espacio que ocupa un cuerpo. Para su cálculo precisamos conocer el largo, el ancho y el alto. <br> Miremos este video para aprender a calcular el volumen de diferentes cuerpos geométricos. <br> <iframe width='100%' height='100%' src='https://www.youtube.com/embed/1yMz1tBVuZc' frameborder='0' allowfullscreen></iframe>",
 		"mision": "URL:test/volumen.html",
-		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b>",
+		"paso": "Nunca podria haberlo logrado sin tu ayuda!! <b>GRACIAS!!!</b> <br> Si quieres, puedes volver y comenzamos nuevamente desde perimetro..",
 		"no_paso": "Mmmm... Supongo que hemos cometido algún error. Volvamos a resolver estos ejercicios.",
 		"reco_oro": "40",
 		"new_mission": [
 			{
 				"npc": "daniela",
-				"qorder": "3"
+				"qorder": "1"
 			}
 		]
 	},{
