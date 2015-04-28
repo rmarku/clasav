@@ -3,6 +3,10 @@
  */
 app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
+    if($scope.$parent.claseActual.activa === false){
+        window.location.href = '#/clasesProfesor';
+    }
+
     $scope.aceptarAlumnoEnClase = function (user,index) {
 
         $.get("/api/clase_x_user/set_situacion",

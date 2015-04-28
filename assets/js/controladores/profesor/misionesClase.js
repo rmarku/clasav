@@ -5,6 +5,9 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
 
 
     $scope.logrosDisponibles_claseActual = [];
+    $scope.tieneLogro = [];
+    $scope.habilitarTabla = false;
+    $scope.variable = true;
 
     $scope.get_misionesClaseActual = function () {
 
@@ -19,7 +22,10 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
         window.location.href = '#/clasesProfesor';
     }
     else{
-        $scope.get_misionesClaseActual();
+        if(window.location.href == 'http://localhost:1337/#/misionesClase') {
+            $scope.get_misionesClaseActual();
+        }
+
     }
 
 
@@ -47,6 +53,44 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
 
         return deferred.promise;
     };
+
+    $scope.set_user_tieneLogro = function () {
+
+        var counter = 0;
+
+        $scope.$parent.claseActual.users_situacionAceptado.forEach(function(alumno) {
+
+            $.get('/api/personaje?duenio='+alumno.id, function (pj1) {
+
+                pj = pj1[0];
+                $scope.tieneLogro[pj.duenio.id] = false;
+
+                for (var y = 0; y < pj.logros.length; y++) {
+                    var logro = pj.logros[y];
+
+                    if(logro.id == $scope.$parent.logroActual.id){
+                        $scope.tieneLogro[pj.duenio.id] = true;
+                        break;
+                    }
+                }
+
+                counter++;
+
+                if(counter == $scope.$parent.claseActual.users_situacionAceptado.length){
+                    $scope.habilitarTabla = true;
+                    $scope.$apply();
+                }
+
+            });
+
+        });
+
+    };
+
+    if(window.location.href == 'http://localhost:1337/#/detallesLogro') {
+        $scope.set_user_tieneLogro();
+    }
+
 
 
 }]);

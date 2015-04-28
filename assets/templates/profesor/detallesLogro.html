@@ -11,20 +11,14 @@
         <br>
         <div class="page-header" align="center" style="margin-top: 0px">
             <b class="titulos">
-                {{$parent.logroActual.nombre}}
+                {{$parent.claseActual.nombre}}:<br>Detalle logro
             </b>
         </div>
 
-        <br>
 
         <div class="container-fluid">
             <div class="row">
                 <div >
-                    <div class="page-header" align="left" style="margin-top: 0px">
-                        <b class="titulos">
-                            Detalles
-                        </b>
-                    </div>
 
                     <table class="table table-striped table-hover table" style="width: 100%">
 
@@ -45,22 +39,47 @@
 
                     </table>
 
+                    <br>
                     <div class="page-header" align="left" style="margin-top: 0px">
                         <b class="titulos">
                             Situación Alumnos
                         </b>
                     </div>
-                    <table class="table table-striped table-hover table" style="width: 100%">
+                    <table ng-show='habilitarTabla' class="table table-striped table-hover table" style="width: 100%">
                         <thead>
                         <tr>
                             <th>Alumno</th>
-                            <th>E-mail</th>
-                            <th class="text-center" style="width: 30px">Realizó Actividad</th>
+                            <th class="text-center" style="width: 200px">E-mail</th>
+                            <th class="text-center" style="width: 100px">Realizó Actividad</th>
                         </tr>
                         </thead>
 
 
+                        <tbody >
+                        <tr ng-repeat="alumno in $parent.claseActual.users_situacionAceptado">
+                            <td >
+                                  <span>
+                                    {{alumno.apellido +' '+ alumno.nombre}}
+                                  </span>
+                            </td>
+                            <td class="text-center">
+                                  <span >
+                                     {{alumno.email}}
+                                  </span>
+                            </td>
+                            <td class="text-center">
+                                <span ng-show="tieneLogro[alumno.id]" class="fa fa-check" style="color:red" ></span>
+                                <span ng-hide="tieneLogro[alumno.id]"class="fa fa-times" style="color:red"></span>
+                            </td>
+
+                        </tr>
+                        </tbody>
                     </table>
+
+
+                    </table>
+
+
 
 
                 </div>
