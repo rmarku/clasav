@@ -20,6 +20,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     //Variables para PROFESORES
     $scope.alumnoActual = {};
+    $scope.logroActual = {};
 
 
     //Fin Variables para PROFESORES
@@ -77,6 +78,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
     $scope.verCuenta = function () {
         $location.path('/cuenta');
+    };
+
+    $scope.volver_aListaClasesProfesor = function (id) {
+        $scope.claseActual.activa = false;
+        $scope.$apply();
+        window.location.href = '#/clasesProfesor';
     };
 
 

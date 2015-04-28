@@ -12,8 +12,4 @@ app.controller('verAlumnosController', ['$scope', '$rootScope', "toastr",'$locat
         window.location.href = '#/detallesAlumno';
     };
 
-
-
-
-
 }]);

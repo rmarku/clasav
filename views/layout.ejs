@@ -94,6 +94,8 @@
     <!--h1>Titulo del Juego</h1-->
     <img class="img-center img-responsive" src="images/init.png"/>
     <br/>
+
+
     <!--BOTONERA ALUMNO-->
 
     <%if(user){%>
@@ -128,31 +130,38 @@
         <%if(user.tipo == 'profesor'){%>
 
         <div class="btn-group botonera" >
-            <a href="#/" class="btn btn-default">Home</a>
-            <a href="#/clasesProfesor" class="btn btn-default">Clases</a>
-            <a href="#/institucionesProfesor" class="btn btn-default">Instituciones</a>
+            <a ng-hide =claseActual.activa href="#/" class="btn btn-default">Home</a>
+            <a ng-hide =claseActual.activa href="#/clasesProfesor" class="btn btn-default">Clases</a>
+            <a ng-hide =claseActual.activa href="#/institucionesProfesor" class="btn btn-default">Instituciones</a>
 
-            <a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos {{claseActual.nombre}}</a>
-            <a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes {{claseActual.nombre}}</a>
+            <a ng-show=claseActual.activa href="#/verAlumnos" class="btn btn-default">Alumnos</a>
+            <a ng-show=claseActual.activa href="#/verSolicitudes" class="btn btn-default">Solicitudes</a>
+            <a ng-show=claseActual.activa href="#/misionesClase" class="btn btn-default">Misiones Disponibles</a>
+        </div>
+
+        <div class="text-right">
+            <span>
+                <button ng-show=claseActual.activa type="button" class="btn btn-default btn" ng-click="volver_aListaClasesProfesor()">
+                    <span class="fa fa-sign-out fa-1x" aria-hidden="true" > Salir de la clase</span>
+                </button>
+            </span>
         </div>
 
         <%}%>
         <!--FIN DE BOTONERA PROFESOR-->
-        <!--BOTONERA PROFESOR-->
+        <!--BOTONERA ADMINISTRADOR-->
         <%if(user.tipo == 'administrador'){%>
 
         <div class="btn-group botonera" >
             <a href="#/" class="btn btn-default">Home</a>
             <a href="#/institucionesAdministrador" class="btn btn-default">Instituciones</a>
 
-            <a ng-show=institucionActual.activa href="#/verProfesores" class="btn btn-default">Profesores de {{institucionActual.nombre}}</a>
-            <a ng-show=institucionActual.activa href="#/verSolicitudesProfesores" class="btn btn-default">Solicitudes de {{institucionActual.nombre}}</a>
-
-        </div>
+            <a ng-show=institucionActual.activa href="#/verProfesores" class="btn btn-default">Profesores</a>
+            <a ng-show=institucionActual.activa href="#/verSolicitudesProfesores" class="btn btn-default">Solicitudes</a>
+</div>
 
         <%}%>
-        <!--FIN DE BOTONERA PROFESOR-->
-
+        <!--FIN DE BOTONERA ADMINISTRADOR-->
 
     <%}%>
 
@@ -195,6 +204,7 @@
 <script src="/js/controladores/profesor/solicitarInstitucion.js"></script>
 <script src="/js/controladores/profesor/instituciones.js"></script>
 <script src="/js/controladores/profesor/detallesAlumno.js"></script>
+<script src="/js/controladores/profesor/misionesClase.js"></script>
 <script src="/js/controladores/administrador/crearInstitucion.js"></script>
 <script src="/js/controladores/administrador/instituciones.js"></script>
 <script src="/js/controladores/administrador/verProfesores.js"></script>

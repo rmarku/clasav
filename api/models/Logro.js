@@ -20,10 +20,15 @@ module.exports = {
       },
 
       nombre:'string',
+
       descripcion:'string',
 
       sprite: {
           model: 'sprite'
+      },
+
+      mapa_generico:{
+          model:'mapa_generico'
       }
   }
 };

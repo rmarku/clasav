@@ -5,7 +5,7 @@
         <div class="page-header" align="center" style="margin-top: 0px">
 
             <b class="titulos">
-                {{$parent.claseActual.nombre}}:<br>Alumnos
+                {{$parent.claseActual.nombre}}:<br>Misiones Disponibles
             </b>
         </div>
 
@@ -17,33 +17,31 @@
                     <table class="table table-striped table-hover table" style="width: 100%">
                         <thead>
                         <tr>
-                            <th>Nombre</th>
-                            <th class="text-center" style="width: 100px">E-mail</th>
-                            <th class="text-center" style="width: 50px">Detalle</th>
+                            <th>Logro</th>
+                            <th  style="width: 350px">Descripción</th>
+                            <th class="text-center" style="width: 30px">Detalles</th>
                         </tr>
                         </thead>
-
-                        <tbody >
-                        <tr ng-repeat="user in $parent.claseActual.users_situacionAceptado">
+                        <tbody>
+                        <tr ng-repeat="logro in logrosDisponibles_claseActual ">
                             <td >
-                                  <span>
-                                    {{user.apellido + " " + user.nombre}}
-                                  </span>
+                              <span>
+                                {{ logro.nombre}}
+                              </span>
+                            </td>
+                            <td>
+                              <span >
+                                {{ logro.descripcion  || ' '}}
+                              </span>
                             </td>
                             <td class="text-center">
-                                  <span >
-                                    {{user.email}}
-                                  </span>
-                            </td>
-                            <td class="text-center">
-                                <button type="button" class="btn btn-default btn-xs" ng-click="ver_detallesAlumno($index)">
+                                <button type="button" class="btn btn-default btn-xs" ng-click="ver_detallesLogro($index)">
                                     <span class="fa fa-search" aria-hidden="true" ></span>
                                 </button>
-
                             </td>
+
                         </tr>
                         </tbody>
-
                     </table>
 
                 </div>
