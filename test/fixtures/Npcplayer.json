@@ -32,14 +32,14 @@
         "width": "28",
         "height": "46",
         "sprite": "divina",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "Pirata",
         "width": "57",
         "height": "63",
         "sprite": "pirata",
-        "animation": "1"
+        "animation": "2"
     },
     {
         "nombre": "SraBibliotecaria",
@@ -60,7 +60,7 @@
         "width": "29",
         "height": "31",
         "sprite": "capitan",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "cavalier",
@@ -79,9 +79,9 @@
     {
         "nombre": "fairy",
         "width": "14",
-        "height": "26",
+        "height": "29",
         "sprite": "fairy",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "fantasmin",
@@ -92,17 +92,17 @@
     },
     {
         "nombre": "gallito",
-        "width": "21",
+        "width": "23",
         "height": "18",
         "sprite": "gallito",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "gatitu",
         "width": "14",
-        "height": "27",
+        "height": "29",
         "sprite": "gatitu",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "guardia",
@@ -130,7 +130,7 @@
         "width": "92",
         "height": "80",
         "sprite": "jinete",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "libro",
@@ -165,7 +165,7 @@
         "width": "32",
         "height": "23",
         "sprite": "oveja",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "peque",
@@ -183,10 +183,10 @@
     },
     {
         "nombre": "puppy",
-        "width": "28",
-        "height": "21",
+        "width": "29",
+        "height": "22",
         "sprite": "puppy",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "ratica",
@@ -197,10 +197,10 @@
     },
     {
         "nombre": "roger",
-        "width": "28",
+        "width": "33",
         "height": "44",
         "sprite": "roger",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "sabio",
@@ -218,10 +218,10 @@
     },
     {
         "nombre": "vaca",
-        "width": "33",
+        "width": "32",
         "height": "25",
         "sprite": "vaca",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "melisa",
@@ -249,7 +249,7 @@
         "width": "31",
         "height": "49",
         "sprite": "pitagoras",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "fibonacci",
@@ -274,10 +274,10 @@
     },
     {
         "nombre": "teano",
-        "width": "24",
+        "width": "25",
         "height": "46",
         "sprite": "teano",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "reneDescartes",

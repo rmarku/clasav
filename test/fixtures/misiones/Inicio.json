@@ -31,8 +31,7 @@
         "img_quest": "kitty.png",
         "npc_visible": "true",
         "titulo": "Nuevo por estos lares?",
-        "pregunta":"Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella. Siendo nuevo, es bueno hacer amigos.",
-        "cond_energia": "5",
+        "pregunta":"<audio src='../../../data/sfx/Meow.ogg' autoplay></audio> Mmm, nunca te he visto por aqui. Supongo que eres nuevo. Sabes que seria genial? Conocer la biblioteca. Esta al lado de la plaza. La Sra. Bibliotecaria es muy amable, deberias hablar con ella. Siendo nuevo, es bueno hacer amigos.",
         "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energia.",
         "new_mission": [
             {
@@ -274,7 +273,7 @@
         "img_quest": "guardia.png",
         "npc_visible": "true",
         "titulo": "Guardianes!",
-        "pregunta":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
+        "paso":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
     },
     {
         "npc": "guardib",
@@ -282,7 +281,7 @@
         "img_quest": "guardia.png",
         "npc_visible": "true",
         "titulo": "Guardianes!",
-        "pregunta":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
+        "paso":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
     },
     {
         "npc": "guardic",
@@ -290,7 +289,7 @@
         "img_quest": "guardia.png",
         "npc_visible": "true",
         "titulo": "Guardianes!",
-        "pregunta":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
+        "paso":"Nosotros los guardias nos encargamos de cuidar la ciudad!"
     },
     {
         "npc": "novia",
@@ -298,7 +297,7 @@
         "img_quest": "novia.png",
         "npc_visible": "true",
         "titulo": "¿Dónde está?",
-        "pregunta":"¿Has visto a mi futuro esposo?"
+        "paso":"¿Has visto a mi futuro esposo?"
     }
 ]
 
