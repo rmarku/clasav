@@ -1,0 +1,54 @@
+<br>
+<br>
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+        <div class="page-header" align="center" style="margin-top: 0px">
+
+            <b class="titulos">
+                Misiones Disponibles para la clase <br> {{$parent.claseActual.nombre}}
+            </b>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div >
+                    <br>
+
+                    <table class="table table-striped table-hover table" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th>Logro</th>
+                            <th  style="width: 350px">Descripción</th>
+                            <th class="text-center" style="width: 30px">Detalles</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="logro in logrosDisponibles_claseActual ">
+                            <td >
+                              <span>
+                                {{ logro.nombre}}
+                              </span>
+                            </td>
+                            <td>
+                              <span >
+                                {{ logro.descripcion  || ' '}}
+                              </span>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-default btn-xs" ng-click="ver_detallesLogro($index)">
+                                    <span class="fa fa-search" aria-hidden="true" ></span>
+                                </button>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
