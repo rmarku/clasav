@@ -18,7 +18,6 @@ game.Player = me.Entity.extend({
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
-        console.log(settings);
         this.target_pos = new me.Vector2d(x, y);
         this.final_target_pos = new me.Vector2d(x, y);
         this.myPath = [];

@@ -74,7 +74,6 @@ module.exports = {
             });
 
         }).catch(function (err) {
-            sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
             return res.json({err: err});
         });
     },
@@ -256,14 +255,12 @@ module.exports = {
             var misi = datos.misi;
             // Doy informacion general del quest
 
-            sails.log.info('info ' + npcName + ' ' + (Date.now() - time_start) + 'ms');
             return res.json({
                 img_quest: misi.img_quest,
                 npc_visible: misi.npc_visible
             });
 
         }).catch(function (err) {
-            sails.log.info('info ' + npcName + ' ' + (Date.now() - time_start) + 'ms');
             return res.json({
                 err: 'no tiene mision',
                 img_quest: '',

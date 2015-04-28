@@ -199,21 +199,22 @@ hud = {
             var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
 
             cuerpo.forEach(function (it) {
+                var item, icono;
                 if (typeof game.mainPlayer.data[it] != 'undefined') {
-                    var item = game.items[game.mainPlayer.data[it].item];
-                    var icono = game.sprites[item.sprite].icono;
+                    item = game.items[game.mainPlayer.data[it].item];
+                    icono = game.sprites[item.sprite].icono;
                 } else {
-                    var item = {color: 'ffffff'};
-                    var icono = 'items/empty.png';
+                    item = {color: 'ffffff'};
+                    icono = 'items/empty.png';
                 }
                 var img = new Image();
                 img.onload = function () {
                     var cnv = tintImage(img, item.color);
                     document.getElementById('PJ' + it).firstElementChild.src = cnv.toDataURL();
                     document.getElementById('PJ' + it).firstElementChild.setAttribute('data', JSON.stringify(game.mainPlayer.data[it]));
-                    console.log (document.getElementById('PJ' + it).firstElementChild);
                 };
                 img.src = 'data/sprites/' + icono;
+                icono.update.hola();
             });
             var canvas = document.getElementById('PJimage');
             var ctx = canvas.getContext("2d");
@@ -224,7 +225,7 @@ hud = {
             if (it !== null)
                 $.getJSON("api/item/" + it.id + "/unequipItem", function (data) {
                     if (typeof data.err != 'undefined') {
-                        console.log('error');
+                        console.log('error' + data.err);
                     } else if (typeof data.ok != 'undefined') {
                         game.mainPlayer.updateData();
                     }

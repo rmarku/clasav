@@ -332,7 +332,6 @@ var game = {
      */
     removeOtherPlayer: function (id) {
         if (game.players[id]) {
-            console.log('Removing player: ', id);
             me.game.world.removeChild(game.players[id]);
             delete game.players[id];
         }
