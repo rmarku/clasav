@@ -85,3 +85,14 @@ function tintImage(img, color, x, y, w, h) {
     context.stroke();
     return buff;
 }
+
+
+
+/*
+Todos los errores al Server para log!!!!!!!!!
+ */
+
+window.onerror = function(message, url, lineNumber) {
+    //save error and send to server for example.
+    return false;
+};

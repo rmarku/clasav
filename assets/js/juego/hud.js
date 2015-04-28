@@ -120,7 +120,6 @@ hud = {
             });
         },
         onclick: function () {
-            var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
             var it = JSON.parse(this.getAttribute('data'));
 
 
@@ -201,23 +200,35 @@ hud = {
 
             cuerpo.forEach(function (it) {
                 if (typeof game.mainPlayer.data[it] != 'undefined') {
-
                     var item = game.items[game.mainPlayer.data[it].item];
                     var icono = game.sprites[item.sprite].icono;
-
-
-                    var img = new Image();
-
-                    img.onload = function () {
-                        var cnv = tintImage(img, item.color);
-                        document.getElementById('PJ' + it).firstElementChild.src = cnv.toDataURL();
-                    };
-                    img.src = 'data/sprites/' + icono;
+                } else {
+                    var item = {color: 'ffffff'};
+                    var icono = 'items/empty.png';
                 }
+                var img = new Image();
+                img.onload = function () {
+                    var cnv = tintImage(img, item.color);
+                    document.getElementById('PJ' + it).firstElementChild.src = cnv.toDataURL();
+                    document.getElementById('PJ' + it).firstElementChild.setAttribute('data', JSON.stringify(game.mainPlayer.data[it]));
+                    console.log (document.getElementById('PJ' + it).firstElementChild);
+                };
+                img.src = 'data/sprites/' + icono;
             });
             var canvas = document.getElementById('PJimage');
             var ctx = canvas.getContext("2d");
             ctx.drawImage(game.mainPlayer.renderable.image, 0, 0);
+        },
+        onclick: function (that) {
+            var it = JSON.parse(that.getAttribute('data'));
+            if (it !== null)
+                $.getJSON("api/item/" + it.id + "/unequipItem", function (data) {
+                    if (typeof data.err != 'undefined') {
+                        console.log('error');
+                    } else if (typeof data.ok != 'undefined') {
+                        game.mainPlayer.updateData();
+                    }
+                });
         }
     },
 

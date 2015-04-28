@@ -40,7 +40,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
     };
 
     // Segun si es editar o crear muestro el titulo y el boton
-    if ($location.path() == '/cuenta') {
+    if ($location.path() == '/cuenta' || $location.path() == '/cuenta_remota') {
         $scope.editar = true;
         $scope.Titulo = 'Editar Cuenta';
         $scope.Boton = 'Guardar Cambios';

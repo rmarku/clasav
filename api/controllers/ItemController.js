@@ -75,6 +75,43 @@ module.exports = {
         }).catch(function () {
             return res.json({err: 'No se pudo usar el item'});
         });
+    },
+    unequipItem: function (req, res) {
+        var userId = req.session.passport.user;
+        var itemId = req.param('id');
+
+        if (!userId) {
+            return res.json({err: 'No existe un usuario Logueado'});
+        }
+
+        Personaje.getPersonaje_masReciente(userId).then(function (pj) {
+            Item_instancia.findOne({personaje: pj.id, id: itemId}).populate('item').exec(function (err, itemi) {
+
+                if (typeof itemi.item !== 'undefined')
+                    switch (itemi.item.tipo_item) {
+                        case 'consumible':
+                            return res.json({error: 'no se puede :O'});
+                        case 'sombrero':
+                        case 'torso':
+                        case 'pantalon':
+                        case 'zapatos':
+                        case 'brazo':
+                        case 'decoracion1':
+                        case 'decoracion2':
+                        case 'capa':
+                        case 'anillo':
+                        case 'espada':
+                            pj[itemi.item.tipo_item] = null;
+                            pj.save();
+                            sails.sockets.broadcast(pj.mapa_instancia.id, 'otherPlayer_updateInfo', pj, req.socket);
+                            return res.json({ok: 'vestimenta'});
+                        default:
+                            return res.json({ok: 'nada'});
+                    }
+            });
+        }).catch(function () {
+            return res.json({err: 'No se pudo usar el item'});
+        });
     }
 };
 

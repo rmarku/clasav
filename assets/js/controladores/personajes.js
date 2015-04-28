@@ -189,8 +189,7 @@ app.controller('personajeController', ['$scope', '$http', '$interval', 'toastr',
             $.post("/api/personaje", $scope.pj, function (data) {
                 toastr.info('Personaje creado, ahora a Jugar!!!!');
                 setTimeout(function () {
-
-                    $location.path('/game');
+                    window.location.href = '/game';
                 }, 1000);
             });
         });

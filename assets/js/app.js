@@ -13,6 +13,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/cuenta.html"],
         controller: 'editUsuario'
     });
+    $routeProvider.when('/cuenta_remota', {
+        template: JST["assets/templates/cuenta_remota.html"],
+        controller: 'editUsuario'
+    });
     $routeProvider.when('/misiones', {
         template: JST["assets/templates/gmisiones.html"],
         controller: 'misionesGuia'

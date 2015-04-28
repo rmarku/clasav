@@ -49,8 +49,8 @@ var game = {
                 return;
             }
             $.get('/api/personaje/getPersonaje_masReciente', function (pj) {
-                if (typeof pj.id == 'undefined') {
-                    window.location.href = '/';
+                if (pj === null) {
+                    window.location.href = '/#/personaje';
                     return;
                 }
                 this.userId = data.userId;
