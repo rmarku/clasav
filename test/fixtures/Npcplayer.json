@@ -39,7 +39,7 @@
         "width": "57",
         "height": "63",
         "sprite": "pirata",
-        "animation": "1"
+        "animation": "2"
     },
     {
         "nombre": "SraBibliotecaria",
@@ -130,7 +130,7 @@
         "width": "92",
         "height": "80",
         "sprite": "jinete",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "libro",
@@ -249,7 +249,7 @@
         "width": "31",
         "height": "49",
         "sprite": "pitagoras",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "fibonacci",
