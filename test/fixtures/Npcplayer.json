@@ -79,9 +79,9 @@
     {
         "nombre": "fairy",
         "width": "14",
-        "height": "26",
+        "height": "29",
         "sprite": "fairy",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "fantasmin",
@@ -92,17 +92,17 @@
     },
     {
         "nombre": "gallito",
-        "width": "21",
+        "width": "23",
         "height": "18",
         "sprite": "gallito",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "gatitu",
         "width": "14",
-        "height": "27",
+        "height": "29",
         "sprite": "gatitu",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "guardia",
