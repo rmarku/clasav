@@ -53,7 +53,6 @@ game.PlayerEntity = game.Player.extend({
             if (me.input.isKeyPressed('accion') && this.hablandoCon != other.data.nombre && other.isRenderable) {
                 this.hablandoCon = other.data.nombre;
                 game.mision.startMision(other);
-                console.log('Al lado de ' + other.data.nombre);
             }
             return false;
         }

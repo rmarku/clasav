@@ -13,6 +13,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         template: JST["assets/templates/cuenta.html"],
         controller: 'editUsuario'
     });
+    $routeProvider.when('/cuenta_remota', {
+        template: JST["assets/templates/cuenta_remota.html"],
+        controller: 'editUsuario'
+    });
     $routeProvider.when('/misiones', {
         template: JST["assets/templates/gmisiones.html"],
         controller: 'misionesGuia'
@@ -68,6 +72,14 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/detallesAlumno', {
         template: JST["assets/templates/profesor/detallesAlumno.html"],
         controller: 'detallesAlumnoController'
+    });
+    $routeProvider.when('/misionesClase', {
+        template: JST["assets/templates/profesor/misionesClase.html"],
+        controller: 'misionesClaseController'
+    });
+    $routeProvider.when('/detallesLogro', {
+        template: JST["assets/templates/profesor/detallesLogro.html"],
+        controller: 'misionesClaseController'
     });
     //<!--FIN RUTAS PROFESOR-->
 
