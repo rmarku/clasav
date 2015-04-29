@@ -38,6 +38,7 @@ var game = {
     misClases: [],
     claseActual: {},
     claseActualId: '',
+    logo: {},
 
     nextxy: {x: 0, y: 0, direction: 0},
 
@@ -122,9 +123,14 @@ var game = {
 
         // Cargo los recursos desde la API
         $.getJSON("api/resources.json", function (data) {
-            me.loader.preload(data);
             // Cargo todo y muestro pantalla de carga
-            me.state.change(me.state.LOADING);
+            game.logo = document.createElement('img');
+            game.logo.onload = function () {
+                me.loader.preload(data);
+                me.state.set(me.state.LOADING, new game.CustomLoadingScreen());
+                me.state.change(me.state.LOADING);
+            };
+            game.logo.src = "/images/logoLoader.png";
         });
 
         // Traigo todos los items
@@ -140,11 +146,7 @@ var game = {
                 game.sprites[sprite.id] = sprite;
             });
         });
-
-
-    }
-
-    ,
+    },
 
     /**
      * Llamo cuando todos los recursos estan cargados
@@ -377,12 +379,14 @@ var game = {
             $("#mision_siguiente").hide();
             $("#mision_cancelar").hide();
             $("#mision_salir").hide();
+            $("#mision_espera").show();
             $("#mision_txt").html('');
             this.npc = npc;
             $.get('api/misiones/gettxt?npc=' + npc.data.nombre,
                 function (data) {
                     // Si no hay error,
                     if (!data.err) {
+                        $("#mision_espera").hide();
                         // Si hay pregunta, muestro boton de siguiente y cancelar
                         $("#mision_titulo").html(data.titulo);
                         if (data.pregunta) {
@@ -463,6 +467,7 @@ var game = {
 
                 $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
                     function (data) {
+                        $("#mision_espera").hide();
                         if (typeof data.txt !== 'undefined' && data.txt !== '') {
                             $("#mision_salir").show();
                             $("#mision_txt").html(data.txt);
@@ -494,6 +499,4 @@ var game = {
         });
 
     }
-
-
 }; // game

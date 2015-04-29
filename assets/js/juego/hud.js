@@ -214,7 +214,6 @@ hud = {
                     document.getElementById('PJ' + it).firstElementChild.setAttribute('data', JSON.stringify(game.mainPlayer.data[it]));
                 };
                 img.src = 'data/sprites/' + icono;
-                icono.update.hola();
             });
             var canvas = document.getElementById('PJimage');
             var ctx = canvas.getContext("2d");
