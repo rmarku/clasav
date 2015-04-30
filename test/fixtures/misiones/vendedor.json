@@ -5,7 +5,7 @@
     "img_quest": "melisa.png",
     "npc_visible": "true",
     "titulo": "Quieres comprar?",
-    "pregunta": "Deseas comprar algo? Haz click en el item que deseas comprar",
+    "pregunta": "<audio src='../../../data/sfx/w_hola.ogg' autoplay></audio> Deseas comprar algo? Haz click en el item que deseas comprar",
     "mision": "URL:test/mercado.html",
     "no_cerrar": true,
     "new_mission": [
@@ -52,7 +52,7 @@
     "reco_item": "pocion de energia",
     "reco_item_cant": "1",
     "no_oro": "No tienes suficiente oro para realizar esta compra!",
-    "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+    "paso": "<audio src='../../../data/sfx/w_adios.ogg' autoplay></audio>Muchas Gracias por la compra! Vuelve pronto!",
     "new_mission": [
       {
         "npc": "melisa",
@@ -71,7 +71,7 @@
     "reco_item": "Anillo Magico",
     "reco_item_cant": "1",
     "no_oro": "No tienes suficiente oro para realizar esta compra!",
-    "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+    "paso": "<audio src='../../../data/sfx/w_adios.ogg' autoplay></audio>Muchas Gracias por la compra! Vuelve pronto!",
     "new_mission": [
       {
         "npc": "melisa",
@@ -90,7 +90,7 @@
     "reco_item": "Anillo Adiamantado",
     "reco_item_cant": "1",
     "no_oro": "No tienes suficiente oro para realizar esta compra!",
-    "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+    "paso": "<audio src='../../../data/sfx/w_adios.ogg' autoplay></audio>Muchas Gracias por la compra! Vuelve pronto!",
     "new_mission": [
       {
         "npc": "melisa",
@@ -109,7 +109,7 @@
     "reco_item": "Armadura",
     "reco_item_cant": "1",
     "no_oro": "No tienes suficiente oro para realizar esta compra!",
-    "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+    "paso": "<audio src='../../../data/sfx/w_adios.ogg' autoplay></audio>Muchas Gracias por la compra! Vuelve pronto!",
     "new_mission": [
       {
         "npc": "melisa",
@@ -128,7 +128,7 @@
     "reco_item": "Remera Corta Azul",
     "reco_item_cant": "1",
     "no_oro": "No tienes suficiente oro para realizar esta compra!",
-    "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+    "paso": "<audio src='../../../data/sfx/w_adios.ogg' autoplay></audio>Muchas Gracias por la compra! Vuelve pronto!",
     "new_mission": [
       {
         "npc": "melisa",
@@ -147,7 +147,7 @@
     "reco_item": "Remera Corta Rosa",
     "reco_item_cant": "1",
     "no_oro": "No tienes suficiente oro para realizar esta compra!",
-    "paso": "Muchas Gracias por la compra! Vuelve pronto!",
+    "paso": "<audio src='../../../data/sfx/w_adios.ogg' autoplay></audio> Muchas Gracias por la compra! Vuelve pronto!",
     "new_mission": [
       {
         "npc": "melisa",

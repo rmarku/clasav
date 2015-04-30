@@ -26,6 +26,14 @@
         ]
     },
     {
+        "npc": "Anne",
+        "qorder": "1",
+        "img_quest": "anne.png",
+        "npc_visible": "true",
+        "titulo": "Suerte...",
+        "paso":"Mucha suerte en tus aventuras!!"
+    },
+    {
         "npc": "Kitty",
         "qorder": "1",
         "img_quest": "kitty.png",
@@ -99,6 +107,14 @@
                 "qorder": "3"
             }
         ]
+    },
+    {
+        "npc": "SraBibliotecaria",
+        "qorder": "3",
+        "img_quest": "SraBibliotecaria.png",
+        "npc_visible": "true",
+        "titulo": "Gracias...",
+        "paso":"Muchas gracias por haberme ayudado jovenzuelo..."
     },
     {
         "npc": "Kitty",
