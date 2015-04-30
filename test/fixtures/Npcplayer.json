@@ -88,7 +88,7 @@
         "width": "48",
         "height": "44",
         "sprite": "Fantasmin",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "gallito",
@@ -205,16 +205,16 @@
     {
         "nombre": "sabio",
         "width": "22",
-        "height": "49",
+        "height": "50",
         "sprite": "sabio",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "sadako",
-        "width": "24",
-        "height": "41",
+        "width": "44",
+        "height": "42",
         "sprite": "sadako",
-        "animation": "1"
+        "animation": "9"
     },
     {
         "nombre": "vaca",

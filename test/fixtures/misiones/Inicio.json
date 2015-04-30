@@ -319,6 +319,13 @@
         "npc_visible": "true",
         "titulo": "Seré el campeón!!",
         "paso":"Hola!! Recién termino una larga lucha en el coliseo. <br> Quiero ser el mejor, mejor que nadie más!! Ganar  mi sueño es!!! Entreno por ese ideal..."
+    },
+    {
+        "npc": "sadako",
+        "qorder": "0",
+        "npc_visible": "true",
+        "titulo": "Ruinas",
+        "paso":"Estas ruinas solian ser mi hogar... <br>Después de que un malevolo rey incendio esta aldea mi casa fue devorada por las llamas... Aún escucho las voces de mis padres pidiendo por ayuda, fue tan trágico... <br> Es una lástima que nadie puediera salir vivo de aquello... <br> Ahora solo quedo yo, este espiritu que vaga! <br> Pero no tengas miedo, no voy a hacerte daño! "
     }
 ]
 
