@@ -114,16 +114,16 @@
     {
         "nombre": "guardib",
         "width": "21",
-        "height": "48",
+        "height": "52",
         "sprite": "guardib",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "guardic",
         "width": "21",
-        "height": "48",
+        "height": "52",
         "sprite": "guardic",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "jinete",
@@ -270,7 +270,7 @@
         "width": "25",
         "height": "50",
         "sprite": "hipatia",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "teano",
