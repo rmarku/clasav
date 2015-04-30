@@ -298,6 +298,27 @@
         "npc_visible": "true",
         "titulo": "¿Dónde está?",
         "paso":"¿Has visto a mi futuro esposo?"
+    },
+    {
+        "npc": "gallito",
+        "qorder": "0",
+        "npc_visible": "true",
+        "titulo": "Chiste...",
+        "paso":"<audio src='../../../data/sfx/chicken.ogg' autoplay></audio>-El otro día iba conduciendo mi auto, y sin querer choque con el auto del gatitu... <br> A lo que él empezo a gritar...<br> -Miau-to, Miau-to...<br> Y sin saber bien que responder dije: <br>-Y kikiri que le haga..."
+    },
+    {
+        "npc": "jinete",
+        "qorder": "0",
+        "npc_visible": "true",
+        "titulo": "Oh! Ten Cuidado!!",
+        "paso":"<audio src='../../../data/sfx/horse.ogg' autoplay></audio> Procura no aventurarte demasiado en los bosques que hay si sigues este camino... <br> La leyenda dice que estan embrujados!!<br> Por cierto, ¿Has visto a mi hermano Cavalier?. Lo último que supe de él es que estaba en este pueblo, pero aún no lo he encontrado."
+    },
+    {
+        "npc": "cavalier",
+        "qorder": "0",
+        "npc_visible": "true",
+        "titulo": "Seré el campeón!!",
+        "paso":"Hola!! Recién termino una larga lucha en el coliseo. <br> Quiero ser el mejor, mejor que nadie más!! Ganar  mi sueño es!!! Entreno por ese ideal..."
     }
 ]
 
