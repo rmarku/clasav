@@ -285,5 +285,19 @@
         "height": "48",
         "sprite": "reneDescartes",
         "animation": "8"
+    },
+    {
+        "nombre": "charly",
+        "width": "86",
+        "height": "65",
+        "sprite": "charly",
+        "animation": "8"
+    },
+    {
+        "nombre": "dragonRojo",
+        "width": "59",
+        "height": "62",
+        "sprite": "dragonRojo",
+        "animation": "1"
     }
 ]
