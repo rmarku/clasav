@@ -11,7 +11,7 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
 
     $scope.get_misionesClaseActual = function () {
 
-        $.get('/api/logro?mapa_generico='+$scope.$parent.claseActual.mapaCentral.mapa_generico, function (logros) {
+        $.get('/api/logro_instancia?clase='+$scope.$parent.claseActual.id, function (logros) {
 
             $scope.logrosDisponibles_claseActual = logros;
             $scope.$apply();
@@ -29,10 +29,12 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
     }
 
 
+
+
     $scope.ver_detallesLogro = function (index){
         $scope.$parent.logroActual = {mision:{}};
         $scope.$parent.logroActual = $scope.logrosDisponibles_claseActual[index];
-        $scope.get_misionDeLogroActual($scope.$parent.logroActual.id).then(function(data){
+        $scope.get_misionDeLogroActual($scope.$parent.logroActual.logro.id).then(function(data){
             $scope.$parent.logroActual.mision = data;
             window.location.href = '#/detallesLogro';
         });

@@ -8,9 +8,13 @@ app.controller('detallesPersonajeController', ['$scope', '$rootScope', "toastr",
     $scope.get_personaje = function(id) {
         $.get('/api/personaje?duenio='+id, function (pj) {
             $scope.miPersonaje = pj[0];
+
+            var a = $scope.$parent.misClases;
             $scope.$apply();
         });
     };
+
+
 
     //Esto es solo por si recarga la pagina con F5
     if(typeof $scope.user.tipo  === 'undefined'){

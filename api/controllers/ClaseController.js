@@ -30,6 +30,31 @@ module.exports = {
             //Asociamos la claseCreada con el User que la creó
             claseCreada.users.add(userID);
 
+
+            //Creamos instancias de los logros genericos, que pertenezcan unicamente a esta clase. A partir del mapa_genericoCentral
+            Logro.find({mapa_generico:mapa_genericoID}).exec(function CB(err,logros_genericos){
+
+                logros_genericos.forEach(function (logro_generico){
+
+                        Logro_instancia.create({
+                            clase:claseCreada,
+                            nombre:logro_generico.nombre,
+                            descripcion:logro_generico.descripcion,
+                            sprite:logro_generico.sprite,
+                            mapa_generico:logro_generico.mapa_generico,
+                            logro:logro_generico.id
+                        }).exec(function cb(err,created){
+                            if(err){
+                                console.log(err);
+                            }
+                            console.log("se creo este logro instancia",created);
+
+                        });
+                });
+
+            });
+
+
             //Asociamos el User a la clase recien creada
             claseCreada.save(function (err) {
                 if(err){

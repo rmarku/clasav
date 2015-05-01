@@ -65,7 +65,7 @@
                         </thead>
 
                         <tbody >
-                        <tr ng-repeat="logro in personajeActual.logros">
+                        <tr ng-repeat="logro in personajeActual.logros | filter:{clase:$parent.claseActual.id}">
                             <td >
                                   <span>
                                     {{logro.nombre}}

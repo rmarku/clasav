@@ -124,7 +124,7 @@ module.exports = {
         energia: 'integer',
         energia_max: 'integer',
         logros: {
-            collection: 'logro',
+            collection: 'logro_instancia',
             via: 'personajes',
             required: false
         }
@@ -241,7 +241,7 @@ module.exports = {
                         .populate('mapa_generico')
                         .exec(function (err, populated_mapa_instancia) {
                         if (populated_mapa_instancia) {
-                            personaje.mapa_instancia = populated_mapa_instancia;
+                            personaje.mapa_instancia.mapa_generico = populated_mapa_instancia.mapa_generico;
                             return resolve(personaje);
                         }else{
                             return resolve(null);

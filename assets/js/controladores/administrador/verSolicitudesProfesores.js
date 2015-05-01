@@ -3,6 +3,10 @@
  */
 app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
+    if($scope.$parent.institucionActual.activa === false){
+        window.location.href = '#/institucionesAdministrador';
+    }
+
     $scope.aceptarProfesorEnInstitucion = function (user,index) {
 
         $.get("/api/institucion_x_user/set_situacion",

@@ -462,7 +462,7 @@ var game = {
                 if (typeof resultado == "undefined")
                     resultado = 1;
 
-                $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
+                $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado + '&claseActualID=' + game.claseActualId,
                     function (data) {
                         if (typeof data.txt !== 'undefined' && data.txt !== '') {
                             $("#mision_salir").show();

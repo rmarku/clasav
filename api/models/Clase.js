@@ -38,6 +38,13 @@ module.exports = {
             collection: 'clase_x_user',
             via: 'clase',
             required: false
+        },
+
+
+        logros_instancias:{
+            collection: 'logro_instancia',
+            via: 'clase',
+            required: false
         }
 
     }

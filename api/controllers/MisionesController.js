@@ -84,6 +84,8 @@ module.exports = {
         var userId = req.session.passport.user;
         var npcName = req.param('npc');
         var resultado = req.param('resultado') || '-1';
+        var claseActualID = req.param('claseActualID');
+
         if (!userId) {
             return res.json({err: 'Usuario no logueado'});
         }
@@ -189,7 +191,22 @@ module.exports = {
             var npc_changed = [];
 
             if(misi.logro){
-                pj.logros.add(misi.logro.id);
+                console.log("misi: ",misi);
+                console.log("claseactual: ",claseActualID);
+                npc_promises.push(new Promesa(function (resolve, reject) {
+                    //Buscamos el logro_instancia que se corresponde con el generico, y a su vez con la clase actual del personaje
+                    Logro_instancia.find({
+                        nombre: misi.logro.nombre,
+                        clase:claseActualID
+                    }).exec(function cb(err, logro_instancia) {
+                        if(err || !logro_instancia || logro_instancia.length === 0){
+                            return reject('No se encontro el logro_instancia :(');
+                        }
+                        console.log("se agrego logro_instancia a pj:",logro_instancia);
+                        pj.logros.add(logro_instancia[0].id);
+                        return resolve(logro_instancia[0]);
+                    });
+                }));
             }
 
             new_misiones.forEach(function (valor) {

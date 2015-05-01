@@ -13,12 +13,6 @@ module.exports = {
           model: 'misiones'
       },
 
-      personajes: {
-          collection: 'personaje',
-          via: 'logros',
-          required: false
-      },
-
       nombre:'string',
 
       descripcion:'string',

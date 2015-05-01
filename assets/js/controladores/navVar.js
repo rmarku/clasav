@@ -79,14 +79,17 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         $location.path('/cuenta');
     };
 
-    $scope.volver_aListaClasesProfesor = function (id) {
+    $scope.volver_aListaClasesProfesor = function () {
         $scope.claseActual.activa = false;
         $scope.$apply();
         window.location.href = '#/clasesProfesor';
     };
 
-
-
+    $scope.volver_aListaInstitucionesAdministrador = function () {
+        $scope.institucionActual.activa = false;
+        $scope.$apply();
+        window.location.href = '#/institucionesAdministrador';
+    };
 
 
 
