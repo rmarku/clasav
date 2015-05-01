@@ -25,7 +25,7 @@
         "width": "26",
         "height": "46",
         "sprite": "daniela",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "Divina",
@@ -46,7 +46,7 @@
         "width": "25",
         "height": "47",
         "sprite": "sraBibliotecaria",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "caballero",
@@ -156,9 +156,9 @@
     {
         "nombre": "monk",
         "width": "26",
-        "height": "31",
+        "height": "32",
         "sprite": "monk",
-        "animation": "1"
+        "animation": "2"
     },
     {
         "nombre": "oveja",
@@ -172,14 +172,14 @@
         "width": "23",
         "height": "42",
         "sprite": "peque",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "franco",
         "width": "31",
         "height": "48",
         "sprite": "franco",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "puppy",
@@ -256,14 +256,14 @@
         "width": "31",
         "height": "48",
         "sprite": "fibonacci",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "eduardo",
         "width": "22",
         "height": "49",
         "sprite": "eduardo",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "hipatia",
