@@ -228,14 +228,14 @@
         "width": "23",
         "height": "42",
         "sprite": "melisa",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "carlos",
         "width": "31",
         "height": "49",
         "sprite": "carlos",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "novia",
