@@ -85,3 +85,22 @@ function tintImage(img, color, x, y, w, h) {
     context.stroke();
     return buff;
 }
+
+
+
+/*
+Todos los errores al Server para log!!!!!!!!!
+ */
+function logError(details) {
+    $.ajax({
+        type: 'POST',
+        url: '/api/log',
+        data: JSON.stringify({context: navigator.userAgent, details: details}),
+        contentType: 'application/json; charset=utf-8'
+    });
+}
+
+window.onerror = function(message, file, line) {
+    logError(file + ':' + line + '\n\n' + message);
+    return false;
+};

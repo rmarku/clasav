@@ -1,10 +1,5 @@
-app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sailsBind) {
-    $scope.chats = [];
-    var tiempo = new Date();
-    $scope.mensaje = "";
-    $sailsBind.bind('api/chat', $scope, {">": {"createdAt": tiempo}});
-
-    $("#glyChat").click(function () {
+$(function () {
+    $("#ChatGly").click(function () {
         var e = $("#ChatGame");
         if (e.css('height') != '30px')
             e.animate({'height': '30px'}, 400);
@@ -19,43 +14,63 @@ app.controller('ChatController', ['$scope', '$sailsBind', function ($scope, $sai
         else
             e.animate({'height': e.css('max-height')}, 400);
     });
-    /**
-     * Funcion que envia mensaje a la ventana(div) de Chat, y luego blanquea el campo del "input"
-     * @return
-     * @method envMsj
-     * @return
-     */
-    $scope.envMsj = function () {
-        if ($scope.mensaje !== "") {
-            $scope.chats.push({nick: game.mainPlayer.data.nombre, mensaje: $scope.mensaje});
-        }
-        $scope.mensaje = "";
-    };
 
-}]);
-
-app.directive('chat', function () {
-    return {
-        restrict: 'A',
-        /**
-         * Para la propagacion del evento para poder escribir en el campo de "input", y que no se mueva el personaje
-         * @return
-         * @method link
-         * @param {} scope
-         * @param {} elem
-         * @param {} attrs
-         * @return
-         */
-        link: function (scope, elem, attrs) {
-            elem.bind('keydown', function (e) {
-                e.stopImmediatePropagation();
-            });
-            elem.bind('keyup', function (e) {
-                if (e.keyCode == 13) {
-                    scope.$apply(attrs.chat);
-                }
-                e.stopImmediatePropagation();
-            });
+    $('#msjChat').keydown(function (e) {
+        e.stopImmediatePropagation();
+    }).keyup(function (e) {
+        if (e.keyCode == 13) {
+            chat.send();
         }
-    };
+
+        e.stopImmediatePropagation();
+    });
+
+
+    io.socket.on('chat_msg', function messageReceived(obj) {
+        var el = $('#divChat');
+
+        el.append('<span><b>' + obj.pj + ': </b>' + chat.texto(obj.msg) + '<br></span>')
+            .animate({scrollTop: el[0].scrollHeight}, 1000);
+        document.getElementById('ChatAudio').play();
+    });
 });
+
+chat = {
+    emojis: {
+        ':D': 1,
+        ';)': 2,
+        ':p': 3,
+        ':(': 4,
+        ":'(": 5,
+        'XD': 6,
+        'B)': 7,
+        ':o': 8,
+        ':)': 9
+    },
+    send: function () {
+        var msg = document.getElementById('msjChat').value;
+        document.getElementById('msjChat').value = '';
+        if (msg !== '')
+            io.socket.post('/api/chat/send',
+                {
+                    pj: game.mainPlayer.data.id,
+                    msg: msg
+                },
+                function (data) {
+                    if (typeof data.ok !== 'undefined') {
+                        var el = $('#divChat');
+                        el.append('<span><b style="color: #334477;">' + game.mainPlayer.data.nombre + ': </b>' + chat.texto(msg) + '<br></span>')
+                            .animate({scrollTop: el[0].scrollHeight}, 1000);
+                    }
+                });
+    },
+    texto: function (txt) {
+        var regex;
+        for (var emo in this.emojis) {
+            regex = new RegExp(emo.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"), "ig");
+            txt = txt.replace(regex, '<img class="emoji" src="/images/chat/' + this.emojis[emo] + '.png" >');
+
+        }
+        return txt;
+    }
+};

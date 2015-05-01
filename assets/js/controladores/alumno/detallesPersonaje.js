@@ -3,13 +3,22 @@
  */
 app.controller('detallesPersonajeController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
+    if(Object.keys($scope.$parent.misClases).length === 0){
+        window.location.href = '#/clasesAlumno';
+    }
+
+
     $scope.miPersonaje = {};
+    $scope.mostrarLogrosClase = [];
 
     $scope.get_personaje = function(id) {
         $.get('/api/personaje?duenio='+id, function (pj) {
             $scope.miPersonaje = pj[0];
 
-            var a = $scope.$parent.misClases;
+            $scope.$parent.misClases.forEach(function (clase){
+                $scope.mostrarLogrosClase[clase.id] = false;
+            });
+
             $scope.$apply();
         });
     };

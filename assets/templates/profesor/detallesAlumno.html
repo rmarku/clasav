@@ -11,7 +11,7 @@
         <br>
         <div class="page-header" align="center" style="margin-top: 0px">
             <b class="titulos">
-                Detalle Alumno:<br>{{$parent.alumnoActual.nombre + ' ' + $parent.alumnoActual.apellido}}
+                {{$parent.claseActual.nombre}}:<br>Detalle Alumno
             </b>
         </div>
 
@@ -20,6 +20,20 @@
         <div class="container-fluid">
             <div class="row">
                 <div >
+
+                    <table class="table table-striped table-hover table" style="width: 100%">
+
+                        <tr>
+                            <th class="text-center" style="width: 180px">Nombre</th>
+                            <td class="text-center"><span>{{$parent.alumnoActual.nombre + ' ' + $parent.alumnoActual.apellido}}</span></td>
+                        </tr>
+                        <tr>
+                            <th class="text-center" style="width: 180px">E-mail</th>
+                            <td class="text-center"><span>{{$parent.alumnoActual.email}}</span></td>
+                        </tr>
+                    </table>
+
+
                     <div class="page-header" align="left" style="margin-top: 0px">
                         <b class="titulos">
                             Personaje

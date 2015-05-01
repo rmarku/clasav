@@ -18,7 +18,6 @@ game.Player = me.Entity.extend({
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
-        console.log(settings);
         this.target_pos = new me.Vector2d(x, y);
         this.final_target_pos = new me.Vector2d(x, y);
         this.myPath = [];
@@ -296,7 +295,7 @@ game.Player = me.Entity.extend({
     updateData: function () {
         // Traigo datos del quest (si es visible en este momento o no)
         var self = this;
-        $.get('api/personaje/' + this.data.id,
+        io.socket.get('/api/personaje/' + this.data.id,
             function (data) {
                 self.data = data;
 

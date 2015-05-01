@@ -38,19 +38,20 @@ var game = {
     misClases: [],
     claseActual: {},
     claseActualId: '',
+    logo: {},
 
     nextxy: {x: 0, y: 0, direction: 0},
 
 
     start: function () {
-        $.get("/api/user/getUser", function (data) {
+        io.socket.get("/api/user/getUser", function (data) {
             if (typeof data.userId == 'undefined') {
                 window.location.href = '/';
                 return;
             }
-            $.get('/api/personaje/getPersonaje_masReciente', function (pj) {
-                if (typeof pj.id == 'undefined') {
-                    window.location.href = '/';
+            io.socket.get('/api/personaje/getPersonaje_masReciente', function (pj) {
+                if (pj === null) {
+                    window.location.href = '/#/personaje';
                     return;
                 }
                 this.userId = data.userId;
@@ -122,29 +123,30 @@ var game = {
 
         // Cargo los recursos desde la API
         $.getJSON("api/resources.json", function (data) {
-            me.loader.preload(data);
             // Cargo todo y muestro pantalla de carga
-            me.state.change(me.state.LOADING);
+            game.logo = document.createElement('img');
+            game.logo.onload = function () {
+                me.loader.preload(data);
+                me.state.set(me.state.LOADING, new game.CustomLoadingScreen());
+                me.state.change(me.state.LOADING);
+            };
+            game.logo.src = "/images/logoLoader.png";
         });
 
         // Traigo todos los items
-        $.get('/api/item/getItems', function (data) {
+        io.socket.get('/api/item/getItems', function (data) {
             data.forEach(function (item) {
                 game.items[item.id] = item;
             });
         });
 
         // Traigo todos los sprites.
-        $.get('/api/sprite/getSprites', function (data) {
+        io.socket.get('/api/sprite/getSprites', function (data) {
             data.forEach(function (sprite) {
                 game.sprites[sprite.id] = sprite;
             });
         });
-
-
-    }
-
-    ,
+    },
 
     /**
      * Llamo cuando todos los recursos estan cargados
@@ -206,7 +208,7 @@ var game = {
      * @return
      */
     create_OtherPlayers: function () {
-        $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
+        io.socket.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
 
             while (personajes.length) {
                 var personaje = personajes.pop();
@@ -356,8 +358,7 @@ var game = {
      * @return
      */
     updateNPCs: function (lista) {
-        var respuesta = function () {
-        };
+
         var npcs_id = [];
         if (Object.prototype.toString.call(lista) === '[object Array]')
             npcs_id = lista;
@@ -366,7 +367,7 @@ var game = {
                 npcs_id.push(npc);
 
         for (var idx = 0; idx < npcs_id.length; idx++)
-            respuesta = game.NPCs[npcs_id[idx]].updateInfo().then(respuesta);
+            game.NPCs[npcs_id[idx]].updateInfo();
     },
 
 // Misiones
@@ -378,12 +379,14 @@ var game = {
             $("#mision_siguiente").hide();
             $("#mision_cancelar").hide();
             $("#mision_salir").hide();
+            $("#mision_espera").show();
             $("#mision_txt").html('');
             this.npc = npc;
-            $.get('api/misiones/gettxt?npc=' + npc.data.nombre,
+            io.socket.get('/api/misiones/gettxt?npc=' + npc.data.nombre,
                 function (data) {
                     // Si no hay error,
                     if (!data.err) {
+                        $("#mision_espera").hide();
                         // Si hay pregunta, muestro boton de siguiente y cancelar
                         $("#mision_titulo").html(data.titulo);
                         if (data.pregunta) {
@@ -462,8 +465,9 @@ var game = {
                 if (typeof resultado == "undefined")
                     resultado = 1;
 
-                $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado + '&claseActualID=' + game.claseActualId,
+                io.socket.get('/api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado+ '&claseActualID=' + game.claseActualId,
                     function (data) {
+                        $("#mision_espera").hide();
                         if (typeof data.txt !== 'undefined' && data.txt !== '') {
                             $("#mision_salir").show();
                             $("#mision_txt").html(data.txt);
@@ -482,19 +486,17 @@ var game = {
     },
 
     get_misClases: function () {
-        $.get('/api/clase/get_misClases', function (clases) {
+        io.socket.get('/api/clase/get_misClases', function (clases) {
             game.misClases = clases;
         });
 
     },
 
     get_claseActual: function () {
-        $.get('/api/mapa_instancia/' + game.mainPlayer.data.mapa_instancia.id + '/clase', function (clase) {
+        io.socket.get('/api/mapa_instancia/' + game.mainPlayer.data.mapa_instancia.id + '/clase', function (clase) {
             game.claseActual = clase;
             game.claseActualId = clase.id;
         });
 
     }
-
-
 }; // game

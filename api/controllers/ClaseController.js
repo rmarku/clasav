@@ -47,8 +47,6 @@ module.exports = {
                             if(err){
                                 console.log(err);
                             }
-                            console.log("se creo este logro instancia",created);
-
                         });
                 });
 
