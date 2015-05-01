@@ -11,6 +11,7 @@ var server = {
     updatePersonaje_timeOut: 180,   // (6000 ms) Aproximadamente
 
     enviado_velZero: true,
+    pullingPJ: false,
 
     /**
      * Description
@@ -75,7 +76,7 @@ var server = {
 
         if (this.updatePersonaje_counter >= this.updatePersonaje_timeOut) {
 
-            $.post('/api/personaje/' + game.mainPlayer.id, {
+            io.socket.post('/api/personaje/' + game.mainPlayer.id, {
                     animation: game.mainPlayer.animationToUseThisFrame,
                     direccion: game.mainPlayer.direccion,
                     x: ~~game.mainPlayer.pos.x,
@@ -127,10 +128,20 @@ var server = {
     listen_events: function () {
 
         io.socket.on('otherPlayer_updateState', function messageReceived(obj) {
-
-            game.players[obj.id].last_animation = obj.animation;
-            game.players[obj.id].nextNode(new me.Vector2d(obj.x, obj.y));
-            game.players[obj.id].updateBounds();
+            if (typeof game.players[obj.id] !== 'undefined') {
+                game.players[obj.id].last_animation = obj.animation;
+                game.players[obj.id].nextNode(new me.Vector2d(obj.x, obj.y));
+                game.players[obj.id].updateBounds();
+            } else if (!server.pullingPJ) {
+                server.pullingPJ = true;
+                io.socket.get('/api/personaje/' + obj.id,
+                    {},
+                    function bringPJ(data) {
+                        game.addOnlineOtherPlayer(data);
+                        server.pullingPJ = false;
+                    }
+                );
+            }
         });
 
         io.socket.on('otherPlayer_leave', function messageReceived(personajeId) {

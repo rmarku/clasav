@@ -44,12 +44,12 @@ var game = {
 
 
     start: function () {
-        $.get("/api/user/getUser", function (data) {
+        io.socket.get("/api/user/getUser", function (data) {
             if (typeof data.userId == 'undefined') {
                 window.location.href = '/';
                 return;
             }
-            $.get('/api/personaje/getPersonaje_masReciente', function (pj) {
+            io.socket.get('/api/personaje/getPersonaje_masReciente', function (pj) {
                 if (pj === null) {
                     window.location.href = '/#/personaje';
                     return;
@@ -134,14 +134,14 @@ var game = {
         });
 
         // Traigo todos los items
-        $.get('/api/item/getItems', function (data) {
+        io.socket.get('/api/item/getItems', function (data) {
             data.forEach(function (item) {
                 game.items[item.id] = item;
             });
         });
 
         // Traigo todos los sprites.
-        $.get('/api/sprite/getSprites', function (data) {
+        io.socket.get('/api/sprite/getSprites', function (data) {
             data.forEach(function (sprite) {
                 game.sprites[sprite.id] = sprite;
             });
@@ -208,7 +208,7 @@ var game = {
      * @return
      */
     create_OtherPlayers: function () {
-        $.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
+        io.socket.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
 
             while (personajes.length) {
                 var personaje = personajes.pop();
@@ -357,8 +357,7 @@ var game = {
      * @return
      */
     updateNPCs: function (lista) {
-        var respuesta = function () {
-        };
+
         var npcs_id = [];
         if (Object.prototype.toString.call(lista) === '[object Array]')
             npcs_id = lista;
@@ -367,7 +366,7 @@ var game = {
                 npcs_id.push(npc);
 
         for (var idx = 0; idx < npcs_id.length; idx++)
-            respuesta = game.NPCs[npcs_id[idx]].updateInfo().then(respuesta);
+            game.NPCs[npcs_id[idx]].updateInfo();
     },
 
 // Misiones
@@ -382,7 +381,7 @@ var game = {
             $("#mision_espera").show();
             $("#mision_txt").html('');
             this.npc = npc;
-            $.get('api/misiones/gettxt?npc=' + npc.data.nombre,
+            io.socket.get('/api/misiones/gettxt?npc=' + npc.data.nombre,
                 function (data) {
                     // Si no hay error,
                     if (!data.err) {
@@ -465,7 +464,7 @@ var game = {
                 if (typeof resultado == "undefined")
                     resultado = 1;
 
-                $.get('api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
+                io.socket.get('/api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado,
                     function (data) {
                         $("#mision_espera").hide();
                         if (typeof data.txt !== 'undefined' && data.txt !== '') {
@@ -486,14 +485,14 @@ var game = {
     },
 
     get_misClases: function () {
-        $.get('/api/clase/get_misClases', function (clases) {
+        io.socket.get('/api/clase/get_misClases', function (clases) {
             game.misClases = clases;
         });
 
     },
 
     get_claseActual: function () {
-        $.get('/api/mapa_instancia/' + game.mainPlayer.data.mapa_instancia.id + '/clase', function (clase) {
+        io.socket.get('/api/mapa_instancia/' + game.mainPlayer.data.mapa_instancia.id + '/clase', function (clase) {
             game.claseActual = clase;
             game.claseActualId = clase.id;
         });

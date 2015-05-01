@@ -77,6 +77,8 @@ module.exports.routes = {
 
     '/api/user/getUser': 'UserController.getUser',
 
+    'post /api/chat/send':'ChatController.send',
+
     //Personajes
     'get /api/mapa_instancia/join': 'Mapa_instanciaController.join',
     'get /api/mapa_instancia/leave': 'Mapa_instanciaController.leave',

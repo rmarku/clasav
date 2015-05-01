@@ -40,17 +40,28 @@ module.exports = {
                 if (typeof itemi.item !== 'undefined')
                     switch (itemi.item.tipo_item) {
                         case 'consumible':
+                            if (pj.energia >= pj.energia_max)
+                                return res.json({ok: 'energia'});
+
                             pj.energia += itemi.item.energia;
                             if (pj.energia > pj.energia_max)
                                 pj.energia = pj.energia_max;
 
                             pj.save();
-                            Item_instancia.destroy({id: itemi.id}).exec(function () {
-                                if (err) {
-                                    return res.serverError();
-                                }
+
+
+                            if (itemi.cantidad > 1) {
+                                itemi.cantidad--;
+                                itemi.save();
                                 return res.json({ok: 'energia'});
-                            });
+                            } else {
+                                Item_instancia.destroy({id: itemi.id}).exec(function () {
+                                    if (err) {
+                                        return res.serverError();
+                                    }
+                                    return res.json({ok: 'energia'});
+                                });
+                            }
                             break;
                         case 'sombrero':
                         case 'torso':

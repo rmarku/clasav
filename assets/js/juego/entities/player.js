@@ -295,7 +295,7 @@ game.Player = me.Entity.extend({
     updateData: function () {
         // Traigo datos del quest (si es visible en este momento o no)
         var self = this;
-        $.get('api/personaje/' + this.data.id,
+        io.socket.get('/api/personaje/' + this.data.id,
             function (data) {
                 self.data = data;
 

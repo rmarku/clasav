@@ -71,7 +71,7 @@ hud = {
             }
         },
         update: function () {
-            $.getJSON("api/item/getItemsPJ", function (data) {
+            io.socket.get("/api/item/getItemsPJ", function (data) {
                 var pj = game.mainPlayer.data;
                 document.getElementById('items').innerHTML = '';
                 data.forEach(function (it) {
@@ -123,7 +123,7 @@ hud = {
             var it = JSON.parse(this.getAttribute('data'));
 
 
-            $.getJSON("api/item/" + it.id + "/useItem", function (data) {
+            io.socket.get("/api/item/" + it.id + "/useItem", function (data) {
                 if (typeof data.err != 'undefined') {
                     console.log('error');
                 } else if (typeof data.ok != 'undefined') {
@@ -222,7 +222,7 @@ hud = {
         onclick: function (that) {
             var it = JSON.parse(that.getAttribute('data'));
             if (it !== null)
-                $.getJSON("api/item/" + it.id + "/unequipItem", function (data) {
+                io.socket.get("/api/item/" + it.id + "/unequipItem", function (data) {
                     if (typeof data.err != 'undefined') {
                         console.log('error' + data.err);
                     } else if (typeof data.ok != 'undefined') {
