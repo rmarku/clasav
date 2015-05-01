@@ -18,7 +18,7 @@
         "width": "31",
         "height": "48",
         "sprite": "chris",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "Daniela",
@@ -74,7 +74,7 @@
         "width": "29",
         "height": "47",
         "sprite": "devian",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "fairy",
@@ -284,6 +284,6 @@
         "width": "23",
         "height": "48",
         "sprite": "reneDescartes",
-        "animation": "1"
+        "animation": "8"
     }
 ]
