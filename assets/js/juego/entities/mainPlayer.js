@@ -53,7 +53,6 @@ game.PlayerEntity = game.Player.extend({
             if (me.input.isKeyPressed('accion') && this.hablandoCon != other.data.nombre && other.isRenderable) {
                 this.hablandoCon = other.data.nombre;
                 game.mision.startMision(other);
-                console.log('Al lado de ' + other.data.nombre);
             }
             return false;
         }
@@ -106,16 +105,5 @@ game.PlayerEntity = game.Player.extend({
         // Dibujo en el minimapa
         minimap.drawPointsMinimap();
         return (this._super(game.Player, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
-    },
-
-    updateData: function () {
-        // Traigo datos del quest (si es visible en este momento o no)
-        $.get('api/personaje/' + this.data.id,
-            function (data) {
-                game.mainPlayer.data = data;
-                hud.update();
-            });
     }
-
-
 });

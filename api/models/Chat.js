@@ -11,15 +11,12 @@ module.exports = {
         autor: {
             model: 'personaje'
         },
-
         nick: {
             type: 'string'
         },
-
         mensaje: {
             type: 'string'
         },
-
         mapas: {
             model: 'mapa_instancia'
         }

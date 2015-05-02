@@ -50,22 +50,28 @@
 				ordOrig = (-1) * ordOrig;
 
 				//Dibujar lineas verticales
+				var j=-9;
 				for ( i = 0; i < 300; ) {
 					cxt.beginPath();
 					cxt.strokeStyle = '#D8D8D8';
 					cxt.moveTo(i + 15, 0);
 					cxt.lineTo(i + 15, 210);
 					i = i + 15;
+					cxt.fillText(j,i-4,114);
+					j++;
 					cxt.stroke();
 				}
 
 				//Dibujar lineas horizontales
+				var j=6;
 				for ( i = 0; i < 200; ) {
 					cxt.beginPath();
 					cxt.strokeStyle = '#D8D8D8';
 					cxt.moveTo(0, i + 15);
 					cxt.lineTo(300, i + 15);
 					i = i + 15;
+					cxt.fillText(j,153,i+3);
+					j--;
 					cxt.stroke();
 				}
 				//Dibujar ejes X e Y

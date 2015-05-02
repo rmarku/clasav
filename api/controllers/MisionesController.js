@@ -74,7 +74,6 @@ module.exports = {
             });
 
         }).catch(function (err) {
-            sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
             return res.json({err: err});
         });
     },
@@ -84,6 +83,8 @@ module.exports = {
         var userId = req.session.passport.user;
         var npcName = req.param('npc');
         var resultado = req.param('resultado') || '-1';
+        var claseActualID = req.param('claseActualID');
+
         if (!userId) {
             return res.json({err: 'Usuario no logueado'});
         }
@@ -165,19 +166,38 @@ module.exports = {
                 Item.findOne({nombre: misi.reco_item}).exec(function (err, item) {
                     if (err || !item) {
                         sails.log.warn('No se encontro el item recompensa "' + misi.reco_item +
-                        '" en la mision de  ' + npcName + ', qorder ' + misi.qorder);
+                            '" en la mision de  ' + npcName + ', qorder ' + misi.qorder);
                         return res.json({err: 'No se encontro el item ' + err});
                     }
-                    Item_instancia.create({
-                        item: item.id,
-                        personaje: pj.id,
-                        cantidad: misi.reco_item_cant,
-                        seccion_inventario: 2,
-                        usando: false
-                    }).then(function (it_inst) {
-                        sails.log.info('item creado: ' + it_inst.id);
+
+                    var search = {};
+                    if (typeof item !== 'undefined')
+                        search.item = item.id;
+                    else
+                        search.item = '-1';
+
+                    search.personaje = pj.id;
+
+                    // Si encuentro el item
+                    Item_instancia.findOne(search).exec(function (err, inst) {
+
+                        if (typeof inst === 'undefined' || inst.cantidad + misi.reco_item_cant >= item.maximo) {
+                            Item_instancia.create({
+                                item: item.id,
+                                personaje: pj.id,
+                                cantidad: misi.reco_item_cant,
+                                seccion_inventario: 2,
+                                usando: false
+                            }).then(function (it_inst) {
+                                sails.log.info('item creado: ' + it_inst.id);
+                            });
+                        } else {
+                            inst.cantidad += misi.reco_item_cant;
+                            inst.save();
+                        }
                     });
                 });
+
 
             // habilito el flujo de misiones que siguen.
             var new_misiones = [];
@@ -186,6 +206,25 @@ module.exports = {
 
             var npc_promises = [];
             var npc_changed = [];
+
+            if(misi.logro){
+                console.log("misi: ",misi);
+                console.log("claseactual: ",claseActualID);
+                npc_promises.push(new Promesa(function (resolve, reject) {
+                    //Buscamos el logro_instancia que se corresponde con el generico, y a su vez con la clase actual del personaje
+                    Logro_instancia.find({
+                        nombre: misi.logro.nombre,
+                        clase:claseActualID
+                    }).exec(function cb(err, logro_instancia) {
+                        if(err || !logro_instancia || logro_instancia.length === 0){
+                            return reject('No se encontro el logro_instancia :(');
+                        }
+                        console.log("se agrego logro_instancia a pj:",logro_instancia);
+                        pj.logros.add(logro_instancia[0].id);
+                        return resolve(logro_instancia[0]);
+                    });
+                }));
+            }
 
             new_misiones.forEach(function (valor) {
 
@@ -231,6 +270,7 @@ module.exports = {
             });
         }).catch(function (err) {
             sails.log.error('error en gettext - getMision user:' + userId + ' NPC: ' + npcName);
+
             return res.json({err: JSON.stringify(err)});
         });
     },
@@ -250,14 +290,12 @@ module.exports = {
             var misi = datos.misi;
             // Doy informacion general del quest
 
-            sails.log.info('info ' + npcName + ' ' + (Date.now() - time_start) + 'ms');
             return res.json({
                 img_quest: misi.img_quest,
                 npc_visible: misi.npc_visible
             });
 
         }).catch(function (err) {
-            sails.log.info('info ' + npcName + ' ' + (Date.now() - time_start) + 'ms');
             return res.json({
                 err: 'no tiene mision',
                 img_quest: '',

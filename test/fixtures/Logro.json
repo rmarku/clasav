@@ -1,0 +1,122 @@
+[
+
+    {
+        "nombre": "Numeros Naturales Nivel 1",
+        "descripcion": "Visualización video introductorio.",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Numeros Naturales Nivel 2",
+        "descripcion": "Resolución de problemas: suma y multiplicación.",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Numeros Naturales Nivel 3",
+        "descripcion": "Resolución de problemas con propiedades de operaciones: asociativa, conmutativa y distributiva",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Reglas de Divisivilidad Nivel 1",
+        "descripcion": "Descripcion",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Reglas de Divisivilidad Nivel 2",
+        "descripcion": "Descripcion",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cuerpos Geométricos Nivel 1",
+        "descripcion": "Clasificacón entre cuerpos poliedros y redondos. ",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cuerpos Geométricos Nivel 2",
+        "descripcion": "Identificación de partes: aristas y vértices",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cuerpos Geométricos Nivel 3",
+        "descripcion": "Clasificación de poliedros: regulares e irregulares",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Figuras Planas Nivel 1",
+        "descripcion": "Clasificación de polígonos: figuras planas e irregulares",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Figuras Planas Nivel 2",
+        "descripcion": "Identificación de partes: vértices, ángulos y diagonales",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Triángulos Nivel 1",
+        "descripcion": "Visualización de video: clasficación de triángulos segun sus ángulos y sus lados",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Pitágoras Nivel 1",
+        "descripcion": "Teorema de Pitágoras",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cuadriláteros Nivel 1",
+        "descripcion": "Visualización de video: clasificación de cuadiláteros",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cálculo Nivel 1",
+        "descripcion": "Cálculo de perímetro.",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cálculo Nivel 2",
+        "descripcion": "Cálculo de área.",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Cálculo Nivel 3",
+        "descripcion": "Cálculo de volumen.",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Ecuaciones lineales Nivel 1.",
+        "descripcion": "Visualización video con concepto de ejes cartesianos.",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Ecuaciones lineales Nivel 2.",
+        "descripcion": "Graficando Ecuaciones Lineales",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Ecuaciones lineales Nivel 3.",
+        "descripcion": "Pendiente e Intersección",
+        "mapa_generico": 1
+    },
+
+    {
+        "nombre": "Numeros Racionales Nivel 1",
+        "descripcion": "Descripcion",
+        "mapa_generico": 1
+    }
+]

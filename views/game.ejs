@@ -1,7 +1,13 @@
 <!DOCTYPE html>
-<html ng-app="juegoapl">
+<html>
 	<head>
 		<title>Clases y Aventuras</title>
+        <% if (process.env.NODE_ENV == 'production') { %>
+        <script type="text/javascript">
+            window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o?o:e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({QJf3ax:[function(t,e){function n(t){function e(e,n,a){t&&t(e,n,a),a||(a={});for(var c=s(e),f=c.length,u=i(a,o,r),d=0;f>d;d++)c[d].apply(u,n);return u}function a(t,e){f[t]=s(t).concat(e)}function s(t){return f[t]||[]}function c(){return n(e)}var f={};return{on:a,emit:e,create:c,listeners:s,_events:f}}function r(){return{}}var o="nr@context",i=t("gos");e.exports=n()},{gos:"7eSDFh"}],ee:[function(t,e){e.exports=t("QJf3ax")},{}],3:[function(t){function e(t){try{i.console&&console.log(t)}catch(e){}}var n,r=t("ee"),o=t(1),i={};try{n=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(i.console=!0,-1!==n.indexOf("dev")&&(i.dev=!0),-1!==n.indexOf("nr_dev")&&(i.nrDev=!0))}catch(a){}i.nrDev&&r.on("internal-error",function(t){e(t.stack)}),i.dev&&r.on("fn-err",function(t,n,r){e(r.stack)}),i.dev&&(e("NR AGENT IN DEVELOPMENT MODE"),e("flags: "+o(i,function(t){return t}).join(", ")))},{1:22,ee:"QJf3ax"}],4:[function(t){function e(t,e,n,i,s){try{c?c-=1:r("err",[s||new UncaughtException(t,e,n)])}catch(f){try{r("ierr",[f,(new Date).getTime(),!0])}catch(u){}}return"function"==typeof a?a.apply(this,o(arguments)):!1}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function n(t){r("err",[t,(new Date).getTime()])}var r=t("handle"),o=t(6),i=t("ee"),a=window.onerror,s=!1,c=0;t("loader").features.err=!0,t(5),window.onerror=e;try{throw new Error}catch(f){"stack"in f&&(t(1),t(2),"addEventListener"in window&&t(3),window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)&&t(4),s=!0)}i.on("fn-start",function(){s&&(c+=1)}),i.on("fn-err",function(t,e,r){s&&(this.thrown=!0,n(r))}),i.on("fn-end",function(){s&&!this.thrown&&c>0&&(c-=1)}),i.on("internal-error",function(t){r("ierr",[t,(new Date).getTime(),!0])})},{1:9,2:8,3:6,4:10,5:3,6:23,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],5:[function(t){function e(){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var n=t("ee"),r=t("handle"),o=t(1),i=t(2);t("loader").features.stn=!0,t(3),n.on("fn-start",function(t){var e=t[0];e instanceof Event&&(this.bstStart=Date.now())}),n.on("fn-end",function(t,e){var n=t[0];n instanceof Event&&r("bst",[n,e,this.bstStart,Date.now()])}),o.on("fn-start",function(t,e,n){this.bstStart=Date.now(),this.bstType=n}),o.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),this.bstType])}),i.on("fn-start",function(){this.bstStart=Date.now()}),i.on("fn-end",function(t,e){r("bstTimer",[e,this.bstStart,Date.now(),"requestAnimationFrame"])}),n.on("pushState-start",function(){this.time=Date.now(),this.startPath=location.pathname+location.hash}),n.on("pushState-end",function(){r("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),"addEventListener"in window.performance&&(window.performance.addEventListener("webkitresourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.webkitClearResourceTimings()},!1),window.performance.addEventListener("resourcetimingbufferfull",function(){r("bstResource",[window.performance.getEntriesByType("resource")]),window.performance.clearResourceTimings()},!1)),document.addEventListener("scroll",e,!1),document.addEventListener("keypress",e,!1),document.addEventListener("click",e,!1)}},{1:9,2:8,3:7,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],6:[function(t,e){function n(t){i.inPlace(t,["addEventListener","removeEventListener"],"-",r)}function r(t){return t[1]}var o=(t(1),t("ee").create()),i=t(2)(o),a=t("gos");if(e.exports=o,n(window),"getPrototypeOf"in Object){for(var s=document;s&&!s.hasOwnProperty("addEventListener");)s=Object.getPrototypeOf(s);s&&n(s);for(var c=XMLHttpRequest.prototype;c&&!c.hasOwnProperty("addEventListener");)c=Object.getPrototypeOf(c);c&&n(c)}else XMLHttpRequest.prototype.hasOwnProperty("addEventListener")&&n(XMLHttpRequest.prototype);o.on("addEventListener-start",function(t){if(t[1]){var e=t[1];"function"==typeof e?this.wrapped=t[1]=a(e,"nr@wrapped",function(){return i(e,"fn-",null,e.name||"anonymous")}):"function"==typeof e.handleEvent&&i.inPlace(e,["handleEvent"],"fn-")}}),o.on("removeEventListener-start",function(t){var e=this.wrapped;e&&(t[1]=e)})},{1:23,2:24,ee:"QJf3ax",gos:"7eSDFh"}],7:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window.history,["pushState"],"-")},{1:24,2:23,ee:"QJf3ax"}],8:[function(t,e){var n=(t(2),t("ee").create()),r=t(1)(n);e.exports=n,r.inPlace(window,["requestAnimationFrame","mozRequestAnimationFrame","webkitRequestAnimationFrame","msRequestAnimationFrame"],"raf-"),n.on("raf-start",function(t){t[0]=r(t[0],"fn-")})},{1:24,2:23,ee:"QJf3ax"}],9:[function(t,e){function n(t,e,n){t[0]=o(t[0],"fn-",null,n)}var r=(t(2),t("ee").create()),o=t(1)(r);e.exports=r,o.inPlace(window,["setTimeout","setInterval","setImmediate"],"setTimer-"),r.on("setTimer-start",n)},{1:24,2:23,ee:"QJf3ax"}],10:[function(t,e){function n(){f.inPlace(this,p,"fn-")}function r(t,e){f.inPlace(e,["onreadystatechange"],"fn-")}function o(t,e){return e}function i(t,e){for(var n in t)e[n]=t[n];return e}var a=t("ee").create(),s=t(1),c=t(2),f=c(a),u=c(s),d=window.XMLHttpRequest,p=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"];e.exports=a,window.XMLHttpRequest=function(t){var e=new d(t);try{a.emit("new-xhr",[],e),u.inPlace(e,["addEventListener","removeEventListener"],"-",o),e.addEventListener("readystatechange",n,!1)}catch(r){try{a.emit("internal-error",[r])}catch(i){}}return e},i(d,XMLHttpRequest),XMLHttpRequest.prototype=d.prototype,f.inPlace(XMLHttpRequest.prototype,["open","send"],"-xhr-",o),a.on("send-xhr-start",r),a.on("open-xhr-start",r)},{1:6,2:24,ee:"QJf3ax"}],11:[function(t){function e(t){var e=this.params,r=this.metrics;if(!this.ended){this.ended=!0;for(var i=0;c>i;i++)t.removeEventListener(s[i],this.listener,!1);if(!e.aborted){if(r.duration=(new Date).getTime()-this.startTime,4===t.readyState){e.status=t.status;var a=t.responseType,f="arraybuffer"===a||"blob"===a||"json"===a?t.response:t.responseText,u=n(f);if(u&&(r.rxSize=u),this.sameOrigin){var d=t.getResponseHeader("X-NewRelic-App-Data");d&&(e.cat=d.split(", ").pop())}}else e.status=0;r.cbTime=this.cbTime,o("xhr",[e,r,this.startTime])}}}function n(t){if("string"==typeof t&&t.length)return t.length;if("object"!=typeof t)return void 0;if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if("undefined"!=typeof FormData&&t instanceof FormData)return void 0;try{return JSON.stringify(t).length}catch(e){return void 0}}function r(t,e){var n=i(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}if(window.XMLHttpRequest&&XMLHttpRequest.prototype&&XMLHttpRequest.prototype.addEventListener&&!/CriOS/.test(navigator.userAgent)){t("loader").features.xhr=!0;var o=t("handle"),i=t(2),a=t("ee"),s=["load","error","abort","timeout"],c=s.length,f=t(1);t(4),t(3),a.on("new-xhr",function(){this.totalCbs=0,this.called=0,this.cbTime=0,this.end=e,this.ended=!1,this.xhrGuids={}}),a.on("open-xhr-start",function(t){this.params={method:t[0]},r(this,t[1]),this.metrics={}}),a.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),a.on("send-xhr-start",function(t,e){var r=this.metrics,o=t[0],i=this;if(r&&o){var f=n(o);f&&(r.txSize=f)}this.startTime=(new Date).getTime(),this.listener=function(t){try{"abort"===t.type&&(i.params.aborted=!0),("load"!==t.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof e.onload))&&i.end(e)}catch(n){try{a.emit("internal-error",[n])}catch(r){}}};for(var u=0;c>u;u++)e.addEventListener(s[u],this.listener,!1)}),a.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),a.on("xhr-load-added",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),a.on("xhr-load-removed",function(t,e){var n=""+f(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),a.on("addEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-added",[t[1],t[2]],e)}),a.on("removeEventListener-end",function(t,e){e instanceof XMLHttpRequest&&"load"===t[0]&&a.emit("xhr-load-removed",[t[1],t[2]],e)}),a.on("fn-start",function(t,e,n){e instanceof XMLHttpRequest&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=(new Date).getTime()))}),a.on("fn-end",function(t,e){this.xhrCbStart&&a.emit("xhr-cb-time",[(new Date).getTime()-this.xhrCbStart,this.onload,e],e)})}},{1:"XL7HBI",2:12,3:10,4:6,ee:"QJf3ax",handle:"D5DuLP",loader:"G9z0Bl"}],12:[function(t,e){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");return!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname),r.sameOrigin=!e.hostname||e.hostname===document.domain&&e.port===n.port&&e.protocol===n.protocol,r}},{}],13:[function(t,e){function n(t){return function(){r(t,[(new Date).getTime()].concat(i(arguments)))}}var r=t("handle"),o=t(1),i=t(2);"undefined"==typeof window.newrelic&&(newrelic=window.NREUM);var a=["setPageViewName","addPageAction","setCustomAttribute","finished","addToTrace","inlineHit","noticeError"];o(a,function(t,e){window.NREUM[e]=n("api-"+e)}),e.exports=window.NREUM},{1:22,2:23,handle:"D5DuLP"}],"7eSDFh":[function(t,e){function n(t,e,n){if(r.call(t,e))return t[e];var o=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:o,writable:!0,enumerable:!1}),o}catch(i){}return t[e]=o,o}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],gos:[function(t,e){e.exports=t("7eSDFh")},{}],handle:[function(t,e){e.exports=t("D5DuLP")},{}],D5DuLP:[function(t,e){function n(t,e,n){return r.listeners(t).length?r.emit(t,e,n):(o[t]||(o[t]=[]),void o[t].push(e))}var r=t("ee").create(),o={};e.exports=n,n.ee=r,r.q=o},{ee:"QJf3ax"}],id:[function(t,e){e.exports=t("XL7HBI")},{}],XL7HBI:[function(t,e){function n(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:i(t,o,function(){return r++})}var r=1,o="nr@id",i=t("gos");e.exports=n},{gos:"7eSDFh"}],G9z0Bl:[function(t,e){function n(){var t=p.info=NREUM.info,e=f.getElementsByTagName("script")[0];if(t&&t.licenseKey&&t.applicationID&&e){s(d,function(e,n){e in t||(t[e]=n)});var n="https"===u.split(":")[0]||t.sslForHttp;p.proto=n?"https://":"http://",a("mark",["onload",i()]);var r=f.createElement("script");r.src=p.proto+t.agent,e.parentNode.insertBefore(r,e)}}function r(){"complete"===f.readyState&&o()}function o(){a("mark",["domContent",i()])}function i(){return(new Date).getTime()}var a=t("handle"),s=t(1),c=(t(2),window),f=c.document,u=(""+location).split("?")[0],d={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-632.min.js"},p=e.exports={offset:i(),origin:u,features:{}};f.addEventListener?(f.addEventListener("DOMContentLoaded",o,!1),c.addEventListener("load",n,!1)):(f.attachEvent("onreadystatechange",r),c.attachEvent("onload",n)),a("mark",["firstbyte",i()])},{1:22,2:13,handle:"D5DuLP"}],loader:[function(t,e){e.exports=t("G9z0Bl")},{}],22:[function(t,e){function n(t,e){var n=[],o="",i=0;for(o in t)r.call(t,o)&&(n[i]=e(o,t[o]),i+=1);return n}var r=Object.prototype.hasOwnProperty;e.exports=n},{}],23:[function(t,e){function n(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(0>o?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=n},{}],24:[function(t,e){function n(t){return!(t&&"function"==typeof t&&t.apply&&!t[i])}var r=t("ee"),o=t(1),i="nr@wrapper",a=Object.prototype.hasOwnProperty;e.exports=function(t){function e(t,e,r,a){function nrWrapper(){var n,i,s,f;try{i=this,n=o(arguments),s=r&&r(n,i)||{}}catch(d){u([d,"",[n,i,a],s])}c(e+"start",[n,i,a],s);try{return f=t.apply(i,n)}catch(p){throw c(e+"err",[n,i,p],s),p}finally{c(e+"end",[n,i,f],s)}}return n(t)?t:(e||(e=""),nrWrapper[i]=!0,f(t,nrWrapper),nrWrapper)}function s(t,r,o,i){o||(o="");var a,s,c,f="-"===o.charAt(0);for(c=0;c<r.length;c++)s=r[c],a=t[s],n(a)||(t[s]=e(a,f?s+o:o,i,s))}function c(e,n,r){try{t.emit(e,n,r)}catch(o){u([o,e,n,r])}}function f(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){u([r])}for(var o in t)a.call(t,o)&&(e[o]=t[o]);return e}function u(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=r),e.inPlace=s,e.flag=i,e}},{1:23,ee:"QJf3ax"}]},{},["G9z0Bl",4,11,5]);
+            ;NREUM.info={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",licenseKey:"50912b7ab6",applicationID:"6503639",sa:1,agent:"js-agent.newrelic.com/nr-632.min.js"}
+        </script>
+        <% } %>
 		<link href='images/favicon.ico' rel='shortcut icon' type='image/x-icon'>
 		<!-- Viewport mobile tag for sensible mobile support -->
 		<meta charset="utf-8">
@@ -24,233 +30,229 @@
 	<body style="background: #000000" onload="window.scrollTo(0, 1);game.start();">
 		<div id="jsapp">
 			<!--HUD SUPERIOR-->
-			<div id="hudSuperior" class="capaSup">
-				<!--img src="images/iconos/circuloNivel.png" style="float: left; width: 68px; height: 68px;"-->
-				<div class="nivelPJ">
-					<b><span id="PJnivel">1</span></font>
-					<br>
-					Nivel</b>
-				</div>
-
-				<div class="progress" style="margin: 5px 0 0 75px;width: 200px">
-					<div id="PJenergia" class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60"
-					aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
-
-					<div style="position: absolute; float: left">
-						<b>Energia</b>
-					</div>
-				</div>
-				<div class="progress" style="margin: 5px 0  0 75px;width: 200px">
-					<div id="PJexperiencia" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
-					aria-valuemax="100" style="width: 0%;"></div>
-
-					<div style="position: absolute; float:left;">
-						<b>Experiencia</b>
-					</div>
-				</div>
-                <div class="gold">
-                    <img src="/images/iconos/coin.png" ><b><span id="PJoro">0</span></b>
-                </div>
-
-			</div>
-            <!--Teclas Movil -->
-            <div id="movil" class="capaSup" style="display: none;">
-                <div id="movil-izq">
-                    <svg height="50" width="50">
-                        <path d="M0 50 L40 25 L0 0z" fill="#00000099" transform="rotate(180 25 25)" fill-opacity="0.5"/>
-                    </svg>
-                </div>
-                <div id="movil-der">
-                    <svg height="50" width="50">
-                        <path d="M0 50 L40 25 L0 0z" fill="#000" fill-opacity="0.5"/>
-                    </svg>
-                </div>
-                <div id="movil-arr">
-                    <svg height="50" width="50">
-                        <path d="M0 50 L40 25 L0 0z" fill="#000" transform="rotate(-90 25 25)"fill-opacity="0.5"/>
-                    </svg></div>
-                <div id="movil-aba">
-                    <svg height="50" width="50">
-                        <path d="M0 50 L40 25 L0 0z" fill="#000" transform="rotate(90 25 25)"fill-opacity="0.5"/>
-                    </svg>
-                </div>
-                <div id="movil-accion">
-                    <svg height="50" width="50">
-                        <circle cx="25" cy="25" r="20" fill="#000" fill-opacity="0.5"/>
-                    </svg>
-                </div>
-            </div>
-			<!--HUD INFERIOR-->
-			<div id="botonera" class="capaSup" style="height: 49px; width: 261px; position: absolute; bottom: 0px">
-				<img id="btnInve" src="images/iconos/btn_inventario.png" onclick="hud.inventario.toggle()"/>
-				<img id="btnMisi" src="images/iconos/btn_mision.png" onclick="hud.misiones.toggle()" style="margin-left: -4px;"/>
-				<img id="btnLogr" src="images/iconos/btn_logros.png" onclick="hud.logros.toggle()" style="margin-left: -4px;"/>
-				<img id="btnTale" src="images/iconos/btn_talentos.png" onclick="hud.talentos.toggle()" style="margin-left: -4px;"/>
-				<img id="btnPers" src="images/iconos/btn_personaje.png" onclick="hud.personaje.toggle()" style="margin-left: -4px;"/>
-			</div>
-			<img class="capaSup" id="audio" src="images/iconos/audio_OFF.png" style="position: absolute; bottom: 4px; right: 4px"  onclick="hud.toggleAudio()"/>
-			<a href="/"> <img class="capaSup" id="home" src="images/iconos/btn_home.png" style="position: absolute; bottom: 32px; right: 4px"/> </a>
-			<!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
-
-			<!--INVENTARIO-->
-			<div id="inv" class="div-panel"style="background: url('images/iconos/inventario2.png')">
-				<p class="capaSup titulo-botonera">
-					Inventario
-				</p>
-
-				<div id="items" style="padding: 41px 7px 0px 9px">
-					<div 					style="display: inline; width: 49px; height: 49px; margin: 0px -1px 0px -3px; border: 0px 0px 0px 0px">
-						<img ng-src="{{x.sprite}}" title="{{x.nombreItem}}">
-						<span ng-class="{hidden: x.acumulable==false}"
-						style="position: absolute; margin: 25px 0px 0px -13px">{{x.cant}}</span>
-					</div>
-				</div>
-			</div>
-
-			<!--INVENTARIO-->
-			<div id="inv" class="div-panel"style="background: url('images/iconos/inventario2.png')">
-				<p class="capaSup titulo-botonera">
-					Inventario
-				</p>
-
-				<div id="items" style="padding: 41px 7px 0px 9px">
-					<div class="itemInv" >
-						<img src="" title="">
-						<span></span>
-					</div>
-				</div>
-			</div>
-
-			<!--MISIONES-->
-			<div id="mis" class="div-panel" style="background: url('images/iconos/misiones2.png')">
-				<p class="capaSup titulo-botonera">
-					Misiones
-				</p>
-
-				<div id="misiones" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px">
-					<table>
-						<tbody>
-							<tr ng-repeat="x in misiones">
-								<td><img src="images/quest/inventario.png"/></td>
-								<td> {{x.tituloMision}}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-			<!--LOGROS-->
-			<div id="log" class="div-panel" style="background: url('images/iconos/logros2.png')">
-				<p class="capaSup titulo-botonera">
-					Logros
-				</p>
-
-				<div id="items" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px">
-					<table>
-						<tbody>
-							<tr ng-repeat="x in logros">
-								<td><img ng-src="{{x.sprite}}"></td>
-								<td>{{ x.tituloLogro }}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-
-			<!--TALENTOS-->
-			<div id="tal" class="div-panel" style="background: url('images/iconos/talentos2.png')">
-				<p class="capaSup titulo-botonera">
-					Talentos
-				</p>
-			</div>
-
-			<!--PERSONAJE-->
-			<div id="per" class="div-panel" style="background: url('images/iconos/personaje2.png')">
-				<p class="capaSup titulo-botonera">
-					Personaje
-				</p>
-
-				<div align="left" style="width: 49px; position: absolute; margin-top: 42px; margin-left: 12px">
-					<div id="PJsombrero" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJtorso" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJpantalon" class="itemP">
-						<img src="../data/sprites/items/empty.png">
-					</div>
-					<div id="PJzapatos" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJbrazo" class="itemP">
-                        <img src="data/sprites/items/empty.png">
+			<div id="todoHUD" style="display:none;">
+                <div id="hudSuperior" class="capaSup">
+                    <!--img src="images/iconos/circuloNivel.png" style="float: left; width: 68px; height: 68px;"-->
+                    <div class="nivelPJ">
+                        <b><span id="PJnivel">1</span></font>
+                        <br>
+                        Nivel</b>
                     </div>
 
-				</div>
+                    <div class="progress" style="margin: 5px 0 0 75px;width: 200px">
+                        <div id="PJenergia" class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="60"
+                        aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
 
-				<!--CANVAS PERSONAJE-->
-				<canvas id="PJimage" width="32" height="48" style="position: absolute"></canvas>
-				<div id="imagenes" style="position: absolute"></div>
-				<!--FIN CANVAS PERSONAJE-->
+                        <div style="position: absolute; float: left">
+                            <b>Energia</b>
+                        </div>
+                    </div>
+                    <div class="progress" style="margin: 5px 0  0 75px;width: 200px">
+                        <div id="PJexperiencia" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                        aria-valuemax="100" style="width: 0%;"></div>
 
-				<div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
-					<div id="PJdecoracion1" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJdecoracion2" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJcapa" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJanillo" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-					<div id="PJespalda" class="itemP">
-						<img src="data/sprites/items/empty.png">
-					</div>
-				</div>
+                        <div style="position: absolute; float:left;">
+                            <b>Experiencia</b>
+                        </div>
+                    </div>
+                    <div class="gold">
+                        <img src="/images/iconos/coin.png" ><b><span id="PJoro">0</span></b>
+                    </div>
+
+                </div>
+                <!--Teclas Movil -->
+                <div id="movil" class="capaSup" style="display: none;">
+                    <div id="movil-izq">
+                        <svg height="50" width="50">
+                            <path d="M0 50 L40 25 L0 0z" fill="#00000099" transform="rotate(180 25 25)" fill-opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div id="movil-der">
+                        <svg height="50" width="50">
+                            <path d="M0 50 L40 25 L0 0z" fill="#000" fill-opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div id="movil-arr">
+                        <svg height="50" width="50">
+                            <path d="M0 50 L40 25 L0 0z" fill="#000" transform="rotate(-90 25 25)"fill-opacity="0.5"/>
+                        </svg></div>
+                    <div id="movil-aba">
+                        <svg height="50" width="50">
+                            <path d="M0 50 L40 25 L0 0z" fill="#000" transform="rotate(90 25 25)"fill-opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <div id="movil-accion">
+                        <svg height="50" width="50">
+                            <circle cx="25" cy="25" r="20" fill="#000" fill-opacity="0.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <!--HUD INFERIOR-->
+                <div id="botonera" class="capaSup" style="height: 49px; width: 261px; position: absolute; bottom: 0px">
+                    <img id="btnInve" src="images/iconos/btn_inventario.png" onclick="hud.inventario.toggle()"/>
+                    <img id="btnMisi" src="images/iconos/btn_mision.png" onclick="hud.misiones.toggle()" style="margin-left: -4px;"/>
+                    <img id="btnLogr" src="images/iconos/btn_logros.png" onclick="hud.logros.toggle()" style="margin-left: -4px;"/>
+                    <img id="btnTale" src="images/iconos/btn_talentos.png" onclick="hud.talentos.toggle()" style="margin-left: -4px;"/>
+                    <img id="btnPers" src="images/iconos/btn_personaje.png" onclick="hud.personaje.toggle()" style="margin-left: -4px;"/>
+                </div>
+                <img class="capaSup" id="audio" src="images/iconos/audio_OFF.png" style="position: absolute; bottom: 4px; right: 4px"  onclick="hud.toggleAudio()"/>
+                <a href="/"> <img class="capaSup" id="home" src="images/iconos/btn_home.png" style="position: absolute; bottom: 32px; right: 4px"/> </a>
+                <!--img class="capaSup" id="sfx" src="images/iconos/sfx_on.png" tyle="position: absolute; bottom: 4px; right: 34px"/-->
+
+                <!--INVENTARIO-->
+                <div id="inv" class="div-panel"style="background: url('images/iconos/inventario2.png')">
+                    <p class="capaSup titulo-botonera">
+                        Inventario
+                    </p>
+
+                    <div id="items" style="padding: 41px 7px 0px 9px">
+
+                    </div>
+                </div>
+
+                <!--INVENTARIO-->
+                <div id="inv" class="div-panel"style="background: url('images/iconos/inventario2.png')">
+                    <p class="capaSup titulo-botonera">
+                        Inventario
+                    </p>
+
+                    <div id="items" style="padding: 41px 7px 0px 9px">
+                        <div class="itemInv" >
+                            <img src="" title="">
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--MISIONES-->
+                <div id="mis" class="div-panel" style="background: url('images/iconos/misiones2.png')">
+                    <p class="capaSup titulo-botonera">
+                        Misiones
+                    </p>
+
+                    <div id="misiones" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px">
+                        <table>
+                            <tbody>
+                                <tr >
+                                    <td><img src="images/quest/inventario.png"/></td>
+                                    <td> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--LOGROS-->
+                <div id="log" class="div-panel" style="background: url('images/iconos/logros2.png')">
+                    <p class="capaSup titulo-botonera">
+                        Logros
+                    </p>
+
+                    <div id="items" style="margin: 43px 7px 0px 9px; overflow-y: auto; width: 293px; height: 243px">
+                        <table>
+                            <tbody>
+                                <tr >
+                                    <td><img ></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--TALENTOS-->
+                <div id="tal" class="div-panel" style="background: url('images/iconos/talentos2.png')">
+                    <p class="capaSup titulo-botonera">
+                        Talentos
+                    </p>
+                </div>
+
+                <!--PERSONAJE-->
+                <div id="per" class="div-panel" style="background: url('images/iconos/personaje2.png')">
+                    <p class="capaSup titulo-botonera">
+                        Personaje
+                    </p>
+
+                    <div align="left" style="width: 49px; position: absolute; margin-top: 42px; margin-left: 12px">
+                        <div id="PJsombrero" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+                        <div id="PJtorso" class="itemP">
+                            <img src="data/sprites/items/empty.png">
+                        </div>
+                        <div id="PJpantalon" class="itemP">
+                            <img src="../data/sprites/items/empty.png">
+                        </div>
+                        <div id="PJzapatos" class="itemP">
+                            <img src="data/sprites/items/empty.png">
+                        </div>
+                        <div id="PJbrazo" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+
+                    </div>
+
+                    <!--CANVAS PERSONAJE-->
+                    <canvas id="PJimage" width="32" height="48" style="position: absolute"></canvas>
+                    <div id="imagenes" style="position: absolute"></div>
+                    <!--FIN CANVAS PERSONAJE-->
+
+                    <div align="right" style="position: absolute; width: 49px; right: 8px; margin-top: 42px">
+                        <div id="PJdecoracion1" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+                        <div id="PJdecoracion2" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+                        <div id="PJcapa" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+                        <div id="PJanillo" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+                        <div id="PJespada" class="itemP">
+                            <img src="data/sprites/items/empty.png" ondblclick="hud.personaje.onclick(this)">
+                        </div>
+                    </div>
+                </div>
+
+                <!--ventana de amigos-->
+                <div id="ventAmigos" class="titulo-botonera capaSup" style="background-color: #FBF8EF; border: 2px solid #FF8000; margin: 176px 0 0 0; width: 176px; height: 250px;max-height: 250px; right: 0px;    overflow: auto;">
+                    <div style="background-color: #FF8000; text-align: center">
+                        <strong> Lista de Amigos </strong>
+                    </div>
+                    Conectados
+                    <div style="overflow-y: auto;"></div>
+                    Desconectados
+                    <div style="overflow-y: auto;"></div>
+                </div>
+
+                <!--MAPA-->
+                <div id="miniMap" style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
+                    <img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
+
+                    <div id=divMinimapa class="div-mapa">
+                        <img id="minimap_img" src="images/map.png" style="position:absolute; float: left;"/>
+                        <canvas id="canvasMinimap" style="position:absolute; float: left;" width="156" height="156"></canvas>
+                    </div>
+
+                </div>
+
+                <!--CHAT-->
+                <div id="ChatGame" class="capaSup" style="bottom: 0px; left:245px; right: 32px; max-height:155px; text-align: center; overflow: hidden">
+                    <audio id="ChatAudio" src="/data/sfx/blop.ogg" preload="auto"></audio>
+                    <div id="ChatGly" class="glyphicon glyphicon-comment" style="background-color: white; width: 24px; height: 16px;border-radius: 6px"></div>
+                    <div class="divChat" id="divChat" style="width: 100%;">
+
+                    </div>
+                    <button type="submit" class="btn btn-default" id="btn_enviar" onclick="chat.send()" style="float: right;">
+                        Enviar
+                    </button>
+                    <div style="overflow: hidden; padding: 0 1px 0 0">
+                        <input class="form-control" type="text"  id="msjChat" style="width: 100%">
+                    </div>
+                </div>
 			</div>
-
-			<!--ventana de amigos-->
-			<div id="ventAmigos" class="titulo-botonera capaSup" style="background-color: #FBF8EF; border: 2px solid #FF8000; margin: 176px 0 0 0; width: 176px; height: 250px;max-height: 250px; right: 0px;    overflow: auto;">
-				<div style="background-color: #FF8000; text-align: center">
-					<strong> Lista de Amigos </strong>
-				</div>
-				Conectados
-				<div style="overflow-y: auto;"></div>
-				Desconectados
-				<div style="overflow-y: auto;"></div>
-			</div>
-
-			<!--MAPA-->
-			<div id="miniMap" style="width: 176px; height: 176px; display:block; position: absolute;right: 0px;top:0px">
-				<img src="images/iconos/MarcoMap.png" style="position: absolute;float: left">
-
-				<div id=divMinimapa class="div-mapa">
-                    <img id="minimap_img" src="images/map.png" style="position:absolute; float: left;"/>
-					<canvas id="canvasMinimap" style="position:absolute; float: left;" width="156" height="156"></canvas>
-				</div>
-
-			</div>
-
-			<!--CHAT-->
-			<div id="ChatGame" ng-controller="ChatController" class="capaSup" style="bottom: 0px; left:245px; right: 32px; max-height:155px; text-align: center; overflow: hidden">
-				<div id="glyChat" class="glyphicon glyphicon-comment" style="background-color: white; width: 24px; height: 16px;border-radius: 6px"></div>
-				<div class="divChat" id="divChat" style="width: 100%;">
-					<span ng-repeat="msj in chats | orderBy: 'createdAt'"> <b ng-class=""> {{msj.nick}} : </b> {{msj.mensaje}}
-						<br>
-					</span>
-				</div>
-				<button type="submit" class="btn btn-default" id="btn_enviar" ng-click="envMsj()" style="float: right;">
-					Enviar
-				</button>
-				<div style="overflow: hidden; padding: 0 1px 0 0">
-					<input chat="envMsj()" class="form-control" type="text" ng-model="mensaje"  id="msjChat" style="width: 100%">
-				</div>
-			</div>
-
 			<!--GAME-->
 			<div id="game-parent" style="text-align: center">
 				<div id="game"></div>
@@ -265,7 +267,29 @@
 					<span id="mision_npc" style="position: absolute; margin: 123px 0px 0px 36px">
                         <!-- Nombre NPC -->
                     </span>
-
+                    <div id="mision_espera">
+                        <svg width='120px' height='120px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-hourglass">
+                            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                            <g>
+                                <path fill="none" stroke="#f25605" stroke-width="5" stroke-miterlimit="10" d="M58.4,51.7c-0.9-0.9-1.4-2-1.4-2.3s0.5-0.4,1.4-1.4 C70.8,43.8,79.8,30.5,80,15.5H70H30H20c0.2,15,9.2,28.1,21.6,32.3c0.9,0.9,1.4,1.2,1.4,1.5s-0.5,1.6-1.4,2.5 C29.2,56.1,20.2,69.5,20,85.5h10h40h10C79.8,69.5,70.8,55.9,58.4,51.7z" class="glass"></path>
+                                <clipPath id="uil-hourglass-clip1">
+                                    <rect x="15" y="20" width="70" height="25" class="clip">
+                                        <animate attributeName="height" from="25" to="0" dur="1s" repeatCount="indefinite" vlaues="25;0;0" keyTimes="0;0.5;1"></animate>
+                                        <animate attributeName="y" from="20" to="45" dur="1s" repeatCount="indefinite" vlaues="20;45;45" keyTimes="0;0.5;1"></animate>
+                                    </rect>
+                                </clipPath>
+                                <clipPath id="uil-hourglass-clip2">
+                                    <rect x="15" y="55" width="70" height="25" class="clip">
+                                        <animate attributeName="height" from="0" to="25" dur="1s" repeatCount="indefinite" vlaues="0;25;25" keyTimes="0;0.5;1"></animate>
+                                        <animate attributeName="y" from="80" to="55" dur="1s" repeatCount="indefinite" vlaues="80;55;55" keyTimes="0;0.5;1"></animate>
+                                    </rect>
+                                </clipPath>
+                                <path d="M29,23c3.1,11.4,11.3,19.5,21,19.5S67.9,34.4,71,23H29z" clip-path="url(#uil-hourglass-clip1)" fill="#ffab00" class="sand"></path>
+                                <path d="M71.6,78c-3-11.6-11.5-20-21.5-20s-18.5,8.4-21.5,20H71.6z" clip-path="url(#uil-hourglass-clip2)" fill="#ffab00" class="sand"></path>
+                                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="180 50 50" repeatCount="indefinite" dur="1s" values="0 50 50;0 50 50;180 50 50" keyTimes="0;0.7;1"></animateTransform>
+                            </g>
+                        </svg>
+                    </div>
 					<div id="mision_txt" style="">
 
 					</div>
@@ -290,7 +314,7 @@
 		<script src="/js/dependencies/angular-route/angular-route.js"></script>
 		<script src="/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js"></script>
 		<script src="/js/dependencies/angular-toastr/dist/angular-toastr.js"></script>
-		<script src="/lib/melonJS-2.1.0.js"></script>
+		<script src="/lib/melonJS-2.2.0.js"></script>
 		<script src="/lib/plugins/debug/debugPanel.js"></script>
 		<script src="/lib/plugins/debug/particleDebugPanel.js"></script>
 		<script src="/lib/plugins/astar.js"></script>
@@ -305,9 +329,9 @@
 		<script src="/js/juego/play.js"></script>
 		<script src="/js/juego/chat.js"></script>
 		<script src="/js/juego/server.js"></script>
-		<script src="/js/juego/misiones.js"></script>
 		<script src="/js/juego/logros.js"></script>
 		<script src="/js/juego/pregunta4.js"></script>
+		<script src="/js/juego/loading.js"></script>
 		<script src="/js/helpers.js"></script>
 	</body>
 </html>

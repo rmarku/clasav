@@ -18,7 +18,6 @@ game.Player = me.Entity.extend({
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.data = settings.data;
-        console.log(settings);
         this.target_pos = new me.Vector2d(x, y);
         this.final_target_pos = new me.Vector2d(x, y);
         this.myPath = [];
@@ -258,15 +257,16 @@ game.Player = me.Entity.extend({
         //Cargo los prites de cada parte
 
         ['zapatos', 'pantalon', 'torso'].forEach(function (it) {
-
-            var i = game.items[that.data[it].item];
-            sprites.push({
-                imagen: game.sprites[i.sprite].imagen,
-                xoffset: game.sprites[i.sprite].xoffset,
-                yoffset: game.sprites[i.sprite].yoffset,
-                color: i.color,
-                zIndex: game.sprites[i.sprite].zIndex
-            });
+            if (typeof that.data[it] !== 'undefined') {
+                var i = game.items[that.data[it].item];
+                sprites.push({
+                    imagen: game.sprites[i.sprite].imagen,
+                    xoffset: game.sprites[i.sprite].xoffset,
+                    yoffset: game.sprites[i.sprite].yoffset,
+                    color: i.color,
+                    zIndex: game.sprites[i.sprite].zIndex
+                });
+            }
         });
 
         // Ordeno los sprites segun su zindex
@@ -290,5 +290,30 @@ game.Player = me.Entity.extend({
         var i = document.createElement('img');
         i.src = canvas.toDataURL();
         return i;
+    },
+
+    updateData: function () {
+        // Traigo datos del quest (si es visible en este momento o no)
+        var self = this;
+        io.socket.get('/api/personaje/' + this.data.id,
+            function (data) {
+                self.data = data;
+
+                self.renderable = new me.AnimationSheet(0, 0, {
+                    "image": self.vestir(),
+                    "framewidth": 32,
+                    "frameheight": 48,
+                    "spritewidth": 32,
+                    "spriteheight": 48
+                });
+                self.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
+                self.renderable.addAnimation('run-left', [4, 5, 6, 7], 100);
+                self.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
+                self.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
+
+                self.renderable.setCurrentAnimation(self.data.animation);
+
+                hud.update();
+            });
     }
 });

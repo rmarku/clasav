@@ -64,34 +64,19 @@ module.exports = {
         barba_color: {
             type: "string"
         },
-        oreja: {
-            model: "item_instancia"
-        },
         sombrero: {
             model: "item_instancia"
         },
-        anteojo: {
+        anillo: {
             model: "item_instancia"
         },
-        aros: {
-            model: "item_instancia"
-        },
-        colgante: {
+        espada: {
             model: "item_instancia"
         },
         torso: {
             model: "item_instancia"
         },
-        torso1: {
-            model: "item_instancia"
-        },
         capa: {
-            model: "item_instancia"
-        },
-        ala: {
-            model: "item_instancia"
-        },
-        espalda: {
             model: "item_instancia"
         },
         decoracion1: {
@@ -100,16 +85,7 @@ module.exports = {
         decoracion2: {
             model: "item_instancia"
         },
-        decoracion3: {
-            model: "item_instancia"
-        },
-        hombro: {
-            model: "item_instancia"
-        },
         brazo: {
-            model: "item_instancia"
-        },
-        cintura: {
             model: "item_instancia"
         },
         pantalon: {
@@ -122,7 +98,12 @@ module.exports = {
         experiencia: 'integer',
         oro: 'integer',
         energia: 'integer',
-        energia_max: 'integer'
+        energia_max: 'integer',
+        logros: {
+            collection: 'logro_instancia',
+            via: 'personajes',
+            required: false
+        }
     },
     afterCreate: function (newPJ, next, req) {
         // Para procesar todas las promesas que devuelven cada item create.
@@ -236,7 +217,7 @@ module.exports = {
                         .populate('mapa_generico')
                         .exec(function (err, populated_mapa_instancia) {
                         if (populated_mapa_instancia) {
-                            personaje.mapa_instancia = populated_mapa_instancia;
+                            personaje.mapa_instancia.mapa_generico = populated_mapa_instancia.mapa_generico;
                             return resolve(personaje);
                         }else{
                             return resolve(null);

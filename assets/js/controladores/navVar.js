@@ -19,6 +19,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     //FIN Variables para ALUMNOS/PROFESORES//
 
     //Variables para PROFESORES
+    $scope.alumnoActual = {};
+    $scope.logroActual = {};
 
 
     //Fin Variables para PROFESORES
@@ -51,7 +53,8 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                 $.get("/api/user/" + data.userId, function (data) {
                     $scope.user = data;
                     $scope.$apply();
-                    if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta') {
+                    if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta_remota') {
+                        $location.path('/cuenta_remota');
                         toastr.info('Completa tu información para poder jugar.');
                     }
                     $scope.$apply();
@@ -77,8 +80,17 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         $location.path('/cuenta');
     };
 
+    $scope.volver_aListaClasesProfesor = function () {
+        $scope.claseActual.activa = false;
+        $scope.$apply();
+        window.location.href = '#/clasesProfesor';
+    };
 
-
+    $scope.volver_aListaInstitucionesAdministrador = function () {
+        $scope.institucionActual.activa = false;
+        $scope.$apply();
+        window.location.href = '#/institucionesAdministrador';
+    };
 
 
 
@@ -304,8 +316,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         });
     };
     $scope.listen_to_nuevasSolicitudesDeInstituciones();
-
-    $scope.listen_to_nuevasSolicitudesDeClases();
 
     $scope.listen_to_institucionesEnEspera = function () {
 

@@ -71,7 +71,7 @@ hud = {
             }
         },
         update: function () {
-            $.getJSON("api/item/getItemsPJ", function (data) {
+            io.socket.get("/api/item/getItemsPJ", function (data) {
                 var pj = game.mainPlayer.data;
                 document.getElementById('items').innerHTML = '';
                 data.forEach(function (it) {
@@ -92,7 +92,6 @@ hud = {
                         var icono = game.sprites[item.sprite].icono;
 
                         var img = new Image();
-
                         img.onload = function () {
                             var cnv = tintImage(img, item.color);
                             //div que contiene la imagen
@@ -103,6 +102,7 @@ hud = {
                             var ic = document.createElement('img');
                             ic.setAttribute('src', cnv.toDataURL());
                             ic.setAttribute('title', item.nombre);
+                            ic.setAttribute('data', JSON.stringify(it));
 
                             div.appendChild(ic);
                             // Numero si hay maximos
@@ -112,10 +112,23 @@ hud = {
                                 div.appendChild(span);
                             }
                             document.getElementById('items').appendChild(div);
+                            ic.ondblclick = hud.inventario.onclick;
                         };
                         img.src = 'data/sprites/' + icono;
                     }
                 });
+            });
+        },
+        onclick: function () {
+            var it = JSON.parse(this.getAttribute('data'));
+
+
+            io.socket.get("/api/item/" + it.id + "/useItem", function (data) {
+                if (typeof data.err != 'undefined') {
+                    console.log('error');
+                } else if (typeof data.ok != 'undefined') {
+                    game.mainPlayer.updateData();
+                }
             });
         }
     },
@@ -186,24 +199,36 @@ hud = {
             var cuerpo = ['sombrero', 'torso', 'pantalon', 'zapatos', 'brazo', 'decoracion1', 'decoracion2', 'capa', 'anillo', 'espada'];
 
             cuerpo.forEach(function (it) {
+                var item, icono;
                 if (typeof game.mainPlayer.data[it] != 'undefined') {
-
-                    var item = game.items[game.mainPlayer.data[it].item];
-                    var icono = game.sprites[item.sprite].icono;
-
-
-                    var img = new Image();
-
-                    img.onload = function () {
-                        var cnv = tintImage(img, item.color);
-                        document.getElementById('PJ' + it).firstElementChild.src = cnv.toDataURL();
-                    };
-                    img.src = 'data/sprites/' + icono;
+                    item = game.items[game.mainPlayer.data[it].item];
+                    icono = game.sprites[item.sprite].icono;
+                } else {
+                    item = {color: 'ffffff'};
+                    icono = 'items/empty.png';
                 }
+                var img = new Image();
+                img.onload = function () {
+                    var cnv = tintImage(img, item.color);
+                    document.getElementById('PJ' + it).firstElementChild.src = cnv.toDataURL();
+                    document.getElementById('PJ' + it).firstElementChild.setAttribute('data', JSON.stringify(game.mainPlayer.data[it]));
+                };
+                img.src = 'data/sprites/' + icono;
             });
             var canvas = document.getElementById('PJimage');
             var ctx = canvas.getContext("2d");
             ctx.drawImage(game.mainPlayer.renderable.image, 0, 0);
+        },
+        onclick: function (that) {
+            var it = JSON.parse(that.getAttribute('data'));
+            if (it !== null)
+                io.socket.get("/api/item/" + it.id + "/unequipItem", function (data) {
+                    if (typeof data.err != 'undefined') {
+                        console.log('error' + data.err);
+                    } else if (typeof data.ok != 'undefined') {
+                        game.mainPlayer.updateData();
+                    }
+                });
         }
     },
 

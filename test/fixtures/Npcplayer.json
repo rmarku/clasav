@@ -18,119 +18,119 @@
         "width": "31",
         "height": "48",
         "sprite": "chris",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "Daniela",
         "width": "26",
         "height": "46",
         "sprite": "daniela",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "Divina",
         "width": "28",
         "height": "46",
         "sprite": "divina",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "Pirata",
         "width": "57",
         "height": "63",
         "sprite": "pirata",
-        "animation": "1"
+        "animation": "2"
     },
     {
         "nombre": "SraBibliotecaria",
         "width": "25",
         "height": "47",
         "sprite": "sraBibliotecaria",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "caballero",
         "width": "22",
         "height": "48",
         "sprite": "caballero",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "capitan",
         "width": "29",
         "height": "31",
         "sprite": "capitan",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "cavalier",
         "width": "29",
         "height": "45",
         "sprite": "cavalier",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "devian",
         "width": "29",
         "height": "47",
         "sprite": "devian",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "fairy",
         "width": "14",
-        "height": "26",
+        "height": "29",
         "sprite": "fairy",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "fantasmin",
         "width": "48",
         "height": "44",
         "sprite": "Fantasmin",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "gallito",
-        "width": "21",
+        "width": "23",
         "height": "18",
         "sprite": "gallito",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "gatitu",
         "width": "14",
-        "height": "27",
+        "height": "29",
         "sprite": "gatitu",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "guardia",
         "width": "31",
-        "height": "48",
+        "height": "52",
         "sprite": "guardia",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "guardib",
         "width": "21",
-        "height": "48",
+        "height": "52",
         "sprite": "guardib",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "guardic",
         "width": "21",
-        "height": "48",
+        "height": "52",
         "sprite": "guardic",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "jinete",
         "width": "92",
         "height": "80",
         "sprite": "jinete",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "libro",
@@ -151,42 +151,42 @@
         "width": "22",
         "height": "44",
         "sprite": "monja",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "monk",
         "width": "26",
-        "height": "31",
+        "height": "32",
         "sprite": "monk",
-        "animation": "1"
+        "animation": "2"
     },
     {
         "nombre": "oveja",
         "width": "32",
         "height": "23",
         "sprite": "oveja",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "peque",
         "width": "23",
         "height": "42",
         "sprite": "peque",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "franco",
         "width": "31",
         "height": "48",
         "sprite": "franco",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "puppy",
-        "width": "28",
-        "height": "21",
+        "width": "29",
+        "height": "22",
         "sprite": "puppy",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "ratica",
@@ -197,45 +197,45 @@
     },
     {
         "nombre": "roger",
-        "width": "28",
+        "width": "33",
         "height": "44",
         "sprite": "roger",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "sabio",
         "width": "22",
-        "height": "49",
+        "height": "50",
         "sprite": "sabio",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "sadako",
-        "width": "24",
-        "height": "41",
+        "width": "44",
+        "height": "42",
         "sprite": "sadako",
-        "animation": "1"
+        "animation": "9"
     },
     {
         "nombre": "vaca",
-        "width": "33",
+        "width": "32",
         "height": "25",
         "sprite": "vaca",
-        "animation": "1"
+        "animation": "3"
     },
     {
         "nombre": "melisa",
         "width": "23",
         "height": "42",
         "sprite": "melisa",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "carlos",
         "width": "31",
         "height": "49",
         "sprite": "carlos",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "novia",
@@ -249,41 +249,55 @@
         "width": "31",
         "height": "49",
         "sprite": "pitagoras",
-        "animation": "1"
+        "animation": "4"
     },
     {
         "nombre": "fibonacci",
         "width": "31",
         "height": "48",
         "sprite": "fibonacci",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "eduardo",
         "width": "22",
         "height": "49",
         "sprite": "eduardo",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "hipatia",
         "width": "25",
         "height": "50",
         "sprite": "hipatia",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "teano",
-        "width": "24",
+        "width": "25",
         "height": "46",
         "sprite": "teano",
-        "animation": "1"
+        "animation": "8"
     },
     {
         "nombre": "reneDescartes",
         "width": "23",
         "height": "48",
         "sprite": "reneDescartes",
+        "animation": "8"
+    },
+    {
+        "nombre": "charly",
+        "width": "86",
+        "height": "65",
+        "sprite": "charly",
+        "animation": "8"
+    },
+    {
+        "nombre": "dragonRojo",
+        "width": "59",
+        "height": "62",
+        "sprite": "dragonRojo",
         "animation": "1"
     }
 ]

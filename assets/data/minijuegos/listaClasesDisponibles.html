@@ -11,6 +11,7 @@
 
     </head>
     <body class="listaClases" style="background: none">
+    	<audio src='../../../data/sfx/pirate_hou.ogg' autoplay></audio>
         <div class="container-fluid" ng-controller="gameClasesController">
             <div class="text-left" style="margin: auto; padding: 0px">
 
@@ -40,8 +41,9 @@
                                             </span>
                                     </td>
                                     <td class="text-center">
-                                        <span class="fa fa-sign-in" ng-click="call_travel_by_genericClavLevelEntity(clase)" style="cursor: pointer">
-                                        </span>
+                                        <button type="button" class="btn btn-default btn-xs" ng-click="call_travel_by_genericClavLevelEntity(clase)">
+                                            <span class="fa fa-sign-in" aria-hidden="true" ></span>
+                                        </button>
                                     </td>
                                     </span>
                                 </tr>

@@ -43,7 +43,6 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         $scope.$parent.claseActual.activa = true;
         window.location.href = '#/verAlumnos';
         toastr.info('Clase Actual: '+$scope.$parent.claseActual.nombre+'.\n Recorre sus detalles en el Panel Principal.');
-
     };
 
 

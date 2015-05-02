@@ -27,7 +27,6 @@ module.exports = {
             });
         });
 
-        return ;
     },
 
     leave: function (req,res) {
@@ -47,7 +46,6 @@ module.exports = {
                 return res.send(roomName);
             }
         });
-        return ;
     },
 
     change_level: function (req,res) {
@@ -70,14 +68,13 @@ module.exports = {
 
 
 
-        ////////////////////// SI VIAJO A MAPA PRINCIPAL ///////////////////
-        if(nombre_mapaTarget == 'ciudad'){
-            Mapa_instancia.findOne({nombre:'ciudad'}).exec(function (err,mapa_instanciaLocal){
+        ////////////////////// SI VIAJO A MAPA PRINCIPAL O ALGUNO DE LOS EDIFICIOS ///////////////////
+        if(nombre_mapaTarget.indexOf('ciudad') === 0){
+            Mapa_instancia.findOne({nombre:nombre_mapaTarget}).exec(function (err,mapa_instanciaLocal){
 
                 if (err || !mapa_instanciaLocal) {
                     console.log(err);
-                    res.json(err);
-                    return;
+                    return res.json(err);
                 }
 
                 mapa_instancia = mapa_instanciaLocal;

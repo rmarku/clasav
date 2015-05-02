@@ -384,5 +384,11 @@
     <property name="spawn" value="tp_puerto"/>
    </properties>
   </object>
+  <object id="89" name="NPCPlayer" x="796" y="911" width="37" height="35">
+   <properties>
+    <property name="nombre" value="reneDescartes"/>
+    <property name="z" value="9"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
