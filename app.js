@@ -20,6 +20,7 @@
 
 // Ensure a "sails" can be located:
 (function() {
+  var newrelic = (process.env.NODE_ENV == 'production') ? require('newrelic') : true;
   var sails;
   try {
     sails = require('sails');
