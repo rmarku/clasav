@@ -12,6 +12,13 @@ var Promise = require('bluebird')
 
 module.exports.bootstrap = function (cb) {
 
+
+    var schedule = require('node-schedule');
+    Object.keys(sails.config.crontab).forEach(function (key) {
+        var val = sails.config.crontab[key];
+        schedule.scheduleJob(key, val);
+    });
+
     sails.services.passport.loadStrategies();
 
     Item.find({}).then(function (items) {
@@ -26,26 +33,28 @@ module.exports.bootstrap = function (cb) {
             });
 
         }
-        else{cb();}
-        /*
         else {
-            Misiones_x_Personaje.destroy({}).exec(function(err,mxp){
-                if (err)
-                    console.log(err);
-            });
-            Misiones.destroy({}).exec(function(err,misi){
-                if (err)
-                    console.log(err);
-            });
-            var Barrels = require('barrels');
-            var barrels = new Barrels();
-            var fixtures = barrels.data;
-            barrels.populate(['misiones'],function (err) {
-                console.log(err);
-                cb();
-            });
-            // Importar todas las misiones de nuevo :(
+            cb();
         }
-        */
+        /*
+         else {
+         Misiones_x_Personaje.destroy({}).exec(function(err,mxp){
+         if (err)
+         console.log(err);
+         });
+         Misiones.destroy({}).exec(function(err,misi){
+         if (err)
+         console.log(err);
+         });
+         var Barrels = require('barrels');
+         var barrels = new Barrels();
+         var fixtures = barrels.data;
+         barrels.populate(['misiones'],function (err) {
+         console.log(err);
+         cb();
+         });
+         // Importar todas las misiones de nuevo :(
+         }
+         */
     });
 };

@@ -156,5 +156,10 @@ var server = {
             if (typeof game.players[obj.id] !== 'undefined')
                 game.players[obj.id].updateData();
         });
+
+        io.socket.on('Player_updateInfo', function messageReceived(obj) {
+            if (game.mainPlayer.data.id === obj.id)
+                game.mainPlayer.updateData();
+        });
     }
 };
