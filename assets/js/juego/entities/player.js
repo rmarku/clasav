@@ -306,12 +306,13 @@ game.Player = me.Entity.extend({
                     "spritewidth": 32,
                     "spriteheight": 48
                 });
+
                 self.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
                 self.renderable.addAnimation('run-left', [4, 5, 6, 7], 100);
                 self.renderable.addAnimation('run-right', [8, 9, 10, 11], 100);
                 self.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
 
-                self.renderable.setCurrentAnimation(self.data.animation);
+                self.renderable.setCurrentAnimation(self.animationToUseThisFrame);
 
                 hud.update();
             });

@@ -98,12 +98,13 @@ game.PlayerEntity = game.Player.extend({
             else
                 this.direccion &= ~1;
         }
+        var ret = this._super(game.Player, 'update', [dt]);
         me.collision.check(this);
         me.game.world.sort();
 
         server.update_myPlayer();
         // Dibujo en el minimapa
         minimap.drawPointsMinimap();
-        return (this._super(game.Player, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0);
+        return ( ret);
     }
 });
