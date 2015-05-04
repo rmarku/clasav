@@ -106,5 +106,21 @@ game.PlayerEntity = game.Player.extend({
         // Dibujo en el minimapa
         minimap.drawPointsMinimap();
         return ( ret);
+    },
+    draw: function (renderer) {
+
+        this._super(game.Player, 'draw', [renderer]);
+        if (game.debug) {
+            renderer.fillStyle = 'blue';
+            var x, y;
+
+            for (y = 0; y < me.astar.grid.nodes.length; y++) {
+                for (x = 0; x < me.astar.grid.nodes[y].length; x++) {
+                    if (me.astar.grid.nodes[y][x].walkable === false)
+                        renderer.fillRect(x * me.astar.tw + 12, y * me.astar.th + 12, 8, 8);
+
+                }
+            }
+        }
     }
 });

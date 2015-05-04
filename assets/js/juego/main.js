@@ -39,7 +39,7 @@ var game = {
     claseActual: {},
     claseActualId: '',
     logo: {},
-
+    debug: false,
     nextxy: {x: 0, y: 0, direction: 0},
 
 
@@ -103,6 +103,7 @@ var game = {
         }
 
         if (document.location.hash === "#debug") {
+            this.debug = true;
             window.onReady(function () {
                 me.plugin.register(me.debug.Panel, "debug");
             });
@@ -465,7 +466,7 @@ var game = {
                 if (typeof resultado == "undefined")
                     resultado = 1;
 
-                io.socket.get('/api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado+ '&claseActualID=' + game.claseActualId,
+                io.socket.get('/api/misiones/finish?npc=' + this.npc.data.nombre + '&resultado=' + resultado + '&claseActualID=' + game.claseActualId,
                     function (data) {
                         $("#mision_espera").hide();
                         if (typeof data.txt !== 'undefined' && data.txt !== '') {

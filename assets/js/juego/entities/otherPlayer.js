@@ -9,7 +9,8 @@ game.OtherPlayer = game.Player.extend({
      */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
-        this.body.setVelocity(4.6, 4.6);
+
+        this.body.setVelocity(9.3, 9.3);
         this.body.setFriction(0, 0);
         this.id = settings.data.id;
         this.direccion = settings.data.direccion;
@@ -31,12 +32,12 @@ game.OtherPlayer = game.Player.extend({
             // Si la posicion actual es muy lejana calculo Astar
             if (this.pos.distance(this.final_target_pos) > 32 * 3) {
 
-                me.astar.init();
                 this.target_pos = this.final_target_pos.clone();
 
                 this.myPath = me.astar.search(this.pos.x, this.pos.y, this.final_target_pos.x, this.final_target_pos.y);
+                console.log(JSON.stringify(this.myPath));
                 if (this.myPath.length > 0) {
-                    this.target_pos = this.myPath.pop().pos;
+                    this.target_pos = me.astar.xy2pos(this.myPath.shift());
                     this.target_pos.x += 16;
                     this.target_pos.y += 16;
                 }
@@ -59,7 +60,7 @@ game.OtherPlayer = game.Player.extend({
             if (this.myPath.length > 0) {
 
                 if (this.pos.distance(this.target_pos) < 16) {
-                    this.target_pos = this.myPath.pop().pos;
+                    this.target_pos = me.astar.xy2pos(this.myPath.shift());
                     this.target_pos.x += 16;
                     this.target_pos.y += 16;
                 }
@@ -82,6 +83,36 @@ game.OtherPlayer = game.Player.extend({
             this.pos.x = this.final_target_pos.x;
             this.pos.y = this.final_target_pos.y;
         }
+        me.collision.check(this);
         return this.updateAnimation(dt);
+    },
+
+    onCollision: function (response, other) {
+        if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+            // Choque contra el mundo!
+            return false;
+        }
+        // Make the object solid
+        return true;
+    },
+
+    draw: function (renderer) {
+
+        //var context = renderer.getContext();
+
+        this._super(game.Player, 'draw', [renderer]);
+        if (game.debug) {
+            var pos;
+
+            for (var i = 0; i < this.myPath.length; i++) {
+                pos = me.astar.xy2pos(this.myPath[i]);
+                renderer.fillStyle = 'white';
+                renderer.fillRect(pos.x + 16 - 5, pos.y + 16 - 5, 10, 10);
+                renderer.fillStyle = 'red';
+                renderer.fillRect(pos.x + 16, pos.y + 16, 1, 1);
+            }
+            renderer.fillStyle = 'blue';
+            renderer.fillRect(this.pos.x + 12, this.pos.y + 7, 2, 2);
+        }
     }
 });

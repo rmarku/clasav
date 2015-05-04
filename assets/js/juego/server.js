@@ -131,7 +131,6 @@ var server = {
             if (typeof game.players[obj.id] !== 'undefined') {
                 game.players[obj.id].last_animation = obj.animation;
                 game.players[obj.id].nextNode(new me.Vector2d(obj.x, obj.y));
-                game.players[obj.id].updateBounds();
             } else if (!server.pullingPJ) {
                 server.pullingPJ = true;
                 io.socket.get('/api/personaje/' + obj.id,
