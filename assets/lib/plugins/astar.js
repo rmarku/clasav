@@ -53,8 +53,6 @@
         this.tw = me.game.currentLevel.tilewidth / granularity;
         this.th = me.game.currentLevel.tileheight / granularity;
 
-        var start = new Date().getTime();
-
         var set = {
             width: this.tw,
             height: this.th,
@@ -95,7 +93,6 @@
                 }
             }
         }
-        console.log('tardo ' + (new Date().getTime() - start ));
     };
 
     AStarInstance.prototype.search = function (x0, y0, x1, y1) {
@@ -104,13 +101,7 @@
             allowDiagonal: false,
             dontCrossCorners: true
         });
-        var start = new Date().getTime();
         var pGrid = new PF.Grid(this.grid);
-        console.log('tardo ' + (new Date().getTime() - start ));
-         start = new Date().getTime();
-        var pGrid2 = pGrid.clone();
-        console.log('tardo ' + (new Date().getTime() - start ));
-
         var path = finder.findPath(~~(x0 / this.tw), ~~(y0 / this.th), ~~(x1 / this.tw), ~~(y1 / this.th), pGrid);
         return path;
         //return PF.Util.smoothenPath(path, pGrid);

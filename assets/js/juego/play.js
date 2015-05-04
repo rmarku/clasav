@@ -40,6 +40,7 @@ game.PlayScreen = me.ScreenObject.extend({
                     var map = me.game.currentLevel;
 
                     minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
+                    io.socket.get('/api/personaje', {conectado: true}, chat.getList);
                     //me.event.subscribe(me.event.LEVEL_LOADED, game.change_level);
                 });
             } else {
