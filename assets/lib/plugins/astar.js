@@ -76,28 +76,26 @@
         var objects;
 
         var x, y, i;
-        var grid = Array(this.rows);
+        this.grid = Array(this.rows);
 
 
         for (y = 0; y < rows; y++) {
             ent.pos.y = this.th * y;
-            grid[y] = Array(this.cols);
+            this.grid[y] = Array(this.cols);
             for (x = 0; x < cols; x++) {
                 ent.pos.x = this.tw * x;
-                grid[y][x] = 0;
+                this.grid[y][x] = 0;
                 bound.pos.x = x;
                 bound.pos.y = y;
                 objects = qt.retrieve(ent);
-                console.log(objects.length);
                 for (i = 0; i < objects.length; i++) {
                     if (objects[i].body.collisionType == me.collision.types.WORLD_SHAPE &&
                         ent.overlaps(objects[i].getBounds()))
-                        grid[y][x] = 1;
+                        this.grid[y][x] = 1;
                 }
             }
         }
         console.log('tardo ' + (new Date().getTime() - start ));
-        this.grid = new PF.Grid(grid);
     };
 
     AStarInstance.prototype.search = function (x0, y0, x1, y1) {
@@ -106,7 +104,13 @@
             allowDiagonal: false,
             dontCrossCorners: true
         });
-        var pGrid = this.grid.clone();
+        var start = new Date().getTime();
+        var pGrid = new PF.Grid(this.grid);
+        console.log('tardo ' + (new Date().getTime() - start ));
+         start = new Date().getTime();
+        var pGrid2 = pGrid.clone();
+        console.log('tardo ' + (new Date().getTime() - start ));
+
         var path = finder.findPath(~~(x0 / this.tw), ~~(y0 / this.th), ~~(x1 / this.tw), ~~(y1 / this.th), pGrid);
         return path;
         //return PF.Util.smoothenPath(path, pGrid);

@@ -114,9 +114,9 @@ game.PlayerEntity = game.Player.extend({
             renderer.fillStyle = 'blue';
             var x, y;
 
-            for (y = 0; y < me.astar.grid.nodes.length; y++) {
-                for (x = 0; x < me.astar.grid.nodes[y].length; x++) {
-                    if (me.astar.grid.nodes[y][x].walkable === false)
+            for (y = 0; y < me.astar.grid.length; y++) {
+                for (x = 0; x < me.astar.grid.length; x++) {
+                    if (me.astar.grid[y][x] === 1)
                         renderer.fillRect(x * me.astar.tw + 12, y * me.astar.th + 12, 8, 8);
 
                 }
