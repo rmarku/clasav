@@ -207,19 +207,19 @@ module.exports = {
             var npc_promises = [];
             var npc_changed = [];
 
-            if(misi.logro){
-                console.log("misi: ",misi);
-                console.log("claseactual: ",claseActualID);
+            if (misi.logro) {
+                console.log("misi: ", misi);
+                console.log("claseactual: ", claseActualID);
                 npc_promises.push(new Promesa(function (resolve, reject) {
                     //Buscamos el logro_instancia que se corresponde con el generico, y a su vez con la clase actual del personaje
                     Logro_instancia.find({
                         nombre: misi.logro.nombre,
-                        clase:claseActualID
+                        clase: claseActualID
                     }).exec(function cb(err, logro_instancia) {
-                        if(err || !logro_instancia || logro_instancia.length === 0){
+                        if (err || !logro_instancia || logro_instancia.length === 0) {
                             return reject('No se encontro el logro_instancia :(');
                         }
-                        console.log("se agrego logro_instancia a pj:",logro_instancia);
+                        console.log("se agrego logro_instancia a pj:", logro_instancia);
                         pj.logros.add(logro_instancia[0].id);
                         return resolve(logro_instancia[0]);
                     });
@@ -257,14 +257,16 @@ module.exports = {
                                 npc_changed.push(npc.id);
 
                                 mxp.qorder = valor.qorder;
-                                mxp.save();
-                                return resolve(npc);
+                                mxp.save(function (err, saved) {
+                                    return resolve(npc);
+                                });
                             });
                         });
                     }));
                 }
             });
             Promesa.all(npc_promises).then(function () {
+                pj.mapa_instancia = pj.mapa_instancia.id;
                 pj.save();
                 return res.json({result: 'si', txt: misi.paso, cerrar: !misi.no_cerrar, npcs: npc_changed});
             });

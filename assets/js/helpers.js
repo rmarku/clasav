@@ -100,7 +100,7 @@ function logError(details) {
     });
 }
 
-window.onerror = function(message, file, line) {
-    logError(file + ':' + line + '\n\n' + message);
+window.onerror = function(message, file, line,column, errorObj) {
+    logError(file + ':' + line + '\n\n' + message+ '\nColumn: ' + column + '\nStackTrace: ' +  errorObj);
     return false;
 };

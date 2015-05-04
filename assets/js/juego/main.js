@@ -2,29 +2,24 @@
  *
  * Primeras pruebas
  */
-var app = angular.module('juegoapl', ['ngSailsBind', 'toastr']);
 
-app.config(['toastrConfig', function (toastrConfig) {
-    angular.extend(toastrConfig, {
-        allowHtml: true,
-        closeButton: false,
-        closeHtml: '<button>&times;</button>',
-        containerId: 'toast-container',
-        extendedTimeOut: 1000,
-        iconClasses: {
-            error: 'toast-error',
-            info: 'toast-info',
-            success: 'toast-success',
-            warning: 'toast-warning'
-        },
-        messageClass: 'toast-message',
-        positionClass: 'toast-bottom-right',
-        tapToDismiss: true,
-        timeOut: 7000,
-        titleClass: 'toast-title',
-        toastClass: 'toast'
-    });
-}]);
+toastr.options = {
+    closeButton: false,
+    debug: false,
+    newestOnTop: false,
+    progressBar: false,
+    positionClass: "toast-top-right",
+    preventDuplicates: false,
+    onclick: null,
+    showDuration: 300,
+    hideDuration: 1000,
+    timeOut: 5000,
+    extendedTimeOut: 1000,
+    showEasing: "swing",
+    hideEasing: "linear",
+    showMethod: "fadeIn",
+    hideMethod: "fadeOut"
+};
 
 
 var game = {

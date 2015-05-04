@@ -30,15 +30,7 @@ $(function () {
         var el = $('#divChat');
 
         el.append('<span><b>' + obj.pj + ': </b>' + chat.texto(obj.msg) + '<br></span>')
-            .animate({scrollTop: el[0].scrollHeight}, 1000);
-        document.getElementById('ChatAudio').play();
-    });
-
-    io.socket.on('chat_msg', function messageReceived(obj) {
-        var el = $('#divChat');
-
-        el.append('<span><b>' + obj.pj + ': </b>' + chat.texto(obj.msg) + '<br></span>')
-            .animate({scrollTop: el[0].scrollHeight}, 1000);
+            .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
         document.getElementById('ChatAudio').play();
     });
 
@@ -72,7 +64,7 @@ chat = {
                     if (typeof data.ok !== 'undefined') {
                         var el = $('#divChat');
                         el.append('<span><b style="color: #334477;">' + game.mainPlayer.data.nombre + ': </b>' + chat.texto(msg) + '<br></span>')
-                            .animate({scrollTop: el[0].scrollHeight}, 1000);
+                            .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
                     }
                 });
     },
