@@ -52,7 +52,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
                 $.get("/api/user/" + data.userId, function (data) {
                     $scope.user = data;
-                    $scope.$apply();
                     if (angular.isUndefined(data.sexo) && $location.path() != '/cuenta_remota') {
                         $location.path('/cuenta_remota');
                         toastr.info('Completa tu información para poder jugar.');

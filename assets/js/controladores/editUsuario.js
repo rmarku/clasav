@@ -132,6 +132,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
                 if (typeof data.loguedin != "undefined") {
                     $scope.$parent.getUser().then(function (data) {
+
                         setTimeout(function () {
                             if ($scope.usuario.tipo == 'alumno') {
                                 window.location.href = '#/personaje';
@@ -144,8 +145,8 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                             if ($scope.usuario.tipo == 'administrador') {
                                 window.location.href = '#/institucionesAdministrador';
                             }
-                            location.reload();
                             toastr.info('Cuenta Creada!');
+
 
                         }, 2000);
                     });

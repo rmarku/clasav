@@ -82,7 +82,21 @@ exports.register = function (req, res, next) {
         });
       }
 
-      next(null, user);
+        /*
+        //Asociamos institucion por default
+        if(tipo == "profesor"){
+            Institucion.find({name:"Juan Bosco","direccion": "Pueyrredon 15"}.exec(function cb(err,institucion){
+                user.instituciones.add(institucion[0].id);
+                user.save(function(err,res){
+                    next(null, user);
+                });
+            }));
+        }
+        else{
+            next(null, user);
+        }
+        */
+        next(null, user);
     });
   });
 };
