@@ -169,8 +169,8 @@ module.exports = {
                                 energia: 100,
                                 energia_max: 100,
                                 experiencia: 0,
-                                x:2200,
-                                y:3100
+                                x:1216, //2200
+                                y:992 //3100
                                 //Agregar x e y inicial
                             }).exec(function afterUpdate(err, updated){
                                 /////////////////////AGREGO PERSONJAE A LA CLASE MATEMATICAS: para que por defevto pieda entrar a island////
