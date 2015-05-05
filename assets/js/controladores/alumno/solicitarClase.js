@@ -3,6 +3,9 @@
  */
 app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
+    if($scope.$parent.clasesCargadas === false){
+        window.location.href = '#/clasesAlumno';
+    }
 
     $scope.get_instituciones = function () {
         $.get('/api/institucion/get_institucionesConProfesores', function (local_instituciones) {
@@ -39,13 +42,14 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
     //Quitamos todas las clases en las cuales ya enviamos algun tipo de solicitud
     $scope.quitarClasesSolicitadas = function (clases) {
 
+        var clasesToReturn = [];
         for (var y = 0; y < clases.length; y++) {
 
-            if($scope.claseIdExiste(clases[y].id) === true){
-                clases.splice(y, 1);
+            if($scope.claseIdExiste(clases[y].id) === false){
+                clasesToReturn.push(clases[y]);
             }
         }
-        return clases;
+        return clasesToReturn;
     };
 
 
@@ -54,23 +58,20 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
         for (var y = 0; y < $scope.$parent.misClases.length; y++) {
 
             if($scope.$parent.misClases[y].id == id){
-               // $scope.clases.splice(y, 1);
                 return true;
             }
         }
 
         for (var x = 0; x < $scope.$parent.misClasesSituacionEspera.length; x++) {
 
-            if($scope.$parent.misClases[x].id == id){
-              //  $scope.clases.splice(x, 1);
+            if($scope.$parent.misClasesSituacionEspera[x].id == id){
                 return true;
             }
         }
 
         for (var w = 0; w < $scope.$parent.misClasesSituacionRechazado.length; w++) {
 
-            if($scope.$parent.misClases[w].id == id){
-              //  $scope.clases.splice(w, 1);
+            if($scope.$parent.misClasesSituacionRechazado[w].id == id){
                 return true;
             }
         }
