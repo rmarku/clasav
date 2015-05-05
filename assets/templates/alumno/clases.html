@@ -5,11 +5,11 @@
 
         <div class="page-header" align="center" style="margin-top: 0px">
             <b class="titulos">
-                Clases Actuales
+                Clases
             </b>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid" ng-show="$parent.misClases.length > 0">
             <div class="row">
                 <div >
                     <br>
@@ -54,7 +54,7 @@
         </div>
         <br>
         <br>
-        <div class="page-header" align="center" style="margin-top: 0px">
+        <div class="page-header" align="center" style="margin-top: 0px" ng-show="$parent.misClasesSituacionEspera.length > 0">
             <b class="titulos">
                 Clases en Espera de Confirmación
             </b>
@@ -64,7 +64,7 @@
             <button class="btn btn-default btn-align" ng-click="solicitarClase()">Solicitar Clase</button>
         </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid" ng-show="$parent.misClasesSituacionEspera.length > 0">
             <div class="row">
                 <div >
                     <br>

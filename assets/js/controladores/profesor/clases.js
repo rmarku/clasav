@@ -41,8 +41,15 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
     $scope.set_claseActual = function (index) {
         $scope.$parent.claseActual = $scope.$parent.misClases[index];
         $scope.$parent.claseActual.activa = true;
-        window.location.href = '#/verAlumnos';
-        toastr.info('Clase Actual: '+$scope.$parent.claseActual.nombre+'.\n Recorre sus detalles en el Panel Principal.');
+
+        if($scope.$parent.claseActual.users_situacionAceptado.length > 0){
+            window.location.href = '#/verAlumnos';
+        }
+        else{
+            window.location.href = '#/verSolicitudes';
+        }
+
+        toastr.info('Clase Actual: '+$scope.$parent.claseActual.nombre);
     };
 
 

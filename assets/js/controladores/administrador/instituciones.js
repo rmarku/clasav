@@ -15,7 +15,7 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
         $scope.$parent.institucionActual        = $scope.$parent.misInstituciones[index];
         $scope.$parent.institucionActual.activa = true;
         window.location.href = '#/verProfesores';
-        toastr.info('Institución Actual: '+$scope.$parent.institucionActual.nombre+'.\n Recorre sus detalles en el Panel Principal.');
+        toastr.info('Institución Actual: '+$scope.$parent.institucionActual.nombre);
 
     };
 

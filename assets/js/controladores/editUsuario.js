@@ -19,7 +19,8 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         departamento: '',
         password: '',
         password2: '',
-        local: true
+        local: true,
+        tipo: ''
     };
 
     var lang = {
@@ -76,44 +77,43 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         if ($scope.editar) {  // Voy a editar una cuenta
 
             $.post("/api/user/" + $scope.usuario.id, $scope.usuario, function (data) {
-
                 if ($scope.usuario.tipo == 'alumno') {
 
                     $.get('/api/personaje?where={"duenio":"' + $scope.usuario.id + '"}', function (data) {
                         console.log(data);
                         if (data.lenght > 0) {
-                            toastr.info('Datos actualizados!!!!');
-                            location.reload();
                             setTimeout(function () {
                                 $location.path('/');
-                                //hacer algo aca para que dentro de las pestas aparezca "juego"
+                                location.reload();
+                                toastr.info('Datos actualizados');
                             }, 1000);
                         } else {
-                            toastr.info('Datos actualizados');
                             setTimeout(function () {
                                 window.location.href = '#/personaje';
-                                location.reload();
+                                toastr.info('Datos actualizados. Ahora crea tu personaje!');
                             }, 2000);
                         }
                     });
                 }
-                else
-                if ($scope.usuario.tipo == 'profesor') {
-                    window.location.href = '#/clasesProfesor';
+                else {
+                    if ($scope.usuario.tipo == 'profesor') {
+                        window.location.href = '#/clasesProfesor';
+                    }
+                    else if ($scope.usuario.tipo == 'administrador') {
+                        window.location.href = '#/institucionesAdministrador';
+                    }
                     location.reload();
-                }
-                else
-                if ($scope.usuario.tipo == 'administrador') {
-                    window.location.href = '#/institucionesAdministrador';
-                    location.reload();
+                    toastr.info('Datos actualizados');
                 }
             });
+
         } else {   // Voy a crear una nueva cuenta.
 
             if ($scope.usuario.password === '') {
                 toastr.error('Contraseña no valida');
             }
 
+            toastr.info('Creando Cuenta...');
             var req = $http({
                 method: 'POST',
                 url: "/auth/local/register",
@@ -145,8 +145,8 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
                             if ($scope.usuario.tipo == 'administrador') {
                                 window.location.href = '#/institucionesAdministrador';
                             }
+                            location.reload();
                             toastr.info('Cuenta Creada!');
-
 
                         }, 2000);
                     });
