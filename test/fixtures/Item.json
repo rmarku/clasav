@@ -97,5 +97,41 @@
 		"maximo": "3",
 		"sprite": "2",
 		"color": "#F5A9E1"
+	}, {
+		"nombre": "Bola de Estambre",
+		"tipo_item": "quest",
+		"maximo": "1",
+		"sprite": "15",
+		"color": "#ffffff"
+	}, {
+		"nombre": "Espina de Pez",
+		"tipo_item": "quest",
+		"maximo": "1",
+		"sprite": "16",
+		"color": "#ffffff"
+	}, {
+		"nombre": "nota biblioteca",
+		"tipo_item": "quest",
+		"maximo": "1",
+		"sprite": "17",
+		"color": "#ffffff"
+	}, {
+		"nombre": "nota escuela",
+		"tipo_item": "quest",
+		"maximo": "1",
+		"sprite": "17",
+		"color": "#ffffff"
+	}, {
+		"nombre": "botella leche",
+		"tipo_item": "quest",
+		"maximo": "1",
+		"sprite": "18",
+		"color": "#ffffff"
+	}, {
+		"nombre": "nota melisa",
+		"tipo_item": "quest",
+		"maximo": "1",
+		"sprite": "17",
+		"color": "#ffffff"
 	}
 ]

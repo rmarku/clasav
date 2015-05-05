@@ -83,5 +83,29 @@
 		"xoffset": 0,
 		"yoffset": 0,
 		"zIndex": 10
+	}, {
+		"imagen": "shirt.png",
+		"icono": "items/nep/bolaEstambre.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "shirt.png",
+		"icono": "items/nep/espinaPez.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "shirt.png",
+		"icono": "items/nep/nota.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
+	}, {
+		"imagen": "shirt.png",
+		"icono": "items/nep/botellaLeche.png",
+		"xoffset": 0,
+		"yoffset": 0,
+		"zIndex": 10
 	}
 ]
