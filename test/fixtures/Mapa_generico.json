@@ -40,5 +40,9 @@
     {
         "nombre"    : "matematica",
         "tipo"      :"central"
+    },
+    {
+        "nombre"    : "argentina",
+        "tipo"      :"central"
     }
 ]
