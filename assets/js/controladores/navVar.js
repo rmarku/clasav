@@ -264,6 +264,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     return;
                 }
             });
+            toastr.info('Tienes una nueva solicitud a una clase.');
         });
     };
     $scope.listen_to_nuevasSolicitudesDeClases();
@@ -297,6 +298,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     }
                 }
             }
+            toastr.info('Respondieron tu solicitud a una clase.');
         });
     };
 
@@ -312,6 +314,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     return;
                 }
             });
+            toastr.info('Tienes una nueva solicitud de Institución.');
         });
     };
     $scope.listen_to_nuevasSolicitudesDeInstituciones();
@@ -345,6 +348,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     }
                 }
             }
+            toastr.info('Respondieron tu solicitud de institución.');
         });
     };
 

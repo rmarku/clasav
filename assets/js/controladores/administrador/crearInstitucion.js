@@ -6,7 +6,6 @@ app.controller('crearInstitucionController', ['$scope', '$rootScope', "toastr",'
     $scope.institucion_nueva = {};
 
     $scope.subirInstitucion = function () {
-        toastr.info('Enviando solicitud...');
 
         io.socket.get("/api/institucion/crearInstitucionAdministrador",
             {
