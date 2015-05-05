@@ -165,17 +165,18 @@ module.exports = {
                                 torso: items[1],
                                 zapatos: items[2],
                                 nivel: 1,
+                                animation: "run-down",
                                 oro: 0,
                                 energia: 100,
                                 energia_max: 100,
                                 experiencia: 0,
-                                x:1216, //2200
-                                y:992 //3100
+                                x: 1216, //2200
+                                y: 992 //3100
                                 //Agregar x e y inicial
-                            }).exec(function afterUpdate(err, updated){
+                            }).exec(function afterUpdate(err, updated) {
                                 /////////////////////AGREGO PERSONJAE A LA CLASE MATEMATICAS: para que por defevto pieda entrar a island////
                                 var userID = newPJ.duenio;
-                                Clase.findOne({nombre:'Matematicas'}).populate('users').exec(function afterwards(err,clase){
+                                Clase.findOne({nombre: 'Matematicas'}).populate('users').exec(function afterwards(err, clase) {
                                     if (err) {
                                         console.log(err);
                                         res.json(err);
@@ -183,19 +184,19 @@ module.exports = {
                                     }
                                     clase.users.add(userID);
                                     clase.save(function (err) {
-                                        if(err){
+                                        if (err) {
                                             console.log(err);
                                             res.json(err);
                                             return;
                                         }
                                         //Crear la relacion clase_x_user para conocer la situacion actual y futura de la condicion del solicitante
-                                        Clase_x_user.create({user:userID, clase:clase.id, situacion:"aceptado"}).exec(next);
+                                        Clase_x_user.create({user: userID, clase: clase.id, situacion: "aceptado"}).exec(next);
                                         ///////////////////// fin AGREGO PERSONJAE A LA CLASE MATEMATICAS: para que por defevto pieda entrar a island////
 
                                     });
                                 });
                             });
-                      }
+                    }
                 }
             }).catch(function (err) {
                 sails.log.error(err);
@@ -216,13 +217,13 @@ module.exports = {
                     Mapa_instancia.findOne({mapa_generico: personaje.mapa_instancia.mapa_generico})
                         .populate('mapa_generico')
                         .exec(function (err, populated_mapa_instancia) {
-                        if (populated_mapa_instancia) {
-                            personaje.mapa_instancia.mapa_generico = populated_mapa_instancia.mapa_generico;
-                            return resolve(personaje);
-                        }else{
-                            return resolve(null);
-                        }
-                    });
+                            if (populated_mapa_instancia) {
+                                personaje.mapa_instancia.mapa_generico = populated_mapa_instancia.mapa_generico;
+                                return resolve(personaje);
+                            } else {
+                                return resolve(null);
+                            }
+                        });
                 } else {
                     return resolve(null);
                 }
