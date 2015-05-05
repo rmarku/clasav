@@ -282,7 +282,7 @@ var game = {
                 data: data
             }
         );
-        me.game.world.addChild(game.players[data.id], 10);
+        me.game.world.addChild(game.players[data.id], 6);
     }
     ,
 

@@ -88,7 +88,8 @@ game.OtherPlayer = game.Player.extend({
     },
 
     onCollision: function (response, other) {
-        if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
+        if (other.body.collisionType === me.collision.types.NPC_OBJECT ||
+            other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
             // Choque contra el mundo!
             return false;
         }
