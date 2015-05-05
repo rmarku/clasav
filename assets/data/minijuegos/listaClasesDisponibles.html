@@ -1,115 +1,101 @@
 <!DOCTYPE html>
 <html ng-app="gameClasesApp">
-    <head>
-        <script src="/js/dependencies/angular/angular.js"></script>
-        <script src="/js/dependencies/jquery/dist/jquery.js"></script>
-        <script src="/js/juego/main.js"></script>
-        <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/styles/comun.css">
-        <link rel="stylesheet" href="/styles/importer.css">
-        <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.css">
+	<head>
+		<script src="/js/dependencies/angular/angular.js"></script>
+		<script src="/js/dependencies/jquery/dist/jquery.js"></script>
+		<script src="/js/juego/main.js"></script>
+		<link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
+		<style>
+			.btn-default {
+				color: #b8111f;
+				border-color: #b8111f;
+				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(184, 17, 31, .6);
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(184, 17, 31, .6)
+			}
+			.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+				background-color: #D82C3B;
+				border-color: #b8111f;
+				color: #D8D22C;
+			}
+			table {
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 12px;
+			}
+		</style>
 
-    </head>
-    <body class="listaClases" style="background: none">
-    	<audio src='../../../data/sfx/pirate_hou.ogg' autoplay></audio>
-        <div class="container-fluid" ng-controller="gameClasesController">
-            <div class="text-left" style="margin: auto; padding: 0px">
+	</head>
+	<body style="background: none">
+		<audio src='../../../data/sfx/pirate_hou.ogg' autoplay></audio>
+		<div ng-controller="gameClasesController">
+			<div class="text-left" style="margin: auto; padding: 0px">
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div >
-                            <br>
-                            <table class="table table-striped table-hover table" style="width: 100%">
-                                <thead>
-                                <tr>
-                                    <th>Clase</th>
-                                    <th class="text-center" style="width: 120px">Mapa Central</th>
-                                    <th class="text-center" style="width: 100px">Ingresar</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="clase in misClases">
-                                    </span>
-                                    <td>
-                                            <span>
-                                                {{ clase.nombre}}
-                                            </span>
-                                    </td>
-                                    <td class="text-center">
-                                            <span>
-                                                {{ clase.mapaCentral.nombre}}
-                                            </span>
-                                    </td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-default btn-xs" ng-click="call_travel_by_genericClavLevelEntity(clase)">
-                                            <span class="fa fa-sign-in" aria-hidden="true" ></span>
-                                        </button>
-                                    </td>
-                                    </span>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+				<table style="width: 100%; background-color: white; border-radius: 10px">
+					<thead>
+						<tr>
+							<th>Clase</th>
+							<th style="width: 120px">Mapa Central</th>
+							<th style="width: 100px">Ingresar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="clase in misClases">
+							<td><span> {{ clase.nombre}} </span></td>
+							<td class="text-center"><span> {{ clase.mapaCentral.nombre}} </span></td>
+							<td align="center"><span class="fa fa-sign-in" aria-hidden="true" type="button"
+							ng-click="call_travel_by_genericClavLevelEntity(clase)" style="cursor: pointer; color: red"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
 
-                    </div>
-                </div>
+	<script>
+		var app = angular.module('gameClasesApp', []);
 
-            </div>
-        </div>
-    </body>
+		app.controller('gameClasesController', ['$scope',
+		function($scope) {
 
-    <script>
+			///////////////////// DEFINIMOS LAS CLASES DE LA LISTA //////////////////////
+			//Clonamos la lista de clases del juego
+			$scope.misClases = JSON.parse(JSON.stringify(parent.game.misClases));
 
-        var app = angular.module('gameClasesApp', []);
+			var mapaInstanciaActualID = parent.game.mainPlayer.data.mapa_instancia.id;
 
-        app.controller('gameClasesController',['$scope', function($scope) {
+			if (parent.me.game.currentLevel.name != 'ciudad') {
+				//Quito como destino la clase en la que me encuentro actualmente
+				for (var x = 0; x < $scope.misClases.length; x++) {
+					var clase = $scope.misClases[x];
 
-            ///////////////////// DEFINIMOS LAS CLASES DE LA LISTA //////////////////////
-            //Clonamos la lista de clases del juego
-            $scope.misClases=JSON.parse(JSON.stringify(parent.game.misClases));
+					if (clase.mapaCentral.id == mapaInstanciaActualID) {
+						$scope.misClases.splice(x, 1);
+						break;
+					}
+				}
+				$scope.misClases.push({
+					nombre : "Mapa principal",
+					mapaCentral : {
+						nombre : "ciudad"
+					}
+				});
+			}
+			///////////////////// FIN DEFINIMOS LAS CLASES DE LA LISTA //////////////////////
 
-            var mapaInstanciaActualID = parent.game.mainPlayer.data.mapa_instancia.id;
+			$scope.call_travel_by_genericClavLevelEntity = function(claseToGo) {
 
-            if(parent.me.game.currentLevel.name != 'ciudad'){
-                //Quito como destino la clase en la que me encuentro actualmente
-                for(var x=0; x< $scope.misClases.length ; x++){
-                    var clase =  $scope.misClases[x];
+				parent.game.claseActualId = claseToGo.id;
+				parent.game.mision.cancelar();
+				//Solo para cerrar la ventana de mision
 
-                    if(clase.mapaCentral.id == mapaInstanciaActualID){
-                        $scope.misClases.splice(x, 1);
-                        break;
-                    }
-                }
-                $scope.misClases.push(
-                    {
-                        nombre: "Mapa principal",
-                        mapaCentral:
-                            {
-                                nombre: "ciudad"
-                            }
-                    }
-                );
-            }
-            ///////////////////// FIN DEFINIMOS LAS CLASES DE LA LISTA //////////////////////
+				var data = {
+					to : claseToGo.mapaCentral.nombre,
+					spawn : "tp_puerto"
+				};
 
+				parent.game.travel_by_genericClavLevelEntity(data);
 
+			}
+		}]);
 
-            $scope.call_travel_by_genericClavLevelEntity = function (claseToGo) {
-
-                parent.game.claseActualId = claseToGo.id;
-                parent.game.mision.cancelar();//Solo para cerrar la ventana de mision
-
-
-                var data =
-                {
-                    to:     claseToGo.mapaCentral.nombre,
-                    spawn:  "tp_puerto"
-                };
-
-                parent.game.travel_by_genericClavLevelEntity(data);
-
-            }
-        }]);
-
-    </script>
+	</script>
 </html>
