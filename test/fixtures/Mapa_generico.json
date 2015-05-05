@@ -14,10 +14,6 @@
         "tipo"      :"central"
     },
     {
-        "nombre"    : "matematica",
-        "tipo"      :"central"
-    },
-    {
         "nombre"        :"ciudad_items",
         "tipo"          :"secundario"
     },
@@ -40,5 +36,9 @@
     {
         "nombre"        :"ciudad_taberna",
         "tipo"          :"secundario"
+    },
+    {
+        "nombre"    : "matematica",
+        "tipo"      :"central"
     }
 ]

@@ -15,7 +15,7 @@
                     <br>
 
                     <table class="table table-striped table-hover table" style="width: 100%">
-                        <thead>
+                        <thead ng-show="$parent.institucionActual.profesores_situacionAceptado.length > 0">
                             <tr>
                                 <th>Profesor</th>
                                 <th>E-mail</th>
@@ -33,6 +33,13 @@
                                      <span>
                                         {{user.email}}
                                       </span>
+                                </td>
+                            </tr>
+                            <tr ng-if="$parent.institucionActual.profesores_situacionAceptado.length < 1">
+                                <td  class="text-center">
+                                  <span >
+                                     No existen profesores en esta clase
+                                  </span>
                                 </td>
                             </tr>
                         </tbody>
