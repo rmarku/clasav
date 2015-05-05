@@ -377,11 +377,14 @@ var game = {
             $("#mision_salir").hide();
             $("#mision_espera").show();
             $("#mision_txt").html('');
+            $("#mision_npc").html(npc.data.nombre);
+
             this.npc = npc;
             io.socket.get('/api/misiones/gettxt?npc=' + npc.data.nombre,
                 function (data) {
                     // Si no hay error,
                     if (!data.err) {
+                        $("#mision").fadeIn(600);
                         $("#mision_espera").hide();
                         // Si hay pregunta, muestro boton de siguiente y cancelar
                         $("#mision_titulo").html(data.titulo);
@@ -420,8 +423,6 @@ var game = {
                     }
                 });
 
-            $("#mision_npc").html(npc.data.nombre);
-            $("#mision").fadeIn(600);
 
             // Doy de baja el evento de la tecla
             me.input.triggerKeyEvent(me.input.KEY.SPACE, false);

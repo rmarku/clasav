@@ -20,6 +20,7 @@ game.NPCPlayer = me.Entity.extend({
 
                 self.alwaysUpdate = false;
                 self.body.gravity = 0;
+                self.isRenderable = false;
 
                 self.nombre();
                 self.z = 6;
