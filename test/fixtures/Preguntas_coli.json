@@ -1,26 +1,26 @@
 [
   {
     "pregunta": "De que color es el caballo blanco de San Martin?",
-    "respuesta1": "blanco",
-    "respuesta2": "azul",
-    "respuesta3": "verde",
-    "respuesta4": "purpura",
-    "respuesta5": "roza",
-    "respuesta6": "magenta",
-    "respuesta7": "cian",
+    "respuesta1": "Blanco",
+    "respuesta2": "Azul",
+    "respuesta3": "Verde",
+    "respuesta4": "Purpura",
+    "respuesta5": "Roza",
+    "respuesta6": "Magenta",
+    "respuesta7": "Cian",
     "respuesta8": "",
     "clase": "1"
   },
   {
     "pregunta": "Como se llama el triangulo que tiene todos sus lados iguales?",
-    "respuesta1": "equilatero",
-    "respuesta2": "igual",
-    "respuesta3": "isoceles",
-    "respuesta4": "aristoteles",
-    "respuesta5": "todas son correctas",
-    "respuesta6": "",
-    "respuesta7": "",
-    "respuesta8": "",
+    "respuesta1": "Equilatero",
+    "respuesta2": "Igual",
+    "respuesta3": "Isoceles",
+    "respuesta4": "Aristoteles",
+    "respuesta5": "Todas son correctas",
+    "respuesta6": "Acutangulo",
+    "respuesta7": "Obtusangulo",
+    "respuesta8": "Rectangulo",
     "clase": "1"
   }
 ]

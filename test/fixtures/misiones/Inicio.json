@@ -349,7 +349,9 @@
         "qorder": "0",
         "npc_visible": "true",
         "titulo": "Coliseo",
-        "paso":"Deberias probar el coliseo, es muy entretenido."
+        "pregunta": "¿Deseas probar el coliseo?",
+        "mision": "URL:coliseo.html",
+        "paso":"¡Has luchado muy bien!"
     },
     {
         "npc": "peque",
