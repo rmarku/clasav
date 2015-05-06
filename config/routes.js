@@ -89,6 +89,11 @@ module.exports.routes = {
     'get /api/item/:id/useItem': 'ItemController.useItem',
     'get /api/item/:id/unequipItem': 'ItemController.unequipItem',
 
+    // Coliceo
+    'get /api/preguntas_coli/pre': 'Preguntas_coliController.getPreguntas',
+    'get /api/preguntas_coli/post': 'Preguntas_coliController.setRespuesta',
+    'post /api/preguntas_coli/pre': 'Preguntas_coliController.setRespuesta',
+
     // Misiones
     'get /api/misiones/gettxt': 'MisionesController.gettxt',
     'get /api/misiones/finish': 'MisionesController.finish',

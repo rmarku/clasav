@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="/js/dependencies/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body class="listaClases" style="background: none">
+<h1>Coliseo</h1>
+
+<div id="pregunta">
+
+</div>
+<div id="respuestas" style="width: 100%">
+
+</div>
+</body>
+
+<script>
+  var p;
+  $(function () {
+    preguntar();
+  });
+  function preguntar() {
+    $.get('/api/preguntas_coli/pre', function (pregunta) {
+      p = pregunta;
+
+      $('#pregunta').html(pregunta.pregunta);
+      $('#respuestas').append('<table style="width: 100%">');
+      pregunta.respuestas.forEach(function (resp) {
+
+        $('#respuestas').append('<tr><td id="respuesta">' +
+            resp +
+            '</td><td><button onclick="respuesta(' + "'" + resp + "'" + ')">Seleccionar</button>' +
+            '</td></tr>');
+      });
+      $('#respuestas').append('</table>');
+    });
+  }
+
+  function respuesta(resp) {
+    $.get('http://localhost:1337/api/preguntas_coli/post?id=' + p.id + '&respuesta=' + resp, function (resp) {
+      console.log(resp);
+    });
+  }
+
+</script>
+</html>
