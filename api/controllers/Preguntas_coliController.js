@@ -28,7 +28,8 @@ module.exports = {
 
 
             res.json({id: pregunta.id, pregunta: pregunta.pregunta, respuestas: shuffle(respuestas)});
-        }).catch(function () {
+        }).catch(function (err) {
+            console.log(JSON.stringify(err));
             return res.json({err: 'No se encontro preguntas'});
         });
     },
@@ -49,7 +50,8 @@ module.exports = {
                 return res.json({respuesta: 'incorrecta', resp: false});
             }
 
-        }).catch(function () {
+        }).catch(function (err) {
+            console.log(JSON.stringify(err));
             return res.json({err: 'No se encontro preguntas'});
         });
     }
