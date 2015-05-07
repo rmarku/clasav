@@ -22,5 +22,41 @@
     "respuesta7": "Obtusangulo",
     "respuesta8": "Rectangulo",
     "clase": "1"
+  },
+  {
+    "pregunta": "¿Cómo se llama el triángulo que tiene 2 de sus lados iguales?",
+    "respuesta1": "Isoceles",
+    "respuesta2": "Igual",
+    "respuesta3": "Equilatero",
+    "respuesta4": "Aristoteles",
+    "respuesta5": "Todas son correctas",
+    "respuesta6": "Acutangulo",
+    "respuesta7": "Obtusangulo",
+    "respuesta8": "Rectangulo",
+    "clase": "1"
+  },
+  {
+    "pregunta": "¿Cuál es la montaña más alta de sudamérica?",
+    "respuesta1": "Aconcagua",
+    "respuesta2": "Tronador",
+    "respuesta3": "Champaqui",
+    "respuesta4": "Pissis",
+    "respuesta5": "7 colores",
+    "respuesta6": "Catedral",
+    "respuesta7": "Lanin",
+    "respuesta8": "",
+    "clase": "1"
+  },
+  {
+    "pregunta": "¿En que provincia se ubica Bariloche?",
+    "respuesta1": "Río Negro",
+    "respuesta2": "Neuquen",
+    "respuesta3": "Chubut",
+    "respuesta4": "Santa Cruz",
+    "respuesta5": "Santiago del Estero",
+    "respuesta6": "Tierra del fuego",
+    "respuesta7": "Buenos Aires",
+    "respuesta8": "",
+    "clase": "1"
   }
 ]
