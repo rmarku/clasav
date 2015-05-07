@@ -50,11 +50,11 @@ function tintImage(img, color, x, y, w, h) {
 
         ctx.putImageData(to, 0, 0);
         // image is _slightly_ faster then canvas for this, so convert
-        var imgComp =  document.createElement("canvas");
+        var imgComp = document.createElement("canvas");
         imgComp.width = w;
         imgComp.height = h;
         var imgCompctx = imgComp.getContext("2d");
-        imgCompctx.drawImage(canvas,0,0);
+        imgCompctx.drawImage(canvas, 0, 0);
         rgbks.push(imgComp);
     }
 
@@ -87,20 +87,20 @@ function tintImage(img, color, x, y, w, h) {
 }
 
 
-
 /*
-Todos los errores al Server para log!!!!!!!!!
+ Todos los errores al Server para log!!!!!!!!!
  */
 function logError(details) {
     $.ajax({
         type: 'POST',
         url: '/api/log',
-        data: JSON.stringify({context: navigator.userAgent, details: details}),
+        data: JSON.stringify({context: navigator.userAgent, details: details, strace: printStackTrace()}),
         contentType: 'application/json; charset=utf-8'
     });
+    console.log(JSON.stringify({context: navigator.userAgent, details: details}));
 }
 
-window.onerror = function(message, file, line,column, errorObj) {
-    logError(file + ':' + line + '\n\n' + message+ '\nColumn: ' + column + '\nStackTrace: ' +  errorObj);
+window.onerror = function (message, file, line, column, errorObj) {
+    logError(file + ':' + line + '\n\n' + message + '\nColumn: ' + column + '\nStackTrace: ' + errorObj);
     return false;
 };

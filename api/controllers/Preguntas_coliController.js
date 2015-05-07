@@ -44,11 +44,18 @@ module.exports = {
 
         Preguntas_coli.findOne({id: preguntaId}).then(function (pregunta) {
 
-            if (pregunta.respuesta1 === respuesta) {
-                return res.json({respuesta: 'correcta', resp: true});
-            } else {
-                return res.json({respuesta: 'incorrecta', resp: false});
-            }
+            var respu = {
+                pregunta: preguntaId,
+                usuario: userId,
+                respuesta: respuesta,
+                correcta: pregunta.respuesta1 === respuesta
+            };
+            Respuestas_coli.create(respu).exec(function (err, resp) {
+                if (err)
+                    return res.json({err: 'Usuario no logueado', error: err});
+                return res.json({resp: respu.correcta});
+            });
+
 
         }).catch(function (err) {
             console.log(JSON.stringify(err));

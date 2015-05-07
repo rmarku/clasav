@@ -30,9 +30,9 @@ game.Player = me.Entity.extend({
 
         this.nombre();
         // lo visto.
-
+        var grafico = this.vestir();
         this.renderable = new me.AnimationSheet(0, 0, {
-            "image": this.vestir(),
+            "image": grafico,
             "framewidth": 32,
             "frameheight": 48,
             "spritewidth": 32,

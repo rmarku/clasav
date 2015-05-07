@@ -3157,9 +3157,9 @@ THE SOFTWARE.
         init : function (x, y) {
             return this.set(x || 0, y || 0);
         },
-        
-        /** 
-         * @ignore 
+
+        /**
+         * @ignore
          * a private set function with not error check
          */
         _set : function (x, y) {
@@ -3724,7 +3724,7 @@ THE SOFTWARE.
             this._y = y;
             return this;
         },
-        
+
         /**
          * Add the passed vector to this vector
          * @name add
@@ -4078,7 +4078,7 @@ THE SOFTWARE.
         toVector2d : function () {
             return new me.Vector2d(this._x, this._y);
         },
-        
+
         /**
          * convert the object to a string representation
          * @name toString
@@ -5361,7 +5361,7 @@ THE SOFTWARE.
 
             return this;
         },
-        
+
         /**
          * clone this line segment
          * @name clone
@@ -7808,6 +7808,10 @@ THE SOFTWARE.
         setAnimationFrame : function (idx) {
             this.current.idx = (idx || 0) % this.current.length;
             var frame = this.current.frame["" + this.current.idx];
+            if(typeof frame === 'undefined') {
+                console.log('frame undefined '+"" + this.current.idx);
+                return;
+            }
             this.offset = frame.offset;
             this.width = frame.width;
             this.height = frame.height;
@@ -10507,7 +10511,7 @@ THE SOFTWARE.
             this.progress = ~~(progress * this.width);
             this.invalidate = true;
         },
-       
+
         // make sure the screen is refreshed every frame
         update : function () {
             if (this.invalidate === true) {
@@ -10621,17 +10625,17 @@ THE SOFTWARE.
                 me.video.renderer.getWidth(),
                 me.video.renderer.getHeight()
             );
-            
+
             this.loaderHdlr = me.event.subscribe(
                 me.event.LOADER_PROGRESS,
                 progressBar.onProgressUpdate.bind(progressBar)
             );
-            
+
             this.resizeHdlr = me.event.subscribe(
                 me.event.VIEWPORT_ONRESIZE,
                 progressBar.resize.bind(progressBar)
             );
-            
+
             me.game.world.addChild(progressBar, 1);
             this.iconCanvas = me.video.createCanvas(me.game.viewport.width, me.game.viewport.height, false);
             // melonJS text & logo
@@ -12592,7 +12596,7 @@ THE SOFTWARE.
             // trigger a resize
             // defer it to ensure everything is properly intialized
             this.onresize.defer(this);
-            
+
         };
 
         /**
@@ -12670,9 +12674,9 @@ THE SOFTWARE.
                     // resize the display canvas to fill the parent container
                     sWidth = Math.min(maxWidth, designHeight * screenRatio);
                     scaleX = scaleY = _max_width / sWidth;
-                    sWidth = ~~(sWidth + 0.5);
-                    this.renderer.resize(sWidth, designHeight);
-                    me.game.viewport.resize(sWidth, designHeight);
+                    sWidth = ~~(sWidth - 0.5);
+                    this.renderer.resize(sWidth, designHeight-5);
+                    me.game.viewport.resize(sWidth, designHeight-5);
                     /*
                      * XXX: Workaround for not updating container child-bounds
                      * automatically (it's expensive!)
@@ -12686,9 +12690,9 @@ THE SOFTWARE.
                     // resize the display canvas to fill the parent container
                     sHeight = Math.min(maxHeight, designWidth * (_max_height / _max_width));
                     scaleX = scaleY = _max_height / sHeight;
-                    sHeight = ~~(sHeight + 0.5);
-                    this.renderer.resize(designWidth, sHeight);
-                    me.game.viewport.resize(designWidth, sHeight);
+                    sHeight = ~~(sHeight - 0.5);
+                    this.renderer.resize(designWidth, sHeight-5);
+                    me.game.viewport.resize(designWidth, sHeight-5);
                     /*
                      * XXX: Workaround for not updating container child-bounds
                      * automatically (it's expensive!)
@@ -13333,13 +13337,13 @@ THE SOFTWARE.
         scaleCanvas : function (scaleX, scaleY) {
             this.canvas.width = this.gameWidthZoom = this.backBufferCanvas.width * scaleX;
             this.canvas.height = this.gameHeightZoom = this.backBufferCanvas.height * scaleY;
-            
+
             // adjust CSS style for High-DPI devices
             if (me.device.getPixelRatio() > 1) {
                 this.canvas.style.width = (this.canvas.width / me.device.getPixelRatio()) + "px";
                 this.canvas.style.height = (this.canvas.height / me.device.getPixelRatio()) + "px";
             }
-            
+
             if (this.doubleBuffering && this.transparent) {
                 // Clears the front buffer for each frame blit
                 this.context.globalCompositeOperation = "copy";
@@ -14967,6 +14971,10 @@ THE SOFTWARE.
 
             // Hash map of texture units
             this.units = [];
+            if(gl === null){
+                document.location.hash = 'nogl';
+                location.reload();
+            }
             this.maxTextures = gl.getParameter(
                 gl.MAX_TEXTURE_IMAGE_UNITS
             );
@@ -16125,7 +16133,7 @@ THE SOFTWARE.
                     e.gameX = e.gameWorldX;
                     e.gameY = e.gameWorldY;
                 }
-                
+
                 var region = handlers.region;
                 var eventInBounds = region.getBounds().containsPoint(e.gameX, e.gameY) &&
                                     (region.shapeType === "Rectangle" || region.containsPoint(e.gameX, e.gameY));
@@ -16503,7 +16511,7 @@ THE SOFTWARE.
         if (pointerEventList !== activeEventList) {
             eventType = activeEventList[pointerEventList.indexOf(eventType)];
         }
-        
+
         var handlers = evtHandlers.get(region);
         if (typeof(callback) === "undefined") {
             // unregister all callbacks of "eventType" for the given region
@@ -20203,11 +20211,11 @@ THE SOFTWARE.
                 // use the default one
                 layer.setRenderer(me.game.tmxRenderer);
             }
-            
+
             // detect encoding and compression
             var encoding = Array.isArray(data[TMXConstants.TMX_TAG_DATA]) ? data[TMXConstants.TMX_TAG_ENCODING] : data[TMXConstants.TMX_TAG_DATA][TMXConstants.TMX_TAG_ENCODING];
             var compression = Array.isArray(data[TMXConstants.TMX_TAG_DATA]) ? data[TMXConstants.TMX_TAG_COMPRESSION] : data[TMXConstants.TMX_TAG_DATA][TMXConstants.TMX_TAG_COMPRESSION];
-            
+
             // parse the layer data
             this.setLayerData(layer, data[TMXConstants.TMX_TAG_DATA], encoding || "json", compression);
             return layer;
@@ -20311,7 +20319,7 @@ THE SOFTWARE.
                 Math.max(level.width, me.game.viewport.width),
                 Math.max(level.height, me.game.viewport.height)
             );
-            
+
             // add all defined layers
             var layers = level.getLayers();
             for (var i = layers.length; i--;) {
@@ -21010,11 +21018,11 @@ THE SOFTWARE.
                         _valuesStart[ property ] = _valuesStartRepeat[ property ];
 
                     }
-                    
+
                     if (_yoyo) {
                         _reversed = !_reversed;
                     }
-                    
+
                     _startTime = time + _delayTime;
 
                     return true;
@@ -21982,7 +21990,7 @@ THE SOFTWARE.
       var self = this || Howler;
       var audioTest = new Audio();
       var mpegTest = audioTest.canPlayType('audio/mpeg;').replace(/^no$/, '');
-      
+
       self._codecs = {
         mp3: !!(mpegTest || audioTest.canPlayType('audio/mp3;').replace(/^no$/, '')),
         mpeg: !!mpegTest,
@@ -22674,7 +22682,7 @@ THE SOFTWARE.
             var dir = from > to ? 'out' : 'in';
             var steps = diff / 0.01;
             var stepLen = len / steps;
-            
+
             (function() {
               var vol = from;
               var interval = setInterval(function(id) {
@@ -22979,7 +22987,7 @@ THE SOFTWARE.
     _emit: function(event, id, msg) {
       var self = this;
       var events = self['_on' + event];
-      
+
       // Loop through event store and fire all functions.
       for (var i=0; i<events.length; i++) {
         if (!events[i].id || events[i].id === id) {
@@ -23252,7 +23260,7 @@ THE SOFTWARE.
 
       // Fire an error event and pass back the code.
       self._parent._emit('loaderror', self._id, self._node.error ? self._node.error.code : 0);
-      
+
       // Clear the event listener.
       self._node.removeEventListener('error', self._errorListener, false);
     },
@@ -23335,7 +23343,7 @@ THE SOFTWARE.
         for (var i=0; i<data.length; ++i) {
           dataView[i] = data.charCodeAt(i);
         }
-        
+
         decodeAudioData(dataView.buffer, self);
       } else {
         // Load the buffer from the URL.
