@@ -1,87 +1,125 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="/js/dependencies/jquery/dist/jquery.js"></script>
-		<link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
-		<style>
-			.btn-quest {
-				-moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
-				-webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
-				box-shadow: inset 0px 1px 0px 0px #fce2c1;
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f2af81), color-stop(1, #e87325));
-				background: -moz-linear-gradient(top, #f2af81 5%, #e87325 100%);
-				background: -webkit-linear-gradient(top, #f2af81 5%, #e87325 100%);
-				background: -o-linear-gradient(top, #f2af81 5%, #e87325 100%);
-				background: -ms-linear-gradient(top, #f2af81 5%, #e87325 100%);
-				background: linear-gradient(to bottom, #f2af81 5%, #e87325 100%);
-				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2af81', endColorstr='#e87325', GradientType=0);
-				background-color: #f2af81;
-				-moz-border-radius: 6px;
-				-webkit-border-radius: 6px;
-				border-radius: 6px;
-				border: 1px solid #dc6717;
-				display: inline-block;
-				cursor: pointer;
-				color: #000000;
-				padding: 4px 8px;
-				text-shadow: 0px 1px 0px #dc6717;
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 12px;
-				text-align: center;
-				margin: 2px;
-				width: 100%;
-			}
+<head>
+  <script src="/js/dependencies/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
+  <style>
+    .btn-quest {
+      -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+      -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
+      box-shadow: inset 0px 1px 0px 0px #fce2c1;
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f2af81), color-stop(1, #e87325));
+      background: -moz-linear-gradient(top, #f2af81 5%, #e87325 100%);
+      background: -webkit-linear-gradient(top, #f2af81 5%, #e87325 100%);
+      background: -o-linear-gradient(top, #f2af81 5%, #e87325 100%);
+      background: -ms-linear-gradient(top, #f2af81 5%, #e87325 100%);
+      background: linear-gradient(to bottom, #f2af81 5%, #e87325 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2af81', endColorstr='#e87325', GradientType=0);
+      background-color: #f2af81;
+      -moz-border-radius: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      border: 1px solid #dc6717;
+      display: inline-block;
+      cursor: pointer;
+      color: #000000;
+      padding: 4px 8px;
+      text-shadow: 0px 1px 0px #dc6717;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      text-align: center;
+      margin: 2px;
+      width: 100%;
+    }
 
-			.btn-quest:hover {
-				background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e87325), color-stop(1, #f2af81));
-				background: -moz-linear-gradient(top, #e87325 5%, #f2af81 100%);
-				background: -webkit-linear-gradient(top, #e87325 5%, #f2af81 100%);
-				background: -o-linear-gradient(top, #e87325 5%, #f2af81 100%);
-				background: -ms-linear-gradient(top, #e87325 5%, #f2af81 100%);
-				background: linear-gradient(to bottom, #e87325 5%, #f2af81 100%);
-				filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e87325', endColorstr='#f2af81', GradientType=0);
-				background-color: #e87325;
-			}
-			
-			div{
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 13px;
-			}
-		</style>
-	</head>
-	<body style="background: none">
-		<div id="pregunta">
+    .btn-quest:hover {
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e87325), color-stop(1, #f2af81));
+      background: -moz-linear-gradient(top, #e87325 5%, #f2af81 100%);
+      background: -webkit-linear-gradient(top, #e87325 5%, #f2af81 100%);
+      background: -o-linear-gradient(top, #e87325 5%, #f2af81 100%);
+      background: -ms-linear-gradient(top, #e87325 5%, #f2af81 100%);
+      background: linear-gradient(to bottom, #e87325 5%, #f2af81 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e87325', endColorstr='#f2af81', GradientType=0);
+      background-color: #e87325;
+    }
 
-		</div>
-		<div id="respuestas" style="width: 100%">
+    div {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body style="background: none">
 
-		</div>
-	</body>
+<div id="tarjeta">
+  <div id="pregunta">
 
-	<script>
-		var p;
-		$(function() {
-			preguntar();
-		});
-		function preguntar() {
-			$.get('/api/preguntas_coli/pre', function(pregunta) {
-				p = pregunta;
+  </div>
+  <div id="respuestas" style="width: 100%">
 
-				$('#pregunta').html(pregunta.pregunta);
-				$('#respuestas').append('<table style="width: 100%">');
-				pregunta.respuestas.forEach(function(resp) {
+  </div>
+</div>
 
-					$('#respuestas').append('<tr><td id="respuesta" class="btn-quest" onclick="respuesta(' + "'" + resp + "'" + ')">' + resp + '</td></tr>');
-				});
-				$('#respuestas').append('</table>');
-			});
-		}
+<div id="respuestaCorrecta" style="width: 100%;display: none;">
+  <h1>Respuesta Incorrecta, deberias estudiar mas.</h1>
+</div>
 
-		function respuesta(resp) {
-			$.get('http://localhost:1337/api/preguntas_coli/post?id=' + p.id + '&respuesta=' + resp, function(resp) {
-				console.log(resp);
-			});
-		}
+<div id="respuestaIncorrecta" style="width: 100%;display: none;">
+  <h1>Respuesta Incorrecta, deberias estudiar mas.</h1>
+</div>
 
-	</script>
+</body>
+
+<script>
+  var respIncorrecta = [
+    "Respuesta Incorrecta, deberias estudiar mas.",
+    "Mejor suerte la proxima vez"
+  ];
+  var respCorrecta = [
+    "Muy buen trabajo",
+    "Excelente, se nota que estudiaste"
+  ];
+  var p;
+  // Lo hago al inicio
+  $(function () {
+    preguntar();
+  });
+
+  function preguntar() {
+    $.get('/api/preguntas_coli/pre', function (pregunta) {
+      console.log(pregunta);
+      p = pregunta;
+
+      $('#pregunta').html(pregunta.pregunta);
+      $('#respuestas').append('<table style="width: 100%">');
+
+      pregunta.respuestas.forEach(function (resp) {
+
+        $('#respuestas').append('<tr><td id="respuesta" class="btn-quest" onclick="respuesta(' + "'" + resp + "'" + ')">' + resp + '</td></tr>');
+      });
+      $('#respuestas').append('</table>');
+    });
+  }
+
+  function respuesta(resp) {
+    $.get('http://localhost:1337/api/preguntas_coli/post?id=' + p.id + '&respuesta=' + resp, function (resp) {
+
+      $('#tarjeta').fadeOut(500, function () {
+        var html;
+        if (resp.resp) {
+          html = getOne(respCorrecta);
+          $("respuestaCorrecta").html(html).fadeIn();
+        } else {
+          html = getOne(respCorrecta);
+          $("respuestaIncorrecta").html(html).fadeIn();
+        }
+      });
+    });
+  }
+
+  function getOne(array) {
+    return array[Math.floor(array.length * Math.random())];
+  }
+
+</script>
 </html>

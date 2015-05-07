@@ -12671,8 +12671,8 @@ THE SOFTWARE.
                     sWidth = Math.min(maxWidth, designHeight * screenRatio);
                     scaleX = scaleY = _max_width / sWidth;
                     sWidth = ~~(sWidth + 0.5);
-                    this.renderer.resize(sWidth-5, designHeight-5);
-                    me.game.viewport.resize(sWidth-5, designHeight-5);
+                    this.renderer.resize(sWidth, designHeight);
+                    me.game.viewport.resize(sWidth, designHeight);
                     /*
                      * XXX: Workaround for not updating container child-bounds
                      * automatically (it's expensive!)
@@ -13998,6 +13998,8 @@ THE SOFTWARE.
             gl.compileShader(shader);
 
             if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                document.location.hash = 'nogl';
+                location.reload();
                 throw new me.video.Error(gl.getShaderInfoLog(shader));
             }
 

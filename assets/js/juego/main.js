@@ -70,10 +70,11 @@ var game = {
         me.sys.stopOnAudioError = false;
         me.sys.fps = 20;
         //me.video.init("screen",32,32,!0,"auto",!0)
-        var video = me.video.CANVAS;
-        if (document.location.hash === "#debug") {
+        var video = me.video.WEBGL;
+        if (document.location.hash === "#debug" || document.location.hash === "#nogl") {
             video = me.video.CANVAS;
         }
+
         if (me.device.isMobile) {
             if (!me.video.init(400, 240, {
                     wrapper: "game",
