@@ -34,6 +34,10 @@ module.exports = {
             //Creamos instancias de los logros genericos, que pertenezcan unicamente a esta clase. A partir del mapa_genericoCentral
             Logro.find({mapa_generico:mapa_genericoID}).exec(function CB(err,logros_genericos){
 
+                if(err || !logros_genericos){
+                    return;
+                }
+
                 logros_genericos.forEach(function (logro_generico){
 
                         Logro_instancia.create({
@@ -54,7 +58,7 @@ module.exports = {
 
 
             //Asociamos el User a la clase recien creada
-            claseCreada.save(function (err) {
+            claseCreada.save(function (err, saved) {
                 if(err){
                     console.log(err);
                     res.json(err);
@@ -73,13 +77,19 @@ module.exports = {
                     ///////////////////// Generamos mapa_instancia central y secundarios////////////////////////////////////////////////////////////////////////////////////////////////
                     Mapa_generico.findOne({id: mapa_genericoID}).exec(function afterwards(err, mapa_generico) {
 
+                        if(err || !mapa_generico){
+                            console.log('err: ','se creo mapa generico_ pero luego no se encontro');
+                            return res.json(err);
+                        }
+
                         Dependencia_mapa_generico.findOne({id: mapa_generico.dependencia_mapa_generico}).populate('mapas_genericos').exec(function afterwards(err, dependencia_mapa_generico) {
 
-                            if(!dependencia_mapa_generico || err){
-                                console.log(err);
-                                res.json(err);
-                                return;
+                            if(err || !dependencia_mapa_generico){
+                                console.log('err: ','no existe dependencia_mapa_generico para el mapa_central de la clase creada');
+                                return res.json(err);
+
                             }
+
                             dependencia_mapa_generico.mapas_genericos.forEach(function (mapa_generico) {
 
                                 console.log('mapa generico');

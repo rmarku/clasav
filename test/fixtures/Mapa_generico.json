@@ -39,10 +39,13 @@
     },
     {
         "nombre"    : "matematica",
-        "tipo"      :"central"
+        "tipo"      :"central",
+        "dependencia_mapa_generico" : 2
+
     },
     {
         "nombre"    : "argentina",
-        "tipo"      :"central"
+        "tipo"      :"central",
+        "dependencia_mapa_generico" : 3
     }
 ]
