@@ -7655,7 +7655,6 @@ THE SOFTWARE.
                 ).getAtlas();
                 this.atlasIndices = null;
             }
-
             // create a default animation sequence with all sprites
             this.addAnimation("default", null);
 
@@ -7808,10 +7807,6 @@ THE SOFTWARE.
         setAnimationFrame : function (idx) {
             this.current.idx = (idx || 0) % this.current.length;
             var frame = this.current.frame["" + this.current.idx];
-            if(typeof frame === 'undefined') {
-                console.log('frame undefined '+"" + this.current.idx);
-                return;
-            }
             this.offset = frame.offset;
             this.width = frame.width;
             this.height = frame.height;

@@ -34,7 +34,17 @@ module.exports = {
         }
 
         Personaje.getPersonaje_masReciente(userId).then(function (pj) {
-            return res.json(pj);
+
+            // Reveo si esta inscripto en alguna clase
+            Clase_x_user.count({user: userId, situacion: 'aceptado'}).exec(function (err, count) {
+                if (count > 0)
+                    pj.duenio.inscripto = true;
+                else
+                    pj.duenio.inscripto = true;
+                console.log('inscripto: ' + pj.duenio.inscripto);
+                pj.duenio.save();
+                return res.json(pj);
+            });
         });
     }
 };
