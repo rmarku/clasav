@@ -13,15 +13,15 @@
             <button class="btn btn-default btn-align" ng-click="crearInstitucion()">Crear Institución</button>
         </div>
 
-        <div class="container-fluid" ng-show="$parent.misInstituciones.length > 0">
+        <div class="container-fluid">
             <div class="row">
-                <div >
+                <div>
                     <br>
 
                     <table class="table table-striped table-hover table" style="width: 100%">
-                        <thead>
+                        <thead ng-show="$parent.misInstituciones.length > 0">
                         <tr>
-                            <th>Institución</th>
+                            <th>Institución</th >
                             <th class="text-center" style="width: 180px">Ciudad</th>
                             <th class="text-center" style="width: 180px">Dirección</th>
                             <th class="text-center" style="width: 180px">Provincia</th>
@@ -30,9 +30,9 @@
                             <th class="text-center" style="width: 180px">Solicitudes</th>
                             <th class="text-center" style="width: 180px">Ingresar</th>
                         </tr>
-                        </thead>
+                        </thead >
                         <tbody>
-                        <tr ng-repeat="institucion in $parent.misInstituciones ">
+                        <tr ng-repeat="institucion in $parent.misInstituciones " >
                             <td >
                               <span>
                                 {{ institucion.nombre}}
@@ -75,12 +75,21 @@
                             </td>
                         </tr>
                         </tbody>
+
+                        <tr ng-if="$parent.misInstituciones.length < 1">
+                            <td  class="text-center">
+                                   <span>
+                                         No tienes aún instituciones autorizadas
+                                  </span>
+                            </td>
+                        </tr>
                     </table>
 
                 </div>
 
             </div>
 
+        </div>
 
             <br><br>
 
@@ -144,6 +153,6 @@
 
             </div>
 
-    </div>
+
     </div>
 </div>
