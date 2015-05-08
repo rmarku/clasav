@@ -58,5 +58,17 @@
     "respuesta7": "Buenos Aires",
     "respuesta8": "",
     "clase": "1"
+  },
+  {
+    "pregunta": "¿Cuál es la siguiente Provincia? <br> <img src='http://www.miradorprovincias.com/img/provincias/chaco.png' width='130px'>",
+    "respuesta1": "Chaco",
+    "respuesta2": "Formosa",
+    "respuesta3": "Misiones",
+    "respuesta4": "Corrientes",
+    "respuesta5": "Santiago del Estero",
+    "respuesta6": "Tierra del fuego",
+    "respuesta7": "Entre Rios",
+    "respuesta8": "",
+    "clase": "1"
   }
 ]
