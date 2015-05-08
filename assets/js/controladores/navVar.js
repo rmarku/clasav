@@ -298,7 +298,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     }
                 }
             }
-            toastr.info('Respondieron tu solicitud a una clase.');
         });
     };
 
@@ -348,7 +347,6 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
                     }
                 }
             }
-            toastr.info('Respondieron tu solicitud de institución.');
         });
     };
 

@@ -42,7 +42,7 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
         $scope.$parent.claseActual = $scope.$parent.misClases[index];
         $scope.$parent.claseActual.activa = true;
 
-        if($scope.$parent.claseActual.users_situacionAceptado.length > 0){
+        if($scope.$parent.claseActual.users_situacionAceptado.length > 0 ){
             window.location.href = '#/verAlumnos';
         }
         else{

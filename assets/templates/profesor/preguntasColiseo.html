@@ -1,0 +1,149 @@
+<br>
+<br>
+<div class="container-fluid">
+    <div class="div-form text-left" style="margin: auto;">
+        <div class="page-header" align="center" style="margin-top: 0px">
+
+            <b class="titulos">
+                {{$parent.claseActual.nombre}}:<br>Preguntas Coliseo
+            </b>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="row">
+                <br>
+                <div >
+
+                    <span ng-repeat="pregunta in preguntas">
+
+                        <button  style="width:100%" type="button" class="btn btn-default btn" ng-click="mostrarRespuestasPregunta[pregunta.id]=!mostrarRespuestasPregunta[pregunta.id]">
+                            {{pregunta.pregunta}}
+                                <span ng-class="{'fa fa-caret-up': mostrarRespuestasPregunta[pregunta.id], 'fa fa-caret-down': !mostrarRespuestasPregunta[pregunta.id]}" aria-hidden="true" >
+
+                                </span>
+                        </button>
+
+
+                        <table class="table table-striped table-hover table" style="width: 100%" >
+
+                            <tbody ng-show="mostrarRespuestasPregunta[pregunta.id]" >
+
+                                <tr ng-show="pregunta.respuesta1 !== '' " style="color:green">
+                                    <td> <span>{{pregunta.respuesta1}}  </span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta2 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta2 }} </span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta3 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta3}}</span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta4 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta4}}</span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta5 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta5}}</span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta6 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta6}}</span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta7 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta7}}</span></td>
+                                </tr>
+                                <tr ng-show="pregunta.respuesta8 !== '' " style="color:red">
+                                    <td> <span>{{pregunta.respuesta8}}</span></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button  style="width:100%" type="button" class="btn btn-default btn" ng-click="mostrarFormPreguntaNueva=!mostrarFormPreguntaNueva">
+            <b>Pregunta nueva</b>
+            <span class="fa fa-plus" ></span>
+        </button>
+
+
+        <form novalidate="novalidate" role="form" ng-show="mostrarFormPreguntaNueva">
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" name="preguntaForm.pregunta"
+                       ng-model="preguntaForm.pregunta"
+                       placeholder="Pregunta" required>
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta1Form"
+                       ng-model="preguntaForm.respuesta1 "
+                       placeholder="Respuesta 1 (la correcta)" style="color:green"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta2Form"
+                       ng-model="preguntaForm.respuesta2"
+                       placeholder="Respuesta 2" style="color:red"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta3Form"
+                       ng-model="preguntaForm.respuesta3"
+                       placeholder="Respuesta 3" style="color:red"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta4Form"
+                       ng-model="preguntaForm.respuesta4"
+                       placeholder="Respuesta 4" style="color:red"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta5Form"
+                       ng-model="preguntaForm.respuesta5"
+                       placeholder="Respuesta 5" style="color:red"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta6Form"
+                       ng-model="preguntaForm.respuesta6"
+                       placeholder="Respuesta 6" style="color:red"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta7Form"
+                       ng-model="preguntaForm.respuesta7"
+                       placeholder="Respuesta 7" style="color:red"
+                       required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control"
+                       name="respuesta8Form"
+                       ng-model="preguntaForm.respuesta8"
+                       placeholder="Respuesta 8" style="color:red"
+                       required>
+            </div>
+
+            <div>
+                <button class="btn btn-default btn-align" ng-click="subir_preguntaNueva()">
+                    Subir <span class="fa fa-upload" ></span>
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

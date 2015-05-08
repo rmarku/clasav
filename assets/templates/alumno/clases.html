@@ -9,6 +9,10 @@
             </b>
         </div>
 
+        <div>
+            <button class="btn btn-default btn-align" ng-click="solicitarClase()">Solicitar Clase</button>
+        </div>
+
         <div class="container-fluid" ng-show="$parent.misClases.length > 0">
             <div class="row">
                 <div >
@@ -52,17 +56,16 @@
 
             </div>
         </div>
-        <br>
-        <br>
+
         <div class="page-header" align="center" style="margin-top: 0px" ng-show="$parent.misClasesSituacionEspera.length > 0">
+            <br>
+            <br>
             <b class="titulos">
                 Clases en Espera de Confirmación
             </b>
         </div>
 
-        <div>
-            <button class="btn btn-default btn-align" ng-click="solicitarClase()">Solicitar Clase</button>
-        </div>
+
 
         <div class="container-fluid" ng-show="$parent.misClasesSituacionEspera.length > 0">
             <div class="row">

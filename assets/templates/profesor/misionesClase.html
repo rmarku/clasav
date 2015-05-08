@@ -15,7 +15,7 @@
                     <br>
 
                     <table class="table table-striped table-hover table" style="width: 100%">
-                        <thead>
+                        <thead ng-show="logrosDisponibles_claseActual.length > 0">
                         <tr>
                             <th>Logro</th>
                             <th  style="width: 350px">Descripción</th>
@@ -42,6 +42,13 @@
 
                         </tr>
                         </tbody>
+                        <tr ng-if="logrosDisponibles_claseActual.length < 1">
+                            <td  class="text-center">
+                                   <span>
+                                          Aún no existen logros disponibles para este mapa
+                                  </span>
+                            </td>
+                        </tr>
                     </table>
 
                 </div>
