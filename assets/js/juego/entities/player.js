@@ -483,6 +483,6 @@ game.Player = me.Entity.extend({
                 "height": 48,
                 "angle": 0
             }
-        }
+        };
     }
 });
