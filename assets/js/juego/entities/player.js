@@ -38,7 +38,7 @@ game.Player = me.Entity.extend({
             "spritewidth": 32,
             "spriteheight": 48,
             atlasIndices: null,
-            atlas: this.atlasHDP
+            atlas: this.atlasHDP()
         });
 
         this.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
@@ -308,7 +308,7 @@ game.Player = me.Entity.extend({
                     "spritewidth": 32,
                     "spriteheight": 48,
                     atlasIndices: null,
-                    atlas: this.atlasHDP
+                    atlas: this.atlasHDP()
                 });
 
                 self.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);
@@ -321,166 +321,168 @@ game.Player = me.Entity.extend({
                 hud.update();
             });
     },
-    atlasHDP: {
-        "0": {
-            "name": "0",
-            "offset": {
-                "x": 0,
-                "y": 0
+    atlasHDP: function () {
+        return {
+            "0": {
+                "name": "0",
+                "offset": {
+                    "x": 0,
+                    "y": 0
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "1": {
-            "name": "1",
-            "offset": {
-                "x": 32,
-                "y": 0
+            "1": {
+                "name": "1",
+                "offset": {
+                    "x": 32,
+                    "y": 0
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "2": {
-            "name": "2",
-            "offset": {
-                "x": 64,
-                "y": 0
+            "2": {
+                "name": "2",
+                "offset": {
+                    "x": 64,
+                    "y": 0
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "3": {
-            "name": "3",
-            "offset": {
-                "x": 96,
-                "y": 0
+            "3": {
+                "name": "3",
+                "offset": {
+                    "x": 96,
+                    "y": 0
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "4": {
-            "name": "4",
-            "offset": {
-                "x": 0,
-                "y": 48
+            "4": {
+                "name": "4",
+                "offset": {
+                    "x": 0,
+                    "y": 48
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "5": {
-            "name": "5",
-            "offset": {
-                "x": 32,
-                "y": 48
+            "5": {
+                "name": "5",
+                "offset": {
+                    "x": 32,
+                    "y": 48
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "6": {
-            "name": "6",
-            "offset": {
-                "x": 64,
-                "y": 48
+            "6": {
+                "name": "6",
+                "offset": {
+                    "x": 64,
+                    "y": 48
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "7": {
-            "name": "7",
-            "offset": {
-                "x": 96,
-                "y": 48
+            "7": {
+                "name": "7",
+                "offset": {
+                    "x": 96,
+                    "y": 48
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "8": {
-            "name": "8",
-            "offset": {
-                "x": 0,
-                "y": 96
+            "8": {
+                "name": "8",
+                "offset": {
+                    "x": 0,
+                    "y": 96
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "9": {
-            "name": "9",
-            "offset": {
-                "x": 32,
-                "y": 96
+            "9": {
+                "name": "9",
+                "offset": {
+                    "x": 32,
+                    "y": 96
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "10": {
-            "name": "10",
-            "offset": {
-                "x": 64,
-                "y": 96
+            "10": {
+                "name": "10",
+                "offset": {
+                    "x": 64,
+                    "y": 96
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "11": {
-            "name": "11",
-            "offset": {
-                "x": 96,
-                "y": 96
+            "11": {
+                "name": "11",
+                "offset": {
+                    "x": 96,
+                    "y": 96
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "12": {
-            "name": "12",
-            "offset": {
-                "x": 0,
-                "y": 144
+            "12": {
+                "name": "12",
+                "offset": {
+                    "x": 0,
+                    "y": 144
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "13": {
-            "name": "13",
-            "offset": {
-                "x": 32,
-                "y": 144
+            "13": {
+                "name": "13",
+                "offset": {
+                    "x": 32,
+                    "y": 144
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "14": {
-            "name": "14",
-            "offset": {
-                "x": 64,
-                "y": 144
+            "14": {
+                "name": "14",
+                "offset": {
+                    "x": 64,
+                    "y": 144
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
             },
-            "width": 32,
-            "height": 48,
-            "angle": 0
-        },
-        "15": {
-            "name": "15",
-            "offset": {
-                "x": 96,
-                "y": 144
-            },
-            "width": 32,
-            "height": 48,
-            "angle": 0
+            "15": {
+                "name": "15",
+                "offset": {
+                    "x": 96,
+                    "y": 144
+                },
+                "width": 32,
+                "height": 48,
+                "angle": 0
+            }
         }
     }
 });
