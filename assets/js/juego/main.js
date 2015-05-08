@@ -8,7 +8,7 @@ toastr.options = {
     debug: false,
     newestOnTop: false,
     progressBar: false,
-    positionClass: "toast-top-right",
+    positionClass: "toast-top-center",
     preventDuplicates: false,
     onclick: null,
     showDuration: 300,
@@ -70,7 +70,7 @@ var game = {
         me.sys.stopOnAudioError = false;
         me.sys.fps = 20;
         //me.video.init("screen",32,32,!0,"auto",!0)
-        var video = me.video.WEBGL;
+        var video = me.video.CANVAS;
         if (document.location.hash === "#debug" || document.location.hash === "#nogl") {
             video = me.video.CANVAS;
         }
@@ -87,7 +87,7 @@ var game = {
             }
             hud.movil.init();
         } else {
-            if (!me.video.init(800, 480, {
+            if (!me.video.init(1024, 315, {
                     wrapper: "game",
                     renderer: video,
                     scaleMethod: "flex-width",

@@ -4,7 +4,20 @@
   <script src="/js/dependencies/jquery/dist/jquery.js"></script>
   <link rel="stylesheet" href="/js/dependencies/font-awesome/css/font-awesome.min.css">
   <style>
+    div {
+      text-align: center;
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+    }
+
     .btn-quest {
+      width: 100%;
+    }
+
+    .btn-quest, button {
       -moz-box-shadow: inset 0px 1px 0px 0px #fce2c1;
       -webkit-box-shadow: inset 0px 1px 0px 0px #fce2c1;
       box-shadow: inset 0px 1px 0px 0px #fce2c1;
@@ -26,10 +39,9 @@
       padding: 4px 8px;
       text-shadow: 0px 1px 0px #dc6717;
       font-family: Arial, Helvetica, sans-serif;
-      font-size: 12px;
+      font-size: 15px;
       text-align: center;
       margin: 2px;
-      width: 100%;
     }
 
     .btn-quest:hover {
@@ -60,12 +72,10 @@
   </div>
 </div>
 
-<div id="respuestaCorrecta" style="width: 100%;display: none;">
-  <h1>Respuesta Incorrecta, deberias estudiar mas.</h1>
-</div>
-
-<div id="respuestaIncorrecta" style="width: 100%;display: none;">
-  <h1>Respuesta Incorrecta, deberias estudiar mas.</h1>
+<div id="divresp" style="width: 100%;display: none;">
+  <h1 id="mensaje"></h1>
+  <button onclick="preguntar()">Otra pregunta</button>
+  <button onclick="salir()">Salir</button>
 </div>
 
 </body>
@@ -86,33 +96,39 @@
   });
 
   function preguntar() {
+    $('#divresp').fadeOut(300, function () {
+      $("#tarjeta").fadeIn(300);
+    });
+
     $.get('/api/preguntas_coli/pre', function (pregunta) {
       console.log(pregunta);
       p = pregunta;
 
       $('#pregunta').html(pregunta.pregunta);
-      $('#respuestas').append('<table style="width: 100%">');
+      var div = '<table style="width: 100%">';
 
-      pregunta.respuestas.forEach(function (resp) {
+      var resp;
+      for (var i = 0; i < pregunta.respuestas.length; i++) {
+        resp = pregunta.respuestas[i];
+        div += '<tr><td id="respuesta" class="btn-quest" onclick="respuesta(' + "'" + resp + "'" + ')">' + resp + '</td></tr>';
+      }
 
-        $('#respuestas').append('<tr><td id="respuesta" class="btn-quest" onclick="respuesta(' + "'" + resp + "'" + ')">' + resp + '</td></tr>');
-      });
-      $('#respuestas').append('</table>');
+      $('#respuestas').html(div);
     });
   }
 
   function respuesta(resp) {
     $.get('http://localhost:1337/api/preguntas_coli/post?id=' + p.id + '&respuesta=' + resp, function (resp) {
 
-      $('#tarjeta').fadeOut(500, function () {
+      $('#tarjeta').fadeOut(300, function () {
         var html;
         if (resp.resp) {
           html = getOne(respCorrecta);
-          $("respuestaCorrecta").html(html).fadeIn();
         } else {
-          html = getOne(respCorrecta);
-          $("respuestaIncorrecta").html(html).fadeIn();
+          html = getOne(respIncorrecta);
         }
+        $("#mensaje").html(html);
+        $("#divresp").fadeIn(300);
       });
     });
   }
@@ -121,5 +137,8 @@
     return array[Math.floor(array.length * Math.random())];
   }
 
+  function salir() {
+    parent.game.mision.cancelar();
+  }
 </script>
 </html>

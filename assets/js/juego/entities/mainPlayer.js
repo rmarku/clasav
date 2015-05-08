@@ -34,6 +34,12 @@ game.PlayerEntity = game.Player.extend({
             this.animationToUseThisFrame = game.nextxy.direction;
         }
         this.alwaysUpdate = true;
+        if (this.data.duenio.inscripto === false) {
+            toastr.warning('<span><b style="color: #aa0000;">No estas en ninguna clase, no puedes hablar por chat<br>' +
+                'Para poder chatear y explorar el juego, solicita una clase en' +
+                ' <a href="http://localhost:1337/#/clasesAlumno">Mis Clases</a> </span><br>');
+        }
+       // hud.personaje.update();
     },
 
     /**

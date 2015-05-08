@@ -26,12 +26,15 @@ $(function () {
     });
 
 
-    io.socket.on('chat_msg', function messageReceived(obj) {
-        var el = $('#divChat');
+    io.socket.on('chat_msg', function (obj) {
 
-        el.append('<span><b>' + obj.pj + ': </b>' + chat.texto(obj.msg) + '<br></span>')
-            .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
-        document.getElementById('ChatAudio').play();
+        if (this.data.duenio.inscripto) {
+            var el = $('#divChat');
+
+            el.append('<span><b>' + obj.pj + ': </b>' + chat.texto(obj.msg) + '<br></span>')
+                .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
+            document.getElementById('ChatAudio').play();
+        }
     });
 
     io.socket.on('GameJoin', chat.joinList);
@@ -55,18 +58,27 @@ chat = {
         var msg = document.getElementById('msjChat').value;
         document.getElementById('msjChat').value = '';
         if (msg !== '')
-            io.socket.post('/api/chat/send',
-                {
-                    pj: game.mainPlayer.data.id,
-                    msg: msg
-                },
-                function (data) {
-                    if (typeof data.ok !== 'undefined') {
-                        var el = $('#divChat');
-                        el.append('<span><b style="color: #334477;">' + game.mainPlayer.data.nombre + ': </b>' + chat.texto(msg) + '<br></span>')
-                            .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
+            var el = $('#divChat');
+        io.socket.post('/api/chat/send',
+            {
+                pj: game.mainPlayer.data.id,
+                msg: msg
+            },
+            function (data) {
+                if (typeof data.ok !== 'undefined') {
+                    el.append('<span><b style="color: #334477;">' + game.mainPlayer.data.nombre + ': </b>' + chat.texto(msg) + '<br></span>')
+                        .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
+                } else if ((typeof data.msg !== 'undefined')) {
+                    switch (data.msg) {
+                        case 1:
+                            el.append('<span><b style="color: #aa0000;">No estas en ninguna clase, no puedes hablar por chat<br>' +
+                                'Para poder chatear y explorar el juego, solicita una clase en' +
+                                ' <a href="http://localhost:1337/#/clasesAlumno">Mis Clases</a> </span><br>')
+                                .stop().animate({scrollTop: el[0].scrollHeight}, 1000);
+                            break;
                     }
-                });
+                }
+            });
     },
     texto: function (txt) {
         var regex;

@@ -74,7 +74,7 @@ module.exports = {
 
         tipo: {
             type: 'string',
-            enum: ['profesor', 'alumno','administrador']
+            enum: ['profesor', 'alumno', 'administrador']
         },
 
         institucion_x_user: {
@@ -87,6 +87,9 @@ module.exports = {
             collection: 'institucion',
             via: 'users',
             required: false
+        },
+        inscripto: {
+            type: 'boolean'
         },
 
         // passport

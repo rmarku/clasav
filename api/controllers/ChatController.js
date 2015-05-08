@@ -15,7 +15,10 @@ module.exports = {
         var msg = req.param('msg');
 
         Personaje.getPersonaje_masReciente(userId).then(function (pj) {
-            sails.sockets.broadcast(pj.mapa_instancia.id, 'chat_msg', {pj: pj.nombre, msg: msg}, req.socket);
+            if (pj.duenio.inscripto === false) {
+                sails.sockets.broadcast(pj.mapa_instancia.id, 'chat_msg', {pj: pj.nombre, msg: msg}, req.socket);
+                return res.json({msg: 1});
+            }
             Chat.create({
                 autor: pj.id,
                 nick: pj.nombre,
