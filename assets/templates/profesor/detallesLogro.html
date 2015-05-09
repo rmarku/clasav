@@ -23,7 +23,7 @@
                     <table class="table table-striped table-hover table" style="width: 100%">
 
                         <tr>
-                            <th class="text-center" style="width: 180px">Nombre</th>
+                            <th class="text-center" style="width: 180px">Nombre del logro</th>
                             <td class="text-center"><span>{{logroActual.nombre}}</span></td>
                         </tr>
 
@@ -74,10 +74,20 @@
 
                         </tr>
                         </tbody>
+
+                    </table>
+                    <table class="table table-striped table-hover table" style="width: 100%">
+                        <tr ng-if="$parent.claseActual.users_situacionAceptado.length < 1">
+                            <td  class="text-center">
+                                       <span>
+                                              Aún no existen alumnos en esta clase
+                                      </span>
+                            </td>
+                        </tr>
                     </table>
 
 
-                    </table>
+
 
 
 

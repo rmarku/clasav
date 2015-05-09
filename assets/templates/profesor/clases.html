@@ -13,13 +13,13 @@
             <button class="btn btn-default btn-align" ng-click="crearClase()">Crear Clase</button>
         </div>
 
-        <div class="container-fluid" ng-show="$parent.misClases.length > 0">
+        <div class="container-fluid">
             <div class="row">
                 <div >
                     <br>
 
                     <table class="table table-striped table-hover table" style="width: 100%">
-                        <thead>
+                        <thead  ng-show="$parent.misClases.length > 0">
                         <tr>
                             <th>Clase</th>
                             <th class="text-center" style="width: 180px">Institucion</th>
@@ -64,6 +64,13 @@
 
                         </tr>
                         </tbody>
+                        <tr ng-if="$parent.misClases.length < 1">
+                            <td  class="text-center">
+                                   <span>
+                                         No tienes clases creadas
+                                  </span>
+                            </td>
+                        </tr>
                     </table>
 
                 </div>

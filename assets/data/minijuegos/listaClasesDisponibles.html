@@ -19,31 +19,52 @@
 			}
 			table {
 				font-family: Arial, Helvetica, sans-serif;
+
 				font-size: 12px;
 			}
+            .text-center{
+                text-align: center;
+            }
+            .text-left{
+                text-align: left;
+            }
+
 		</style>
 
 	</head>
 	<body style="background: none">
 		<audio src='../../../data/sfx/pirate_hou.ogg' autoplay></audio>
 		<div ng-controller="gameClasesController">
-			<div class="text-left" style="margin: auto; padding: 0px">
+			<div class="text-center" style="margin: auto; padding: 0px">
 
 				<table style="width: 100%; background-color: white; border-radius: 10px">
-					<thead>
+					<thead >
 						<tr>
-							<th>Clase</th>
+							<th class="text-left">Clase</th>
 							<th style="width: 120px">Mapa Central</th>
 							<th style="width: 100px">Ingresar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="clase in misClases">
-							<td><span> {{ clase.nombre}} </span></td>
-							<td class="text-center"><span> {{ clase.mapaCentral.nombre}} </span></td>
-							<td align="center"><span class="fa fa-sign-in" aria-hidden="true" type="button"
-							ng-click="call_travel_by_genericClavLevelEntity(clase)" style="cursor: pointer; color: red"></span></td>
-						</tr>
+                    <tr ng-repeat="clase in misClases">
+                        </span>
+                        <td class="text-left">
+                                            <span>
+                                                {{ clase.nombre}}
+                                            </span>
+                        </td>
+                        <td>
+                                            <span>
+                                                {{ clase.mapaCentral.nombre}}
+                                            </span>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-default btn-xs" ng-click="call_travel_by_genericClavLevelEntity(clase)">
+                                <span class="fa fa-sign-in" aria-hidden="true" ></span>
+                            </button>
+                        </td>
+                        </span>
+                    </tr>
 					</tbody>
 				</table>
 			</div>
