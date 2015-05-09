@@ -67,6 +67,6 @@ app.controller('preguntasColiseoController', ['$scope', '$rootScope', "toastr",'
             toastr.info('Pregunta nueva creada.');
             $scope.$apply();
         });
-    }
+    };
 }]);
 
