@@ -1,18 +1,6 @@
 [
   {
-    "pregunta": "De que color es el caballo blanco de San Martin?",
-    "respuesta1": "Blanco",
-    "respuesta2": "Azul",
-    "respuesta3": "Verde",
-    "respuesta4": "Purpura",
-    "respuesta5": "Roza",
-    "respuesta6": "Magenta",
-    "respuesta7": "Cian",
-    "respuesta8": "",
-    "clase": "1"
-  },
-  {
-    "pregunta": "Como se llama el triangulo que tiene todos sus lados iguales?",
+    "pregunta": "¿Cómo se llama el triangulo que tiene todos sus lados iguales?",
     "respuesta1": "Equilatero",
     "respuesta2": "Igual",
     "respuesta3": "Isoceles",
@@ -60,7 +48,7 @@
     "clase": "1"
   },
   {
-    "pregunta": "¿Cuál es la siguiente Provincia? <br> <img src='http://www.miradorprovincias.com/img/provincias/chaco.png' width='130px'>",
+    "pregunta": "¿Qué provincia aparece en la figura? <br> <img src='http://www.miradorprovincias.com/img/provincias/chaco.png' width='130px'>",
     "respuesta1": "Chaco",
     "respuesta2": "Formosa",
     "respuesta3": "Misiones",

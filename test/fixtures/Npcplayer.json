@@ -299,5 +299,12 @@
         "height": "62",
         "sprite": "dragonRojo",
         "animation": "1"
+    },
+    {
+        "nombre": "gladiador",
+        "width": "59",
+        "height": "62",
+        "sprite": "gladiador",
+        "animation": "4"
     }
 ]
