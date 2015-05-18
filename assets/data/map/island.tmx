@@ -157,34 +157,14 @@
   <properties>
    <property name="z" value="6"/>
   </properties>
-  <object id="75" name="NPCPlayer" x="288" y="32" width="32" height="32">
-   <properties>
-    <property name="nombre" value="libro"/>
-   </properties>
-  </object>
-  <object id="76" name="NPCPlayer" x="317" y="629" width="32" height="32">
+  <object id="76" name="NPCPlayer" x="319.667" y="639.667" width="32" height="32">
    <properties>
     <property name="nombre" value="hipatia"/>
    </properties>
   </object>
-  <object id="77" name="NPCPlayer" x="541" y="355" width="32" height="32">
-   <properties>
-    <property name="nombre" value="Kitty"/>
-   </properties>
-  </object>
-  <object id="78" name="NPCPlayer" x="702" y="640" width="32" height="32">
-   <properties>
-    <property name="nombre" value="Divina"/>
-   </properties>
-  </object>
-  <object id="79" name="NPCPlayer" x="544" y="629" width="32" height="32">
+  <object id="79" name="NPCPlayer" x="256" y="193" width="32" height="32">
    <properties>
     <property name="nombre" value="Chris"/>
-   </properties>
-  </object>
-  <object id="80" name="NPCPlayer" x="351" y="193" width="32" height="32">
-   <properties>
-    <property name="nombre" value="Anne"/>
    </properties>
   </object>
   <object id="81" name="NPCPlayer" x="636" y="130" width="32" height="32">
@@ -192,14 +172,9 @@
     <property name="nombre" value="Pirata"/>
    </properties>
   </object>
-  <object id="82" name="NPCPlayer" x="107" y="863" width="32" height="32">
+  <object id="82" name="NPCPlayer" x="706" y="639" width="32" height="32">
    <properties>
     <property name="nombre" value="fibonacci"/>
-   </properties>
-  </object>
-  <object id="83" name="NPCPlayer" x="351" y="350" width="32" height="32">
-   <properties>
-    <property name="nombre" value="franco"/>
    </properties>
   </object>
   <object id="84" name="NPCPlayer" x="1120" y="639" width="32" height="32">
@@ -207,24 +182,14 @@
     <property name="nombre" value="Daniela"/>
    </properties>
   </object>
-  <object id="85" name="NPCPlayer" x="187" y="637" width="32" height="32">
+  <object id="85" name="NPCPlayer" x="450.333" y="127.667" width="32" height="32">
    <properties>
     <property name="nombre" value="carlos"/>
    </properties>
   </object>
-  <object id="86" name="NPCPlayer" x="111" y="944" width="32" height="32">
+  <object id="86" name="NPCPlayer" x="130" y="1216" width="32" height="32">
    <properties>
     <property name="nombre" value="eduardo"/>
-   </properties>
-  </object>
-  <object id="87" name="NPCPlayer" x="96" y="287" width="32" height="32">
-   <properties>
-    <property name="nombre" value="melisa"/>
-   </properties>
-  </object>
-  <object id="88" name="NPCPlayer" x="447" y="64" width="32" height="32">
-   <properties>
-    <property name="nombre" value="SraBibliotecaria"/>
    </properties>
   </object>
   <object id="89" name="NPCPlayer" x="285" y="910" width="32" height="32">
@@ -232,7 +197,7 @@
     <property name="nombre" value="teano"/>
    </properties>
   </object>
-  <object id="90" name="NPCPlayer" x="107" y="748" width="32" height="32">
+  <object id="90" name="NPCPlayer" x="129.667" y="991.333" width="32" height="32">
    <properties>
     <property name="nombre" value="pitagoras"/>
    </properties>
@@ -382,12 +347,6 @@
    <properties>
     <property name="direction" value="run-down"/>
     <property name="spawn" value="tp_puerto"/>
-   </properties>
-  </object>
-  <object id="89" name="NPCPlayer" x="796" y="911" width="37" height="35">
-   <properties>
-    <property name="nombre" value="reneDescartes"/>
-    <property name="z" value="9"/>
    </properties>
   </object>
  </objectgroup>

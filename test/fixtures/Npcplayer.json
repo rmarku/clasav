@@ -306,5 +306,12 @@
         "height": "62",
         "sprite": "gladiador",
         "animation": "4"
+    },
+    {
+        "nombre": "sanMartin",
+        "width": "92",
+        "height": "82",
+        "sprite": "sanMartin",
+        "animation": "4"
     }
 ]

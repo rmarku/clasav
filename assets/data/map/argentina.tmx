@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="312" height="531" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="63">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="312" height="531" tilewidth="32" tileheight="32" backgroundcolor="#000000" nextobjectid="64">
  <tileset firstgid="1" name="tilemap" tilewidth="32" tileheight="32">
   <image source="tileset/tilemap.png" width="512" height="544"/>
  </tileset>
@@ -61,6 +61,16 @@
    <properties>
     <property name="direction" value="run-up"/>
     <property name="spawn" value="tp_puerto"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff0000" name="NPCs">
+  <properties>
+   <property name="z" value="6"/>
+  </properties>
+  <object id="63" name="NPCPlayer" x="2912" y="6048.67" width="30.6667" height="31.3333">
+   <properties>
+    <property name="nombre" value="sanMartin"/>
    </properties>
   </object>
  </objectgroup>
