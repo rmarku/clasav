@@ -19,11 +19,9 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
             clases                      = $scope.$parent.definirMapasCentrales(clases);
             clases                      = $scope.$parent.definirProfesores(clases);
-            clases                      = $scope.definirClasesSituacionEspera(clases);
+            clases                      = $scope.definirSituacionClases(clases);
             $scope.$parent.misClases    = clases;
             $scope.$parent.clasesCargadas = true;
-
-
 
             $scope.$apply();
         });
@@ -37,7 +35,7 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
     };
 
 
-    $scope.definirClasesSituacionEspera = function (clases) {
+    $scope.definirSituacionClases = function (clases) {
 
         var otherClasesToReturn = [];
 
@@ -47,6 +45,11 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
             if(clase.clase_x_user[0].situacion == "espera"){
 
                 $scope.$parent.misClasesSituacionEspera.push(clase);
+                continue;
+            }
+            if(clase.clase_x_user[0].situacion == "rechazado"){
+
+                $scope.$parent.misClasesSituacionRechazado.push(clase);
                 continue;
             }
 

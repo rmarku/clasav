@@ -69,6 +69,7 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
             }
         }
 
+
         for (var w = 0; w < $scope.$parent.misClasesSituacionRechazado.length; w++) {
 
             if($scope.$parent.misClasesSituacionRechazado[w].id == id){

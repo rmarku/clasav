@@ -20,6 +20,7 @@
                             <th>Nombre</th>
                             <th class="text-center" style="width: 300px">E-mail</th>
                             <th class="text-center" style="width: 50px">Detalle</th>
+                            <th class="text-center" style="width: 50px">Suspender</th>
                         </tr>
                         </thead>
 
@@ -39,7 +40,11 @@
                                 <button type="button" class="btn btn-default btn-xs" ng-click="ver_detallesAlumno($index)">
                                     <span class="fa fa-search" aria-hidden="true" ></span>
                                 </button>
-
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-default btn-xs" ng-click="suspenderAlumno(user,$index)">
+                                    <span class="fa fa-minus-circle" aria-hidden="true" ></span>
+                                </button>
                             </td>
                         </tr>
                         <tr ng-if="$parent.claseActual.users_situacionAceptado.length < 1">
