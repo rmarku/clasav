@@ -11,7 +11,7 @@
         "npc_visible": "true",
         "titulo": "Bienvenido a Clases y Aventuras!",
         "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar <b>A S D W</b> o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
-        "paso": "Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui. Luego podras ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a Kitty que aparezca para que te de una misión. Suerte!",
+        "paso": "Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui. Luego podras ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a <b>Kitty</b> que aparezca por aquí en la plaza para que te de una misión. Suerte!",
         "reco_oro": "5000",
         "reco_experiencia": "10",
         "new_mission": [
@@ -56,7 +56,7 @@
         "img_quest": "sraBibliotecaria.png",
         "npc_visible": "true",
         "titulo": "Bienvenido a la Biblioteca!",
-        "pregunta":"Hola Joven! Esta es la biblioteca. Aqui podras encontrar cientos de libros interesantes para leer. Puedes ayudarme y pasarme ese libro que esta sobre la mesa?",
+        "pregunta":"Hola Joven! Esta es la biblioteca. Aqui podras encontrar cientos de libros interesantes para leer. Puedes ayudarme y pasarme ese <b>libro</b> que esta sobre la mesa?",
         "cond_item": "nota biblioteca",
         "cond_item_cant": "1",
         "new_mission": [
@@ -130,7 +130,7 @@
         "no_item": "¿Aún no has ido a ayudar a la bibliotecaria?",
         "reco_item": "nota escuela",
     	"reco_item_cant": "1",        
-        "pregunta":"Miau! Que tal seguir conociendo la ciudad? Deberías ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con <b>Franco</b> y enviale esta nota!",
+        "pregunta":"<audio src='../../../data/sfx/Meow.ogg' autoplay></audio> Miau! Que tal seguir conociendo la ciudad? Deberías ir a la escuela. Esta en el centro de la ciudad. Tiene techo azul y dos canteros con flores. Habla con <b>Franco</b> y enviale esta nota!",
         "cond_energia": "5",
         "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energía.",
         "new_mission": [
@@ -219,7 +219,7 @@
         "cond_item_cant": "1",
         "no_item": "¿Aún no has hablado con melisa?",
         "titulo": "Nuevo por estos lares? 4",
-        "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con un pirata y viaja a lugares distantes!!",
+        "pregunta":"Aun queda tanto por recorrer... Conocer el coliseo, hablar con la adivina, visitar la taberna, el cementerio, las ruinas, la granja... Pero supongo que es hora que te deje seguir tu viaje! Ve al puerto, habla con el <b>Pirata</b> y viaja a lugares distantes!!",
         "cond_energia": "5",
         "no_energia": "Estas muy cansado para realizar esta mision. Necesitas 5 de energía.",
         "new_mission": [
