@@ -6,7 +6,7 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
      */
 
     $scope.user = {};
-    $scope.institucionesCargadas = {};
+    $scope.institucionesCargadas = false;
 
     //Variables para ALUMNOS/PROFESORES//
     $scope.misClases                    = [];

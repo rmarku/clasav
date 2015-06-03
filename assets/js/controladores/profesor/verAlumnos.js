@@ -12,4 +12,29 @@ app.controller('verAlumnosController', ['$scope', '$rootScope', "toastr",'$locat
         window.location.href = '#/detallesAlumno';
     };
 
+
+    $scope.suspenderAlumno = function (user,index){
+        if (!confirm('¿Está seguro que desea deshabilitar a '+user.apellido+' '+user.nombre+' '+" como alumno?")){
+            return;
+        }
+
+        $.get("/api/clase_x_user/set_situacion",
+            {
+                clase_x_user: user.clase_x_user[0].id,
+                situacion: "espera",
+                clase: $scope.$parent.claseActual.id
+            },
+            function (err, detail) {
+                if (detail != "success") {
+                    toastr.error('Hubo un problema. Intente nuevamente.');
+                    return;
+                }
+                $scope.$parent.claseActual.users_situacionEspera.push(user);
+                $scope.$parent.claseActual.users_situacionAceptado.splice(index, 1);
+                $scope.$parent.clasesCargadas = false;
+                toastr.warning('Usuario ha sido suspendido y se encuentra nuevamente en espera');
+            }
+        );
+    };
+
 }]);

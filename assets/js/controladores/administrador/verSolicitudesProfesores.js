@@ -9,6 +9,10 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
 
     $scope.aceptarProfesorEnInstitucion = function (user,index) {
 
+        if (!confirm('¿Está seguro que desea habilitar a '+user.apellido+' '+user.nombre +" como profesor para gestionar alumnos?")){
+            return;
+        }
+
         $.get("/api/institucion_x_user/set_situacion",
             {
                 institucion_x_user : user.institucion_x_user[0].id,
@@ -23,12 +27,16 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
                 $scope.$parent.institucionActual.profesores_situacionAceptado.push(user);
                 $scope.$parent.institucionActual.profesores_situacionEspera.splice(index, 1);
                 $scope.$parent.institucionesCargadas = false;
-                toastr.info('Profesor aceptado.');
+                toastr.success('Profesor aceptado');
             }
         );
     };
 
     $scope.rechazarProfesorEnInstitucion = function(user,index) {
+
+        if (!confirm('¿Está seguro que desea rechazar la solicitud de '+user.apellido+' '+user.nombre +" como profesor para gestionar alumnos?")){
+            return;
+        }
 
         $.get("/api/institucion_x_user/set_situacion",
             {
@@ -44,7 +52,7 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
                 $scope.$parent.institucionActual.profesores_situacionRechazado.push(user);
                 $scope.$parent.institucionActual.profesores_situacionEspera.splice(index, 1);
                 $scope.$parent.institucionesCargadas = false;
-                toastr.info('Profesor rechazado.');
+                toastr.warning('Solicitud de profesor eliminada');
             }
         );
     };
