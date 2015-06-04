@@ -56,7 +56,7 @@
     "new_mission": [
       {
         "npc": "melisa",
-        "qorder": "0"
+        "qorder": "1"
       }
     ]
   },
@@ -75,7 +75,7 @@
     "new_mission": [
       {
         "npc": "melisa",
-        "qorder": "0"
+        "qorder": "1"
       }
     ]
   },
@@ -94,7 +94,7 @@
     "new_mission": [
       {
         "npc": "melisa",
-        "qorder": "0"
+        "qorder": "1"
       }
     ]
   },
@@ -113,7 +113,7 @@
     "new_mission": [
       {
         "npc": "melisa",
-        "qorder": "0"
+        "qorder": "1"
       }
     ]
   },
@@ -132,7 +132,7 @@
     "new_mission": [
       {
         "npc": "melisa",
-        "qorder": "0"
+        "qorder": "1"
       }
     ]
   },
@@ -151,7 +151,7 @@
     "new_mission": [
       {
         "npc": "melisa",
-        "qorder": "0"
+        "qorder": "1"
       }
     ]
   }
