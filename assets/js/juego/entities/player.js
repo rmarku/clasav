@@ -22,7 +22,7 @@ game.Player = me.Entity.extend({
         this.myPath = [];
 
         this.body.setVelocity(9, 9);
-        this.body.setFriction(0.8, 0.8);
+        this.body.setFriction(0.95, 0.95);
 
         this.body.gravity = 0;
 

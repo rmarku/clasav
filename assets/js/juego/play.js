@@ -39,7 +39,7 @@ game.PlayScreen = me.ScreenObject.extend({
                     game.get_claseActual();
                     server.listen_events();
                     server.join_mapa_instancia();
-                    var map = me.game.world.children[0];
+                    var map = me.game.currentLevel;
 
                     minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
                     io.socket.get('/api/personaje', {conectado: true}, chat.getList);
