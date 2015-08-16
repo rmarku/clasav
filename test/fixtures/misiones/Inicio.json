@@ -10,7 +10,7 @@
         "img_quest": "anne.png",
         "npc_visible": "true",
         "titulo": "Bienvenido a Clases y Aventuras!",
-        "pregunta": "Hola viajero, te dare 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar <b>A S D W</b> o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podras obtener oro e items y subir tu nivel.",
+        "pregunta": "Hola viajero, te daré 500 de oro para que puedas seguir tu aventura. Para moverte debes apretar <b>A S D W</b> o puedes usar las flechas. Debes recorrer el mapa, pedir misiones a los NPC que tienen nombre amarillo apretando espacio al lado de ellos. Al resolver las misiones podrás obtener oro e items y subir tu nivel.",
         "paso": "Oh! Me estaba olvidando, en este pueblo tienes varias cosas por hacer, como visitar la biblioteca, el mercado o la plaza central. Puedes comenzar haciendo misiones por aqui. Luego podras ir al puerto y viajar hacia tierras lejanas. Espero te diviertas! Tengo una idea, le dire a <b>Kitty</b> que aparezca por aquí en la plaza para que te de una misión. Suerte!",
         "reco_oro": "5000",
         "reco_experiencia": "10",
