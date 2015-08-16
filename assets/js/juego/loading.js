@@ -1,8 +1,14 @@
 /**
- * Created by martin on 28/04/15.
+ * Clase encargada de mostrar el inicio del juego y la barra de progreso
+ * @class CustomLoadingScreen
  */
 game.CustomLoadingScreen = me.ScreenObject.extend({
     // call when the loader is resetted
+    /**
+     * Evento llamado al resetearce el juego
+     * @method onResetEvent
+     * @memberof CustomLoadingScreen
+     */
     onResetEvent: function () {
         me.game.reset();
 
@@ -31,6 +37,11 @@ game.CustomLoadingScreen = me.ScreenObject.extend({
     },
 
     // destroy object at end of loading
+    /**
+     * Metodo invocado al cerrar la animacion de carga
+     * @method onDestroyEvent
+     * @memberof CustomLoadingScreen
+     */
     onDestroyEvent: function () {
         // cancel the callback
         me.event.unsubscribe(this.loaderHdlr);
@@ -78,7 +89,7 @@ game.CustomLoadingScreen = me.ScreenObject.extend({
 
             renderer.setColor("#F0AD4E");
             renderer.fillRect(2, (this.height * 2 / 3) - (this.barHeight / 2), this.progress, this.barHeight);
-            renderer.fillArc(this.progress, (this.height * 2 / 3) - (this.barHeight * 2), this.barHeight * 2, 0, 2 * 3.1415);
+            //renderer.fillArc(this.progress, (this.height * 2 / 3) - (this.barHeight * 2), this.barHeight * 2, 0, 2 * 3.1415);
 
             renderer.setColor("white");
         }

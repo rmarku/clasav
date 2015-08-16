@@ -11,6 +11,12 @@ app.controller('detallesPersonajeController', ['$scope', '$rootScope', "toastr",
     $scope.miPersonaje = {};
     $scope.mostrarLogrosClase = [];
 
+    /**
+     * Description
+     * @method get_personaje
+     * @param {} id
+     * @return 
+     */
     $scope.get_personaje = function(id) {
         $.get('/api/personaje?duenio='+id, function (pj) {
             $scope.miPersonaje = pj[0];

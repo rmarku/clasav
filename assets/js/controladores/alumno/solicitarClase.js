@@ -7,6 +7,11 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
         window.location.href = '#/clasesAlumno';
     }
 
+    /**
+     * Description
+     * @method get_instituciones
+     * @return 
+     */
     $scope.get_instituciones = function () {
         $.get('/api/institucion/get_institucionesConProfesores', function (local_instituciones) {
 
@@ -21,6 +26,11 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
 
     $scope.get_instituciones();
 
+    /**
+     * Description
+     * @method get_clasesDeInstitucion
+     * @return 
+     */
     $scope.get_clasesDeInstitucion = function () {
 
         $.get('/api/clase?institucion='+$scope.institucion_seleccionada.id, function (clases) {
@@ -40,6 +50,12 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
     };
 
     //Quitamos todas las clases en las cuales ya enviamos algun tipo de solicitud
+    /**
+     * Description
+     * @method quitarClasesSolicitadas
+     * @param {} clases
+     * @return clasesToReturn
+     */
     $scope.quitarClasesSolicitadas = function (clases) {
 
         var clasesToReturn = [];
@@ -53,6 +69,12 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
     };
 
 
+    /**
+     * Description
+     * @method claseIdExiste
+     * @param {} id
+     * @return Literal
+     */
     $scope.claseIdExiste = function (id){
 
         for (var y = 0; y < $scope.$parent.misClases.length; y++) {
@@ -80,6 +102,11 @@ app.controller('solicitarClaseController', ['$scope', '$rootScope', "toastr",'$l
 
     };
 
+    /**
+     * Description
+     * @method subirSolicitudClase
+     * @return 
+     */
     $scope.subirSolicitudClase = function () {
 
         io.socket.get("/api/clase/solicitarClase",

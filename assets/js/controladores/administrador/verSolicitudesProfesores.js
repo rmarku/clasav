@@ -7,6 +7,13 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
         window.location.href = '#/institucionesAdministrador';
     }
 
+    /**
+     * Description
+     * @method aceptarProfesorEnInstitucion
+     * @param {} user
+     * @param {} index
+     * @return 
+     */
     $scope.aceptarProfesorEnInstitucion = function (user,index) {
 
         if (!confirm('¿Está seguro que desea habilitar a '+user.apellido+' '+user.nombre +" como profesor para gestionar alumnos?")){
@@ -32,6 +39,13 @@ app.controller('verSolicitudesProfesoresController', ['$scope', '$rootScope', "t
         );
     };
 
+    /**
+     * Description
+     * @method rechazarProfesorEnInstitucion
+     * @param {} user
+     * @param {} index
+     * @return 
+     */
     $scope.rechazarProfesorEnInstitucion = function(user,index) {
 
         if (!confirm('¿Está seguro que desea rechazar la solicitud de '+user.apellido+' '+user.nombre +" como profesor para gestionar alumnos?")){

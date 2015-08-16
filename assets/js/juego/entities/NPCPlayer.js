@@ -1,11 +1,17 @@
+
+/**
+ * Clase con comportamiento de un NPCPlaer
+ * @class NPCPlayer
+ */
 game.NPCPlayer = me.Entity.extend({
+
     /**
-     * Description
+     * Constructor que inicializa al personaje
      * @method init
-     * @param {} x
-     * @param {} y
-     * @param {} settings
-     * @return
+     * @param {integer} x - x inicial del NPC en el mapa
+     * @param {integer} y - y inicial del NPC en el mapa
+     * @param {object} settings - Configuración del NPC
+     * @memberof NPCPlayer
      */
     init: function (x, y, settings) {
         var self = this;
@@ -54,21 +60,23 @@ game.NPCPlayer = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Llamada antes de cada frame por Melon, aqui se deben actualizar
+     * los valores del personaje para luego dibujarlo como corresponde
      * @method update
-     * @param {} dt
-     * @return
+     * @param {integer} dt
+     * @memberof NPCPlayer
      */
     update: function (dt) {
         this._super(me.Entity, 'update', [dt]);
     },
 
     /**
-     * Description
+     * Este método es llamado cuando se detecta una colisión con otra entidad
      * @method onCollision
-     * @param {} response
-     * @param {} other
-     * @return Literal
+     * @param {object} response
+     * @param {object} other
+     * @memberof NPCPlayer
+     * @return Boolean
      */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
@@ -80,10 +88,10 @@ game.NPCPlayer = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Dibuja esta entidad en el canvas del juego
      * @method draw
-     * @param {} renderer
-     * @return
+     * @param {object} renderer
+     * @memberof NPCPlayer
      */
     draw: function (renderer) {
 
@@ -98,9 +106,9 @@ game.NPCPlayer = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Dibuja el nombre que irá debajo del personaje
      * @method nombre
-     * @return
+     * @memberof NPCPlayer
      */
     nombre: function () {
         var width = 32 * 4;
@@ -126,7 +134,12 @@ game.NPCPlayer = me.Entity.extend({
         ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3);
     },
 
-
+    /**
+     * Actualiza la información de este NPC con los datos de las misiones del servidor
+     * @method updateInfo
+     * @return CallExpression
+     * @memberof NPCPlayer
+     */
     updateInfo: function () {
         // Traigo datos del quest (si es visible en este momento o no)
         var self = this;

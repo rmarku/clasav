@@ -7,6 +7,11 @@ app.controller('preguntasColiseoController', ['$scope', '$rootScope', "toastr",'
         window.location.href = '#/clasesProfesor';
     }
 
+    /**
+     * Description
+     * @method reset_preguntaForm
+     * @return 
+     */
     $scope.reset_preguntaForm = function () {
         $scope.preguntaForm = {
             "pregunta"      : '',
@@ -28,6 +33,11 @@ app.controller('preguntasColiseoController', ['$scope', '$rootScope', "toastr",'
     $scope.mostrarFormPreguntaNueva = false;
 
 
+    /**
+     * Description
+     * @method get_misPreguntasColiseo_claseActual
+     * @return 
+     */
     $scope.get_misPreguntasColiseo_claseActual = function () {
 
         $.get('/api/preguntas_coli?clase='+$scope.$parent.claseActual.id, function (preguntas) {
@@ -44,6 +54,11 @@ app.controller('preguntasColiseoController', ['$scope', '$rootScope', "toastr",'
     $scope.get_misPreguntasColiseo_claseActual();
 
 
+    /**
+     * Description
+     * @method subir_preguntaNueva
+     * @return 
+     */
     $scope.subir_preguntaNueva= function () {
         $scope.mostrarFormPreguntaNueva = false;
 

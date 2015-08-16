@@ -7,6 +7,13 @@ app.controller('verProfesoresController', ['$scope', '$rootScope', "toastr",'$lo
         window.location.href = '#/institucionesAdministrador';
     }
 
+    /**
+     * Description
+     * @method suspenderProfesor
+     * @param {} user
+     * @param {} index
+     * @return 
+     */
     $scope.suspenderProfesor = function (user,index){
         if (!confirm('¿Está seguro que desea deshabilitar a '+user.apellido+' '+user.nombre+' '+" como profesor?")){
             return;

@@ -14,6 +14,11 @@ function($scope, $rootScope, toastr, $location, $q) {
 	$scope.misInstitucionesStringConcatenado = $scope.$parent.concatenarDatosInstituciones($scope.$parent.misInstituciones);
 	$scope.institucion_seleccionada = $scope.misInstitucionesStringConcatenado[0];
 
+	/**
+	 * Description
+	 * @method get_mapas
+	 * @return 
+	 */
 	$scope.get_mapas = function() {
 		$.get('/api/mapa_generico?tipo=central', function(local_mapas) {
 			var ciudad = 0;
@@ -33,6 +38,11 @@ function($scope, $rootScope, toastr, $location, $q) {
 	};
 	$scope.get_mapas();
 
+	/**
+	 * Description
+	 * @method subirClase
+	 * @return 
+	 */
 	$scope.subirClase = function() {
 
 		if ($scope.nombreClase === '') {

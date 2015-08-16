@@ -49,7 +49,8 @@
     "start": "node app.js",
     "debug": "node debug app.js",
     "postinstall": "node node_modules/bower/bin/bower install && node -e \"require('grunt').tasks(['crearSprites', 'compileMaps', 'crearMisiones']);\" ",
-    "test": "node -e \"require('grunt').tasks(['test']);\""
+    "test": "node -e \"require('grunt').tasks(['test']);\"",
+    "makedocs": "jsdoc -c config/jsdoc.json"
   },
   "main": "app.js",
   "repository": {

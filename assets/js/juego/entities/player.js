@@ -1,19 +1,18 @@
-/************************************************************************************/
-/*                                                                                  */
-/*        a player entity                                                           */
-/*                                                                                  */
-/** ******************************************************************************* */
+
+/**
+ * Clase abstracta de un personaje
+ * moviles
+ * @class Player
+ */
 game.Player = me.Entity.extend({
 
     /**
-     * Description
-     * @return
-     * @return
+     * Constructor que inicializa al personaje
      * @method init
-     * @param {} x
-     * @param {} y
-     * @param {} settings
-     * @return
+     * @param {integer} x - x inicial del player en el mapa
+     * @param {integer} y - y inicial del player en el mapa
+     * @param {object} settings - Configuración del jugador
+     * @memberof NPCPlayer
      */
     init: function (x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
@@ -23,7 +22,7 @@ game.Player = me.Entity.extend({
         this.myPath = [];
 
         this.body.setVelocity(9, 9);
-        this.body.setFriction(0.5, 0.5);
+        this.body.setFriction(0.8, 0.8);
 
         this.body.gravity = 0;
 
@@ -60,10 +59,11 @@ game.Player = me.Entity.extend({
 
     },
     /**
-     * Description
+     * Llamada antes de cada frame por Melon, aqui se deben actualizar
+     * los valores del personaje para luego dibujarlo como corresponde
      * @method update
-     * @param {} dt
-     * @return CallExpression
+     * @param {integer} dt
+     * @memberof Player
      */
     update: function (dt) {
         if (this.direccion & 1) {
@@ -84,10 +84,12 @@ game.Player = me.Entity.extend({
 
 
     /**
-     * Description
+     * Función encargada de calcular la próxima posición según los datos
+     * de dirección del personaje
      * @method updateAnimation
-     * @param {} dt
-     * @return Literal
+     * @param {integer} dt - tiempo pasado desde la ultima actualización
+     * @memberof Player
+     * @return Bool
      */
     updateAnimation: function (dt) {
 
@@ -127,11 +129,12 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Este método es llamado cuando se detecta una colisión con otra entidad
      * @method onCollision
-     * @param {} response
-     * @param {} other
-     * @return Literal
+     * @param {object} response
+     * @param {object} other
+     * @memberof Player
+     * @return Boolean
      */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
@@ -143,12 +146,10 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Description
-     * @return
-     * @return
+     * Dibuja esta entidad en el canvas del juego
      * @method draw
-     * @param {} renderer
-     * @return
+     * @param {object} renderer
+     * @memberof Player
      */
     draw: function (renderer) {
 
@@ -163,9 +164,9 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Dibuja el nombre del personaje por debajo
+     * Dibuja el nombre que irá debajo del personaje
      * @method nombre
-     * @return
+     * @memberof Player
      */
     nombre: function () {
         var width = 32 * 4;
@@ -192,10 +193,10 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Description
+     * Devuelve la imagen de un determinado item
      * @method getItemImg
-     * @param {} itemId
-     * @return
+     * @param {integer} itemId
+     * @memberof Player
      */
     getItemImg: function (itemId) {
         var dir = this.data.duenio.sexo + '/';
@@ -207,11 +208,10 @@ game.Player = me.Entity.extend({
     },
 
     /**
-     * Viste al personaje
-     * @return
-     * @return
+     * Se encarga de realizar la composición y teñir todas las vestimentas
+     * para obtener el sprite definitivo del personaje.
      * @method vestir
-     * @return i
+     * @memberof Player
      */
     vestir: function () {
         var width = 32 * 4;
@@ -294,6 +294,11 @@ game.Player = me.Entity.extend({
         return i;
     },
 
+    /**
+     * Actualiza la información de este personaje con los datos del servidor
+     * @method updateData
+     * @memberof Player
+     */
     updateData: function () {
         // Traigo datos del quest (si es visible en este momento o no)
         var self = this;
@@ -321,6 +326,8 @@ game.Player = me.Entity.extend({
                 hud.update();
             });
     },
+
+
     atlasHDP: function () {
         return {
             "0": {

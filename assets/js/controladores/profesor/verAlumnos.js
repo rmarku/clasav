@@ -7,12 +7,25 @@ app.controller('verAlumnosController', ['$scope', '$rootScope', "toastr",'$locat
         window.location.href = '#/clasesProfesor';
     }
 
+    /**
+     * Description
+     * @method ver_detallesAlumno
+     * @param {} index
+     * @return 
+     */
     $scope.ver_detallesAlumno = function (index){
         $scope.$parent.alumnoActual = $scope.$parent.claseActual.users_situacionAceptado[index];
         window.location.href = '#/detallesAlumno';
     };
 
 
+    /**
+     * Description
+     * @method suspenderAlumno
+     * @param {} user
+     * @param {} index
+     * @return 
+     */
     $scope.suspenderAlumno = function (user,index){
         if (!confirm('¿Está seguro que desea deshabilitar a '+user.apellido+' '+user.nombre+' '+" como alumno?")){
             return;

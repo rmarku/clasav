@@ -1,11 +1,13 @@
+/**
+ * Clase principal del juego
+ * @class PlayScreen
+ */
 game.PlayScreen = me.ScreenObject.extend({
 
     /**
-     * action to perform on state change
-     * @return
-     * @return
+     * Evento ejecutado cuando se resetea Melon
      * @method onResetEvent
-     * @return
+     * @memberof PlayScreen
      */
     onResetEvent: function () {
         // load a level
@@ -37,7 +39,7 @@ game.PlayScreen = me.ScreenObject.extend({
                     game.get_claseActual();
                     server.listen_events();
                     server.join_mapa_instancia();
-                    var map = me.game.currentLevel;
+                    var map = me.game.world.children[0];
 
                     minimap.updateMap(map.cols * map.tilewidth, map.cols * map.tilewidth, map.name);
                     io.socket.get('/api/personaje', {conectado: true}, chat.getList);
@@ -50,11 +52,9 @@ game.PlayScreen = me.ScreenObject.extend({
     },
 
     /**
-     * action to perform when leaving this screen (state change)
-     * @return
-     * @return
+     * Evento ejecutado cuando se sale del juego
      * @method onDestroyEvent
-     * @return
+     * @memberof PlayScreen
      */
     onDestroyEvent: function () {
         me.audio.stopTrack("snow");

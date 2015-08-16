@@ -1,7 +1,6 @@
 /**
- * Created by guille on 04/11/14.
- * @method drawPointsMinimap
- * @return
+ * Clase que se encarga de todo el comportamiento del minimapa
+ * @class minimap
  */
 minimap = {
     miniWidth: 156,
@@ -10,11 +9,24 @@ minimap = {
     mapaWidth: 100000,
     mapaHeight: 100000,
 
+    /**
+     * Funcion que actualiza cuando hay un mapa nuevo
+     * @method updateMap
+     * @memberof minimap
+     * @param {number} wi - Ancho del mapa
+     * @param {number} he - Alto del mapa
+     * @param {number} name - Nombre del mapa
+     */
     updateMap: function (wi, he, name) {
         this.mapaWidth = wi;
         this.mapaHeight = he;
         $("#minimap_img").attr("src", "data/map/" + name + ".png");
     },
+    /**
+     * Metodo encargado de dibujar todos los puntos de NPCs, Jugadores, etc en el mapa
+     * @method drawPointsMinimap
+     * @memberof minimap
+     */
     drawPointsMinimap: function () {
         var canvasMinimap = document.getElementById("canvasMinimap");
         if (canvasMinimap.getContext) {

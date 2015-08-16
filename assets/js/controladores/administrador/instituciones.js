@@ -2,15 +2,18 @@
  * Created by Fabricio on 16/03/2015.
  */
 app.controller('institucionesAdministradorController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
-  /*
-    if ($scope.user.tipo == 'profesor') {
-        $scope.get_misInstituciones();
-    }
-    else if($scope.user.tipo == 'administrador'){
-        $scope.get_misInstituciones();
-        $scope.misInstituciones = $scope.definirSituacionProfesores($scope.misInstituciones);
-    }
-*/
+  /**
+     * if ($scope.user.tipo == 'profesor') {
+     * $scope.get_misInstituciones();
+     * }
+     * else if($scope.user.tipo == 'administrador'){
+     * $scope.get_misInstituciones();
+     * $scope.misInstituciones = $scope.definirSituacionProfesores($scope.misInstituciones);
+     * }
+     * @method set_institucionActual
+     * @param {} index
+     * @return 
+     */
     $scope.set_institucionActual = function (index) {
         $scope.$parent.institucionActual        = $scope.$parent.misInstituciones[index];
         $scope.$parent.institucionActual.activa = true;
@@ -20,12 +23,23 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
     };
 
 
+    /**
+     * Description
+     * @method crearInstitucion
+     * @return 
+     */
     $scope.crearInstitucion = function () {
         window.location.href = '#/crearInstitucion';
     };
 
 
 
+    /**
+     * Description
+     * @method definirSituacionInstituciones
+     * @param {} instituciones
+     * @return 
+     */
     $scope.definirSituacionInstituciones = function (instituciones) {
 
         while(instituciones.length){
@@ -52,6 +66,12 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
 
     };
 
+    /**
+     * Description
+     * @method definirSituacionProfesores
+     * @param {} instituciones
+     * @return instituciones
+     */
     $scope.definirSituacionProfesores = function (instituciones) {
 
         instituciones.forEach(function (institucion) {
@@ -67,6 +87,12 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
         return instituciones;
     };
 
+    /**
+     * Description
+     * @method definirSituacionProfesores_enInstitucion
+     * @param {} institucion
+     * @return MemberExpression
+     */
     $scope.definirSituacionProfesores_enInstitucion = function (institucion) {
 
         var deferred = $q.defer();
@@ -115,6 +141,11 @@ app.controller('institucionesAdministradorController', ['$scope', '$rootScope', 
         return deferred.promise;
     };
 
+    /**
+     * Description
+     * @method get_misInstituciones
+     * @return 
+     */
     $scope.get_misInstituciones = function () {
 
         if($scope.$parent.institucionesCargadas === true){

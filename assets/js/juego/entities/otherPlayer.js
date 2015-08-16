@@ -1,11 +1,17 @@
+
+/**
+ * Clase de los personajes de otros jugadores que estan en el juego
+ * @class OtherPlayer
+ */
 game.OtherPlayer = game.Player.extend({
+
     /**
-     * Description
+     * Constructor que inicializa al personaje
      * @method init
-     * @param {} x
-     * @param {} y
-     * @param {} settings
-     * @return
+     * @param {integer} x - x inicial del jugador en el mapa
+     * @param {integer} y - y inicial del jugador en el mapa
+     * @param {object} settings - Configuración del jugador
+     * @memberof OtherPlayer
      */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
@@ -20,10 +26,10 @@ game.OtherPlayer = game.Player.extend({
     },
 
     /**
-     * Description
+     * Evalua si debo traer el proximo nodo del PathFinder
      * @method nextNode
-     * @param {} new_target
-     * @return
+     * @param {Coord} new_target
+     * @memberof OtherPlayer
      */
     nextNode: function (new_target) {
         // Si el nuevo target es muy diferente al anterior o no hay A*
@@ -47,10 +53,12 @@ game.OtherPlayer = game.Player.extend({
     },
 
     /**
-     * Description
+     * Actualiza los valores de x e y del personaje, y evalúa si
+     * se debe llamar al pathfinder
      * @method update
-     * @param {} dt
+     * @param {integer} dt
      * @return CallExpression
+     * @memberof OtherPlayer
      */
     update: function (dt) {
         // Actuar Normalmente con target_pos actual
@@ -87,6 +95,14 @@ game.OtherPlayer = game.Player.extend({
         return this.updateAnimation(dt);
     },
 
+    /**
+     * Este método es llamado cuando se detecta una colisión con otra entidad
+     * @method onCollision
+     * @param {object} response
+     * @param {object} other
+     * @memberof OtherPlayer
+     * @return Boolean
+     */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.NPC_OBJECT ||
             other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
@@ -97,6 +113,12 @@ game.OtherPlayer = game.Player.extend({
         return true;
     },
 
+    /**
+     * Dibuja esta entidad en el canvas del juego
+     * @method draw
+     * @param {object} renderer
+     * @memberof OtherPlayer
+     */
     draw: function (renderer) {
 
         //var context = renderer.getContext();

@@ -72,19 +72,30 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     /**
      * Description
      * @return
-     * @method verCuenta
      * @return
+     * @method verCuenta
+     * @return 
      */
     $scope.verCuenta = function () {
         $location.path('/cuenta');
     };
 
+    /**
+     * Description
+     * @method volver_aListaClasesProfesor
+     * @return 
+     */
     $scope.volver_aListaClasesProfesor = function () {
         $scope.claseActual.activa = false;
         $scope.$apply();
         window.location.href = '#/clasesProfesor';
     };
 
+    /**
+     * Description
+     * @method volver_aListaInstitucionesAdministrador
+     * @return 
+     */
     $scope.volver_aListaInstitucionesAdministrador = function () {
         $scope.institucionActual.activa = false;
         $scope.$apply();
@@ -97,6 +108,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     //////////// FUNCIONES DE CLASES ///////////////////
 
 
+    /**
+     * Description
+     * @method concatenarDatosInstituciones
+     * @param {} instituciones
+     * @return instituciones
+     */
     $scope.concatenarDatosInstituciones = function (instituciones) {
 
         instituciones.forEach(function(institucion) {
@@ -107,6 +124,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return instituciones;
     };
 
+    /**
+     * Description
+     * @method concatenarDatosClases
+     * @param {} clases
+     * @return clases
+     */
     $scope.concatenarDatosClases = function (clases) {
 
         clases.forEach(function(clase) {
@@ -117,6 +140,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return clases;
     };
 
+    /**
+     * Description
+     * @method definirMapasCentrales
+     * @param {} clases
+     * @return clases
+     */
     $scope.definirMapasCentrales = function (clases) {
 
         ////Recorremos cada mapa_instancia: solo nos quedamos con el mapa_principal
@@ -129,6 +158,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return clases;
     };
 
+    /**
+     * Description
+     * @method get_mapaCentral
+     * @param {} clase
+     * @return mapaToReturn
+     */
     $scope.get_mapaCentral = function (clase) {
 
         var mapaToReturn = "";
@@ -144,6 +179,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     };
 
 
+    /**
+     * Description
+     * @method definirSituacionUsers
+     * @param {} clases
+     * @return clases
+     */
     $scope.definirSituacionUsers = function (clases) {
 
         clases.forEach(function (clase) {
@@ -160,6 +201,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return clases;
     };
 
+    /**
+     * Description
+     * @method definirSituacionUsers_enClase
+     * @param {} clase
+     * @return MemberExpression
+     */
     $scope.definirSituacionUsers_enClase = function (clase) {
 
         var deferred = $q.defer();
@@ -208,6 +255,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return deferred.promise;
     };
 
+    /**
+     * Description
+     * @method definirProfesores
+     * @param {} clases
+     * @return clases
+     */
     $scope.definirProfesores = function (clases) {
 
         clases.forEach(function(clase) {
@@ -219,6 +272,12 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
         return clases;
     };
 
+    /**
+     * Description
+     * @method get_profesor
+     * @param {} clase
+     * @return userToReturn
+     */
     $scope.get_profesor = function (clase) {
 
         var userToReturn = "";
@@ -255,6 +314,11 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
 
     ///// SOCKETS
 
+    /**
+     * Description
+     * @method listen_to_nuevasSolicitudesDeClases
+     * @return 
+     */
     $scope.listen_to_nuevasSolicitudesDeClases = function () {
         io.socket.on('nuevaSolicitud', function onServerSentEvent(user) {
             $scope.misClases.forEach(function (clase) {
@@ -269,6 +333,11 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     };
     $scope.listen_to_nuevasSolicitudesDeClases();
 
+    /**
+     * Description
+     * @method listen_to_clasesEnEspera
+     * @return 
+     */
     $scope.listen_to_clasesEnEspera = function () {
 
         io.socket.on('userUpdatedFromEspera', function onServerSentEvent(clase_x_user) {
@@ -304,6 +373,11 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     $scope.listen_to_clasesEnEspera();
 
     //Sockets para instituciones
+    /**
+     * Description
+     * @method listen_to_nuevasSolicitudesDeInstituciones
+     * @return 
+     */
     $scope.listen_to_nuevasSolicitudesDeInstituciones = function () {
         io.socket.on('nuevaSolicitudInstitucion', function onServerSentEvent(user) {
             $scope.misInstituciones.forEach(function (institucion) {
@@ -318,6 +392,11 @@ app.controller('bodyController', ['$scope', 'toastr', '$location', '$q', functio
     };
     $scope.listen_to_nuevasSolicitudesDeInstituciones();
 
+    /**
+     * Description
+     * @method listen_to_institucionesEnEspera
+     * @return 
+     */
     $scope.listen_to_institucionesEnEspera = function () {
 
         io.socket.on('userUpdatedFromEsperaProfesor', function onServerSentEvent(institucion_x_user) {
