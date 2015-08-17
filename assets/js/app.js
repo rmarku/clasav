@@ -35,19 +35,21 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 
     //<!--MINIJUEGO-->
-    $routeProvider.when('/minijuego', {
-        template: JST["assets/templates/minijuego.html"]
+    $routeProvider.when('/acercaDe', {
+        template: JST["assets/templates/acercade.html"]
+    });
+    $routeProvider.when('/pregF', {
+        template: JST["assets/templates/pregF.html"]
     });
 
     //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
-
 
 
     //<!--RUTAS PROFESOR-->
     $routeProvider.when('/clasesProfesor', {
         template: JST["assets/templates/profesor/clases.html"],
         controller: 'clasesProfesorController'//,
-     //   activetab: 'dashboard'
+        //   activetab: 'dashboard'
     });
     $routeProvider.when('/crearClase', {
         template: JST["assets/templates/profesor/crearClase.html"],
@@ -88,7 +90,6 @@ app.config(['$routeProvider', function ($routeProvider) {
     //<!--FIN RUTAS PROFESOR-->
 
 
-
     //<!--RUTAS ALUMNO-->
     $routeProvider.when('/clasesAlumno', {
         template: JST["assets/templates/alumno/clases.html"],
@@ -123,7 +124,6 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'verSolicitudesProfesoresController'
     });
     //<!--FIN RUTAS ADMINISTRADOR-->
-
 
 
     $routeProvider.otherwise({

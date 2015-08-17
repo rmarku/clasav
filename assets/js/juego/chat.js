@@ -28,7 +28,7 @@ $(function () {
 
     io.socket.on('chat_msg', function (obj) {
 
-        if (this.data.duenio.inscripto) {
+        if (game.mainPlayer.data.duenio.inscripto) {
             var el = $('#divChat');
 
             el.append('<span><b>' + obj.pj + ': </b>' + chat.texto(obj.msg) + '<br></span>')
