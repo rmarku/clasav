@@ -439,7 +439,7 @@ var game = {
 
                                 $("#mision_txt").html('' +
                                     '<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
-                                    document.URL.substring(0, document.URL.length - 4) +
+                                    document.URL.replace(/game.*/i, "") +
                                     'data/minijuegos/' +
                                     data.mision.substring(4) +
                                     '"></iframe>');
