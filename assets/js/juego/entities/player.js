@@ -313,7 +313,7 @@ game.Player = me.Entity.extend({
                     "spritewidth": 32,
                     "spriteheight": 48,
                     atlasIndices: null,
-                    atlas: this.atlasHDP()
+                    atlas: self.atlasHDP()
                 });
 
                 self.renderable.addAnimation('run-down', [0, 1, 2, 3], 100);

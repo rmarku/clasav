@@ -497,7 +497,7 @@ var game = {
                 if (this.misiontxt.substring(0, 4) == "URL:") {
 
                     $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
-                        document.URL.substring(0, document.URL.length - 4) +
+                        document.URL.replace(/game.*/i, "") +
                         'data/minijuegos/' +
                         this.misiontxt.substring(4) +
                         '"></iframe>');
