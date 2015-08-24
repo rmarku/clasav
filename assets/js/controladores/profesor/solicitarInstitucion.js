@@ -13,6 +13,11 @@ app.controller('solicitarInstitucionController', ['$scope', '$rootScope', "toast
     });
 
 
+    /**
+     * Description
+     * @method subirSolicitudInstitucion
+     * @return 
+     */
     $scope.subirSolicitudInstitucion = function () {
 
         if($scope.instituciones.length === 0){

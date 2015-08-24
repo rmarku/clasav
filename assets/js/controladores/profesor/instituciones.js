@@ -3,10 +3,21 @@
  */
 app.controller('institucionesProfesorController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
+    /**
+     * Description
+     * @method solicitarInstitucion
+     * @return 
+     */
     $scope.solicitarInstitucion = function () {
         window.location.href = '#/solicitarInstitucion';
     };
 
+    /**
+     * Description
+     * @method definirSituacionInstituciones
+     * @param {} instituciones
+     * @return 
+     */
     $scope.definirSituacionInstituciones = function (instituciones) {
 
         while(instituciones.length){
@@ -33,6 +44,11 @@ app.controller('institucionesProfesorController', ['$scope', '$rootScope', "toas
 
     };
 
+    /**
+     * Description
+     * @method get_misInstituciones
+     * @return 
+     */
     $scope.get_misInstituciones = function () {
 
         if($scope.$parent.institucionesCargadas === true){

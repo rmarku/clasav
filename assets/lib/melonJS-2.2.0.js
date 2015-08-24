@@ -14970,9 +14970,9 @@ THE SOFTWARE.
                 document.location.hash = 'nogl';
                 location.reload();
             }
-            this.maxTextures = gl.getParameter(
+            this.maxTextures = gl.getParameter(Math.min(24,
                 gl.MAX_TEXTURE_IMAGE_UNITS
-            );
+            ));
 
             // Vector pool
             this.v = [

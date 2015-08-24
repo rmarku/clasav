@@ -77,7 +77,7 @@ module.exports.routes = {
 
     '/api/user/getUser': 'UserController.getUser',
 
-    'post /api/chat/send':'ChatController.send',
+    'post /api/chat/send': 'ChatController.send',
 
     //Personajes
     'get /api/mapa_instancia/join': 'Mapa_instanciaController.join',
@@ -117,3 +117,9 @@ module.exports.routes = {
     'get /api/clase/get_misClases_conUsers': 'ClaseController.get_misClases_conUsers'
 
 };
+a = {"npc": "Kitty",
+    "qorder": 0,
+    "npc_visible": false,
+    "createdAt": "2015-06-03T13:55:51.901Z",
+    "updatedAt": "2015-06-03T13:55:51.901Z",
+    "id": "556f07678f5ee50300237d1a"}

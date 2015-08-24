@@ -5,6 +5,11 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
 
 
 
+    /**
+     * Description
+     * @method get_misClases
+     * @return 
+     */
     $scope.get_misClases = function () {
 
         if($scope.$parent.clasesCargadas === true){
@@ -30,11 +35,22 @@ app.controller('clasesAlumnoController', ['$scope', '$rootScope', "toastr",'$loc
     $scope.get_misClases();
 
 
+    /**
+     * Description
+     * @method solicitarClase
+     * @return 
+     */
     $scope.solicitarClase = function () {
         window.location.href = '#/solicitarClase';
     };
 
 
+    /**
+     * Description
+     * @method definirSituacionClases
+     * @param {} clases
+     * @return otherClasesToReturn
+     */
     $scope.definirSituacionClases = function (clases) {
 
         var otherClasesToReturn = [];

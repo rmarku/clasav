@@ -8,7 +8,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
     $scope.usuario = {
         nombre: '',
         apellido: '',
-        sexo: '',
+        sexo: 'femenino',
         email: '',
         fecha_nacimiento: '',
         pais: '',
@@ -20,7 +20,7 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
         password: '',
         password2: '',
         local: true,
-        tipo: ''
+        tipo: 'alumno'
     };
 
     var lang = {
@@ -59,9 +59,9 @@ app.controller('editUsuario', ['$scope', '$http', 'toastr', '$location', functio
 
     /**
      * Envia el formulario
-     *
-     * @method subirForm
      * @return
+     * @method subirForm
+     * @return 
      */
     $scope.subirForm = function () {
 

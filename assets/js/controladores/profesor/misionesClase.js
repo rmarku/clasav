@@ -9,6 +9,11 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
     $scope.habilitarTabla = false;
     $scope.variable = true;
 
+    /**
+     * Description
+     * @method get_misionesClaseActual
+     * @return 
+     */
     $scope.get_misionesClaseActual = function () {
 
         $.get('/api/logro_instancia?clase='+$scope.$parent.claseActual.id, function (logros) {
@@ -31,6 +36,12 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
 
 
 
+    /**
+     * Description
+     * @method ver_detallesLogro
+     * @param {} index
+     * @return 
+     */
     $scope.ver_detallesLogro = function (index){
         $scope.$parent.logroActual = {mision:{}};
         $scope.$parent.logroActual = $scope.logrosDisponibles_claseActual[index];
@@ -41,10 +52,21 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
 
     };
 
+    /**
+     * Description
+     * @method volver_aMisionesClase
+     * @return 
+     */
     $scope.volver_aMisionesClase = function () {
         window.location.href = '#/misionesClase';
     };
 
+    /**
+     * Description
+     * @method get_misionDeLogroActual
+     * @param {} id
+     * @return MemberExpression
+     */
     $scope.get_misionDeLogroActual = function (id) {
 
         var deferred = $q.defer();
@@ -56,6 +78,11 @@ app.controller('misionesClaseController', ['$scope', '$rootScope', "toastr",'$lo
         return deferred.promise;
     };
 
+    /**
+     * Description
+     * @method set_user_tieneLogro
+     * @return 
+     */
     $scope.set_user_tieneLogro = function () {
 
         var counter = 0;

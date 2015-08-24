@@ -9,6 +9,13 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
 
 
 
+    /**
+     * Description
+     * @method aceptarAlumnoEnClase
+     * @param {} user
+     * @param {} index
+     * @return 
+     */
     $scope.aceptarAlumnoEnClase = function (user,index) {
         if (!confirm('¿Está seguro que desea habilitar a '+user.apellido+' '+user.nombre+' '+" como alumno para que pueda realizar misiones y utilizar el chat?")){
             return;
@@ -34,6 +41,13 @@ app.controller('verSolicitudesController', ['$scope', '$rootScope', "toastr",'$l
 
     };
 
+    /**
+     * Description
+     * @method rechazarAlumnoEnClase
+     * @param {} user
+     * @param {} index
+     * @return 
+     */
     $scope.rechazarAlumnoEnClase = function(user,index) {
 
         if (!confirm('¿Está seguro que desea rechazar la solicitud de '+user.apellido+' '+user.nombre+' '+" como alumno para que pueda realizar misiones y utilizar el chat?")){

@@ -5,6 +5,11 @@ app.controller('crearInstitucionController', ['$scope', '$rootScope', "toastr",'
 
     $scope.institucion_nueva = {};
 
+    /**
+     * Description
+     * @method subirInstitucion
+     * @return 
+     */
     $scope.subirInstitucion = function () {
 
         io.socket.get("/api/institucion/crearInstitucionAdministrador",

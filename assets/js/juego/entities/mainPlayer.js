@@ -1,12 +1,16 @@
-// Jugador principal
+
+/**
+ * Clase del personaje principal del juego
+ * @class PlayerEntity
+ */
 game.PlayerEntity = game.Player.extend({
     /**
-     * Description
+     * Constructor que inicializa al personaje
      * @method init
-     * @param {} x
-     * @param {} y
-     * @param {} settings
-     * @return
+     * @param {integer} x - x inicial del jugador en el mapa
+     * @param {integer} y - y inicial del jugador en el mapa
+     * @param {object} settings - Configuración del jugador
+     * @memberof PlayerEntity
      */
     init: function (x, y, settings) {
         this._super(game.Player, 'init', [x, y, settings]);
@@ -43,11 +47,12 @@ game.PlayerEntity = game.Player.extend({
     },
 
     /**
-     * Description
+     * Este método es llamado cuando se detecta una colisión con otra entidad
      * @method onCollision
-     * @param {} response
-     * @param {} other
-     * @return Literal
+     * @param {object} response
+     * @param {object} other
+     * @memberof PlayerEntity
+     * @return Boolean
      */
     onCollision: function (response, other) {
         if (other.body.collisionType === me.collision.types.ENEMY_OBJECT) {
@@ -68,10 +73,11 @@ game.PlayerEntity = game.Player.extend({
     },
 
     /**
-     * Description
+     * Llamada antes de cada frame por Melon, aqui se deben actualizar
+     * los valores del personaje para luego dibujarlo como corresponde
      * @method update
-     * @param {} dt
-     * @return
+     * @param {integer} dt
+     * @memberof PlayerEntity
      */
     update: function (dt) {
         // Interpretacion de teclas
@@ -113,6 +119,12 @@ game.PlayerEntity = game.Player.extend({
         minimap.drawPointsMinimap();
         return ( ret);
     },
+    /**
+     * Dibuja esta entidad en el canvas del juego
+     * @method draw
+     * @param {object} renderer
+     * @memberof PlayerEntity
+     */
     draw: function (renderer) {
 
         this._super(game.Player, 'draw', [renderer]);

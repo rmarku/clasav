@@ -1,5 +1,6 @@
-/*
- * Created by Fabricio on 12/11/2014.
+/**
+ * Clase encargada de toda la comunicacion en tiempo real con el servidor
+ * @class server
  */
 
 var server = {
@@ -14,22 +15,20 @@ var server = {
     pullingPJ: false,
 
     /**
-     * Description
-     * @return
-     * @return
+     * llama a actualizar my personaje y actualizar los otros jugadores.
      * @method update_myPlayer
-     * @param {} local_coordenates
-     * @return
+     * @memberof server
      */
-    update_myPlayer: function (local_coordenates) {
+    update_myPlayer: function () {
         this.update_myPlayer_in_OtherPlayers();
         this.update_Personaje();
     },
 
     /**
-     * Description
+     * envia la actualizacion de la informacion de mi Personaje al servidor para
+     * que sea retransmitido a los otros jugadores
      * @method update_myPlayer_in_OtherPlayers
-     * @return
+     * @memberof server
      */
     update_myPlayer_in_OtherPlayers: function () {
         // Si hay algun estado activo (es decir si el jugador no esta quieto, y esta en movimiento), aumentar counter
@@ -67,9 +66,9 @@ var server = {
     },
 
     /**
-     * Description
+     * Actualiza los datos de mi personaje si surjieron cambios.
      * @method update_Personaje
-     * @return
+     * @memberof server
      */
     update_Personaje: function () {
         this.updatePersonaje_counter++;
@@ -90,9 +89,9 @@ var server = {
     },
 
     /**
-     * Description
+     * Avisa al servidor de que me he unido a un determinado mapa
      * @method join_mapa_instancia
-     * @return
+     * @memberof server
      */
     join_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/join',
@@ -105,9 +104,9 @@ var server = {
     },
 
     /**
-     * Description
+     * Avisa al servidor que he dejado determinado mapa
      * @method leave_mapa_instancia
-     * @return
+     * @memberof server
      */
     leave_mapa_instancia: function () {
         io.socket.get('/api/mapa_instancia/leave',
@@ -121,9 +120,9 @@ var server = {
     },
 
     /**
-     * Description
+     * Me subscribo a todos los eventos nesesarios para el juego
      * @method listen_events
-     * @return
+     * @memberof server
      */
     listen_events: function () {
 

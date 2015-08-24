@@ -14,6 +14,12 @@ app.controller('detallesAlumnoController', ['$scope', '$rootScope', "toastr",'$l
         $scope.$apply();
     });
 
+    /**
+     * Description
+     * @method volver_aListaAlumnos
+     * @param {} id
+     * @return 
+     */
     $scope.volver_aListaAlumnos = function (id) {
         window.location.href = '#/verAlumnos';
     };

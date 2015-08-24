@@ -1,8 +1,3 @@
-/**
- *
- * Primeras pruebas
- */
-
 toastr.options = {
     closeButton: false,
     debug: false,
@@ -21,7 +16,10 @@ toastr.options = {
     hideMethod: "fadeOut"
 };
 
-
+/**
+ * Clase general del juego.
+ * @class game
+ */
 var game = {
     mainPlayer: {},
     userId: 0,
@@ -38,6 +36,15 @@ var game = {
     nextxy: {x: 0, y: 0, direction: 0},
 
 
+    /**
+     * Funcion ejecutada al cargar la pagina.
+     * Primero trae los datos del usuario y luego los datos del personaje y
+     * verifica que el usuario este logueado y que posea un personaje, de no
+     * ser así, redirecciona el navegador al Home
+     * Si esta logueado, llama a la funcion on de esta clase.
+     * @method start
+     * @memberof game
+     */
     start: function () {
         io.socket.get("/api/user/getUser", function (data) {
             if (typeof data.userId == 'undefined') {
@@ -58,11 +65,12 @@ var game = {
         });
     },
     /**
-     * initialization
-     * @return
-     * @return
+     * Funcion encargada de inicializar la biblioteca MelonJS, el hud y
+     * cargar los recursos del juego (sprites, tilesets, maps,etc)
+     * Al finalizar la carga de recursos, llama a la funcion loaded de
+     * esta clase
      * @method onload
-     * @return
+     * @memberof game
      */
     onload: function () {
         me.sys.pauseOnBlur = false;
@@ -70,11 +78,12 @@ var game = {
         me.sys.stopOnAudioError = false;
         me.sys.fps = 20;
         //me.video.init("screen",32,32,!0,"auto",!0)
-        var video = me.video.CANVAS;
+        var video = me.video.WEBGL;
         if (document.location.hash === "#debug" || document.location.hash === "#nogl") {
             video = me.video.CANVAS;
         }
 
+        // Verifico si es un dispositivo movil para mostrar el HUD movil
         if (me.device.isMobile) {
             if (!me.video.init(400, 240, {
                     wrapper: "game",
@@ -98,6 +107,7 @@ var game = {
             }
         }
 
+        // Inicializo plugin de debug si se solicita en la URI
         if (document.location.hash === "#debug") {
             this.debug = true;
             window.onReady(function () {
@@ -111,7 +121,6 @@ var game = {
         // Initialize the audio.
         me.audio.init("ogg,mp3,wav");
 
-
         // funcion a llamar cuando todos los recursos esten cargados
         me.loader.onload = this.loaded.bind(this);
 
@@ -122,6 +131,7 @@ var game = {
         $.getJSON("api/resources.json", function (data) {
             // Cargo todo y muestro pantalla de carga
             game.logo = document.createElement('img');
+
             game.logo.onload = function () {
                 me.loader.preload(data);
                 me.state.set(me.state.LOADING, new game.CustomLoadingScreen());
@@ -130,14 +140,14 @@ var game = {
             game.logo.src = "/images/logoLoader.png";
         });
 
-        // Traigo todos los items
+        /// Traigo todos los items
         io.socket.get('/api/item/getItems', function (data) {
             data.forEach(function (item) {
                 game.items[item.id] = item;
             });
         });
 
-        // Traigo todos los sprites.
+        /// Traigo todos los sprites.
         io.socket.get('/api/sprite/getSprites', function (data) {
             data.forEach(function (sprite) {
                 game.sprites[sprite.id] = sprite;
@@ -146,11 +156,11 @@ var game = {
     },
 
     /**
-     * Llamo cuando todos los recursos estan cargados
-     * @return
-     * @return
+     * Agrega cada una de las entidades a la pila de melon para poder
+     * ser utilizados rapidamente mas adelante.
+     * Luego cambio el estado de melon a Juego.
      * @method loaded
-     * @return
+     * @memberof game
      */
     loaded: function () {
         // set the "Play/Ingame" Screen Object
@@ -161,14 +171,16 @@ var game = {
 
         me.state.set(me.state.PLAY, new game.PlayScreen());
         me.state.change(me.state.PLAY);         //Luego de esto se ejectuo play.js->onResetEvent()
-    }
-    ,
+    },
 
     /**
-     * Description
+     * Funcion llamada cuando hay cambio de mapa, se deben hacer varias tareas,
+     * remover todas las entidades actuales, actualizar el minimapa al nuevo e
+     * informar al server de que estamos en un nuevo mapa para recibir las notificaciones
+     * de este nuevo mapa.
      * @method change_level
-     * @param {} target_mapa_generico
-     * @return
+     * @memberof game
+     * @param {string} target_mapa_generico - mapa al que debemos cambiar
      */
     change_level: function (target_mapa_generico) {
 
@@ -195,14 +207,13 @@ var game = {
                 game.create_OtherPlayers();
                 game.get_claseActual();
             });
-    }
-    ,
+    },
 
 
     /**
-     * Description
+     * Trae los datos del servidor de otro personaje y crea la entidad otherplayer con sus datos.
      * @method create_OtherPlayers
-     * @return
+     * @memberof game
      */
     create_OtherPlayers: function () {
         io.socket.get('/api/personaje?mapa_instancia=' + game.mainPlayer.data.mapa_instancia.id + '&&masRecientementeUtilizado=true&&conectado=true', function messageReceived(personajes) {
@@ -215,14 +226,13 @@ var game = {
                 }
             }
         });
-    }
-    ,
+    },
 
     /**
-     * Description
+     * Agrega al personaje del jugador al mapa con los datos data
      * @method addMainPlayer
-     * @param {} data
-     * @return
+     * @memberof game
+     * @param {object} data - datos del personaje
      */
     addMainPlayer: function (data) {
         game.mainPlayer = me.pool.pull('mainPlayer', Number(data.x),
@@ -236,6 +246,12 @@ var game = {
         hud.update();
     },
 
+    /**
+     * funcion que crea una entidad para moverse de nivel a nivel
+     * @method add_clavLevelEntity
+     * @memberof game
+     * @param {object} info - informacion del lvl entity
+     */
     add_clavLevelEntity: function (info) {
 
         var data = {};
@@ -262,16 +278,22 @@ var game = {
         me.game.world.addChild(game.clavLevelEntity, 10);
     },
 
+    /**
+     * Teletransporta al PJ utilizando un levelEntity
+     * @method travel_by_genericClavLevelEntity
+     * @memberof game
+     * @param {object} data
+     */
     travel_by_genericClavLevelEntity: function (data) {
         parent.game.add_clavLevelEntity(data);
         game.clavLevelEntity.goTo(game.clavLevelEntity.to);
     },
 
     /**
-     * Description
+     * Agrega al mapa otros jugadores
      * @method addOnlineOtherPlayer
-     * @param {} data
-     * @return
+     * @memberof game
+     * @param {object} data -  datos para crear el otro jugador
      */
     addOnlineOtherPlayer: function (data) {
         game.players[data.id] = me.pool.pull('otherPlayer',
@@ -288,9 +310,9 @@ var game = {
     ,
 
     /**
-     * Description
+     * elimina todos los players del juego
      * @method remove_AllPlayers
-     * @return
+     * @memberof game
      */
     remove_AllPlayers: function () {
         game.removeMainPlayer();
@@ -300,9 +322,9 @@ var game = {
     ,
 
     /**
-     * Description
+     * elimina el mainPlayer del juego
      * @method removeMainPlayer
-     * @return
+     * @memberof game
      */
     removeMainPlayer: function () {
         me.game.world.removeChild(game.mainPlayer);
@@ -311,9 +333,9 @@ var game = {
     ,
 
     /**
-     * Description
+     * elimina todos los otros jugadores del juego
      * @method removeEveryOtherPlayer
-     * @return
+     * @memberof game
      */
     removeEveryOtherPlayer: function () {
         while (game.players.length) {
@@ -324,10 +346,10 @@ var game = {
     ,
 
     /**
-     * Description
+     * elimina otro jugador particular segun el ID
      * @method removeOtherPlayer
-     * @param {} id
-     * @return
+     * @memberof game
+     * @param {string} id - Identificador del servidor
      */
     removeOtherPlayer: function (id) {
         if (game.players[id]) {
@@ -339,9 +361,9 @@ var game = {
     ,
 
     /**
-     * Description
+     * elimina todos los NPCs del mapa
      * @method removeNPCs
-     * @return
+     * @memberof game
      */
     removeNPCs: function () {
         for (var npc in game.NPCs) {
@@ -350,9 +372,10 @@ var game = {
     },
 
     /**
-     * Description
-     * @method removeNPCs
-     * @return
+     * actualiza los datos de los NPCs que estan en la lista
+     * @method updateNPCs
+     * @memberof game
+     * @param {array} lista - Lista de los NPCs que
      */
     updateNPCs: function (lista) {
 
@@ -367,10 +390,20 @@ var game = {
             game.NPCs[npcs_id[idx]].updateInfo();
     },
 
-// Misiones
+    /**
+     * Clase que engloba la logica de las misiones
+     * @class mision
+     */
     mision: {
         misiontxt: '',
         npc: null,
+        /**
+         * Metodo que prepara el cuadro de dialogo de misiones y realiza el pedido
+         * de los datos de la mision para el NPC con el que se hablo
+         * @method startMision
+         * @memberof mision
+         * @param {string} npc - El ID de algun NPC
+         */
         startMision: function (npc) {
             $("#mision_aceptar").hide();
             $("#mision_siguiente").hide();
@@ -406,7 +439,7 @@ var game = {
 
                                 $("#mision_txt").html('' +
                                     '<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
-                                    document.URL.substring(0, document.URL.length - 4) +
+                                    document.URL.replace(/game.*/i, "") +
                                     'data/minijuegos/' +
                                     data.mision.substring(4) +
                                     '"></iframe>');
@@ -429,6 +462,11 @@ var game = {
             me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
         },
 
+        /**
+         * Accion tomada si el usuario cancela la mision.
+         * @method cancelar
+         * @memberof mision
+         */
         cancelar: function () {
             this.mision = '';
             this.npc = null;
@@ -440,6 +478,15 @@ var game = {
             me.input.triggerKeyEvent(me.input.KEY.SPACE, false);
         },
 
+        /**
+         * Ejecuta el siguiente paso de la mision enviando al servidor el resultado obtenido,
+         * segun el si es correcto o no se tomara la desicion de mostrar el mensaje de error
+         * o el mensaje de felicitacion
+         * @method siguiente
+         * @memberof mision
+         * @param {string} resultado - Resultado de la mision
+
+         */
         siguiente: function (resultado) {
             $("#mision_aceptar").hide();
             $("#mision_siguiente").hide();
@@ -450,7 +497,7 @@ var game = {
                 if (this.misiontxt.substring(0, 4) == "URL:") {
 
                     $("#mision_txt").html('<iframe sandbox="allow-same-origin allow-forms allow-scripts" src="' +
-                        document.URL.substring(0, document.URL.length - 4) +
+                        document.URL.replace(/game.*/i, "") +
                         'data/minijuegos/' +
                         this.misiontxt.substring(4) +
                         '"></iframe>');
@@ -483,6 +530,11 @@ var game = {
         }
     },
 
+    /**
+     * Obtiene todas las clases pertenecientes al usuario actual
+     * @method get_misClases
+     * @memberof game
+     */
     get_misClases: function () {
         io.socket.get('/api/clase/get_misClases', function (clases) {
             game.misClases = clases;
@@ -490,6 +542,11 @@ var game = {
 
     },
 
+    /**
+     * Obtiene la clase en la que esta actualmente el personaje
+     * @method get_claseActual
+     * @memberof game
+     */
     get_claseActual: function () {
         io.socket.get('/api/mapa_instancia/' + game.mainPlayer.data.mapa_instancia.id + '/clase', function (clase) {
             game.claseActual = clase;

@@ -1,11 +1,13 @@
+/**
+ * Clase principal del juego
+ * @class PlayScreen
+ */
 game.PlayScreen = me.ScreenObject.extend({
 
     /**
-     * action to perform on state change
-     * @return
-     * @return
+     * Evento ejecutado cuando se resetea Melon
      * @method onResetEvent
-     * @return
+     * @memberof PlayScreen
      */
     onResetEvent: function () {
         // load a level
@@ -50,11 +52,9 @@ game.PlayScreen = me.ScreenObject.extend({
     },
 
     /**
-     * action to perform when leaving this screen (state change)
-     * @return
-     * @return
+     * Evento ejecutado cuando se sale del juego
      * @method onDestroyEvent
-     * @return
+     * @memberof PlayScreen
      */
     onDestroyEvent: function () {
         me.audio.stopTrack("snow");

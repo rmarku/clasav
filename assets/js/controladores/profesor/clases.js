@@ -4,6 +4,11 @@
 app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$location','$q', function ($scope, $rootScope, toastr, $location,$q) {
 
 
+    /**
+     * Description
+     * @method get_misClases
+     * @return 
+     */
     $scope.get_misClases = function () {
 
         if ($scope.$parent.clasesCargadas === true) {
@@ -29,6 +34,11 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
 
     $scope.get_misClases();
 
+    /**
+     * Description
+     * @method crearClase
+     * @return 
+     */
     $scope.crearClase = function () {
         if($scope.$parent.misInstituciones.length === 0){
             toastr.error('Ahún no tiene una institución que lo habilite a dar clases.');
@@ -38,6 +48,12 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
     };
 
 
+    /**
+     * Description
+     * @method set_claseActual
+     * @param {} index
+     * @return 
+     */
     $scope.set_claseActual = function (index) {
         $scope.$parent.claseActual = $scope.$parent.misClases[index];
         $scope.$parent.claseActual.activa = true;
@@ -54,6 +70,12 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
 
 
     //////////////////// Funciones para obtener instituciones  //////////////////////
+    /**
+     * Description
+     * @method definirSituacionInstituciones
+     * @param {} instituciones
+     * @return 
+     */
     $scope.definirSituacionInstituciones = function (instituciones) {
 
         while(instituciones.length){
@@ -80,6 +102,11 @@ app.controller('clasesProfesorController', ['$scope', '$rootScope', "toastr",'$l
 
     };
 
+    /**
+     * Description
+     * @method get_misInstituciones
+     * @return 
+     */
     $scope.get_misInstituciones = function () {
 
         if($scope.$parent.institucionesCargadas === true){
