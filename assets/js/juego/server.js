@@ -66,7 +66,7 @@ var server = {
     },
 
     /**
-     * Actualiza los datos de mi personaje si surjieron cambios.
+     * Actualiza los datos de mi personaje si surgieron cambios.
      * @method update_Personaje
      * @memberof server
      */
