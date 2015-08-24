@@ -259,6 +259,15 @@
 
 	},{
 		"npc": "pitagoras",
+		"qorder": "0",
+		"img_quest": "pitagoras.png",
+		"npc_visible": "true",
+		"titulo": "Aún no estas preparado...",
+		"paso": "Debes hablar con mi esposa Teano y resolver todos sus ejercicios para estar listo...",
+    "logro" :11
+
+	}, {
+		"npc": "pitagoras",
 		"qorder": "1",
 		"img_quest": "pitagoras.png",
 		"npc_visible": "true",
