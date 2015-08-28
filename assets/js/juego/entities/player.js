@@ -188,8 +188,11 @@ game.Player = me.Entity.extend({
 
         var txtw = ctx.measureText(this.data.nombre.trimRight()).width;
 
-        ctx.strokeText(this.data.nombre, width / 2 - txtw / 2, 3);
-        ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3);
+        ctx.strokeText(this.data.nombre, width / 2 - txtw / 2, 3); 
+        ctx.fillText(this.data.nombre, width / 2 - txtw / 2, 3); 
+        
+        ctx.strokeText(this.data.nivel, width / 2, 12); //Agus estubo aqui
+        ctx.fillText(this.data.nivel, width / 2, 12); //Agus estubo aqui
     },
 
     /**
