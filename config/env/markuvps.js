@@ -26,6 +26,7 @@ module.exports = {
    ***************************************************************************/
 
    port: 1333,
+   host: '127.0.0.1',
 
   /***************************************************************************
    * Set the log level in production environment to "silent"                 *
@@ -51,6 +52,24 @@ module.exports = {
         port: '11588',
         db: 'redistogo',
         pass: '***REMOVED***'
-    }
+    },
 
+
+    passport:{
+      facebook:{
+	options:{
+	    scope: ['email'],
+            clientID: '489843304522461',
+            clientSecret: '***REMOVED***'        
+        }	
+      },
+     google:{
+        options:{
+            scope: ['email'],
+            clientID: '985736410162-siap72n4a0atqnuppcapabe77gculpnc.apps.googleusercontent.com',
+            clientSecret: '***REMOVED***'
+        }
+
+	}
+    }
 };
