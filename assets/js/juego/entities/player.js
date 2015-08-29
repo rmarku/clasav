@@ -325,7 +325,7 @@ game.Player = me.Entity.extend({
                 self.renderable.addAnimation('run-up', [12, 13, 14, 15], 100);
 
                 self.renderable.setCurrentAnimation(self.animationToUseThisFrame);
-
+				self.nombre();
                 hud.update();
             });
     },

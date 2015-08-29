@@ -47,5 +47,10 @@
         "nombre"    : "argentina",
         "tipo"      :"central",
         "dependencia_mapa_generico" : 3
+    },
+    {
+        "nombre"    : "ecoisla",
+        "tipo"      :"central",
+        "dependencia_mapa_generico" : 4
     }
 ]

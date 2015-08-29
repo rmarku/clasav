@@ -46,6 +46,11 @@
         "mapa_generico" :9,
         "nombre"        :"ciudad_taberna",
         "tipo"          :"secundario"
+    },
+    {
+        "mapa_generico" :10,
+        "nombre"        :"ecoisla",
+        "tipo"          :"central"
     }
 
 ]
