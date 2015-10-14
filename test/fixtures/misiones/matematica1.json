@@ -38,7 +38,56 @@
 			}
 		]
 
+	},{
+		"npc": "Chris",
+		"qorder": "0",
+		"img_quest": "chris.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
 	}, {
+		"npc": "fibonacci",
+		"qorder": "0",
+		"img_quest": "fibonacci.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
+	},{
+		"npc": "hipatia",
+		"qorder": "0",
+		"img_quest": "hipatia.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
+	},{
+		"npc": "teano",
+		"qorder": "0",
+		"img_quest": "teano.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
+	},{
+		"npc": "daniela",
+		"qorder": "0",
+		"img_quest": "daniela.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
+	},{
+		"npc": "reneDescartes",
+		"qorder": "0",
+		"img_quest": "reneDescartes.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
+	},{
+		"npc": "eduardo",
+		"qorder": "0",
+		"img_quest": "eduardo.png",
+		"npc_visible": "true",
+		"titulo": "Pareces perdido...",
+		"paso": "Deberias hablar con Carlos!!!"
+	},	{
 		"npc": "Chris",
 		"qorder": "1",
 		"img_quest": "chris.png",
