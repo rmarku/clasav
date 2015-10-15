@@ -24,10 +24,10 @@ module.exports = {
     },
     getPreguntas: function (userId) {
         return new Promesa(function (resolve, reject) {
-            Clase_x_user.find({user: userId}).populate("clase").exec(function (err, clases) {
+            Clase_x_user.find({user: userId}).populate("clase").exec(function (err, claxuser) {
                 var clases_id = [];
-                for (var i = 0; i < clases.length; i++) {
-                    clases_id.push(clases[i].id);
+                for (var i = 0; i < claxuser.length; i++) {
+                    clases_id.push(claxuser[i].clase.id);
                 }
                 Preguntas_coli.find({clase: clases_id}).exec(function (err, preguntas) {
                     if (err) return reject(err);
