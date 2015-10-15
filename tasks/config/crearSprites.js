@@ -68,7 +68,7 @@ module.exports = function (grunt) {
             width: 128,
             height: 192,
             filas: ['a', 'm'],
-            cantidad: 13,
+            cantidad: 14,
             sex: 'masculino'
         },
         shirtM: {

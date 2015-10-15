@@ -102,10 +102,16 @@
 		"yoffset": 0,
 		"zIndex": 10
 	}, {
-		"imagen": "shirt.png",
-		"icono": "items/nep/botellaLeche.png",
-		"xoffset": 0,
-		"yoffset": 0,
-		"zIndex": 10
-	}
+  "imagen": "shirt.png",
+  "icono": "items/nep/botellaLeche.png",
+  "xoffset": 0,
+  "yoffset": 0,
+  "zIndex": 10
+}, {
+  "imagen": "shirt.png",
+  "icono": "items/pechera/1.png",
+  "xoffset": 13,
+  "yoffset": 0,
+  "zIndex": 200
+}
 ]
