@@ -133,6 +133,10 @@
 	font-size: 2em;
 }
 
+.screenS{
+	margin: 16px 16px 0px 0px
+}
+
 .btn-coliseo:hover {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e87325), color-stop(1, #f2af81));
     background: -moz-linear-gradient(top, #e87325 5%, #f2af81 100%);
