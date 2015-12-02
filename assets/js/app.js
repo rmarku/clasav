@@ -41,6 +41,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/pregF', {
         template: JST["assets/templates/pregF.html"]
     });
+    $routeProvider.when('/pressKit', {
+        template: JST["assets/templates/pressKit.html"]
+    });
 
     //    $routeProvider.when('/ranking', {templateUrl: 'partials/user-creation.html', controller: 'UserCreationCtrl'});
 
