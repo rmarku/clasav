@@ -5,6 +5,8 @@
 		"img_quest": "carlos.png",
 		"npc_visible": "true",
 		"titulo": "Bienvenido a 'Isla Matemática'!",
+	    "reco_item": "Toga y birreta",
+	    "reco_item_cant": "1",
 		"pregunta": "Hola viajero! En esta isla podras encontrar muchos enigmas matemáticos para resolver! Podras aprender sobre: <br> 1) Operaciones con Números Naturales <br> 2) Divisibilidad <br> 3) Cuerpos Geométricos <br> 4) Figuras Planas <br> 5) Perimetro, Área y Volumen <br> 6) Relaciones entre datos <br> 7) Números racionales positivos y sus operaciones",
 		"paso": "Si quieres, puedes comenzar con <b>Chris</b>, y ayudarlo con sus tareas de numeros enteros. <br> Sino puedes hablar con <b>Fibonacci</b> sobre divisibilidad.<br> O visitar a <b>Hipatia</b> y conversar sobre cuerpos geométricos.<br> Aunque si esos temas no te convencen, <b>Teano</b> puede hablarte de figuras planas.<br> También puedes visitar a <b>Daniela</b>, ella necesita ayuda para estudiar el perimetro, área y volumen de diferentes figuras y cuerpos geométricos. <br> También podras hallar a <b>René Descartes</b>, con quién podras hablar de la 'relación entre datos'.",
 		"new_mission": [

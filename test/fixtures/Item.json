@@ -133,5 +133,11 @@
 		"maximo": "1",
 		"sprite": "17",
 		"color": "#ffffff"
-	}
+	}, {
+  "nombre": "Toga y birreta",
+  "tipo_item": "torso",
+  "maximo": "3",
+  "sprite": "19",
+  "color": "#ffffff"
+}
 ]

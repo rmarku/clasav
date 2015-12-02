@@ -64,7 +64,7 @@ game.OtherPlayer = game.Player.extend({
         // Actuar Normalmente con target_pos actual
         this.direccion = 0;
         if (this.inViewport) {
-            //  Si tengo todavia nodos por recorrer
+            //  Si tengo todavía nodos por recorrer
             if (this.myPath.length > 0) {
 
                 if (this.pos.distance(this.target_pos) < 16) {
