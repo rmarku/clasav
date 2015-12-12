@@ -35,9 +35,6 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 
     //<!--MINIJUEGO-->
-    $routeProvider.when('/acercaDe', {
-        template: JST["assets/templates/acercade.html"]
-    });
     $routeProvider.when('/pregF', {
         template: JST["assets/templates/pregF.html"]
     });
