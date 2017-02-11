@@ -14,7 +14,7 @@ module.exports = function (grunt) {
             gmagick = require('gm');
 
         var execFile = require('child_process').execFile;
-        var optipng = require('optipng-bin').path;
+        var optipng = require('optipng-bin');
         var done = this.async();
         var res = this.data;
 
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
                 done(false);
             } else {
                 if (process.env.NODE_ENV != 'development') {
-                    grunt.log.writeln('Sprite: OK');
+                    grunt.log.writeln('Sprite: Ok');
                     execFile(optipng, ['-o7', res.folder + res.sex + '/' + res.name + ".png"], function (err) {
                         if (err) {
                             throw err;

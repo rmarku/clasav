@@ -30,7 +30,7 @@
     "jsonfile": "^2.0.0",
     "newrelic": "^1.18.5",
     "node-schedule": "^0.2.6",
-    "optipng-bin": "^2.0.3",
+    "optipng-bin": "^3.1.2",
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
     "passport-google-oauth": "^0.1.5",
@@ -41,14 +41,13 @@
     "sails-generate-auth": "^0.2.0",
     "sails-mongo": "^0.10.4",
     "slack-winston": "git+https://github.com/nhitchins/slack-winston.git",
-    "tmxLint": "git+https://github.com/rmarku/tmxLint.git#v0.0.4",
     "validator": "^3.19.1",
     "winston": "^0.8.3"
   },
   "scripts": {
     "start": "node app.js",
     "debug": "node debug app.js",
-    "postinstall": "node node_modules/bower/bin/bower install && node -e \"require('grunt').tasks(['crearSprites', 'compileMaps', 'crearMisiones']);\" ",
+    "postinstall": "node node_modules/bower/bin/bower install && node -e \"require('grunt').tasks(['crearSprites', 'crearMisiones']);\" ",
     "test": "node -e \"require('grunt').tasks(['test']);\"",
     "makedocs": "jsdoc -c config/jsdoc.json"
   },

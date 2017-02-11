@@ -15,8 +15,8 @@ module.exports = function (grunt) {
             return base;
         }
 
-        var tmxMaps = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/compiled/*.tmx']);
-        var tileImages = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/compiled/**/*.png']);
+        var tmxMaps = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/*.tmx']);
+        var tileImages = grunt.file.expand({filter: 'isFile'}, ['assets/data/map/**/*.png']);
         var music = grunt.file.expand({filter: 'isFile'}, ['assets/data/music/**/*.ogg']);
         var sfx = grunt.file.expand({filter: 'isFile'}, ['assets/data/sfx/**/*.ogg']);
         // var sprites = grunt.file.expand({filter: 'isFile'}, ['assets/data/sprites/characters/**/*.png']);
