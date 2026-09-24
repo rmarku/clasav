@@ -27,6 +27,7 @@ Decisions taken during brainstorming:
 | Auth | Local accounts + config-driven OIDC/OAuth2 providers; no Facebook |
 | Config | **koanf**: defaults < YAML file < env vars < flags |
 | Naming | English identifiers in code/schema; Spanish UI text via i18n catalog |
+| Hosting | **Forgejo** (`git.casa.marku.me/rmarku/clasav`) is primary: code, issues, milestones, CI; GitHub is a read-only push mirror |
 
 Success criteria: a fresh clone builds one binary that, with zero external services
 (SQLite + embedded content), lets users register, create a character, join a class,
@@ -295,7 +296,9 @@ Subcommands: `serve` (default), `migrate up|down|status`, `content check`,
 ## 10. Delivery
 
 - `justfile`: `web`, `generate` (templ + TS protocol types), `build`, `test`, `lint`.
-- GitHub Actions: lint, tests (SQLite + Postgres), game build, `content check`, binary build.
+- Forgejo Actions (`.forgejo/workflows/`): lint, tests (SQLite + Postgres), game build,
+  `content check`, binary build. Runner needs Docker access (testcontainers).
+- GitHub receives commits via a Forgejo push mirror; issues/PRs are disabled there.
 - Multi-stage Dockerfile (Node + Go build → distroless static), `/data` volume.
 
 ## 11. Milestones
@@ -310,7 +313,7 @@ Each milestone gets its own implementation plan.
    chat, remote players.
 4. **Gameplay** — missions, inventory/equipment, energy, achievements, talents,
    minigame bridge + colosseum, HUD.
-5. **Polish** — OIDC providers, metrics, Playwright smoke, Docker, CI, press kit,
+5. **Polish** — OIDC providers, metrics, Playwright smoke, Docker, Forgejo CI, press kit,
    i18n catalog.
 
 ## 12. Future (out of scope now)
